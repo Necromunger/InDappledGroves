@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "indappledgroves",
+  "name": "In Dappled Groves",
+  "author": "Vinter Nacht",
+  "description": "Wood and Forestry Related Content",
+  "version": "1.15.10-0.1.0-dev.1",
+  "dependency": {
+    "game": ""
+  }
+}

@@ -1,0 +1,14 @@
+﻿1.15.6-v0.1.0
+	- Updated leaves json to allow Oak leaves to fruit into a harvestable state
+	- Created integration with acorn mod
+
+1.15.10-v0.1.0-dev.1
+	- Added in-world sawing and chopping mechanics with sound
+	- Added bark related content, including reduced basket size
+	- Removed Oak leaf transition state for later consideration
+
+Upcoming Changes
+	- Add animation to sawing
+	- Make logpile functional
+	- Update firewood stacksize to 64 from 32 (?)
+	- Add chopping block
