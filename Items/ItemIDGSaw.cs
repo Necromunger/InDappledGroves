@@ -8,7 +8,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
-namespace VinterTweaks.Items.Tools
+namespace InDappledGroves.Items.Tools
 {
     class ItemIDGSaw : Item
     {
@@ -27,7 +27,7 @@ namespace VinterTweaks.Items.Tools
                     new WorldInteraction()
                         {
                             ActionLangCode = "vintertweaks:itemhelp-saw-sawwood",
-                            HotKeyCode = "sneak",
+                            HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
                     };

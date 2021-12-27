@@ -2,19 +2,19 @@
   {
     "op": "replace",
     "path": "/class",
-    "value": "itemvtaxe",
+    "value": "itemidgaxe",
     "file": "itemtypes/tool/axe-metal.json"
   },
   {
     "op": "replace",
     "path": "/class",
-    "value": "itemvtaxe",
+    "value": "itemidgaxe",
     "file": "itemtypes/tool/axe-stone.json"
   },
   {
     "op": "add",
     "path": "/class",
-    "value": "itemvtsaw",
+    "value": "itemidgsaw",
     "file": "itemtypes/tool/saw.json"
   }
 ]

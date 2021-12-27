@@ -8,7 +8,7 @@ using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 
-namespace VinterTweaks.Items.Tools
+namespace InDappledGroves.Items.Tools
 {
 
     class ItemIDGAxe : Item
@@ -28,8 +28,8 @@ namespace VinterTweaks.Items.Tools
                 return new WorldInteraction[] {
                     new WorldInteraction()
                         {
-                            ActionLangCode = "vintertweaks:itemhelp-axe-chopwood",
-                            HotKeyCode = "sneak",
+                            ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
+                            HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
                     };
