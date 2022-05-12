@@ -288,6 +288,7 @@ namespace InDappledGroves.Items.Tools
             if (api.Side == EnumAppSide.Server)
             {
                 Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
+                //TODO: Check axe for tier and reference config for cut times and yield.
                 int firewoodYield = 4;
 
 

@@ -79,8 +79,6 @@ namespace InDappledGroves.Items.Tools
         }
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-           
-
 
             if (blockSel != null)
             {
@@ -125,6 +123,8 @@ namespace InDappledGroves.Items.Tools
 
                 api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                 api.World.BlockAccessor.MarkBlockDirty(blockSel.Position);
+                //TODO: Check axe for tier and reference config for cut times and yield.
+                //Remove stone recipes from the saw, implement a mason's saw with minimum tier of Bronze
 
                 if ((interactedBlock.FirstCodePart() == "log" && interactedBlock.Variant["type"] == "placed")
                         || interactedBlock.FirstCodePart() == "strippedlog"
