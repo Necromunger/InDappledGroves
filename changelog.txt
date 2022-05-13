@@ -1,6 +1,5 @@
-﻿1.15.6-v0.1.0
-	- Updated leaves json to allow Oak leaves to fruit into a harvestable state
-	- Created integration with acorn mod
+﻿1.16-v0.1.1
+
 
 1.15.10-v0.1.0-dev.1
 	- Added in-world sawing and chopping mechanics with sound

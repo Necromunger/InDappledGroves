@@ -130,19 +130,19 @@ namespace InDappledGroves.Items.Tools
                         || interactedBlock.FirstCodePart() == "strippedlog"
                         || (interactedBlock.FirstCodePart() == "logsection" && interactedBlock.Variant["type"] == "placed"))
                 {
-                    spawnScatter(interactedBlock, 12, blockSel.Position);
+                    DropScatter(interactedBlock, 12, blockSel.Position);
                 }
                 else if (interactedBlock.FirstCodePart() == "planks")
                 {
-                    spawnScatter(interactedBlock, 4, blockSel.Position); 
+                    DropScatter(interactedBlock, 4, blockSel.Position); 
                 }
                 else if (interactedBlock.FirstCodePart() == "plankstairs")
                 {
-                    spawnScatter(interactedBlock, 3, blockSel.Position);
+                    DropScatter(interactedBlock, 3, blockSel.Position);
                 }
                 else if (interactedBlock.FirstCodePart() == "plankslab")
                 {
-                    spawnScatter(interactedBlock, 2, blockSel.Position);
+                    DropScatter(interactedBlock, 2, blockSel.Position);
                 }
                     if (byEntity is EntityPlayer player)
                     this.DamageItem(api.World, byEntity, player.RightHandItemSlot, 1);
@@ -150,7 +150,7 @@ namespace InDappledGroves.Items.Tools
 
         }
 
-        private void spawnScatter(Block interactedBlock, int size, BlockPos pos)
+        private void DropScatter(Block interactedBlock, int size, BlockPos pos)
         {
             for (int i = size; i > 0; i--)
             {

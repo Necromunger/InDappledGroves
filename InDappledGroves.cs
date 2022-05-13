@@ -15,7 +15,7 @@ namespace InDappledGroves
 
             try
             {
-                var Config = api.LoadModConfig<InDappledGrovesConfig>("fieldsofgold.json");
+                var Config = api.LoadModConfig<InDappledGrovesConfig>("indappledgroves.json");
                 if (Config != null)
                 {
                     api.Logger.Notification("Mod Config successfully loaded.");
@@ -37,10 +37,9 @@ namespace InDappledGroves
                 //TODO: Finish Implementing Config
                 //if (InDappledGrovesConfig.Current. <= 0)
                 //    InDappledGrovesConfig.Current.hiveHoursToHarvest = 1488;
-                //api.StoreModConfig(InDappledGrovesConfig.Current, "fieldsofgold.json");
+                //api.StoreModConfig(InDappledGrovesConfig.Current, "indappledgroves.json");
             }
         }
     }
 
-    }
 }
