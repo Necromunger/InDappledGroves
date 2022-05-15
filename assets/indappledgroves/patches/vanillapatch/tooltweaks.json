@@ -1,0 +1,37 @@
+[
+  {
+    "op": "replace",
+    "path": "/class",
+    "value": "idgaxe",
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/class",
+    "value": "idgaxe",
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [{"name": "WoodSplitter"}],
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [{"name": "WoodSplitter"}],
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/class",
+    "value": "idgsaw",
+    "file": "game:itemtypes/tool/saw.json",
+    "side": "server"
+  }
+]

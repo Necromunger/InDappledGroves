@@ -1,4 +1,6 @@
-﻿using InDappledGroves.config;
+﻿using InDappledGroves.BlockEntities;
+using InDappledGroves.Blocks;
+using InDappledGroves.config;
 using InDappledGroves.Items.Tools;
 using System;
 using Vintagestory.API.Common;
@@ -10,8 +12,18 @@ namespace InDappledGroves
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
-            api.RegisterItemClass("itemidgaxe", typeof(ItemIDGAxe));
-            api.RegisterItemClass("itemidgsaw", typeof(ItemIDGSaw));
+
+            //Register Items
+            api.RegisterItemClass("idgaxe", typeof(ItemIDGAxe));
+            api.RegisterItemClass("idgsaw", typeof(ItemIDGSaw));
+
+            //Register Blocks
+            api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
+
+            //Registser BlockEntities
+            api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
+
+            api.RegisterCollectibleBehaviorClass("WoodSplitter", typeof(BehaviorWoodSplitter));
 
             try
             {

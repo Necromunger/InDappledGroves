@@ -1,4 +1,5 @@
 {
   "itemhelp-axe-chopwood": "Shift+Right Click To Chop into Firewood",
-  "itemhelp-saw-chopwood": "Shift+Right Click To Saw into Planks"
+  "itemhelp-saw-chopwood": "Shift+Right Click To Saw into Planks",
+  "block-choppingblock-*": "Chopping Block"
 }

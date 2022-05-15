@@ -13,29 +13,12 @@ namespace InDappledGroves.Items.Tools
 
     class ItemIDGAxe : Item
     {
-        WorldInteraction[] interactions = null;
-        private double choppingTime;
-        private SimpleParticleProperties woodParticles;
-        private float playNextSound;
+        
 
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-
-            interactions = ObjectCacheUtil.GetOrCreate(api, "vtaxeInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-                            HotKeyCode = "sprint",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
-            choppingTime = 2.0;
-            woodParticles = InitializeWoodParticles();
         }
 
         static ItemIDGAxe()
@@ -222,89 +205,7 @@ namespace InDappledGroves.Items.Tools
             return foundPositions;
         }
 
-        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
-        {
-            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
 
-            //-- Do not process the chopping action if the player is not sneaking, or no block is selected --//
-            if (!byEntity.Controls.Sprint || blockSel == null)
-                return;
-
-            Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-
-            if ((interactedBlock.FirstCodePart() == "log" && interactedBlock.Variant["type"] == "placed")
-                || interactedBlock.FirstCodePart() == "strippedlog"
-                || (interactedBlock.FirstCodePart() == "logsection" && interactedBlock.Variant["type"] == "placed"))
-            {
-
-                //-- Chopping time modifier increases the speed at which the wood is stripped. By default, it's based on tool tier --//
-                //choppingTime = api.World.Config.GetDouble("BaseBarkStrippingSpeed", 1.0) * this.Attributes["strippingTimeModifier"].AsDouble();
-                byEntity.StartAnimation("axechop");
-                //byEntity.StartAnimation(byEntity.RightHandItemSlot?.Itemstack?.Collectible.GeldHeldFpHitAnimation(slot, byEntity).ToString());
-                handling = EnumHandHandling.Handled;
-            }
-            playNextSound = 0.25f;
-        }
-        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
-        {
-
-            BlockPos pos = blockSel.Position;
-
-            if (blockSel != null)
-            {
-
-                if (((int)api.Side) == 1 && playNextSound < secondsUsed)
-                {
-                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
-                    playNextSound += .27f;
-                } 
-                
-                if (secondsUsed >= choppingTime)
-                {
-                    Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= choppingTime && 
-                        ((interactedBlock.FirstCodePart() == "log" && interactedBlock.Variant["type"] == "placed") 
-                        || interactedBlock.FirstCodePart() == "strippedlog")
-                        || (interactedBlock.FirstCodePart() == "logsection" && interactedBlock.Variant["type"] == "placed"))
-                        byEntity.StopAnimation("axechop");
-                    SpawnLoot(blockSel, byEntity);
-                    return false;
-                }
-                
-            }
-            return true;
-            
-        }
-
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
-        {
-            byEntity.StopAnimation("axechop"); 
-            //byEntity.StopAnimation(byEntity.RightHandItemSlot?.Itemstack?.Collectible.GeldHeldFpHitAnimation(slot, byEntity).ToString());
-            base.OnHeldInteractStop(secondsUsed, slot, byEntity, blockSel, entitySel);
-        }
-        //-- Spawn bark pieces when the player meets/exceeds the time it takes to strip the log. Also changes the interacted block to a stripped log variant --//
-        private void SpawnLoot(BlockSelection blockSel, EntityAgent byEntity)
-        {
-            if (api.Side == EnumAppSide.Server)
-            {
-                Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                //TODO: Check axe for tier and reference config for cut times and yield.
-                int firewoodYield = 4;
-
-
-                api.World.BlockAccessor.SetBlock(0, blockSel.Position);
-                api.World.BlockAccessor.MarkBlockDirty(blockSel.Position);
-                for (int i = firewoodYield; i > 0; i--)
-                {
-                    api.World.SpawnItemEntity(new ItemStack(api.World.GetItem(new AssetLocation("firewood"))), blockSel.Position.ToVec3d() +
-                        new Vec3d(0, .25, 0));
-                }
-
-                if (byEntity is EntityPlayer player)
-                    this.DamageItem(api.World, byEntity, player.RightHandItemSlot, 1);
-            }
-
-        }
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()
@@ -358,10 +259,7 @@ namespace InDappledGroves.Items.Tools
             woodParticles.Color = colour;
         }
 
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            return interactions;
-        }
+        private SimpleParticleProperties woodParticles;
     }
 
 }

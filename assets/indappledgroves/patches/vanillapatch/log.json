@@ -1,0 +1,60 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/idgchopblock",
+    "value": {"cuttable": true},
+    "file": "game:blocktypes/wood/woodtyped/log.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgchopblock",
+    "value": {"cuttable": true},
+    "file": "game:itemtypes/resource/firewood.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgChoppingBlockTransform",
+    "value": {
+      "translation": {
+        "x": 0,
+        "y": 0.0625,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.5
+      },
+      "scale": 0.95
+    },
+    "file": "game:blocktypes/wood/woodtyped/log.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgChoppingBlockTransform",
+    "value": {
+      "translation": {
+        "x": 0,
+        "y": 0,
+        "z": 0.425
+      },
+      "rotation": {
+        "x": -90,
+        "y": 0,
+        "z": 0
+      },
+      "origin": {
+        "x": 0,
+        "y": 0.125,
+        "z": 0
+      },
+      "scale": 0.95
+    },
+    "file": "game:itemtypes/resource/firewood.json"
+  }
+]
