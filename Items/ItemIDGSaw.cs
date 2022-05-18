@@ -21,7 +21,7 @@ namespace InDappledGroves.Items.Tools
         {
             base.OnLoaded(api);
 
-            interactions = ObjectCacheUtil.GetOrCreate(api, "vtaxeInteractions", () =>
+            interactions = ObjectCacheUtil.GetOrCreate(api, "vtsawInteractions", () =>
             {
                 return new WorldInteraction[] {
                     new WorldInteraction()

@@ -1,5 +1,14 @@
-﻿1.16-v0.1.1
+﻿1.16-v0.2.0
 
+1.16-v0.1.0-dev.1
+	- Added Chopping Block Functionality
+	- Added BehaviorWoodSplitter
+	- Added handling for woodSplitterProps attribute ()
+		- groundChopTime - How long a tool takes to chop wood on the ground
+		- groundChopDamage - The amount of durability the tool takes when chopping on the ground
+		- choppingBlockChopTime - How long a tool takes to chop wood on the chopping block
+		- choppingBlockChopDamage - How much damage the tool takes when chopping on the ground
+	- Ensured interactions with a chopping block containing a block doesn't result in block placement
 
 1.15.10-v0.1.0-dev.1
 	- Added in-world sawing and chopping mechanics with sound

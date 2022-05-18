@@ -1,14 +1,17 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Blocks;
-using InDappledGroves.config;
+using InDappledGroves.Util;
 using InDappledGroves.Items.Tools;
-using System;
 using Vintagestory.API.Common;
+using Vintagestory.API.Client;
+using InDappledGroves.CollectibleBehaviors;
 
 namespace InDappledGroves
 {
     public class InDappledGroves : ModSystem
     {
+        ICoreClientAPI capi;
+
         public override void Start(ICoreAPI api)
         {
             base.Start(api);
@@ -19,12 +22,19 @@ namespace InDappledGroves
 
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
+            api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
 
-            //Registser BlockEntities
+            //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
+            api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
 
+
+            //Register CollectibleBehaviors
             api.RegisterCollectibleBehaviorClass("WoodSplitter", typeof(BehaviorWoodSplitter));
+            api.RegisterCollectibleBehaviorClass("WoodSawer", typeof(BehaviorWoodSawer));
+            
 
+            //Check for Existing Config file, create one if none exists
             try
             {
                 var Config = api.LoadModConfig<InDappledGrovesConfig>("indappledgroves.json");
@@ -46,12 +56,8 @@ namespace InDappledGroves
             }
             finally
             {
-                //TODO: Finish Implementing Config
-                //if (InDappledGrovesConfig.Current. <= 0)
-                //    InDappledGrovesConfig.Current.hiveHoursToHarvest = 1488;
-                //api.StoreModConfig(InDappledGrovesConfig.Current, "indappledgroves.json");
+                api.StoreModConfig(InDappledGrovesConfig.Current, "indappledgroves.json");
             }
         }
     }
-
 }

@@ -5,38 +5,38 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 
-namespace InDappledGroves
+namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodSplitter : CollectibleBehavior
+    class BehaviorWoodSawer : CollectibleBehavior
     {
         ICoreAPI api;
         ICoreClientAPI capi;
-        
+
         public override void Initialize(JsonObject properties)
         {
-            base.Initialize(properties);          
+            base.Initialize(properties);
         }
 
-        public BehaviorWoodSplitter(CollectibleObject collObj) : base(collObj)
+        public BehaviorWoodSawer(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-            
+
         }
 
         public override void OnLoaded(ICoreAPI api)
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundChopTime = collObj.Attributes["woodSplitterProps"]["groundChopTime"].AsInt(4);
-            this.choppingBlockChopTime = collObj.Attributes["woodSplitterProps"]["choppingBlockChopTime"].AsInt(2);
-            this.groundChopDamage = collObj.Attributes["woodSplitterProps"]["groundChopDamage"].AsInt(4);
-            this.choppingBlockChopDamage = collObj.Attributes["woodSplitterProps"]["choppingBlockChopDamage"].AsInt(2);
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
+            this.groundChopTime = collObj.Attributes["woodSawerProps"]["groundSawTime"].AsInt(4);
+            this.choppingBlockChopTime = collObj.Attributes["woodSawerProps"]["choppingBlockSawTime"].AsInt(2);
+            this.groundChopDamage = collObj.Attributes["woodSawerProps"]["groundSawDamage"].AsInt(4);
+            this.choppingBlockChopDamage = collObj.Attributes["woodSawerProps"]["choppingBlockSawDamage"].AsInt(2);
+            interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
             {
                 return new WorldInteraction[] {
                     new WorldInteraction()
                         {
-                            ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
+                            ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
                             HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
@@ -47,13 +47,13 @@ namespace InDappledGroves
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            
+
             //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgChoppingBlockProps"]["cuttable"];
+            JsonObject attributes = interactedBlock.Attributes?["idgSawBuckBlockProps"]["cuttable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage)
@@ -62,8 +62,8 @@ namespace InDappledGroves
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundChopDamage));
                 return;
             }
-            byEntity.StartAnimation("axechop");
-            
+            //byEntity.StartAnimation("axechop");
+
             playNextSound = 0.25f;
 
             handHandling = EnumHandHandling.PreventDefault;
@@ -81,10 +81,10 @@ namespace InDappledGroves
                 }
                 if (secondsUsed >= groundChopTime)
                 {
-                   
+
                     Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["idgChoppingBlockProps"]["cuttable"].AsBool(false))
-                    SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundChopDamage);
+                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["idgSawBuckBlockProps"]["cuttable"].AsBool(false))
+                        SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundChopDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                     return false;
                 }
@@ -97,21 +97,21 @@ namespace InDappledGroves
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
-            byEntity.StopAnimation("axechop");
+            //byEntity.StopAnimation("axechop");
         }
 
         //-- Spawns firewood when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-                Item output = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
-                int quantity = chopObj.Attributes["idgChoppingBlockProps"]["output"]["quantity"].AsInt();
+            Item output = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgSawBuckBlockProps"]["output"]["code"].AsString()));
+            int quantity = chopObj.Attributes["idgSawBuckBlockProps"]["output"]["quantity"].AsInt();
 
-                for (int i = quantity; i > 0; i--)
-                {
-                        api.World.SpawnItemEntity(new ItemStack(output), pos.ToVec3d() + new Vec3d(0, .25, 0));
-                }
+            for (int i = quantity; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(output), pos.ToVec3d() + new Vec3d(0, .25, 0));
+            }
 
-                if (byEntity is EntityPlayer player)
+            if (byEntity is EntityPlayer player)
                 player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundChopDamage);
 
         }
@@ -183,3 +183,4 @@ namespace InDappledGroves
         private float playNextSound;
     }
 }
+

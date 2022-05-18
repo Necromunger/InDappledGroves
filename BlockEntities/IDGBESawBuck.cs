@@ -5,14 +5,14 @@ using Vintagestory.GameContent;
 
 namespace InDappledGroves.BlockEntities
 {
-    class IDGBEChoppingBlock : BlockEntityDisplay
-    {
+    class IDGBESawBuck : BlockEntityDisplay
+	{
 		public override InventoryBase Inventory { get; }
-		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "idgChoppingBlockTransform";
-        public IDGBEChoppingBlock()
+		public override string InventoryClassName => "sawbuck";
+		//public override string AttributeTransformCode => "idgChoppingBlockTransform";
+		public IDGBESawBuck()
 		{
-			Inventory = new InventoryGeneric(1, "choppingblock-slot", null, null);
+			Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
 			meshes = new MeshData[1];
 
 		}
@@ -31,20 +31,24 @@ namespace InDappledGroves.BlockEntities
 		{
 			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-			//If The Players Hand Is Empty
 			if (activeHotbarSlot.Empty)
 			{
 				return this.TryTake(byPlayer);
 			}
 
-			//If the player is holding an object, and the inventory of the block is full,
-			//or if the item in the players hand does not have attributes, or the cuttable attribute is false
+			if (!activeHotbarSlot.Empty && !Inventory.Empty) return true;
+
+			//Get Collectible Object and Attributes from the Collectible Object
+			//Then check to see if attributes is null, or if chopblock is false or absent
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["idgChoppingBlockProps"]["cuttable"].AsBool(false)) return true;		
+			if (attributes == null || !collectible.Attributes["idgChoppingBlockProps"]["cuttable"].AsBool(false))
+			{
+				return false;
+			}
 
-            ItemStack itemstack = activeHotbarSlot.Itemstack;
+			ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
 			if (itemstack == null)
 			{
@@ -65,9 +69,9 @@ namespace InDappledGroves.BlockEntities
 			}
 			AssetLocation assetLocation2 = assetLocation;
 			if (this.TryPut(activeHotbarSlot))
-			{	 
+			{
 				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-                updateMeshes();
+				updateMeshes();
 				return true;
 			}
 			return false;
@@ -77,14 +81,14 @@ namespace InDappledGroves.BlockEntities
 		{
 			for (int i = 0; i < Inventory.Count; i++)
 			{
-                if (this.Inventory[i].Empty)
-                {
-                    int num3 = slot.TryPutInto(this.Api.World, this.Inventory[i], 1);
-                    this.updateMeshes();
-                    base.MarkDirty(true, null);
-                    return num3 > 0;
-                }
-            }
+				if (this.Inventory[i].Empty)
+				{
+					int num3 = slot.TryPutInto(this.Api.World, this.Inventory[i], 1);
+					this.updateMeshes();
+					base.MarkDirty(true, null);
+					return num3 > 0;
+				}
+			}
 			return false;
 		}
 
@@ -124,8 +128,8 @@ namespace InDappledGroves.BlockEntities
 		}
 
 		public override void updateMeshes()
-        {
+		{
 			base.updateMeshes();
-        }
+		}
 	}
 }

@@ -65,7 +65,7 @@ namespace InDappledGroves.Items.Tools
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
             IPlayer byPlayer = null;
-            if (byEntity is EntityPlayer) byPlayer = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+            if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
             double windspeed = api.ModLoader.GetModSystem<WeatherSystemBase>()?.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) ?? 0;
 
@@ -144,9 +144,9 @@ namespace InDappledGroves.Items.Tools
 
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos)
         {
-            Queue<Vec4i> queue = new Queue<Vec4i>();
-            HashSet<BlockPos> checkedPositions = new HashSet<BlockPos>();
-            Stack<BlockPos> foundPositions = new Stack<BlockPos>();
+            Queue<Vec4i> queue = new();
+            HashSet<BlockPos> checkedPositions = new();
+            Stack<BlockPos> foundPositions = new();
 
             Block block = world.BlockAccessor.GetBlock(startPos);
             if (block.Code == null) return foundPositions;
@@ -174,7 +174,7 @@ namespace InDappledGroves.Items.Tools
                 for (int i = 0; i < Vec3i.DirectAndIndirectNeighbours.Length; i++)
                 {
                     Vec3i facing = Vec3i.DirectAndIndirectNeighbours[i];
-                    BlockPos neibPos = new BlockPos(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z);
+                    BlockPos neibPos = new(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z);
 
                     float hordist = GameMath.Sqrt(neibPos.HorDistanceSqTo(startPos.X, startPos.Z));
                     float vertdist = (neibPos.Y - startPos.Y);
@@ -229,7 +229,7 @@ namespace InDappledGroves.Items.Tools
             };
         }
 
-        static SimpleParticleProperties dustParticles = new SimpleParticleProperties()
+        static readonly SimpleParticleProperties dustParticles = new()
         {
             MinPos = new Vec3d(),
             AddPos = new Vec3d(),
@@ -259,7 +259,7 @@ namespace InDappledGroves.Items.Tools
             woodParticles.Color = colour;
         }
 
-        private SimpleParticleProperties woodParticles;
+        private readonly SimpleParticleProperties woodParticles;
     }
 
 }

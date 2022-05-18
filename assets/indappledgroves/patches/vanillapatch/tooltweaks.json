@@ -3,14 +3,28 @@
     "op": "replace",
     "path": "/class",
     "value": "idgaxe",
-    "file": "game:itemtypes/tool/axe-metal.json",
+    "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
+  {
+    "op": "add",
+    "path": "/attributes/woodSplitterProps",
+    "value": {"groundChopTime": 6, "groundChopDamage": 3, "choppingBlockChopTime": 4, "choppingBlockChopDamage": 2},
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+    {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [{"name": "WoodSplitter"}],
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },  
   {
     "op": "replace",
     "path": "/class",
     "value": "idgaxe",
-    "file": "game:itemtypes/tool/axe-stone.json",
+    "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
   {
@@ -22,9 +36,9 @@
   },
   {
     "op": "add",
-    "path": "/behaviors",
-    "value": [{"name": "WoodSplitter"}],
-    "file": "game:itemtypes/tool/axe-stone.json",
+    "path": "/attributes/woodSplitterProps",
+    "value": {"groundChopTime": 4, "groundChopDamage": 2, "choppingBlockChopTime": 2, "choppingBlockChopDamage": 1},
+    "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
   {

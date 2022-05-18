@@ -4,6 +4,7 @@
     "op": "replace",
     "path": "/attributes/quantitySlots/basket",
     "value": "4",
+    "side": "server",
     "dependsOn": [ { "modid": "ancienttools" } ]
   }
 ]

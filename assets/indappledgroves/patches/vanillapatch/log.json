@@ -1,15 +1,15 @@
 [
   {
     "op": "add",
-    "path": "/attributes/idgchopblock",
-    "value": {"cuttable": true},
-    "file": "game:blocktypes/wood/woodtyped/log.json"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgchopblock",
-    "value": {"cuttable": true},
-    "file": "game:itemtypes/resource/firewood.json"
+    "path": "/attributes/idgChoppingBlockPropsByType",
+    "value": {
+      "*-placed-*":{
+          "cuttable": true,
+          "output": {"code": "game:firewood", "quantity": 4}
+        }
+    },
+    "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server"
   },
   {
     "op": "add",
@@ -32,7 +32,53 @@
       },
       "scale": 0.95
     },
-    "file": "game:blocktypes/wood/woodtyped/log.json"
+    "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgChoppingBlockPropsByType",
+    "value": {
+      "*-placed-*":{
+          "cuttable": true,
+          "output": {"code": "game:firewood", "quantity": 4}
+        }
+    },
+    "file": "game:blocktypes/wood/woodtyped/log-section.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgChoppingBlockTransform",
+    "value": {
+      "translation": {
+        "x": 0,
+        "y": 0.0625,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "origin": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.5
+      },
+      "scale": 0.95
+    },
+    "file": "game:blocktypes/wood/woodtyped/log-section.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/idgChoppingBlockProps",
+    "value": {
+          "cuttable": true,
+          "output": {"code": "game:stick", "quantity": 4}
+        },
+    "file": "game:itemtypes/resource/firewood.json",
+    "side": "server"
   },
   {
     "op": "add",
@@ -55,6 +101,7 @@
       },
       "scale": 0.95
     },
-    "file": "game:itemtypes/resource/firewood.json"
+    "file": "game:itemtypes/resource/firewood.json",
+    "side": "server"
   }
 ]
