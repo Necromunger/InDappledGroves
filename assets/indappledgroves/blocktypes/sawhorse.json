@@ -1,9 +1,7 @@
 {
   "code": "sawhorse",
   "class": "idgsawhorse",
-  "entityClassByType": {
-    "*-composite-*": "idgbesawhorse"
-  },
+  "entityClass": "idgbesawhorse",
   "maxstacksize": 16,
   "attributes": {
 		"handbook": {

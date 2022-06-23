@@ -15,8 +15,7 @@ namespace InDappledGroves.BlockEntities
 		public IDGBESawBuck()
 		{
 			Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
-			meshes = new MeshData[1];
-
+			meshes = new MeshData[0];
 		}
 
 		public override void Initialize(ICoreAPI api)
