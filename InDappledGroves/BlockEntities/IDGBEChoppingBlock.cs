@@ -1,7 +1,9 @@
-﻿using Vintagestory.API.Client;
+﻿using System.Collections.Generic;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.GameContent;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {
@@ -10,6 +12,7 @@ namespace InDappledGroves.BlockEntities
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "choppingblock";
         public override string AttributeTransformCode => "idgChoppingBlockTransform";
+
         public IDGBEChoppingBlock()
 		{
 			Inventory = new InventoryGeneric(1, "choppingblock-slot", null, null);
@@ -126,6 +129,8 @@ namespace InDappledGroves.BlockEntities
 			}
 			return false;
 		}
+
+		
 
 		public override void updateMeshes()
         {

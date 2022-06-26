@@ -119,17 +119,14 @@ namespace InDappledGroves
 
         }
 
-        public void SpawnOutput(SplittingRecipe recipe, EntityAgent byEntity, BlockPos pos, int dmg)
+        public void SpawnOutput(SplittingRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
-            Item output = recipe.Output.ResolvedItemstack.Item;
-            int quantity = recipe.Output.Quantity;
-            for (int i = quantity; i > 0; i--)
+            ItemStack output = recipe.Output.ResolvedItemstack;
+            int j = output.StackSize;
+            for (int i = j; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(output), pos.ToVec3d() + new Vec3d(0, .25, 0));
+                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
             }
-
-            if (byEntity is EntityPlayer player)
-                player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundChopDamage);
 
         }
 

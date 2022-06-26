@@ -2,7 +2,7 @@
   "profiles": {
     "InDappledGroves": {
       "commandName": "Project",
-      "commandLineArgs": "--addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\assets\""
+      "commandLineArgs": "--addModPath=\"C:\\Users\\Owneroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\Owner\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\""
     }
   }
 }
