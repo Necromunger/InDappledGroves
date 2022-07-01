@@ -10,7 +10,8 @@ namespace InDappledGroves.BlockEntities
 {
     class IDGBESawHorse : BlockEntityDisplay
     {
-        public bool isPaired { get; set; }
+        //public bool isPaired { get; set; }
+        public bool isPaired;
         public bool isConBlock { get; set; }
         public BlockPos conBlock { get; set; }
         public BlockPos pairedBlock { get; set; }
@@ -56,7 +57,7 @@ namespace InDappledGroves.BlockEntities
                 {
                     ItemStack stack = inv[1].TakeOutWhole();
                     stack.StackSize = 2;
-                    if (byPlayer.InventoryManager.TryGiveItemstack(stack)) ;
+                    
                 }
             }
             return false;
@@ -94,26 +95,35 @@ namespace InDappledGroves.BlockEntities
             return false;
         }
 
-        internal bool CreateSawhorseStation(BlockSelection blockSel, BlockPos placePosition)
+        public void CreateSawhorseStation(BlockPos placedSawHorse)
         {
             isPaired = true;
             isConBlock = true;
             conBlock = Pos;
-            pairedBlock = placePosition;
-            return false;
+            pairedBlock = placedSawHorse;           
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
-
+            base.ToTreeAttributes(tree);
             tree.SetBool("ispaired", isPaired);
             tree.SetBool("isconblock", isConBlock);
             if (conBlock != null)
+            {
                 tree.SetBlockPos("conblock", conBlock);
+            } else
+            {
+                conBlock = null;
+            }
             if (pairedBlock != null)
+            {
                 tree.SetBlockPos("pairedblock", pairedBlock);
-            base.ToTreeAttributes(tree);
-
+            }
+            else
+            {
+                pairedBlock = null;
+            }
+            
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
@@ -122,8 +132,8 @@ namespace InDappledGroves.BlockEntities
 
             isPaired = tree.GetBool("ispaired");
             isConBlock = tree.GetBool("isconblock");
-            if(conBlock != null) conBlock = tree.GetBlockPos("conblock", null);
-            if (pairedBlock != null) pairedBlock = tree.GetBlockPos("pairedblock", null);
+            conBlock = tree.GetBlockPos("conblock", null);
+            pairedBlock = tree.GetBlockPos("pairedblock", null);
             MarkDirty(true);
         }
 
