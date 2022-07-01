@@ -45,6 +45,8 @@ namespace InDappledGroves.Blocks
                     besawhorse2.isConBlock = false;
                     Block block = api.World.BlockAccessor.GetBlock(neibpos);
                     if (besawhorse2.conBlock == besawhorse.conBlock) api.World.BlockAccessor.ExchangeBlock(api.World.GetBlock(this.CodeWithVariant("side", block.Variant["side"])).BlockId, pos);
+                    besawhorse2.MarkDirty(true);
+                    besawhorse.MarkDirty(true);
                 }
             }
             base.OnNeighbourBlockChange(world, pos, neibpos);

@@ -120,10 +120,11 @@ namespace InDappledGroves.BlockEntities
         {
             base.FromTreeAttributes(tree, worldForResolving);
 
-            tree.GetBool("ispaired");
-            tree.GetBool("isconblock");
-            tree.GetBlockPos("conblock", null);
-            tree.GetBlockPos("pairedblock", null);
+            isPaired = tree.GetBool("ispaired");
+            isConBlock = tree.GetBool("isconblock");
+            if(conBlock != null) conBlock = tree.GetBlockPos("conblock", null);
+            if (pairedBlock != null) pairedBlock = tree.GetBlockPos("pairedblock", null);
+            MarkDirty(true);
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
