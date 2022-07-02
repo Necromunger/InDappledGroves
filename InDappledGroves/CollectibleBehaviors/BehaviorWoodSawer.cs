@@ -27,10 +27,10 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundSawTime = collObj.Attributes["woodWorkingProprs"]["groundSawTime"].AsInt(4);
-            this.sawBuckSawTime = collObj.Attributes["woodWorkingProprs"]["sawBuckSawTime"].AsInt(2);
-            this.groundSawDamage = collObj.Attributes["woodWorkingProprs"]["groundSawDamage"].AsInt(4);
-            this.sawBuckSawDamage = collObj.Attributes["woodWorkingProprs"]["sawBuckSawDamage"].AsInt(2);
+            this.groundSawTime = collObj.Attributes["woodworkingProprs"]["groundSawTime"].AsInt(4);
+            this.sawBuckSawTime = collObj.Attributes["woodworkingProprs"]["sawBuckSawTime"].AsInt(2);
+            this.groundSawDamage = collObj.Attributes["woodworkingProprs"]["groundSawDamage"].AsInt(4);
+            this.sawBuckSawDamage = collObj.Attributes["woodworkingProprs"]["sawBuckSawDamage"].AsInt(2);
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
             {
                 return new WorldInteraction[] {

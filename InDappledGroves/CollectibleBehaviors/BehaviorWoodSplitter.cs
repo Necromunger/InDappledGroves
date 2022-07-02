@@ -28,10 +28,10 @@ namespace InDappledGroves
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundChopTime = collObj.Attributes["woodWorkingProps"]["groundChopTime"].AsInt(4);
-            this.choppingBlockChopTime = collObj.Attributes["woodWorkingProps"]["choppingBlockChopTime"].AsInt(2);
-            this.groundChopDamage = collObj.Attributes["woodWorkingProps"]["groundChopDamage"].AsInt(4);
-            this.choppingBlockChopDamage = collObj.Attributes["woodWorkingProps"]["choppingBlockChopDamage"].AsInt(2);
+            this.groundChopTime = collObj.Attributes["woodworkingProps"]["groundChopTime"].AsInt(4);
+            this.choppingBlockChopTime = collObj.Attributes["woodworkingProps"]["choppingBlockChopTime"].AsInt(2);
+            this.groundChopDamage = collObj.Attributes["woodworkingProps"]["groundChopDamage"].AsInt(4);
+            this.choppingBlockChopDamage = collObj.Attributes["woodworkingProps"]["choppingBlockChopDamage"].AsInt(2);
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
             {
                 return new WorldInteraction[] {
@@ -54,7 +54,7 @@ namespace InDappledGroves
                 return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgChoppingBlockProps"]["cuttable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgChoppingBlockProps"]["cuttable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage)
@@ -84,7 +84,7 @@ namespace InDappledGroves
                 {
                    
                     Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["idgChoppingBlockProps"]["cuttable"].AsBool(false))
+                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["cuttable"].AsBool(false))
                     SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundChopDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                     return false;
@@ -104,10 +104,10 @@ namespace InDappledGroves
         //-- Spawns firewood when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-                Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
-                Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgChoppingBlockProps"]["output"]["code"].AsString()));
+                Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["code"].AsString()));
+                Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["code"].AsString()));
 
-                int quantity = chopObj.Attributes["idgChoppingBlockProps"]["output"]["quantity"].AsInt();
+                int quantity = chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["quantity"].AsInt();
 
                 for (int i = quantity; i > 0; i--)
                 {

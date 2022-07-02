@@ -27,16 +27,16 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundPlaneTime = collObj.Attributes["woodWorkingProps"]["groundPlaneTime"].AsInt(4);
-            this.sawHorsePlaneTime = collObj.Attributes["woodWorkingProps"]["sawHorsePlaneTime"].AsInt(2);
-            this.groundPlaneDamage = collObj.Attributes["woodWorkingProps"]["groundPlaneDamage"].AsInt(4);
-            this.sawHorsePlaneDamage = collObj.Attributes["woodWorkingProps"]["sawHorsePlaneDamage"].AsInt(2);
+            this.groundPlaneTime = collObj.Attributes["woodworkingProps"]["groundPlaneTime"].AsInt(4);
+            this.sawHorsePlaneTime = collObj.Attributes["woodworkingProps"]["sawHorsePlaneTime"].AsInt(2);
+            this.groundPlaneDamage = collObj.Attributes["woodworkingProps"]["groundPlaneDamage"].AsInt(4);
+            this.sawHorsePlaneDamage = collObj.Attributes["woodworkingProps"]["sawHorsePlaneDamage"].AsInt(2);
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
             {
                 return new WorldInteraction[] {
                     new WorldInteraction()
                         {
-                            ActionLangCode = "indappledgroves:itemhelp-saw-planewood",
+                            ActionLangCode = "indappledgroves:itemhelp-tool-planewood",
                             HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
@@ -103,9 +103,9 @@ namespace InDappledGroves.CollectibleBehaviors
         //-- Spawns firewood when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
-            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
-            int quantity = chopObj.Attributes["idgSawHorseProps"]["output"]["quantity"].AsInt();
+            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["code"].AsString()));
+            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["code"].AsString()));
+            int quantity = chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["quantity"].AsInt();
 
             for (int i = quantity; i > 0; i--)
             {

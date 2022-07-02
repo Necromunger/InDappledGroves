@@ -37,7 +37,7 @@ namespace InDappledGroves.BlockEntities
             bool isPlaningBox = blockSel.SelectionBoxIndex == 1;
 
 
-            if (!isConBlock){
+            if (Block.Variant["state"] == "compound" && !isConBlock){
                 return (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
             }
 
@@ -57,7 +57,7 @@ namespace InDappledGroves.BlockEntities
                 {
                     return true;
                 }
-                else if (colObj.Attributes != null && colObj.Attributes["idgSawHorseProps"]["planable"].AsBool(false)) {
+                else if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["planable"].AsBool(false)) {
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
@@ -163,17 +163,7 @@ namespace InDappledGroves.BlockEntities
             MarkDirty(true);
         }
 
-        public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
-        {
-            dsc.AppendLine("My Pos is " + Pos);
-            dsc.AppendLine("conBlock is " + conBlockPos);
-            dsc.AppendLine("pairedBlock is " + pairedBlockPos);
-            dsc.AppendLine("isConBlock is " + isConBlock);
-            dsc.AppendLine("isPaired is " + isPaired);
-            dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
-            base.GetBlockInfo(forPlayer, dsc);
-        }
-
+        #region rendering
         public override void updateMeshes()
         {
                 this.updateMesh(1);
@@ -199,12 +189,53 @@ namespace InDappledGroves.BlockEntities
 
         public override void TranslateMesh(MeshData mesh, int index)
         {
+            JsonObject North = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["north"];
+            JsonObject South = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["south"];
+            JsonObject West = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["west"];
+            JsonObject East = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["east"];
+
             float x = 0.5f;
             float y = 0.75f;
             float z = 0f;
-            
-            Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-            mesh.Translate(offset.XYZ);
+
+            if (Block.Variant["side"] == "north")
+            {
+                x = North["x"].Exists ? North["x"].AsFloat() : x;
+                y = North["y"].Exists ? North["y"].AsFloat() : y;
+                z = North["z"].Exists ? North["z"].AsFloat() : z;
+
+                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+                mesh.Translate(offset.XYZ);
+            }
+            else if (Block.Variant["side"] == "south")
+            {
+                x = South["x"].Exists ? South["x"].AsFloat() : x;
+                y = South["y"].Exists ? South["y"].AsFloat() : y;
+                z = South["z"].Exists ? South["z"].AsFloat() : z;
+
+                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+                mesh.Translate(offset.XYZ);
+            }
+            else if (Block.Variant["side"] == "west")
+            {
+                x = West["x"].Exists ? West["x"].AsFloat() : x;
+                y = West["y"].Exists ? West["y"].AsFloat() : y;
+                z = West["z"].Exists ? West["z"].AsFloat() : z;
+
+
+                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+                mesh.Translate(offset.XYZ);
+            }
+            else if (Block.Variant["side"] == "east")
+            {
+                x = East["x"].Exists ? East["x"].AsFloat() : x;
+                y = East["y"].Exists ? East["y"].AsFloat() : y;
+                z = East["z"].Exists ? East["z"].AsFloat() : z;
+
+                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+                mesh.Translate(offset.XYZ);
+            }
+
         }
         protected override MeshData genMesh(ItemStack stack)
         {
@@ -232,6 +263,27 @@ namespace InDappledGroves.BlockEntities
             return meshData;
         }
 
+        public float addRotate(string sideAxis)
+        {
+            JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseTransform"];
+            return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+        }
+
         readonly Matrixf mat = new();
+        #endregion
+
+        public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
+        {
+            if (Block.Variant["state"] == "compound")
+            {
+                dsc.AppendLine("My Pos is " + Pos);
+                dsc.AppendLine("conBlock is " + conBlockPos);
+                dsc.AppendLine("pairedBlock is " + pairedBlockPos);
+                dsc.AppendLine("isConBlock is " + isConBlock);
+                dsc.AppendLine("isPaired is " + isPaired);
+                dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
+            }
+ 
+        }
     }
 }

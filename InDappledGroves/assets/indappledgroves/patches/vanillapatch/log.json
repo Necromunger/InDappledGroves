@@ -1,37 +1,34 @@
 [
   {
     "op": "add",
-    "path": "/attributes/idgChoppingBlockPropsByType",
+    "path": "/attributes/woodworkingProps",
     "value": {
-      "*-placed-*":{
-          "cuttable": true,
-          "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2}
-        }
-    },
-    "file": "game:blocktypes/wood/woodtyped/log.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgChoppingBlockTransform",
-    "value": {
-      "translation": {
-        "x": 0,
-        "y": 0.0625,
-        "z": 0
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "origin": {
-        "x": 0.5,
-        "y": 0,
-        "z": 0.5
-      },
-      "scale": 0.95
-    },
+      "idgChoppingBlockPropsByType": {
+                "*-placed-*":{
+                    "cuttable": true,
+                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2}
+                },
+                "idgChoppingBlockTransform": {
+                    "translation": {
+                      "x": 0,
+                      "y": 0.0625,
+                      "z": 0
+                    },
+                    "rotation": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "origin": {
+                      "x": 0.5,
+                      "y": 0,
+                      "z": 0.5
+                    },
+                    "scale": 0.95
+                  }
+                }
+                
+            },
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server"
   },
