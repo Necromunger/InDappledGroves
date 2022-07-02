@@ -55,12 +55,5 @@
     "path": "/4/enabled",
     "value": "false",
     "side": "server"
-  },
-  {
-    "file": "game:itemtypes/resource/plank.json",
-    "op": "remove",
-    "path": "/attributes",
-    "side": "server"
   }
-
 ]

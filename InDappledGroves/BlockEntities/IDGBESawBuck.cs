@@ -32,6 +32,7 @@ namespace InDappledGroves.BlockEntities
 		{
 			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
+			//If player hand empty
 			if (activeHotbarSlot.Empty)
 			{
 				return this.TryTake(byPlayer);
@@ -40,8 +41,6 @@ namespace InDappledGroves.BlockEntities
 			if (!activeHotbarSlot.Empty && !Inventory.Empty) return true;
 
 			//Get Collectible Object and Attributes from the Collectible Object
-			//Then check to see if attributes is null, or if chopblock is false or absent
-
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
 			if (attributes == null || !collectible.Attributes["idgSawBuckProps"]["sawable"].AsBool(false))
@@ -49,33 +48,34 @@ namespace InDappledGroves.BlockEntities
 				return false;
 			}
 
-			ItemStack itemstack = activeHotbarSlot.Itemstack;
-			AssetLocation assetLocation;
-			if (itemstack == null)
-			{
-				assetLocation = null;
-			}
-			else
-			{
-				Block block = itemstack.Block;
-				if (block == null)
-				{
-					assetLocation = null;
-				}
-				else
-				{
-					BlockSounds sounds = block.Sounds;
-					assetLocation = (sounds?.Place);
-				}
-			}
-			AssetLocation assetLocation2 = assetLocation;
 			if (this.TryPut(activeHotbarSlot))
 			{
-				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+				this.Api.World.PlaySoundAt(GetSound(activeHotbarSlot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
 				updateMeshes();
 				return true;
 			}
 			return false;
+		}
+
+		private AssetLocation GetSound(ItemSlot slot)
+		{
+			if (slot.Itemstack == null)
+			{
+				return null;
+			}
+			else
+			{
+				Block block = slot.Itemstack.Block;
+				if (block == null)
+				{
+					return null;
+				}
+				else
+				{
+					BlockSounds sounds = block.Sounds;
+					return (sounds?.Place);
+				}
+			}
 		}
 
 		private bool TryPut(ItemSlot slot)

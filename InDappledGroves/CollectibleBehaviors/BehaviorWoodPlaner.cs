@@ -7,7 +7,7 @@ using Vintagestory.API.Util;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodSawer : CollectibleBehavior
+    class BehaviorWoodPlaner : CollectibleBehavior
     {
         ICoreAPI api;
         ICoreClientAPI capi;
@@ -17,7 +17,7 @@ namespace InDappledGroves.CollectibleBehaviors
             base.Initialize(properties);
         }
 
-        public BehaviorWoodSawer(CollectibleObject collObj) : base(collObj)
+        public BehaviorWoodPlaner(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
 
@@ -27,16 +27,16 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundSawTime = collObj.Attributes["woodWorkingProprs"]["groundSawTime"].AsInt(4);
-            this.sawBuckSawTime = collObj.Attributes["woodWorkingProprs"]["sawBuckSawTime"].AsInt(2);
-            this.groundSawDamage = collObj.Attributes["woodWorkingProprs"]["groundSawDamage"].AsInt(4);
-            this.sawBuckSawDamage = collObj.Attributes["woodWorkingProprs"]["sawBuckSawDamage"].AsInt(2);
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
+            this.groundPlaneTime = collObj.Attributes["woodWorkingProps"]["groundPlaneTime"].AsInt(4);
+            this.sawHorsePlaneTime = collObj.Attributes["woodWorkingProps"]["sawHorsePlaneTime"].AsInt(2);
+            this.groundPlaneDamage = collObj.Attributes["woodWorkingProps"]["groundPlaneDamage"].AsInt(4);
+            this.sawHorsePlaneDamage = collObj.Attributes["woodWorkingProps"]["sawHorsePlaneDamage"].AsInt(2);
+            interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
             {
                 return new WorldInteraction[] {
                     new WorldInteraction()
                         {
-                            ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
+                            ActionLangCode = "indappledgroves:itemhelp-saw-planewood",
                             HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
@@ -53,13 +53,13 @@ namespace InDappledGroves.CollectibleBehaviors
                 return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgSawBuckProps"]["cuttable"];
+            JsonObject attributes = interactedBlock.Attributes?["idgSawHorseProps"]["planable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             api.Logger.Debug("This fired.");
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage)
+            if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage)
             {
                 api.Logger.Debug("This internal fired.");
-                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundSawDamage));
+                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundPlaneDamage));
                 return;
             }
             //byEntity.StartAnimation("axechop");
@@ -79,12 +79,12 @@ namespace InDappledGroves.CollectibleBehaviors
                     //api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                     playNextSound += .7f;
                 }
-                if (secondsUsed >= groundSawTime)
+                if (secondsUsed >= groundPlaneTime)
                 {
 
                     Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= groundSawTime && interactedBlock.Attributes["idgSawBuckProps"]["cuttable"].AsBool(false))
-                        SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundSawDamage);
+                    if (secondsUsed >= groundPlaneTime && interactedBlock.Attributes["idgSawHorseProps"]["planable"].AsBool(false))
+                        SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundPlaneDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                     return false;
                 }
@@ -103,9 +103,9 @@ namespace InDappledGroves.CollectibleBehaviors
         //-- Spawns firewood when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgSawBuckProps"]["output"]["code"].AsString()));
-            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgSawBuckProps"]["output"]["code"].AsString()));
-            int quantity = chopObj.Attributes["idgSawBuckProps"]["output"]["quantity"].AsInt();
+            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
+            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
+            int quantity = chopObj.Attributes["idgSawHorseProps"]["output"]["quantity"].AsInt();
 
             for (int i = quantity; i > 0; i--)
             {
@@ -113,7 +113,7 @@ namespace InDappledGroves.CollectibleBehaviors
             }
 
             if (byEntity is EntityPlayer player)
-                player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundSawDamage);
+                player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundPlaneDamage);
 
         }
 
@@ -175,10 +175,10 @@ namespace InDappledGroves.CollectibleBehaviors
             return interactions;
         }
 
-        public int groundSawTime;
-        public int sawBuckSawTime;
-        public int groundSawDamage;
-        public int sawBuckSawDamage;
+        public int groundPlaneTime;
+        public int sawHorsePlaneTime;
+        public int groundPlaneDamage;
+        public int sawHorsePlaneDamage;
         WorldInteraction[] interactions = null;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;

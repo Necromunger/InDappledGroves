@@ -19,7 +19,6 @@ namespace InDappledGroves.Blocks
 			base.OnLoaded(api);
 		}
 
-        #region RevisedCode
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
@@ -44,8 +43,6 @@ namespace InDappledGroves.Blocks
 			//Call the block entity OnInteract
 			return bechoppingblock.OnInteract(byPlayer);
 		}
-        #endregion
-
         
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {

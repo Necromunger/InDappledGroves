@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InDappledGroves.CollectibleBehaviors;
+using System;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -13,8 +14,10 @@ namespace InDappledGroves.BlockEntities
         //public bool isPaired { get; set; }
         public bool isPaired;
         public bool isConBlock { get; set; }
-        public BlockPos conBlock { get; set; }
-        public BlockPos pairedBlock { get; set; }
+        public BlockPos conBlockPos { get; set; }
+        public BlockPos pairedBlockPos { get; set; }
+
+        public
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -24,7 +27,7 @@ namespace InDappledGroves.BlockEntities
         public IDGBESawHorse()
         {
             inv = new InventoryGeneric(2, "sawhorse-slot", null, null);
-            meshes = new MeshData[1];
+            meshes = new MeshData[2];
         }
 
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
@@ -32,9 +35,13 @@ namespace InDappledGroves.BlockEntities
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             CollectibleObject colObj = slot.Itemstack?.Collectible;
             bool isPlaningBox = blockSel.SelectionBoxIndex == 1;
-            //bool isPlanable = (colObj == null || colObj.Attributes == null) ? false : colObj.Attributes["planable"].AsBool();
 
-            if (!isPlaningBox) return false;
+
+            if (!isConBlock){
+                return (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
+            }
+
+            //If players hand is empty, try to take item from sawhorse station
             if (slot.Empty)
             {
                 if (TryTake(byPlayer))
@@ -43,24 +50,43 @@ namespace InDappledGroves.BlockEntities
                     return true;
                 }
             }
-            else if (!slot.Empty && slot.Itemstack.Collectible.FirstCodePart() == "plank")
+            //If players hand is not empty, and the item they're holding can be planed, attempt to put
+            else if (!slot.Empty)
             {
-                if (TryPut(slot))
+                if(colObj.Attributes != null && colObj.HasBehavior<BehaviorWoodPlaner>())
                 {
-                    MarkDirty(true);
                     return true;
                 }
-            }
-            else if (slot.Itemstack.Collectible.FirstCodePart() == "axe")
-            {
-                if (!inv[1].Empty)
-                {
-                    ItemStack stack = inv[1].TakeOutWhole();
-                    stack.StackSize = 2;
-                    
+                else if (colObj.Attributes != null && colObj.Attributes["idgSawHorseProps"]["planable"].AsBool(false)) {
+                    if (TryPut(slot))
+                    {
+                        this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+                        MarkDirty(true);
+                        return true;
+                    }
                 }
             }
-            return false;
+            return true;
+        }
+
+        private AssetLocation GetSound(ItemSlot slot) {
+            if (slot.Itemstack == null)
+            {
+                return null;
+            }
+            else
+            {
+                Block block = slot.Itemstack.Block;
+                if (block == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    BlockSounds sounds = block.Sounds;
+                    return (sounds?.Place);
+                }
+            }
         }
 
         private bool TryTake(IPlayer byPlayer)
@@ -89,18 +115,17 @@ namespace InDappledGroves.BlockEntities
             if (inv[1].Empty)
             {
                 int moved = slot.TryPutInto(Api.World, inv[1]);
-                updateMeshes();
                 return moved > 0;
             }
+            updateMeshes();
             return false;
         }
-
-        public void CreateSawhorseStation(BlockPos placedSawHorse)
+          public void CreateSawhorseStation(BlockPos placedSawHorse, IDGBESawHorse neiSawHorseBE)
         {
             isPaired = true;
             isConBlock = true;
-            conBlock = Pos;
-            pairedBlock = placedSawHorse;           
+            conBlockPos = Pos;
+            pairedBlockPos = placedSawHorse;
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
@@ -108,20 +133,20 @@ namespace InDappledGroves.BlockEntities
             base.ToTreeAttributes(tree);
             tree.SetBool("ispaired", isPaired);
             tree.SetBool("isconblock", isConBlock);
-            if (conBlock != null)
+            if (conBlockPos != null)
             {
-                tree.SetBlockPos("conblock", conBlock);
+                tree.SetBlockPos("conblock", conBlockPos);
             } else
             {
-                conBlock = null;
+                conBlockPos = null;
             }
-            if (pairedBlock != null)
+            if (pairedBlockPos != null)
             {
-                tree.SetBlockPos("pairedblock", pairedBlock);
+                tree.SetBlockPos("pairedblock", pairedBlockPos);
             }
             else
             {
-                pairedBlock = null;
+                pairedBlockPos = null;
             }
             
         }
@@ -132,20 +157,81 @@ namespace InDappledGroves.BlockEntities
 
             isPaired = tree.GetBool("ispaired");
             isConBlock = tree.GetBool("isconblock");
-            conBlock = tree.GetBlockPos("conblock", null);
-            pairedBlock = tree.GetBlockPos("pairedblock", null);
+            conBlockPos = tree.GetBlockPos("conblock", null);
+            pairedBlockPos = tree.GetBlockPos("pairedblock", null);
+            
             MarkDirty(true);
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             dsc.AppendLine("My Pos is " + Pos);
-            dsc.AppendLine("conBlock is " + conBlock);
-            dsc.AppendLine("pairedBlock is " + pairedBlock);
+            dsc.AppendLine("conBlock is " + conBlockPos);
+            dsc.AppendLine("pairedBlock is " + pairedBlockPos);
             dsc.AppendLine("isConBlock is " + isConBlock);
             dsc.AppendLine("isPaired is " + isPaired);
-            dsc.AppendLine("Contains " + (conBlock != null && Api.World.BlockAccessor.GetBlockEntity(conBlock) is IDGBESawHorse fish ? fish.inv[1].Empty ? "nothing" : fish.inv[1].Itemstack.ToString() : "nothing"));
+            dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
             base.GetBlockInfo(forPlayer, dsc);
         }
+
+        public override void updateMeshes()
+        {
+                this.updateMesh(1);
+
+            base.updateMeshes();
+        }
+
+        protected override void updateMesh(int index)
+        {
+            if (this.Api == null || this.Api.Side == EnumAppSide.Server)
+            {
+                return;
+            }
+            if (this.Inventory[index].Empty)
+            {
+                this.meshes[index] = null;
+                return;
+            }
+            MeshData meshData = this.genMesh(this.Inventory[index].Itemstack);
+            this.TranslateMesh(meshData, index);
+            this.meshes[index] = meshData;
+        }
+
+        public override void TranslateMesh(MeshData mesh, int index)
+        {
+            float x = 0.5f;
+            float y = 0.75f;
+            float z = 0f;
+            
+            Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+            mesh.Translate(offset.XYZ);
+        }
+        protected override MeshData genMesh(ItemStack stack)
+        {
+
+            IContainedMeshSource containedMeshSource = stack.Collectible as IContainedMeshSource;
+            MeshData meshData;
+            if (containedMeshSource != null)
+            {
+                meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
+                meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
+            }
+            else
+            {
+                this.nowTesselatingObj = stack.Collectible;
+                this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
+                capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
+            }
+            ModelTransform transform = stack.Collectible.Attributes.AsObject<ModelTransform>();
+            transform.EnsureDefaultValues();
+            transform.Rotation.X = 0;
+            transform.Rotation.Y = Block.Shape.rotateY+45;
+            transform.Rotation.Z = 0;
+            meshData.ModelTransform(transform);
+
+            return meshData;
+        }
+
+        readonly Matrixf mat = new();
     }
 }

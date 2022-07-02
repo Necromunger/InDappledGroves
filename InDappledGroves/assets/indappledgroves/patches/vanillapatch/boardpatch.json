@@ -1,8 +1,14 @@
 [
   {
     "op": "add",
-    "path": "/attributes/idgSawHorseProps",
-    "value": {"planable": true},
-    "file": "game:itemtypes/resource/plank.json"
+    "path": "/attributes/idgSawHorsePropsByType",
+    "value": {
+      "plank-*":{
+          "planable": true,
+          "output": {"code": "game:plank-{wood}", "quantity": 2}
+        }
+    },
+    "file": "game:itemtypes/resource/plank.json",
+    "side": "server"
   }
 ]

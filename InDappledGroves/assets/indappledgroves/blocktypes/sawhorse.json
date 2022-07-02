@@ -20,11 +20,13 @@
   "variantgroups": [
     { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
+    { "code": "state", "states": ["single","compound"]},
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
+    
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
-  "creativeinventory": { "general": ["*-east"]},
+  "creativeinventory": { "general": ["*-single-east"]},
   "textures": {		
       "support": { "base": "game:block/wood/planks/{support}1" },
 			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }
@@ -40,32 +42,47 @@
   "sidesolid": { "all": false },
   "blockmaterial": "wood",
   "sounds": {"place": "game:block/planks"},
-  "collisionBoxes":[
-    { x1: 0.094, y1: 0, z1: 0, x2: 0.875, y2: 0.75, z2: 1, "rotateYByType": {
-          "*-north": 90,
-          "*-east": 0,
-          "*-south": 270,
-          "*-west": 180
+  "collisionBoxesByType":{ 
+    "*-single-*": [{ x1: 0.0877, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7669, z2: 0.9385, "rotateYByType": {
+          "*-north": 270,
+          "*-east": 180,
+          "*-south": 90,
+          "*-west": 0
+        }}],
+    "*-compound-*": [
+		{ x1: -0.9055, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7534, z2: 0.9511, "rotateYByType": {
+          "*-north": 270,
+          "*-east": 180,
+          "*-south": 90,
+          "*-west": 0
         }},
-    { x1: 0, y1: 0.75, z1: 0.625, x2: 1, y2: 0.8125, z2: 0.375, "rotateYByType": {
+		{ x1: -0.9002, y1: 0.751, z1: 0.0441, x2: 0.8992, y2: 0.8299, z2: 0.9496, "rotateYByType": {
+          "*-north": 270,
+          "*-east": 180,
+          "*-south": 90,
+          "*-west": 0
+    }}]
+  },
+  "selectionBoxesByType": {
+    "*-single-*": [{ x1: 0.0877, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7669, z2: 0.9385, "rotateYByType": {
           "*-north": 90,
           "*-east": 0,
           "*-south": 270,
           "*-west": 180
-        }}
-  ],
-  "selectionBoxes": [
-		{ x1: 0.094, y1: 0, z1: 0, x2: 0.875, y2: 0.75, z2: 1, "rotateYByType": {
-          "*-north": 90,
-          "*-east": 0,
-          "*-south": 270,
-          "*-west": 180
+        }}],
+    "*-compound-*": [
+		{ x1: -0.9055, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7534, z2: 0.9511, "rotateYByType": {
+          "*-north": 270,
+          "*-east": 180,
+          "*-south": 90,
+          "*-west": 0
         }},
-		{ x1: 0, y1: 0.75, z1: 0.625, x2: 1, y2: 0.8125, z2: 0.375, "rotateYByType": {
-          "*-north": 90,
-          "*-east": 0,
-          "*-south": 270,
-          "*-west": 180
+		{ x1: -0.9002, y1: 0.751, z1: 0.0441, x2: 0.8992, y2: 0.8299, z2: 0.9496, "rotateYByType": {
+          "*-north": 270,
+          "*-east": 180,
+          "*-south": 90,
+          "*-west": 0
     }}
 	]
+  }
 }

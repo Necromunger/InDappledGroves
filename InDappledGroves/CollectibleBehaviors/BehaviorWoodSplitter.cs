@@ -28,10 +28,10 @@ namespace InDappledGroves
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundChopTime = collObj.Attributes["woodSplitterProps"]["groundChopTime"].AsInt(4);
-            this.choppingBlockChopTime = collObj.Attributes["woodSplitterProps"]["choppingBlockChopTime"].AsInt(2);
-            this.groundChopDamage = collObj.Attributes["woodSplitterProps"]["groundChopDamage"].AsInt(4);
-            this.choppingBlockChopDamage = collObj.Attributes["woodSplitterProps"]["choppingBlockChopDamage"].AsInt(2);
+            this.groundChopTime = collObj.Attributes["woodWorkingProps"]["groundChopTime"].AsInt(4);
+            this.choppingBlockChopTime = collObj.Attributes["woodWorkingProps"]["choppingBlockChopTime"].AsInt(2);
+            this.groundChopDamage = collObj.Attributes["woodWorkingProps"]["groundChopDamage"].AsInt(4);
+            this.choppingBlockChopDamage = collObj.Attributes["woodWorkingProps"]["choppingBlockChopDamage"].AsInt(2);
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
             {
                 return new WorldInteraction[] {
