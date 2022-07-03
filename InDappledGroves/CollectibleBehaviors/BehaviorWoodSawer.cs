@@ -53,7 +53,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgSawBuckProps"]["cuttable"];
+            JsonObject attributes = interactedBlock.Attributes?["idgSawBuckProps"]["sawable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage)
@@ -83,7 +83,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 {
 
                     Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= groundSawTime && interactedBlock.Attributes["idgSawBuckProps"]["cuttable"].AsBool(false))
+                    if (secondsUsed >= groundSawTime && interactedBlock.Attributes["idgSawBuckProps"]["sawable"].AsBool(false))
                         SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundSawDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                     return false;

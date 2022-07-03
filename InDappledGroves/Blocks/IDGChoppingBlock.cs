@@ -12,7 +12,7 @@ namespace InDappledGroves.Blocks
 {
     class IDGChoppingBlock : Block
     {
-		SplittingRecipe recipe;
+		ChoppingRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
@@ -29,7 +29,7 @@ namespace InDappledGroves.Blocks
 
 			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
 			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodSplitter>() && !bechoppingblock.Inventory.Empty) {
-				recipe = GetMatchingSplittingRecipe(world, bechoppingblock.InputSlot);
+				recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
 				if (recipe != null && chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
 				{
 					(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage));
@@ -80,9 +80,9 @@ namespace InDappledGroves.Blocks
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
-		public SplittingRecipe GetMatchingSplittingRecipe(IWorldAccessor world, ItemSlot slots)
+		public ChoppingRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slots)
 		{
-			List<SplittingRecipe> recipes = IDGRecipeRegistry.Loaded.SplittingRecipes;
+			List<ChoppingRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
 			if (recipes == null) return null;
 
 			for (int j = 0; j < recipes.Count; j++)

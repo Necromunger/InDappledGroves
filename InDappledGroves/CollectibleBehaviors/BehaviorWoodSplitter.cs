@@ -54,7 +54,7 @@ namespace InDappledGroves
                 return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgChoppingBlockProps"]["cuttable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgChoppingBlockProps"]["choppable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage)
@@ -84,7 +84,7 @@ namespace InDappledGroves
                 {
                    
                     Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["cuttable"].AsBool(false))
+                    if (secondsUsed >= groundChopTime && interactedBlock.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false))
                     SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundChopDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
                     return false;
@@ -119,7 +119,7 @@ namespace InDappledGroves
 
         }
 
-        public void SpawnOutput(SplittingRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(ChoppingRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             ItemStack output = recipe.Output.ResolvedItemstack;
             int j = output.StackSize;

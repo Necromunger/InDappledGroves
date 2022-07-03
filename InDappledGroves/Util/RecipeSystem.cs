@@ -22,17 +22,17 @@ namespace InDappledGroves.Util
         public class IDGRecipeRegistry
         {
             private static IDGRecipeRegistry loaded;
-            private List<SplittingRecipe> splittingRecipes = new List<SplittingRecipe>();
+            private List<ChoppingRecipe> choppingRecipes = new List<ChoppingRecipe>();
 
-            public List<SplittingRecipe> SplittingRecipes
+            public List<ChoppingRecipe> ChoppingRecipes
             {
                 get
                 {
-                    return splittingRecipes;
+                    return choppingRecipes;
                 }
                 set
                 {
-                    splittingRecipes = value;
+                    choppingRecipes = value;
                 }
             }
 
@@ -64,14 +64,14 @@ namespace InDappledGroves.Util
             }
         }
 
-        public class SplittingRecipe : IByteSerializable
+        public class ChoppingRecipe : IByteSerializable
         {
             public string Code = "something";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
 
 
-            public SplittingIngredient[] Ingredients;
+            public ChoppingIngredient[] Ingredients;
 
             public JsonItemStack Output;
 
@@ -218,29 +218,29 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
-                Ingredients = new SplittingIngredient[reader.ReadInt32()];
+                Ingredients = new ChoppingIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
-                    Ingredients[i] = new SplittingIngredient();
+                    Ingredients[i] = new ChoppingIngredient();
                     Ingredients[i].FromBytes(reader, resolver);
-                    Ingredients[i].Resolve(resolver, "Splitting Recipe (FromBytes)");
+                    Ingredients[i].Resolve(resolver, "Chopping Recipe (FromBytes)");
                 }
 
                 Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
-                Output.Resolve(resolver, "Splitting Recipe (FromBytes)");
+                Output.Resolve(resolver, "Chopping Recipe (FromBytes)");
             }
 
-            public SplittingRecipe Clone()
+            public ChoppingRecipe Clone()
             {
-                SplittingIngredient[] ingredients = new SplittingIngredient[Ingredients.Length];
+                ChoppingIngredient[] ingredients = new ChoppingIngredient[Ingredients.Length];
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
                     ingredients[i] = Ingredients[i].Clone();
                 }
 
-                return new SplittingRecipe()
+                return new ChoppingRecipe()
                 {
                     Output = Output.Clone(),
                     Code = Code,
@@ -332,12 +332,12 @@ namespace InDappledGroves.Util
 
             public void LoadIDGRecipes()
             {
-                LoadSplittingRecipes();
+                LoadChoppingRecipes();
             }
 
-            public void LoadSplittingRecipes()
+            public void LoadChoppingRecipes()
             {
-                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/splitting");
+                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/chopping");
                 int recipeQuantity = 0;
                 int ignored = 0;
 
@@ -345,38 +345,38 @@ namespace InDappledGroves.Util
                 {
                     if (val.Value is JObject)
                     {
-                        SplittingRecipe rec = val.Value.ToObject<SplittingRecipe>();
+                        ChoppingRecipe rec = val.Value.ToObject<ChoppingRecipe>();
                         if (!rec.Enabled) continue;
 
-                        LoadSplittingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                        LoadChoppingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
                     }
                     if (val.Value is JArray)
                     {
                         foreach (var token in (val.Value as JArray))
                         {
-                            SplittingRecipe rec = token.ToObject<SplittingRecipe>();
+                            ChoppingRecipe rec = token.ToObject<ChoppingRecipe>();
                             if (!rec.Enabled) continue;
 
-                            LoadSplittingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                            LoadChoppingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
                         }
                     }
                 }
 
-                api.World.Logger.Event("{0} splitting recipes loaded", recipeQuantity);
+                api.World.Logger.Event("{0} chopping recipes loaded", recipeQuantity);
                 api.World.Logger.StoryEvent(Lang.Get("efrecipes:The butter and the bread..."));
             }
 
-            public void LoadSplittingRecipe(AssetLocation path, SplittingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
+            public void LoadChoppingRecipe(AssetLocation path, ChoppingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
-                string className = "splitting recipe";
+                string className = "chopping recipe";
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
                 if (nameToCodeMapping.Count > 0)
                 {
-                    List<SplittingRecipe> subRecipes = new List<SplittingRecipe>();
+                    List<ChoppingRecipe> subRecipes = new List<ChoppingRecipe>();
 
                     int qCombs = 0;
                     bool first = true;
@@ -395,7 +395,7 @@ namespace InDappledGroves.Util
 
                         for (int i = 0; i < qCombs; i++)
                         {
-                            SplittingRecipe rec;
+                            ChoppingRecipe rec;
 
                             if (first) subRecipes.Add(rec = recipe.Clone());
                             else rec = subRecipes[i];
@@ -425,14 +425,14 @@ namespace InDappledGroves.Util
                         api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
                     }
 
-                    foreach (SplittingRecipe subRecipe in subRecipes)
+                    foreach (ChoppingRecipe subRecipe in subRecipes)
                     {
                         if (!subRecipe.Resolve(api.World, className + " " + path))
                         {
                             quantityIgnored++;
                             continue;
                         }
-                        IDGRecipeRegistry.Loaded.SplittingRecipes.Add(subRecipe);
+                        IDGRecipeRegistry.Loaded.ChoppingRecipes.Add(subRecipe);
                         quantityRegistered++;
                     }
 
@@ -445,12 +445,12 @@ namespace InDappledGroves.Util
                         return;
                     }
 
-                    IDGRecipeRegistry.Loaded.SplittingRecipes.Add(recipe);
+                    IDGRecipeRegistry.Loaded.ChoppingRecipes.Add(recipe);
                     quantityRegistered++;
                 }
             }
 
-            public class SplittingIngredient : IByteSerializable
+            public class ChoppingIngredient : IByteSerializable
             {
                 public CraftingRecipeIngredient[] Inputs;
 
@@ -499,7 +499,7 @@ namespace InDappledGroves.Util
                     }
                 }
 
-                public SplittingIngredient Clone()
+                public ChoppingIngredient Clone()
                 {
                     CraftingRecipeIngredient[] newings = new CraftingRecipeIngredient[Inputs.Length];
 
@@ -508,14 +508,14 @@ namespace InDappledGroves.Util
                         newings[i] = Inputs[i].Clone();
                     }
 
-                    return new SplittingIngredient()
+                    return new ChoppingIngredient()
                     {
                         Inputs = newings
                     };
                 }
             }
         }
-        public class SplittingIngredient : IByteSerializable
+        public class ChoppingIngredient : IByteSerializable
         {
             public CraftingRecipeIngredient[] Inputs;
 
@@ -551,7 +551,7 @@ namespace InDappledGroves.Util
                 {
                     Inputs[i] = new CraftingRecipeIngredient();
                     Inputs[i].FromBytes(reader, resolver);
-                    Inputs[i].Resolve(resolver, "Splitting Ingredient (FromBytes)");
+                    Inputs[i].Resolve(resolver, "Chopping Ingredient (FromBytes)");
                 }
             }
 
@@ -564,7 +564,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            public SplittingIngredient Clone()
+            public ChoppingIngredient Clone()
             {
                 CraftingRecipeIngredient[] newings = new CraftingRecipeIngredient[Inputs.Length];
 
@@ -573,7 +573,7 @@ namespace InDappledGroves.Util
                     newings[i] = Inputs[i].Clone();
                 }
 
-                return new SplittingIngredient()
+                return new ChoppingIngredient()
                 {
                     Inputs = newings
                 };

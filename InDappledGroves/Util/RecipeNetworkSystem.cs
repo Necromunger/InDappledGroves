@@ -41,7 +41,7 @@ namespace InDappledGroves.Util
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            List<SplittingRecipe> srecipes = new List<SplittingRecipe>();
+            List<ChoppingRecipe> srecipes = new List<ChoppingRecipe>();
 
             if (networkMessage.svalues != null)
             {
@@ -51,7 +51,7 @@ namespace InDappledGroves.Util
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
-                        SplittingRecipe retr = new SplittingRecipe();
+                        ChoppingRecipe retr = new ChoppingRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
                         srecipes.Add(retr);
@@ -59,7 +59,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            IDGRecipeRegistry.Loaded.SplittingRecipes = srecipes;
+            IDGRecipeRegistry.Loaded.ChoppingRecipes = srecipes;
             if (networkMessage.svalues != null)
             {
                 foreach (string crec in networkMessage.svalues)
@@ -68,16 +68,16 @@ namespace InDappledGroves.Util
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
-                        SplittingRecipe retr = new SplittingRecipe();
+                        ChoppingRecipe retr = new ChoppingRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
                         srecipes.Add(retr);
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.SplittingRecipes = srecipes;
+            IDGRecipeRegistry.Loaded.ChoppingRecipes = srecipes;
 
-            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.SplittingRecipes.Count + " splitting recipes loaded to client.");
+            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.ChoppingRecipes.Count + " chopping recipes loaded to client.");
         }
 
         #endregion
@@ -105,7 +105,7 @@ namespace InDappledGroves.Util
         {
             List<string> srecipes = new List<string>();
 
-            foreach (SplittingRecipe drec in IDGRecipeRegistry.Loaded.SplittingRecipes)
+            foreach (ChoppingRecipe drec in IDGRecipeRegistry.Loaded.ChoppingRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -118,7 +118,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            foreach (SplittingRecipe crec in IDGRecipeRegistry.Loaded.SplittingRecipes)
+            foreach (ChoppingRecipe crec in IDGRecipeRegistry.Loaded.ChoppingRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {

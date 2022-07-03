@@ -1,21 +1,33 @@
-﻿using Vintagestory.API.Client;
+﻿using System;
+using System.Collections.Generic;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {
-    class IDGBESawBuck : BlockEntityDisplay
+	class IDGBESawBuck : BlockEntityDisplay
 	{
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "sawbuck";
-
-		//public override string AttributeTransformCode => "onDisplayTransform";
 		public override string AttributeTransformCode => "idgSawBuckTransform";
+
+		//static List<SawingRecipe> sawingRecipes = IDGRecipeRegistry.Loaded.SawingRecipes;
+
+		//public SawingRecipe recipe;
+
 		public IDGBESawBuck()
 		{
 			Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
 			meshes = new MeshData[0];
+		}
+
+		public ItemSlot InputSlot
+		{
+			get { return Inventory[0]; }
 		}
 
 		public override void Initialize(ICoreAPI api)
@@ -32,7 +44,6 @@ namespace InDappledGroves.BlockEntities
 		{
 			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-			//If player hand empty
 			if (activeHotbarSlot.Empty)
 			{
 				return this.TryTake(byPlayer);
@@ -41,41 +52,42 @@ namespace InDappledGroves.BlockEntities
 			if (!activeHotbarSlot.Empty && !Inventory.Empty) return true;
 
 			//Get Collectible Object and Attributes from the Collectible Object
+			//Then check to see if attributes is null, or if chopblock is false or absent
+
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if (attributes == null || !collectible.Attributes["idgSawBuckProps"]["sawable"].AsBool(false))
+			if (attributes == null || !collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["sawable"].AsBool(false))
 			{
 				return false;
 			}
 
-			if (this.TryPut(activeHotbarSlot))
+			ItemStack itemstack = activeHotbarSlot.Itemstack;
+			AssetLocation assetLocation;
+			if (itemstack == null)
 			{
-				this.Api.World.PlaySoundAt(GetSound(activeHotbarSlot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-				updateMeshes();
-				return true;
-			}
-			return false;
-		}
-
-		private AssetLocation GetSound(ItemSlot slot)
-		{
-			if (slot.Itemstack == null)
-			{
-				return null;
+				assetLocation = null;
 			}
 			else
 			{
-				Block block = slot.Itemstack.Block;
+				Block block = itemstack.Block;
 				if (block == null)
 				{
-					return null;
+					assetLocation = null;
 				}
 				else
 				{
 					BlockSounds sounds = block.Sounds;
-					return (sounds?.Place);
+					assetLocation = (sounds?.Place);
 				}
 			}
+			AssetLocation assetLocation2 = assetLocation;
+			if (this.TryPut(activeHotbarSlot))
+			{
+				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+				updateMeshes();
+				return true;
+			}
+			return false;
 		}
 
 		private bool TryPut(ItemSlot slot)
@@ -128,9 +140,64 @@ namespace InDappledGroves.BlockEntities
 			return false;
 		}
 
+		protected override MeshData genMesh(ItemStack stack)
+		{
+			MeshData meshData;
+			if (stack.Collectible is IContainedMeshSource containedMeshSource)
+			{
+				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
+				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
+			}
+			else
+			{
+				this.nowTesselatingObj = stack.Collectible;
+				this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
+				if (stack.Collectible is Block)
+				{
+					capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
+				}
+				else
+				{
+					capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
+				}
+
+
+			}
+			ModelTransform transform = stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+
+			transform.EnsureDefaultValues();
+
+			transform.Rotation.Y = (Block.Shape.rotateY + 90f);
+
+			meshData.ModelTransform(transform);
+
+			return meshData;
+		}
+
 		public override void updateMeshes()
 		{
+			for (int i = 0; i < this.meshes.Length; i++)
+			{
+				this.updateMesh(i);
+			}
 			base.updateMeshes();
 		}
+
+		protected override void updateMesh(int index) { 
+			if (this.Api == null || this.Api.Side == EnumAppSide.Server)
+			{
+				return;
+			}
+			if (this.Inventory[index].Empty)
+			{
+				this.meshes[index] = null;
+				return;
+			}
+			MeshData meshData = this.genMesh(this.Inventory[index].Itemstack);
+			this.TranslateMesh(meshData, index);
+			this.meshes[index] = meshData;
+		}
+
+		private readonly Matrixf mat = new();
 	}
 }

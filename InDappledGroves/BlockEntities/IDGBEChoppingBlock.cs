@@ -49,7 +49,7 @@ namespace InDappledGroves.BlockEntities
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["cuttable"].AsBool(false)) return true;		
+			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false)) return true;		
 
             ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;

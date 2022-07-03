@@ -5,7 +5,7 @@
     "value": {
       "idgChoppingBlockPropsByType": {
                 "*-placed-*":{
-                    "cuttable": true,
+                    "choppable": true,
                     "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2}
                 },
                 "idgChoppingBlockTransform": {
@@ -25,128 +25,121 @@
                       "z": 0.5
                     },
                     "scale": 0.95
+                }
+      },
+      "idgSawBuckPropsByType": {
+                  "*-placed-*":{
+                      "sawable": true,
+                      "output": {"code": "game:plank-{wood}", "quantity": 12},
+                      "idgSawBuckTransform": {
+                          "translation": {
+                            "x": 0.03125,
+                            "y": 0.345,
+                            "z": 0
+                          },
+                          "rotation": {
+                            "x": 90,
+                            "y": -136,
+                            "z": -180
+                          },
+                          "origin": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                          },
+                          "scale": 0.95
+                      }
+                  }
+      }
+    },
+    "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/woodworkingProps",
+    "value": {
+      "idgChoppingBlockPropsByType":
+              {
+                "*-placed-*":{
+                    "choppable": true,
+                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2},
+                "idgChoppingBlockTransform":  {
+                  "translation": {
+                    "x": 0,
+                    "y": 0.0625,
+                    "z": 0
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "origin": {
+                    "x": 0.5,
+                    "y": 0,
+                    "z": 0.5
+                  },
+                  "scale": 0.95
                   }
                 }
-                
-            },
-    "file": "game:blocktypes/wood/woodtyped/log.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgSawBuckTransform",
-    "value": {
-         "translation": {
-        "x": 0.03125,
-        "y": 0.345,
-        "z": 0
-      },
-      "rotation": {
-        "x": 90,
-        "y": -136,
-        "z": -180
-      },
-      "origin": {
-        "x": 0.5,
-        "y": 0.5,
-        "z": 0.5
-      },
-      "scale": 0.95
-    },
-    "file": "game:blocktypes/wood/woodtyped/log.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgChoppingBlockPropsByType",
-    "value": {
-      "*-placed-*":{
-          "cuttable": true,
-          "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2}
-        }
+              },
+      "idgSawBuckPropsByType": {
+                  "*-placed-*":{
+                      "sawable": true,
+                      "output": {"code": "game:plank-{wood}", "quantity": 12},
+                      "idgSawBuckTransform": {
+                          "translation": {
+                            "x": 0.03125,
+                            "y": 0.345,
+                            "z": 0
+                          },
+                          "rotation": {
+                            "x": 90,
+                            "y": -136,
+                            "z": -180
+                          },
+                          "origin": {
+                            "x": 0.5,
+                            "y": 0.5,
+                            "z": 0.5
+                          },
+                          "scale": 0.95
+                      }
+                  }
+      }
     },
     "file": "game:blocktypes/wood/woodtyped/log-section.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/attributes/idgChoppingBlockTransform",
+    "path": "/attributes/woodworkingProps",
     "value": {
-      "translation": {
-        "x": 0,
-        "y": 0.0625,
-        "z": 0
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "origin": {
-        "x": 0.5,
-        "y": 0,
-        "z": 0.5
-      },
-      "scale": 0.95
-    },
-    "file": "game:blocktypes/wood/woodtyped/log-section.json"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgChoppingBlockProps",
-    "value": {
-          "cuttable": true,
-          "output": {"code": "game:stick", "quantity": 4}
-        },
-    "file": "game:itemtypes/resource/firewood.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgChoppingBlockTransform",
-    "value": {
-      "translation": {
-        "x": 0,
-        "y": 0,
-        "z": 0.425
-      },
-      "rotation": {
-        "x": -90,
-        "y": 0,
-        "z": 0
-      },
-      "origin": {
-        "x": 0,
-        "y": 0.125,
-        "z": 0
-      },
-      "scale": 0.95
+        "idgChoppingBlockProps":  {
+          "choppable": true,
+          "output": {"code": "game:stick", "quantity": 4},
+          "idgChoppingBlockTransform": {
+                "translation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0.425
+                },
+                "rotation": {
+                  "x": -90,
+                  "y": 0,
+                  "z": 0
+                },
+                "origin": {
+                  "x": 0,
+                  "y": 0.125,
+                  "z": 0
+                },
+                "scale": 0.95
+          }
+        }
     },
     "file": "game:itemtypes/resource/firewood.json",
     "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgSawBuckPropsByType",
-    "value": {
-      "*-placed-*":{
-          "sawable": true,
-          "output": {"code": "game:plank-{wood}", "quantity": 12}
-        }
-    },
-    "file": "game:blocktypes/wood/woodtyped/log.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/idgSawBuckPropsByType",
-    "value": {
-      "*-placed-*":{
-          "sawable": true,
-          "output": {"code": "game:plank-{wood}", "quantity": 12}
-        }
-    },
-    "file": "game:blocktypes/wood/woodtyped/log-section.json",
-    "side": "server"
-  }
+   }
 ]
