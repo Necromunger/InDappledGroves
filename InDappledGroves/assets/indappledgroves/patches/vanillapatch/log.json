@@ -6,9 +6,8 @@
       "idgChoppingBlockPropsByType": {
                 "*-placed-*":{
                     "choppable": true,
-                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2}
-                },
-                "idgChoppingBlockTransform": {
+                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2},
+                    "idgChoppingBlockTransform": {
                     "translation": {
                       "x": 0,
                       "y": 0.0625,
@@ -26,6 +25,7 @@
                     },
                     "scale": 0.95
                 }
+          }     
       },
       "idgSawBuckPropsByType": {
                   "*-placed-*":{
@@ -33,14 +33,25 @@
                       "output": {"code": "game:plank-{wood}", "quantity": 12},
                       "idgSawBuckTransform": {
                           "translation": {
-                            "x": 0.03125,
-                            "y": 0.345,
+                            "x": 0.027,
+                            "y": 0.7,
                             "z": 0
                           },
                           "rotation": {
-                            "x": 90,
-                            "y": -136,
-                            "z": -180
+                            "x": 0,
+                            "northx": 90,
+                            "southx": 90,
+                            "eastx": 45,
+                            "westx": 45,
+                            "y": 0,
+                            "northy": 45,
+                            "southy": 45,
+                            "easty": 90,
+                            "westy": 90, 
+                            "z": 0,
+                            "eastz": 90,
+                            "westz": 90
+                            
                           },
                           "origin": {
                             "x": 0.5,
@@ -49,9 +60,9 @@
                           },
                           "scale": 0.95
                       }
-                  }
-      }
-    },
+                }
+          }
+      },
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server"
   },
@@ -90,14 +101,27 @@
                       "output": {"code": "game:plank-{wood}", "quantity": 12},
                       "idgSawBuckTransform": {
                           "translation": {
-                            "x": 0.03125,
-                            "y": 0.345,
+                            "x": 0.027,
+                            "y": 0.7,
                             "z": 0
                           },
                           "rotation": {
-                            "x": 90,
-                            "y": -136,
-                            "z": -180
+                            "x": 0,
+                            "northx": 90,
+                            "southx": 90,
+                            "eastx": 135,
+                            "westx": 135,
+                            "y": 0,
+                            "northy": 225,
+                            "southy": 45,
+                            "easty": 270,
+                            "westy": 90, 
+                            "z": 0,
+                            "northz": 0,
+                            "southz": 0,
+                            "eastz": 90,
+                            "westz": 90
+                            
                           },
                           "origin": {
                             "x": 0.5,
@@ -136,6 +160,11 @@
                   "z": 0
                 },
                 "scale": 0.95
+          },
+          "idgChoppingBlockTranslate": {
+            "x": 0,
+            "y": 0,
+            "z": 0.45
           }
         }
     },

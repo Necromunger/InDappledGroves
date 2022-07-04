@@ -2,6 +2,7 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.IDGRecipeNames;
 
@@ -11,9 +12,13 @@ namespace InDappledGroves.BlockEntities
     {
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "idgChoppingBlockTransform";
+        public override string AttributeTransformCode => "onDisplayTransform";
 
-        public IDGBEChoppingBlock()
+		static List<ChoppingRecipe> choppingRecipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
+
+		public ChoppingRecipe recipe;
+
+		public IDGBEChoppingBlock()
 		{
 			Inventory = new InventoryGeneric(1, "choppingblock-slot", null, null);
 			meshes = new MeshData[1];
@@ -130,11 +135,64 @@ namespace InDappledGroves.BlockEntities
 			return false;
 		}
 
-		
+		public override void TranslateMesh(MeshData mesh, int index)
+		{
+			JsonObject Translations = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTranslate"];
 
+			float x = 0f;
+			float y = 0f;
+			float z = 0.45f;
+
+            if (Translations.Exists)
+            {
+                x = Translations["x"].Exists ? Translations["x"].AsFloat() : x;
+                y = Translations["y"].Exists ? Translations["y"].AsFloat() : y;
+                z = Translations["z"].Exists ? Translations["z"].AsFloat() : z;
+
+                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+            }
+
+        }
+
+		protected override MeshData genMesh(ItemStack stack)
+		{
+			MeshData meshData;
+			if (stack.Collectible is IContainedMeshSource containedMeshSource)
+			{
+				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
+				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
+			}
+			else
+			{
+				this.nowTesselatingObj = stack.Collectible;
+				this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
+				if (stack.Collectible is Block)
+				{
+					capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
+				}
+				else
+				{
+					capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
+				}
+
+
+			}
+
+			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+			transform.EnsureDefaultValues();
+			//transform.Rotation.X = 0;
+			transform.Rotation.Y = Block.Shape.rotateY;
+			//transform.Rotation.Z = 0;
+			meshData.ModelTransform(transform);
+
+			return meshData;
+		}
 		public override void updateMeshes()
         {
 			base.updateMeshes();
         }
+
+		private readonly Matrixf mat = new();
 	}
 }

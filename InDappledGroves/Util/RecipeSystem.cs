@@ -363,7 +363,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} chopping recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("efrecipes:The butter and the bread..."));
+                api.World.Logger.StoryEvent(Lang.Get("efrecipes:The haft and the bit..."));
             }
 
             public void LoadChoppingRecipe(AssetLocation path, ChoppingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -486,7 +486,7 @@ namespace InDappledGroves.Util
                     {
                         Inputs[i] = new CraftingRecipeIngredient();
                         Inputs[i].FromBytes(reader, resolver);
-                        Inputs[i].Resolve(resolver, "Dough Ingredient (FromBytes)");
+                        Inputs[i].Resolve(resolver, "Chopping Ingredient (FromBytes)");
                     }
                 }
 

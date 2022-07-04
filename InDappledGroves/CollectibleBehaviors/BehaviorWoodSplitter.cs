@@ -121,12 +121,12 @@ namespace InDappledGroves
 
         public void SpawnOutput(ChoppingRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
-            ItemStack output = recipe.Output.ResolvedItemstack;
-            int j = output.StackSize;
-            for (int i = j; i > 0; i--)
-            {
-                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
-            }
+            //ItemStack output = recipe.Output.ResolvedItemstack;
+            //int j = output.StackSize;
+            //for (int i = j; i > 0; i--)
+            //{
+            //    api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+            //}
 
         }
 

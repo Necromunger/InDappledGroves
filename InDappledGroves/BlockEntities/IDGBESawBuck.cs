@@ -13,7 +13,7 @@ namespace InDappledGroves.BlockEntities
 	{
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "sawbuck";
-		public override string AttributeTransformCode => "idgSawBuckTransform";
+		public override string AttributeTransformCode => "onDisplayTransform";
 
 		//static List<SawingRecipe> sawingRecipes = IDGRecipeRegistry.Loaded.SawingRecipes;
 
@@ -21,8 +21,8 @@ namespace InDappledGroves.BlockEntities
 
 		public IDGBESawBuck()
 		{
-			Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
-			meshes = new MeshData[0];
+			Inventory = new InventoryGeneric(2, "sawbuck-slot", null, null);
+			meshes = new MeshData[1];
 		}
 
 		public ItemSlot InputSlot
@@ -140,6 +140,57 @@ namespace InDappledGroves.BlockEntities
 			return false;
 		}
 
+		public override void TranslateMesh(MeshData mesh, int index)
+		{
+			
+			JsonObject North = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["north"];
+			JsonObject South = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["south"];
+			JsonObject West = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["west"];
+			JsonObject East = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["east"];
+
+			float x = 0.0f;
+			float y = 0.0f;
+			float z = 0f;
+
+			if (Block.Variant["side"] == "north")
+			{
+				x = North["x"].Exists ? North["x"].AsFloat() : x;
+				y = North["y"].Exists ? North["y"].AsFloat() : y;
+				z = North["z"].Exists ? North["z"].AsFloat() : z;
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+			else if (Block.Variant["side"] == "south")
+			{
+				x = South["x"].Exists ? South["x"].AsFloat() : x;
+				y = South["y"].Exists ? South["y"].AsFloat() : y;
+				z = South["z"].Exists ? South["z"].AsFloat() : z;
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+			else if (Block.Variant["side"] == "west")
+			{
+				x = West["x"].Exists ? West["x"].AsFloat() : x;
+				y = West["y"].Exists ? West["y"].AsFloat() : y;
+				z = West["z"].Exists ? West["z"].AsFloat() : z;
+
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+			else if (Block.Variant["side"] == "east")
+			{
+				x = East["x"].Exists ? East["x"].AsFloat() : x;
+				y = East["y"].Exists ? East["y"].AsFloat() : y;
+				z = East["z"].Exists ? East["z"].AsFloat() : z;
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+
+		}
 		protected override MeshData genMesh(ItemStack stack)
 		{
 			MeshData meshData;
@@ -163,15 +214,22 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
-			ModelTransform transform = stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
 
 			transform.EnsureDefaultValues();
 
-			transform.Rotation.Y = (Block.Shape.rotateY + 90f);
-
+			String side = Block.Variant["side"];
+			transform.Rotation.X = transform.Rotation.X   +  addRotate(side + "x");
+			transform.Rotation.Y = (Block.Shape.rotateY)  +  addRotate(side + "y");
+			transform.Rotation.Z = transform.Rotation.Z  +  addRotate(side + "z");
 			meshData.ModelTransform(transform);
 
 			return meshData;
+		}
+		public float addRotate(string sideAxis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
 		}
 
 		public override void updateMeshes()
@@ -183,7 +241,8 @@ namespace InDappledGroves.BlockEntities
 			base.updateMeshes();
 		}
 
-		protected override void updateMesh(int index) { 
+		protected override void updateMesh(int index)
+		{
 			if (this.Api == null || this.Api.Side == EnumAppSide.Server)
 			{
 				return;
