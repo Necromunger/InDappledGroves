@@ -8,7 +8,7 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves
 {
-    class BehaviorWoodSplitter : CollectibleBehavior
+    class BehaviorWoodChopper : CollectibleBehavior
     {
         ICoreAPI api;
         ICoreClientAPI capi;
@@ -18,7 +18,7 @@ namespace InDappledGroves
             base.Initialize(properties);          
         }
 
-        public BehaviorWoodSplitter(CollectibleObject collObj) : base(collObj)
+        public BehaviorWoodChopper(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
             
@@ -59,7 +59,6 @@ namespace InDappledGroves
             api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage)
             {
-                api.Logger.Debug("This internal fired.");
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundChopDamage));
                 return;
             }
@@ -121,12 +120,12 @@ namespace InDappledGroves
 
         public void SpawnOutput(ChoppingRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
-            //ItemStack output = recipe.Output.ResolvedItemstack;
-            //int j = output.StackSize;
-            //for (int i = j; i > 0; i--)
-            //{
-            //    api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
-            //}
+            ItemStack output = recipe.Output.ResolvedItemstack;
+            int j = output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+            }
 
         }
 

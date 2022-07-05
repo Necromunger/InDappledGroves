@@ -1,0 +1,13 @@
+[
+  {
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
+  }
+]

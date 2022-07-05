@@ -10,7 +10,6 @@ namespace InDappledGroves
 {
     public class InDappledGroves : ModSystem
     {
-        ICoreClientAPI capi;
 
         public override void Start(ICoreAPI api)
         {
@@ -32,7 +31,7 @@ namespace InDappledGroves
 
 
             //Register CollectibleBehaviors
-            api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodSplitter));
+            api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopper));
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawer));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaner));
 

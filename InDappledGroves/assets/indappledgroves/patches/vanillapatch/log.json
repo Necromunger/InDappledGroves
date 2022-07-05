@@ -6,7 +6,7 @@
       "idgChoppingBlockPropsByType": {
                 "*-placed-*":{
                     "choppable": true,
-                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2},
+                    "output": {"code": "game:firewood", "quantity": 4},
                     "idgChoppingBlockTransform": {
                     "translation": {
                       "x": 0,
@@ -30,7 +30,7 @@
       "idgSawBuckPropsByType": {
                   "*-placed-*":{
                       "sawable": true,
-                      "output": {"code": "game:plank-{wood}", "quantity": 12},
+                      "output": {"code": "game:plank-{wood}", "quantity": 8},
                       "idgSawBuckTransform": {
                           "translation": {
                             "x": 0.027,
@@ -74,7 +74,7 @@
               {
                 "*-placed-*":{
                     "choppable": true,
-                    "output": {"code": "indappledgroves:logslab-{wood}-barked-east-free", "quantity": 2},
+                    "output": {"code": "game:firewood", "quantity": 4},
                 "idgChoppingBlockTransform":  {
                   "translation": {
                     "x": 0,
@@ -98,7 +98,7 @@
       "idgSawBuckPropsByType": {
                   "*-placed-*":{
                       "sawable": true,
-                      "output": {"code": "game:plank-{wood}", "quantity": 12},
+                      "output": {"code": "game:plank-{wood}", "quantity": 8},
                       "idgSawBuckTransform": {
                           "translation": {
                             "x": 0.027,

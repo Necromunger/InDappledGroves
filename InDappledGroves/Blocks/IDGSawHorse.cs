@@ -1,9 +1,11 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
+using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
@@ -83,8 +85,9 @@ namespace InDappledGroves.Blocks
         {
             if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse)
             {
-                bool isPaired = besawhorse.isPaired;
-                bool isConBlock = besawhorse.isConBlock;
+                //bool isPaired = besawhorse.isPaired;
+                //bool isConBlock = besawhorse.isConBlock;
+
                 return besawhorse.OnInteract(byPlayer, blockSel);
             } 
             return false;
@@ -106,9 +109,7 @@ namespace InDappledGroves.Blocks
                 }
                 if (secondsUsed >= planeTool.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
                 {
-                    planeTool.GetBehavior<BehaviorWoodPlaner>().SpawnOutput(conBlock.Inventory[1].Itemstack.Collectible,
-                    byPlayer.Entity, blockSel.Position, planeTool.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage);
-
+                    planeTool.GetBehavior<BehaviorWoodPlaner>().SpawnOutput(besawHorse.GetRecipe(), byPlayer.Entity, blockSel.Position);
                     conBlock.Inventory.Clear();
                     (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
                     conBlock.MarkDirty(true);

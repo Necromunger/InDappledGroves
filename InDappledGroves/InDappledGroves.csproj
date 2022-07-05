@@ -92,6 +92,15 @@
     <None Update="assets\indappledgroves\recipes\chopping\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\chopping\sticks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\planing\planks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\sawing\log.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\block\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

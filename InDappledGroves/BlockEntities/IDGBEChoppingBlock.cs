@@ -16,8 +16,6 @@ namespace InDappledGroves.BlockEntities
 
 		static List<ChoppingRecipe> choppingRecipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
 
-		public ChoppingRecipe recipe;
-
 		public IDGBEChoppingBlock()
 		{
 			Inventory = new InventoryGeneric(1, "choppingblock-slot", null, null);
@@ -179,8 +177,10 @@ namespace InDappledGroves.BlockEntities
 
 			}
 
-			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): 
+			  stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
 			transform.EnsureDefaultValues();
+
 			//transform.Rotation.X = 0;
 			transform.Rotation.Y = Block.Shape.rotateY;
 			//transform.Rotation.Z = 0;

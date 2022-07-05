@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
@@ -55,10 +56,8 @@ namespace InDappledGroves.CollectibleBehaviors
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["idgSawBuckProps"]["sawable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage)
-            {
-                api.Logger.Debug("This internal fired.");
+            {                api.Logger.Debug("This internal fired.");
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundSawDamage));
                 return;
             }
@@ -117,6 +116,17 @@ namespace InDappledGroves.CollectibleBehaviors
 
         }
 
+        public void SpawnOutput(SawingRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        {
+            ItemStack output = recipe.Output.ResolvedItemstack;
+            int j = output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+            }
+
+        }
+
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()
@@ -155,6 +165,8 @@ namespace InDappledGroves.CollectibleBehaviors
             MaxSize = 0.1f,
             WindAffected = true
         };
+
+        
 
         private void SetParticleColourAndPosition(int colour, Vec3d minpos)
         {

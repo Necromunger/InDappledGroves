@@ -12,14 +12,16 @@ namespace InDappledGroves.Blocks
 {
     class IDGChoppingBlock : Block
     {
+		
 		ChoppingRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
+
 		}
 
-        public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
@@ -28,39 +30,45 @@ namespace InDappledGroves.Blocks
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
 			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
-			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodSplitter>() && !bechoppingblock.Inventory.Empty) {
+			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodChopper>() && !bechoppingblock.Inventory.Empty)
+			{
 				recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
-				if (recipe != null && chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+				if (recipe != null)
 				{
-					(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopDamage));
-					return base.OnBlockInteractStart(world, byPlayer, blockSel);
+					if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+					{
+						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
+						return base.OnBlockInteractStart(world, byPlayer, blockSel);
+					} else
+                    {
+						byPlayer.Entity.StartAnimation("axechop");
+						return true;
+					}
 				}
-
-				byPlayer.Entity.StartAnimation("axechop");
-				return true;
+				return false;
 			}
 
 			//Call the block entity OnInteract
 			return bechoppingblock.OnInteract(byPlayer);
 		}
-        
+
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
 			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;
 
-			if (chopTool != null && chopTool.HasBehavior<BehaviorWoodSplitter>() && !bechoppingblock.Inventory.Empty)
+			if (chopTool != null && chopTool.HasBehavior<BehaviorWoodChopper>() && !bechoppingblock.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodSplitter>().choppingBlockChopTime)
+                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopper>().choppingBlockChopTime)
                 {
 
-					chopTool.GetBehavior<BehaviorWoodSplitter>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					chopTool.GetBehavior<BehaviorWoodChopper>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 

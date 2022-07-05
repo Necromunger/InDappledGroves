@@ -12,7 +12,9 @@ namespace InDappledGroves.Util
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class RecipeUpload
     {
-        public List<string> svalues;
+        public List<string> cvalues;  //Chopping Recipe Values
+        public List<string> svalues;  //Sawing Recipe Values
+        public List<string> pvalues;  //Planing Recipe Values
     }
 
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
@@ -41,28 +43,13 @@ namespace InDappledGroves.Util
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            List<ChoppingRecipe> srecipes = new List<ChoppingRecipe>();
+            List<ChoppingRecipe> crecipes = new List<ChoppingRecipe>();
+            List<SawingRecipe> srecipes = new List<SawingRecipe>();
+            List<PlaningRecipe> precipes = new List<PlaningRecipe>();
 
-            if (networkMessage.svalues != null)
+            if (networkMessage.cvalues != null)
             {
-                foreach (string drec in networkMessage.svalues)
-                {
-                    using (MemoryStream ms = new MemoryStream(Ascii85.Decode(drec)))
-                    {
-                        BinaryReader reader = new BinaryReader(ms);
-
-                        ChoppingRecipe retr = new ChoppingRecipe();
-                        retr.FromBytes(reader, clientApi.World);
-
-                        srecipes.Add(retr);
-                    }
-                }
-            }
-
-            IDGRecipeRegistry.Loaded.ChoppingRecipes = srecipes;
-            if (networkMessage.svalues != null)
-            {
-                foreach (string crec in networkMessage.svalues)
+                foreach (string crec in networkMessage.cvalues)
                 {
                     using (MemoryStream ms = new MemoryStream(Ascii85.Decode(crec)))
                     {
@@ -71,13 +58,53 @@ namespace InDappledGroves.Util
                         ChoppingRecipe retr = new ChoppingRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
+                        crecipes.Add(retr);
+                    }
+                }
+            }
+            IDGRecipeRegistry.Loaded.ChoppingRecipes = crecipes;
+
+            if (networkMessage.svalues != null)
+            {
+                foreach (string srec in networkMessage.svalues)
+                {
+                    using (MemoryStream ms = new MemoryStream(Ascii85.Decode(srec)))
+                    {
+                        BinaryReader reader = new BinaryReader(ms);
+
+                        SawingRecipe retr = new SawingRecipe();
+                        retr.FromBytes(reader, clientApi.World);
+
                         srecipes.Add(retr);
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.ChoppingRecipes = srecipes;
+
+            IDGRecipeRegistry.Loaded.SawingRecipes = srecipes;
+
+            if (networkMessage.pvalues != null)
+            {
+                foreach (string prec in networkMessage.pvalues)
+                {
+                    using (MemoryStream ms = new MemoryStream(Ascii85.Decode(prec)))
+                    {
+                        BinaryReader reader = new BinaryReader(ms);
+
+                        PlaningRecipe retr = new PlaningRecipe();
+                        retr.FromBytes(reader, clientApi.World);
+
+                        precipes.Add(retr);
+                    }
+                }
+            }
+
+            IDGRecipeRegistry.Loaded.PlaningRecipes = precipes;
 
             System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.ChoppingRecipes.Count + " chopping recipes loaded to client.");
+
+            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.SawingRecipes.Count + " sawing recipes loaded to client.");
+
+            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.PlaningRecipes.Count + " planing recipes loaded to client.");
         }
 
         #endregion
@@ -103,20 +130,9 @@ namespace InDappledGroves.Util
 
         private void OnRecipeUploadCmd(IServerPlayer player = null, int groupId = 0, CmdArgs args = null)
         {
+            List<string> crecipes = new List<string>();
             List<string> srecipes = new List<string>();
-
-            foreach (ChoppingRecipe drec in IDGRecipeRegistry.Loaded.ChoppingRecipes)
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    BinaryWriter writer = new BinaryWriter(ms);
-
-                    drec.ToBytes(writer);
-
-                    string value = Ascii85.Encode(ms.ToArray());
-                    srecipes.Add(value);
-                }
-            }
+            List<string> precipes = new List<string>();
 
             foreach (ChoppingRecipe crec in IDGRecipeRegistry.Loaded.ChoppingRecipes)
             {
@@ -127,13 +143,41 @@ namespace InDappledGroves.Util
                     crec.ToBytes(writer);
 
                     string value = Ascii85.Encode(ms.ToArray());
+                    crecipes.Add(value);
+                }
+            }
+
+            foreach (SawingRecipe srec in IDGRecipeRegistry.Loaded.SawingRecipes)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    BinaryWriter writer = new BinaryWriter(ms);
+
+                    srec.ToBytes(writer);
+
+                    string value = Ascii85.Encode(ms.ToArray());
                     srecipes.Add(value);
+                }
+            }
+
+            foreach (PlaningRecipe prec in IDGRecipeRegistry.Loaded.PlaningRecipes)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    BinaryWriter writer = new BinaryWriter(ms);
+
+                    prec.ToBytes(writer);
+
+                    string value = Ascii85.Encode(ms.ToArray());
+                    precipes.Add(value);
                 }
             }
 
             serverChannel.BroadcastPacket(new RecipeUpload()
             {
-                svalues = srecipes
+                cvalues = crecipes,
+                svalues = srecipes,
+                pvalues = precipes
             });
         }
 

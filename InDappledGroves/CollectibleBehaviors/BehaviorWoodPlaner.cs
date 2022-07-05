@@ -4,6 +4,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
@@ -97,23 +98,33 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
-            //byEntity.StopAnimation("axechop");
+            byEntity.StopAnimation("axechop");
         }
 
-        //-- Spawns firewood when chopping cycle is finished --//
+        //-- Spawns output when chopping cycle is finished --//
         public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
         {
-            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["code"].AsString()));
-            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["code"].AsString()));
-            int quantity = chopObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["output"]["quantity"].AsInt();
+            Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
+            Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["idgSawHorseProps"]["output"]["code"].AsString()));
+            int quantity = chopObj.Attributes["idgSawHorseProps"]["output"]["quantity"].AsInt();
 
             for (int i = quantity; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(itemOutput!=null?itemOutput:blockOutput), pos.ToVec3d() + new Vec3d(0, .25, 0));
+                api.World.SpawnItemEntity(new ItemStack(itemOutput != null ? itemOutput : blockOutput), pos.ToVec3d() + new Vec3d(0, .25, 0));
             }
 
             if (byEntity is EntityPlayer player)
                 player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundPlaneDamage);
+        }
+
+        public void SpawnOutput(PlaningRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        {
+            ItemStack output = recipe.Output.ResolvedItemstack;
+            int j = output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+            }
 
         }
 

@@ -1,11 +1,15 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Util;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {
@@ -17,7 +21,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos conBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        public
+        PlaningRecipe recipe; 
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -51,13 +55,9 @@ namespace InDappledGroves.BlockEntities
                 }
             }
             //If players hand is not empty, and the item they're holding can be planed, attempt to put
-            else if (!slot.Empty)
+            else if (!slot.Empty && this.Inventory[1].Empty)
             {
-                if(colObj.Attributes != null && colObj.HasBehavior<BehaviorWoodPlaner>())
-                {
-                    return true;
-                }
-                else if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["planable"].AsBool(false)) {
+                if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["planable"].AsBool(false)) {
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
@@ -66,9 +66,36 @@ namespace InDappledGroves.BlockEntities
                     }
                 }
             }
+            else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaner>() && !this.Inventory.Empty)
+            {
+                recipe = GetMatchingPlaningRecipe(Api.World, this.Inventory[1]);
+                System.Diagnostics.Debug.WriteLine(this.Inventory[1].Itemstack);
+                if (recipe != null)
+                {
+                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+                    {
+                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage));
+                        return false;
+                    }
+                    else
+                    {
+                        byPlayer.Entity.StartAnimation("axechop");
+                        return true;
+                    }
+                }
+                return false;
+            }
             return true;
         }
 
+        public PlaningRecipe GetRecipe()
+        {
+            if (!this.isConBlock)
+            {
+                if (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse conHorse) return conHorse.recipe;
+            }
+            return recipe;
+        }
         private AssetLocation GetSound(ItemSlot slot) {
             if (slot.Itemstack == null)
             {
@@ -271,6 +298,22 @@ namespace InDappledGroves.BlockEntities
 
         readonly Matrixf mat = new();
         #endregion
+
+        public PlaningRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        {
+            List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
+            if (recipes == null) return null;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(Api.World, slots))
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {

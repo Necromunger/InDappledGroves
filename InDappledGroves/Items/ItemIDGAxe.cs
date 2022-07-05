@@ -14,8 +14,6 @@ namespace InDappledGroves.Items.Tools
     class ItemIDGAxe : Item
     {
         
-
-
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
@@ -247,19 +245,19 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
 
-        private void SetParticleColourAndPosition(int colour, Vec3d minpos)
-        {
-            SetParticleColour(colour);
+        //private void SetParticleColourAndPosition(int colour, Vec3d minpos)
+        //{
+        //    SetParticleColour(colour);
 
-            woodParticles.MinPos = minpos;
-            woodParticles.AddPos = new Vec3d(1, 1, 1);
-        }
-        private void SetParticleColour(int colour)
-        {
-            woodParticles.Color = colour;
-        }
+        //    woodParticles.MinPos = minpos;
+        //    woodParticles.AddPos = new Vec3d(1, 1, 1);
+        //}
+        //private void SetParticleColour(int colour)
+        //{
+        //    woodParticles.Color = colour;
+        //}
 
-        private readonly SimpleParticleProperties woodParticles;
+        //private readonly SimpleParticleProperties woodParticles;
     }
 
 }
