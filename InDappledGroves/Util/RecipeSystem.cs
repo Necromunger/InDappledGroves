@@ -147,7 +147,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} chopping recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("efrecipes:The haft and the bit..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The haft and the bit..."));
             }
 
             public void LoadChoppingRecipe(AssetLocation path, ChoppingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -330,7 +330,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} sawing recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("efrecipes:The dust and the dog..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The dust and the dog..."));
             }
 
             public void LoadSawingRecipe(AssetLocation path, SawingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -511,7 +511,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} Planing recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("efrecipes:The sole and the blade..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The sole and the blade..."));
             }
 
             public void LoadPlaningRecipe(AssetLocation path, PlaningRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)

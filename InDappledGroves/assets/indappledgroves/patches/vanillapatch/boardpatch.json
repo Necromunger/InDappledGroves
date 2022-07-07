@@ -1,5 +1,6 @@
 [
   {
+    "enabled": true,
     "op": "add",
     "path": "/attributes",
     "value": {"woodworkingProps":

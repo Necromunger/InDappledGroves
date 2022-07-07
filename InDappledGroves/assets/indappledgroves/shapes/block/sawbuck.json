@@ -8,7 +8,7 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"trunk": "game:block/wood/treetrunk/birch2",
+		"trunk": "game:block/wood/treetrunk/birch",
 		"bark": "game:block/wood/bark/birch",
 		"support": "game:block/wood/planks/oak1",
 		"crossbrace": "game:block/wood/planks/aged1"

@@ -8,6 +8,6 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 4}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 1}
   }
 ]

@@ -138,7 +138,7 @@ namespace InDappledGroves.BlockEntities
 			JsonObject Translations = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTranslate"];
 
 			float x = 0f;
-			float y = 0f;
+			float y = 0.375f;
 			float z = 0.45f;
 
             if (Translations.Exists)

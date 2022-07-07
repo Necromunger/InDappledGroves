@@ -31,10 +31,13 @@
 	"creativeinventory": {
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},
-	"drops": [{ "code": "logslab-{wood}-{barked}-down-free" }],
-	"shapeByType": {
-		"*-snow": { "base": "block/wood/snow-logslab-{rot}"},
-		"*": { "base": "block/wood/logslab-{rot}"}
+	"dropsByType":{
+		"logslab-*-barked-*":	[{ "code": "logslab-{wood}-barked-down-free" }],
+		"logslab-*-debarked-*":	[{ "code": "logslab-{wood}-barked-down-free" }]
+	},
+	shapeByType: {
+		"*-snow": { base: "game:block/basic/slab/snow-slab-east" },
+		"*": { base: "game:block/basic/slab/slab-east" }
 	},
 	"texturesByType": {
 		"*-barked-*": {

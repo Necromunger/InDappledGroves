@@ -13,7 +13,11 @@
 	"block-logslab-acacia-down-free": "Acacia Log Slab",
 	"block-logslab-kapok-down-free": "Kapok Log Slab",
 	"block-sawhorse-*-single-*": "Sawhorse",
-	"block-sawhorse-*-compound-*": "Sawhorse Station"
-
-
+	"block-sawhorse-*-compound-*":"Sawhorse Station",
+	"block-sawbuck-*": "Sawbuck",
+	"item-maple-aged-split-green": "Raw Aged Plank",
+	"item-maple-aged-split-cured": "Aged Plank",
+	"The sole and the blade...": "The sole and the blade...",
+	"The haft and the bit...": "The haft and the bit...",
+	"The dust and the dog...": "The dust and the dog..."
 }

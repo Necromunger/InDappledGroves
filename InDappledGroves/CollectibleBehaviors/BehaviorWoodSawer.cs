@@ -61,7 +61,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundSawDamage));
                 return;
             }
-            //byEntity.StartAnimation("axechop");
+            byEntity.StartAnimation("axechop");
 
             playNextSound = 0.25f;
 
@@ -108,7 +108,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             for (int i = quantity; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(itemOutput!=null?itemOutput:blockOutput), pos.ToVec3d() + new Vec3d(0, .25, 0));
+                api.World.SpawnItemEntity(new ItemStack(itemOutput!=null?itemOutput:blockOutput), pos.ToVec3d() + new Vec3d(0.05f, .1f, 0.05f));
             }
 
             if (byEntity is EntityPlayer player)
@@ -122,7 +122,7 @@ namespace InDappledGroves.CollectibleBehaviors
             int j = output.StackSize;
             for (int i = j; i > 0; i--)
             {
-                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+                api.World.SpawnItemEntity(new ItemStack(output.Collectible), pos.ToVec3d(), new Vec3d(0.05f, .1f, 0.05f));
             }
 
         }

@@ -74,7 +74,8 @@ namespace InDappledGroves.CollectibleBehaviors
             BlockPos pos = blockSel.Position;
             if (blockSel != null)
             {
-
+                Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
+                if (!interactedBlock.Attributes?["idgSawHorseProps"]["planable"].Exists == null) return false;
                 if (((int)api.Side) == 1 && playNextSound < secondsUsed)
                 {
                     //api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
@@ -83,7 +84,8 @@ namespace InDappledGroves.CollectibleBehaviors
                 if (secondsUsed >= groundPlaneTime)
                 {
 
-                    Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
+                    
+
                     if (secondsUsed >= groundPlaneTime && interactedBlock.Attributes["idgSawHorseProps"]["planable"].AsBool(false))
                         SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundPlaneDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
@@ -110,7 +112,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             for (int i = quantity; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(itemOutput != null ? itemOutput : blockOutput), pos.ToVec3d() + new Vec3d(0, .25, 0));
+                api.World.SpawnItemEntity(new ItemStack(itemOutput != null ? itemOutput : blockOutput), pos.ToVec3d() + new Vec3d(0.05f, .1f, 0.05f));
             }
 
             if (byEntity is EntityPlayer player)
@@ -123,7 +125,7 @@ namespace InDappledGroves.CollectibleBehaviors
             int j = output.StackSize;
             for (int i = j; i > 0; i--)
             {
-                api.World.SpawnItemEntity(output, pos.ToVec3d(), new Vec3d(0.125f, 0.125f, 0.125f));
+                api.World.SpawnItemEntity(new ItemStack(output.Collectible), pos.ToVec3d(), new Vec3d(0.05f, .1f, 0.05f));
             }
 
         }
