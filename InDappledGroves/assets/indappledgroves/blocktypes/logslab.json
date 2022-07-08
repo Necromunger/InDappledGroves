@@ -32,12 +32,12 @@
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},
 	"dropsByType":{
-		"logslab-*-barked-*":	[{ "code": "logslab-{wood}-barked-down-free" }],
-		"logslab-*-debarked-*":	[{ "code": "logslab-{wood}-barked-down-free" }]
+		"logslab-*-barked-*":	[{ "code": "logslab-{wood}-barked-east-free" }],
+		"logslab-*-debarked-*":	[{ "code": "logslab-{wood}-debarked-east-free" }]
 	},
 	shapeByType: {
-		"*-snow": { base: "game:block/basic/slab/snow-slab-east" },
-		"*": { base: "game:block/basic/slab/slab-east" }
+		"*-snow": { base: "block/wood/snow-logslab-{rot}" },
+		"*": { base: "block/wood/logslab-{rot}" }
 	},
 	"texturesByType": {
 		"*-barked-*": {
