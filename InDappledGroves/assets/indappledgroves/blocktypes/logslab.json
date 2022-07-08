@@ -4,7 +4,7 @@
 	"behaviors": [
 		{	"name": "OmniRotatable",	"properties": {	"rotateSides": true, "facing": "block"	}	}
 	],
-	"vaiantgroups": [
+	"variantgroups": [
 		{ "code": "wood", "states": ["aged"], "loadFromProperties": "game:block/wood" },
 		{ "code": "barked", "states": ["barked","debarked"]},
 		{ "code": "rot", "states": ["north", "east", "south", "west", "up", "down"] },
@@ -32,8 +32,7 @@
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},
 	"dropsByType":{
-		"logslab-*-barked-*":	[{ "code": "logslab-{wood}-barked-east-free" }],
-		"logslab-*-debarked-*":	[{ "code": "logslab-{wood}-debarked-east-free" }]
+		"logslab-*":	[{ "code": "logslab-{wood}-{barked{-east-free" }]
 	},
 	shapeByType: {
 		"*-snow": { base: "block/wood/snow-logslab-{rot}" },
@@ -114,10 +113,8 @@
 				"scale": 0.37
 		},
 		"guiTransform": {
-				"translation": { "x": -7, "y": 8, "z": 0 },
-				"rotation": { "x": -35, "y": -34, "z": 0 },
-				"origin": { "x": 0.5, "y": 0.25, "z": 0.5 }
-		
-		}
+		"translation": { x: 0, y: 2, z: 0 },
+		"origin": { x: 0.5, y: 0.25, z: 0.5 }
+	}
 }
 		
