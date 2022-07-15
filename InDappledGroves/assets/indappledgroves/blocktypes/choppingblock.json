@@ -4,10 +4,11 @@
   "entityClass": "idgbechoppingblock",
   "maxstacksize": 1,
   "behaviors": [
-    {"name": "Unstable" }
+    {"name": "Unstable" }, {"name": "HorizontalOrientable", properties: {  dropBlockFace: "east" }}
   ],
   "variantgroups": [
-    { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" }
+    { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",

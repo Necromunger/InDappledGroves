@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
@@ -12,7 +13,7 @@ namespace InDappledGroves.BlockEntities
     {
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "onDisplayTransform";
+        public override string AttributeTransformCode => "idgChoppingBlockTransform";
 
 		static List<ChoppingRecipe> choppingRecipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
 
@@ -135,23 +136,53 @@ namespace InDappledGroves.BlockEntities
 
 		public override void TranslateMesh(MeshData mesh, int index)
 		{
-			JsonObject Translations = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTranslate"];
+
+			JsonObject Translation = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"]["translation"];
+
 
 			float x = 0f;
-			float y = 0.375f;
-			float z = 0.45f;
+			float y = 0.0625f;
+			float z = 0f;
+			
+			if (Block.Variant["side"] == "north")
+			{
+				x = Translation["northx"].Exists ? Translation["northx"].AsFloat() : x;
+				y = Translation["northy"].Exists ? Translation["northy"].AsFloat() : y;
+				z = Translation["northz"].Exists ? Translation["northz"].AsFloat() : z;
 
-            if (Translations.Exists)
-            {
-                x = Translations["x"].Exists ? Translations["x"].AsFloat() : x;
-                y = Translations["y"].Exists ? Translations["y"].AsFloat() : y;
-                z = Translations["z"].Exists ? Translations["z"].AsFloat() : z;
-
-                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
 				mesh.Translate(offset.XYZ);
-            }
+			}
+			else if (Block.Variant["side"] == "south")
+			{
+				x = Translation["southx"].Exists ? Translation["southx"].AsFloat() : x;
+				y = Translation["southy"].Exists ? Translation["southy"].AsFloat() : y;
+				z = Translation["southz"].Exists ? Translation["southz"].AsFloat() : z;
 
-        }
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+			else if (Block.Variant["side"] == "west")
+			{
+				x = Translation["westx"].Exists ? Translation["westx"].AsFloat() : x;
+				y = Translation["westy"].Exists ? Translation["westy"].AsFloat() : y;
+				z = Translation["westz"].Exists ? Translation["westz"].AsFloat() : z;
+
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+			else if (Block.Variant["side"] == "east")
+			{
+				x = Translation["eastx"].Exists ? Translation["eastx"].AsFloat() : x;
+				y = Translation["easty"].Exists ? Translation["easty"].AsFloat() : y;
+				z = Translation["eastz"].Exists ? Translation["eastz"].AsFloat() : z;
+
+				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+				mesh.Translate(offset.XYZ);
+			}
+
+		}
 
 		protected override MeshData genMesh(ItemStack stack)
 		{
@@ -181,13 +212,21 @@ namespace InDappledGroves.BlockEntities
 			  stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
 			transform.EnsureDefaultValues();
 
-			//transform.Rotation.X = 0;
-			transform.Rotation.Y = Block.Shape.rotateY;
-			//transform.Rotation.Z = 0;
+			String side = Block.Variant["side"];
+			transform.Rotation.X += addRotate(side + "x");
+			transform.Rotation.Y = (Block.Shape.rotateY) + addRotate(side + "y");
+			transform.Rotation.Z += addRotate(side + "z");
 			meshData.ModelTransform(transform);
 
 			return meshData;
 		}
+
+		public float addRotate(string sideAxis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+		}
+
 		public override void updateMeshes()
         {
 			base.updateMeshes();

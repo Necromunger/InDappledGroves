@@ -1,5 +1,12 @@
 [
   {
+    "op": "replace",
+    "path": "/class",
+    "value": "idgplank",
+    "file": "game:itemtypes/resource/plank.json",
+    "side": "server"
+  },
+  {
     "enabled": true,
     "op": "add",
     "path": "/attributes",

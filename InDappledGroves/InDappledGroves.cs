@@ -5,6 +5,7 @@ using InDappledGroves.Items.Tools;
 using Vintagestory.API.Common;
 using Vintagestory.API.Client;
 using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Items;
 
 namespace InDappledGroves
 {
@@ -18,6 +19,8 @@ namespace InDappledGroves
             //Register Items
             api.RegisterItemClass("idgaxe", typeof(ItemIDGAxe));
             api.RegisterItemClass("idgsaw", typeof(ItemIDGSaw));
+            api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
+            api.RegisterItemClass("idgplank", typeof(IDGPlank));
 
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
@@ -29,7 +32,7 @@ namespace InDappledGroves
             api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
 
-
+            
             //Register CollectibleBehaviors
             api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopper));
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawer));

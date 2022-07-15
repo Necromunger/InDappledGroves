@@ -1,6 +1,7 @@
 {
-  "itemhelp-axe-chopwood": "Shift+Right Click To Chop into Firewood",
-  "itemhelp-saw-sawwood": "Shift+Right Click To Saw into Planks",
+  "itemhelp-axe-chopwood": "Shift+Right Click To Chop Wood",
+  "itemhelp-saw-sawwood": "Shift+Right Click To Saw Planks",
+	"itemhelp-tool-planewood": "Ctrl+Right Click To Plane Planks",
   "block-choppingblock-*": "Chopping Block",
   "toolittledurability": "Your tool requires {0} durability to do this.",
 	
@@ -19,5 +20,6 @@
 	"item-maple-aged-split-cured": "Aged Plank",
 	"The sole and the blade...": "The sole and the blade...",
 	"The haft and the bit...": "The haft and the bit...",
-	"The dust and the dog...": "The dust and the dog..."
+	"The dust and the dog...": "The dust and the dog...",
+	
 }

@@ -4,21 +4,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:log-placed-*"}
+         {"type": "block", "code": "indappledgroves:logslab-*"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
-  },
-  {
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "game:logsection-placed-*"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "game:firewood", "quantity": 8}
+    "output": {"type": "item", "code": "game:firewood", "quantity": 2}
   }
 ]

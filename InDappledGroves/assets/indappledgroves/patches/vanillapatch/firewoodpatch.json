@@ -1,0 +1,38 @@
+[
+  {
+    "op": "replace",
+    "path": "/class",
+    "value": "idgfirewood",
+    "file": "game:itemtypes/resource/firewood.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/woodworkingProps",
+    "value": {
+        "idgChoppingBlockProps":  {
+          "choppable": true,
+          "idgChoppingBlockTransform": {
+                "translation": {
+                  "x": 0,
+                  "y": -0.0625,
+                  "z": 0.85
+                },
+                "rotation": {
+                  "x": -90,
+                  "y": 0,
+                  "z": 0
+                },
+                "origin": {
+                  "x": 0,
+                  "y": 0.125,
+                  "z": 0
+                },
+                "scale": 0.95
+          }
+        }
+    },
+    "file": "game:itemtypes/resource/firewood.json",
+    "side": "server"
+   }
+]

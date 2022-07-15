@@ -12,16 +12,16 @@ namespace InDappledGroves
     {
         ICoreAPI api;
         ICoreClientAPI capi;
-        
+
         public override void Initialize(JsonObject properties)
         {
-            base.Initialize(properties);          
+            base.Initialize(properties);
         }
 
         public BehaviorWoodChopper(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-            
+
         }
 
         public override void OnLoaded(ICoreAPI api)
@@ -38,7 +38,7 @@ namespace InDappledGroves
                     new WorldInteraction()
                         {
                             ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-                            HotKeyCode = "sprint",
+                            HotKeyCode = "crouch",
                             MouseButton = EnumMouseButton.Right
                         },
                     };
@@ -48,7 +48,6 @@ namespace InDappledGroves
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            
             //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
@@ -56,7 +55,6 @@ namespace InDappledGroves
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgChoppingBlockProps"]["choppable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundChopDamage));
@@ -71,7 +69,7 @@ namespace InDappledGroves
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
-            if (blockSel != null)
+            if (blockSel != null && api.World.BlockAccessor.GetBlock(pos).Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false))
             {
 
                 if (((int)api.Side) == 1 && playNextSound < secondsUsed)
@@ -82,10 +80,10 @@ namespace InDappledGroves
                 if (secondsUsed >= groundChopTime)
                 {
                    
-                    Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
+                    Block interactedBlock = api.World.BlockAccessor.GetBlock(pos);
                     if (secondsUsed >= groundChopTime && interactedBlock.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false))
                     SpawnOutput(new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position)).Collectible, byEntity, pos, groundChopDamage);
-                    api.World.BlockAccessor.SetBlock(0, blockSel.Position);
+                    api.World.BlockAccessor.SetBlock(0, pos);
                     return false;
                 }
 
@@ -181,6 +179,8 @@ namespace InDappledGroves
             woodParticles.Color = colour;
         }
 
+
+       
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;

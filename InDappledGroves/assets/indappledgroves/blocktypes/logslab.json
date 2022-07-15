@@ -12,8 +12,35 @@
 	],
 	"skipVariants": ["*-up-snow-*"],
 	"attributes": { "woodworkingProps": {
-									"idgChoppingBlockProps": { "choppable": true,	"output": {"code": "game:firewood", "quantity": 2}}
-									
+									"idgChoppingBlockProps": {
+										 "choppable": true, "output": {"code": "game:firewood", "quantity": 2},
+										 "idgChoppingBlockTransform": {
+																"translation": {
+																	"x": 0,
+																	"y": 0.5625,
+																	"z": 0,
+																	"northx": 0,
+																	"northz": -0.25,
+																	"southz": 0.25,
+																	"westx": -0.25,
+																	"eastx": 0.25
+																},
+																"rotation": {
+																	"x": 90,
+																	"y": 0,
+																	"z": 90,
+																	"northz": 270,
+																	"southz": 90,
+																	"westz": 180
+																},
+																"origin": {
+																	"x": 0.5,
+																	"y": 0,
+																	"z": 0.5
+																},
+																"scale": 0.95
+											}    
+									}
 							},
 							"chiselShapeFromCollisionBox": true,
 							"handbook": {
@@ -32,7 +59,7 @@
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},
 	"dropsByType":{
-		"logslab-*":	[{ "code": "logslab-{wood}-{barked{-east-free" }]
+		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-east-free" }]
 	},
 	shapeByType: {
 		"*-snow": { base: "block/wood/snow-logslab-{rot}" },

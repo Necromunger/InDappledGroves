@@ -30,23 +30,27 @@ namespace InDappledGroves.Blocks
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
 			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
-			if (chopCollObj != null && chopCollObj.HasBehavior<BehaviorWoodChopper>() && !bechoppingblock.Inventory.Empty)
-			{
+			if (chopCollObj != null &&  !bechoppingblock.Inventory.Empty)
+                if (chopCollObj.HasBehavior<BehaviorWoodChopper>()) { 
 				recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
-				if (recipe != null)
-				{
-					if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+					if (recipe != null)
 					{
-						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
-						return base.OnBlockInteractStart(world, byPlayer, blockSel);
-					} else
-                    {
-						byPlayer.Entity.StartAnimation("axechop");
-						return true;
+						if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+						{
+							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
+							return base.OnBlockInteractStart(world, byPlayer, blockSel);
+						} else
+						{
+							byPlayer.Entity.StartAnimation("axechop");
+							return true;
+						}
 					}
+					return false;
 				}
-				return false;
-			}
+				//if (chopCollObj.HasBehavior<BehaviorWoodStripper>())
+				//{
+				// Implement code for recognizing an Adze and replacing the log on the block with its stripped version.
+				//}
 
 			//Call the block entity OnInteract
 			return bechoppingblock.OnInteract(byPlayer);

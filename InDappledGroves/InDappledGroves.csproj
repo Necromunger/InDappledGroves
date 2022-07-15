@@ -12,10 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="assets\indappledgroves\blocktypes\jsconfig1.json" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Update="assets\indappledgroves\blocktypes\boardblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\blocktypes\firewoodblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\blocktypes\sawhorse.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -35,6 +37,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\vanillapatch\boardpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\vanillapatch\firewoodpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\vanillapatch\log.json">

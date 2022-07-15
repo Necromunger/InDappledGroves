@@ -56,10 +56,8 @@ namespace InDappledGroves.CollectibleBehaviors
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["idgSawHorseProps"]["planable"];
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            api.Logger.Debug("This fired.");
             if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage)
             {
-                api.Logger.Debug("This internal fired.");
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundPlaneDamage));
                 return;
             }
@@ -184,8 +182,8 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
-            handling = EnumHandling.PassThrough;
-            return interactions;
+                handling = EnumHandling.PassThrough;
+                return interactions;
         }
 
         public int groundPlaneTime;
