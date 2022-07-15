@@ -1,4 +1,5 @@
-﻿using Vintagestory.API.Client;
+﻿using System;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -12,6 +13,8 @@ namespace InDappledGroves
     {
         ICoreAPI api;
         ICoreClientAPI capi;
+
+        public SkillItem[] toolModes;
 
         public override void Initialize(JsonObject properties)
         {
@@ -32,6 +35,36 @@ namespace InDappledGroves
             this.choppingBlockChopTime = collObj.Attributes["woodworkingProps"]["choppingBlockChopTime"].AsInt(2);
             this.groundChopDamage = collObj.Attributes["woodworkingProps"]["groundChopDamage"].AsInt(4);
             this.choppingBlockChopDamage = collObj.Attributes["woodworkingProps"]["choppingBlockChopDamage"].AsInt(2);
+
+             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            {
+                SkillItem[] array;
+                array = new SkillItem[]
+                {
+                        new SkillItem
+                        {
+                            Code = new AssetLocation("chopping"),
+                            Name = Lang.Get("Chopping", Array.Empty<object>())
+                        },
+                        new SkillItem
+                        {
+                            Code = new AssetLocation("planing"),
+                            Name = Lang.Get("Planing", Array.Empty<object>())
+                        }
+                };
+                if (capi != null)
+                {
+                    array[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/axechop.svg"), 48, 48, 5, new int?(-1)));
+                    array[0].TexturePremultipliedAlpha = false;
+                    if (array.Length > 1)
+                    {
+                        array[1].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/axestrip.svg"), 48, 48, 5, new int?(-1)));
+                        array[1].TexturePremultipliedAlpha = false;
+                    }
+                }
+                return array;
+            });
+            
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
             {
                 return new WorldInteraction[] {
@@ -92,6 +125,26 @@ namespace InDappledGroves
             return true;
         }
 
+        #region ToolMode Stuff
+        // Token: 0x06001847 RID: 6215 RVA: 0x000E49D4 File Offset: 0x000E2BD4
+        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+        {
+            return this.toolModes;
+        }
+
+        // Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
+        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+        {
+            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
+        }
+
+        // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
+        {
+            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
+        }
+
+        #endregion ToolMode Stuff
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;

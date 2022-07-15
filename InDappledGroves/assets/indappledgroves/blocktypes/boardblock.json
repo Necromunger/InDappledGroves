@@ -60,7 +60,7 @@
 	"drops": [
 		{ 
 			"type": "item", 
-			"code": "game:firewood", 
+			"code": "game:plank-{wood}", 
 			"quantity": { "avg": 1 }  
 		}
 	]

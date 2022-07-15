@@ -44,11 +44,9 @@ namespace InDappledGroves.Items
 					this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
 					
 				}
-				System.Diagnostics.Debug.WriteLine("Handle Called On " + api.Side + " side.");
 				handling = EnumHandHandling.PreventDefault;
 			}
 			
-			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
 		}
 
 		public static BlockFacing[] SuggestedHVOrientation(IPlayer byPlayer, BlockSelection blockSel)
