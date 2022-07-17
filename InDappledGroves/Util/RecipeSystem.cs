@@ -155,6 +155,7 @@ namespace InDappledGroves.Util
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
                 string className = "chopping recipe";
+                
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
@@ -667,13 +668,15 @@ namespace InDappledGroves.Util
         public class ChoppingRecipe : IByteSerializable
         {
             public string Code = "something";
+            
+            
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
-
+            public bool RequiresStation { get; set; } = false;
 
             public ChoppingIngredient[] Ingredients;
 
-            public JsonItemStack Output;
+            public JsonItemStack Output;        
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -806,6 +809,7 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
+                writer.Write(RequiresStation);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -818,6 +822,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
+                RequiresStation = reader.ReadBoolean();
                 Ingredients = new ChoppingIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -842,6 +847,7 @@ namespace InDappledGroves.Util
 
                 return new ChoppingRecipe()
                 {
+                    RequiresStation = RequiresStation,
                     Output = Output.Clone(),
                     Code = Code,
                     Enabled = Enabled,
@@ -913,7 +919,7 @@ namespace InDappledGroves.Util
             public string Code = "something";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
-
+            public bool RequiresStation;
 
             public SawingIngredient[] Ingredients;
 
@@ -1050,6 +1056,7 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
+                writer.Write(RequiresStation);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1062,6 +1069,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
+                RequiresStation = reader.ReadBoolean();
                 Ingredients = new SawingIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1295,6 +1303,7 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
+                writer.Write(RequiresStation);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1307,6 +1316,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
+                RequiresStation = reader.ReadBoolean();
                 Ingredients = new PlaningIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)

@@ -76,7 +76,7 @@ namespace InDappledGroves.Blocks
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
-					playerEntity.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, 1);
+					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, chopTool.GetBehavior<BehaviorWoodChopper>().groundChopDamage);
 
 					bechoppingblock.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
@@ -97,15 +97,25 @@ namespace InDappledGroves.Blocks
 			List<ChoppingRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
 			if (recipes == null) return null;
 
+			ChoppingRecipe stationRecipe = null;
+			ChoppingRecipe nostationRecipe = null;
+
 			for (int j = 0; j < recipes.Count; j++)
 			{
 				if (recipes[j].Matches(api.World, slots))
 				{
-					return recipes[j];
+					if (recipes[j].RequiresStation)
+					{
+						stationRecipe = recipes[j];
+					} else
+                    {
+						nostationRecipe = recipes[j];
+                    }
 				}
 			}
 
-			return null;
+
+			return stationRecipe != null ? stationRecipe : nostationRecipe;
 		}
 
 		private float playNextSound;

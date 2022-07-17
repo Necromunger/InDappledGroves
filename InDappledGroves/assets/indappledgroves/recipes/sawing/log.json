@@ -1,5 +1,6 @@
 [
   {
+    "requiresstation": false,
     "ingredients":
     [ 
       {"inputs": 
@@ -11,6 +12,7 @@
     "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
   },
   {
+    "requiresstation": false,
     "ingredients":
     [ 
       {"inputs": 

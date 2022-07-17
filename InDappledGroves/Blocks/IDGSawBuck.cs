@@ -85,14 +85,23 @@ namespace InDappledGroves.Blocks
 			List<SawingRecipe> recipes = IDGRecipeRegistry.Loaded.SawingRecipes;
 			if (recipes == null) return null;
 
+			SawingRecipe stationRecipe = null;
+			SawingRecipe nostationRecipe = null;
+
 			for (int j = 0; j < recipes.Count; j++)
 			{
 				if (recipes[j].Matches(api.World, slots))
 				{
-					return recipes[j];
+					if (recipes[j].RequiresStation)
+					{
+						stationRecipe = recipes[j];
+					}
+					else
+					{
+						nostationRecipe = recipes[j];
+					}
 				}
 			}
-
 			return null;
 		}
 

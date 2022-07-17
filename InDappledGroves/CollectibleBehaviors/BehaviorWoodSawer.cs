@@ -1,4 +1,5 @@
-﻿using Vintagestory.API.Client;
+﻿using System.Collections.Generic;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -12,6 +13,11 @@ namespace InDappledGroves.CollectibleBehaviors
     {
         ICoreAPI api;
         ICoreClientAPI capi;
+        public InventoryBase Inventory { get; }
+        public string InventoryClassName => "worldinventory";
+        public SkillItem[] toolModes;
+
+        public SawingRecipe recipe;
 
         public override void Initialize(JsonObject properties)
         {
@@ -21,17 +27,21 @@ namespace InDappledGroves.CollectibleBehaviors
         public BehaviorWoodSawer(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-
+            Inventory = new InventoryGeneric(1, "sawingblock-slot", null, null);
         }
 
+        public SkillItem[] GetSkillItems()
+        {
+            return toolModes;
+        }
         public override void OnLoaded(ICoreAPI api)
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            this.groundSawTime = collObj.Attributes["woodworkingProprs"]["groundSawTime"].AsInt(4);
-            this.sawBuckSawTime = collObj.Attributes["woodworkingProprs"]["sawBuckSawTime"].AsInt(2);
-            this.groundSawDamage = collObj.Attributes["woodworkingProprs"]["groundSawDamage"].AsInt(4);
-            this.sawBuckSawDamage = collObj.Attributes["woodworkingProprs"]["sawBuckSawDamage"].AsInt(2);
+            this.groundSawTime = collObj.Attributes["woodworkingProps"]["groundSawTime"].AsInt(4);
+            this.sawBuckSawTime = collObj.Attributes["woodworkingProps"]["sawBuckSawTime"].AsInt(2);
+            this.groundSawDamage = collObj.Attributes["woodworkingProps"]["groundSawDamage"].AsInt(4);
+            this.sawBuckSawDamage = collObj.Attributes["woodworkingProps"]["sawBuckSawDamage"].AsInt(2);
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
             {
                 return new WorldInteraction[] {
@@ -49,15 +59,18 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
 
-            //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+            recipe = GetMatchingSawingRecipe(byEntity.World, Inventory[0]);
+            if (recipe == null || recipe.RequiresStation) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgSawBuckProps"]["sawable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgSawBuckProps"]["sawable"];
+
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage)
-            {                api.Logger.Debug("This internal fired.");
+            if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
+            {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundSawDamage));
                 return;
             }
@@ -126,7 +139,21 @@ namespace InDappledGroves.CollectibleBehaviors
             }
 
         }
+        public SawingRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
+        {
+            List<SawingRecipe> recipes = IDGRecipeRegistry.Loaded.SawingRecipes;
+            if (recipes == null) return null;
 
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slots))
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()

@@ -1,5 +1,6 @@
 [
   {
+    "requiresstation": false,
     "ingredients":
     [ 
       {"inputs": 

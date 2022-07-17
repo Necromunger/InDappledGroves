@@ -1,4 +1,6 @@
-﻿using Vintagestory.API.Client;
+﻿using System;
+using System.Collections.Generic;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -11,17 +13,27 @@ namespace InDappledGroves.CollectibleBehaviors
     class BehaviorWoodPlaner : CollectibleBehavior
     {
         ICoreAPI api;
-        ICoreClientAPI capi;
+        private ICoreClientAPI capi;
+        public SkillItem[] toolModes;
+        public InventoryBase Inventory { get; }
+        public string InventoryClassName => "worldinventory";
 
+        public PlaningRecipe recipe;
         public override void Initialize(JsonObject properties)
         {
             base.Initialize(properties);
+           
+        }
+
+        public SkillItem[] GetSkillItems()
+        {
+            return toolModes;
         }
 
         public BehaviorWoodPlaner(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-
+            Inventory = new InventoryGeneric(1, "planingblock-slot", null, null);
         }
 
         public override void OnLoaded(ICoreAPI api)
@@ -44,24 +56,44 @@ namespace InDappledGroves.CollectibleBehaviors
                     };
             });
             woodParticles = InitializeWoodParticles();
+
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            {
+
+                SkillItem[] array;
+                array = new SkillItem[]
+                {
+                        new SkillItem
+                        {
+                            Code = new AssetLocation("planing"),
+                            Name = Lang.Get("Planing", Array.Empty<object>())
+                        }
+                };
+
+
+                return array;
+            });
         }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
 
-            //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+            recipe = GetMatchingPlaningRecipe(byEntity.World, Inventory[0]);
+            if (recipe == null || recipe.RequiresStation) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgSawHorseProps"]["planable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgSawHorseProps"]["planable"];
+
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage)
+            if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundPlaneDamage));
                 return;
             }
-            //byEntity.StartAnimation("axechop");
+            byEntity.StartAnimation("axechop");
 
             playNextSound = 0.25f;
 
@@ -127,7 +159,21 @@ namespace InDappledGroves.CollectibleBehaviors
             }
 
         }
+        public PlaningRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        {
+            List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
+            if (recipes == null) return null;
 
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slots))
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()
