@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -9,7 +10,7 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodSawer : CollectibleBehavior
+    class BehaviorWoodSawer : CollectibleBehavior, IBehaviorVariant
     {
         ICoreAPI api;
         ICoreClientAPI capi;
@@ -154,6 +155,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             return null;
         }
+
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()

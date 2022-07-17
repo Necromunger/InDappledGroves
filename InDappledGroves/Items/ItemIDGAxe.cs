@@ -23,79 +23,25 @@ namespace InDappledGroves.Items.Tools
         {
             base.OnLoaded(api);
             ICoreClientAPI capi = api as ICoreClientAPI;
+
+            
+            toolModes = BuildSkillList();
+
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
             {
-                
-                List<SkillItem> array;
-                array = new List<SkillItem> { }; 
-                    for (int i = 0; i < CollectibleBehaviors.Length; i++)
-                    {
-                        if (CollectibleBehaviors[i] is BehaviorWoodChopper bwc)
-                        {
-                            SkillItem[] list = bwc.GetSkillItems();
-                            for (int j = 0; j < bwc.GetSkillItems().Length; j++)
-                            {
-                                new SkillItem
-                                {
-                                    Code = list[j].Code,
-                                    Name = list[j].Name
-                                };
-                            }
-                            for (int k = 0; k < list.Length; k++)
-                            {
-                                array.Add(list[k]);
-                            }
-                        }
-
-                        if (CollectibleBehaviors[i] is BehaviorWoodPlaner bwp)
-                        {
-                            SkillItem[] list = bwp.GetSkillItems();
-                            for (int j = 0; j < bwp.GetSkillItems().Length; j++)
-                            {
-                                new SkillItem
-                                {
-                                    Code = list[j].Code,
-                                    Name = list[j].Name
-                                };
-                            }
-                            for (int k = 0; k < list.Length; k++)
-                            {
-                                array.Add(list[k]);
-                            }
-                        }
-
-                        if (CollectibleBehaviors[i] is BehaviorWoodSawer bws)
-                        {
-                            SkillItem[] list = bws.GetSkillItems();
-                            for (int j = 0; j < bws.GetSkillItems().Length; j++)
-                            {
-                                new SkillItem
-                                {
-                                    Code = list[j].Code,
-                                    Name = list[j].Name
-                                };
-                            }
-                            for (int k = 0; k < list.Length; k++)
-                            {
-                                array.Add(list[k]);
-                            }
-                        }
-                    }
-
                 if (capi != null)
                 {
-                    for (int i = 0; i < array.Count; i++)
+                    for (int i = 0; i < toolModes.Length; i++)
                     {
-                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg").ToString());
-                        array[i].TexturePremultipliedAlpha = false;
+                        toolModes[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg").ToString());
+                        toolModes[i].TexturePremultipliedAlpha = false;
                     }
-                }
+                };
 
-                ;
-                return array.ToArray();
+                return toolModes;
             });
-        }
+        }      
 
         static ItemIDGAxe()
         {
@@ -110,6 +56,15 @@ namespace InDappledGroves.Items.Tools
             dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             dustParticles.DieOnRainHeightmap = false;
             dustParticles.WindAffectednes = 0.5f;
+        }
+
+        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
+        {
+            for(int i = 0; i< toolModes.Length; i++)
+            {
+                System.Diagnostics.Debug.WriteLine(toolModes[i].Code);
+            }
+            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
         }
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
@@ -137,6 +92,7 @@ namespace InDappledGroves.Items.Tools
 
             return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
         }
+
         #region ToolMode Stuff
 
         public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
@@ -156,6 +112,7 @@ namespace InDappledGroves.Items.Tools
             slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
         }
         #endregion ToolMode Stuff
+
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
             IPlayer byPlayer = null;
@@ -299,7 +256,22 @@ namespace InDappledGroves.Items.Tools
             return foundPositions;
         }
 
-
+        private SkillItem[] BuildSkillList()
+        {
+            List<SkillItem> SkillList = new();
+            for (int i = 0; i < CollectibleBehaviors.Length; i++)
+            {
+                if (CollectibleBehaviors[i] is IBehaviorVariant bwc)
+                {
+                    
+                    for (int j = 0; j < bwc.GetSkillItems().Length; j++)
+                    {
+                        SkillList.Add(bwc.GetSkillItems()[j]);
+                    }
+                }
+            }
+            return SkillList.ToArray();
+        }
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()

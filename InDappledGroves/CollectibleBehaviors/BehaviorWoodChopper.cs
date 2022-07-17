@@ -11,7 +11,7 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves
 {
-    class BehaviorWoodChopper : CollectibleBehavior
+    class BehaviorWoodChopper : CollectibleBehavior, IBehaviorVariant
     {
         ICoreAPI api;
         ICoreClientAPI capi;
@@ -47,7 +47,7 @@ namespace InDappledGroves
             this.groundChopDamage = collObj.Attributes["woodworkingProps"]["groundChopDamage"].AsInt(4);
             this.choppingBlockChopDamage = collObj.Attributes["woodworkingProps"]["choppingBlockChopDamage"].AsInt(2);
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeChopModes", delegate
             {
 
                 SkillItem[] array;
@@ -59,6 +59,15 @@ namespace InDappledGroves
                             Name = Lang.Get("Chopping", Array.Empty<object>())
                         }
                 };
+
+                if (capi != null)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        array[i].TexturePremultipliedAlpha = false;
+                    }
+                }
 
                 return array;
             });
@@ -130,30 +139,8 @@ namespace InDappledGroves
             handling = EnumHandling.PreventSubsequent;
             return true;
         }
-            
-            
 
-        #region ToolMode Stuff
-        // Token: 0x06001847 RID: 6215 RVA: 0x000E49D4 File Offset: 0x000E2BD4
-        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
-        {
-            return this.toolModes;
-        }
-
-        // Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
-        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
-        }
-
-        // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
-        {
-            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
-        }
-
-        #endregion ToolMode Stuff
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
+       public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
             byEntity.StopAnimation("axechop");

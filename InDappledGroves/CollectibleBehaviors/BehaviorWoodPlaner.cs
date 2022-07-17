@@ -10,7 +10,7 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodPlaner : CollectibleBehavior
+    class BehaviorWoodPlaner : CollectibleBehavior, IBehaviorVariant
     {
         ICoreAPI api;
         private ICoreClientAPI capi;
@@ -57,7 +57,7 @@ namespace InDappledGroves.CollectibleBehaviors
             });
             woodParticles = InitializeWoodParticles();
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxePlaneModes", delegate
             {
 
                 SkillItem[] array;
@@ -70,6 +70,14 @@ namespace InDappledGroves.CollectibleBehaviors
                         }
                 };
 
+                if (capi != null)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        array[i].TexturePremultipliedAlpha = false;
+                    }
+                }
 
                 return array;
             });
@@ -159,6 +167,7 @@ namespace InDappledGroves.CollectibleBehaviors
             }
 
         }
+
         public PlaningRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
         {
             List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
@@ -174,6 +183,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             return null;
         }
+
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()
