@@ -85,9 +85,14 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
+            IPlayer player = ((EntityPlayer)byEntity).Player;
+            int toolMode = collObj.GetToolMode(slot, player, blockSel);
+            SkillItem item = collObj.GetToolModes(slot, (IClientPlayer)player, blockSel)[toolMode];
 
-            if (!byEntity.Controls.Sprint || blockSel == null)
+            //-- Do not process the chopping action if the player is not holding ctrl, block is selected, or the given tools toolMode is not chopping --//
+            if (!byEntity.Controls.Sprint || blockSel == null || item.Code.FirstCodePart() == "planing")
                 return;
+
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
             recipe = GetMatchingPlaningRecipe(byEntity.World, Inventory[0]);
             if (recipe == null || recipe.RequiresStation) return;

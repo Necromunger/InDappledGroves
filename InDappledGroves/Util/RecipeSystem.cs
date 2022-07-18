@@ -155,7 +155,7 @@ namespace InDappledGroves.Util
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
                 string className = "chopping recipe";
-                
+
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
@@ -234,7 +234,7 @@ namespace InDappledGroves.Util
                     quantityRegistered++;
                 }
             }
-            
+
             public class ChoppingIngredient : IByteSerializable
             {
                 public CraftingRecipeIngredient[] Inputs;
@@ -668,36 +668,35 @@ namespace InDappledGroves.Util
         public class ChoppingRecipe : IByteSerializable
         {
             public string Code = "choppingRecipe";
-            
-            
+
+
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public bool RequiresStation { get; set; } = false;
 
             public ChoppingIngredient[] Ingredients;
 
-            public JsonItemStack Output;        
+            public JsonItemStack Output;
 
-            //This code does not appear to be used. - VN
-            //public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
-            //{
+            public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
+            {
 
-            //    var matched = pairInput(inputslots);
+                var matched = pairInput(inputslots);
 
-            //    ItemStack mixedStack = Output.ResolvedItemstack.Clone();
-            //    mixedStack.StackSize = getOutputSize(matched);
+                ItemStack mixedStack = Output.ResolvedItemstack.Clone();
+                mixedStack.StackSize = getOutputSize(matched);
 
-            //    if (mixedStack.StackSize <= 0) return null;
+                if (mixedStack.StackSize <= 0) return null;
 
 
-            //    foreach (var val in matched)
-            //    {
-            //        val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
-            //        val.Key.MarkDirty();
-            //    }
+                foreach (var val in matched)
+                {
+                    val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
+                    val.Key.MarkDirty();
+                }
 
-            //    return mixedStack;
-            //}
+                return mixedStack;
+            }
 
             public bool Matches(IWorldAccessor worldForResolve, ItemSlot inputSlots)
             {

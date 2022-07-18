@@ -35,7 +35,8 @@ namespace InDappledGroves
             base.Initialize(properties);
         }
 
-        public SkillItem[] GetSkillItems() {
+        public SkillItem[] GetSkillItems()
+        {
             return toolModes ?? new SkillItem[] { null };
         }
 
@@ -72,7 +73,7 @@ namespace InDappledGroves
 
                 return array;
             });
-            
+
             interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
             {
                 return new WorldInteraction[] {
@@ -87,7 +88,7 @@ namespace InDappledGroves
             woodParticles = InitializeWoodParticles();
         }
 
-        
+
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
@@ -100,15 +101,15 @@ namespace InDappledGroves
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgChoppingBlockProps"]["choppable"];
-            
+
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage && slot.Itemstack.Attributes.GetInt("durability")!=0)
+            if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundChopDamage));
                 return;
             }
             byEntity.StartAnimation("axechop");
-            
+
             playNextSound = 0.25f;
 
             handHandling = EnumHandHandling.PreventDefault;
@@ -118,7 +119,7 @@ namespace InDappledGroves
             BlockPos pos = blockSel.Position;
             if (blockSel != null && api.World.BlockAccessor.GetBlock(pos).Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false) && !recipe.RequiresStation)
             {
-                
+
                 if (recipe != null)
                 {
 
@@ -141,7 +142,7 @@ namespace InDappledGroves
             return true;
         }
 
-       public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
+        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
             byEntity.StopAnimation("axechop");
@@ -225,7 +226,7 @@ namespace InDappledGroves
         }
 
 
-       
+
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;

@@ -22,23 +22,34 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
+			SkillItem item = null;
+			ItemSlot chopSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
+			if (api.Side == EnumAppSide.Client && chopCollObj != null && chopCollObj.GetToolModes(chopSlot, (IClientPlayer)byPlayer, blockSel) != null)
+			{
+				item = chopCollObj?.GetToolModes(chopSlot, (IClientPlayer)byPlayer, blockSel)[chopCollObj.GetToolMode(chopSlot, byPlayer, blockSel)];
+				System.Diagnostics.Debug.WriteLine(item?.Code.FirstCodePart());
+			};
 
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
 			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
-			if (chopCollObj != null &&  !bechoppingblock.Inventory.Empty)
-                if (chopCollObj.HasBehavior<BehaviorWoodChopper>()) { 
-				recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
+			if (chopCollObj != null && !bechoppingblock.Inventory.Empty)
+			{
+				if (chopCollObj.HasBehavior<BehaviorWoodChopper>() && (item?.Code.FirstCodePart() == "chopping"))
+				{
+					recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
 					if (recipe != null)
 					{
 						if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
 						{
 							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
 							return base.OnBlockInteractStart(world, byPlayer, blockSel);
-						} else
+						}
+						else
 						{
 							byPlayer.Entity.StartAnimation("axechop");
 							return true;
@@ -46,12 +57,9 @@ namespace InDappledGroves.Blocks
 					}
 					return false;
 				}
-				//if (chopCollObj.HasBehavior<BehaviorWoodStripper>())
-				//{
-				// Implement code for recognizing an Adze and replacing the log on the block with its stripped version.
-				//}
+				return false;
+			}
 
-			//Call the block entity OnInteract
 			return bechoppingblock.OnInteract(byPlayer);
 		}
 
