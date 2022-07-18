@@ -667,7 +667,7 @@ namespace InDappledGroves.Util
 
         public class ChoppingRecipe : IByteSerializable
         {
-            public string Code = "something";
+            public string Code = "choppingRecipe";
             
             
             public AssetLocation Name { get; set; }
@@ -678,25 +678,26 @@ namespace InDappledGroves.Util
 
             public JsonItemStack Output;        
 
-            public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
-            {
+            //This code does not appear to be used. - VN
+            //public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
+            //{
 
-                var matched = pairInput(inputslots);
+            //    var matched = pairInput(inputslots);
 
-                ItemStack mixedStack = Output.ResolvedItemstack.Clone();
-                mixedStack.StackSize = getOutputSize(matched);
+            //    ItemStack mixedStack = Output.ResolvedItemstack.Clone();
+            //    mixedStack.StackSize = getOutputSize(matched);
 
-                if (mixedStack.StackSize <= 0) return null;
+            //    if (mixedStack.StackSize <= 0) return null;
 
 
-                foreach (var val in matched)
-                {
-                    val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
-                    val.Key.MarkDirty();
-                }
+            //    foreach (var val in matched)
+            //    {
+            //        val.Key.TakeOut(val.Value.Quantity * (mixedStack.StackSize / Output.StackSize));
+            //        val.Key.MarkDirty();
+            //    }
 
-                return mixedStack;
-            }
+            //    return mixedStack;
+            //}
 
             public bool Matches(IWorldAccessor worldForResolve, ItemSlot inputSlots)
             {
@@ -916,7 +917,7 @@ namespace InDappledGroves.Util
 
         public class SawingRecipe : IByteSerializable
         {
-            public string Code = "something";
+            public string Code = "sawingRecipe";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public bool RequiresStation;
@@ -1162,7 +1163,7 @@ namespace InDappledGroves.Util
 
         public class PlaningRecipe : IByteSerializable
         {
-            public string Code = "something";
+            public string Code = "planingRecipe";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
 

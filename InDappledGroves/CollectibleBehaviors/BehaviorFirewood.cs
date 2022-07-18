@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
-namespace InDappledGroves.Items
+namespace InDappledGroves.CollectibleBehaviors
 {
-	class IDGFirewood : ItemFirewood
+    class BehaviorFirewood : CollectibleBehavior
 	{
+		ICoreAPI api;
+		ICoreClientAPI capi;
 
-		protected override AssetLocation PileBlockCode
+		public BehaviorFirewood(CollectibleObject collObj) : base(collObj)
 		{
-			get
-			{
-				return new AssetLocation("firewoodpile");
-			}
+			this.collObj = collObj;
 		}
 
-		public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
+		public override void Initialize(JsonObject properties)
 		{
+			base.Initialize(properties);
+		}
+
+		public override void OnLoaded(ICoreAPI api)
+		{
+			this.api = api;
+			this.capi = (api as ICoreClientAPI);
+		}
+
+		public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling) { 
 			if (blockSel == null) return;
 			BlockPos position = blockSel.Position;
 			Block block = byEntity.World.BlockAccessor.GetBlock(position);
@@ -57,8 +68,10 @@ namespace InDappledGroves.Items
 					this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
 				}
 			}
-			handling = EnumHandHandling.PreventDefault;
-			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
+			handHandling = EnumHandHandling.PreventDefault;
+			handling = EnumHandling.PreventDefault;
+
+			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
 		}
 	}
 }

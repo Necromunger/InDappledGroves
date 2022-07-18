@@ -18,7 +18,6 @@ namespace InDappledGroves.Blocks
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
-
 		}
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)

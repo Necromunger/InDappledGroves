@@ -33,12 +33,13 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public SkillItem[] GetSkillItems()
         {
-            return toolModes;
+            return toolModes ?? new SkillItem[] { null };
         }
         public override void OnLoaded(ICoreAPI api)
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
+
             this.groundSawTime = collObj.Attributes["woodworkingProps"]["groundSawTime"].AsInt(4);
             this.sawBuckSawTime = collObj.Attributes["woodworkingProps"]["sawBuckSawTime"].AsInt(2);
             this.groundSawDamage = collObj.Attributes["woodworkingProps"]["groundSawDamage"].AsInt(4);

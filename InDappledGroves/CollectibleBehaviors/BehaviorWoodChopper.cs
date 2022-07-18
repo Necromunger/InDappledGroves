@@ -1,4 +1,5 @@
-﻿using InDappledGroves.Util;
+﻿using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -35,7 +36,7 @@ namespace InDappledGroves
         }
 
         public SkillItem[] GetSkillItems() {
-            return toolModes;
+            return toolModes ?? new SkillItem[] { null };
         }
 
         public override void OnLoaded(ICoreAPI api)
@@ -161,24 +162,6 @@ namespace InDappledGroves
 
             return null;
         }
-
-        //-- Spawns firewood when chopping cycle is finished --//
-        //public void SpawnOutput(CollectibleObject chopObj, EntityAgent byEntity, BlockPos pos, int dmg)
-        //{
-        //        Item itemOutput = api.World.GetItem(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["code"].AsString()));
-        //        Block blockOutput = api.World.GetBlock(new AssetLocation(chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["code"].AsString()));
-
-        //        int quantity = chopObj.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["output"]["quantity"].AsInt();
-
-        //        for (int i = quantity; i > 0; i--)
-        //        {
-        //                api.World.SpawnItemEntity(new ItemStack(itemOutput!=null?itemOutput:blockOutput), pos.ToVec3d() + new Vec3d(0.05f, .1f, 0.05f));
-        //        }
-
-        //        if (byEntity is EntityPlayer player)
-        //        player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundChopDamage);
-
-        //}
 
         public void SpawnOutput(ChoppingRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {

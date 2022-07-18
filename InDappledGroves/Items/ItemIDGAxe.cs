@@ -58,15 +58,6 @@ namespace InDappledGroves.Items.Tools
             dustParticles.WindAffectednes = 0.5f;
         }
 
-        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
-        {
-            for(int i = 0; i< toolModes.Length; i++)
-            {
-                System.Diagnostics.Debug.WriteLine(toolModes[i].Code);
-            }
-            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
-        }
-
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
@@ -258,19 +249,16 @@ namespace InDappledGroves.Items.Tools
 
         private SkillItem[] BuildSkillList()
         {
-            List<SkillItem> SkillList = new();
-            for (int i = 0; i < CollectibleBehaviors.Length; i++)
+            var skillList = new List<SkillItem>();
+            foreach (var behaviour in CollectibleBehaviors)
             {
-                if (CollectibleBehaviors[i] is IBehaviorVariant bwc)
+                if (behaviour is not IBehaviorVariant bwc) continue;
+                foreach (var mode in bwc.GetSkillItems())
                 {
-                    
-                    for (int j = 0; j < bwc.GetSkillItems().Length; j++)
-                    {
-                        SkillList.Add(bwc.GetSkillItems()[j]);
-                    }
+                    skillList.Add(mode);
                 }
             }
-            return SkillList.ToArray();
+            return skillList.ToArray();
         }
 
         //Particle Handlers

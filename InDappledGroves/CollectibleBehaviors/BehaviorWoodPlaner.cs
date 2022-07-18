@@ -27,7 +27,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public SkillItem[] GetSkillItems()
         {
-            return toolModes;
+            return toolModes ?? new SkillItem[] { null };
         }
 
         public BehaviorWoodPlaner(CollectibleObject collObj) : base(collObj)

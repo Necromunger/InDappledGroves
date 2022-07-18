@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InDappledGroves.CollectibleBehaviors;
+using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -17,9 +18,14 @@ namespace InDappledGroves.Items.Tools
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
 
+        private SkillItem[] toolModes;
+
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
+            ICoreClientAPI capi = api as ICoreClientAPI;
+            toolModes = BuildSkillList();
+
 
             interactions = ObjectCacheUtil.GetOrCreate(api, "vtsawInteractions", () =>
             {
@@ -32,6 +38,23 @@ namespace InDappledGroves.Items.Tools
                         },
                     };
             });
+
+            
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            {
+                if (capi != null)
+                {
+                    for (int i = 0; i < toolModes.Length; i++)
+                    {
+                        toolModes[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg").ToString());
+                        toolModes[i].TexturePremultipliedAlpha = false;
+                    }
+                };
+
+                return toolModes;
+            });
+
             sawingTime = 4.0;
             woodParticles = InitializeWoodParticles();
         }
@@ -109,6 +132,20 @@ namespace InDappledGroves.Items.Tools
             return true;
         }
 
+        private SkillItem[] BuildSkillList()
+        {
+            var skillList = new List<SkillItem>();
+            foreach (var behaviour in CollectibleBehaviors)
+            {
+                if (behaviour is not IBehaviorVariant bwc) continue;
+                foreach (SkillItem mode in bwc.GetSkillItems())
+                {
+                    skillList.Add(mode);
+                }
+            }
+            return skillList.ToArray();
+        }
+
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             byEntity.StopAnimation("axechop");
@@ -126,38 +163,38 @@ namespace InDappledGroves.Items.Tools
                 //TODO: Check axe for tier and reference config for cut times and yield.
                 //Remove stone recipes from the saw, implement a mason's saw with minimum tier of Bronze
 
-                if ((interactedBlock.FirstCodePart() == "log" && interactedBlock.Variant["type"] == "placed")
-                        || interactedBlock.FirstCodePart() == "strippedlog"
-                        || (interactedBlock.FirstCodePart() == "logsection" && interactedBlock.Variant["type"] == "placed"))
-                {
-                    DropScatter(interactedBlock, 12, blockSel.Position);
-                }
-                else if (interactedBlock.FirstCodePart() == "planks")
-                {
-                    DropScatter(interactedBlock, 4, blockSel.Position); 
-                }
-                else if (interactedBlock.FirstCodePart() == "plankstairs")
-                {
-                    DropScatter(interactedBlock, 3, blockSel.Position);
-                }
-                else if (interactedBlock.FirstCodePart() == "plankslab")
-                {
-                    DropScatter(interactedBlock, 2, blockSel.Position);
-                }
-                    if (byEntity is EntityPlayer player)
-                    this.DamageItem(api.World, byEntity, player.RightHandItemSlot, 1);
+                //    if ((interactedBlock.FirstCodePart() == "log" && interactedBlock.Variant["type"] == "placed")
+                //            || interactedBlock.FirstCodePart() == "strippedlog"
+                //            || (interactedBlock.FirstCodePart() == "logsection" && interactedBlock.Variant["type"] == "placed"))
+                //    {
+                //        DropScatter(interactedBlock, 12, blockSel.Position);
+                //    }
+                //    else if (interactedBlock.FirstCodePart() == "planks")
+                //    {
+                //        DropScatter(interactedBlock, 4, blockSel.Position); 
+                //    }
+                //    else if (interactedBlock.FirstCodePart() == "plankstairs")
+                //    {
+                //        DropScatter(interactedBlock, 3, blockSel.Position);
+                //    }
+                //    else if (interactedBlock.FirstCodePart() == "plankslab")
+                //    {
+                //        DropScatter(interactedBlock, 2, blockSel.Position);
+                //    }
+                //        if (byEntity is EntityPlayer player)
+                //        this.DamageItem(api.World, byEntity, player.RightHandItemSlot, 1);
             }
 
         }
 
-        private void DropScatter(Block interactedBlock, int size, BlockPos pos)
-        {
-            for (int i = size; i > 0; i--)
-            {
-                api.World.SpawnItemEntity(new ItemStack(api.World.GetItem(new AssetLocation("plank-" + interactedBlock.Variant["wood"]))), pos.ToVec3d() +
-                    new Vec3d(0, .25, 0));
-            }
-        }
+        //private void DropScatter(Block interactedBlock, int size, BlockPos pos)
+        //{
+        //    for (int i = size; i > 0; i--)
+        //    {
+        //        api.World.SpawnItemEntity(new ItemStack(api.World.GetItem(new AssetLocation("plank-" + interactedBlock.Variant["wood"]))), pos.ToVec3d() +
+        //            new Vec3d(0, .25, 0));
+        //    }
+        //}
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()
