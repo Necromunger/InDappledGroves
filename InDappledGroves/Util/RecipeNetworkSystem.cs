@@ -43,7 +43,7 @@ namespace InDappledGroves.Util
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            List<ChoppingRecipe> crecipes = new List<ChoppingRecipe>();
+            List<ChoppingBlockRecipe> crecipes = new List<ChoppingBlockRecipe>();
             List<SawingRecipe> srecipes = new List<SawingRecipe>();
             List<PlaningRecipe> precipes = new List<PlaningRecipe>();
 
@@ -55,14 +55,14 @@ namespace InDappledGroves.Util
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
-                        ChoppingRecipe retr = new ChoppingRecipe();
+                        ChoppingBlockRecipe retr = new ChoppingBlockRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
                         crecipes.Add(retr);
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.ChoppingRecipes = crecipes;
+            IDGRecipeRegistry.Loaded.ChoppingBlockRecipes = crecipes;
 
             if (networkMessage.svalues != null)
             {
@@ -100,7 +100,7 @@ namespace InDappledGroves.Util
 
             IDGRecipeRegistry.Loaded.PlaningRecipes = precipes;
 
-            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.ChoppingRecipes.Count + " chopping recipes loaded to client.");
+            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Count + " chopping recipes loaded to client.");
 
             System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.SawingRecipes.Count + " sawing recipes loaded to client.");
 
@@ -134,7 +134,7 @@ namespace InDappledGroves.Util
             List<string> srecipes = new List<string>();
             List<string> precipes = new List<string>();
 
-            foreach (ChoppingRecipe crec in IDGRecipeRegistry.Loaded.ChoppingRecipes)
+            foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {

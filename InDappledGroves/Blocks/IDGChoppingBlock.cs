@@ -1,4 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
+using InDappledGroves.Interfaces;
 using InDappledGroves.Util;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -13,7 +14,7 @@ namespace InDappledGroves.Blocks
     class IDGChoppingBlock : Block
     {
 		
-		ChoppingRecipe recipe;
+		ChoppingBlockRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
@@ -22,26 +23,25 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			SkillItem item = null;
+			string curTMode = "";
 			ItemSlot chopSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 
-			if (api.Side == EnumAppSide.Client && chopCollObj != null && chopCollObj.GetToolModes(chopSlot, (IClientPlayer)byPlayer, blockSel) != null)
-			{
-				item = chopCollObj?.GetToolModes(chopSlot, (IClientPlayer)byPlayer, blockSel)[chopCollObj.GetToolMode(chopSlot, byPlayer, blockSel)];
-				System.Diagnostics.Debug.WriteLine(item?.Code.FirstCodePart());
-			};
+                if (chopCollObj != null && chopCollObj is IIDGTool tool) 
+                {
+                    curTMode = tool.GetToolMode(chopSlot);
+                };
 
-			//Check to see if block entity exists
-			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+            //Check to see if block entity exists
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
 			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
 			if (chopCollObj != null && !bechoppingblock.Inventory.Empty)
 			{
-				if (chopCollObj.HasBehavior<BehaviorWoodChopper>() && (item?.Code.FirstCodePart() == "chopping"))
+				if (chopCollObj.HasBehavior<BehaviorWoodChopper>())
 				{
-					recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot);
+					recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
 						if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
@@ -99,28 +99,31 @@ namespace InDappledGroves.Blocks
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
-		public ChoppingRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slots)
+		public ChoppingBlockRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
 		{
-			List<ChoppingRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
+			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 			if (recipes == null) return null;
 
-			ChoppingRecipe stationRecipe = null;
-			ChoppingRecipe nostationRecipe = null;
+			ChoppingBlockRecipe stationRecipe = null;
+			ChoppingBlockRecipe nostationRecipe = null;
 
 			for (int j = 0; j < recipes.Count; j++)
 			{
 				if (recipes[j].Matches(api.World, slots))
 				{
-					if (recipes[j].RequiresStation)
+					if (recipes[j].ToolMode == toolmode)
 					{
-						stationRecipe = recipes[j];
-					} else
-                    {
-						nostationRecipe = recipes[j];
-                    }
+						if (recipes[j].RequiresStation)
+						{
+							stationRecipe = recipes[j];
+						}
+						else
+						{
+							nostationRecipe = recipes[j];
+						}
+					} 
 				}
 			}
-
 
 			return stationRecipe != null ? stationRecipe : nostationRecipe;
 		}

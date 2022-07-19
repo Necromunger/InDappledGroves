@@ -51,10 +51,10 @@
     <None Update="assets\indappledgroves\patches\vanillapatch\tooltweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\chopping\firewood.json">
+    <None Update="assets\indappledgroves\recipes\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\chopping\sticks.json">
+    <None Update="assets\indappledgroves\recipes\choppingblock\sticks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\planing\planks.json">

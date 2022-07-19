@@ -1,4 +1,5 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Interfaces;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -13,7 +14,7 @@ using Vintagestory.GameContent;
 namespace InDappledGroves.Items.Tools
 {
 
-    class ItemIDGAxe : Item
+    class ItemIDGAxe : Item, IIDGTool
     {
 
         // Token: 0x04000CF8 RID: 3320
@@ -95,6 +96,11 @@ namespace InDappledGroves.Items.Tools
         public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
         {
             return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
+        }
+
+        public string GetToolMode(ItemSlot slot)
+        {
+            return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
         }
 
         // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1

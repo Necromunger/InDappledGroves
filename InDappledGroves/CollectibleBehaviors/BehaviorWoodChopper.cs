@@ -19,7 +19,7 @@ namespace InDappledGroves
 
         public InventoryBase Inventory { get; }
         public string InventoryClassName => "worldinventory";
-        public ChoppingRecipe recipe;
+        public ChoppingBlockRecipe recipe;
 
         public SkillItem[] toolModes;
 
@@ -148,9 +148,9 @@ namespace InDappledGroves
             byEntity.StopAnimation("axechop");
         }
 
-        public ChoppingRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slot)
+        public ChoppingBlockRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slot)
         {
-            List<ChoppingRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
+            List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)
@@ -164,7 +164,7 @@ namespace InDappledGroves
             return null;
         }
 
-        public void SpawnOutput(ChoppingRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             int j = recipe.Output.StackSize;
             for (int i = j; i > 0; i--)

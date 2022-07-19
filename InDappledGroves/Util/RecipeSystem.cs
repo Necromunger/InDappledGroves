@@ -23,19 +23,19 @@ namespace InDappledGroves.Util
         public class IDGRecipeRegistry
         {
             private static IDGRecipeRegistry loaded;
-            private List<ChoppingRecipe> choppingRecipes = new List<ChoppingRecipe>();
+            private List<ChoppingBlockRecipe> choppingBlockRecipes = new List<ChoppingBlockRecipe>();
             private List<SawingRecipe> sawingRecipes = new List<SawingRecipe>();
             private List<PlaningRecipe> planingRecipes = new List<PlaningRecipe>();
 
-            public List<ChoppingRecipe> ChoppingRecipes
+            public List<ChoppingBlockRecipe> ChoppingBlockRecipes
             {
                 get
                 {
-                    return choppingRecipes;
+                    return choppingBlockRecipes;
                 }
                 set
                 {
-                    choppingRecipes = value;
+                    choppingBlockRecipes = value;
                 }
             }
 
@@ -114,14 +114,15 @@ namespace InDappledGroves.Util
 
             public void LoadIDGRecipes()
             {
-                LoadChoppingRecipes();
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The Tyee and bullcook..."));
+                LoadChoppingBlockRecipes();
                 LoadSawingRecipes();
                 LoadPlaningRecipes();
             }
             #region Chopping Recipes
-            public void LoadChoppingRecipes()
+            public void LoadChoppingBlockRecipes()
             {
-                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/chopping");
+                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/choppingblock");
                 int recipeQuantity = 0;
                 int ignored = 0;
 
@@ -129,39 +130,39 @@ namespace InDappledGroves.Util
                 {
                     if (val.Value is JObject)
                     {
-                        ChoppingRecipe rec = val.Value.ToObject<ChoppingRecipe>();
+                        ChoppingBlockRecipe rec = val.Value.ToObject<ChoppingBlockRecipe>();
                         if (!rec.Enabled) continue;
 
-                        LoadChoppingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                        LoadChoppingBlockRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
                     }
                     if (val.Value is JArray)
                     {
                         foreach (var token in (val.Value as JArray))
                         {
-                            ChoppingRecipe rec = token.ToObject<ChoppingRecipe>();
+                            ChoppingBlockRecipe rec = token.ToObject<ChoppingBlockRecipe>();
                             if (!rec.Enabled) continue;
 
-                            LoadChoppingRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                            LoadChoppingBlockRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
                         }
                     }
                 }
 
                 api.World.Logger.Event("{0} chopping recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The haft and the bit..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:...with sturdy haft and bit"));
             }
 
-            public void LoadChoppingRecipe(AssetLocation path, ChoppingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
+            public void LoadChoppingBlockRecipe(AssetLocation path, ChoppingBlockRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
-                string className = "chopping recipe";
+                string className = "chopping block recipe";
 
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
                 if (nameToCodeMapping.Count > 0)
                 {
-                    List<ChoppingRecipe> subRecipes = new List<ChoppingRecipe>();
+                    List<ChoppingBlockRecipe> subRecipes = new List<ChoppingBlockRecipe>();
 
                     int qCombs = 0;
                     bool first = true;
@@ -180,7 +181,7 @@ namespace InDappledGroves.Util
 
                         for (int i = 0; i < qCombs; i++)
                         {
-                            ChoppingRecipe rec;
+                            ChoppingBlockRecipe rec;
 
                             if (first) subRecipes.Add(rec = recipe.Clone());
                             else rec = subRecipes[i];
@@ -210,14 +211,14 @@ namespace InDappledGroves.Util
                         api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
                     }
 
-                    foreach (ChoppingRecipe subRecipe in subRecipes)
+                    foreach (ChoppingBlockRecipe subRecipe in subRecipes)
                     {
                         if (!subRecipe.Resolve(api.World, className + " " + path))
                         {
                             quantityIgnored++;
                             continue;
                         }
-                        IDGRecipeRegistry.Loaded.ChoppingRecipes.Add(subRecipe);
+                        IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Add(subRecipe);
                         quantityRegistered++;
                     }
 
@@ -230,12 +231,12 @@ namespace InDappledGroves.Util
                         return;
                     }
 
-                    IDGRecipeRegistry.Loaded.ChoppingRecipes.Add(recipe);
+                    IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Add(recipe);
                     quantityRegistered++;
                 }
             }
 
-            public class ChoppingIngredient : IByteSerializable
+            public class ChoppingBlockIngredient : IByteSerializable
             {
                 public CraftingRecipeIngredient[] Inputs;
 
@@ -284,7 +285,7 @@ namespace InDappledGroves.Util
                     }
                 }
 
-                public ChoppingIngredient Clone()
+                public ChoppingBlockIngredient Clone()
                 {
                     CraftingRecipeIngredient[] newings = new CraftingRecipeIngredient[Inputs.Length];
 
@@ -293,7 +294,7 @@ namespace InDappledGroves.Util
                         newings[i] = Inputs[i].Clone();
                     }
 
-                    return new ChoppingIngredient()
+                    return new ChoppingBlockIngredient()
                     {
                         Inputs = newings
                     };
@@ -331,7 +332,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} sawing recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The dust and the dog..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:...by dust and the dog"));
             }
 
             public void LoadSawingRecipe(AssetLocation path, SawingRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -512,7 +513,7 @@ namespace InDappledGroves.Util
                 }
 
                 api.World.Logger.Event("{0} Planing recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The sole and the blade..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:working sole and blade..."));
             }
 
             public void LoadPlaningRecipe(AssetLocation path, PlaningRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -665,16 +666,18 @@ namespace InDappledGroves.Util
             #endregion
         }
 
-        public class ChoppingRecipe : IByteSerializable
+        public class ChoppingBlockRecipe : IByteSerializable
         {
-            public string Code = "choppingRecipe";
+            public string Code = "choppingblockRecipe";
 
 
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public bool RequiresStation { get; set; } = false;
 
-            public ChoppingIngredient[] Ingredients;
+            public string ToolMode { get; set; } = "chopping";
+
+            public ChoppingBlockIngredient[] Ingredients;
 
             public JsonItemStack Output;
 
@@ -810,6 +813,7 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(RequiresStation);
+                writer.Write(ToolMode);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -823,11 +827,12 @@ namespace InDappledGroves.Util
             {
                 Code = reader.ReadString();
                 RequiresStation = reader.ReadBoolean();
-                Ingredients = new ChoppingIngredient[reader.ReadInt32()];
+                ToolMode = reader.ReadString();
+                Ingredients = new ChoppingBlockIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
-                    Ingredients[i] = new ChoppingIngredient();
+                    Ingredients[i] = new ChoppingBlockIngredient();
                     Ingredients[i].FromBytes(reader, resolver);
                     Ingredients[i].Resolve(resolver, "Chopping Recipe (FromBytes)");
                 }
@@ -837,17 +842,18 @@ namespace InDappledGroves.Util
                 Output.Resolve(resolver, "Chopping Recipe (FromBytes)");
             }
 
-            public ChoppingRecipe Clone()
+            public ChoppingBlockRecipe Clone()
             {
-                ChoppingIngredient[] ingredients = new ChoppingIngredient[Ingredients.Length];
+                ChoppingBlockIngredient[] ingredients = new ChoppingBlockIngredient[Ingredients.Length];
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
                     ingredients[i] = Ingredients[i].Clone();
                 }
 
-                return new ChoppingRecipe()
+                return new ChoppingBlockRecipe()
                 {
                     RequiresStation = RequiresStation,
+                    ToolMode = ToolMode,
                     Output = Output.Clone(),
                     Code = Code,
                     Enabled = Enabled,

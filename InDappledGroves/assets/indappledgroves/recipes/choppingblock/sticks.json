@@ -1,5 +1,6 @@
 [
   {
+    "toolmode": "chopping",
     "requiresstation": false,
     "ingredients":
     [ 
@@ -12,6 +13,7 @@
     "output": {"type": "item", "code": "game:stick", "quantity": 4}
   },
   {
+    "toolmode": "chopping",
     "requiresstation": false,
     "ingredients":
     [ 
