@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InDappledGroves.Interfaces;
+using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -18,7 +19,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public InventoryBase Inventory { get; }
         public string InventoryClassName => "worldinventory";
 
-        public PlaningRecipe recipe;
+        public SawHorseRecipe recipe;
         public override void Initialize(JsonObject properties)
         {
             base.Initialize(properties);
@@ -86,11 +87,11 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             IPlayer player = ((EntityPlayer)byEntity).Player;
-            int toolMode = collObj.GetToolMode(slot, player, blockSel);
-            SkillItem item = collObj.GetToolModes(slot, (IClientPlayer)player, blockSel)[toolMode];
+            string curTMode = "";
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
 
             //-- Do not process the chopping action if the player is not holding ctrl, block is selected, or the given tools toolMode is not chopping --//
-            if (!byEntity.Controls.Sprint || blockSel == null || item.Code.FirstCodePart() == "planing")
+            if (!byEntity.Controls.Sprint || blockSel == null || curTMode == "planing")
                 return;
 
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
@@ -98,7 +99,7 @@ namespace InDappledGroves.CollectibleBehaviors
             if (recipe == null || recipe.RequiresStation) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgSawHorseProps"]["planable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["planable"];
 
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
@@ -162,7 +163,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundPlaneDamage);
         }
 
-        public void SpawnOutput(PlaningRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             ItemStack output = recipe.Output.ResolvedItemstack;
             int j = output.StackSize;
@@ -173,9 +174,9 @@ namespace InDappledGroves.CollectibleBehaviors
 
         }
 
-        public PlaningRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        public SawHorseRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
         {
-            List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)

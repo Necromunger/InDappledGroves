@@ -57,10 +57,16 @@
     <None Update="assets\indappledgroves\recipes\choppingblock\sticks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\planing\planks.json">
+    <None Update="assets\indappledgroves\recipes\ground\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\sawing\log.json">
+    <None Update="assets\indappledgroves\recipes\ground\sticks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\sawhorse\planks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\sawbuck\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\choppingblock.json">

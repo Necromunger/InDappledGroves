@@ -18,7 +18,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public string InventoryClassName => "worldinventory";
         public SkillItem[] toolModes;
 
-        public SawingRecipe recipe;
+        public SawbuckRecipe recipe;
 
         public override void Initialize(JsonObject properties)
         {
@@ -28,7 +28,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public BehaviorWoodSawer(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-            Inventory = new InventoryGeneric(1, "sawingblock-slot", null, null);
+            Inventory = new InventoryGeneric(1, "sawbuck-slot", null, null);
         }
 
         public SkillItem[] GetSkillItems()
@@ -64,11 +64,11 @@ namespace InDappledGroves.CollectibleBehaviors
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
-            recipe = GetMatchingSawingRecipe(byEntity.World, Inventory[0]);
+            recipe = GetMatchingSawbuckRecipe(byEntity.World, Inventory[0]);
             if (recipe == null || recipe.RequiresStation) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["idgSawBuckProps"]["sawable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["sawable"];
 
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
             if (slot.Itemstack.Attributes.GetInt("durability") < groundSawDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
@@ -131,7 +131,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
         }
 
-        public void SpawnOutput(SawingRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             ItemStack output = recipe.Output.ResolvedItemstack;
             int j = output.StackSize;
@@ -141,9 +141,9 @@ namespace InDappledGroves.CollectibleBehaviors
             }
 
         }
-        public SawingRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
+        public SawbuckRecipe GetMatchingSawbuckRecipe(IWorldAccessor world, ItemSlot slots)
         {
-            List<SawingRecipe> recipes = IDGRecipeRegistry.Loaded.SawingRecipes;
+            List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)

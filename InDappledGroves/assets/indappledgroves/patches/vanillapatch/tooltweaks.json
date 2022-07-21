@@ -9,7 +9,9 @@
   {
     "op": "add",
     "path": "/attributes/woodWorkingProps",
-    "value": {"groundChopTime": 6, "groundChopDamage": 3, "choppingBlockChopTime": 4, "choppingBlockChopDamage": 2, "groundPlaneTime": 4, "sawHorsePlaneTime": 2, "groundPlaneDamage": 4, "sawHorsePlaneDamage": 2},
+    "value": {"groundChopTime": 6, "groundChopDamage": 3, "choppingBlockChopTime": 4, "choppingBlockChopDamage": 2, 
+              "groundPlaneTime": 4, "sawHorsePlaneTime": 2, "groundPlaneDamage": 4, "sawHorsePlaneDamage": 2
+             },
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },

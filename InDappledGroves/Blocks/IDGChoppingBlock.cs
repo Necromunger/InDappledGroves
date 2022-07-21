@@ -1,6 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util;
+using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -28,20 +29,16 @@ namespace InDappledGroves.Blocks
 			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 
-                if (chopCollObj != null && chopCollObj is IIDGTool tool) 
-                {
-                    curTMode = tool.GetToolMode(chopSlot);
-                };
+			//Check to see if block entity exists
+			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-            //Check to see if block entity exists
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
-
-			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
-			if (chopCollObj != null && !bechoppingblock.Inventory.Empty)
+			if (chopCollObj != null && chopCollObj is IIDGTool tool) {curTMode = tool.GetToolMode(chopSlot);};
+			          
+			if (!bechoppingblock.Inventory.Empty)
 			{
-				if (chopCollObj.HasBehavior<BehaviorWoodChopper>())
+				if (chopCollObj is IIDGTool)
 				{
-					recipe = GetMatchingChoppingRecipe(world, bechoppingblock.InputSlot, curTMode);
+					recipe = GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
 						if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
@@ -69,7 +66,7 @@ namespace InDappledGroves.Blocks
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;
 
-			if (chopTool != null && chopTool.HasBehavior<BehaviorWoodChopper>() && !bechoppingblock.Inventory.Empty)
+			if (chopTool != null && chopTool is IIDGTool && !bechoppingblock.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{
@@ -79,7 +76,7 @@ namespace InDappledGroves.Blocks
                 if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopper>().choppingBlockChopTime)
                 {
 
-					chopTool.GetBehavior<BehaviorWoodChopper>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
@@ -94,14 +91,14 @@ namespace InDappledGroves.Blocks
 			return false;
         }
 
-		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+        public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
-		public ChoppingBlockRecipe GetMatchingChoppingRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
+		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
 		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
+			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
 			if (recipes == null) return null;
 
 			ChoppingBlockRecipe stationRecipe = null;
@@ -127,7 +124,14 @@ namespace InDappledGroves.Blocks
 
 			return stationRecipe != null ? stationRecipe : nostationRecipe;
 		}
-
+		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		{
+			int j = recipe.Output.StackSize;
+			for (int i = j; i > 0; i--)
+			{
+				api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+			}
+		}
 		private float playNextSound;
 	}
 		

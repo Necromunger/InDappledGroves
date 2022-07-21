@@ -155,13 +155,13 @@ namespace InDappledGroves.Blocks
             base.OnBlockRemoved(world, pos);
         }
 
-        public PlaningRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
+        public SawHorseRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
         {
-            List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
             if (recipes == null) return null;
 
-            PlaningRecipe stationRecipe = null;
-            PlaningRecipe nostationRecipe = null;
+            SawHorseRecipe stationRecipe = null;
+            SawHorseRecipe nostationRecipe = null;
 
             for (int j = 0; j < recipes.Count; j++)
             {

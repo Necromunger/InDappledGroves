@@ -3,8 +3,9 @@
 	"class": "Block",
 	"shape": { "base": "game:item/firewood", "rotateX": 90},
 	"attributes": { "woodworkingProps": {
+										"choppable": true,
 									"idgChoppingBlockProps": {
-										 "choppable": true, "output": {"code": "game:stick", "quantity": 4}
+										  "output": {"code": "game:stick", "quantity": 4}
 										 }
 									}
 	},

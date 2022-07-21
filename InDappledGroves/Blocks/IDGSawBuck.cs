@@ -12,7 +12,7 @@ namespace InDappledGroves.Blocks
 {
     class IDGSawBuck : Block
 	{
-		SawingRecipe recipe;
+		SawbuckRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
@@ -27,10 +27,10 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
+			//If player is holding something, it has the BehaviorWoodSawer behavior, and the chopping block is not empty.
 			if (sawCollObj != null && sawCollObj.HasBehavior<BehaviorWoodSawer>() && !besawbuck.Inventory.Empty)
 			{
-				recipe = GetMatchingSawingRecipe(world, besawbuck.InputSlot);
+				recipe = GetMatchingSawbuckRecipe(world, besawbuck.InputSlot);
 				if (recipe != null)
 				{
 					if (sawToolStack.Attributes.GetInt("durability") < sawCollObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
@@ -80,13 +80,13 @@ namespace InDappledGroves.Blocks
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		public SawingRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
+		public SawbuckRecipe GetMatchingSawbuckRecipe(IWorldAccessor world, ItemSlot slots)
 		{
-			List<SawingRecipe> recipes = IDGRecipeRegistry.Loaded.SawingRecipes;
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
 			if (recipes == null) return null;
 
-			SawingRecipe stationRecipe = null;
-			SawingRecipe nostationRecipe = null;
+			SawbuckRecipe stationRecipe = null;
+			SawbuckRecipe nostationRecipe = null;
 
 			for (int j = 0; j < recipes.Count; j++)
 			{

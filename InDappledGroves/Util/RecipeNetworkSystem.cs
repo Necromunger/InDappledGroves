@@ -15,6 +15,7 @@ namespace InDappledGroves.Util
         public List<string> cvalues;  //Chopping Recipe Values
         public List<string> svalues;  //Sawing Recipe Values
         public List<string> pvalues;  //Planing Recipe Values
+        public List<string> gvalues;  //Planing Recipe Values
     }
 
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
@@ -44,8 +45,9 @@ namespace InDappledGroves.Util
         private void OnServerMessage(RecipeUpload networkMessage)
         {
             List<ChoppingBlockRecipe> crecipes = new List<ChoppingBlockRecipe>();
-            List<SawingRecipe> srecipes = new List<SawingRecipe>();
-            List<PlaningRecipe> precipes = new List<PlaningRecipe>();
+            List<SawbuckRecipe> srecipes = new List<SawbuckRecipe>();
+            List<SawHorseRecipe> precipes = new List<SawHorseRecipe>();
+            List<GroundRecipe> grecipes = new List<GroundRecipe>();
 
             if (networkMessage.cvalues != null)
             {
@@ -62,7 +64,7 @@ namespace InDappledGroves.Util
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.ChoppingBlockRecipes = crecipes;
+            IDGRecipeRegistry.Loaded.ChoppingBlockrecipes = crecipes;
 
             if (networkMessage.svalues != null)
             {
@@ -72,7 +74,7 @@ namespace InDappledGroves.Util
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
-                        SawingRecipe retr = new SawingRecipe();
+                        SawbuckRecipe retr = new SawbuckRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
                         srecipes.Add(retr);
@@ -80,7 +82,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            IDGRecipeRegistry.Loaded.SawingRecipes = srecipes;
+            IDGRecipeRegistry.Loaded.SawbuckRecipes = srecipes;
 
             if (networkMessage.pvalues != null)
             {
@@ -90,7 +92,7 @@ namespace InDappledGroves.Util
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
-                        PlaningRecipe retr = new PlaningRecipe();
+                        SawHorseRecipe retr = new SawHorseRecipe();
                         retr.FromBytes(reader, clientApi.World);
 
                         precipes.Add(retr);
@@ -98,13 +100,8 @@ namespace InDappledGroves.Util
                 }
             }
 
-            IDGRecipeRegistry.Loaded.PlaningRecipes = precipes;
+            IDGRecipeRegistry.Loaded.SawHorseRecipes = precipes;
 
-            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Count + " chopping recipes loaded to client.");
-
-            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.SawingRecipes.Count + " sawing recipes loaded to client.");
-
-            System.Diagnostics.Debug.WriteLine(IDGRecipeRegistry.Loaded.PlaningRecipes.Count + " planing recipes loaded to client.");
         }
 
         #endregion
@@ -134,7 +131,7 @@ namespace InDappledGroves.Util
             List<string> srecipes = new List<string>();
             List<string> precipes = new List<string>();
 
-            foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockRecipes)
+            foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockrecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -147,7 +144,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            foreach (SawingRecipe srec in IDGRecipeRegistry.Loaded.SawingRecipes)
+            foreach (SawbuckRecipe srec in IDGRecipeRegistry.Loaded.SawbuckRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -160,7 +157,7 @@ namespace InDappledGroves.Util
                 }
             }
 
-            foreach (PlaningRecipe prec in IDGRecipeRegistry.Loaded.PlaningRecipes)
+            foreach (SawHorseRecipe prec in IDGRecipeRegistry.Loaded.SawHorseRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -173,11 +170,12 @@ namespace InDappledGroves.Util
                 }
             }
 
+
             serverChannel.BroadcastPacket(new RecipeUpload()
             {
                 cvalues = crecipes,
                 svalues = srecipes,
-                pvalues = precipes
+                pvalues = precipes,
             });
         }
 
