@@ -15,10 +15,6 @@ namespace InDappledGroves.BlockEntities
 		public override string InventoryClassName => "sawbuck";
 		public override string AttributeTransformCode => "onDisplayTransform";
 
-		//static List<SawingRecipe> sawingRecipes = IDGRecipeRegistry.Loaded.SawingRecipes;
-
-		//public SawingRecipe recipe;
-
 		public IDGBESawBuck()
 		{
 			Inventory = new InventoryGeneric(2, "sawbuck-slot", null, null);
@@ -56,10 +52,9 @@ namespace InDappledGroves.BlockEntities
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if (attributes == null || !collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["sawable"].AsBool(false))
-			{
-				return false;
-			}
+
+			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["sawable"].AsBool(false)) return true;
+
 
 			ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;

@@ -15,7 +15,7 @@ namespace InDappledGroves.BlockEntities
 		public override string InventoryClassName => "choppingblock";
         public override string AttributeTransformCode => "idgChoppingBlockTransform";
 
-		static List<ChoppingRecipe> choppingRecipes = IDGRecipeRegistry.Loaded.ChoppingRecipes;
+		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
 
 		public IDGBEChoppingBlock()
 		{
@@ -53,7 +53,7 @@ namespace InDappledGroves.BlockEntities
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
 			JsonObject attributes = collectible.Attributes;
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["choppable"].AsBool(false)) return true;		
+			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["choppable"].AsBool(false)) return true;		
 
             ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;

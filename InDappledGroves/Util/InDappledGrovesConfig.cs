@@ -7,7 +7,7 @@ namespace InDappledGroves.Util
 {
     class InDappledGrovesConfig
     {
-        public bool preventChoppingWithLowDurability;
+        public bool preventToolUseWithLowDurability;
         public InDappledGrovesConfig()
         { }
 
@@ -17,7 +17,7 @@ namespace InDappledGroves.Util
         {
             //Convert below modifiers to a multiplier rather than a straight number.  This will be beneficial for the multiple points of a saw
             InDappledGrovesConfig defaultConfig = new();
-            defaultConfig.preventChoppingWithLowDurability = false;
+            defaultConfig.preventToolUseWithLowDurability = false;
 
             //defaultConfig.HiveSeasons = 
             return defaultConfig;

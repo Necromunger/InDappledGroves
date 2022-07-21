@@ -12,8 +12,8 @@
 	],
 	"skipVariants": ["*-up-snow-*"],
 	"attributes": { "woodworkingProps": {
+									"choppable": true,
 									"idgChoppingBlockProps": {
-										 "choppable": true, "output": {"code": "game:firewood", "quantity": 2},
 										 "idgChoppingBlockTransform": {
 																"translation": {
 																	"x": 0,

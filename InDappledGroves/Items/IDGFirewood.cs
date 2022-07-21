@@ -7,9 +7,9 @@ using Vintagestory.GameContent;
 
 namespace InDappledGroves.Items
 {
-    class IDGFirewood : ItemFirewood
-    {
-	
+	class IDGFirewood : ItemFirewood
+	{
+
 		protected override AssetLocation PileBlockCode
 		{
 			get
@@ -37,28 +37,28 @@ namespace InDappledGroves.Items
 				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face));
 				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgfirewoodblock")));
 				bool flag = false;
-					if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))
+				if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))
+				{
+					flag = true;
+					slot.TakeOut(1);
+				}
+				else
+				{
+					BlockSelection bs2 = blockSel;
+					bs2.Position = bs2.Position.AddCopy(blockSel.Face);
+					if (stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, bs2, ref failurecode))
 					{
 						flag = true;
-						slot.TakeOut(1);	
+						slot.TakeOut(1);
 					}
-					else
-					{
-						BlockSelection bs2 = blockSel;
-						bs2.Position = bs2.Position.AddCopy(blockSel.Face);
-						if (stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, bs2, ref failurecode))
-						{
-						flag = true;
-							slot.TakeOut(1);
-						}
-					}
-                if (flag)
-                {
-						this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
+				}
+				if (flag)
+				{
+					this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
 				}
 			}
 			handling = EnumHandHandling.PreventDefault;
 			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
-        }
+		}
 	}
 }

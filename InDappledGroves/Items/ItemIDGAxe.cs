@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Interfaces;
+using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -12,7 +14,7 @@ using Vintagestory.GameContent;
 namespace InDappledGroves.Items.Tools
 {
 
-    class ItemIDGAxe : Item
+    class ItemIDGAxe : Item, IIDGTool
     {
 
         // Token: 0x04000CF8 RID: 3320
@@ -22,35 +24,25 @@ namespace InDappledGroves.Items.Tools
         {
             base.OnLoaded(api);
             ICoreClientAPI capi = api as ICoreClientAPI;
-            //this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
-            //{
-            //    SkillItem[] array;
-            //    array = new SkillItem[]
-            //    {
-            //            new SkillItem
-            //            {
-            //                Code = new AssetLocation("chopping"),
-            //                Name = Lang.Get("Chopping", Array.Empty<object>())
-            //            },
-            //            new SkillItem
-            //            {
-            //                Code = new AssetLocation("planing"),
-            //                Name = Lang.Get("Planing", Array.Empty<object>())
-            //            }
-            //    };
-            //    if (capi != null)
-            //    {
-            //        array[0].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/axechop.svg"), 48, 48, 5, new int?(-1)));
-            //        array[0].TexturePremultipliedAlpha = false;
-            //        if (array.Length > 1)
-            //        {
-            //            array[1].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/axestrip.svg"), 48, 48, 5, new int?(-1)));
-            //            array[1].TexturePremultipliedAlpha = false;
-            //        }
-            //    }
-            //    return array;
-            //});
-        }
+
+            
+            toolModes = BuildSkillList();
+
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeToolModes", delegate
+            {
+                if (capi != null)
+                {
+                    for (int i = 0; i < toolModes.Length; i++)
+                    {
+                        toolModes[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg").ToString());
+                        toolModes[i].TexturePremultipliedAlpha = false;
+                    }
+                };
+
+                return toolModes;
+            });
+        }      
 
         static ItemIDGAxe()
         {
@@ -67,15 +59,13 @@ namespace InDappledGroves.Items.Tools
             dustParticles.WindAffectednes = 0.5f;
         }
 
-
-
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1);
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1)*(itemslot.Itemstack.Collectible.Attributes["woodworkingProps"]["fellingmultiplier"].AsFloat(1f));
 
             BlockPos pos = blockSel.Position;
 
@@ -94,25 +84,32 @@ namespace InDappledGroves.Items.Tools
 
             return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
         }
-        //#region ToolMode Stuff
-        //// Token: 0x06001847 RID: 6215 RVA: 0x000E49D4 File Offset: 0x000E2BD4
-        //public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
-        //{
-        //    return this.toolModes;
-        //}
 
-        //// Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
-        //public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-        //{
-        //    return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
-        //}
+        #region ToolMode Stuff
 
-        //// Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
-        //public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
-        //{
-        //    slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
-        //}
-        //#endregion ToolMode Stuff
+        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+        {
+            return this.toolModes;
+        }
+
+        // Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
+        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+        {
+            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
+        }
+
+        public string GetToolMode(ItemSlot slot)
+        {
+            return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
+        }
+
+        // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
+        {
+            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
+        }
+        #endregion ToolMode Stuff
+
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
             IPlayer byPlayer = null;
@@ -256,7 +253,19 @@ namespace InDappledGroves.Items.Tools
             return foundPositions;
         }
 
-
+        private SkillItem[] BuildSkillList()
+        {
+            var skillList = new List<SkillItem>();
+            foreach (var behaviour in CollectibleBehaviors)
+            {
+                if (behaviour is not IBehaviorVariant bwc) continue;
+                foreach (var mode in bwc.GetSkillItems())
+                {
+                    skillList.Add(mode);
+                }
+            }
+            return skillList.ToArray();
+        }
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()

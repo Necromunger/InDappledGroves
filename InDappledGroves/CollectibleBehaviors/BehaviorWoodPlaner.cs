@@ -1,4 +1,7 @@
-﻿using Vintagestory.API.Client;
+﻿using InDappledGroves.Interfaces;
+using System;
+using System.Collections.Generic;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
@@ -8,20 +11,30 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodPlaner : CollectibleBehavior
+    class BehaviorWoodPlaner : CollectibleBehavior, IBehaviorVariant
     {
         ICoreAPI api;
-        ICoreClientAPI capi;
+        private ICoreClientAPI capi;
+        public SkillItem[] toolModes;
+        public InventoryBase Inventory { get; }
+        public string InventoryClassName => "worldinventory";
 
+        public SawHorseRecipe recipe;
         public override void Initialize(JsonObject properties)
         {
             base.Initialize(properties);
+           
+        }
+
+        public SkillItem[] GetSkillItems()
+        {
+            return toolModes ?? new SkillItem[] { null };
         }
 
         public BehaviorWoodPlaner(CollectibleObject collObj) : base(collObj)
         {
             this.collObj = collObj;
-
+            Inventory = new InventoryGeneric(1, "planingblock-slot", null, null);
         }
 
         public override void OnLoaded(ICoreAPI api)
@@ -44,29 +57,63 @@ namespace InDappledGroves.CollectibleBehaviors
                     };
             });
             woodParticles = InitializeWoodParticles();
+
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxePlaneModes", delegate
+            {
+
+                SkillItem[] array;
+                array = new SkillItem[]
+                {
+                        new SkillItem
+                        {
+                            Code = new AssetLocation("planing"),
+                            Name = Lang.Get("Planing", Array.Empty<object>())
+                        }
+                };
+
+                if (capi != null)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        array[i].TexturePremultipliedAlpha = false;
+                    }
+                }
+
+                return array;
+            });
         }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
+            IPlayer player = ((EntityPlayer)byEntity).Player;
+            string curTMode = "";
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
 
-            //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
-            if (!byEntity.Controls.Sprint || blockSel == null)
+            //-- Do not process the chopping action if the player is not holding ctrl, block is selected, or the given tools toolMode is not chopping --//
+            if (!byEntity.Controls.Sprint || blockSel == null || curTMode == "planing")
                 return;
 
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+            recipe = GetMatchingPlaningRecipe(byEntity.World, Inventory[0]);
+            if (recipe == null) return;
+
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["idgSawHorseProps"]["planable"];
+            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["planable"];
+
             if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage)
+            if (slot.Itemstack.Attributes.GetInt("durability") < groundPlaneDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundPlaneDamage));
                 return;
             }
-            //byEntity.StartAnimation("axechop");
+            byEntity.StartAnimation("axechop");
 
             playNextSound = 0.25f;
 
             handHandling = EnumHandHandling.PreventDefault;
         }
+ 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
@@ -117,7 +164,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 player.RightHandItemSlot.Itemstack.Collectible.DamageItem(api.World, byEntity, player.RightHandItemSlot, groundPlaneDamage);
         }
 
-        public void SpawnOutput(PlaningRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             ItemStack output = recipe.Output.ResolvedItemstack;
             int j = output.StackSize;
@@ -126,6 +173,22 @@ namespace InDappledGroves.CollectibleBehaviors
                 api.World.SpawnItemEntity(new ItemStack(output.Collectible), pos.ToVec3d(), new Vec3d(0.05f, .1f, 0.05f));
             }
 
+        }
+
+        public SawHorseRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        {
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
+            if (recipes == null) return null;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slots))
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
         }
 
         private SimpleParticleProperties InitializeWoodParticles()

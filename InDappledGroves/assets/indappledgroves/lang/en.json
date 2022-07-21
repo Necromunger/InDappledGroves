@@ -6,6 +6,7 @@
   "toolittledurability": "Your tool requires {0} durability to do this.",
 	
 	"_comment": "Blocks Are Listed Below",
+	"block-logslab-*-down-free": "Log Slab",
   "block-logslab-aged-down-free": "Aged Log Slab",
 	"block-logslab-birch-down-free": "Birch Log Slab",
 	"block-logslab-oak-down-free": "Oak Log Slab",
@@ -18,8 +19,8 @@
 	"block-sawbuck-*": "Sawbuck",
 	"item-maple-aged-split-green": "Raw Aged Plank",
 	"item-maple-aged-split-cured": "Aged Plank",
-	"The sole and the blade...": "The sole and the blade...",
-	"The haft and the bit...": "The haft and the bit...",
-	"The dust and the dog...": "The dust and the dog...",
-	
+	"The Tyee and the bullcook...": "The Tyee and the bullcook...",
+	"...working sole and blade": "...working sole and blade",
+	"...with sturdy haft and bit": "...with sturdy haft and bit",
+	"...by dust and the dog": "...by dust and the dog",
 }
