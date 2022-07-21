@@ -1,0 +1,43 @@
+[
+  {
+    "op": "replace",
+    "path": "/class",
+    "value": "idgplank",
+    "file": "game:itemtypes/resource/plank.json",
+    "side": "server"
+  },
+  {
+    "enabled": true,
+    "op": "add",
+    "path": "/attributes",
+    "value": {"woodworkingPropsbyType": 
+                {
+                "plank-*":
+                  {
+                    "planable": true,
+                    "idgSawHorseProps": 
+                    {
+                      "output": {"code": "game:plank-{wood}", "quantity": 2},
+                      "idgSawHorseTranslate": 
+                      {
+                        "north": {
+                          "x": 0,
+                          "z": -0.5
+                        },
+                        "south": {
+                          "x": 0,
+                          "y": 0.75,
+                          "z": 0.5 
+                        },
+                        "west": {
+                          "x": -0.5
+                        }
+                      }
+                    } 
+                  }
+                }
+             },
+    "file": "game:itemtypes/resource/plank.json",
+    "side": "server"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiresstation": false,
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "item", "code": "game:firewood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 4}
+  },
+  {
+    "toolmode": "chopping",
+    "requiresstation": false,
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgfirewoodblock"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 4}
+  }
+]
