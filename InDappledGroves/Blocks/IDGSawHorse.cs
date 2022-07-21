@@ -11,7 +11,7 @@ namespace InDappledGroves.Blocks
 {
     class IDGSawHorse : Block
     {
-
+        SawHorseRecipe recipe;
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
@@ -109,7 +109,7 @@ namespace InDappledGroves.Blocks
                 }
                 if (secondsUsed >= planeTool.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
                 {
-                    SpawnOutput(besawHorse.GetRecipe(), byPlayer.Entity, blockSel.Position);
+                    SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
                     conBlock.Inventory.Clear();
                     (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
                     conBlock.MarkDirty(true);
@@ -153,6 +153,15 @@ namespace InDappledGroves.Blocks
                 }
             }
             base.OnBlockRemoved(world, pos);
+        }
+
+        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        {
+            int j = recipe.Output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+            }
         }
 
         private float playNextSound;

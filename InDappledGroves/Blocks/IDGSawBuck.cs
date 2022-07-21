@@ -12,7 +12,7 @@ namespace InDappledGroves.Blocks
 {
     class IDGSawBuck : Block
 	{
-		SawingRecipe recipe;
+		SawbuckRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
@@ -64,7 +64,7 @@ namespace InDappledGroves.Blocks
 				}
 				if (secondsUsed >= sawTool.GetBehavior<BehaviorWoodSawer>().sawBuckSawTime)
 				{
-					sawTool.GetBehavior<BehaviorWoodSawer>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					bebesawbuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
@@ -80,9 +80,9 @@ namespace InDappledGroves.Blocks
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		public SawingRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
+		public SawbuckRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
 		{
-			List<SawingRecipe> recipes = IDGRecipeRegistry.Loaded.SawingRecipes;
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
 			if (recipes == null) return null;
 
 			for (int j = 0; j < recipes.Count; j++)
@@ -94,6 +94,14 @@ namespace InDappledGroves.Blocks
 			}
 
 			return null;
+		}
+		public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		{
+			int j = recipe.Output.StackSize;
+			for (int i = j; i > 0; i--)
+			{
+				api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+			}
 		}
 
 		private float playNextSound;

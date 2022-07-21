@@ -21,7 +21,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos conBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        PlaningRecipe recipe; 
+        SawHorseRecipe recipe; 
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -88,7 +88,7 @@ namespace InDappledGroves.BlockEntities
             return true;
         }
 
-        public PlaningRecipe GetRecipe()
+        public SawHorseRecipe GetRecipe()
         {
             if (!this.isConBlock)
             {
@@ -299,9 +299,9 @@ namespace InDappledGroves.BlockEntities
         readonly Matrixf mat = new();
         #endregion
 
-        public PlaningRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
+        public SawHorseRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
         {
-            List<PlaningRecipe> recipes = IDGRecipeRegistry.Loaded.PlaningRecipes;
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
             if (recipes == null) return null;
 
             for (int j = 0; j < recipes.Count; j++)
