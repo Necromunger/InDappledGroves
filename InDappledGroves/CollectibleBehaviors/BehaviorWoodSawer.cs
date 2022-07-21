@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InDappledGroves.Util;
+using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -56,6 +57,31 @@ namespace InDappledGroves.CollectibleBehaviors
                     };
             });
             woodParticles = InitializeWoodParticles();
+
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAxeSawModes", delegate
+            {
+
+                SkillItem[] array;
+                array = new SkillItem[]
+                {
+                        new SkillItem
+                        {
+                            Code = new AssetLocation("sawing"),
+                            Name = Lang.Get("Sawing", Array.Empty<object>())
+                        }
+                };
+
+                if (capi != null)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        array[i].TexturePremultipliedAlpha = false;
+                    }
+                }
+
+                return array;
+            });
         }
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
@@ -65,7 +91,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 return;
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
             recipe = GetMatchingSawbuckRecipe(byEntity.World, Inventory[0]);
-            if (recipe == null || recipe.RequiresStation) return;
+            if (recipe == null) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["sawable"];

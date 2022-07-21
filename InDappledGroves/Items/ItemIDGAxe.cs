@@ -65,7 +65,7 @@ namespace InDappledGroves.Items.Tools
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1);
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1)*(itemslot.Itemstack.Collectible.Attributes["woodworkingProps"]["fellingmultiplier"].AsFloat(1f));
 
             BlockPos pos = blockSel.Position;
 

@@ -96,7 +96,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
             recipe = GetMatchingPlaningRecipe(byEntity.World, Inventory[0]);
-            if (recipe == null || recipe.RequiresStation) return;
+            if (recipe == null) return;
 
             Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
             JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["planable"];
@@ -113,6 +113,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             handHandling = EnumHandHandling.PreventDefault;
         }
+ 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;

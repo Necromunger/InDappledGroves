@@ -130,6 +130,7 @@ namespace InDappledGroves.Util
             List<string> crecipes = new List<string>();
             List<string> srecipes = new List<string>();
             List<string> precipes = new List<string>();
+            List<string> grecipes = new List<string>();
 
             foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockrecipes)
             {
@@ -170,12 +171,26 @@ namespace InDappledGroves.Util
                 }
             }
 
+            foreach (GroundRecipe grec in IDGRecipeRegistry.Loaded.GroundRecipes)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    BinaryWriter writer = new BinaryWriter(ms);
+
+                    grec.ToBytes(writer);
+
+                    string value = Ascii85.Encode(ms.ToArray());
+                    grecipes.Add(value);
+                }
+            }
+
 
             serverChannel.BroadcastPacket(new RecipeUpload()
             {
                 cvalues = crecipes,
                 svalues = srecipes,
                 pvalues = precipes,
+                gvalues = grecipes,
             });
         }
 

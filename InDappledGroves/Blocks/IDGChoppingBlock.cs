@@ -25,25 +25,25 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			string curTMode = "";
-			ItemSlot chopSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-			ItemStack chopToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject chopCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (chopCollObj != null && chopCollObj is IIDGTool tool) {curTMode = tool.GetToolMode(chopSlot);};
+			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolMode(slot);};
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
-				if (chopCollObj is IIDGTool)
+				if (collObj is IIDGTool)
 				{
 					recipe = GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						if (chopToolStack.Attributes.GetInt("durability") < chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+						if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
-							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", chopCollObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
+							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
 							return base.OnBlockInteractStart(world, byPlayer, blockSel);
 						}
 						else
@@ -101,28 +101,15 @@ namespace InDappledGroves.Blocks
 			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
 			if (recipes == null) return null;
 
-			ChoppingBlockRecipe stationRecipe = null;
-			ChoppingBlockRecipe nostationRecipe = null;
-
 			for (int j = 0; j < recipes.Count; j++)
 			{
-				if (recipes[j].Matches(api.World, slots))
+				if (recipes[j].Matches(api.World, slots) && (recipes[j].ToolMode == toolmode))
 				{
-					if (recipes[j].ToolMode == toolmode)
-					{
-						if (recipes[j].RequiresStation)
-						{
-							stationRecipe = recipes[j];
-						}
-						else
-						{
-							nostationRecipe = recipes[j];
-						}
-					} 
+					return recipes[j];
 				}
 			}
 
-			return stationRecipe != null ? stationRecipe : nostationRecipe;
+			return null;
 		}
 		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
 		{

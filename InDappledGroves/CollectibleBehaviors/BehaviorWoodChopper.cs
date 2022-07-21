@@ -119,6 +119,7 @@ namespace InDappledGroves
 
             handHandling = EnumHandHandling.PreventDefault;
         }
+ 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
@@ -229,8 +230,6 @@ namespace InDappledGroves
         {
             woodParticles.Color = colour;
         }
-
-
 
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {

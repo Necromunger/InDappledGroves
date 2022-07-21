@@ -21,7 +21,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos conBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        SawHorseRecipe recipe; 
+        SawHorseRecipe recipe;
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -34,6 +34,12 @@ namespace InDappledGroves.BlockEntities
             meshes = new MeshData[2];
         }
 
+        public ItemSlot InputSlot()
+        {
+            return inv[1];
+        }
+
+		
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
@@ -72,7 +78,7 @@ namespace InDappledGroves.BlockEntities
                 System.Diagnostics.Debug.WriteLine(this.Inventory[1].Itemstack);
                 if (recipe != null)
                 {
-                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventChoppingWithLowDurability)
+                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
                     {
                         (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage));
                         return false;
@@ -96,6 +102,7 @@ namespace InDappledGroves.BlockEntities
             }
             return recipe;
         }
+   
         private AssetLocation GetSound(ItemSlot slot) {
             if (slot.Itemstack == null)
             {

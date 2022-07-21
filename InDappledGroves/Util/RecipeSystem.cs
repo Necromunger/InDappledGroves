@@ -128,7 +128,7 @@ namespace InDappledGroves.Util
 
             public void LoadIDGRecipes()
             {
-                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The Tyee and bullcook..."));
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The Tyee and the bullcook..."));
                 LoadChoppingBlockRecipes();
                 LoadSawbuckRecipes();
                 LoadSawHorseRecipes();
@@ -527,8 +527,8 @@ namespace InDappledGroves.Util
                     }
                 }
 
-                api.World.Logger.Event("{0} Planing recipes loaded", recipeQuantity);
-                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:working sole and blade..."));
+                api.World.Logger.Event("{0} sawhorse recipes loaded", recipeQuantity);
+                api.World.Logger.StoryEvent(Lang.Get("indappledgroves:...working sole and blade"));
             }
 
             public void LoadSawHorseRecipe(AssetLocation path, SawHorseRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
@@ -1121,7 +1121,7 @@ namespace InDappledGroves.Util
             public string Code = "sawingRecipe";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
-            public bool RequiresStation;
+            public string ToolMode = "sawing";
 
             public SawbuckIngredient[] Ingredients;
 
@@ -1258,7 +1258,7 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
-                writer.Write(RequiresStation);
+                writer.Write(ToolMode);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1271,7 +1271,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
-                RequiresStation = reader.ReadBoolean();
+                ToolMode = reader.ReadString();
                 Ingredients = new SawbuckIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1297,6 +1297,7 @@ namespace InDappledGroves.Util
                 return new SawbuckRecipe()
                 {
                     Output = Output.Clone(),
+                    ToolMode = ToolMode,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,
@@ -1364,11 +1365,11 @@ namespace InDappledGroves.Util
 
         public class SawHorseRecipe : IByteSerializable
         {
-            public string Code = "sawhorseRecipe";
+            public string Code = "sawhorserecipe";
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
 
-            public bool RequiresStation;
+            public string ToolMode = "planing";
 
             public SawHorseIngredient[] Ingredients;
 
@@ -1505,7 +1506,7 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
-                writer.Write(RequiresStation);
+                writer.Write(ToolMode);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1518,7 +1519,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
-                RequiresStation = reader.ReadBoolean();
+                ToolMode = reader.ReadString();
                 Ingredients = new SawHorseIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1544,6 +1545,7 @@ namespace InDappledGroves.Util
                 return new SawHorseRecipe()
                 {
                     Output = Output.Clone(),
+                    ToolMode = ToolMode,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,
