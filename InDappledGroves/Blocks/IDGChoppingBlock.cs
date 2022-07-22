@@ -41,9 +41,9 @@ namespace InDappledGroves.Blocks
 					recipe = GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+						if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodChopping>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
-							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
+							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodChopping>().choppingBlockChopDamage));
 							return base.OnBlockInteractStart(world, byPlayer, blockSel);
 						}
 						else
@@ -73,14 +73,14 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopper>().choppingBlockChopTime)
+                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopping>().choppingBlockChopTime)
                 {
 
 					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
-					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, chopTool.GetBehavior<BehaviorWoodChopper>().groundChopDamage);
+					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, chopTool.GetBehavior<BehaviorWoodChopping>().groundChopDamage);
 
 					bechoppingblock.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
@@ -98,7 +98,7 @@ namespace InDappledGroves.Blocks
 		}
 		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
 		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
+			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 			if (recipes == null) return null;
 
 			for (int j = 0; j < recipes.Count; j++)

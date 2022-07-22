@@ -37,9 +37,9 @@ namespace InDappledGroves.Blocks
 				recipe = GetMatchingSawbuckRecipe(world, besawbuck.InputSlot, curTMode);
 				if (recipe != null)
 				{
-					if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+					if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodSawing>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 					{
-						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage));
+						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodSawing>().sawBuckSawDamage));
 						return base.OnBlockInteractStart(world, byPlayer, blockSel);
 					}
 					else
@@ -66,7 +66,7 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
 				}
-				if (secondsUsed >= sawTool.GetBehavior<BehaviorWoodSawer>().sawBuckSawTime)
+				if (secondsUsed >= sawTool.GetBehavior<BehaviorWoodSawing>().sawBuckSawTime)
 				{
 					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 

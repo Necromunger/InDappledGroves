@@ -6,13 +6,18 @@
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", properties: {  dropBlockFace: "east" }}
   ],
+  "attributes": {
+		"handbook": {
+			"groupBy": ["*-east"]
+		}
+  },
+  "creativeinventory": { "general": ["*-east"]},
   "variantgroups": [
     { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
-  "creativeinventory": { "general": ["*"]},
   "textures": {		
       "wood": { "base": "game:block/wood/treetrunk/{wood}" },
 			"bark": { "base": "game:block/wood/bark/{wood}" }

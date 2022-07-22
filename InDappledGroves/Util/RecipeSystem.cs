@@ -28,7 +28,7 @@ namespace InDappledGroves.Util
             private List<SawHorseRecipe> sawhorseRecipes = new List<SawHorseRecipe>();
             private List<GroundRecipe> groundRecipes = new List<GroundRecipe>();
 
-            public List<ChoppingBlockRecipe> ChoppingBlockrecipes
+            public List<ChoppingBlockRecipe> ChoppingBlockRecipes
             {
                 get
                 {
@@ -233,7 +233,7 @@ namespace InDappledGroves.Util
                             quantityIgnored++;
                             continue;
                         }
-                        IDGRecipeRegistry.Loaded.ChoppingBlockrecipes.Add(subRecipe);
+                        IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Add(subRecipe);
                         quantityRegistered++;
                     }
 
@@ -246,7 +246,7 @@ namespace InDappledGroves.Util
                         return;
                     }
 
-                    IDGRecipeRegistry.Loaded.ChoppingBlockrecipes.Add(recipe);
+                    IDGRecipeRegistry.Loaded.ChoppingBlockRecipes.Add(recipe);
                     quantityRegistered++;
                 }
             }

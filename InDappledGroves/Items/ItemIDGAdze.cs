@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
@@ -12,13 +13,11 @@ using Vintagestory.GameContent;
 
 namespace InDappledGroves.Items.Tools
 {
-    class ItemIDGSaw : Item, IIDGTool
-    {
-        WorldInteraction[] interactions = null;
-        //private double sawingTime;
-        private SimpleParticleProperties woodParticles;
-        //private float playNextSound;
 
+    class ItemIDGAdze : Item, IIDGTool
+    {
+
+        // Token: 0x04000CF8 RID: 3320
         private SkillItem[] toolModes;
 
         public override void OnLoaded(ICoreAPI api)
@@ -26,10 +25,10 @@ namespace InDappledGroves.Items.Tools
             base.OnLoaded(api);
             ICoreClientAPI capi = api as ICoreClientAPI;
 
-
+            
             toolModes = BuildSkillList();
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgSawToolModes", delegate
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAdzeToolModes", delegate
             {
                 if (capi != null)
                 {
@@ -43,9 +42,9 @@ namespace InDappledGroves.Items.Tools
 
                 return toolModes;
             });
-        }
+        }      
 
-        static ItemIDGSaw()
+        static ItemIDGAdze()
         {
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
@@ -91,7 +90,7 @@ namespace InDappledGroves.Items.Tools
             foreach (var behaviour in CollectibleBehaviors)
             {
                 if (behaviour is not IBehaviorVariant bwc) continue;
-                foreach (SkillItem mode in bwc.GetSkillItems())
+                foreach (var mode in bwc.GetSkillItems())
                 {
                     skillList.Add(mode);
                 }
@@ -121,7 +120,7 @@ namespace InDappledGroves.Items.Tools
             };
         }
 
-        static SimpleParticleProperties dustParticles = new SimpleParticleProperties()
+        static readonly SimpleParticleProperties dustParticles = new()
         {
             MinPos = new Vec3d(),
             AddPos = new Vec3d(),
@@ -139,24 +138,19 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
 
-        private void SetParticleColourAndPosition(int colour, Vec3d minpos)
-        {
-            SetParticleColour(colour);
+        //private void SetParticleColourAndPosition(int colour, Vec3d minpos)
+        //{
+        //    SetParticleColour(colour);
 
-            woodParticles.MinPos = minpos;
-            woodParticles.AddPos = new Vec3d(1, 1, 1);
-        }
- 
-        private void SetParticleColour(int colour)
-        {
-            woodParticles.Color = colour;
-        }
+        //    woodParticles.MinPos = minpos;
+        //    woodParticles.AddPos = new Vec3d(1, 1, 1);
+        //}
+        //private void SetParticleColour(int colour)
+        //{
+        //    woodParticles.Color = colour;
+        //}
 
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            return interactions;
-        }
-
-        
+        //private readonly SimpleParticleProperties woodParticles;
     }
+
 }

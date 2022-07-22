@@ -34,9 +34,9 @@ namespace InDappledGroves
 
             
             //Register CollectibleBehaviors
-            api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopper));
-            api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawer));
-            api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaner));
+            api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));
+            api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
+            api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
 
 
             //Check for Existing Config file, create one if none exists

@@ -72,15 +72,15 @@ namespace InDappledGroves.BlockEntities
                     }
                 }
             }
-            else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaner>() && !this.Inventory.Empty)
+            else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
                 recipe = GetMatchingPlaningRecipe(Api.World, this.Inventory[1]);
                 System.Diagnostics.Debug.WriteLine(this.Inventory[1].Itemstack);
                 if (recipe != null)
                 {
-                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
                     {
-                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", colObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneDamage));
+                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", colObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneDamage));
                         return false;
                     }
                     else

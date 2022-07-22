@@ -103,7 +103,7 @@ namespace InDappledGroves.Blocks
             string curTMode = "";
             if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
 
-            if (collObj != null && collObj.HasBehavior<BehaviorWoodPlaner>() && !conBlock.Inventory.Empty)
+            if (collObj != null && collObj.HasBehavior<BehaviorWoodPlaning>() && !conBlock.Inventory.Empty)
             {
                 recipe = GetMatchingSawHorseRecipe(world, conBlock.InputSlot(), curTMode);
                 if (recipe != null)
@@ -113,9 +113,9 @@ namespace InDappledGroves.Blocks
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    if (secondsUsed >= collObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
+                    if (secondsUsed >= collObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneTime)
                     {
-                        collObj.GetBehavior<BehaviorWoodPlaner>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+                        collObj.GetBehavior<BehaviorWoodPlaning>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
                         conBlock.Inventory.Clear();
                         (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
                         conBlock.MarkDirty(true);

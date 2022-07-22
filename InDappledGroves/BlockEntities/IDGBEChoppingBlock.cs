@@ -15,7 +15,7 @@ namespace InDappledGroves.BlockEntities
 		public override string InventoryClassName => "choppingblock";
         public override string AttributeTransformCode => "idgChoppingBlockTransform";
 
-		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
+		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
 		public IDGBEChoppingBlock()
 		{

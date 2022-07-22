@@ -2,20 +2,17 @@
   "code": "sawhorse",
   "class": "idgsawhorse",
   "entityClass": "idgbesawhorse",
-  "maxstacksize": 16,
+  "maxstacksize": 2,
   "attributes": {
 		"handbook": {
-			"groupBy": ["sawhorse-*"],
-			"extraSections": [
-				{ "title": "indappledgroves:sawhorse-handbook-help-title", "text": "indappledgroves:sawhorse-handbook-help-text" }
-			]
+			"groupBy": ["*-maple-east"]
 		}
-	},	
-"behaviorsByType": {
+	},
+  "behaviorsByType": {
   "*":[
     {"name": "Unstable" }, 
     {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
-  ],
+  ]
   },
   "variantgroups": [
     { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
@@ -43,20 +40,20 @@
   "blockmaterial": "wood",
   "sounds": {"place": "game:block/planks"},
   "collisionBoxesByType":{ 
-    "*-single-*": [{ x1: 0.0877, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7669, z2: 0.9385, "rotateYByType": {
+    "*-single-*": [{ "x1": 0.0877, "y1": 0, "z1": 0.0504, "x2": 0.9055, "y2": 0.7669, "z2": 0.9385, "rotateYByType": {
           "*-north": 270,
           "*-east": 180,
           "*-south": 90,
           "*-west": 0
         }}],
     "*-compound-*": [
-		{ x1: -0.9055, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7534, z2: 0.9511, "rotateYByType": {
+		{ "x1": -0.9055, "y1": 0, "z1": 0.0504, "x2": 0.9055, "y2": 0.7534, "z2": 0.9511, "rotateYByType": {
           "*-north": 270,
           "*-east": 180,
           "*-south": 90,
           "*-west": 0
         }},
-		{ x1: -0.9002, y1: 0.751, z1: 0.0441, x2: 0.8992, y2: 0.8299, z2: 0.9496, "rotateYByType": {
+		{ "x1": -0.9002, "y1": 0.751, "z1": 0.0441, "x2": 0.8992, "y2": 0.8299, "z2": 0.9496, "rotateYByType": {
           "*-north": 270,
           "*-east": 180,
           "*-south": 90,
@@ -64,20 +61,20 @@
     }}]
   },
   "selectionBoxesByType": {
-    "*-single-*": [{ x1: 0.0877, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7669, z2: 0.9385, "rotateYByType": {
+    "*-single-*": [{ "x1": 0.0877, "y1": 0, "z1": 0.0504, "x2": 0.9055, "y2": 0.7669, "z2": 0.9385, "rotateYByType": {
           "*-north": 90,
           "*-east": 0,
           "*-south": 270,
           "*-west": 180
         }}],
     "*-compound-*": [
-		{ x1: -0.9055, y1: 0, z1: 0.0504, x2: 0.9055, y2: 0.7534, z2: 0.9511, "rotateYByType": {
+		{ "x1": -0.9055, "y1": 0, "z1": 0.0504, "x2": 0.9055, "y2": 0.7534, "z2": 0.9511, "rotateYByType": {
           "*-north": 270,
           "*-east": 180,
           "*-south": 90,
           "*-west": 0
         }},
-		{ x1: -0.9002, y1: 0.751, z1: 0.0441, x2: 0.8992, y2: 0.8299, z2: 0.9496, "rotateYByType": {
+		{ "x1": -0.9002, "y1": 0.751, "z1": 0.0441, "x2": 0.8992, "y2": 0.8299, "z2": 0.9496, "rotateYByType": {
           "*-north": 270,
           "*-east": 180,
           "*-south": 90,

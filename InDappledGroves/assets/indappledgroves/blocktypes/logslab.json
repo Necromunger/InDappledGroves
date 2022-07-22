@@ -10,9 +10,12 @@
 		{ "code": "rot", "states": ["north", "east", "south", "west", "up", "down"] },
 		{ "code": "cover", "states": ["free", "snow"] }		
 	],
-	"skipVariants": ["*-up-snow-*"],
+	"skipVariants": ["*-up-snow"],
 	"attributes": { "woodworkingProps": {
 									"choppable": true,
+									"hewable": true,
+									"sawable": true,
+									"planable": true,
 									"idgChoppingBlockProps": {
 										 "idgChoppingBlockTransform": {
 																"translation": {
@@ -59,7 +62,7 @@
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},
 	"dropsByType":{
-		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-east-free" }]
+		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-down-free" }]
 	},
 	shapeByType: {
 		"*-snow": { base: "block/wood/snow-logslab-{rot}" },

@@ -1,0 +1,134 @@
+[
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-birch", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-birch-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-oak", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-oak-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-maple", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-maple-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-pine", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-pine-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-acacia", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-acacia-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-kapok", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-kapok-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-baldcypress", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-baldcypress-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-larch", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-larch-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-redwood", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-redwood-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-ebony", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-ebony-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-walnut", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-walnut-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-purpleheart", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-purpleheart-single-east"}
+	}
+]
