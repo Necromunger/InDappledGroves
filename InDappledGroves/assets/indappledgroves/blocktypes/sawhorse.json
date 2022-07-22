@@ -5,7 +5,7 @@
   "maxstacksize": 2,
   "attributes": {
 		"handbook": {
-			"groupBy": ["*-maple-east"]
+			"groupBy": ["sawhorse-birch-*-single-east"]
 		}
 	},
   "behaviorsByType": {

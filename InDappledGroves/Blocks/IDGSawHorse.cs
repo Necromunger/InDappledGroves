@@ -101,11 +101,12 @@ namespace InDappledGroves.Blocks
             IDGBESawHorse conBlock = besawHorse.isConBlock ? besawHorse : api.World.BlockAccessor.GetBlockEntity(besawHorse.conBlockPos) as IDGBESawHorse;
             BlockPos pos = blockSel.Position;
             string curTMode = "";
+
             if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
 
             if (collObj != null && collObj.HasBehavior<BehaviorWoodPlaning>() && !conBlock.Inventory.Empty)
             {
-                recipe = GetMatchingSawHorseRecipe(world, conBlock.InputSlot(), curTMode);
+                recipe = conBlock.GetMatchingSawHorseRecipe(world, conBlock.InputSlot(), curTMode);
                 if (recipe != null)
                 {
                     if (playNextSound < secondsUsed)
@@ -113,9 +114,9 @@ namespace InDappledGroves.Blocks
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    if (secondsUsed >= collObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneTime)
+                    if (secondsUsed >= recipe.ToolTime)
                     {
-                        collObj.GetBehavior<BehaviorWoodPlaning>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+                        conBlock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
                         conBlock.Inventory.Clear();
                         (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
                         conBlock.MarkDirty(true);
@@ -162,24 +163,6 @@ namespace InDappledGroves.Blocks
                 }
             }
             base.OnBlockRemoved(world, pos);
-        }
-
-        public SawHorseRecipe GetMatchingSawHorseRecipe(IWorldAccessor world, ItemSlot slots, string curTMode)
-        {
-
-            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
-            if (recipes == null) return null;
-
-            for (int j = 0; j < recipes.Count; j++)
-            {
-                System.Diagnostics.Debug.WriteLine(recipes[j].Ingredients[0].Inputs[0].ToString());
-                if (recipes[j].Matches(api.World, slots) && curTMode == recipes[j].ToolMode)
-                {
-                        return recipes[j];
-                }
-            }
-
-            return null;
         }
 
         private float playNextSound;

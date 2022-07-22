@@ -9,6 +9,8 @@
        ]
       }
     ],
+    "ToolTime": 4,
+    "ToolDamage": 2,
     "output": {"type": "item", "code": "game:firewood", "quantity": 2}
   }
 ]

@@ -317,7 +317,6 @@ namespace InDappledGroves.Util
             }
             #endregion
 
-
             #region Sawing Recipes
             public void LoadSawbuckRecipes()
             {
@@ -872,11 +871,17 @@ namespace InDappledGroves.Util
             public bool Enabled { get; set; } = true;
             public bool RequiresStation { get; set; } = false;
 
+            public int ToolTime = 4;
+            
+            public int ToolDamage = 4;
+
             public string ToolMode { get; set; } = "chopping";
 
             public ChoppingBlockIngredient[] Ingredients;
 
             public JsonItemStack Output;
+
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1010,6 +1015,8 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(RequiresStation);
+                writer.Write(ToolTime);
+                writer.Write(ToolDamage);
                 writer.Write(ToolMode);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1018,12 +1025,15 @@ namespace InDappledGroves.Util
                 }
 
                 Output.ToBytes(writer);
+                ReturnStack.ToBytes(writer);
             }
 
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
                 RequiresStation = reader.ReadBoolean();
+                ToolTime = reader.ReadInt32();
+                ToolDamage = reader.ReadInt32();
                 ToolMode = reader.ReadString();
                 Ingredients = new ChoppingBlockIngredient[reader.ReadInt32()];
 
@@ -1037,6 +1047,9 @@ namespace InDappledGroves.Util
                 Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
                 Output.Resolve(resolver, "Chopping Recipe (FromBytes)");
+                ReturnStack = new JsonItemStack();
+                ReturnStack.FromBytes(reader, resolver.ClassRegistry);
+                ReturnStack.Resolve(resolver, "Chopping Recipe (FromBytes)");
             }
 
             public ChoppingBlockRecipe Clone()
@@ -1049,9 +1062,13 @@ namespace InDappledGroves.Util
 
                 return new ChoppingBlockRecipe()
                 {
-                    ToolMode = ToolMode,
+
                     Output = Output.Clone(),
+                    ReturnStack = ReturnStack.Clone(),
                     Code = Code,
+                    ToolTime = ToolTime,
+                    ToolDamage = ToolDamage,
+                    ToolMode = ToolMode,
                     Enabled = Enabled,
                     Name = Name,
                     Ingredients = ingredients
@@ -1122,10 +1139,12 @@ namespace InDappledGroves.Util
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public string ToolMode = "sawing";
-
+            public int ToolTime = 4;
+            public int ToolDamage = 4;
             public SawbuckIngredient[] Ingredients;
 
             public JsonItemStack Output;
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block }; 
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1259,6 +1278,8 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
+                writer.Write(ToolTime);
+                writer.Write(ToolDamage);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1266,12 +1287,15 @@ namespace InDappledGroves.Util
                 }
 
                 Output.ToBytes(writer);
+                ReturnStack.ToBytes(writer);
             }
 
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
+                ToolTime = reader.ReadInt32();
+                ToolDamage = reader.ReadInt32();
                 Ingredients = new SawbuckIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1284,6 +1308,9 @@ namespace InDappledGroves.Util
                 Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
                 Output.Resolve(resolver, "Sawing Recipe (FromBytes)");
+                ReturnStack = new JsonItemStack();
+                ReturnStack.FromBytes(reader, resolver.ClassRegistry);
+                ReturnStack.Resolve(resolver, "Sawing Recipe (FromBytes)");
             }
 
             public SawbuckRecipe Clone()
@@ -1297,12 +1324,16 @@ namespace InDappledGroves.Util
                 return new SawbuckRecipe()
                 {
                     Output = Output.Clone(),
+                    ReturnStack = ReturnStack.Clone(),
                     ToolMode = ToolMode,
+                    ToolTime = ToolTime,
+                    ToolDamage = ToolDamage,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,
                     Ingredients = ingredients
                 };
+                
             }
 
             public Dictionary<string, string[]> GetNameToCodeMapping(IWorldAccessor world)
@@ -1371,9 +1402,14 @@ namespace InDappledGroves.Util
 
             public string ToolMode = "planing";
 
+            public int ToolTime = 4;
+
+            public int ToolDamage = 4;
+
             public SawHorseIngredient[] Ingredients;
 
             public JsonItemStack Output;
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1507,6 +1543,8 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
+                writer.Write(ToolTime);
+                writer.Write(ToolDamage);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1514,12 +1552,15 @@ namespace InDappledGroves.Util
                 }
 
                 Output.ToBytes(writer);
+                ReturnStack.ToBytes(writer);
             }
 
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
+                ToolTime = reader.ReadInt32();
+                ToolDamage = reader.ReadInt32();
                 Ingredients = new SawHorseIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1532,6 +1573,9 @@ namespace InDappledGroves.Util
                 Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
                 Output.Resolve(resolver, "Sawhorse Recipe (FromBytes)");
+                ReturnStack = new JsonItemStack();
+                ReturnStack.FromBytes(reader, resolver.ClassRegistry);
+                ReturnStack.Resolve(resolver, "Sawhorse Recipe (FromBytes)");
             }
 
             public SawHorseRecipe Clone()
@@ -1545,10 +1589,13 @@ namespace InDappledGroves.Util
                 return new SawHorseRecipe()
                 {
                     Output = Output.Clone(),
-                    ToolMode = ToolMode,
+                    ReturnStack = ReturnStack.Clone(),
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,
+                    ToolMode = ToolMode,
+                    ToolTime = ToolTime,
+                    ToolDamage = ToolDamage,
                     Ingredients = ingredients
                 };
             }
@@ -1617,11 +1664,17 @@ namespace InDappledGroves.Util
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
 
-            public string ToolMode;
+            public string ToolMode = "chopping";
+
+            public int ToolTime = 4;
+
+            public int ToolDamage = 4;
 
             public GroundIngredient[] Ingredients;
 
             public JsonItemStack Output;
+
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1};
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1755,6 +1808,8 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
+                writer.Write(ToolTime);
+                writer.Write(ToolDamage);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1762,12 +1817,15 @@ namespace InDappledGroves.Util
                 }
 
                 Output.ToBytes(writer);
+                ReturnStack.ToBytes(writer);
             }
 
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
+                ToolTime = reader.ReadInt32();
+                ToolDamage = reader.ReadInt32();
                 Ingredients = new GroundIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1780,6 +1838,9 @@ namespace InDappledGroves.Util
                 Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
                 Output.Resolve(resolver, "Ground Recipe (FromBytes)");
+                ReturnStack = new JsonItemStack();
+                ReturnStack.FromBytes(reader, resolver.ClassRegistry);
+                ReturnStack.Resolve(resolver, "Ground Recipe Return Stack Not Resolved", true);
             }
 
             public GroundRecipe Clone()
@@ -1793,7 +1854,10 @@ namespace InDappledGroves.Util
                 return new GroundRecipe()
                 {
                     Output = Output.Clone(),
+                    ReturnStack = ReturnStack.Clone(),
                     ToolMode = ToolMode,
+                    ToolTime = ToolTime,
+                    ToolDamage = ToolDamage,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,

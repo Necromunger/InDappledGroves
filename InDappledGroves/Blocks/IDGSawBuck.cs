@@ -34,12 +34,12 @@ namespace InDappledGroves.Blocks
 
 			if (!besawbuck.Inventory.Empty)
 			{
-				recipe = GetMatchingSawbuckRecipe(world, besawbuck.InputSlot, curTMode);
+				recipe = besawbuck.GetMatchingSawbuckRecipe(world, besawbuck.InputSlot, curTMode);
 				if (recipe != null)
 				{
-					if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodSawing>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+					if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 					{
-						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodSawing>().sawBuckSawDamage));
+						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
 						return base.OnBlockInteractStart(world, byPlayer, blockSel);
 					}
 					else
@@ -66,7 +66,7 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
 				}
-				if (secondsUsed >= sawTool.GetBehavior<BehaviorWoodSawing>().sawBuckSawTime)
+				if (secondsUsed >= recipe.ToolTime)
 				{
 					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
@@ -83,22 +83,6 @@ namespace InDappledGroves.Blocks
 		{
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
-		}
-
-		public SawbuckRecipe GetMatchingSawbuckRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
-		{
-			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
-			if (recipes == null) return null;
-
-			for (int j = 0; j < recipes.Count; j++)
-			{
-				if (recipes[j].Matches(api.World, slots) && (recipes[j].ToolMode == toolmode))
-				{
-					return recipes[j];
-				}
-			}
-
-			return null;
 		}
 
 		public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)

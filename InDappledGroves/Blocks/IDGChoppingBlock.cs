@@ -38,12 +38,12 @@ namespace InDappledGroves.Blocks
 			{
 				if (collObj is IIDGTool)
 				{
-					recipe = GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
+					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodChopping>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+						if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
-							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodChopping>().choppingBlockChopDamage));
+							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
 							return base.OnBlockInteractStart(world, byPlayer, blockSel);
 						}
 						else
@@ -54,7 +54,6 @@ namespace InDappledGroves.Blocks
 					}
 					return false;
 				}
-				return false;
 			}
 
 			return bechoppingblock.OnInteract(byPlayer);
@@ -73,14 +72,14 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopping>().choppingBlockChopTime)
+                if (secondsUsed >= recipe.ToolTime)
                 {
 
-					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
-					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, chopTool.GetBehavior<BehaviorWoodChopping>().groundChopDamage);
+					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.ToolDamage);
 
 					bechoppingblock.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
@@ -96,29 +95,8 @@ namespace InDappledGroves.Blocks
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
-		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
-		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
-			if (recipes == null) return null;
 
-			for (int j = 0; j < recipes.Count; j++)
-			{
-				if (recipes[j].Matches(api.World, slots) && (recipes[j].ToolMode == toolmode))
-				{
-					return recipes[j];
-				}
-			}
-
-			return null;
-		}
-		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
-		{
-			int j = recipe.Output.StackSize;
-			for (int i = j; i > 0; i--)
-			{
-				api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-			}
-		}
+		
 		private float playNextSound;
 	}
 		

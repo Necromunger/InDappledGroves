@@ -6,8 +6,6 @@
     "path": "/attributes/woodworkingPropsByType",
     "value": {
       "*-placed-*":{
-        "choppable": true,
-        "sawable": true,
         "idgChoppingBlockProps": {               
             "output": {"code": "game:firewood", "quantity": 4},
             "idgChoppingBlockTransform": {

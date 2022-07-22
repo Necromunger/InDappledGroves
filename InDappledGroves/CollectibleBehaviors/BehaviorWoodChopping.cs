@@ -100,15 +100,12 @@ namespace InDappledGroves
             if (!byEntity.Controls.Sprint || blockSel == null)
                 return;
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+
             //Need to get ground recipes rather than chopping block recipes
             recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
             if (recipe == null) return;
 
-            Block interactedBlock = api.World.BlockAccessor.GetBlock(blockSel.Position);
-            JsonObject attributes = interactedBlock.Attributes?["woodworkingProps"]["choppable"];
-
-            if (attributes == null || !attributes.Exists || !attributes.AsBool(false)) return;
-            if (slot.Itemstack.Attributes.GetInt("durability") < groundChopDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
+            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", groundChopDamage));
                 return;
@@ -123,7 +120,7 @@ namespace InDappledGroves
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
-            if (blockSel != null && api.World.BlockAccessor.GetBlock(pos).Attributes["woodworkingProps"]["choppable"].AsBool(false))
+            if (blockSel != null && DoesSlotMatchRecipe(api.World, Inventory[0]))
             {
 
                 if (recipe != null)
@@ -134,13 +131,13 @@ namespace InDappledGroves
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    if (secondsUsed >= groundChopTime)
+                    if (secondsUsed >= recipe.ToolTime)
                     {
-                        Block interactedBlock = api.World.BlockAccessor.GetBlock(pos);
-                        if (secondsUsed >= groundChopTime && interactedBlock.Attributes["woodworkingProps"]["choppable"].AsBool(false))
                            SpawnOutput(recipe, byEntity, pos);
-                        api.World.BlockAccessor.SetBlock(0, pos);
-                        return false;
+                        System.Diagnostics.Debug.WriteLine(api.World.BlockAccessor.GetBlock(recipe.ReturnStack.Code).BlockId);
+                           api.World.BlockAccessor.SetBlock(api.World.BlockAccessor.GetBlock(recipe.ReturnStack.Code).BlockId,pos);
+                           
+                           return false;
                     }
                 }
             }
@@ -169,6 +166,23 @@ namespace InDappledGroves
 
             return null;
         }
+
+        public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
+        {
+            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
+            if (recipes == null) return false;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slots))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         public void SpawnOutput(GroundRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {

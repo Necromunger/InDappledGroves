@@ -8,7 +8,7 @@
   ],
   "attributes": {
 		"handbook": {
-			"groupBy": ["*-east"]
+			"groupBy": ["choppingblock-*-east"]
 		}
   },
   "creativeinventory": { "general": ["*-east"]},

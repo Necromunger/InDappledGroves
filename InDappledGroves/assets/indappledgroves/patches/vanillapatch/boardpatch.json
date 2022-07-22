@@ -14,7 +14,6 @@
                 {
                 "plank-*":
                   {
-                    "planable": true,
                     "idgSawHorseProps": 
                     {
                       "output": {"code": "game:plank-{wood}", "quantity": 2},

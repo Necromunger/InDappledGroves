@@ -51,10 +51,6 @@ namespace InDappledGroves.BlockEntities
 			//Then check to see if attributes is null, or if chopblock is false or absent
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
-			JsonObject attributes = collectible.Attributes;
-
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["sawable"].AsBool(false)) return true;
-
 
 			ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
@@ -76,7 +72,7 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
 			AssetLocation assetLocation2 = assetLocation;
-			if (this.TryPut(activeHotbarSlot))
+			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) &&  this.TryPut(activeHotbarSlot))
 			{
 				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
 				updateMeshes();
@@ -133,6 +129,47 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
 			return false;
+		}
+
+		public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		{
+			int j = recipe.Output.StackSize;
+			for (int i = j; i > 0; i--)
+			{
+				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+			}
+		}
+
+		public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
+		{
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
+			if (recipes == null) return false;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public SawbuckRecipe GetMatchingSawbuckRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
+		{
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
+			if (recipes == null) return null;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots) && (recipes[j].ToolMode == toolmode))
+				{
+					return recipes[j];
+				}
+			}
+
+			return null;
 		}
 
 		public override void TranslateMesh(MeshData mesh, int index)

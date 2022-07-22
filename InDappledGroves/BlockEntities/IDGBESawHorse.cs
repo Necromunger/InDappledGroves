@@ -63,7 +63,7 @@ namespace InDappledGroves.BlockEntities
             //If players hand is not empty, and the item they're holding can be planed, attempt to put
             else if (!slot.Empty && this.Inventory[1].Empty)
             {
-                if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["planable"].AsBool(false)) {
+                if (colObj.Attributes != null && DoesSlotMatchRecipe(Api.World,slot)) {
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
@@ -74,13 +74,12 @@ namespace InDappledGroves.BlockEntities
             }
             else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
-                recipe = GetMatchingPlaningRecipe(Api.World, this.Inventory[1]);
                 System.Diagnostics.Debug.WriteLine(this.Inventory[1].Itemstack);
                 if (recipe != null)
                 {
-                    if (slot.Itemstack.Attributes.GetInt("durability") < colObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+                    if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
                     {
-                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", colObj.GetBehavior<BehaviorWoodPlaning>().sawHorsePlaneDamage));
+                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
                         return false;
                     }
                     else
@@ -94,15 +93,40 @@ namespace InDappledGroves.BlockEntities
             return true;
         }
 
-        public SawHorseRecipe GetRecipe()
+        public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
         {
-            if (!this.isConBlock)
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
+            if (recipes == null) return false;
+
+            for (int j = 0; j < recipes.Count; j++)
             {
-                if (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse conHorse) return conHorse.recipe;
+                if (recipes[j].Matches(Api.World, slots))
+                {
+                    return true;
+                }
             }
-            return recipe;
+
+            return false;
         }
-   
+
+        public SawHorseRecipe GetMatchingSawHorseRecipe(IWorldAccessor world, ItemSlot slots, string curTMode)
+        {
+
+            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
+            if (recipes == null) return null;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                System.Diagnostics.Debug.WriteLine(recipes[j].Ingredients[0].Inputs[0].ToString());
+                if (recipes[j].Matches(Api.World, slots) && curTMode == recipes[j].ToolMode)
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
+
         private AssetLocation GetSound(ItemSlot slot) {
             if (slot.Itemstack == null)
             {
@@ -306,6 +330,15 @@ namespace InDappledGroves.BlockEntities
         readonly Matrixf mat = new();
         #endregion
 
+        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        {
+            int j = recipe.Output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+            }
+        }
+
         public SawHorseRecipe GetMatchingPlaningRecipe(IWorldAccessor world, ItemSlot slots)
         {
             List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
@@ -326,11 +359,11 @@ namespace InDappledGroves.BlockEntities
         {
             if (Block.Variant["state"] == "compound")
             {
-                dsc.AppendLine("My Pos is " + Pos);
-                dsc.AppendLine("conBlock is " + conBlockPos);
-                dsc.AppendLine("pairedBlock is " + pairedBlockPos);
-                dsc.AppendLine("isConBlock is " + isConBlock);
-                dsc.AppendLine("isPaired is " + isPaired);
+                //dsc.AppendLine("My Pos is " + Pos);
+                //dsc.AppendLine("conBlock is " + conBlockPos);
+                //dsc.AppendLine("pairedBlock is " + pairedBlockPos);
+                //dsc.AppendLine("isConBlock is " + isConBlock);
+                //dsc.AppendLine("isPaired is " + isPaired);
                 dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
             }
  

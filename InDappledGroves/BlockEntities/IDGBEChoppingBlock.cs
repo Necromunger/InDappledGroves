@@ -48,12 +48,7 @@ namespace InDappledGroves.BlockEntities
 				return this.TryTake(byPlayer);
 			}
 
-			//If the player is holding an object, and the inventory of the block is full,
-			//or if the item in the players hand does not have attributes, or the cuttable attribute is false
-
-			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
-			JsonObject attributes = collectible.Attributes;
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["choppable"].AsBool(false)) return true;		
+			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;	
 
             ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
@@ -75,13 +70,13 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
 			AssetLocation assetLocation2 = assetLocation;
-			if (this.TryPut(activeHotbarSlot))
+
+			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 updateMeshes();
-				return true;
 			}
-			return false;
+			return true;
 		}
 
 		private bool TryPut(ItemSlot slot)
@@ -225,6 +220,47 @@ namespace InDappledGroves.BlockEntities
 		{
 			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+		}
+
+		public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
+		{
+			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
+			if (recipes == null) return false;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
+		{
+			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
+			if (recipes == null) return null;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots) && (recipes[j].ToolMode == toolmode))
+				{
+					return recipes[j];
+				}
+			}
+
+			return null;
+		}
+
+		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		{
+			int j = recipe.Output.StackSize;
+			for (int i = j; i > 0; i--)
+			{
+				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+			}
 		}
 
 		public override void updateMeshes()
