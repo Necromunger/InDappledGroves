@@ -1007,6 +1007,8 @@ namespace InDappledGroves.Util
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
 
+                ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
+
 
                 return ok;
             }
@@ -1270,6 +1272,7 @@ namespace InDappledGroves.Util
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
 
+                ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
 
                 return ok;
             }
@@ -1535,6 +1538,7 @@ namespace InDappledGroves.Util
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
 
+                ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
 
                 return ok;
             }
@@ -1799,6 +1803,8 @@ namespace InDappledGroves.Util
                 }
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
+
+                ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
 
 
                 return ok;

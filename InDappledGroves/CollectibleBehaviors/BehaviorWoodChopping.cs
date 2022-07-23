@@ -134,16 +134,16 @@ namespace InDappledGroves
                     if (secondsUsed >= recipe.ToolTime)
                     {
                            SpawnOutput(recipe, byEntity, pos);
-                        System.Diagnostics.Debug.WriteLine(api.World.BlockAccessor.GetBlock(recipe.ReturnStack.Code).BlockId);
-                           api.World.BlockAccessor.SetBlock(api.World.BlockAccessor.GetBlock(recipe.ReturnStack.Code).BlockId,pos);
-                           
-                           return false;
+                           api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
+                            System.Diagnostics.Debug.Write(api.Side + " " + api.World.BlockAccessor.GetBlock(pos).Code.ToString() + " ");
+                           return true;
                     }
                 }
             }
             handling = EnumHandling.PreventSubsequent;
             return true;
         }
+
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
@@ -183,10 +183,32 @@ namespace InDappledGroves
             return false;
         }
 
+        private int ReturnStackId(GroundRecipe recipe, BlockPos pos)
+        {
+            if (recipe.ReturnStack.ResolvedItemstack.Collectible is Block)
+            {
+                return recipe.ReturnStack.ResolvedItemstack.Id;
+            }
+            else if (recipe.ReturnStack.ResolvedItemstack.Collectible is Item)
+            {
+                SpawnReturnstackItem(recipe.ReturnStack.ResolvedItemstack, pos);
+                return 0;
+            }
+                return 0;
+        }
 
         public void SpawnOutput(GroundRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
             int j = recipe.Output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+            }
+        }
+
+        public void SpawnReturnstackItem(ItemStack stack, BlockPos pos)
+        {
+            int j = stack.StackSize;
             for (int i = j; i > 0; i--)
             {
                 api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
