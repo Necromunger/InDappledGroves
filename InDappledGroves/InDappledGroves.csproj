@@ -69,6 +69,9 @@
     <None Update="assets\indappledgroves\recipes\ground\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\ground\log.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\ground\sticks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

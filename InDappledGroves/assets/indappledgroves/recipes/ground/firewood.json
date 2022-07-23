@@ -10,6 +10,6 @@
       }
     ],
     "output": {"type": "item", "code": "game:firewood", "quantity": 2},
-    "returnstack": {"type": "block", "code": "indappledgroves:idgfirewoodblock"}
+    "returnstack": {"type": "item", "code": "game:stick", "quantity": 4}
   }
 ]

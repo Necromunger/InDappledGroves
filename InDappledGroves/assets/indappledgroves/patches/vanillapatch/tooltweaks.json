@@ -2,7 +2,7 @@
   {
     "op": "replace",
     "path": "/class",
-    "value": "idgaxe",
+    "value": "idgtool",
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
