@@ -1,11 +1,18 @@
 {
-  "itemhelp-axe-chopwood": "Shift+Right Click To Chop Wood",
-  "itemhelp-saw-sawwood": "Shift+Right Click To Saw Planks",
-	"itemhelp-tool-planewood": "Ctrl+Right Click To Plane Planks",
-  "block-choppingblock-*": "Chopping Block",
-  "toolittledurability": "Your tool requires {0} durability to do this.",
+
+	"_comment1": "Tool Interactions and Mode Info Listed Below",
+  "Chopping": "Chopping",
+	"Sawing": "Sawing",
+	"Planing": "Planing",
+	"Hewing": "Hewing",
+	"itemhelp-axe-chopwood": "To Chop",
+  "itemhelp-saw-sawwood": "To Saw",
+	"itemhelp-adze-hewwood": "To Hew",
+	"itemhelp-tool-planewood": "To Plane",
+	"toolittledurability": "Your tool requires {0} durability to do this.",
 	
-	"_comment": "Blocks Are Listed Below",
+	"_comment2": "Blocks Are Listed Below",
+	"block-choppingblock-*": "Chopping Block",
 	"block-logslab-*-down-free": "Log Slab",
   "block-logslab-aged-down-free": "Aged Log Slab",
 	"block-logslab-birch-down-free": "Birch Log Slab",
@@ -22,5 +29,5 @@
 	"The Tyee and the bullcook...": "The Tyee and the bullcook...",
 	"...working sole and blade": "...working sole and blade",
 	"...with sturdy haft and bit": "...with sturdy haft and bit",
-	"...by dust and the dog": "...by dust and the dog",
+	"...by dust and the dog": "...by dust and the dog"
 }

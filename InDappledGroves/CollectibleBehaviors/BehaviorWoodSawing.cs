@@ -48,7 +48,6 @@ namespace InDappledGroves.CollectibleBehaviors
                     new WorldInteraction()
                         {
                             ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
-                            HotKeyCode = "sprint",
                             MouseButton = EnumMouseButton.Right
                         },
                     };
@@ -87,7 +86,7 @@ namespace InDappledGroves.CollectibleBehaviors
             string curTMode = "";
             if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
 
-            if (!byEntity.Controls.Sprint || blockSel == null)
+            if (/*!byEntity.Controls.Sprint ||*/ blockSel == null)
                 return;
 
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
@@ -256,10 +255,14 @@ namespace InDappledGroves.CollectibleBehaviors
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            return interactions;
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "sawing")
+            {
+                return interactions;
+            }
+            return null;
         }
 
-        WorldInteraction[] interactions = null;
+        WorldInteraction[] interactions;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
     }

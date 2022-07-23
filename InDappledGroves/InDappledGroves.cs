@@ -17,8 +17,6 @@ namespace InDappledGroves
             base.Start(api);
 
             //Register Items
-            api.RegisterItemClass("idgaxe", typeof(ItemIDGAxe));
-            api.RegisterItemClass("idgsaw", typeof(ItemIDGSaw));
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
             api.RegisterItemClass("idgplank", typeof(IDGPlank));
             api.RegisterItemClass("idgtool", typeof(IDGTool));

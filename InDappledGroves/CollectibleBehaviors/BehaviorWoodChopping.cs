@@ -79,7 +79,6 @@ namespace InDappledGroves
                     new WorldInteraction()
                         {
                             ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-                            HotKeyCode = "crouch",
                             MouseButton = EnumMouseButton.Right
                         },
                     };
@@ -93,7 +92,7 @@ namespace InDappledGroves
             if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
             
             //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
-            if (!byEntity.Controls.Sprint || blockSel == null)
+            if (blockSel == null)
                 return;
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
 
@@ -147,6 +146,7 @@ namespace InDappledGroves
             handling = EnumHandling.PreventDefault;
             byEntity.StopAnimation("axechop");
         }
+
         #region Recipe Processing
         public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
         {
@@ -236,7 +236,7 @@ namespace InDappledGroves
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
 
-            return collObj.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
+            return treeResistance;
 
         }
 
@@ -385,8 +385,6 @@ namespace InDappledGroves
             return foundPositions;
         }
 
-
-
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()
         {
@@ -445,7 +443,10 @@ namespace InDappledGroves
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            return interactions;
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "chopping") {
+                return interactions;
+                }
+            return null;
         }
 
         WorldInteraction[] interactions = null;

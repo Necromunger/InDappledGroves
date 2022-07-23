@@ -1,4 +1,5 @@
 ﻿using InDappledGroves.Interfaces;
+using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -11,49 +12,49 @@ using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-    class BehaviorWoodPlaning : CollectibleBehavior, IBehaviorVariant
+    class BehaviorWoodHewing : CollectibleBehavior, IBehaviorVariant
     {
         ICoreAPI api;
-        private ICoreClientAPI capi;
-        public SkillItem[] toolModes;
+        ICoreClientAPI capi;
         public InventoryBase Inventory { get; }
         public string InventoryClassName => "worldinventory";
+        public SkillItem[] toolModes;
 
         public GroundRecipe recipe;
+
         public override void Initialize(JsonObject properties)
         {
             base.Initialize(properties);
-           
+        }
+
+        public BehaviorWoodHewing(CollectibleObject collObj) : base(collObj)
+        {
+            this.collObj = collObj;
+            Inventory = new InventoryGeneric(1, "hewingtool-slot", null, null);
         }
 
         public SkillItem[] GetSkillItems()
         {
             return toolModes ?? new SkillItem[] { null };
         }
-
-        public BehaviorWoodPlaning(CollectibleObject collObj) : base(collObj)
-        {
-            this.collObj = collObj;
-            Inventory = new InventoryGeneric(1, "planingtool-slot", null, null);
-        }
-
         public override void OnLoaded(ICoreAPI api)
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
+
+            interactions = ObjectCacheUtil.GetOrCreate(api, "idgadzeInteractions", () =>
             {
                 return new WorldInteraction[] {
                     new WorldInteraction()
                         {
-                            ActionLangCode = "indappledgroves:itemhelp-tool-planewood",
+                            ActionLangCode = "indappledgroves:itemhelp-adze-hewwood",
                             MouseButton = EnumMouseButton.Right
                         },
                     };
             });
             woodParticles = InitializeWoodParticles();
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgPlaningModes", delegate
+            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAdzeModes", delegate
             {
 
                 SkillItem[] array;
@@ -61,8 +62,8 @@ namespace InDappledGroves.CollectibleBehaviors
                 {
                         new SkillItem
                         {
-                            Code = new AssetLocation("planing"),
-                            Name = Lang.Get("Planing", Array.Empty<object>())
+                            Code = new AssetLocation("hewing"),
+                            Name = Lang.Get("Hewing", Array.Empty<object>())
                         }
                 };
 
@@ -79,16 +80,17 @@ namespace InDappledGroves.CollectibleBehaviors
             });
         }
 
+
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
             if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
 
-            if (blockSel == null)
+            if (/*!byEntity.Controls.Sprint ||*/ blockSel == null)
                 return;
 
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
-            
+
             recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
             if (recipe == null) return;
 
@@ -103,7 +105,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             handHandling = EnumHandHandling.PreventDefault;
         }
- 
+
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
@@ -116,7 +118,7 @@ namespace InDappledGroves.CollectibleBehaviors
                     playNextSound += .7f;
                 }
                 if (secondsUsed >= recipe.ToolTime)
-                {                
+                {
                     SpawnOutput(recipe, byEntity, pos);
                     slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.ToolDamage);
                     api.World.BlockAccessor.SetBlock(0, blockSel.Position);
@@ -253,14 +255,14 @@ namespace InDappledGroves.CollectibleBehaviors
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "planing")
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "sawing")
             {
                 return interactions;
             }
             return null;
         }
 
-        WorldInteraction[] interactions = null;
+        WorldInteraction[] interactions;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
     }

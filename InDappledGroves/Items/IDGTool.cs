@@ -16,7 +16,6 @@ namespace InDappledGroves.Items.Tools
 
     class IDGTool : Item, IIDGTool
     {
-
         // Token: 0x04000CF8 RID: 3320
         private SkillItem[] toolModes;
 
@@ -25,27 +24,14 @@ namespace InDappledGroves.Items.Tools
             base.OnLoaded(api);
             ICoreClientAPI capi = api as ICoreClientAPI;
 
-            
             toolModes = BuildSkillList();
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgToolModes", delegate
-            {
-                if (capi != null)
-                {
-                    for (int i = 0; i < toolModes.Length; i++)
-                    {
-                        toolModes[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg").ToString());
-                        toolModes[i].TexturePremultipliedAlpha = false;
-                    }
-                };
-
-                return toolModes;
-            });
         }      
 
-        static IDGTool()
+        public IDGTool()
         {
+            ICoreClientAPI capi = api as ICoreClientAPI;
+
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
             dustParticles.MinQuantity = 2;
@@ -57,6 +43,7 @@ namespace InDappledGroves.Items.Tools
             dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             dustParticles.DieOnRainHeightmap = false;
             dustParticles.WindAffectednes = 0.5f;
+
         }
 
         #region ToolMode Stuff
@@ -100,10 +87,11 @@ namespace InDappledGroves.Items.Tools
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            float treeResistance = 0f;
-            if (this.HasBehavior<BehaviorWoodChopping>())
+            
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["type"] == "grown")
             {
-                return this.GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
+                float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt/treeResistance , counter);
             } else {
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
             }
@@ -114,12 +102,12 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            if (this.HasBehavior<BehaviorWoodChopping>())
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["type"] == "grown")
             {
-                this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
+               return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
             }
 
-            return true;
+            return base.OnBlockBrokenWith(world,byEntity,itemslot,blockSel,dropQuantityMultiplier);
         }      
 
         //Particle Handlers
