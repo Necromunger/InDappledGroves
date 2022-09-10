@@ -32,7 +32,7 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolMode(slot);};
+			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolModeName(slot);};
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
@@ -73,7 +73,11 @@ namespace InDappledGroves.Blocks
 					playNextSound += .7f;
                 }
                 if (secondsUsed >= recipe.ToolTime)
-                {
+                {	/*Establish a method for determining the miningspeed of the tool 
+                 	 * based on the contents of the chopping block,
+                 	 * with a default for items without a set blockMaterial, 
+                 	 * such as firewood.
+                 	 */
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
@@ -81,9 +85,16 @@ namespace InDappledGroves.Blocks
 
 					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.ToolDamage);
 
-					bechoppingblock.Inventory.Clear();
+					if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
+					{
+						bechoppingblock.Inventory.Clear();
+					} else
+                    {
+						bechoppingblock.Inventory[0].Itemstack = recipe.ReturnStack.ResolvedItemstack.Clone();
+                    }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
 					bechoppingblock.MarkDirty(true);
+					return false;
                 }		
 				return !bechoppingblock.Inventory.Empty;
 			}

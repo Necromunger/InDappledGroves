@@ -71,7 +71,7 @@
 	"texturesByType": {
 		"*-barked-*": {
 					"all": { "base": "game:block/wood/treetrunk/{wood}" },
-					"trunk": {"base": "game:block/wood/treetrunk/{wood}" },
+					"trunk": {"base": "indappledgroves:block/strippedlog/{wood}" },
 					"bark": {"base": "game:block/wood/bark/{wood}" },
 					"bark2": {"base": "game:block/wood/bark/{wood}" },
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
@@ -79,7 +79,7 @@
 					},
 		"*-debarked-*": {
 					"all": { "base": "game:block/wood/treetrunk/{wood}" },
-					"trunk": {"base": "game:block/wood/treetrunk/{wood}" },
+					"trunk": {"base": "indappledgroves:block/strippedlog/{wood}" },
 					"bark": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
 					"bark2": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },

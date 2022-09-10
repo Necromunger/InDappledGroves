@@ -1,0 +1,141 @@
+{
+	code: "adze",
+	class: "idgtool",
+	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
+	behaviors: [{
+		name: "GroundStorable",
+		properties: {
+			layout: 'WallHalves',
+			wallOffY: 1,
+			sprintKey: true,
+			selectionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.35, z2: 1 },
+			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
+		}},
+		{
+		"name": "woodhewer"
+		}
+	],
+	attributes: {
+		handbook: {
+			groupBy: ["adze-*"]
+		},
+		groundStorageTransform: {
+			translation: { x: 0.05, y: 0.05, z: 0 },
+			rotation: { x: 13, y: 88, z: -87 },
+			scale: 0.88
+		},
+		rackable: true,
+		toolrackTransform: {
+			rotation: { y: 1, z: -1 },
+			translation: { x: -0.3, y: 0.6 },
+			scale: 1.25,
+		}
+	},
+	variantgroups: [
+		{ code: "handle", states: ["wood", "bone"] },
+    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "meteoriciron", "steel" ] },
+   ],
+	skipVariants: [
+		"adze-bone-copper",
+		"adze-bone-tinbronze",
+		"adze-bone-bismuthbronze",
+		"adze-bone-blackbronze",
+		"adze-bone-gold", 
+		"adze-bone-silver", 
+		"adze-bone-iron", 
+		"adze-bone-meteoriciron", 
+		"adze-bone-steel"
+	],
+	drawtype: "json",
+    shapeByType: {
+		"@adze-(wood|bone)-(chert|granite|andesite|basalt|obsidian|peridotite|flint)": { base: "item/tools/adze-stone" },
+		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": { base: "item/tools/adze-metal" }
+	},
+	texturesByType: {
+		"@adze-wood-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
+			"material": { base: "game:block/stone/rock/{material}1" },
+			"string": { base: "game:item/tool/material/string" },
+			"handle": { base: "game:item/tool/material/handle" }
+		},
+		"@adze-bone-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
+			"material": { base: "game:block/stone/rock/{material}1" },
+			"string": { base: "game:item/tool/material/string" },
+			"handle": { base: "game:block/bone-yellow" }
+		},
+		"adze-wood-flint": { 
+			"material": { base: "game:block/stone/{material}" },
+			"string": { base: "game:item/tool/material/string" },
+			"handle": { base: "game:item/tool/material/handle" } 
+		},
+		"adze-bone-flint": { 
+			"material": { base: "game:block/stone/{material}" },
+			"string": { base: "game:item/tool/material/string" },
+			"handle": { base: "game:block/bone-yellow" }
+		},
+		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": {
+			"metal": { base: "game:block/metal/ingot/{material}" },
+			"handle": { base: "game:item/tool/material/handle" }
+		}
+	},
+	maxstacksize: 1,
+	attackRange: 2,
+	tooltierbytype: {
+		"@adze-(wood|bone)-(chert|granite|andesite|basalt|peridotite|flint|obsidian)": 1,
+		"@adze-wood-(copper|silver|gold)": 2,
+		"@adze-wood-(tinbronze|bismuthbronze|blackbronze)": 3,
+		"@adze-wood-(iron|meteoriciron)": 4,
+		"@adze-wood-(steel)": 5
+	},
+	heldTpHitAnimation: "smithing",
+	damagedby: ["blockbreaking", "attacking"],
+	durabilitybytype: {
+		"@adze-wood-(chert|granite|andesite|basalt|peridotite)": 50,
+		"@adze-bone-(chert|granite|andesite|basalt|peridotite)": 60,
+		"*-wood-flint": 60,
+		"*-bone-flint": 70,
+		"*-wood-obsidian": 90,
+		"*-bone-obsidian": 100,
+		"@adze-wood-(silver|gold)": 125,
+		"*-copper": 250,
+		"*-tinbronze": 400,
+		"*-bismuthbronze": 500,
+		"*-blackbronze": 600,
+		"*-iron": 900,
+		"*-meteoriciron": 1200,
+		"*-steel": 1800
+	},
+	attackpowerbytype: {
+		"@adze-(wood|bone)-(chert|granite|andesite|basalt|peridotite)": 0.75,
+		"*-flint": 1.25,
+		"*-obsidian": 1.5,
+		"*-copper": 2,
+		"@adze-wood-(bismuthbronze|silver|gold)": 2.5,
+		"*-tinbronze": 2.75,
+		"@adze-wood-(blackbronze|iron)": 3,
+		"*-medeoriciron": 3.5,
+		"*-steel": 4
+	},
+	guiTransform: {
+		translation: { x: -2, y: 0, z: 0 },
+		rotation: { x: -89, y: 41, z: 33 },
+		origin: { x: 0.48, y: 0, z: 0.38 },
+		scale: 1.57
+	},
+	fpHandTransform: {
+		translation: { x: -0.24, y: 0, z: 0.1 },
+		rotation: { x: 15, y: 15, z: 90 },
+		scale: 2.45
+	},
+	groundTransform: {
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: 0, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 3.4
+	},
+	tpHandTransform: {
+		translation: { x: -0.9, y: 0.01, z: -0.65 },
+		rotation: { x: 90, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 0.8
+	}
+}

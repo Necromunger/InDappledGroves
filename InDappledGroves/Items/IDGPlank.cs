@@ -7,24 +7,22 @@ using Vintagestory.GameContent;
 
 namespace InDappledGroves.Items
 {
-    class IDGPlank : Item
-    {
+	class IDGPlank : Item
+	{
 		public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
 		{
 
 			if (blockSel == null) return;
-			BlockPos position = blockSel.Position;
-			Block block = byEntity.World.BlockAccessor.GetBlock(position);
+			BlockPos pos = blockSel.Position;
+			Block block = byEntity.World.BlockAccessor.GetBlock(pos, 0);
 
 			if (!byEntity.Controls.Sneak && !byEntity.Controls.Sprint && block is not BlockPlankPile)
 			{
 
 				string failurecode = "";
-
-				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face));
-				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgboard-" + slot.Itemstack.Collectible.Variant["wood"] + "-" + SuggestedHVOrientation(((EntityPlayer)byEntity).Player, blockSel).GetValue(0).ToString())));
-				bool flag = false;
-				if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))
+                ItemStack stackBoard = new(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgboard-" + slot.Itemstack.Collectible.Variant["wood"] + "-" + GetType(slot.Itemstack.Collectible) + "-" + GetState(slot.Itemstack.Collectible) + "-" + SuggestedHVOrientation(((EntityPlayer)byEntity).Player, blockSel).GetValue(0).ToString())));
+                bool flag = false;
+				if (block.Replaceable > 5000 && stackBoard.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackBoard, blockSel, ref failurecode))
 				{
 					flag = true;
 					slot.TakeOut(1);
@@ -33,7 +31,7 @@ namespace InDappledGroves.Items
 				{
 					BlockSelection bs2 = blockSel;
 					bs2.Position = bs2.Position.AddCopy(blockSel.Face);
-					if (stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, bs2, ref failurecode))
+					if (stackBoard.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackBoard, bs2, ref failurecode))
 					{
 						flag = true;
 						slot.TakeOut(1);
@@ -42,12 +40,33 @@ namespace InDappledGroves.Items
 				if (flag)
 				{
 					this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
-					
+
 				}
 				handling = EnumHandHandling.PreventDefault;
+				return;
 			}
-			
+			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
 		}
+
+		public string GetType(CollectibleObject colObj)
+		{
+			if (colObj.Variant["type"] != null)
+			{
+				return colObj.Variant["type"];
+			}
+			return "smooth";
+		}
+
+		public string GetState(CollectibleObject colObj)
+        {
+			if(colObj.Variant["state"] != null)
+            {
+				return colObj.Variant["state"];
+			}
+			return "cured";
+        }
+
+		
 
 		public static BlockFacing[] SuggestedHVOrientation(IPlayer byPlayer, BlockSelection blockSel)
 		{

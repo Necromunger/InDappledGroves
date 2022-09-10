@@ -1,8 +1,6 @@
 ﻿using InDappledGroves.BlockEntities;
-using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util;
-using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -30,11 +28,11 @@ namespace InDappledGroves.Blocks
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
 			//If player is holding something, it has the BehaviorWoodSawer behavior, and the chopping block is not empty.
-			if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
+			if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
 
-			if (!besawbuck.Inventory.Empty)
+			if (!besawbuck.Inventory.Empty && !byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
 			{
-				recipe = besawbuck.GetMatchingSawbuckRecipe(world, besawbuck.InputSlot, curTMode);
+				recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
 				if (recipe != null)
 				{
 					if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
@@ -50,6 +48,7 @@ namespace InDappledGroves.Blocks
 				}
 				return false;
 			}
+
 			return besawbuck.OnInteract(byPlayer);
 		}
 
@@ -59,7 +58,7 @@ namespace InDappledGroves.Blocks
 			IDGBESawBuck besawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos pos = blockSel.Position;
 
-			if (sawTool != null && sawTool is IIDGTool tool && !besawbuck.Inventory.Empty)
+			if (sawTool != null && sawTool is IIDGTool && !besawbuck.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{
@@ -68,7 +67,7 @@ namespace InDappledGroves.Blocks
 				}
 				if (secondsUsed >= recipe.ToolTime)
 				{
-					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					SpawnOutput(recipe, blockSel.Position);
 
 					besawbuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
@@ -85,7 +84,7 @@ namespace InDappledGroves.Blocks
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)
+		public void SpawnOutput(SawbuckRecipe recipe, BlockPos pos)
 		{
 			int j = recipe.Output.StackSize;
 			for (int i = j; i > 0; i--)

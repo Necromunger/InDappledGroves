@@ -9,7 +9,6 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:firewood", "quantity": 2},
-    "returnstack": {"type": "item", "code": "game:stick", "quantity": 4}
+    "output": {"type": "item", "code": "game:firewood", "quantity": 2}
   }
 ]

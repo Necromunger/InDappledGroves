@@ -215,6 +215,7 @@ namespace InDappledGroves.Util
                                 }
                             }
 
+                            rec.ReturnStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                             rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                         }
 
@@ -397,6 +398,7 @@ namespace InDappledGroves.Util
                                 }
                             }
 
+                            rec.ReturnStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                             rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                         }
 
@@ -578,6 +580,7 @@ namespace InDappledGroves.Util
                                 }
                             }
 
+                            rec.ReturnStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                             rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                         }
 
@@ -759,6 +762,7 @@ namespace InDappledGroves.Util
                                 }
                             }
 
+                            rec.ReturnStack.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                             rec.Output.FillPlaceHolder(val2.Key, variants[i % variants.Length]);
                         }
 
@@ -1670,9 +1674,9 @@ namespace InDappledGroves.Util
 
             public string ToolMode = "chopping";
 
-            public int ToolTime = 4;
+            public int BaseToolTime = 4;
 
-            public int ToolDamage = 4;
+            public int BaseToolDmg = 4;
 
             public GroundIngredient[] Ingredients;
 
@@ -1814,8 +1818,8 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
-                writer.Write(ToolTime);
-                writer.Write(ToolDamage);
+                writer.Write(BaseToolTime);
+                writer.Write(BaseToolDmg);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1830,8 +1834,8 @@ namespace InDappledGroves.Util
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
-                ToolTime = reader.ReadInt32();
-                ToolDamage = reader.ReadInt32();
+                BaseToolTime = reader.ReadInt32();
+                BaseToolDmg = reader.ReadInt32();
                 Ingredients = new GroundIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1862,8 +1866,8 @@ namespace InDappledGroves.Util
                     Output = Output.Clone(),
                     ReturnStack = ReturnStack.Clone(),
                     ToolMode = ToolMode,
-                    ToolTime = ToolTime,
-                    ToolDamage = ToolDamage,
+                    BaseToolTime = BaseToolTime,
+                    BaseToolDmg = BaseToolDmg,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,

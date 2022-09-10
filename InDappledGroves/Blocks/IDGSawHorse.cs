@@ -1,11 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Util;
-using System.Collections.Generic;
-using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using static InDappledGroves.Util.IDGRecipeNames;
 
@@ -86,9 +82,8 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse)
+            if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["state"] == "compound")
             {
-
                 return besawhorse.OnInteract(byPlayer, blockSel);
             } 
             return false;
@@ -102,7 +97,7 @@ namespace InDappledGroves.Blocks
             BlockPos pos = blockSel.Position;
             string curTMode = "";
 
-            if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
+            if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
 
             if (collObj != null && collObj.HasBehavior<BehaviorWoodPlaning>() && !conBlock.Inventory.Empty)
             {
@@ -135,30 +130,23 @@ namespace InDappledGroves.Blocks
   
         public override void OnBlockRemoved(IWorldAccessor world, BlockPos pos)
         {
-            IDGBESawHorse besawHorse;
-            IDGBESawHorse besawHorse2;
-            if (api.World.BlockAccessor.GetBlockEntity(pos) is IDGBESawHorse)
+            
+            if (api.World.BlockAccessor.GetBlockEntity(pos) is IDGBESawHorse besawHorse)
             {
                 besawHorse = api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse;
                 if (besawHorse.isPaired)
                 {
-                    if (api.World.BlockAccessor.GetBlockEntity(besawHorse.pairedBlockPos) is IDGBESawHorse)
+                    if (api.World.BlockAccessor.GetBlockEntity(besawHorse.pairedBlockPos) is IDGBESawHorse besawHorse2)
                     {
-                        besawHorse2 = api.World.BlockAccessor.GetBlockEntity(besawHorse.pairedBlockPos) as IDGBESawHorse;
-
-
+                        
                         api.World.BlockAccessor.ExchangeBlock(api.World.BlockAccessor.GetBlock(api.World.BlockAccessor.GetBlock(besawHorse2.Pos).CodeWithVariant("state","single")).BlockId, besawHorse2.Pos);
                         besawHorse2.isConBlock = false;
                         besawHorse2.conBlockPos = null;
                         besawHorse2.isPaired = false;
                         besawHorse2.pairedBlockPos = null;
                         
+                        if (!besawHorse2.Inventory[1].Empty) api.World.SpawnItemEntity(besawHorse2.Inventory[1].TakeOutWhole(), pos.ToVec3d(), new Vec3d(0f, 0.15f, 0f));
                         besawHorse2.MarkDirty(true);
-                        if (!besawHorse2.Inventory[0].Empty)
-                        {
-                            api.World.SpawnItemEntity(besawHorse.Inventory[0].TakeOutWhole(), pos.ToVec3d(), new Vec3d(0f, 0.5f, 0f));
-                        }
-                        
                     }
                 }
             }

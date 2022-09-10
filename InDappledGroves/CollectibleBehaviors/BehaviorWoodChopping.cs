@@ -89,20 +89,20 @@ namespace InDappledGroves
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
             
             //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
             if (blockSel == null)
                 return;
-            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
 
             //Need to get ground recipes rather than chopping block recipes
             recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
             if (recipe == null) return;
-
-            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
+  
+            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
-                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
+                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
                 return;
             }
             byEntity.StartAnimation("axechop");
@@ -126,11 +126,11 @@ namespace InDappledGroves
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    if (secondsUsed >= recipe.ToolTime)
+                    if (secondsUsed >= recipe.BaseToolTime)
                     {
                         SpawnOutput(recipe, byEntity, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
-                        slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.ToolDamage);
+                        slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                         handling = EnumHandling.PreventSubsequent;
                         return false;
                     }
@@ -163,22 +163,6 @@ namespace InDappledGroves
 
             return null;
         }
-
-        //public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
-        //{
-        //    List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
-        //    if (recipes == null) return false;
-
-        //    for (int j = 0; j < recipes.Count; j++)
-        //    {
-        //        if (recipes[j].Matches(api.World, slots))
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
 
         private int ReturnStackId(GroundRecipe recipe, BlockPos pos)
         {
@@ -267,7 +251,7 @@ namespace InDappledGroves
                 BlockPos pos = foundPositions.Pop();
                 blocksbroken++;
 
-                Block block = world.BlockAccessor.GetBlock(pos);
+                Block block = world.BlockAccessor.GetBlock(pos, 0);
 
                 bool isLog = block.BlockMaterial == EnumBlockMaterial.Wood;
                 bool isBranchy = block.Code.Path.Contains("branchy");
@@ -328,7 +312,7 @@ namespace InDappledGroves
             HashSet<BlockPos> checkedPositions = new();
             Stack<BlockPos> foundPositions = new();
 
-            Block block = world.BlockAccessor.GetBlock(startPos);
+            Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
 
             string treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
@@ -363,7 +347,7 @@ namespace InDappledGroves
                     if (hordist - 1 >= 2 * vertdist) continue;
                     if (checkedPositions.Contains(neibPos)) continue;
 
-                    block = world.BlockAccessor.GetBlock(neibPos);
+                    block = world.BlockAccessor.GetBlock(neibPos, 0);
                     if (block.Code == null || block.Id == 0) continue;
 
                     string ngcode = block.Attributes?["treeFellingGroupCode"].AsString();
@@ -443,7 +427,7 @@ namespace InDappledGroves
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "chopping") {
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot) == "chopping") {
                 return interactions;
                 }
             return null;

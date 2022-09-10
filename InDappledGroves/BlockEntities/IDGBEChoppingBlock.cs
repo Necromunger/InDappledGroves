@@ -13,7 +13,7 @@ namespace InDappledGroves.BlockEntities
     {
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "idgChoppingBlockTransform";
+        public override string AttributeTransformCode => "onDisplayTransform";
 
 		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
@@ -129,59 +129,10 @@ namespace InDappledGroves.BlockEntities
 			return false;
 		}
 
-		public override void TranslateMesh(MeshData mesh, int index)
-		{
-
-			JsonObject Translation = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"]["translation"];
-
-
-			float x = 0f;
-			float y = 0.0625f;
-			float z = 0f;
-			
-			if (Block.Variant["side"] == "north")
-			{
-				x = Translation["northx"].Exists ? Translation["northx"].AsFloat() : x;
-				y = Translation["northy"].Exists ? Translation["northy"].AsFloat() : y;
-				z = Translation["northz"].Exists ? Translation["northz"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "south")
-			{
-				x = Translation["southx"].Exists ? Translation["southx"].AsFloat() : x;
-				y = Translation["southy"].Exists ? Translation["southy"].AsFloat() : y;
-				z = Translation["southz"].Exists ? Translation["southz"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "west")
-			{
-				x = Translation["westx"].Exists ? Translation["westx"].AsFloat() : x;
-				y = Translation["westy"].Exists ? Translation["westy"].AsFloat() : y;
-				z = Translation["westz"].Exists ? Translation["westz"].AsFloat() : z;
-
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "east")
-			{
-				x = Translation["eastx"].Exists ? Translation["eastx"].AsFloat() : x;
-				y = Translation["easty"].Exists ? Translation["easty"].AsFloat() : y;
-				z = Translation["eastz"].Exists ? Translation["eastz"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-
-		}
-
 		protected override MeshData genMesh(ItemStack stack)
 		{
 			MeshData meshData;
+			String side = Block.Variant["side"];
 			if (stack.Collectible is IContainedMeshSource containedMeshSource)
 			{
 				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
@@ -203,23 +154,61 @@ namespace InDappledGroves.BlockEntities
 
 			}
 
-			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): 
-			  stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): null;
+
+			if(transform == null)
+            {
+				transform = new ModelTransform
+				{
+					Translation = new Vec3f(),
+					Rotation = new Vec3f(0f, -45f, 0f),
+					Origin = new Vec3f(0.5f, 0f, 0.5f),
+					Scale = 0.95f
+				};
+			}
 			transform.EnsureDefaultValues();
 
-			String side = Block.Variant["side"];
-			transform.Rotation.X += addRotate(side + "x");
-			transform.Rotation.Y = (Block.Shape.rotateY) + addRotate(side + "y");
-			transform.Rotation.Z += addRotate(side + "z");
-			meshData.ModelTransform(transform);
-
+			
+			meshData.ModelTransform(ProcessTransform(transform, side));
 			return meshData;
 		}
 
-		public float addRotate(string sideAxis)
+		private ModelTransform ProcessTransform(ModelTransform transform, String side)
+		{
+			transform.Rotation.X += AddRotate(side + "x");
+			transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side + "y");
+			transform.Rotation.Z += AddRotate(side + "z");
+			transform.Translation.X += AddTranslate(side + "x");
+			transform.Translation.Y += AddTranslate(side + "y");
+			transform.Translation.Z += AddTranslate(side + "x");
+			transform.Origin.X += AddOrigin(side + "x");
+			transform.Origin.Y += AddOrigin(side + "y");
+			transform.Origin.Z += AddOrigin(side + "z");
+			transform.Scale = AddScale(side);
+			return transform;
+		}
+
+		public float AddRotate(string sideAxis)
 		{
 			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+		}
+
+		public float AddTranslate(string sideAxis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			return transforms["translation"][sideAxis].Exists ? transforms["translation"][sideAxis].AsFloat() : 0f;
+		}
+
+		public float AddOrigin(string sideAxis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			return transforms["translation"][sideAxis].Exists ? transforms["translation"][sideAxis].AsFloat() : 0f;
+		}
+		public float AddScale(string side)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 0.95f;
 		}
 
 		public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
@@ -259,7 +248,7 @@ namespace InDappledGroves.BlockEntities
 			int j = recipe.Output.StackSize;
 			for (int i = j; i > 0; i--)
 			{
-				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
 			}
 		}
 

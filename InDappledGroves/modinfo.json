@@ -2,10 +2,10 @@
   "type": "code",
   "modid": "indappledgroves",
   "name": "In Dappled Groves",
-  "author": "Vinter Nacht",
+  "authors": ["Vinter Nacht", "Taska Raine", "SpearAndFang"],
   "description": "Wood and Forestry Related Content",
-  "version": "1.15.10-0.2.0",
-  "dependency": {
-    "game": ""
+  "version": "1.17.0-0.3.0",
+  "dependencies": {
+    "alcmy1": "1.17.0-0.0.1-dev"
   }
 }

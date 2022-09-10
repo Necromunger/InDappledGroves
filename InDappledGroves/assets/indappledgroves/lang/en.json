@@ -12,6 +12,10 @@
 	"toolittledurability": "Your tool requires {0} durability to do this.",
 	
 	"_comment2": "Blocks Are Listed Below",
+	"item-plank-*-rough-green": "Raw Rough Board",
+	"item-plank-*-rough-cured": "Cured Rough Board",
+	"item-plank-*-hewn-green": "Raw Hewn Board",
+	"item-plank-*-hewn-cured": "Raw Cured Board",
 	"block-choppingblock-*": "Chopping Block",
 	"block-logslab-*-down-free": "Log Slab",
   "block-logslab-aged-down-free": "Aged Log Slab",

@@ -3,7 +3,6 @@ using InDappledGroves.Blocks;
 using InDappledGroves.Util;
 using InDappledGroves.Items.Tools;
 using Vintagestory.API.Common;
-using Vintagestory.API.Client;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
 
@@ -20,22 +19,27 @@ namespace InDappledGroves
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
             api.RegisterItemClass("idgplank", typeof(IDGPlank));
             api.RegisterItemClass("idgtool", typeof(IDGTool));
+            api.RegisterItemClass("idgbark", typeof(IDGBark));
 
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
             api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
             api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
+            api.RegisterBlockClass("idgbarkbasket", typeof(BarkBasket));
+            api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
             api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
 
-            
+
             //Register CollectibleBehaviors
             api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
+            api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
+
 
 
             //Check for Existing Config file, create one if none exists

@@ -1,0 +1,26 @@
+[
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:strippedlog-*-ud", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free", "quantity": 2}
+  }
+]

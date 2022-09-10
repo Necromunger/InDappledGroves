@@ -84,19 +84,19 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolMode(slot);
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
 
             if (/*!byEntity.Controls.Sprint ||*/ blockSel == null)
                 return;
 
-            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position));
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
 
-            recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
+            recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
             if (recipe == null) return;
 
-            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && slot.Itemstack.Attributes.GetInt("durability") != 0)
+            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
-                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
+                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
                 return;
             }
             byEntity.StartAnimation("axechop");
@@ -117,16 +117,16 @@ namespace InDappledGroves.CollectibleBehaviors
                     //api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                     playNextSound += .7f;
                 }
-                if (secondsUsed >= recipe.ToolTime)
+                if (secondsUsed >= recipe.BaseToolTime)
                 {
-                    SpawnOutput(recipe, byEntity, pos);
-                    slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.ToolDamage);
-                    api.World.BlockAccessor.SetBlock(0, blockSel.Position);
+                    SpawnOutput(recipe, pos);
+                    api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
+                    slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                     return false;
                 }
 
             }
-            handling = EnumHandling.PreventSubsequent;
+            handling = EnumHandling.PreventDefault;
             return true;
         }
 
@@ -151,7 +151,7 @@ namespace InDappledGroves.CollectibleBehaviors
             return 0;
         }
 
-        public void SpawnOutput(GroundRecipe recipe, EntityAgent byEntity, BlockPos pos)
+        public void SpawnOutput(GroundRecipe recipe, BlockPos pos)
         {
             int j = recipe.Output.StackSize;
             for (int i = j; i > 0; i--)
@@ -169,7 +169,7 @@ namespace InDappledGroves.CollectibleBehaviors
             }
         }
 
-        public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
+        public GroundRecipe GetMatchingGroundRecipe(ItemSlot slot, string curTMode)
         {
             List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
             if (recipes == null) return null;
@@ -185,7 +185,7 @@ namespace InDappledGroves.CollectibleBehaviors
             return null;
         }
 
-        public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
+        public bool DoesSlotMatchRecipe(ItemSlot slots)
         {
             List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
             if (recipes == null) return false;
@@ -255,7 +255,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolMode(inSlot) == "sawing")
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot) == "hewing")
             {
                 return interactions;
             }

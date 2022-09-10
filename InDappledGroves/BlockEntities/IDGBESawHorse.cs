@@ -1,4 +1,5 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Items.Tools;
 using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace InDappledGroves.BlockEntities
             return inv[1];
         }
 
-		
+
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
@@ -47,7 +48,7 @@ namespace InDappledGroves.BlockEntities
             bool isPlaningBox = blockSel.SelectionBoxIndex == 1;
 
 
-            if (Block.Variant["state"] == "compound" && !isConBlock){
+            if (Block.Variant["state"] == "compound" && !isConBlock) {
                 return (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
             }
 
@@ -60,10 +61,10 @@ namespace InDappledGroves.BlockEntities
                     return true;
                 }
             }
-            //If players hand is not empty, and the item they're holding can be planed, attempt to put
+
             else if (!slot.Empty && this.Inventory[1].Empty)
             {
-                if (colObj.Attributes != null && DoesSlotMatchRecipe(Api.World,slot)) {
+                if (colObj.Attributes != null && DoesSlotMatchRecipe(Api.World, slot)) {
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
@@ -74,24 +75,27 @@ namespace InDappledGroves.BlockEntities
             }
             else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
-                System.Diagnostics.Debug.WriteLine(this.Inventory[1].Itemstack);
-                if (recipe != null)
-                {
-                    if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+                if (slot.Itemstack.Collectible is IDGTool tool) {
+                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1], tool.GetToolModeName(slot));
+                    if (recipe != null)
                     {
-                        (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
-                        return false;
+                        if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+                        {
+                            (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
+                            return false;
+                        }
+                        else
+                        {
+                            byPlayer.Entity.StartAnimation("axechop");
+                            return true;
+                        }
                     }
-                    else
-                    {
-                        byPlayer.Entity.StartAnimation("axechop");
-                        return true;
-                    }
+                    return false;
                 }
-                return false;
             }
             return true;
         }
+        
 
         public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
         {
@@ -245,56 +249,6 @@ namespace InDappledGroves.BlockEntities
             this.meshes[index] = meshData;
         }
 
-        public override void TranslateMesh(MeshData mesh, int index)
-        {
-            JsonObject North = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["north"];
-            JsonObject South = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["south"];
-            JsonObject West = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["west"];
-            JsonObject East = this.Inventory[1].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTranslate"]["east"];
-
-            float x = 0.5f;
-            float y = 0.75f;
-            float z = 0f;
-
-            if (Block.Variant["side"] == "north")
-            {
-                x = North["x"].Exists ? North["x"].AsFloat() : x;
-                y = North["y"].Exists ? North["y"].AsFloat() : y;
-                z = North["z"].Exists ? North["z"].AsFloat() : z;
-
-                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-                mesh.Translate(offset.XYZ);
-            }
-            else if (Block.Variant["side"] == "south")
-            {
-                x = South["x"].Exists ? South["x"].AsFloat() : x;
-                y = South["y"].Exists ? South["y"].AsFloat() : y;
-                z = South["z"].Exists ? South["z"].AsFloat() : z;
-
-                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-                mesh.Translate(offset.XYZ);
-            }
-            else if (Block.Variant["side"] == "west")
-            {
-                x = West["x"].Exists ? West["x"].AsFloat() : x;
-                y = West["y"].Exists ? West["y"].AsFloat() : y;
-                z = West["z"].Exists ? West["z"].AsFloat() : z;
-
-
-                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-                mesh.Translate(offset.XYZ);
-            }
-            else if (Block.Variant["side"] == "east")
-            {
-                x = East["x"].Exists ? East["x"].AsFloat() : x;
-                y = East["y"].Exists ? East["y"].AsFloat() : y;
-                z = East["z"].Exists ? East["z"].AsFloat() : z;
-
-                Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-                mesh.Translate(offset.XYZ);
-            }
-
-        }
         protected override MeshData genMesh(ItemStack stack)
         {
 
@@ -311,22 +265,61 @@ namespace InDappledGroves.BlockEntities
                 this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
                 capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
             }
-            ModelTransform transform = stack.Collectible.Attributes.AsObject<ModelTransform>();
+            ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
+            if (transform == null)
+            {
+                transform = new ModelTransform
+                {
+                    Translation = new Vec3f(0.5f,0.75f,0f),
+                    Rotation = new Vec3f(0f, 0.25f, 0f),
+                    Origin = new Vec3f(0.5f,0.5f,0.5f),
+                };
+            }
             transform.EnsureDefaultValues();
-            transform.Rotation.X = 0;
-            transform.Rotation.Y = Block.Shape.rotateY+45;
-            transform.Rotation.Z = 0;
+            String side = Block.Variant["side"];
+            transform = ProcessTransform(transform, side);
             meshData.ModelTransform(transform);
 
             return meshData;
         }
 
-        public float addRotate(string sideAxis)
+        private ModelTransform ProcessTransform(ModelTransform transform, String side)
         {
-            JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseTransform"];
-            return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+            transform.Rotation.X += addRotate(side, "x");
+            transform.Rotation.Y = 45f + (Block.Shape.rotateY) + addRotate(side, "y");
+            transform.Rotation.Z += addRotate(side, "z");
+            transform.Translation.X += addTranslate(side, "x");
+            transform.Translation.Y += 0.75f + addTranslate(side, "y");
+            transform.Translation.Z += addTranslate(side, "z");
+            transform.Origin.X += addOrigin(side, "x");
+            transform.Origin.Y += addOrigin(side, "y");
+            transform.Origin.Z += addOrigin(side, "z");
+            transform.Scale = addScale(side);
+            return transform;
         }
 
+        public float addRotate(string side, string axis)
+        {
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            return transforms["rotation"][side][axis].Exists ? transforms["rotation"][side][axis].AsFloat() : 0f;
+        }
+
+        public float addTranslate(string side, string axis)
+        {
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            return transforms["translation"][side][axis].Exists ? transforms["translation"][side][axis].AsFloat() : 0f;
+        }
+
+        public float addOrigin(string side, string axis)
+        {
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            return transforms["origin"][side][axis].Exists ? transforms["origin"][side][axis].AsFloat() : 0f;
+        }
+        public float addScale(string side)
+        {
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
+        }
         readonly Matrixf mat = new();
         #endregion
 

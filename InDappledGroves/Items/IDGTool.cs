@@ -16,7 +16,6 @@ namespace InDappledGroves.Items.Tools
 
     class IDGTool : Item, IIDGTool
     {
-        // Token: 0x04000CF8 RID: 3320
         private SkillItem[] toolModes;
 
         public override void OnLoaded(ICoreAPI api)
@@ -67,18 +66,16 @@ namespace InDappledGroves.Items.Tools
             return this.toolModes;
         }
 
-        // Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
         public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
         {
             return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
         }
 
-        public string GetToolMode(ItemSlot slot)
+        public string GetToolModeName(ItemSlot slot)
         {
             return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
         }
 
-        // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
         {
             slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
@@ -88,7 +85,7 @@ namespace InDappledGroves.Items.Tools
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
             
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["type"] == "grown")
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt/treeResistance , counter);
@@ -102,7 +99,7 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["type"] == "grown")
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
                return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
             }
@@ -150,19 +147,5 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
 
-        //private void SetParticleColourAndPosition(int colour, Vec3d minpos)
-        //{
-        //    SetParticleColour(colour);
-
-        //    woodParticles.MinPos = minpos;
-        //    woodParticles.AddPos = new Vec3d(1, 1, 1);
-        //}
-        //private void SetParticleColour(int colour)
-        //{
-        //    woodParticles.Color = colour;
-        //}
-
-        //private readonly SimpleParticleProperties woodParticles;
     }
-
 }

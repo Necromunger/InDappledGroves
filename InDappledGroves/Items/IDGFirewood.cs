@@ -22,7 +22,7 @@ namespace InDappledGroves.Items
 		{
 			if (blockSel == null) return;
 			BlockPos position = blockSel.Position;
-			Block block = byEntity.World.BlockAccessor.GetBlock(position);
+			Block block = byEntity.World.BlockAccessor.GetBlock(position, 0);
 
 			if (block is BlockFirepit || block is BlockPitkiln || block is BlockClayOven)
 			{
@@ -34,7 +34,7 @@ namespace InDappledGroves.Items
 
 				string failurecode = "";
 
-				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face));
+				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face), 0);
 				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgfirewoodblock")));
 				bool flag = false;
 				if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))

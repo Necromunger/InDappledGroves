@@ -16,20 +16,24 @@
                   {
                     "idgSawHorseProps": 
                     {
-                      "output": {"code": "game:plank-{wood}", "quantity": 2},
-                      "idgSawHorseTranslate": 
+                      "idgSawHorseTransform": 
                       {
-                        "north": {
-                          "x": 0,
-                          "z": -0.5
-                        },
-                        "south": {
-                          "x": 0,
-                          "y": 0.75,
-                          "z": 0.5 
-                        },
-                        "west": {
-                          "x": -0.5
+                        "translation": {
+                          "north": {
+                            "x": 0,
+                            "z": -0.5
+                          },
+                          "south": {
+                            "x": 0,
+                            "z": 0.5 
+                          },
+                          "west": {
+                            "x": -0.5
+                          },
+                          "east": {
+                            "x": 0.5
+                          }
+
                         }
                       }
                     } 
