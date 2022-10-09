@@ -6,6 +6,5 @@
   "description": "Wood and Forestry Related Content",
   "version": "1.17.0-0.3.0",
   "dependencies": {
-    "alcmy1": "1.17.0-0.0.1-dev"
   }
 }

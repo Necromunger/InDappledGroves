@@ -1,0 +1,62 @@
+{
+	code: "barkbundle",
+	"entityclassByType": {
+		"*-submerged": "Transient"
+	},
+	attributes: {
+		handbook: { 
+			groupBy: ["barkbundle-*"] 
+		},
+		"transientPropsByType":{
+			"*-submerged": {
+				"convertFrom": "*-submerged",
+				"convertTo": "*-soaked",
+				"inGameHours": "168"
+			}
+    }
+	},
+	"creativeinventory": { "general": ["*-dry"]},
+	"behaviorsByType": {
+	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible"}],
+	"*": [{"name": "Unstable"}]
+	},
+	variantgroups: [
+		{ code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] },
+		{ code: "stage", "states": ["dry","submerged","soaked"]}
+	],
+	shape: { base: "indappledgroves:block/barkbundle"},
+	texturesByType: {
+		"*": {
+			"bark": { base: "game:block/wood/bark/{bark}"}
+		}
+	},
+	dropsByType: {
+		"*-soaked": [{ type: "item", code: "indappledgroves:bark-{bark}-soaked", quantity: { avg: 5 }  }],
+		"*": [{ type: "item", code: "indappledgroves:bark-{bark}-dry", quantity: { avg: 5 }  }]
+	},
+	combustiblePropsByType: {
+		"*-dry": {
+		burnTemperature: 600,
+		burnDuration: 60
+		}
+	},
+	blockmaterial: "Wood",
+	replaceable: 900,
+	resistance: 2,
+	lightAbsorption: 0,
+	sideAo: { all: false },
+	sidesolid: {
+		all: false
+	},
+	sideopaque: {
+		all: false
+	},
+	sounds: {
+		"place": "game:block/planks",
+		"walk": "game:walk/wood",
+		"hit": "game:block/planks",
+		"break": "game:block/planks"
+	},
+	"selectionBox": { "x1": 0.2621, "y1": 0, "z1": 0.25, "x2": 0.6875, "y2": 0.2621, "z2": 0.8125 },
+	"collisionBox": { "x1": 0.2621, "y1": 0, "z1": 0.25, "x2": 0.6875, "y2": 0.2621, "z2": 0.8125 }
+}

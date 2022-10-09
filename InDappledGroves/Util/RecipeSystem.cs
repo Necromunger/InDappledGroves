@@ -134,6 +134,7 @@ namespace InDappledGroves.Util
                 LoadSawHorseRecipes();
                 LoadGroundRecipes();
             }
+
             #region Chopping Recipes
             public void LoadChoppingBlockRecipes()
             {

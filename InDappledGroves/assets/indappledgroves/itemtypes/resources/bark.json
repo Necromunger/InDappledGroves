@@ -4,12 +4,12 @@
 	creativeinventory: { "general": ["*"], "items": ["*"]},
 	behaviorsByType: {
 		"*": [
-			{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } },
-			{ "name": "BarkBehavior"}
+			{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } }
 		]
 	},
 	variantgroups: [
-        { code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] }
+        { code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] },
+				{ "code": "state", "states": ["dry","soaked"]}
     ],
 	drawtype: "json",
     shape: { base: "item/resource/bark" },
@@ -18,11 +18,11 @@
     },
 	maxstacksize: 64,
 	combustiblePropsByType: {
-		"@bark-(birch|aged)": {
+		"@bark-(birch|aged)-dry": {
 			burnTemperature: 800,
 			burnDuration: 4,
 		},
-		"*": {
+		"*-dry": {
 			burnTemperature: 800,
 			burnDuration: 8,
 		}

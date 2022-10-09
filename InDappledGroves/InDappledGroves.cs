@@ -5,6 +5,7 @@ using InDappledGroves.Items.Tools;
 using Vintagestory.API.Common;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
+using InDappledGroves.BlockBehaviors;
 
 namespace InDappledGroves
 {
@@ -39,6 +40,9 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
+
+            //Register BlockBehaviors
+            api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
 
 
 

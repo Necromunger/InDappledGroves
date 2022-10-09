@@ -1,18 +1,18 @@
 {
-	code: "plank",
-	class: "idgplank",
-	behaviors: [{ 
-		name: "GroundStorable",
-		properties: {
-			layout: 'Stacking',
-			placeRemoveSound: 'sounds/block/planks',
-			stackingModel: 'block/wood/plankpile',
-			stackingTextures: {
+	"code": "plank",
+	"class": "idgplank",
+	"behaviors": [{ 
+		"name": "GroundStorable",
+		"properties": {
+			"layout": 'Stacking',
+			"placeRemoveSound": 'sounds/block/planks',
+			"stackingModel": 'block/wood/plankpile',
+			"stackingTextures": {
 				wood: "block/wood/planks/{wood}1"
 			},
-			tessQuantityElements: 1,
-			stackingCapacity: 48,
-			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.0625, z2: 1 },
+			"tessQuantityElements": 1,
+			"stackingCapacity": 48,
+			"collisionBox": { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.0625, z2: 1 },
 			cbScaleYByLayer: 0.33333333333333333333333333333333,
 			transferQuantity: 1,
 			bulkTransferQuantity: 4	

@@ -1,4 +1,8 @@
-﻿1.17-v0.3.0
+﻿1.17-v0.4.0
+	- Corrected error with leaf breaking
+	- Added submergible behavior (unfinished)
+
+1.17-v0.3.0
 	- Integrated various components from AncientTools, including barkbaskets, bark shapes, adze models, adze toolhead shapes, etc. Thank you Taska!
 	- Added recipes for in-world stripping of bark and splitting of logs into log slabs with and without bark. 
 	- Added dependency for ALCMY1
