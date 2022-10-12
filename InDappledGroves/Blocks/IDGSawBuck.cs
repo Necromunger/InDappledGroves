@@ -1,20 +1,17 @@
-﻿using InDappledGroves.BlockEntities;
-
+﻿using System;
+using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
-
 using InDappledGroves.Util;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
-    class IDGSawBuck : Block
+	// Token: 0x02000016 RID: 22
+	internal class IDGSawBuck : Block
 	{
-		SawbuckRecipe recipe;
-		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
@@ -22,80 +19,85 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			ItemStack sawToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject sawCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-
-			//Check to see if block entity exists
-			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
-
-			//If player is holding something, it has the BehaviorWoodSawer behavior, and the chopping block is not empty.
-			if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
-
-			if (!besawbuck.Inventory.Empty && !byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
+			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			ItemStack itemstack2 = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collectibleObject = (itemstack2 != null) ? itemstack2.Collectible : null;
+			string toolmode = "";
+			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
+			if (idgbesawBuck == null)
 			{
-				recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
-				if (recipe != null)
+				return base.OnBlockInteractStart(world, byPlayer, blockSel);
+			}
+			if (collectibleObject != null)
+			{
+				IIDGTool iidgtool = collectibleObject as IIDGTool;
+				if (iidgtool != null)
 				{
-					if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
-					{
-						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
-						return base.OnBlockInteractStart(world, byPlayer, blockSel);
-					}
-					else
-					{
-						byPlayer.Entity.StartAnimation("axechop");
-						return true;
-					}
+					toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
 				}
+			}
+			if (idgbesawBuck.Inventory.Empty || byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
+			{
+				return idgbesawBuck.OnInteract(byPlayer);
+			}
+			this.recipe = idgbesawBuck.GetMatchingSawbuckRecipe(idgbesawBuck.InputSlot, toolmode);
+			if (this.recipe == null)
+			{
 				return false;
 			}
-
-			return besawbuck.OnInteract(byPlayer);
+			if (itemstack.Attributes.GetInt("durability", 0) < this.recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+			{
+				(this.api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", new object[]
+				{
+					this.recipe.ToolDamage
+				}));
+				return base.OnBlockInteractStart(world, byPlayer, blockSel);
+			}
+			byPlayer.Entity.StartAnimation("axechop");
+			return true;
 		}
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			CollectibleObject sawTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			IDGBESawBuck bebesawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
-			BlockPos pos = blockSel.Position;
-
-			if (sawTool != null && sawTool is IIDGTool && !besawbuck.Inventory.Empty)
-
+			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collectibleObject = (itemstack != null) ? itemstack.Collectible : null;
+			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
+			BlockPos position = blockSel.Position;
+			if (collectibleObject != null && collectibleObject is IIDGTool && !idgbesawBuck.Inventory.Empty)
 			{
-				if (playNextSound < secondsUsed)
+				if (this.playNextSound < secondsUsed)
 				{
-					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
-					playNextSound += .7f;
+					this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
+					this.playNextSound += 0.7f;
 				}
-				if (secondsUsed >= recipe.ToolTime)
+				if (secondsUsed >= (float)this.recipe.ToolTime)
 				{
-					SpawnOutput(recipe, blockSel.Position);
-
-					bebesawbuck.Inventory.Clear();
+					this.SpawnOutput(this.recipe, blockSel.Position);
+					idgbesawBuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
-					bebesawbuck.MarkDirty(true);
+					idgbesawBuck.MarkDirty(true, null);
 				}
-				return !bebesawbuck.Inventory.Empty;
+				return !idgbesawBuck.Inventory.Empty;
 			}
 			return false;
 		}
+
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			playNextSound = 0.7f;
+			this.playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		public void SpawnOutput(SawbuckRecipe recipe, BlockPos pos)
-
+		public void SpawnOutput(IDGRecipeNames.SawbuckRecipe recipe, BlockPos pos)
 		{
-			int j = recipe.Output.StackSize;
-			for (int i = j; i > 0; i--)
+			for (int i = recipe.Output.StackSize; i > 0; i--)
 			{
-				api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+				this.api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05000000074505806, 0.10000000149011612, 0.05000000074505806));
 			}
 		}
 
+		private IDGRecipeNames.SawbuckRecipe recipe;
+
 		private float playNextSound;
 	}
-
 }
