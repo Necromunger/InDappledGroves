@@ -1,0 +1,106 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-east", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-east"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-east", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-east"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-north", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-north"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-north", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-north"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-south", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-south"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-south", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-south"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-west", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-west"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-west", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "air"},
+    "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-west"}
+  }
+]

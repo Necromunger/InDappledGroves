@@ -5,20 +5,13 @@ using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
-using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Util;
-using Vintagestory.GameContent;
 
 namespace InDappledGroves.Items.Tools
 {
-    class ItemIDGSaw : Item, IIDGTool
-    {
-        WorldInteraction[] interactions = null;
-        //private double sawingTime;
-        private SimpleParticleProperties woodParticles;
-        //private float playNextSound;
 
+    class IDGTool : Item, IIDGTool
+    {
         private SkillItem[] toolModes;
 
         public override void OnLoaded(ICoreAPI api)
@@ -26,27 +19,14 @@ namespace InDappledGroves.Items.Tools
             base.OnLoaded(api);
             ICoreClientAPI capi = api as ICoreClientAPI;
 
-
             toolModes = BuildSkillList();
 
-            this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgSawToolModes", delegate
-            {
-                if (capi != null)
-                {
-                    for (int i = 0; i < toolModes.Length; i++)
-                    {
-                        toolModes[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        System.Diagnostics.Debug.WriteLine(new AssetLocation("indappledgroves:textures/icons/" + toolModes[i].Code.FirstCodePart().ToString() + ".svg").ToString());
-                        toolModes[i].TexturePremultipliedAlpha = false;
-                    }
-                };
+        }      
 
-                return toolModes;
-            });
-        }
-
-        static ItemIDGSaw()
+        public IDGTool()
         {
+            ICoreClientAPI capi = api as ICoreClientAPI;
+
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
             dustParticles.MinQuantity = 2;
@@ -58,32 +38,10 @@ namespace InDappledGroves.Items.Tools
             dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             dustParticles.DieOnRainHeightmap = false;
             dustParticles.WindAffectednes = 0.5f;
+
         }
 
         #region ToolMode Stuff
-
-        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
-        {
-            return this.toolModes;
-        }
-
-        // Token: 0x06001848 RID: 6216 RVA: 0x000E49DC File Offset: 0x000E2BDC
-        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
-        }
-
-        public string GetToolMode(ItemSlot slot)
-        {
-            return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
-        }
-
-        // Token: 0x06001849 RID: 6217 RVA: 0x000C8EF1 File Offset: 0x000C70F1
-        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
-        {
-            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
-        }
-        #endregion ToolMode Stuff
 
         private SkillItem[] BuildSkillList()
         {
@@ -91,7 +49,7 @@ namespace InDappledGroves.Items.Tools
             foreach (var behaviour in CollectibleBehaviors)
             {
                 if (behaviour is not IBehaviorVariant bwc) continue;
-                foreach (SkillItem mode in bwc.GetSkillItems())
+                foreach (var mode in bwc.GetSkillItems())
                 {
                     skillList.Add(mode);
                 }
@@ -99,11 +57,51 @@ namespace InDappledGroves.Items.Tools
             return skillList.ToArray();
         }
 
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
         {
-            byEntity.StopAnimation("axechop");
-            base.OnHeldInteractStop(secondsUsed, slot, byEntity, blockSel, entitySel);
+            return this.toolModes;
         }
+
+        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
+        {
+            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
+        }
+
+        public string GetToolModeName(ItemSlot slot)
+        {
+            return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
+        }
+
+        public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
+        {
+            slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
+        }
+        #endregion ToolMode Stuff
+
+        public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
+        {
+            
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            {
+                float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt/treeResistance , counter);
+            } else {
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
+            }
+
+        }
+
+    
+
+        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
+        {
+            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            {
+               return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
+            }
+
+            return base.OnBlockBrokenWith(world,byEntity,itemslot,blockSel,dropQuantityMultiplier);
+        }      
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()
@@ -127,7 +125,7 @@ namespace InDappledGroves.Items.Tools
             };
         }
 
-        static SimpleParticleProperties dustParticles = new SimpleParticleProperties()
+        static readonly SimpleParticleProperties dustParticles = new()
         {
             MinPos = new Vec3d(),
             AddPos = new Vec3d(),
@@ -145,24 +143,5 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
 
-        private void SetParticleColourAndPosition(int colour, Vec3d minpos)
-        {
-            SetParticleColour(colour);
-
-            woodParticles.MinPos = minpos;
-            woodParticles.AddPos = new Vec3d(1, 1, 1);
-        }
- 
-        private void SetParticleColour(int colour)
-        {
-            woodParticles.Color = colour;
-        }
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            return interactions;
-        }
-
-        
     }
 }

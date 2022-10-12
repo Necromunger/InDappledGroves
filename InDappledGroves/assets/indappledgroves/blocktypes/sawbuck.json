@@ -3,17 +3,14 @@
   "class": "idgsawbuck",
   "entityClass": "idgbesawbuck",
   "maxstacksize": 1,
-  attributes: {
-		handbook: {
-			groupBy: ["sawbuck-*"],
-			extraSections: [
-				{ title: "indappledgroves:sawbuck-handbook-help-title", text: "indappledgroves:sawbuck-handbook-help-text" }
-			]
+  "behaviors": [
+    {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
+  ],
+  "attributes": {
+		"handbook": {
+			"groupBy": ["sawbuck-birch-*-east"]
 		}
 	},	
-    "behaviors": [
-    {"name": "Unstable" }, {"name": "HorizontalOrientable", properties: {  dropBlockFace: "east" }}
-  ],
   "variantgroups": [
     { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},

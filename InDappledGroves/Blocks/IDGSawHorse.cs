@@ -1,170 +1,212 @@
-﻿using InDappledGroves.BlockEntities;
+using System;
+using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
-using System.Collections.Generic;
-using Vintagestory.API.Client;
+using InDappledGroves.Interfaces;
+using InDappledGroves.Util;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
-    class IDGSawHorse : Block
-    {
-        SawHorseRecipe recipe;
-        public override void OnLoaded(ICoreAPI api)
-        {
-            base.OnLoaded(api);
-        }
 
-        public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
-        {
-            return base.TryPlaceBlock(world, byPlayer, itemstack, blockSel, ref failureCode);
-        }
-
-        public override void OnBlockBroken(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
-        {
-            base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
-        }
-        public override void OnNeighbourBlockChange(IWorldAccessor world, BlockPos pos, BlockPos neibpos)
-        {
-            bool posSawhorse = api.World.BlockAccessor.GetBlockEntity(pos) is not IDGBESawHorse besawHorse;
-            bool posneibSawHorse = api.World.BlockAccessor.GetBlockEntity(neibpos) is not IDGBESawHorse neibesawHorse2;
-            string side = api.World.BlockAccessor.GetBlock(pos).Variant["side"];
-            string neiside = api.World.BlockAccessor.GetBlock(pos).Variant["side"];
-
-            if (posSawhorse && posneibSawHorse) base.OnNeighbourBlockChange(world, pos, neibpos);
-            
-            if (!posSawhorse && !posneibSawHorse)
-            {
-                besawHorse = api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse;
-                neibesawHorse2 = api.World.BlockAccessor.GetBlockEntity(neibpos) as IDGBESawHorse;
-                if (!besawHorse.isPaired && !neibesawHorse2.isPaired && isNotDiagonal(pos, neibpos)) 
-                {
-
-                    besawHorse.CreateSawhorseStation(neibpos, neibesawHorse2);
-                    neibesawHorse2.conBlockPos = pos.Copy();
-                    neibesawHorse2.pairedBlockPos = pos.Copy();
-                    neibesawHorse2.isPaired = true;
-                    neibesawHorse2.isConBlock = false;
-                    Block neibBlock = api.World.BlockAccessor.GetBlock(api.World.BlockAccessor.GetBlock(pos).CodeWithVariants(new string[] { "side", "state" }, new string[] { getFacing(pos, neibpos, "first"), "compound" }));
-                    Block posBlock = api.World.BlockAccessor.GetBlock(api.World.BlockAccessor.GetBlock(pos).CodeWithVariants(new string[] { "side", "state" },new string[] { getFacing(pos, neibpos, "second"), "compound" }));
-                    api.World.BlockAccessor.ExchangeBlock(neibBlock.BlockId, neibpos);
-                    api.World.BlockAccessor.ExchangeBlock(posBlock.BlockId, pos);
-                    besawHorse.MarkDirty(true);
-                    neibesawHorse2.MarkDirty(true);
-                }
-            }
-            base.OnNeighbourBlockChange(world, pos, neibpos);
-        }
-
-        private bool isNotDiagonal(BlockPos pos, BlockPos neibpos)
-        {
-            return (pos == neibpos.EastCopy() || pos == neibpos.WestCopy() || pos == neibpos.NorthCopy() || pos == neibpos.SouthCopy());
-        }
-
-        private string getFacing(BlockPos pos, BlockPos neibpos, string which)
-        {
-            if (which == "first") {
-                if (pos == neibpos.EastCopy()) return "east";
-                if (pos == neibpos.NorthCopy()) return "north";
-                if (pos == neibpos.WestCopy()) return "west";
-                if (pos == neibpos.SouthCopy()) return "south";
-            }
-           if (which == "second")
-            {
-                if (pos == neibpos.EastCopy()) return "west";
-                if (pos == neibpos.NorthCopy()) return "south";
-                if (pos == neibpos.WestCopy()) return "east";
-                if (pos == neibpos.SouthCopy()) return "north";
-            }
-            return "south";
-        }
-
-        public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse)
-            {
-                //bool isPaired = besawhorse.isPaired;
-                //bool isConBlock = besawhorse.isConBlock;
-
-                return besawhorse.OnInteract(byPlayer, blockSel);
-            } 
-            return false;
-        }
-
-        public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            CollectibleObject planeTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-            IDGBESawHorse besawHorse = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
-            IDGBESawHorse conBlock = besawHorse.isConBlock ? besawHorse : api.World.BlockAccessor.GetBlockEntity(besawHorse.conBlockPos) as IDGBESawHorse;
-            BlockPos pos = blockSel.Position;
-
-            if (planeTool != null && planeTool.HasBehavior<BehaviorWoodPlaner>() && !conBlock.Inventory.Empty)
-            {
-                if (playNextSound < secondsUsed)
-                {
-                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
-                    playNextSound += .7f;
-                }
-                if (secondsUsed >= planeTool.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
-                {
-                    SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
-                    conBlock.Inventory.Clear();
-                    (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
-                    conBlock.MarkDirty(true);
-                }
-                return !conBlock.Inventory.Empty;
-            }
-            return false;
-        }
-        public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            playNextSound = 0.7f;
-            byPlayer.Entity.StopAnimation("axechop");
-        }
-        public override void OnBlockRemoved(IWorldAccessor world, BlockPos pos)
-        {
-            IDGBESawHorse besawHorse;
-            IDGBESawHorse besawHorse2;
-            if (api.World.BlockAccessor.GetBlockEntity(pos) is IDGBESawHorse)
-            {
-                besawHorse = api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse;
-                if (besawHorse.isPaired)
-                {
-                    if (api.World.BlockAccessor.GetBlockEntity(besawHorse.pairedBlockPos) is IDGBESawHorse)
-                    {
-                        besawHorse2 = api.World.BlockAccessor.GetBlockEntity(besawHorse.pairedBlockPos) as IDGBESawHorse;
+	internal class IDGSawHorse : Block
+	{
+		public override void OnLoaded(ICoreAPI api)
+		{
+			base.OnLoaded(api);
+		}
 
 
-                        api.World.BlockAccessor.ExchangeBlock(api.World.BlockAccessor.GetBlock(api.World.BlockAccessor.GetBlock(besawHorse2.Pos).CodeWithVariant("state","single")).BlockId, besawHorse2.Pos);
-                        besawHorse2.isConBlock = false;
-                        besawHorse2.conBlockPos = null;
-                        besawHorse2.isPaired = false;
-                        besawHorse2.pairedBlockPos = null;
-                        
-                        besawHorse2.MarkDirty(true);
-                        if (!besawHorse2.Inventory[0].Empty)
-                        {
-                            api.World.SpawnItemEntity(besawHorse.Inventory[0].TakeOutWhole(), pos.ToVec3d(), new Vec3d(0f, 0.5f, 0f));
-                        }
-                        
-                    }
-                }
-            }
-            base.OnBlockRemoved(world, pos);
-        }
+		public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
+		{
+			return base.TryPlaceBlock(world, byPlayer, itemstack, blockSel, ref failureCode);
+		}
 
-        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
-        {
-            int j = recipe.Output.StackSize;
-            for (int i = j; i > 0; i--)
-            {
-                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-            }
-        }
 
-        private float playNextSound;
-    }
-    
+		public override void OnBlockBroken(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1f)
+		{
+			base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
+		}
+
+
+		public override void OnNeighbourBlockChange(IWorldAccessor world, BlockPos pos, BlockPos neibpos)
+		{
+			IDGBESawHorse idgbesawHorse = this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse;
+			bool flag = idgbesawHorse == null;
+			IDGBESawHorse idgbesawHorse2 = this.api.World.BlockAccessor.GetBlockEntity(neibpos) as IDGBESawHorse;
+			bool flag2 = idgbesawHorse2 == null;
+			string text = this.api.World.BlockAccessor.GetBlock(pos).Variant["side"];
+			string text2 = this.api.World.BlockAccessor.GetBlock(pos).Variant["side"];
+			if (flag && flag2)
+			{
+				base.OnNeighbourBlockChange(world, pos, neibpos);
+			}
+			if (!flag && !flag2)
+			{
+				idgbesawHorse = (this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse);
+				idgbesawHorse2 = (this.api.World.BlockAccessor.GetBlockEntity(neibpos) as IDGBESawHorse);
+				if (!idgbesawHorse.isPaired && !idgbesawHorse2.isPaired && this.isNotDiagonal(pos, neibpos))
+				{
+					idgbesawHorse.CreateSawhorseStation(neibpos, idgbesawHorse2);
+					idgbesawHorse2.conBlockPos = pos.Copy();
+					idgbesawHorse2.pairedBlockPos = pos.Copy();
+					idgbesawHorse2.isPaired = true;
+					idgbesawHorse2.isConBlock = false;
+					Block block = this.api.World.BlockAccessor.GetBlock(this.api.World.BlockAccessor.GetBlock(pos).CodeWithVariants(new string[]
+					{
+						"side",
+						"state"
+					}, new string[]
+					{
+						this.getFacing(pos, neibpos, "first"),
+						"compound"
+					}));
+					Block block2 = this.api.World.BlockAccessor.GetBlock(this.api.World.BlockAccessor.GetBlock(pos).CodeWithVariants(new string[]
+					{
+						"side",
+						"state"
+					}, new string[]
+					{
+						this.getFacing(pos, neibpos, "second"),
+						"compound"
+					}));
+					this.api.World.BlockAccessor.ExchangeBlock(block.BlockId, neibpos);
+					this.api.World.BlockAccessor.ExchangeBlock(block2.BlockId, pos);
+					idgbesawHorse.MarkDirty(true, null);
+					idgbesawHorse2.MarkDirty(true, null);
+				}
+			}
+			base.OnNeighbourBlockChange(world, pos, neibpos);
+		}
+
+		private bool isNotDiagonal(BlockPos pos, BlockPos neibpos)
+		{
+			return pos == neibpos.EastCopy(1) || pos == neibpos.WestCopy(1) || pos == neibpos.NorthCopy(1) || pos == neibpos.SouthCopy(1);
+		}
+
+		private string getFacing(BlockPos pos, BlockPos neibpos, string which)
+		{
+			if (which == "first")
+			{
+				if (pos == neibpos.EastCopy(1))
+				{
+					return "east";
+				}
+				if (pos == neibpos.NorthCopy(1))
+				{
+					return "north";
+				}
+				if (pos == neibpos.WestCopy(1))
+				{
+					return "west";
+				}
+				if (pos == neibpos.SouthCopy(1))
+				{
+					return "south";
+				}
+			}
+			if (which == "second")
+			{
+				if (pos == neibpos.EastCopy(1))
+				{
+					return "west";
+				}
+				if (pos == neibpos.NorthCopy(1))
+				{
+					return "south";
+				}
+				if (pos == neibpos.WestCopy(1))
+				{
+					return "east";
+				}
+				if (pos == neibpos.SouthCopy(1))
+				{
+					return "north";
+				}
+			}
+			return "south";
+		}
+
+		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+		{
+			IDGBESawHorse idgbesawHorse = this.api.World.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
+			return idgbesawHorse != null && this.api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["state"] == "compound" && idgbesawHorse.OnInteract(byPlayer, blockSel);
+		}
+
+		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+		{
+			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collectibleObject = (itemstack != null) ? itemstack.Collectible : null;
+			IDGBESawHorse idgbesawHorse = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
+			IDGBESawHorse idgbesawHorse2 = idgbesawHorse.isConBlock ? idgbesawHorse : (this.api.World.BlockAccessor.GetBlockEntity(idgbesawHorse.conBlockPos) as IDGBESawHorse);
+			BlockPos position = blockSel.Position;
+			string curTMode = "";
+			if (collectibleObject != null)
+			{
+				IIDGTool iidgtool = collectibleObject as IIDGTool;
+				if (iidgtool != null)
+				{
+					curTMode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
+				}
+			}
+			if (collectibleObject != null && collectibleObject.HasBehavior<BehaviorWoodPlaning>(false) && !idgbesawHorse2.Inventory.Empty)
+			{
+				this.recipe = idgbesawHorse2.GetMatchingSawHorseRecipe(world, idgbesawHorse2.InputSlot(), curTMode);
+				if (this.recipe != null)
+				{
+					if (this.playNextSound < secondsUsed)
+					{
+						this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
+						this.playNextSound += 0.7f;
+					}
+					if (secondsUsed >= (float)this.recipe.ToolTime)
+					{
+						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);
+						idgbesawHorse2.Inventory.Clear();
+						(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
+						idgbesawHorse2.MarkDirty(true, null);
+					}
+					return !idgbesawHorse2.Inventory.Empty;
+				}
+			}
+			return false;
+		}
+
+		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+		{
+			this.playNextSound = 0.7f;
+			byPlayer.Entity.StopAnimation("axechop");
+		}
+
+		public override void OnBlockRemoved(IWorldAccessor world, BlockPos pos)
+		{
+			IDGBESawHorse idgbesawHorse = this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse;
+			if (idgbesawHorse != null)
+			{
+				idgbesawHorse = (this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse);
+				if (idgbesawHorse.isPaired)
+				{
+					IDGBESawHorse idgbesawHorse2 = this.api.World.BlockAccessor.GetBlockEntity(idgbesawHorse.pairedBlockPos) as IDGBESawHorse;
+					if (idgbesawHorse2 != null)
+					{
+						this.api.World.BlockAccessor.ExchangeBlock(this.api.World.BlockAccessor.GetBlock(this.api.World.BlockAccessor.GetBlock(idgbesawHorse2.Pos).CodeWithVariant("state", "single")).BlockId, idgbesawHorse2.Pos);
+						idgbesawHorse2.isConBlock = false;
+						idgbesawHorse2.conBlockPos = null;
+						idgbesawHorse2.isPaired = false;
+						idgbesawHorse2.pairedBlockPos = null;
+						if (!idgbesawHorse2.Inventory[1].Empty)
+						{
+							this.api.World.SpawnItemEntity(idgbesawHorse2.Inventory[1].TakeOutWhole(), pos.ToVec3d(), new Vec3d(0.0, 0.15000000596046448, 0.0));
+						}
+						idgbesawHorse2.MarkDirty(true, null);
+					}
+				}
+			}
+			base.OnBlockRemoved(world, pos);
+		}
+
+		private IDGRecipeNames.SawHorseRecipe recipe;
+
+		private float playNextSound;
+	}
 }

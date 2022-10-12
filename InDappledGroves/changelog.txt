@@ -1,4 +1,14 @@
-﻿1.16-v0.2.0
+﻿1.17-v0.4.0-dev
+	- Corrected error with leaf breaking
+	- Added submergible behavior
+	- Included barkbasket recipes, updated lang file
+
+1.17-v0.3.0
+	- Integrated various components from AncientTools, including barkbaskets, bark shapes, adze models, adze toolhead shapes, etc. Thank you Taska!
+	- Added recipes for in-world stripping of bark and splitting of logs into log slabs with and without bark. 
+	- Added dependency for ALCMY1
+
+1.16-v0.2.0
 	- Added Saw Buck Block
 		- Added CollisionBox and SelectionBox
 		- Added Wood Variants
@@ -26,8 +36,3 @@
 	- Removed Oak leaf transition state for later consideration
 	- Corrected context help for saw and axe to read "sprint" (Ctrl) rather than "sneak" (shift).
 
-Upcoming Changes
-	- Add animation to sawing
-	- Make logpile functional
-	- Update firewood stacksize to 64 from 32 (?)
-	- Add chopping block

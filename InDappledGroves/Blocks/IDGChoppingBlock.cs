@@ -32,18 +32,18 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolMode(slot);};
+			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolModeName(slot);};
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
 				if (collObj is IIDGTool)
 				{
-					recipe = GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
+					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+						if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
-							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodChopper>().choppingBlockChopDamage));
+							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
 							return base.OnBlockInteractStart(world, byPlayer, blockSel);
 						}
 						else
@@ -54,7 +54,6 @@ namespace InDappledGroves.Blocks
 					}
 					return false;
 				}
-				return false;
 			}
 
 			return bechoppingblock.OnInteract(byPlayer);
@@ -73,18 +72,29 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= chopTool.GetBehavior<BehaviorWoodChopper>().choppingBlockChopTime)
-                {
+                if (secondsUsed >= recipe.ToolTime)
+                {	/*Establish a method for determining the miningspeed of the tool 
+                 	 * based on the contents of the chopping block,
+                 	 * with a default for items without a set blockMaterial, 
+                 	 * such as firewood.
+                 	 */
 
-					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
-					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, chopTool.GetBehavior<BehaviorWoodChopper>().groundChopDamage);
+					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.ToolDamage);
 
-					bechoppingblock.Inventory.Clear();
+					if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
+					{
+						bechoppingblock.Inventory.Clear();
+					} else
+                    {
+						bechoppingblock.Inventory[0].Itemstack = recipe.ReturnStack.ResolvedItemstack.Clone();
+                    }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
 					bechoppingblock.MarkDirty(true);
+					return false;
                 }		
 				return !bechoppingblock.Inventory.Empty;
 			}
@@ -96,29 +106,8 @@ namespace InDappledGroves.Blocks
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
-		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
-		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockrecipes;
-			if (recipes == null) return null;
 
-			for (int j = 0; j < recipes.Count; j++)
-			{
-				if (recipes[j].Matches(api.World, slots) && (recipes[j].ToolMode == toolmode))
-				{
-					return recipes[j];
-				}
-			}
-
-			return null;
-		}
-		public void SpawnOutput(ChoppingBlockRecipe recipe, EntityAgent byEntity, BlockPos pos)
-		{
-			int j = recipe.Output.StackSize;
-			for (int i = j; i > 0; i--)
-			{
-				api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-			}
-		}
+		
 		private float playNextSound;
 	}
 		

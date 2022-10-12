@@ -50,12 +50,6 @@ namespace InDappledGroves.BlockEntities
 			//Get Collectible Object and Attributes from the Collectible Object
 			//Then check to see if attributes is null, or if chopblock is false or absent
 
-			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;
-			JsonObject attributes = collectible.Attributes;
-
-			if ((!activeHotbarSlot.Empty && !Inventory.Empty) || attributes == null || !collectible.Attributes["woodworkingProps"]["sawable"].AsBool(false)) return true;
-
-
 			ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
 			if (itemstack == null)
@@ -76,7 +70,7 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
 			AssetLocation assetLocation2 = assetLocation;
-			if (this.TryPut(activeHotbarSlot))
+			if (DoesSlotMatchRecipe(activeHotbarSlot) &&  this.TryPut(activeHotbarSlot))
 			{
 				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
 				updateMeshes();
@@ -135,60 +129,60 @@ namespace InDappledGroves.BlockEntities
 			return false;
 		}
 
+		public void SpawnOutput(SawbuckRecipe recipe, BlockPos pos)
+		{
+			int j = recipe.Output.StackSize;
+			for (int i = j; i > 0; i--)
+			{
+				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+			}
+		}
+
+		public bool DoesSlotMatchRecipe(ItemSlot slots)
+		{
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
+			if (recipes == null) return false;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public SawbuckRecipe GetMatchingSawbuckRecipe(ItemSlot slots, string toolmode)
+		{
+			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
+			if (recipes == null) return null;
+
+			for (int j = 0; j < recipes.Count; j++)
+			{
+				if (recipes[j].Matches(Api.World, slots) && (recipes[j].ToolMode == toolmode))
+				{
+					return recipes[j];
+				}
+			}
+
+			return null;
+		}
+
 		public override void TranslateMesh(MeshData mesh, int index)
 		{
-			
-			JsonObject North = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["north"];
-			JsonObject South = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["south"];
-			JsonObject West = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["west"];
-			JsonObject East = this.Inventory[index].Itemstack.Collectible?.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTranslate"]["east"];
-
 			float x = 0.0f;
 			float y = 0.0f;
 			float z = 0f;
-
-			if (Block.Variant["side"] == "north")
-			{
-				x = North["x"].Exists ? North["x"].AsFloat() : x;
-				y = North["y"].Exists ? North["y"].AsFloat() : y;
-				z = North["z"].Exists ? North["z"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "south")
-			{
-				x = South["x"].Exists ? South["x"].AsFloat() : x;
-				y = South["y"].Exists ? South["y"].AsFloat() : y;
-				z = South["z"].Exists ? South["z"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "west")
-			{
-				x = West["x"].Exists ? West["x"].AsFloat() : x;
-				y = West["y"].Exists ? West["y"].AsFloat() : y;
-				z = West["z"].Exists ? West["z"].AsFloat() : z;
-
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-			else if (Block.Variant["side"] == "east")
-			{
-				x = East["x"].Exists ? East["x"].AsFloat() : x;
-				y = East["y"].Exists ? East["y"].AsFloat() : y;
-				z = East["z"].Exists ? East["z"].AsFloat() : z;
-
-				Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-				mesh.Translate(offset.XYZ);
-			}
-
+			Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
+			mesh.Translate(offset.XYZ);
 		}
+
 		protected override MeshData genMesh(ItemStack stack)
 		{
 			MeshData meshData;
+			String side = Block.Variant["side"];
 			if (stack.Collectible is IContainedMeshSource containedMeshSource)
 			{
 				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
@@ -209,22 +203,61 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
-			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : stack.Collectible.Attributes[this.AttributeTransformCode].AsObject<ModelTransform>();
+			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
 
+			if (transform == null)
+			{
+				transform = new ModelTransform
+				{
+					Translation = new Vec3f(),
+					Rotation = new Vec3f(),
+					Origin = new Vec3f()
+				};
+			}
 			transform.EnsureDefaultValues();
 
-			String side = Block.Variant["side"];
-			transform.Rotation.X = transform.Rotation.X   +  addRotate(side + "x");
-			transform.Rotation.Y = (Block.Shape.rotateY)  +  addRotate(side + "y");
-			transform.Rotation.Z = transform.Rotation.Z  +  addRotate(side + "z");
-			meshData.ModelTransform(transform);
-
+			
+			meshData.ModelTransform(ProcessTransform(transform, side));
 			return meshData;
 		}
-		public float addRotate(string sideAxis)
+
+		private ModelTransform ProcessTransform(ModelTransform transform, String side)
+		{
+			transform.Rotation.X += AddRotate(side, "x");
+			transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side, "y");
+			transform.Rotation.Z += AddRotate(side, "z");
+			transform.Translation.X += AddTranslate(side, "x");
+			transform.Translation.Y +=  AddTranslate(side, "y");
+			transform.Translation.Z += AddTranslate(side, "z");
+			transform.Origin.X += AddOrigin(side, "x");
+			transform.Origin.Y += AddOrigin(side, "y");
+			transform.Origin.Z += AddOrigin(side, "z");
+			transform.Scale = AddScale(side);
+			return transform;
+		}
+
+		public float AddRotate(string side, string axis)
 		{
 			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
-			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
+			return transforms["rotation"][side+axis].Exists ? transforms["rotation"][side+axis].AsFloat() : 0f;
+		}
+
+		public float AddTranslate(string side, string axis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			return transforms["translation"][side][axis].Exists ? transforms["translation"][side+axis].AsFloat() : 0f;
+		}
+
+		public float AddOrigin(string side, string axis)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			return transforms["origin"][side+axis].Exists ? transforms["origin"][side+axis].AsFloat() : 0f;
+		}
+
+		public float AddScale(string side)
+		{
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
 		}
 
 		public override void updateMeshes()

@@ -12,10 +12,10 @@ namespace InDappledGroves.Util
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class RecipeUpload
     {
-        public List<string> cvalues;  //Chopping Recipe Values
-        public List<string> svalues;  //Sawing Recipe Values
-        public List<string> pvalues;  //Planing Recipe Values
-        public List<string> gvalues;  //Planing Recipe Values
+        public List<string> cbvalues;  //ChoppingBlock Recipe Values
+        public List<string> sbvalues;  //SawBuck Recipe Values
+        public List<string> shvalues;  //SawHorse Recipe Values
+        public List<string> gvalues;  //Ground Recipe Values
     }
 
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
@@ -49,9 +49,9 @@ namespace InDappledGroves.Util
             List<SawHorseRecipe> precipes = new List<SawHorseRecipe>();
             List<GroundRecipe> grecipes = new List<GroundRecipe>();
 
-            if (networkMessage.cvalues != null)
+            if (networkMessage.cbvalues != null)
             {
-                foreach (string crec in networkMessage.cvalues)
+                foreach (string crec in networkMessage.cbvalues)
                 {
                     using (MemoryStream ms = new MemoryStream(Ascii85.Decode(crec)))
                     {
@@ -64,11 +64,11 @@ namespace InDappledGroves.Util
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.ChoppingBlockrecipes = crecipes;
+            IDGRecipeRegistry.Loaded.ChoppingBlockRecipes = crecipes;
 
-            if (networkMessage.svalues != null)
+            if (networkMessage.sbvalues != null)
             {
-                foreach (string srec in networkMessage.svalues)
+                foreach (string srec in networkMessage.sbvalues)
                 {
                     using (MemoryStream ms = new MemoryStream(Ascii85.Decode(srec)))
                     {
@@ -84,9 +84,9 @@ namespace InDappledGroves.Util
 
             IDGRecipeRegistry.Loaded.SawbuckRecipes = srecipes;
 
-            if (networkMessage.pvalues != null)
+            if (networkMessage.shvalues != null)
             {
-                foreach (string prec in networkMessage.pvalues)
+                foreach (string prec in networkMessage.shvalues)
                 {
                     using (MemoryStream ms = new MemoryStream(Ascii85.Decode(prec)))
                     {
@@ -132,7 +132,7 @@ namespace InDappledGroves.Util
             List<string> precipes = new List<string>();
             List<string> grecipes = new List<string>();
 
-            foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockrecipes)
+            foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
@@ -187,9 +187,9 @@ namespace InDappledGroves.Util
 
             serverChannel.BroadcastPacket(new RecipeUpload()
             {
-                cvalues = crecipes,
-                svalues = srecipes,
-                pvalues = precipes,
+                cbvalues = crecipes,
+                sbvalues = srecipes,
+                shvalues = precipes,
                 gvalues = grecipes,
             });
         }
