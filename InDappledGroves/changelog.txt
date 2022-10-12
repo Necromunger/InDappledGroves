@@ -1,4 +1,6 @@
-﻿1.17-v0.4.0-dev
+﻿1.17-v0.4.0-dev.2
+
+1.17-v0.4.0-dev
 	- Corrected error with leaf breaking
 	- Added submergible behavior
 	- Included barkbasket recipes, updated lang file
