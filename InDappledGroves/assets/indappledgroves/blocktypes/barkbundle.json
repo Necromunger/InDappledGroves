@@ -18,7 +18,7 @@
 	},
 	"creativeinventory": { "general": ["*-dry"]},
 	"behaviorsByType": {
-	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible", "properties": {"liquidcode": "water","outputcode": "indappledgroves:barkbundle-{bark}-soaked"}}],
+	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible", "properties": {"liquidcode": "water","outputcode": "indappledgroves:barkbundle-{bark}-soaking"}}],
 	"*-soaking": [{"name": "Unstable"}, {"name": "RightClickPickup", "properties": {"dropsPickupMode": true}}],
 	"*": [{"name": "Unstable"}, {"name": "RightClickPickup", "properties": {"dropsPickupMode": true}}]
 	},
