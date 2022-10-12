@@ -1,7 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Interfaces;
-using InDappledGroves.Util;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -28,7 +26,6 @@ namespace InDappledGroves.Blocks
         {
             base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
         }
- 
         public override void OnNeighbourBlockChange(IWorldAccessor world, BlockPos pos, BlockPos neibpos)
         {
             bool posSawhorse = api.World.BlockAccessor.GetBlockEntity(pos) is not IDGBESawHorse besawHorse;
@@ -88,6 +85,8 @@ namespace InDappledGroves.Blocks
         {
             if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse)
             {
+                //bool isPaired = besawhorse.isPaired;
+                //bool isConBlock = besawhorse.isConBlock;
 
                 return besawhorse.OnInteract(byPlayer, blockSel);
             } 
@@ -96,42 +95,34 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+            CollectibleObject planeTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
             IDGBESawHorse besawHorse = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
             IDGBESawHorse conBlock = besawHorse.isConBlock ? besawHorse : api.World.BlockAccessor.GetBlockEntity(besawHorse.conBlockPos) as IDGBESawHorse;
             BlockPos pos = blockSel.Position;
-            string curTMode = "";
-            if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
 
-            if (collObj != null && collObj.HasBehavior<BehaviorWoodPlaner>() && !conBlock.Inventory.Empty)
+            if (planeTool != null && planeTool.HasBehavior<BehaviorWoodPlaner>() && !conBlock.Inventory.Empty)
             {
-                recipe = GetMatchingSawHorseRecipe(world, conBlock.InputSlot(), curTMode);
-                if (recipe != null)
+                if (playNextSound < secondsUsed)
                 {
-                    if (playNextSound < secondsUsed)
-                    {
-                        api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
-                        playNextSound += .7f;
-                    }
-                    if (secondsUsed >= collObj.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
-                    {
-                        collObj.GetBehavior<BehaviorWoodPlaner>().SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
-                        conBlock.Inventory.Clear();
-                        (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
-                        conBlock.MarkDirty(true);
-                    }
-                    return !conBlock.Inventory.Empty;
+                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
+                    playNextSound += .7f;
                 }
+                if (secondsUsed >= planeTool.GetBehavior<BehaviorWoodPlaner>().sawHorsePlaneTime)
+                {
+                    SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+                    conBlock.Inventory.Clear();
+                    (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();
+                    conBlock.MarkDirty(true);
+                }
+                return !conBlock.Inventory.Empty;
             }
             return false;
         }
- 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             playNextSound = 0.7f;
             byPlayer.Entity.StopAnimation("axechop");
         }
-  
         public override void OnBlockRemoved(IWorldAccessor world, BlockPos pos)
         {
             IDGBESawHorse besawHorse;
@@ -164,22 +155,13 @@ namespace InDappledGroves.Blocks
             base.OnBlockRemoved(world, pos);
         }
 
-        public SawHorseRecipe GetMatchingSawHorseRecipe(IWorldAccessor world, ItemSlot slots, string curTMode)
+        public void SpawnOutput(SawHorseRecipe recipe, EntityAgent byEntity, BlockPos pos)
         {
-
-            List<SawHorseRecipe> recipes = IDGRecipeRegistry.Loaded.SawHorseRecipes;
-            if (recipes == null) return null;
-
-            for (int j = 0; j < recipes.Count; j++)
+            int j = recipe.Output.StackSize;
+            for (int i = j; i > 0; i--)
             {
-                System.Diagnostics.Debug.WriteLine(recipes[j].Ingredients[0].Inputs[0].ToString());
-                if (recipes[j].Matches(api.World, slots) && curTMode == recipes[j].ToolMode)
-                {
-                        return recipes[j];
-                }
+                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
-
-            return null;
         }
 
         private float playNextSound;

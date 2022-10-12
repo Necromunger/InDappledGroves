@@ -21,7 +21,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos conBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        SawHorseRecipe recipe;
+        SawHorseRecipe recipe; 
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -34,12 +34,6 @@ namespace InDappledGroves.BlockEntities
             meshes = new MeshData[2];
         }
 
-        public ItemSlot InputSlot()
-        {
-            return inv[1];
-        }
-
-		
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
@@ -63,7 +57,7 @@ namespace InDappledGroves.BlockEntities
             //If players hand is not empty, and the item they're holding can be planed, attempt to put
             else if (!slot.Empty && this.Inventory[1].Empty)
             {
-                if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["planable"].AsBool(false)) {
+                if (colObj.Attributes != null && colObj.Attributes["woodworkingProps"]["idgSawHorseProps"]["planable"].AsBool(false)) {
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
@@ -102,7 +96,6 @@ namespace InDappledGroves.BlockEntities
             }
             return recipe;
         }
-   
         private AssetLocation GetSound(ItemSlot slot) {
             if (slot.Itemstack == null)
             {

@@ -1,6 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Interfaces;
 using InDappledGroves.Util;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -22,24 +21,21 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			
-			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			string curTMode = "";
+			ItemStack sawToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject sawCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			//If player is holding something, it has the BehaviorWoodSawer behavior, and the chopping block is not empty.
-			if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolMode(byPlayer.InventoryManager.ActiveHotbarSlot);
-
-			if (!besawbuck.Inventory.Empty)
+			//If player is holding something, it has the BehaviorWoodSplitter behavior, and the chopping block is not empty.
+			if (sawCollObj != null && sawCollObj.HasBehavior<BehaviorWoodSawer>() && !besawbuck.Inventory.Empty)
 			{
-				recipe = GetMatchingSawbuckRecipe(world, besawbuck.InputSlot, curTMode);
+				recipe = GetMatchingSawingRecipe(world, besawbuck.InputSlot);
 				if (recipe != null)
 				{
-					if (stack.Attributes.GetInt("durability") < collObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
+					if (sawToolStack.Attributes.GetInt("durability") < sawCollObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 					{
-						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", collObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage));
+						(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", sawCollObj.GetBehavior<BehaviorWoodSawer>().sawBuckSawDamage));
 						return base.OnBlockInteractStart(world, byPlayer, blockSel);
 					}
 					else
@@ -56,10 +52,10 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			CollectibleObject sawTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			IDGBESawBuck besawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
+			IDGBESawBuck bebesawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos pos = blockSel.Position;
 
-			if (sawTool != null && sawTool is IIDGTool tool && !besawbuck.Inventory.Empty)
+			if (recipe != null && sawTool != null && sawTool.HasBehavior<BehaviorWoodSawer>() && !bebesawbuck.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{
@@ -70,29 +66,28 @@ namespace InDappledGroves.Blocks
 				{
 					SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
-					besawbuck.Inventory.Clear();
+					bebesawbuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
-					besawbuck.MarkDirty(true);
+					bebesawbuck.MarkDirty(true);
 				}
-				return !besawbuck.Inventory.Empty;
+				return !bebesawbuck.Inventory.Empty;
 			}
 			return false;
 		}
-
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		public SawbuckRecipe GetMatchingSawbuckRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
+		public SawbuckRecipe GetMatchingSawingRecipe(IWorldAccessor world, ItemSlot slots)
 		{
 			List<SawbuckRecipe> recipes = IDGRecipeRegistry.Loaded.SawbuckRecipes;
 			if (recipes == null) return null;
 
 			for (int j = 0; j < recipes.Count; j++)
 			{
-				if (recipes[j].Matches(api.World, slots) && (recipes[j].ToolMode == toolmode))
+				if (recipes[j].Matches(api.World, slots))
 				{
 					return recipes[j];
 				}
@@ -100,7 +95,6 @@ namespace InDappledGroves.Blocks
 
 			return null;
 		}
-
 		public void SpawnOutput(SawbuckRecipe recipe, EntityAgent byEntity, BlockPos pos)
 		{
 			int j = recipe.Output.StackSize;
