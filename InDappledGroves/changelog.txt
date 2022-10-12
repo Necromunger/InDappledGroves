@@ -1,6 +1,7 @@
-﻿1.17-v0.4.0
+﻿1.17-v0.4.0-dev
 	- Corrected error with leaf breaking
-	- Added submergible behavior (unfinished)
+	- Added submergible behavior
+	- Included barkbasket recipes, updated lang file
 
 1.17-v0.3.0
 	- Integrated various components from AncientTools, including barkbaskets, bark shapes, adze models, adze toolhead shapes, etc. Thank you Taska!

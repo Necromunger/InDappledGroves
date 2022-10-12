@@ -10,14 +10,16 @@ namespace InDappledGroves.Items
     {
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
         {
-           
-            if (blockSel == null) return;
-            if (blockSel.Block is BlockGroundStorage bgs && byEntity.World.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntityGroundStorage bebgs && MatchSlots(bebgs.Inventory, slot))
+            if (byEntity.World.BlockAccessor?.GetBlockEntity(blockSel.Position) is BlockEntityGroundStorage bebgs && MatchSlots(bebgs.Inventory, slot))
             {
-                byEntity.World.BlockAccessor.SetBlock(byEntity.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:barkbundle-" + slot.Itemstack.Collectible.Variant["bark"] + "-dry")).BlockId, blockSel.Position);
-               
+                string bundlestate = api.World.BlockAccessor.GetBlock(blockSel.Position, BlockLayersAccess.Fluid).FirstCodePart() == "water" ? "-soaking" : "-dry";
+                api.World.BlockAccessor.SetBlock(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:barkbundle-" + slot.Itemstack.Collectible.Variant["bark"] + bundlestate)).BlockId, blockSel.Position);
+                handling = EnumHandHandling.Handled;
+            } else
+            {
+                base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
             }
-            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
+           
         }
 
         private bool MatchSlots(InventoryBase inv, ItemSlot slot)
@@ -30,7 +32,7 @@ namespace InDappledGroves.Items
                     string barktype = inv[0].Itemstack.Collectible.Variant["bark"];
                     for(int j=0; j < inv.Count; j++)
                     {
-                        if (inv[j].Empty || !(inv[j].Itemstack.Collectible.Variant["bark"] == barktype) && !(inv[j].Itemstack.Collectible.Variant["stage"] == "dry")) return false;
+                        if (inv[j].Empty || !(inv[j].Itemstack.Collectible.Variant["bark"] == barktype) || !(inv[j].Itemstack.Collectible.Variant["state"] == "dry")) return false;
                     }
                     return true;
             }

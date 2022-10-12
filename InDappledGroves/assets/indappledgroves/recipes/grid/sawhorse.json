@@ -4,6 +4,17 @@
 		"ingredientPattern": "_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
+			"P": { "type": "item", "code": "game:plank-aged", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 2,
+		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-aged-single-east"}
+	},
+	{
+
+		"ingredientPattern": "_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood", "quantity": 2},
 			"P": { "type": "item", "code": "game:plank-birch", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,

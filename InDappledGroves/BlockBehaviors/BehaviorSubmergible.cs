@@ -1,10 +1,18 @@
 ﻿
 using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
 
 namespace InDappledGroves.BlockBehaviors
 {
     public class BehaviorSubmergible : BlockBehavior
     {
+
+        public override void Initialize(JsonObject properties)
+        {
+            base.Initialize(properties);
+            this.liquidcode = properties["liquidcode"].ToString();
+            this.outputcode = properties["outputcode"].ToString();
+        }
 
         public BehaviorSubmergible(Block block) : base(block)
         {
@@ -16,14 +24,16 @@ namespace InDappledGroves.BlockBehaviors
 
         public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack, ref EnumHandling handling)
         {
-            System.Diagnostics.Debug.WriteLine(world.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart());
-            if (world.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "water") {
-                world.BlockAccessor.SetBlock(world.GetBlock(block.CodeWithVariant("stage", "submerged")).BlockId, blockSel.Position);
-                System.Diagnostics.Debug.WriteLine(block.CodeWithVariant("stage", "submerged"));
+            Block outputblock = byPlayer.Entity.World.BlockAccessor.GetBlock(new AssetLocation(outputcode));
+            if ((world.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == liquidcode)) {
+                world.BlockAccessor.SetBlock(outputblock.BlockId, blockSel.Position);
                 handling = EnumHandling.PreventDefault;
                 return true;
             }
             return true;
         }
+        //Code for block 
+        private string liquidcode;
+        private string outputcode;
     }
 }

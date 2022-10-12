@@ -2,7 +2,7 @@
 	code: "barkbasket",
 	class: "idgbarkbasket",
 	entityclass: "GenericTypedContainer",
-	attributes: {
+attributes: {
 		handbook: { 
 			groupBy: ["barkbasket-*"] 
 		},

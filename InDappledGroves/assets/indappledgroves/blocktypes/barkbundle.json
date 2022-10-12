@@ -1,28 +1,30 @@
 {
 	code: "barkbundle",
 	"entityclassByType": {
-		"*-submerged": "Transient"
+		"*-soaking": "Transient",
+		"*-soaked": "Transient"
 	},
 	attributes: {
 		handbook: { 
 			groupBy: ["barkbundle-*"] 
 		},
 		"transientPropsByType":{
-			"*-submerged": {
-				"convertFrom": "*-submerged",
-				"convertTo": "*-soaked",
-				"inGameHours": "168"
+			"*-soaking": {
+				"convertFrom": "barkbundle-*-soaking",
+				"convertTo": "barkbundle-*-soaked",
+				"inGameHours": "24"
 			}
     }
 	},
 	"creativeinventory": { "general": ["*-dry"]},
 	"behaviorsByType": {
-	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible"}],
-	"*": [{"name": "Unstable"}]
+	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible", "properties": {"liquidcode": "water","outputcode": "indappledgroves:barkbundle-{bark}-soaked"}}],
+	"*-soaking": [{"name": "Unstable"}, {"name": "RightClickPickup", "properties": {"dropsPickupMode": true}}],
+	"*": [{"name": "Unstable"}, {"name": "RightClickPickup", "properties": {"dropsPickupMode": true}}]
 	},
 	variantgroups: [
 		{ code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] },
-		{ code: "stage", "states": ["dry","submerged","soaked"]}
+		{ code: "stage", "states": ["dry","soaking","soaked"]}
 	],
 	shape: { base: "indappledgroves:block/barkbundle"},
 	texturesByType: {

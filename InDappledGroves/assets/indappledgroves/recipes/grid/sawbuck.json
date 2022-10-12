@@ -1,6 +1,15 @@
 [
 	{
-		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "item", "code": "game:plank-aged", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-aged-east"}
+	},
+	{
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -22,7 +31,6 @@
 		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-oak-east"}
 	},
 	{
-		
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},

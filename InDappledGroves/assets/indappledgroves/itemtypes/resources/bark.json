@@ -7,6 +7,17 @@
 			{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } }
 		]
 	},
+	transitionablePropsByType: {
+		"*-soaked": [
+			{
+				type: "Cure",
+				freshHours: { avg: 0 },
+				transitionHours: { avg: 24 },
+				transitionedStack: { type: "item", code: "bark-{bark}-dry" },
+				transitionRatio: 1
+			}
+		]
+	},
 	variantgroups: [
         { code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] },
 				{ "code": "state", "states": ["dry","soaked"]}

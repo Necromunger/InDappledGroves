@@ -120,6 +120,13 @@ namespace InDappledGroves.Util
                 api.Event.SaveGameLoaded += LoadIDGRecipes;
             }
 
+            public override void AssetsLoaded(ICoreAPI api)
+            {
+                //override to prevent double loading
+                if (!(api is ICoreServerAPI sapi)) return;
+                this.api = sapi;
+            }
+
             public override void Dispose()
             {
                 base.Dispose();
