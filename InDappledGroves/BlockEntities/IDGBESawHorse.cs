@@ -22,7 +22,7 @@ namespace InDappledGroves.BlockEntities
         public BlockPos conBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
-        SawHorseRecipe recipe;
+        SawHorseRecipe recipe; 
 
         readonly InventoryGeneric inv;
         public override InventoryBase Inventory => inv;
@@ -39,7 +39,6 @@ namespace InDappledGroves.BlockEntities
         {
             return inv[1];
         }
-
 
         internal bool OnInteract(IPlayer byPlayer, BlockSelection blockSel)
         {
@@ -65,6 +64,7 @@ namespace InDappledGroves.BlockEntities
             else if (!slot.Empty && this.Inventory[1].Empty)
             {
                 if (colObj.Attributes != null && DoesSlotMatchRecipe(Api.World, slot)) {
+
                     if (TryPut(slot))
                     {
                         this.Api.World.PlaySoundAt(GetSound(slot) ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);

@@ -1,5 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
+
 using InDappledGroves.Interfaces;
+
 using InDappledGroves.Util;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -20,10 +22,9 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			
-			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			string curTMode = "";
+			ItemStack sawToolStack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject sawCollObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
@@ -55,10 +56,11 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			CollectibleObject sawTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			IDGBESawBuck besawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
+			IDGBESawBuck bebesawbuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos pos = blockSel.Position;
 
 			if (sawTool != null && sawTool is IIDGTool && !besawbuck.Inventory.Empty)
+
 			{
 				if (playNextSound < secondsUsed)
 				{
@@ -69,15 +71,14 @@ namespace InDappledGroves.Blocks
 				{
 					SpawnOutput(recipe, blockSel.Position);
 
-					besawbuck.Inventory.Clear();
+					bebesawbuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
-					besawbuck.MarkDirty(true);
+					bebesawbuck.MarkDirty(true);
 				}
-				return !besawbuck.Inventory.Empty;
+				return !bebesawbuck.Inventory.Empty;
 			}
 			return false;
 		}
-
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			playNextSound = 0.7f;
@@ -85,6 +86,7 @@ namespace InDappledGroves.Blocks
 		}
 
 		public void SpawnOutput(SawbuckRecipe recipe, BlockPos pos)
+
 		{
 			int j = recipe.Output.StackSize;
 			for (int i = j; i > 0; i--)

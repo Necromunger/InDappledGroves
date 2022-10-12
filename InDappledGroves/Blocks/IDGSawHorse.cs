@@ -1,6 +1,7 @@
-﻿using InDappledGroves.BlockEntities;
+using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
+
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using static InDappledGroves.Util.IDGRecipeNames;
@@ -24,7 +25,6 @@ namespace InDappledGroves.Blocks
         {
             base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
         }
- 
         public override void OnNeighbourBlockChange(IWorldAccessor world, BlockPos pos, BlockPos neibpos)
         {
             bool posSawhorse = api.World.BlockAccessor.GetBlockEntity(pos) is not IDGBESawHorse besawHorse;
@@ -84,6 +84,9 @@ namespace InDappledGroves.Blocks
         {
             if (api.World.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBESawHorse besawhorse && api.World.BlockAccessor.GetBlock(blockSel.Position).Variant["state"] == "compound")
             {
+
+                //bool isPaired = besawhorse.isPaired;
+                //bool isConBlock = besawhorse.isConBlock;
                 return besawhorse.OnInteract(byPlayer, blockSel);
             } 
             return false;
@@ -91,10 +94,11 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+            CollectibleObject planeTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
             IDGBESawHorse besawHorse = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
             IDGBESawHorse conBlock = besawHorse.isConBlock ? besawHorse : api.World.BlockAccessor.GetBlockEntity(besawHorse.conBlockPos) as IDGBESawHorse;
             BlockPos pos = blockSel.Position;
+
             string curTMode = "";
 
             if (collObj != null && collObj is IIDGTool tool) curTMode = tool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
@@ -117,17 +121,17 @@ namespace InDappledGroves.Blocks
                         conBlock.MarkDirty(true);
                     }
                     return !conBlock.Inventory.Empty;
+
                 }
+                return !conBlock.Inventory.Empty;
             }
             return false;
         }
- 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             playNextSound = 0.7f;
             byPlayer.Entity.StopAnimation("axechop");
         }
-  
         public override void OnBlockRemoved(IWorldAccessor world, BlockPos pos)
         {
             
@@ -152,7 +156,6 @@ namespace InDappledGroves.Blocks
             }
             base.OnBlockRemoved(world, pos);
         }
-
         private float playNextSound;
     }
     
