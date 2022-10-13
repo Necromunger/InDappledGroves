@@ -72,7 +72,8 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= recipe.ToolTime)
+				if (secondsUsed >= 2.5)
+					//if (secondsUsed >= recipe.ToolTime)
                 {	/*Establish a method for determining the miningspeed of the tool 
                  	 * based on the contents of the chopping block,
                  	 * with a default for items without a set blockMaterial, 

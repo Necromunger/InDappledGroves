@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InDappledGroves</name>
+    </assembly>
+    <members>
+        <member name="M:InDappledGroves.Blocks.IDGSawHorse.isNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
+            <summary>Determines whether [is not diagonal] [the specified position].</summary>
+            <param name="pos">The position of the placed sawhorse block</param>
+            <param name="neibpos">The position of a neighboring sawhorse block</param>
+            <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:InDappledGroves.Blocks.IDGSawHorse.getFacing(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos,System.String)">
+            <summary>Determines what the appropriate placing is based on the location of the first and second blocks that make up a sawhorse station relative to each other.</summary>
+            <param name="pos">The position of the first block in a sawhorse station</param>
+            <param name="neibpos">The position of the second block in a sawhorse station</param>
+            <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
+        </member>
+        <member name="T:InDappledGroves.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:InDappledGroves.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:InDappledGroves.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

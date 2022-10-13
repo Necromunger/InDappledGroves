@@ -79,11 +79,19 @@ namespace InDappledGroves.Blocks
 			base.OnNeighbourBlockChange(world, pos, neibpos);
 		}
 
+		/// <summary>Determines whether [is not diagonal] [the specified position].</summary>
+		/// <param name="pos">The position of the placed sawhorse block</param>
+		/// <param name="neibpos">The position of a neighboring sawhorse block</param>
+		/// <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
 		private bool isNotDiagonal(BlockPos pos, BlockPos neibpos)
 		{
 			return pos == neibpos.EastCopy(1) || pos == neibpos.WestCopy(1) || pos == neibpos.NorthCopy(1) || pos == neibpos.SouthCopy(1);
 		}
 
+		/// <summary>Determines what the appropriate placing is based on the location of the first and second blocks that make up a sawhorse station relative to each other.</summary>
+		/// <param name="pos">The position of the first block in a sawhorse station</param>
+		/// <param name="neibpos">The position of the second block in a sawhorse station</param>
+		/// <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
 		private string getFacing(BlockPos pos, BlockPos neibpos, string which)
 		{
 			if (which == "first")

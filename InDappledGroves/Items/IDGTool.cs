@@ -42,7 +42,6 @@ namespace InDappledGroves.Items.Tools
         }
 
         #region ToolMode Stuff
-
         private SkillItem[] BuildSkillList()
         {
             var skillList = new List<SkillItem>();

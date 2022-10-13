@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>9</LangVersion>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>C:\Users\vinte\source\repos\InDappledGroves\InDappledGroves\indappledgroves-doc.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

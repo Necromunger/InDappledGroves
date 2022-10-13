@@ -883,9 +883,8 @@ namespace InDappledGroves.Util
             public bool Enabled { get; set; } = true;
             public bool RequiresStation { get; set; } = false;
 
-            public int ToolTime = 4;
-            
-            public int ToolDamage = 4;
+            public int ToolTime { get; set; } =  2;            
+            public int ToolDamage { get; set; } = 1;
 
             public string ToolMode { get; set; } = "chopping";
 
@@ -1153,8 +1152,8 @@ namespace InDappledGroves.Util
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public string ToolMode = "sawing";
-            public int ToolTime = 4;
-            public int ToolDamage = 4;
+            public int ToolTime { get; set; } = 4;
+            public int ToolDamage { get; set; } = 4;
             public SawbuckIngredient[] Ingredients;
 
             public JsonItemStack Output;
@@ -1417,9 +1416,9 @@ namespace InDappledGroves.Util
 
             public string ToolMode = "planing";
 
-            public int ToolTime = 4;
+            public int ToolTime { get; set; } = 4;
 
-            public int ToolDamage = 4;
+            public int ToolDamage { get; set; } = 4;
 
             public SawHorseIngredient[] Ingredients;
 
@@ -1682,9 +1681,9 @@ namespace InDappledGroves.Util
 
             public string ToolMode = "chopping";
 
-            public int BaseToolTime = 4;
+            public int BaseToolTime { get; set; } = 4;
 
-            public int BaseToolDmg = 4;
+            public int BaseToolDmg { get; set; } = 4;
 
             public GroundIngredient[] Ingredients;
 

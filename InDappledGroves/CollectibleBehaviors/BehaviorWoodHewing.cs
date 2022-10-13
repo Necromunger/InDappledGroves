@@ -114,10 +114,11 @@ namespace InDappledGroves.CollectibleBehaviors
 
                 if (((int)api.Side) == 1 && playNextSound < secondsUsed)
                 {
-                    //api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
-                    playNextSound += .7f;
+                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
+                    playNextSound += .8f;
                 }
-                if (secondsUsed >= recipe.BaseToolTime)
+                //if (secondsUsed >= recipe.BaseToolTime)
+                if (secondsUsed >= 4)
                 {
                     SpawnOutput(recipe, pos);
                     api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
