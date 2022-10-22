@@ -90,8 +90,6 @@ namespace InDappledGroves.Items.Tools
 
         }
 
-    
-
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
             if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")

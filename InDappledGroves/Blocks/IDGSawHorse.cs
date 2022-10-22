@@ -167,7 +167,10 @@ namespace InDappledGroves.Blocks
 						this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 						this.playNextSound += 0.7f;
 					}
-					if (secondsUsed >= (float)this.recipe.ToolTime)
+					curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawHorse.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+					lastSecondsUsed = secondsUsed;
+
+					if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawHorse.Inventory[0].Itemstack.Block.Resistance)
 					{
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);
 						idgbesawHorse2.Inventory.Clear();
@@ -182,6 +185,9 @@ namespace InDappledGroves.Blocks
 
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
+			resistance = 0;
+			lastSecondsUsed = 0;
+			curDmgFromMiningSpeed = 0;
 			this.playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
@@ -216,5 +222,8 @@ namespace InDappledGroves.Blocks
 		private IDGRecipeNames.SawHorseRecipe recipe;
 
 		private float playNextSound;
+		private float resistance;
+		private float lastSecondsUsed;
+		private float curDmgFromMiningSpeed;
 	}
 }

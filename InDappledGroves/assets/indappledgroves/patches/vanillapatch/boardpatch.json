@@ -1,5 +1,6 @@
 [
   {
+    "enabled": false,
     "op": "replace",
     "path": "/class",
     "value": "idgplank",
@@ -10,7 +11,7 @@
     "enabled": true,
     "op": "add",
     "path": "/attributes",
-    "value": {"woodworkingPropsbyType": 
+    "value": {"woodWorkingPropsbyType": 
                 {
                 "plank-*":
                   {

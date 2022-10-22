@@ -11,23 +11,22 @@
 		{ "code": "cover", "states": ["free", "snow"] }		
 	],
 	"skipVariants": ["*-up-snow"],
-	"attributes": { "woodworkingProps": {
+	"attributes": { "woodWorkingProps": {
 									"choppable": true,
 									"hewable": true,
 									"sawable": true,
 									"planable": true,
 									"idgChoppingBlockProps": {
 										 "idgChoppingBlockTransform": {
-																"translation": {
-																	"x": 0,
-																	"y": 0.5625,
-																	"z": 0,
-																	"northx": 0,
-																	"northz": -0.25,
-																	"southz": 0.25,
-																	"westx": -0.25,
-																	"eastx": 0.25
-																},
+                      "translation": {
+                        "x": 0,
+                        "y": 0.5625,
+                        "z": 0,
+												"eastx": 0.25,
+												"westx": -0.25,
+												"northz": -0.25,
+												"southz": 0.25
+                      },
 																"rotation": {
 																	"x": 90,
 																	"y": 0,

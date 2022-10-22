@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
@@ -203,7 +204,7 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
-			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
+			ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
 
 			if (transform == null)
 			{
@@ -238,25 +239,25 @@ namespace InDappledGroves.BlockEntities
 
 		public float AddRotate(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["rotation"][side+axis].Exists ? transforms["rotation"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddTranslate(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
-			return transforms["translation"][side][axis].Exists ? transforms["translation"][side+axis].AsFloat() : 0f;
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			return transforms["translation"][side+axis].Exists ? transforms["translation"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddOrigin(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["origin"][side+axis].Exists ? transforms["origin"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddScale(string side)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
 		}
 
@@ -267,6 +268,11 @@ namespace InDappledGroves.BlockEntities
 				this.updateMesh(i);
 			}
 			base.updateMeshes();
+		}
+		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
+		{
+			//Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
+			//If no tool is held, return only contents
 		}
 
 		protected override void updateMesh(int index)

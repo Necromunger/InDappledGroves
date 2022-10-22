@@ -49,7 +49,7 @@
 	drawtype: "json",
     shapeByType: {
 		"@adze-(wood|bone)-(chert|granite|andesite|basalt|obsidian|peridotite|flint)": { base: "item/tools/adze-stone" },
-		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": { base: "item/tools/adze-metal" }
+		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": { base: "item/tools/adze-metal" }
 	},
 	texturesByType: {
 		"@adze-wood-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
@@ -85,6 +85,83 @@
 		"@adze-wood-(tinbronze|bismuthbronze|blackbronze)": 3,
 		"@adze-wood-(iron|meteoriciron)": 4,
 		"@adze-wood-(steel)": 5
+	},
+	miningspeedbytype: {
+		"adze-wood-flint": {
+			"wood": 2.8,
+			"plant": 2.2,
+			"leaves": 1.6
+		},
+		"adze-bone-flint": {
+			"wood": 2.8,
+			"plant": 2.2,
+			"leaves": 1.6
+		},
+		"adze-wood-obsidian": {
+			"wood": 3.5,
+			"plant": 2.7,
+			"leaves": 2.4
+		},
+		"adze-bone-obsidian": {
+			"wood": 3.5,
+			"plant": 2.7,
+			"leaves": 2.4
+		},
+		"*": {
+			"wood": 2.6,
+			"plant": 2.2,
+			"leaves": 1.7
+		},
+		"adze-wood-scrap": {
+			"wood": 4,
+			"plant": 2.6,
+			"leaves": 2.2
+		},		
+		"adze-wood-copper": {
+			"wood": 5.2,
+			"plant": 2.8,
+			"leaves": 2.4
+		},
+		"adze-wood-silver": {
+			"wood": 4.5,
+			"plant": 3.3,
+			"leaves": 3
+		},
+		"adze-wood-gold": {
+			"wood": 4.5,
+			"plant": 3.3,
+			"leaves": 3
+		},
+		"adze-wood-bismuthbronze": {
+			"wood": 5.8,
+			"plant": 3.5,
+			"leaves": 2.6
+		},
+		"adze-wood-tinbronze": {
+			"wood": 6.3,
+			"plant": 3.8,
+			"leaves": 3
+		},
+		"adze-wood-blackbronze": {
+			"wood": 6.6,
+			"plant": 4,
+			"leaves": 3.1
+		},
+		"adze-wood-iron": {
+			"wood": 8.4,
+			"plant": 5,
+			"leaves": 3.2
+		},
+		"adze-wood-meteoriciron": {
+			"wood": 9.6,
+			"plant": 5.5,
+			"leaves": 3.6
+		},
+		"adze-wood-steel": {
+			"wood": 11,
+			"plant": 6,
+			"leaves": 4
+		}
 	},
 	heldTpHitAnimation: "smithing",
 	damagedby: ["blockbreaking", "attacking"],

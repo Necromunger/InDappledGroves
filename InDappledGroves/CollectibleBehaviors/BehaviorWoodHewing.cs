@@ -93,6 +93,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
             recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
             if (recipe == null) return;
+            resistance = Inventory[0].Itemstack.Block.Resistance;
 
             if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
@@ -117,8 +118,15 @@ namespace InDappledGroves.CollectibleBehaviors
                     api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                     playNextSound += .8f;
                 }
-                //if (secondsUsed >= recipe.BaseToolTime)
-                if (secondsUsed >= 4)
+
+                //Accumulate damage over time from current tools mining speed.
+                curDmgFromMiningSpeed += collObj.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
+
+                //update lastSecondsUsed to this cycle
+                lastSecondsUsed = secondsUsed;
+
+                //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle               
+                if ((curDmgFromMiningSpeed / 4) + secondsUsed >= resistance)
                 {
                     SpawnOutput(recipe, pos);
                     api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
@@ -264,6 +272,9 @@ namespace InDappledGroves.CollectibleBehaviors
         }
 
         WorldInteraction[] interactions;
+        private float resistance;
+        private float lastSecondsUsed;
+        private float curDmgFromMiningSpeed;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
     }

@@ -91,20 +91,22 @@ namespace InDappledGroves
             string curTMode = "";
             if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
             
-            //-- Do not process the chopping action if the player is not holding ctrl, or no block is selected --//
-            if (blockSel == null)
-                return;
+            if (blockSel == null) return;
+
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
 
-            //Need to get ground recipes rather than chopping block recipes
             recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
+            
             if (recipe == null) return;
-  
+
+            resistance = Inventory[0].Itemstack.Block.Resistance;
+
             if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
                 capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
                 return;
             }
+
             byEntity.StartAnimation("axechop");
 
             playNextSound = 0.25f;
@@ -115,7 +117,7 @@ namespace InDappledGroves
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             BlockPos pos = blockSel.Position;
-            if (blockSel != null /*&& DoesSlotMatchRecipe(api.World, Inventory[0])*/)
+            if (blockSel != null)
             {
 
                 if (recipe != null)
@@ -126,7 +128,13 @@ namespace InDappledGroves
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    if (secondsUsed >= recipe.BaseToolTime)
+                    //Utilize remaining resistance loop to create duration of recipe processing
+
+                    
+                    curDmgFromMiningSpeed += collObj.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
+                    lastSecondsUsed = secondsUsed;
+
+                    if ((curDmgFromMiningSpeed / 4) + secondsUsed >= resistance)
                     {
                         SpawnOutput(recipe, byEntity, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
@@ -143,6 +151,9 @@ namespace InDappledGroves
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
+            resistance = 0.0f;
+            curDmgFromMiningSpeed = 0.0f;
+            lastSecondsUsed = 0.0f;
             handling = EnumHandling.PreventDefault;
             byEntity.StopAnimation("axechop");
         }
@@ -200,11 +211,13 @@ namespace InDappledGroves
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
+
+            System.Diagnostics.Debug.WriteLine("Remaining Tree Resistance is " + remainingResistance);
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["woodworkingProps"]["fellingmultiplier"].AsFloat(1f));
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["woodWorkingProps"]["fellingmultiplier"].AsFloat(1f));
 
             BlockPos pos = blockSel.Position;
 
@@ -219,7 +232,6 @@ namespace InDappledGroves
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
-
             return treeResistance;
 
         }
@@ -433,7 +445,11 @@ namespace InDappledGroves
             return null;
         }
 
+        //Create function by which interactions will find recipes using the target block and the current tool mode.
         WorldInteraction[] interactions = null;
+        private float resistance;
+        private float lastSecondsUsed;
+        private float curDmgFromMiningSpeed;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
     }

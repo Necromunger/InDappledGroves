@@ -3,7 +3,7 @@
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/woodworkingPropsByType",
+    "path": "/attributes/woodWorkingPropsByType",
     "value": {
       "*-placed-*":{
         "idgChoppingBlockProps": {               
@@ -65,7 +65,7 @@
     "file": "game:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/woodworkingPropsByType",
+    "path": "/attributes/woodWorkingPropsByType",
     "value": {
       "*-placed-*":{
         "idgChoppingBlockProps": {               
@@ -127,7 +127,7 @@
     "file": "game:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/woodworkingPropsByType",
+    "path": "/attributes/woodWorkingPropsByType",
     "value": {
       "*-placed-*":{
       "choppable": true,

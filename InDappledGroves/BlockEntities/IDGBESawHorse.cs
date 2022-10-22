@@ -265,7 +265,7 @@ namespace InDappledGroves.BlockEntities
                 this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
                 capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
             }
-            ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
+            ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
             if (transform == null)
             {
                 transform = new ModelTransform
@@ -300,24 +300,24 @@ namespace InDappledGroves.BlockEntities
 
         public float addRotate(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["rotation"][side][axis].Exists ? transforms["rotation"][side][axis].AsFloat() : 0f;
         }
 
         public float addTranslate(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["translation"][side][axis].Exists ? transforms["translation"][side][axis].AsFloat() : 0f;
         }
 
         public float addOrigin(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["origin"][side][axis].Exists ? transforms["origin"][side][axis].AsFloat() : 0f;
         }
         public float addScale(string side)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodworkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
         }
         readonly Matrixf mat = new();
@@ -347,19 +347,14 @@ namespace InDappledGroves.BlockEntities
 
             return null;
         }
-
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
             if (Block.Variant["state"] == "compound")
             {
-                //dsc.AppendLine("My Pos is " + Pos);
-                //dsc.AppendLine("conBlock is " + conBlockPos);
-                //dsc.AppendLine("pairedBlock is " + pairedBlockPos);
-                //dsc.AppendLine("isConBlock is " + isConBlock);
-                //dsc.AppendLine("isPaired is " + isPaired);
+                //Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
+                //If no tool is held, return only contents
                 dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
             }
- 
         }
     }
 }
