@@ -42,6 +42,7 @@ namespace InDappledGroves.Blocks
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
+						resistance = bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance);
 						if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
 							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
@@ -74,10 +75,18 @@ namespace InDappledGroves.Blocks
 					playNextSound += .7f;
                 }
 				
-				curDmgFromMiningSpeed += chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
-				lastSecondsUsed = secondsUsed;
+				if(bechoppingblock.Inventory[0].Itemstack.Collectible is Block)
+                {
+					curDmgFromMiningSpeed += chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+				} else
+                {
+					curDmgFromMiningSpeed += chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial];
 
-				if (secondsUsed + (curDmgFromMiningSpeed/2) >= bechoppingblock.Inventory[0].Itemstack.Block.Resistance )
+				}
+				
+				lastSecondsUsed = secondsUsed;
+				
+				if ((secondsUsed + (curDmgFromMiningSpeed/2))*world.Calendar.CalendarSpeedMul >= resistance )
 				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);

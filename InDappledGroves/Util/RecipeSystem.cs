@@ -874,18 +874,21 @@ namespace InDappledGroves.Util
 
         }
 
+        /// <summary>
+        ///   <br />
+        /// </summary>
         public class ChoppingBlockRecipe : IByteSerializable
         {
             public string Code = "ChoppingBlockRecipe";
 
-
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
-            public bool RequiresStation { get; set; } = false;
 
-            public int ToolTime { get; set; } =  2;            
             public int ToolDamage { get; set; } = 1;
 
+            public double IngredientResistance { get; set; } = 2.0;
+
+            public int IngredientMaterial { get; set; } = 4;
             public string ToolMode { get; set; } = "chopping";
 
             public ChoppingBlockIngredient[] Ingredients;
@@ -1027,10 +1030,10 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
-                writer.Write(RequiresStation);
-                writer.Write(ToolTime);
                 writer.Write(ToolDamage);
                 writer.Write(ToolMode);
+                writer.Write(IngredientResistance);
+                writer.Write(IngredientMaterial);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1044,10 +1047,10 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
-                RequiresStation = reader.ReadBoolean();
-                ToolTime = reader.ReadInt32();
                 ToolDamage = reader.ReadInt32();
                 ToolMode = reader.ReadString();
+                IngredientMaterial = reader.ReadInt32();
+                IngredientResistance = reader.ReadDouble();
                 Ingredients = new ChoppingBlockIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1079,7 +1082,8 @@ namespace InDappledGroves.Util
                     Output = Output.Clone(),
                     ReturnStack = ReturnStack.Clone(),
                     Code = Code,
-                    ToolTime = ToolTime,
+                    IngredientMaterial = IngredientMaterial,
+                    IngredientResistance = IngredientResistance,
                     ToolDamage = ToolDamage,
                     ToolMode = ToolMode,
                     Enabled = Enabled,
