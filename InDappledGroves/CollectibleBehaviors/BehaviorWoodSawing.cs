@@ -84,9 +84,9 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
 
-            if (/*!byEntity.Controls.Sprint ||*/ blockSel == null)
+            if (blockSel == null)
                 return;
 
             Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
@@ -265,7 +265,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot) == "sawing")
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "sawing")
             {
                 return interactions;
             }

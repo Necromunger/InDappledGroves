@@ -5,6 +5,18 @@
 	- Removed hewing from stone axes
 	- Removed planing from metal axes
 	- Disable Unfinished Boards
+	- Updated IDGTool to be able to change transform of a tool when its toolmode changes.
+	- Removed the following processes in favor of updated method.
+			- groundChopTime - How long a tool takes to chop wood on the ground
+			- groundChopDamage - The amount of durability the tool takes when chopping on the ground
+			- choppingBlockChopTime - How long a tool takes to chop wood on the chopping block
+			- choppingBlockChopDamage - How much damage the tool takes when chopping on the ground
+	- Altered config file to provide options for changing the processing speed of wood on workstations.
+			- workstationMiningSpdMult -> Modifies impact of mining speed of tools. Higher numbers = faster processing
+			- workstationResistanceMult -> Modifies effective resistance of blocks on workstations. Higher numbers => slower processing.
+			- groundRecipeMiningSpdMult -> Modifies impact of mining speed of tools. Higher numbers = faster processing
+			- groundRecipeResistanceMult -> Modifies effective resistance of blocks on groundRecipes. Higher numbers => slower processing.
+			- treefellingResistanceMult -> Higher numbers make chopping trees take longer, lower numbers increase speed of trees being choppped.
 
 1.17-v0.4.0-dev
 	- Corrected error with leaf breaking

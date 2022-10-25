@@ -84,7 +84,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
 
             if (/*!byEntity.Controls.Sprint ||*/ blockSel == null)
                 return;
@@ -126,7 +126,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 lastSecondsUsed = secondsUsed;
 
                 //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle               
-                if ((curDmgFromMiningSpeed / 4) + secondsUsed >= resistance)
+                if ((curDmgFromMiningSpeed / 4) * getToolModeMod(slot.Itemstack, slot.Itemstack as IIDGTool) + secondsUsed >= resistance)
                 {
                     SpawnOutput(recipe, pos);
                     api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
@@ -138,7 +138,18 @@ namespace InDappledGroves.CollectibleBehaviors
             handling = EnumHandling.PreventDefault;
             return true;
         }
+        private float getToolModeMod(ItemStack stack, IIDGTool tool)
+        {
+            switch (tool.GetToolModeName(stack))
+            {
+                case "chopping": return stack.Collectible.Attributes["woodWorkingProps"]["splittingMod"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["woodWorkingProps"]["sawingMod"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["woodWorkingProps"]["hewingMod"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["woodWorkingProps"]["planingMod"].AsFloat();
+                default: return 1f;
+            }
 
+        }
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             handling = EnumHandling.PreventDefault;
@@ -264,7 +275,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot) == "hewing")
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "hewing")
             {
                 return interactions;
             }

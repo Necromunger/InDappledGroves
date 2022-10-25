@@ -24,11 +24,13 @@ namespace InDappledGroves.Items
 			BlockPos position = blockSel.Position;
 			Block block = byEntity.World.BlockAccessor.GetBlock(position, 0);
 
+			//Determine if the targeted block is any of the three blocks indicated
 			if (block is BlockFirepit || block is BlockPitkiln || block is BlockClayOven)
 			{
 				return;
 			}
 
+			//Determine if target block is *not* a BlockFirewoodPile
 			if (!byEntity.Controls.Sneak && !byEntity.Controls.Sprint && block is not BlockFirewoodPile)
 			{
 

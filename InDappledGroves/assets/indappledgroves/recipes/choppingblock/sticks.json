@@ -1,8 +1,8 @@
 [
   {
     "toolmode": "chopping",
-    "ingredientresistance": 2.0,
-    "ingredientmaterial": 4,
+    "IngredientResistance": 2.0,
+    "IngredientMaterial": 4,
     "ingredients":
     [ 
       {"inputs": 
@@ -15,7 +15,7 @@
   },
   {
     "toolmode": "chopping",
-    "ingredientresistance": 2,
+    "ingredientresistance": 2.0,
     "ingredientmaterial": 4,
     "ingredients":
     [ 

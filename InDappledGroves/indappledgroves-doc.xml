@@ -13,7 +13,7 @@
             <param name="handling">How to handle the process/if it's been handled</param>
             <returns>Whether to allow placing the block</returns>
         </member>
-        <member name="M:InDappledGroves.Blocks.IDGSawHorse.isNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
+        <member name="M:InDappledGroves.Blocks.IDGSawHorse.IsNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
             <summary>Determines whether [is not diagonal] [the specified position].</summary>
             <param name="pos">The position of the placed sawhorse block</param>
             <param name="neibpos">The position of a neighboring sawhorse block</param>
@@ -24,6 +24,23 @@
             <param name="pos">The position of the first block in a sawhorse station</param>
             <param name="neibpos">The position of the second block in a sawhorse station</param>
             <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
+        </member>
+        <member name="M:InDappledGroves.Items.IDGBark.OnHeldInteractStart(Vintagestory.API.Common.ItemSlot,Vintagestory.API.Common.EntityAgent,Vintagestory.API.Common.BlockSelection,Vintagestory.API.Common.EntitySelection,System.Boolean,Vintagestory.API.Common.EnumHandHandling@)">
+            <summary>Called when the player right clicks while holding this block/item in his hands</summary>
+            <param name="slot">Players activehotbar slot</param>
+            <param name="byEntity"></param>
+            <param name="blockSel"></param>
+            <param name="entitySel"></param>
+            <param name="firstEvent">
+            True when the player pressed the right mouse button on this block. Every subsequent call, while the player holds right mouse down will be false, it gets called every second while right mouse is down
+            </param>
+            <param name="handling">Whether or not to do any subsequent actions. If not set or set to NotHandled, the action will not called on the server.</param>
+        </member>
+        <member name="M:InDappledGroves.Items.IDGBark.MatchSlots(Vintagestory.API.Common.InventoryBase,Vintagestory.API.Common.ItemSlot)">
+            <summary>Matches the slots.</summary>
+            <param name="inv">The inventory of the target GroundStorage</param>
+            <param name="slot">The players activehotbarslot</param>
+            <returns>Returns true if all four groundstorage slots contain the same bark as the player is holding.</returns>
         </member>
         <member name="T:InDappledGroves.Properties.Resources">
             <summary>
@@ -41,10 +58,9 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="T:InDappledGroves.Util.IDGRecipeNames.ChoppingBlockRecipe">
-            <summary>
-              <br />
-            </summary>
+        <member name="M:InDappledGroves.Util.IDGRecipeNames.IDGRecipeLoader.GroundIngredient.ToBytes(System.IO.BinaryWriter)">
+            <summary>Converts to bytes.</summary>
+            <param name="writer">The writer.</param>
         </member>
     </members>
 </doc>

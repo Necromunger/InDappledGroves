@@ -33,7 +33,7 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolModeName(slot);};
+			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolModeName(slot.Itemstack);};
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
@@ -43,16 +43,8 @@ namespace InDappledGroves.Blocks
 					if (recipe != null)
 					{
 						resistance = bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance);
-						if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
-						{
-							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
-							return base.OnBlockInteractStart(world, byPlayer, blockSel);
-						}
-						else
-						{
 							byPlayer.Entity.StartAnimation("axechop");
 							return true;
-						}
 					}
 					return false;
 				}
@@ -80,20 +72,19 @@ namespace InDappledGroves.Blocks
 					curDmgFromMiningSpeed += chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
 				} else
                 {
-					curDmgFromMiningSpeed += chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial];
-
+					curDmgFromMiningSpeed += chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial] * (secondsUsed - lastSecondsUsed);
 				}
 				
 				lastSecondsUsed = secondsUsed;
-				
-				if ((secondsUsed + (curDmgFromMiningSpeed/2))*world.Calendar.CalendarSpeedMul >= resistance )
+				System.Diagnostics.Debug.WriteLine((secondsUsed + (curDmgFromMiningSpeed / 2)));
+				if ((secondsUsed + (curDmgFromMiningSpeed/2)) >= resistance )
 				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
-					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.ToolDamage);
+					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
 					
 					if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
 					{

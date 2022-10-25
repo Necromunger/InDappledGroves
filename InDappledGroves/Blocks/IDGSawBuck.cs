@@ -21,21 +21,19 @@ namespace InDappledGroves.Blocks
 		{
 			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			ItemStack itemstack2 = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = (itemstack2 != null) ? itemstack2.Collectible : null;
+			CollectibleObject collectibleObject = itemstack2?.Collectible;
 			string toolmode = "";
-			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
-			if (idgbesawBuck == null)
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck idgbesawBuck)
+            {
+                return base.OnBlockInteractStart(world, byPlayer, blockSel);
+            }
+            if (collectibleObject != null)
 			{
-				return base.OnBlockInteractStart(world, byPlayer, blockSel);
-			}
-			if (collectibleObject != null)
-			{
-				IIDGTool iidgtool = collectibleObject as IIDGTool;
-				if (iidgtool != null)
-				{
-					toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
-				}
-			}
+                if (collectibleObject is IIDGTool iidgtool)
+                {
+                    toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
+                }
+            }
 			if (idgbesawBuck.Inventory.Empty || byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
 			{
 				return idgbesawBuck.OnInteract(byPlayer);
@@ -45,14 +43,6 @@ namespace InDappledGroves.Blocks
 			{
 				return false;
 			}
-			if (itemstack.Attributes.GetInt("durability", 0) < this.recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
-			{
-				(this.api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", new object[]
-				{
-					this.recipe.ToolDamage
-				}));
-				return base.OnBlockInteractStart(world, byPlayer, blockSel);
-			}
 			byPlayer.Entity.StartAnimation("axechop");
 			return true;
 		}
@@ -60,7 +50,7 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = (itemstack != null) ? itemstack.Collectible : null;
+			CollectibleObject collectibleObject = itemstack?.Collectible;
 			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos position = blockSel.Position;
 			if (collectibleObject != null && collectibleObject is IIDGTool && !idgbesawBuck.Inventory.Empty)
