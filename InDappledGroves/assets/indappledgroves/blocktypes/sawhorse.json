@@ -1,4 +1,5 @@
 {
+  "enabled": false,
   "code": "sawhorse",
   "class": "idgsawhorse",
   "entityClass": "idgbesawhorse",

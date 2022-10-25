@@ -1,4 +1,12 @@
-﻿1.17-v0.4.0-dev
+﻿1.17-v0.4.0-dev.2
+	- Updated lang file to work properly for stripped logs, added wood type to chopping blocks.
+	- Updated lang file to accommodate splitting maul and adze
+	- Corrected transforms on the Sawbuck and Chopping Block
+	- Removed hewing from stone axes
+	- Removed planing from metal axes
+	- Disable Unfinished Boards
+
+1.17-v0.4.0-dev
 	- Corrected error with leaf breaking
 	- Added submergible behavior
 	- Included barkbasket recipes, updated lang file

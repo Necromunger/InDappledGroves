@@ -42,7 +42,6 @@ namespace InDappledGroves.Items.Tools
         }
 
         #region ToolMode Stuff
-
         private SkillItem[] BuildSkillList()
         {
             var skillList = new List<SkillItem>();
@@ -90,8 +89,6 @@ namespace InDappledGroves.Items.Tools
             }
 
         }
-
-    
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {

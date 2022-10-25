@@ -8,7 +8,7 @@
   },
   {
     "op": "add",
-    "path": "/attributes/woodworkingProps",
+    "path": "/attributes/woodWorkingProps",
     "value": {
         "idgChoppingBlockProps":  {
           "idgChoppingBlockTransform": {

@@ -14,6 +14,7 @@ namespace InDappledGroves.Blocks
 {
     class IDGChoppingBlock : Block
     {
+
 		
 		ChoppingBlockRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
@@ -41,6 +42,7 @@ namespace InDappledGroves.Blocks
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
+						resistance = bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance);
 						if (stack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
 						{
 							(api as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
@@ -72,19 +74,27 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-                if (secondsUsed >= recipe.ToolTime)
-                {	/*Establish a method for determining the miningspeed of the tool 
-                 	 * based on the contents of the chopping block,
-                 	 * with a default for items without a set blockMaterial, 
-                 	 * such as firewood.
-                 	 */
+				
+				if(bechoppingblock.Inventory[0].Itemstack.Collectible is Block)
+                {
+					curDmgFromMiningSpeed += chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+				} else
+                {
+					curDmgFromMiningSpeed += chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial];
+
+				}
+				
+				lastSecondsUsed = secondsUsed;
+				
+				if ((secondsUsed + (curDmgFromMiningSpeed/2))*world.Calendar.CalendarSpeedMul >= resistance )
+				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
 
 					EntityPlayer playerEntity = byPlayer.Entity;
 
 					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.ToolDamage);
-
+					
 					if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
 					{
 						bechoppingblock.Inventory.Clear();
@@ -103,12 +113,17 @@ namespace InDappledGroves.Blocks
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
+			resistance = 0;
+			lastSecondsUsed = 0;
+			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
-		
 		private float playNextSound;
-	}
+		private float resistance;
+		private float lastSecondsUsed;
+		private float curDmgFromMiningSpeed;
+		}
 		
 }

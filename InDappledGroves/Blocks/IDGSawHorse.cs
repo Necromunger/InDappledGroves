@@ -79,11 +79,19 @@ namespace InDappledGroves.Blocks
 			base.OnNeighbourBlockChange(world, pos, neibpos);
 		}
 
+		/// <summary>Determines whether [is not diagonal] [the specified position].</summary>
+		/// <param name="pos">The position of the placed sawhorse block</param>
+		/// <param name="neibpos">The position of a neighboring sawhorse block</param>
+		/// <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
 		private bool isNotDiagonal(BlockPos pos, BlockPos neibpos)
 		{
 			return pos == neibpos.EastCopy(1) || pos == neibpos.WestCopy(1) || pos == neibpos.NorthCopy(1) || pos == neibpos.SouthCopy(1);
 		}
 
+		/// <summary>Determines what the appropriate placing is based on the location of the first and second blocks that make up a sawhorse station relative to each other.</summary>
+		/// <param name="pos">The position of the first block in a sawhorse station</param>
+		/// <param name="neibpos">The position of the second block in a sawhorse station</param>
+		/// <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
 		private string getFacing(BlockPos pos, BlockPos neibpos, string which)
 		{
 			if (which == "first")
@@ -159,7 +167,10 @@ namespace InDappledGroves.Blocks
 						this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 						this.playNextSound += 0.7f;
 					}
-					if (secondsUsed >= (float)this.recipe.ToolTime)
+					curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawHorse.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+					lastSecondsUsed = secondsUsed;
+
+					if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawHorse.Inventory[0].Itemstack.Block.Resistance)
 					{
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);
 						idgbesawHorse2.Inventory.Clear();
@@ -174,6 +185,9 @@ namespace InDappledGroves.Blocks
 
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
+			resistance = 0;
+			lastSecondsUsed = 0;
+			curDmgFromMiningSpeed = 0;
 			this.playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
@@ -208,5 +222,8 @@ namespace InDappledGroves.Blocks
 		private IDGRecipeNames.SawHorseRecipe recipe;
 
 		private float playNextSound;
+		private float resistance;
+		private float lastSecondsUsed;
+		private float curDmgFromMiningSpeed;
 	}
 }

@@ -1,0 +1,167 @@
+{
+	code: "maul",
+	class: "idgtool",
+	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
+	behaviors: [{
+		name: "GroundStorable",
+		properties: {
+			layout: 'WallHalves',
+			wallOffY: 1,
+			sprintKey: true,
+			selectionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.35, z2: 1 },
+			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
+		}},
+		{
+		"name": "woodsplitter"
+		}
+	],
+	tool: "axe",
+	heldTpHitAnimation: "axechop",
+	damagedby: ["blockbreaking", "attacking"],
+	miningspeedbytype: {
+		"maul-copper": {
+			"wood": 5.2,
+			"plant": 2.8,
+			"leaves": 2.4
+		},
+		"maul-silver": {
+			"wood": 4.5,
+			"plant": 3.3,
+			"leaves": 3
+		},
+		"maul-gold": {
+			"wood": 4.5,
+			"plant": 3.3,
+			"leaves": 3
+		},
+		"maul-bismuthbronze": {
+			"wood": 5.8,
+			"plant": 3.5,
+			"leaves": 2.6
+		},
+		"maul-tinbronze": {
+			"wood": 6.3,
+			"plant": 3.8,
+			"leaves": 3
+		},
+		"maul-blackbronze": {
+			"wood": 6.6,
+			"plant": 4,
+			"leaves": 3.1
+		},
+		"maul-iron": {
+			"wood": 8.4,
+			"plant": 5,
+			"leaves": 3.2
+		},
+		"maul-meteoriciron": {
+			"wood": 9.6,
+			"plant": 5.5,
+			"leaves": 3.6
+		},
+		"maul-steel": {
+			"wood": 11,
+			"plant": 6,
+			"leaves": 4
+		},
+		"*": {
+			"wood": 2.6,
+			"plant": 2.2,
+			"leaves": 1.7
+		}
+	},
+	attributes: {
+		handbook: {
+			groupBy: ["maul-*"]
+		},
+		"woodWorkingProps": {"groundChopTime": 4, "groundChopDamage": 2, "choppingBlockChopTime": 2, "choppingBlockChopDamage": 1,
+    "fellingmultiplier": 1.5
+		},
+		groundStorageTransform: {
+			translation: { x: 0.05, y: 0.05, z: 0 },
+			rotation: { x: 13, y: 88, z: -87 },
+			scale: 0.88
+		},
+		rackable: true,
+		toolrackTransform: {
+			rotation: { y: 1, z: -1 },
+			translation: { x: -0.3, y: 0.6 },
+			scale: 1.25,
+		}
+	},
+	variantgroups: [
+		{ code: "handle", states: ["wood"] },
+    { code: "material", states: ["tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ]},
+   ],
+	skipVariants: [
+		"maul-bone-copper",
+		"maul-bone-tinbronze",
+		"maul-bone-bismuthbronze",
+		"maul-bone-blackbronze",
+		"maul-bone-gold", 
+		"maul-bone-silver", 
+		"maul-bone-iron", 
+		"maul-bone-meteoriciron", 
+		"maul-bone-steel"
+	],
+	drawtype: "json",
+    shapeByType: {
+		"@maul-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": { base: "item/tools/splittingmaul" }
+	},
+	texturesByType: {
+		"@maul-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": {
+			"material": { base: "game:block/metal/ingot/{material}" },
+			"handle": { base: "game:item/tool/material/handle" }
+		}
+	},
+	maxstacksize: 1,
+	attackRange: 2,
+	tooltierbytype: {
+		"@maul-wood-(copper|silver|gold)": 2,
+		"@maul-wood-(tinbronze|bismuthbronze|blackbronze)": 3,
+		"@maul-wood-(iron|meteoriciron)": 4,
+		"@maul-wood-(steel)": 5
+	},
+	durabilitybytype: {
+		"*-bone-obsidian": 100,
+		"@maul-wood-(silver|gold)": 125,
+		"*-copper": 250,
+		"*-tinbronze": 400,
+		"*-bismuthbronze": 500,
+		"*-blackbronze": 600,
+		"*-iron": 900,
+		"*-meteoriciron": 1200,
+		"*-steel": 1800
+	},
+	attackpowerbytype: {
+		"*-copper": 2,
+		"@maul-wood-(bismuthbronze|silver|gold)": 2.5,
+		"*-tinbronze": 2.75,
+		"@maul-wood-(blackbronze|iron)": 3,
+		"*-medeoriciron": 3.5,
+		"*-steel": 4
+	},
+	guiTransform: {
+	translation: { x: -2, y: 0, z: 0 },
+	rotation: { x: -93, y: 45, z: 9 },
+	origin: { x: 0.48, y: 0.8, z: 0.38 },
+	scale: 1.94
+	},
+	fpHandTransform: {
+		translation: { x: -0.24, y: 0, z: 0.1 },
+		rotation: { x: 15, y: 15, z: 90 },
+		scale: 2.45
+	},
+	groundTransform: {
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: 0, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 3.4
+	},
+	tpHandTransform: {
+		translation: { x: -0.9, y: 0.01, z: -0.65 },
+		rotation: { x: 90, y: 0, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 0.8
+	}
+}

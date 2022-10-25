@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InDappledGroves</name>
+    </assembly>
+    <members>
+        <member name="M:InDappledGroves.BlockBehaviors.BehaviorSubmergible.DoPlaceBlock(Vintagestory.API.Common.IWorldAccessor,Vintagestory.API.Common.IPlayer,Vintagestory.API.Common.BlockSelection,Vintagestory.API.Common.ItemStack,Vintagestory.API.Common.EnumHandling@)">
+            <summary>Step 3: Place the block. Return false if it cannot be placed (but you should rather return false in CanPlaceBlock).</summary>
+            <param name="world">The World being accessed</param>
+            <param name="byPlayer">The Player Placing The Block</param>
+            <param name="blockSel">The Selected Block</param>
+            <param name="byItemStack">The Itemstack Held By The Player</param>
+            <param name="handling">How to handle the process/if it's been handled</param>
+            <returns>Whether to allow placing the block</returns>
+        </member>
+        <member name="M:InDappledGroves.Blocks.IDGSawHorse.isNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
+            <summary>Determines whether [is not diagonal] [the specified position].</summary>
+            <param name="pos">The position of the placed sawhorse block</param>
+            <param name="neibpos">The position of a neighboring sawhorse block</param>
+            <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:InDappledGroves.Blocks.IDGSawHorse.getFacing(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos,System.String)">
+            <summary>Determines what the appropriate placing is based on the location of the first and second blocks that make up a sawhorse station relative to each other.</summary>
+            <param name="pos">The position of the first block in a sawhorse station</param>
+            <param name="neibpos">The position of the second block in a sawhorse station</param>
+            <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
+        </member>
+        <member name="T:InDappledGroves.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:InDappledGroves.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:InDappledGroves.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:InDappledGroves.Util.IDGRecipeNames.ChoppingBlockRecipe">
+            <summary>
+              <br />
+            </summary>
+        </member>
+    </members>
+</doc>

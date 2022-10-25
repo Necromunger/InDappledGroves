@@ -41,7 +41,7 @@ attributes: {
 	creativeinventoryStacksByType: {
 		"*-east": [
 			{
-				tabs: [ "general", "decorative", "ancienttools" ],
+				tabs: [ "general", "decorative"],
 				stacks: [
 					{ type: "block", code: "barkbasket-{variant}-east" }
 				]
