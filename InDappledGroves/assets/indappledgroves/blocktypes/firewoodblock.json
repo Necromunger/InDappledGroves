@@ -2,7 +2,7 @@
 	"code": "idgfirewoodblock",
 	"class": "Block",
 	"shape": { "base": "game:item/firewood", "rotateX": 90},
-	"attributes": { "woodworkingProps": {
+	"attributes": { "woodWorkingProps": {
 										"choppable": true,
 									"idgChoppingBlockProps": {
 										  "output": {"code": "game:stick", "quantity": 4}
@@ -11,7 +11,7 @@
 	},
 	"behaviors": [{"name": "Unstable"}],
 	"blockmaterial": "Wood",
-	"resistance": 0,
+	"resistance": 2,
 	"sounds": {
 		"hit": "block/planks",
 		"break": "block/planks",

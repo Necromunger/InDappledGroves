@@ -70,7 +70,11 @@ namespace InDappledGroves.Blocks
 					this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 					this.playNextSound += 0.7f;
 				}
-				if (secondsUsed >= (float)this.recipe.ToolTime)
+
+				curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+				lastSecondsUsed = secondsUsed;
+
+				if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawBuck.Inventory[0].Itemstack.Block.Resistance)
 				{
 					this.SpawnOutput(this.recipe, blockSel.Position);
 					idgbesawBuck.Inventory.Clear();
@@ -84,7 +88,10 @@ namespace InDappledGroves.Blocks
 
 		public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			this.playNextSound = 0.7f;
+			resistance = 0;
+			lastSecondsUsed = 0;
+			curDmgFromMiningSpeed = 0;
+			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
 		}
 
@@ -97,7 +104,9 @@ namespace InDappledGroves.Blocks
 		}
 
 		private IDGRecipeNames.SawbuckRecipe recipe;
-
 		private float playNextSound;
+		private float resistance;
+		private float lastSecondsUsed;
+		private float curDmgFromMiningSpeed;
 	}
 }

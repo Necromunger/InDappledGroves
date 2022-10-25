@@ -1,6 +1,6 @@
 {
 	code: "strippedlog",
-	creativeinventory: { "general": ["*-ud"], "flora": ["*-ud"], "construction": ["*-ud"], "ancienttools": ["*-ud"] },
+	creativeinventory: { "general": ["*-ud"], "flora": ["*-ud"], "construction": ["*-ud"]},
     attributes: {
 		handbook: {
 			groupBy: ["strippedlog-*"],

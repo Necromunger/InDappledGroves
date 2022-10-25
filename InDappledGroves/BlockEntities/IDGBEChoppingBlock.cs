@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
@@ -19,9 +21,8 @@ namespace InDappledGroves.BlockEntities
 
 		public IDGBEChoppingBlock()
 		{
-			Inventory = new InventoryGeneric(1, "choppingblock-slot", null, null);
+			Inventory = new InventoryDisplayed(this, 1, "choppingblock-slot", null, null);
 			meshes = new MeshData[1];
-
 		}
 
 		public override void Initialize(ICoreAPI api)
@@ -154,7 +155,7 @@ namespace InDappledGroves.BlockEntities
 
 			}
 
-			ModelTransform transform = stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): null;
+			ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): null;
 
 			if(transform == null)
             {
@@ -175,39 +176,31 @@ namespace InDappledGroves.BlockEntities
 
 		private ModelTransform ProcessTransform(ModelTransform transform, String side)
 		{
-			transform.Rotation.X += AddRotate(side + "x");
-			transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side + "y");
-			transform.Rotation.Z += AddRotate(side + "z");
-			transform.Translation.X += AddTranslate(side + "x");
-			transform.Translation.Y += AddTranslate(side + "y");
-			transform.Translation.Z += AddTranslate(side + "x");
-			transform.Origin.X += AddOrigin(side + "x");
-			transform.Origin.Y += AddOrigin(side + "y");
-			transform.Origin.Z += AddOrigin(side + "z");
-			transform.Scale = AddScale(side);
+            transform.Rotation.X += AddRotate(side + "x");
+            transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side + "y");
+            transform.Rotation.Z += AddRotate(side + "z");
+            transform.Translation.X += AddTranslate(side + "x");
+            transform.Translation.Y += AddTranslate(side + "y");
+            transform.Translation.Z += AddTranslate(side + "z");
+            transform.Scale = AddScale(side);
 			return transform;
 		}
 
 		public float AddRotate(string sideAxis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
 		}
 
 		public float AddTranslate(string sideAxis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["translation"][sideAxis].Exists ? transforms["translation"][sideAxis].AsFloat() : 0f;
 		}
 
-		public float AddOrigin(string sideAxis)
-		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
-			return transforms["translation"][sideAxis].Exists ? transforms["translation"][sideAxis].AsFloat() : 0f;
-		}
 		public float AddScale(string side)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodworkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 0.95f;
 		}
 
@@ -252,6 +245,11 @@ namespace InDappledGroves.BlockEntities
 			}
 		}
 
+		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
+		{
+			//Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
+			//If no tool is held, return only contents
+		}
 		public override void updateMeshes()
         {
 			base.updateMeshes();

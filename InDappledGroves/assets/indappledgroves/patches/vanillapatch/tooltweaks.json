@@ -10,7 +10,8 @@
     "op": "add",
     "path": "/attributes/woodWorkingProps",
     "value": {"groundChopTime": 6, "groundChopDamage": 3, "choppingBlockChopTime": 4, "choppingBlockChopDamage": 2, 
-              "groundPlaneTime": 4, "sawHorsePlaneTime": 2, "groundPlaneDamage": 4, "sawHorsePlaneDamage": 2
+              "groundPlaneTime": 4, "sawHorsePlaneTime": 2, "groundPlaneDamage": 4, "sawHorsePlaneDamage": 2,
+              "fellingmultiplier": 1
              },
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
@@ -18,7 +19,7 @@
     {
     "op": "add",
     "path": "/behaviors",
-    "value": [{"name": "woodsplitter"}, {"name": "woodhewer"}],
+    "value": [{"name": "woodsplitter"}],
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },  
@@ -32,7 +33,7 @@
   {
     "op": "add",
     "path": "/behaviors",
-    "value": [{"name": "woodsplitter"}, {"name": "woodplaner"}],
+    "value": [{"name": "woodsplitter"}],
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
