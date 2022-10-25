@@ -7,6 +7,6 @@ namespace InDappledGroves.Interfaces
 {
     interface IIDGTool 
     {
-        public string GetToolModeName(ItemSlot slot);
+        public string GetToolModeName(ItemStack stack);
     }
 }

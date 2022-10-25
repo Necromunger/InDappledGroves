@@ -846,6 +846,8 @@ namespace InDappledGroves.Util
                     }
                 }
 
+                /// <summary>Converts to bytes.</summary>
+                /// <param name="writer">The writer.</param>
                 public void ToBytes(BinaryWriter writer)
                 {
                     writer.Write(Inputs.Length);
@@ -874,9 +876,6 @@ namespace InDappledGroves.Util
 
         }
 
-        /// <summary>
-        ///   <br />
-        /// </summary>
         public class ChoppingBlockRecipe : IByteSerializable
         {
             public string Code = "ChoppingBlockRecipe";
@@ -884,11 +883,11 @@ namespace InDappledGroves.Util
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
 
-            public int ToolDamage { get; set; } = 1;
-
-            public double IngredientResistance { get; set; } = 2.0;
+            public int BaseToolDmg { get; set; } = 1;
 
             public int IngredientMaterial { get; set; } = 4;
+            public double IngredientResistance { get; set; } = 4.0;
+                        
             public string ToolMode { get; set; } = "chopping";
 
             public ChoppingBlockIngredient[] Ingredients;
@@ -1030,10 +1029,10 @@ namespace InDappledGroves.Util
             public void ToBytes(BinaryWriter writer)
             {
                 writer.Write(Code);
-                writer.Write(ToolDamage);
+                writer.Write(BaseToolDmg);
                 writer.Write(ToolMode);
-                writer.Write(IngredientResistance);
                 writer.Write(IngredientMaterial);
+                writer.Write(IngredientResistance);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1047,7 +1046,7 @@ namespace InDappledGroves.Util
             public void FromBytes(BinaryReader reader, IWorldAccessor resolver)
             {
                 Code = reader.ReadString();
-                ToolDamage = reader.ReadInt32();
+                BaseToolDmg = reader.ReadInt32();
                 ToolMode = reader.ReadString();
                 IngredientMaterial = reader.ReadInt32();
                 IngredientResistance = reader.ReadDouble();
@@ -1084,7 +1083,7 @@ namespace InDappledGroves.Util
                     Code = Code,
                     IngredientMaterial = IngredientMaterial,
                     IngredientResistance = IngredientResistance,
-                    ToolDamage = ToolDamage,
+                    BaseToolDmg = BaseToolDmg,
                     ToolMode = ToolMode,
                     Enabled = Enabled,
                     Name = Name,
@@ -1156,8 +1155,9 @@ namespace InDappledGroves.Util
             public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
             public string ToolMode = "sawing";
-            public int ToolTime { get; set; } = 4;
-            public int ToolDamage { get; set; } = 4;
+            public int IngredientMaterial { get; set; } = 4;
+            public double IngredientResistance { get; set; } = 4.0;
+            public int BaseToolDmg { get; set; } = 1;
             public SawbuckIngredient[] Ingredients;
 
             public JsonItemStack Output;
@@ -1296,8 +1296,9 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
-                writer.Write(ToolTime);
-                writer.Write(ToolDamage);
+                writer.Write(IngredientMaterial);
+                writer.Write(IngredientResistance);
+                writer.Write(BaseToolDmg);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1312,8 +1313,9 @@ namespace InDappledGroves.Util
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
-                ToolTime = reader.ReadInt32();
-                ToolDamage = reader.ReadInt32();
+                IngredientMaterial = reader.ReadInt32();
+                IngredientResistance = reader.ReadDouble();
+                BaseToolDmg = reader.ReadInt32();
                 Ingredients = new SawbuckIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1344,8 +1346,9 @@ namespace InDappledGroves.Util
                     Output = Output.Clone(),
                     ReturnStack = ReturnStack.Clone(),
                     ToolMode = ToolMode,
-                    ToolTime = ToolTime,
-                    ToolDamage = ToolDamage,
+                    IngredientMaterial = IngredientMaterial,
+                    IngredientResistance = IngredientResistance,
+                    BaseToolDmg = BaseToolDmg,
                     Code = Code,
                     Enabled = Enabled,
                     Name = Name,
@@ -1415,14 +1418,13 @@ namespace InDappledGroves.Util
         public class SawHorseRecipe : IByteSerializable
         {
             public string Code = "sawhorserecipe";
-            public AssetLocation Name { get; set; }
             public bool Enabled { get; set; } = true;
-
+            public AssetLocation Name { get; set; }
+            
             public string ToolMode = "planing";
-
-            public int ToolTime { get; set; } = 4;
-
-            public int ToolDamage { get; set; } = 4;
+            public int IngredientMaterial { get; set; } = 4;
+            public double IngredientResistance { get; set; } = 4.0;
+            public int BaseToolDmg { get; set; } = 1;
 
             public SawHorseIngredient[] Ingredients;
 
@@ -1562,8 +1564,9 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
-                writer.Write(ToolTime);
-                writer.Write(ToolDamage);
+                writer.Write(IngredientMaterial);
+                writer.Write(IngredientResistance);
+                writer.Write(BaseToolDmg);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
                 {
@@ -1578,8 +1581,9 @@ namespace InDappledGroves.Util
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
-                ToolTime = reader.ReadInt32();
-                ToolDamage = reader.ReadInt32();
+                IngredientMaterial = reader.ReadInt32();
+                IngredientResistance = reader.ReadDouble();
+                BaseToolDmg = reader.ReadInt32();
                 Ingredients = new SawHorseIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1613,8 +1617,7 @@ namespace InDappledGroves.Util
                     Enabled = Enabled,
                     Name = Name,
                     ToolMode = ToolMode,
-                    ToolTime = ToolTime,
-                    ToolDamage = ToolDamage,
+                    BaseToolDmg = BaseToolDmg,
                     Ingredients = ingredients
                 };
             }
@@ -1685,9 +1688,7 @@ namespace InDappledGroves.Util
 
             public string ToolMode = "chopping";
 
-            public int BaseToolTime { get; set; } = 4;
-
-            public int BaseToolDmg { get; set; } = 4;
+            public int BaseToolDmg { get; set; } = 1;
 
             public GroundIngredient[] Ingredients;
 
@@ -1829,7 +1830,6 @@ namespace InDappledGroves.Util
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
-                writer.Write(BaseToolTime);
                 writer.Write(BaseToolDmg);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1845,7 +1845,6 @@ namespace InDappledGroves.Util
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
-                BaseToolTime = reader.ReadInt32();
                 BaseToolDmg = reader.ReadInt32();
                 Ingredients = new GroundIngredient[reader.ReadInt32()];
 
@@ -1874,15 +1873,15 @@ namespace InDappledGroves.Util
 
                 return new GroundRecipe()
                 {
-                    Output = Output.Clone(),
-                    ReturnStack = ReturnStack.Clone(),
-                    ToolMode = ToolMode,
-                    BaseToolTime = BaseToolTime,
-                    BaseToolDmg = BaseToolDmg,
-                    Code = Code,
                     Enabled = Enabled,
                     Name = Name,
-                    Ingredients = ingredients
+                    Code = Code,
+                    ToolMode = ToolMode,
+                    BaseToolDmg = BaseToolDmg,
+                    Ingredients = ingredients,
+                    Output = Output.Clone(),
+                    ReturnStack = ReturnStack.Clone(),
+                    
                 };
             }
 

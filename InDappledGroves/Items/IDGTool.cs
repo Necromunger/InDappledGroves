@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 
 namespace InDappledGroves.Items.Tools
@@ -17,7 +18,6 @@ namespace InDappledGroves.Items.Tools
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            ICoreClientAPI capi = api as ICoreClientAPI;
 
             toolModes = BuildSkillList();
 
@@ -25,7 +25,6 @@ namespace InDappledGroves.Items.Tools
 
         public IDGTool()
         {
-            ICoreClientAPI capi = api as ICoreClientAPI;
 
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
@@ -66,14 +65,69 @@ namespace InDappledGroves.Items.Tools
             return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
         }
 
-        public string GetToolModeName(ItemSlot slot)
+        public string GetToolModeName(ItemStack stack)
         {
-            return toolModes[Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
+            return toolModes[Math.Min(this.toolModes.Length - 1, stack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
         {
             slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
+        }
+
+        public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
+        {
+            
+
+            if (stack.Attributes.HasAttribute("toolMode"))
+            {
+                JsonObject transformAttributes = stack.Collectible.Attributes["modeTransforms"][GetToolModeName(stack)];
+
+                if (target is EnumItemRenderTarget.HandFp)
+                {
+                    renderinfo.Transform = transformAttributes?["fpHandTransform"].AsObject<ModelTransform>() ?? FpHandTransform;
+                }
+                if (target is EnumItemRenderTarget.HandTp)
+                {
+                    renderinfo.Transform = transformAttributes?["tpHandTransform"].AsObject<ModelTransform>() ?? TpHandTransform;
+                }
+            }
+            base.OnBeforeRender(capi, stack, target, ref renderinfo);
+        }
+
+        private void updateModeTransforms(ItemStack slot, ref ItemRenderInfo renderinfo, string toolMode)
+        {
+            bool flag = this.Attributes["modeTransforms"].Exists;
+            if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)].Exists)
+            {
+                if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)]["fpHandTransform"].Exists) updateFPTransforms(slot.Collectible, ref renderinfo, this.Attributes["modeTransforms"][GetToolModeName(slot)]["fpHandTransform"]);
+                if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)]["tpHandTransform"].Exists) updateTPTransforms(slot.Collectible, ref renderinfo, this.Attributes["modeTransforms"][GetToolModeName(slot)]["tpHandTransform"]);
+            }
+        }
+        
+        private void updateFPTransforms(CollectibleObject slot, ref ItemRenderInfo renderinfo, JsonObject transforms)
+        {
+            bool transFlag = transforms["translation"].Exists;
+            bool rotationFlag = transforms["rotation"].Exists;
+            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Translation.X;
+            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Translation.X;
+            renderinfo.Transform.Translation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.FpHandTransform.Translation.Y;
+            renderinfo.Transform.Translation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.FpHandTransform.Translation.Z;
+            renderinfo.Transform.Rotation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Rotation.X;
+            renderinfo.Transform.Rotation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.FpHandTransform.Rotation.Y;
+            renderinfo.Transform.Rotation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.FpHandTransform.Rotation.Z;
+        }
+
+        private void updateTPTransforms(CollectibleObject slot, ref ItemRenderInfo renderinfo, JsonObject transforms)
+        {
+            bool transFlag = transforms["translation"].Exists;
+            bool rotationFlag = transforms["rotation"].Exists;
+            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.TpHandTransform.Translation.X;
+            renderinfo.Transform.Translation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.TpHandTransform.Translation.Y;
+            renderinfo.Transform.Translation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.TpHandTransform.Translation.Z;
+            renderinfo.Transform.Rotation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.TpHandTransform.Rotation.X;
+            renderinfo.Transform.Rotation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.TpHandTransform.Rotation.Y;
+            renderinfo.Transform.Rotation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.TpHandTransform.Rotation.Z;
         }
         #endregion ToolMode Stuff
 

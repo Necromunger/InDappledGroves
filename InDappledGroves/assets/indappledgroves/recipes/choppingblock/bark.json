@@ -9,7 +9,6 @@
        ]
       }
     ],
-    "ToolTime": 4,
     "ToolDamage": 2,
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
     "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free"}
@@ -24,7 +23,6 @@
        ]
       }
     ],
-    "ToolTime": 4,
     "ToolDamage": 4,
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
     "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}

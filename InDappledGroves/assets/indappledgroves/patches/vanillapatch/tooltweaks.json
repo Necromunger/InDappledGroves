@@ -6,17 +6,7 @@
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
-  {
-    "op": "add",
-    "path": "/attributes/woodWorkingProps",
-    "value": {"groundChopTime": 6, "groundChopDamage": 3, "choppingBlockChopTime": 4, "choppingBlockChopDamage": 2, 
-              "groundPlaneTime": 4, "sawHorsePlaneTime": 2, "groundPlaneDamage": 4, "sawHorsePlaneDamage": 2,
-              "fellingmultiplier": 1
-             },
-    "file": "game:itemtypes/tool/axe-stone.json",
-    "side": "server"
-  },
-    {
+   {
     "op": "add",
     "path": "/behaviors",
     "value": [{"name": "woodsplitter"}],
@@ -39,22 +29,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/woodWorkingProps",
-    "value": {"groundChopTime": 4, "groundChopDamage": 2, "choppingBlockChopTime": 2, "choppingBlockChopDamage": 1},
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
     "path": "/class",
     "value": "idgtool",
-    "file": "game:itemtypes/tool/saw.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/woodWorkingProps",
-    "value": {"groundSawTime": 6, "groundSawDamage": 3, "sawBuckSawTime": 4, "sawBuckSawDamage": 2},
     "file": "game:itemtypes/tool/saw.json",
     "side": "server"
   },

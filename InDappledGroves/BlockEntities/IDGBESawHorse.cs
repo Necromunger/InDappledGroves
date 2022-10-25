@@ -17,9 +17,9 @@ namespace InDappledGroves.BlockEntities
     class IDGBESawHorse : BlockEntityDisplay
     {
         //public bool isPaired { get; set; }
-        public bool isPaired;
-        public bool isConBlock { get; set; }
-        public BlockPos conBlockPos { get; set; }
+        public bool IsPaired;
+        public bool IsConBlock { get; set; }
+        public BlockPos ConBlockPos { get; set; }
         public BlockPos pairedBlockPos { get; set; }
 
         SawHorseRecipe recipe; 
@@ -44,11 +44,10 @@ namespace InDappledGroves.BlockEntities
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             CollectibleObject colObj = slot.Itemstack?.Collectible;
-            bool isPlaningBox = blockSel.SelectionBoxIndex == 1;
 
 
-            if (Block.Variant["state"] == "compound" && !isConBlock) {
-                return (Api.World.BlockAccessor.GetBlockEntity(conBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
+            if (Block.Variant["state"] == "compound" && !IsConBlock) {
+                return (Api.World.BlockAccessor.GetBlockEntity(ConBlockPos) as IDGBESawHorse).OnInteract(byPlayer, blockSel);
             }
 
             //If players hand is empty, try to take item from sawhorse station
@@ -76,19 +75,12 @@ namespace InDappledGroves.BlockEntities
             else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
                 if (slot.Itemstack.Collectible is IDGTool tool) {
-                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1], tool.GetToolModeName(slot));
+                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1], tool.GetToolModeName(slot.Itemstack));
                     if (recipe != null)
                     {
-                        if (slot.Itemstack.Attributes.GetInt("durability") < recipe.ToolDamage && InDappledGrovesConfig.Current.preventToolUseWithLowDurability)
-                        {
-                            (Api.World as ICoreClientAPI).TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.ToolDamage));
-                            return false;
-                        }
-                        else
-                        {
+                        
                             byPlayer.Entity.StartAnimation("axechop");
                             return true;
-                        }
                     }
                     return false;
                 }
@@ -184,23 +176,23 @@ namespace InDappledGroves.BlockEntities
         }
           public void CreateSawhorseStation(BlockPos placedSawHorse, IDGBESawHorse neiSawHorseBE)
         {
-            isPaired = true;
-            isConBlock = true;
-            conBlockPos = Pos;
+            IsPaired = true;
+            IsConBlock = true;
+            ConBlockPos = Pos;
             pairedBlockPos = placedSawHorse;
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
             base.ToTreeAttributes(tree);
-            tree.SetBool("ispaired", isPaired);
-            tree.SetBool("isconblock", isConBlock);
-            if (conBlockPos != null)
+            tree.SetBool("ispaired", IsPaired);
+            tree.SetBool("isconblock", IsConBlock);
+            if (ConBlockPos != null)
             {
-                tree.SetBlockPos("conblock", conBlockPos);
+                tree.SetBlockPos("conblock", ConBlockPos);
             } else
             {
-                conBlockPos = null;
+                ConBlockPos = null;
             }
             if (pairedBlockPos != null)
             {
@@ -217,9 +209,9 @@ namespace InDappledGroves.BlockEntities
         {
             base.FromTreeAttributes(tree, worldForResolving);
 
-            isPaired = tree.GetBool("ispaired");
-            isConBlock = tree.GetBool("isconblock");
-            conBlockPos = tree.GetBlockPos("conblock", null);
+            IsPaired = tree.GetBool("ispaired");
+            IsConBlock = tree.GetBool("isconblock");
+            ConBlockPos = tree.GetBlockPos("conblock", null);
             pairedBlockPos = tree.GetBlockPos("pairedblock", null);
             
             MarkDirty(true);
@@ -353,7 +345,7 @@ namespace InDappledGroves.BlockEntities
             {
                 //Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
                 //If no tool is held, return only contents
-                dsc.AppendLine("Contains " + (conBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(conBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
+                dsc.AppendLine("Contains " + (ConBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(ConBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
             }
         }
     }

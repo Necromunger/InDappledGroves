@@ -45,13 +45,13 @@ namespace InDappledGroves.Blocks
 			{
 				idgbesawHorse = (this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse);
 				idgbesawHorse2 = (this.api.World.BlockAccessor.GetBlockEntity(neibpos) as IDGBESawHorse);
-				if (!idgbesawHorse.isPaired && !idgbesawHorse2.isPaired && this.isNotDiagonal(pos, neibpos))
+				if (!idgbesawHorse.IsPaired && !idgbesawHorse2.IsPaired && this.IsNotDiagonal(pos, neibpos))
 				{
 					idgbesawHorse.CreateSawhorseStation(neibpos, idgbesawHorse2);
-					idgbesawHorse2.conBlockPos = pos.Copy();
+					idgbesawHorse2.ConBlockPos = pos.Copy();
 					idgbesawHorse2.pairedBlockPos = pos.Copy();
-					idgbesawHorse2.isPaired = true;
-					idgbesawHorse2.isConBlock = false;
+					idgbesawHorse2.IsPaired = true;
+					idgbesawHorse2.IsConBlock = false;
 					Block block = this.api.World.BlockAccessor.GetBlock(this.api.World.BlockAccessor.GetBlock(pos).CodeWithVariants(new string[]
 					{
 						"side",
@@ -83,7 +83,7 @@ namespace InDappledGroves.Blocks
 		/// <param name="pos">The position of the placed sawhorse block</param>
 		/// <param name="neibpos">The position of a neighboring sawhorse block</param>
 		/// <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
-		private bool isNotDiagonal(BlockPos pos, BlockPos neibpos)
+		private bool IsNotDiagonal(BlockPos pos, BlockPos neibpos)
 		{
 			return pos == neibpos.EastCopy(1) || pos == neibpos.WestCopy(1) || pos == neibpos.NorthCopy(1) || pos == neibpos.SouthCopy(1);
 		}
@@ -146,7 +146,7 @@ namespace InDappledGroves.Blocks
 			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject collectibleObject = (itemstack != null) ? itemstack.Collectible : null;
 			IDGBESawHorse idgbesawHorse = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse;
-			IDGBESawHorse idgbesawHorse2 = idgbesawHorse.isConBlock ? idgbesawHorse : (this.api.World.BlockAccessor.GetBlockEntity(idgbesawHorse.conBlockPos) as IDGBESawHorse);
+			IDGBESawHorse idgbesawHorse2 = idgbesawHorse.IsConBlock ? idgbesawHorse : (this.api.World.BlockAccessor.GetBlockEntity(idgbesawHorse.ConBlockPos) as IDGBESawHorse);
 			BlockPos position = blockSel.Position;
 			string curTMode = "";
 			if (collectibleObject != null)
@@ -154,7 +154,7 @@ namespace InDappledGroves.Blocks
 				IIDGTool iidgtool = collectibleObject as IIDGTool;
 				if (iidgtool != null)
 				{
-					curTMode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot);
+					curTMode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
 				}
 			}
 			if (collectibleObject != null && collectibleObject.HasBehavior<BehaviorWoodPlaning>(false) && !idgbesawHorse2.Inventory.Empty)
@@ -198,15 +198,15 @@ namespace InDappledGroves.Blocks
 			if (idgbesawHorse != null)
 			{
 				idgbesawHorse = (this.api.World.BlockAccessor.GetBlockEntity(pos) as IDGBESawHorse);
-				if (idgbesawHorse.isPaired)
+				if (idgbesawHorse.IsPaired)
 				{
 					IDGBESawHorse idgbesawHorse2 = this.api.World.BlockAccessor.GetBlockEntity(idgbesawHorse.pairedBlockPos) as IDGBESawHorse;
 					if (idgbesawHorse2 != null)
 					{
 						this.api.World.BlockAccessor.ExchangeBlock(this.api.World.BlockAccessor.GetBlock(this.api.World.BlockAccessor.GetBlock(idgbesawHorse2.Pos).CodeWithVariant("state", "single")).BlockId, idgbesawHorse2.Pos);
-						idgbesawHorse2.isConBlock = false;
-						idgbesawHorse2.conBlockPos = null;
-						idgbesawHorse2.isPaired = false;
+						idgbesawHorse2.IsConBlock = false;
+						idgbesawHorse2.ConBlockPos = null;
+						idgbesawHorse2.IsPaired = false;
 						idgbesawHorse2.pairedBlockPos = null;
 						if (!idgbesawHorse2.Inventory[1].Empty)
 						{

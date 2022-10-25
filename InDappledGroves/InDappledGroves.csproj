@@ -47,6 +47,9 @@
     <None Update="assets\indappledgroves\itemtypes\tools\adze.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\tools\grubaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\lang\en.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -191,7 +194,7 @@
     <None Update="assets\indappledgroves\shapes\item\tools\broadaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\shapes\item\tools\grubaxe-crude.json">
+    <None Update="assets\indappledgroves\shapes\item\tools\grubaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\item\tools\handplaner.json">

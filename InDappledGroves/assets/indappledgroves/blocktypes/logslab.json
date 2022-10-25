@@ -12,10 +12,6 @@
 	],
 	"skipVariants": ["*-up-snow"],
 	"attributes": { "woodWorkingProps": {
-									"choppable": true,
-									"hewable": true,
-									"sawable": true,
-									"planable": true,
 									"idgChoppingBlockProps": {
 										 "idgChoppingBlockTransform": {
                       "translation": {
@@ -57,6 +53,7 @@
 								}
 	},
 	"blockmaterial": "Wood",
+	"resistance": 4.5,
 	"creativeinventory": {
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},

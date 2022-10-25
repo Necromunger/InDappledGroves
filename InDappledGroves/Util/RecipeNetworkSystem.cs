@@ -44,16 +44,16 @@ namespace InDappledGroves.Util
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
-            List<ChoppingBlockRecipe> crecipes = new List<ChoppingBlockRecipe>();
-            List<SawbuckRecipe> srecipes = new List<SawbuckRecipe>();
-            List<SawHorseRecipe> precipes = new List<SawHorseRecipe>();
-            List<GroundRecipe> grecipes = new List<GroundRecipe>();
+            List<ChoppingBlockRecipe> crecipes = new();
+            List<SawbuckRecipe> srecipes = new();
+            List<SawHorseRecipe> precipes = new();
+            List<GroundRecipe> grecipes = new();
 
             if (networkMessage.cbvalues != null)
             {
                 foreach (string crec in networkMessage.cbvalues)
                 {
-                    using (MemoryStream ms = new MemoryStream(Ascii85.Decode(crec)))
+                    using (MemoryStream ms = new(Ascii85.Decode(crec)))
                     {
                         BinaryReader reader = new BinaryReader(ms);
 

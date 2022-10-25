@@ -23,6 +23,10 @@ namespace InDappledGroves
         public InventoryBase Inventory { get; }
         public string InventoryClassName => "worldinventory";
         public GroundRecipe recipe;
+        public float workstationMiningSpdMult;
+        public float workstationResistanceMult;
+        public float groundRecipeMiningSpdMult;
+        public float groundRecipeResistaceMult;
 
         public SkillItem[] toolModes;
 
@@ -34,8 +38,11 @@ namespace InDappledGroves
 
         public override void Initialize(JsonObject properties)
         {
-
             base.Initialize(properties);
+            workstationMiningSpdMult = InDappledGrovesConfig.Current.workstationMiningSpdMult;
+            workstationResistanceMult = InDappledGrovesConfig.Current.workstationResistanceMult;
+            groundRecipeMiningSpdMult = InDappledGrovesConfig.Current.groundRecipeMiningSpdMult;
+            groundRecipeResistaceMult = InDappledGrovesConfig.Current.groundRecipeResistaceMult;
         }
 
         public SkillItem[] GetSkillItems()
@@ -89,7 +96,7 @@ namespace InDappledGroves
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
             string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot);
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
             
             if (blockSel == null) return;
 
@@ -99,7 +106,7 @@ namespace InDappledGroves
             
             if (recipe == null) return;
 
-            resistance = Inventory[0].Itemstack.Block.Resistance;
+            resistance = (Inventory[0].Itemstack.Block.Resistance) * groundRecipeResistaceMult;
 
             if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
@@ -128,13 +135,18 @@ namespace InDappledGroves
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
                         playNextSound += .7f;
                     }
-                    //Utilize remaining resistance loop to create duration of recipe processing
-
                     
                     curDmgFromMiningSpeed += collObj.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
                     lastSecondsUsed = secondsUsed;
 
-                    if ((curDmgFromMiningSpeed / 4) + secondsUsed >= resistance)
+                    float toolModeMod = 1;
+
+                    if(slot.Itemstack.Collectible is IIDGTool tool && slot.Itemstack.Collectible.Attributes["woodWorkingProps"].Exists)
+                    {
+                        toolModeMod = getToolModeMod(slot.Itemstack, tool) == 0?1f: getToolModeMod(slot.Itemstack, tool);
+                        
+                    }
+                    if ((((curDmgFromMiningSpeed * groundRecipeMiningSpdMult) * toolModeMod) + secondsUsed) >= resistance)
                     {
                         SpawnOutput(recipe, byEntity, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
@@ -148,6 +160,18 @@ namespace InDappledGroves
             return true;
         }
 
+        private float getToolModeMod(ItemStack stack, IIDGTool tool)
+        {
+            switch (tool.GetToolModeName(stack))
+            {
+                case "chopping": return stack.Collectible.Attributes["woodWorkingProps"]["splittingMod"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["woodWorkingProps"]["sawingMod"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["woodWorkingProps"]["hewingMod"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["woodWorkingProps"]["planingMod"].AsFloat();
+                default: return 1f;
+            }
+            
+        }
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
@@ -232,7 +256,7 @@ namespace InDappledGroves
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
-            return treeResistance;
+            return treeResistance * 1.25f;
 
         }
 
@@ -439,7 +463,7 @@ namespace InDappledGroves
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot) == "chopping") {
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "chopping") {
                 return interactions;
                 }
             return null;

@@ -66,8 +66,6 @@ namespace InDappledGroves.Items
 			return "cured";
         }
 
-		
-
 		public static BlockFacing[] SuggestedHVOrientation(IPlayer byPlayer, BlockSelection blockSel)
 		{
 			BlockPos blockPos = blockSel.DidOffset ? blockSel.Position.AddCopy(blockSel.Face.Opposite) : blockSel.Position;

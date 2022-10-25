@@ -28,7 +28,7 @@
 		toolrackTransform: {
 			rotation: { y: 1, z: -1 },
 			translation: { x: -0.3, y: 0.6 },
-			scale: 1.25,
+			scale: 1.25
 		}
 	},
 	variantgroups: [
