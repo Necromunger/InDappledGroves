@@ -1687,7 +1687,6 @@ namespace InDappledGroves.Util
             public bool Enabled { get; set; } = true;
 
             public string ToolMode = "chopping";
-
             public int BaseToolDmg { get; set; } = 1;
 
             public GroundIngredient[] Ingredients;
