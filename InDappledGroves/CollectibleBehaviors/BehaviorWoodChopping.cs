@@ -72,7 +72,6 @@ namespace InDappledGroves
                         },
                     };
             });
-        }        
 
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
@@ -290,9 +289,10 @@ namespace InDappledGroves
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "chopping") {
+            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "chopping")
+            {
                 return interactions;
-                }
+            }
             return null;
         }
 
