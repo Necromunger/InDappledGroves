@@ -17,6 +17,8 @@
 			- groundRecipeMiningSpdMult -> Modifies impact of mining speed of tools. Higher numbers = faster processing
 			- groundRecipeResistanceMult -> Modifies effective resistance of blocks on groundRecipes. Higher numbers => slower processing.
 			- treefellingResistanceMult -> Higher numbers make chopping trees take longer, lower numbers increase speed of trees being choppped.
+	- Added smithing recipes for grubaxehead, forestaxehead, maulhead, as well as shapes and itemtypes.
+	- Added grid recipes for grub axe, forest axe, maul.
 
 1.17-v0.4.0-dev
 	- Corrected error with leaf breaking

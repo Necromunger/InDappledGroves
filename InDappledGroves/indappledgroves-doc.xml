@@ -13,6 +13,14 @@
             <param name="handling">How to handle the process/if it's been handled</param>
             <returns>Whether to allow placing the block</returns>
         </member>
+        <member name="M:InDappledGroves.BlockEntities.IDGBEChoppingBlock.ProcessTransform(Vintagestory.API.Common.ModelTransform,System.String)">
+            <summary>
+            Processes the transform.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="side">The side.</param>
+            <returns></returns>
+        </member>
         <member name="M:InDappledGroves.Blocks.IDGSawHorse.IsNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
             <summary>Determines whether [is not diagonal] [the specified position].</summary>
             <param name="pos">The position of the placed sawhorse block</param>

@@ -14,16 +14,16 @@
           "idgChoppingBlockTransform": {
               "translation": {
                 "x": 0,
-                "y": -0.0625,
-                "z": 0.85
+                "y": 0.5625,
+                "z": 0.5
               },
               "rotation": {
-                "x": -90,
+                "x": 0,
                 "y": 0,
                 "z": 0
               },
               "origin": {
-                "x": 0,
+                "x": -90,
                 "y": 0.125,
                 "z": 0
               },

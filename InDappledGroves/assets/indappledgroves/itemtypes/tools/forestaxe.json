@@ -6,7 +6,15 @@
 		handbook: {
 			groupBy: ["forestaxe-*"]
 		},
-		"woodWorkingProps": { "fellingmultiplier": 0.8, "splittingmod": 0.8 }
+		toolrackTransform: {
+			translation: { x: -0.4, y: 0.7, z: 0 },
+			scale: 1.5
+		},
+		groundStorageTransform: {
+			translation: { x: -0.475, y: 0.12, z: 0.15 },
+			rotation: { x: 30, y: -180, z: -91 }
+		},
+		"woodWorkingProps": { "fellingMultiplier": 0.8, "splittingMod": 0.6 }
 	},
 		behaviors: [{
 		name: "GroundStorable",
@@ -117,16 +125,16 @@
 		"*-medeoriciron": 3.5,
 		"*-steel": 4
 	},
-		guiTransform: {
-		translation: { x: 2, y: 7.7, z: -0.8 },
+	guiTransform: {
+		translation: { x: 3, y: 11.6, z: -0.8 },
 		rotation: { x: -106, y: -135, z: -180 },
 		origin: { x: 0.48, y: 0.8, z: 0.38 },
-		scale: 1.05
+		scale: 1.5
 	},
 	fpHandTransform: {
-		translation: { x: -0.2, y: -0.2, z: 0.2 },
-		rotation: { x: -29, y: -179, z: 88 },
-		scale: 2.5
+		translation: { x: -0.7, y: -0.1, z: 0.3 },
+		rotation: { x: -29, y: 4, z: 88 },
+		scale: 2.9
 	},
 	groundTransform: {
 		translation: { x: 0, y: 0, z: 0 },
@@ -135,9 +143,9 @@
 		scale: 2.53
 	},
 	tpHandTransform: {
-		translation: { x: -0.9, y: 0.01, z: -0.75 },
+		translation: { x: -0.8, y: 0.01, z: -0.54 },
 		rotation: { x: 90, y: 0, z: 0 },
 		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 0.8
+		scale: 1
 	}
 }

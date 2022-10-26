@@ -154,9 +154,19 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
+			bool flag = stack.Collectible.Attributes != null;
 
-			ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists? stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>(): null;
+			ModelTransform transform;
+			if (flag && stack.Collectible.Attributes["woodWorkingProps"].Exists)
+			{
+				transform = stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
+			}
+			else
+            {
+				transform = null;
+			}
 
+			
 			if(transform == null)
             {
 				transform = new ModelTransform
@@ -167,22 +177,29 @@ namespace InDappledGroves.BlockEntities
 					Scale = 0.95f
 				};
 			}
+
 			transform.EnsureDefaultValues();
 
-			
-			meshData.ModelTransform(ProcessTransform(transform, side));
+			//if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
 			return meshData;
 		}
 
-		private ModelTransform ProcessTransform(ModelTransform transform, String side)
+        /// <summary>
+        /// Processes the transform.
+        /// </summary>
+        /// <param name="transform">The transform.</param>
+        /// <param name="side">The side.</param>
+        /// <returns></returns>
+        private ModelTransform ProcessTransform(ModelTransform transform, String side)
 		{
-            transform.Rotation.X += AddRotate(side + "x");
-            transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side + "y");
-            transform.Rotation.Z += AddRotate(side + "z");
-            transform.Translation.X += AddTranslate(side + "x");
-            transform.Translation.Y += AddTranslate(side + "y");
-            transform.Translation.Z += AddTranslate(side + "z");
-            transform.Scale = AddScale(side);
+
+				transform.Rotation.X += AddRotate(side + "x");
+				transform.Rotation.Y = (Block.Shape.rotateY) + AddRotate(side + "y");
+				transform.Rotation.Z += AddRotate(side + "z");
+				transform.Translation.X += AddTranslate(side + "x");
+				transform.Translation.Y += AddTranslate(side + "y");
+				transform.Translation.Z += AddTranslate(side + "z");
+				transform.Scale = AddScale(side);
 			return transform;
 		}
 
