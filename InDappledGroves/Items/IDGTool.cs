@@ -1,31 +1,35 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
+using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
+using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Items.Tools
 {
 
     class IDGTool : Item, IIDGTool
     {
-        private SkillItem[] toolModes;
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-
+            capi = (api as ICoreClientAPI);
             toolModes = BuildSkillList();
-
-        }      
+            baseWorkstationMiningSpdMult = InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult;
+            baseWorkstationResistanceMult = InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+            baseGroundRecipeMiningSpdMult = InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult;
+            baseGroundRecipeResistaceMult = InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
+        }
 
         public IDGTool()
         {
-
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
             dustParticles.MinQuantity = 2;
@@ -37,7 +41,7 @@ namespace InDappledGroves.Items.Tools
             dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             dustParticles.DieOnRainHeightmap = false;
             dustParticles.WindAffectednes = 0.5f;
-
+            Inventory = new InventoryGeneric(1, "IDGTool-slot", null, null);
         }
 
         #region ToolMode Stuff
@@ -95,41 +99,148 @@ namespace InDappledGroves.Items.Tools
             base.OnBeforeRender(capi, stack, target, ref renderinfo);
         }
 
-        private void updateModeTransforms(ItemStack slot, ref ItemRenderInfo renderinfo, string toolMode)
+        #endregion ToolMode Stuff
+
+        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
-            bool flag = this.Attributes["modeTransforms"].Exists;
-            if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)].Exists)
+            string curTMode = "";
+            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
+
+            if (blockSel == null)
+                return;
+
+            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
+
+            recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
+            if (recipe == null) return;
+            resistance = Inventory[0].Itemstack.Block.Resistance;
+
+            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
             {
-                if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)]["fpHandTransform"].Exists) updateFPTransforms(slot.Collectible, ref renderinfo, this.Attributes["modeTransforms"][GetToolModeName(slot)]["fpHandTransform"]);
-                if (flag && this.Attributes["modeTransforms"][GetToolModeName(slot)]["tpHandTransform"].Exists) updateTPTransforms(slot.Collectible, ref renderinfo, this.Attributes["modeTransforms"][GetToolModeName(slot)]["tpHandTransform"]);
+                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
+                return;
             }
-        }
-        
-        private void updateFPTransforms(CollectibleObject slot, ref ItemRenderInfo renderinfo, JsonObject transforms)
-        {
-            bool transFlag = transforms["translation"].Exists;
-            bool rotationFlag = transforms["rotation"].Exists;
-            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Translation.X;
-            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Translation.X;
-            renderinfo.Transform.Translation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.FpHandTransform.Translation.Y;
-            renderinfo.Transform.Translation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.FpHandTransform.Translation.Z;
-            renderinfo.Transform.Rotation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.FpHandTransform.Rotation.X;
-            renderinfo.Transform.Rotation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.FpHandTransform.Rotation.Y;
-            renderinfo.Transform.Rotation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.FpHandTransform.Rotation.Z;
+            byEntity.StartAnimation("axechop");
+
+            playNextSound = 0.25f;
+
+            handHandling = EnumHandHandling.PreventDefault;
         }
 
-        private void updateTPTransforms(CollectibleObject slot, ref ItemRenderInfo renderinfo, JsonObject transforms)
+        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            bool transFlag = transforms["translation"].Exists;
-            bool rotationFlag = transforms["rotation"].Exists;
-            renderinfo.Transform.Translation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.TpHandTransform.Translation.X;
-            renderinfo.Transform.Translation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.TpHandTransform.Translation.Y;
-            renderinfo.Transform.Translation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.TpHandTransform.Translation.Z;
-            renderinfo.Transform.Rotation.X = transFlag && transforms["x"].Exists ? transforms["x"].AsFloat() : slot.TpHandTransform.Rotation.X;
-            renderinfo.Transform.Rotation.Y = transFlag && transforms["x"].Exists ? transforms["y"].AsFloat() : slot.TpHandTransform.Rotation.Y;
-            renderinfo.Transform.Rotation.Z = transFlag && transforms["x"].Exists ? transforms["z"].AsFloat() : slot.TpHandTransform.Rotation.Z;
+            BlockPos pos = blockSel.Position;
+            if (blockSel != null)
+            {
+
+                if (((int)api.Side) == 1 && playNextSound < secondsUsed)
+                {
+                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
+                    playNextSound += .8f;
+                }
+
+                //Accumulate damage over time from current tools mining speed.
+                curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
+
+                //update lastSecondsUsed to this cycle
+                lastSecondsUsed = secondsUsed;
+
+                //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle               
+                if ((curDmgFromMiningSpeed / 4) * getToolModeMod(slot.Itemstack) + secondsUsed >= resistance)
+                {
+                    SpawnOutput(recipe, pos);
+                    api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
+                    slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+                    return false;
+                }
+
+            }
+            return true;
         }
-        #endregion ToolMode Stuff
+
+        private float getToolModeMod(ItemStack stack)
+        {
+            switch (GetToolModeName(stack))
+            {
+                case "chopping": return stack.Collectible.Attributes["woodWorkingProps"]["splittingMod"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["woodWorkingProps"]["sawingMod"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["woodWorkingProps"]["hewingMod"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["woodWorkingProps"]["planingMod"].AsFloat();
+                default: return 1f;
+            }
+
+        }
+
+        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        {
+            byEntity.StopAnimation("axechop");
+        }
+
+
+        //-- Spawns output when chopping cycle is finished --//
+        private int ReturnStackId(GroundRecipe recipe, BlockPos pos)
+        {
+            if (recipe.ReturnStack.ResolvedItemstack.Collectible is Block)
+            {
+                return recipe.ReturnStack.ResolvedItemstack.Id;
+            }
+            else if (recipe.ReturnStack.ResolvedItemstack.Collectible is Item)
+            {
+                SpawnReturnstackItem(recipe.ReturnStack.ResolvedItemstack, pos);
+                return 0;
+            }
+            return 0;
+        }
+
+        public void SpawnOutput(GroundRecipe recipe, BlockPos pos)
+        {
+            int j = recipe.Output.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+            }
+        }
+
+        public void SpawnReturnstackItem(ItemStack stack, BlockPos pos)
+        {
+            int j = stack.StackSize;
+            for (int i = j; i > 0; i--)
+            {
+                api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+            }
+        }
+
+        public GroundRecipe GetMatchingGroundRecipe(ItemSlot slot, string curTMode)
+        {
+            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
+            if (recipes == null) return null;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
+
+        public bool DoesSlotMatchRecipe(ItemSlot slots)
+        {
+            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
+            if (recipes == null) return false;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slots))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
@@ -152,9 +263,32 @@ namespace InDappledGroves.Items.Tools
             }
 
             return base.OnBlockBrokenWith(world,byEntity,itemslot,blockSel,dropQuantityMultiplier);
-        }      
+        }
+
+        #region Recipe Processing
+        public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
+        {
+            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
+            if (recipes == null) return null;
+
+            for (int j = 0; j < recipes.Count; j++)
+            {
+                if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
+                {
+                    return recipes[j];
+                }
+            }
+
+            return null;
+        }
+        #endregion Recipe Processing
 
         //Particle Handlers
+        ICoreClientAPI capi;
+        public float baseWorkstationMiningSpdMult;
+        public float baseWorkstationResistanceMult;
+        public float baseGroundRecipeMiningSpdMult;
+        public float baseGroundRecipeResistaceMult;
         private SimpleParticleProperties InitializeWoodParticles()
         {
             return new SimpleParticleProperties()
@@ -175,7 +309,6 @@ namespace InDappledGroves.Items.Tools
                 WindAffected = true
             };
         }
-
         static readonly SimpleParticleProperties dustParticles = new()
         {
             MinPos = new Vec3d(),
@@ -193,6 +326,15 @@ namespace InDappledGroves.Items.Tools
             MaxSize = 0.1f,
             WindAffected = true
         };
-
+        public string InventoryClassName => "worldinventory";
+        public InventoryBase Inventory { get; }
+        public SkillItem[] toolModes;
+        public GroundRecipe recipe;
+        WorldInteraction[] interactions;
+        private float resistance;
+        private float lastSecondsUsed;
+        private float curDmgFromMiningSpeed;
+        private SimpleParticleProperties woodParticles;
+        private float playNextSound;
     }
 }
