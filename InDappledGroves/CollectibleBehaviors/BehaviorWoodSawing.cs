@@ -52,7 +52,7 @@ namespace InDappledGroves.CollectibleBehaviors
                         },
                     };
             });
-            woodParticles = InitializeWoodParticles();
+
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgSawModes", delegate
             {
@@ -80,188 +80,6 @@ namespace InDappledGroves.CollectibleBehaviors
             });
         }
 
-
-        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
-        {
-            string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
-
-            if (blockSel == null)
-                return;
-
-            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
-
-            recipe = GetMatchingGroundRecipe(byEntity.World, Inventory[0], curTMode);
-            if (recipe == null) return;
-
-            resistance = Inventory[0].Itemstack.Block.Resistance;
-
-            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
-            {
-                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
-                return;
-            }
-            byEntity.StartAnimation("axechop");
-
-            playNextSound = 0.25f;
-
-            handHandling = EnumHandHandling.PreventDefault;
-        }
-
-        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
-        {
-            BlockPos pos = blockSel.Position;
-            if (blockSel != null)
-            {
-
-                if (((int)api.Side) == 1 && playNextSound < secondsUsed)
-                {
-                    //api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
-                    playNextSound += .7f;
-                }
-
-                //Accumulate damage over time from current tools mining speed.
-                curDmgFromMiningSpeed += collObj.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
-
-                //update lastSecondsUsed to this cycle
-                lastSecondsUsed = secondsUsed;
-
-                //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle               
-                if ((curDmgFromMiningSpeed/4) + secondsUsed >= resistance)
-                {
-                    SpawnOutput(recipe, byEntity, pos);
-                    slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
-                    api.World.BlockAccessor.SetBlock(0, blockSel.Position);
-                    return false;
-                }
-
-            }
-            handling = EnumHandling.PreventSubsequent;
-            return true;
-        }
-
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PreventDefault;
-            byEntity.StopAnimation("axechop");
-        }
-
-        //-- Spawns output when chopping cycle is finished --//
-        private int ReturnStackId(GroundRecipe recipe, BlockPos pos)
-        {
-            if (recipe.ReturnStack.ResolvedItemstack.Collectible is Block)
-            {
-                return recipe.ReturnStack.ResolvedItemstack.Id;
-            }
-            else if (recipe.ReturnStack.ResolvedItemstack.Collectible is Item)
-            {
-                SpawnReturnstackItem(recipe.ReturnStack.ResolvedItemstack, pos);
-                return 0;
-            }
-            return 0;
-        }
-
-        public void SpawnOutput(GroundRecipe recipe, EntityAgent byEntity, BlockPos pos)
-        {
-            int j = recipe.Output.StackSize;
-            for (int i = j; i > 0; i--)
-            {
-                api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-            }
-        }
-
-        public void SpawnReturnstackItem(ItemStack stack, BlockPos pos)
-        {
-            int j = stack.StackSize;
-            for (int i = j; i > 0; i--)
-            {
-                api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-            }
-        }
-
-        public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
-        {
-            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
-            if (recipes == null) return null;
-
-            for (int j = 0; j < recipes.Count; j++)
-            {
-                if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
-                {
-                    return recipes[j];
-                }
-            }
-
-            return null;
-        }
-
-        public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
-        {
-            List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
-            if (recipes == null) return false;
-
-            for (int j = 0; j < recipes.Count; j++)
-            {
-                if (recipes[j].Matches(api.World, slots))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        private SimpleParticleProperties InitializeWoodParticles()
-        {
-            return new SimpleParticleProperties()
-            {
-                MinPos = new Vec3d(),
-                AddPos = new Vec3d(),
-                MinQuantity = 0,
-                AddQuantity = 3,
-                Color = ColorUtil.ToRgba(100, 200, 200, 200),
-                GravityEffect = 1f,
-                WithTerrainCollision = true,
-                ParticleModel = EnumParticleModel.Quad,
-                LifeLength = 0.5f,
-                MinVelocity = new Vec3f(-1, 2, -1),
-                AddVelocity = new Vec3f(2, 0, 2),
-                MinSize = 0.07f,
-                MaxSize = 0.1f,
-                WindAffected = true
-            };
-        }
-
-        static readonly SimpleParticleProperties dustParticles = new()
-        {
-            MinPos = new Vec3d(),
-            AddPos = new Vec3d(),
-            MinQuantity = 0,
-            AddQuantity = 3,
-            Color = ColorUtil.ToRgba(100, 200, 200, 200),
-            GravityEffect = 1f,
-            WithTerrainCollision = true,
-            ParticleModel = EnumParticleModel.Quad,
-            LifeLength = 0.5f,
-            MinVelocity = new Vec3f(-1, 2, -1),
-            AddVelocity = new Vec3f(2, 0, 2),
-            MinSize = 0.07f,
-            MaxSize = 0.1f,
-            WindAffected = true
-        };
-
-        private void SetParticleColourAndPosition(int colour, Vec3d minpos)
-        {
-            SetParticleColour(colour);
-
-            woodParticles.MinPos = minpos;
-            woodParticles.AddPos = new Vec3d(1, 1, 1);
-        }
-
-        private void SetParticleColour(int colour)
-        {
-            woodParticles.Color = colour;
-        }
-
         public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
         {
             handling = EnumHandling.PassThrough;
@@ -273,10 +91,6 @@ namespace InDappledGroves.CollectibleBehaviors
         }
 
         WorldInteraction[] interactions;
-        private float resistance;
-        private float lastSecondsUsed;
-        private float curDmgFromMiningSpeed;
-        private SimpleParticleProperties woodParticles;
         private float playNextSound;
     }
 }
