@@ -72,6 +72,7 @@ namespace InDappledGroves
                         },
                     };
             });
+        }
 
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
