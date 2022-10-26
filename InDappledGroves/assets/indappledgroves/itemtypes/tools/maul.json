@@ -6,7 +6,7 @@
 		handbook: {
 			groupBy: ["maul-*"]
 		},
-		"woodWorkingProps": { "fellingmultiplier": 1.5, "splittingMod": 1.5}
+		"woodWorkingProps": { "fellingmultiplier": 1.5, "splittingMod": 1.25}
 	},
 		behaviors: [{
 		name: "GroundStorable",

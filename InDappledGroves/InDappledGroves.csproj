@@ -47,6 +47,9 @@
     <None Update="assets\indappledgroves\itemtypes\tools\adze.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\tools\forestaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\itemtypes\tools\grubaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -1,40 +1,12 @@
 {
-	code: "grubaxe",
+	code: "forestaxe",
 	class: "idgtool",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		handbook: {
-			groupBy: ["grubaxe-*"]
+			groupBy: ["forestaxe-*"]
 		},
-		"modeTransforms": {
-			"chopping": {
-				fpHandTransform: {
-					translation: { x: -0.2, y: -0.2, z: 0.2 },
-					rotation: { x: -29, y: 1, z: 88 },
-					scale: 2.5
-				},
-					tpHandTransform: {
-					translation: { x: -1.15, y: 0.01, z: -1.13},
-					rotation: { x: 90, y: 1, z: 0 },
-					origin: { x: 0.5, y: 0, z: 0.5 },
-					scale: 0.8
-				}
-			},
-			"hewing": {
-				fpHandTransform: {
-					translation: { x: -0.2, y: -0.2, z: 0.2 },
-					rotation: { x: -29, y: -179, z: 88 },
-					scale: 2.49
-				},
-				tpHandTransform: {
-					translation: { x: -1.15, y: 0.01, z: -0.12 },
-					rotation: { x: -89, y: 0, z: 0 },
-					origin: { x: 0.5, y: 0, z: 0.5 },
-					scale: 0.8
-				}
-			}
-		},
-		"woodWorkingProps": { "fellingmultiplier": 1.3, "splittingmod": 0.65 }
+		"woodWorkingProps": { "fellingmultiplier": 0.8, "splittingmod": 0.8 }
 	},
 		behaviors: [{
 		name: "GroundStorable",
@@ -47,46 +19,43 @@
 		}},
 		{
 		"name": "woodsplitter"
-		},
-		{
-			"name": "woodhewer"
 		}
 	],
 	tool: "axe",
 	heldTpHitAnimation: "axechop",
 	damagedby: ["blockbreaking", "attacking"],
 	miningspeedbytype: {
-		"grubaxe-copper": {
+		"forestaxe-copper": {
 			"wood": 5.2,
 			"plant": 2.8,
 			"leaves": 2.4
 		},
-		"grubaxe-bismuthbronze": {
+		"forestaxe-bismuthbronze": {
 			"wood": 5.8,
 			"plant": 3.5,
 			"leaves": 2.6
 		},
-		"grubaxe-tinbronze": {
+		"forestaxe-tinbronze": {
 			"wood": 6.3,
 			"plant": 3.8,
 			"leaves": 3
 		},
-		"grubaxe-blackbronze": {
+		"forestaxe-blackbronze": {
 			"wood": 6.6,
 			"plant": 4,
 			"leaves": 3.1
 		},
-		"grubaxe-iron": {
+		"forestaxe-iron": {
 			"wood": 8.4,
 			"plant": 5,
 			"leaves": 3.2
 		},
-		"grubaxe-meteoriciron": {
+		"forestaxe-meteoriciron": {
 			"wood": 9.6,
 			"plant": 5.5,
 			"leaves": 3.6
 		},
-		"grubaxe-steel": {
+		"forestaxe-steel": {
 			"wood": 11,
 			"plant": 6,
 			"leaves": 4
@@ -113,10 +82,10 @@
    ],
 	drawtype: "json",
     shapeByType: {
-		"@grubaxe-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": { base: "item/tools/grubaxe" }
+		"@forestaxe-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": { base: "item/tools/forestaxe" }
 	},
 	texturesByType: {
-		"@grubaxe-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": {
+		"@forestaxe-(tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": {
 			"material": { base: "game:block/metal/ingot/{material}" },
 			"handle": { base: "game:item/tool/material/handle" },
 			"leather": { base: "game:item/resource/leather" }
@@ -125,10 +94,10 @@
 	maxstacksize: 1,
 	attackRange: 2,
 	tooltierbytype: {
-		"@grubaxe-(copper|silver|gold)": 2,
-		"@grubaxe-(tinbronze|bismuthbronze|blackbronze)": 3,
-		"@grubaxe-(iron|meteoriciron)": 4,
-		"@grubaxe-(steel)": 5
+		"@forestaxe-(copper|silver|gold)": 2,
+		"@forestaxe-(tinbronze|bismuthbronze|blackbronze)": 3,
+		"@forestaxe-(iron|meteoriciron)": 4,
+		"@forestaxe-(steel)": 5
 	},
 	durabilitybytype: {
 		"*-bone-obsidian": 100,
@@ -142,9 +111,9 @@
 	},
 	attackpowerbytype: {
 		"*-copper": 2,
-		"@grubaxe-(bismuthbronze)": 2.5,
+		"@forestaxe-(bismuthbronze)": 2.5,
 		"*-tinbronze": 2.75,
-		"@grubaxe-(blackbronze|iron)": 3,
+		"@forestaxe-(blackbronze|iron)": 3,
 		"*-medeoriciron": 3.5,
 		"*-steel": 4
 	},
