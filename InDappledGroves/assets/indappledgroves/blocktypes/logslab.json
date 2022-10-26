@@ -11,35 +11,7 @@
 		{ "code": "cover", "states": ["free", "snow"] }		
 	],
 	"skipVariants": ["*-up-snow"],
-	"attributes": { "woodWorkingProps": {
-									"idgChoppingBlockProps": {
-										 "idgChoppingBlockTransform": {
-                      "translation": {
-                        "x": 0,
-                        "y": 0.5625,
-                        "z": 0,
-												"eastx": 0.25,
-												"westx": -0.25,
-												"northz": -0.25,
-												"southz": 0.25
-                      },
-																"rotation": {
-																	"x": 90,
-																	"y": 0,
-																	"z": 90,
-																	"northz": 270,
-																	"southz": 90,
-																	"westz": 180
-																},
-																"origin": {
-																	"x": 0.5,
-																	"y": 0,
-																	"z": 0.5
-																},
-																"scale": 0.95
-											}    
-									}
-							},
+	"attributes": {"woodWorkingProps": {},
 							"chiselShapeFromCollisionBox": true,
 							"handbook": {
 									"groupBy": ["logslab-*"],

@@ -103,59 +103,69 @@ namespace InDappledGroves.Items.Tools
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
-            string curTMode = "";
-            if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
-
-            if (blockSel == null)
-                return;
-
-            Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
-
-            recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
-            if (recipe == null) return;
-            resistance = Inventory[0].Itemstack.Block.Resistance;
-
-            if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
+            if (!byEntity.Controls.CtrlKey)
             {
-                capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
+                string curTMode = "";
+                if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
+
+                if (blockSel == null)
+                    return;
+
+                Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
+
+                recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
+                if (recipe == null) return;
+                resistance = Inventory[0].Itemstack.Block.Resistance;
+
+                if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
+                {
+                    capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
+                    return;
+                }
+                byEntity.StartAnimation("axechop");
+
+                playNextSound = 0.25f;
+
+                handHandling = EnumHandHandling.PreventDefault;
                 return;
             }
-            byEntity.StartAnimation("axechop");
-
-            playNextSound = 0.25f;
-
-            handHandling = EnumHandHandling.PreventDefault;
+            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
         }
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            BlockPos pos = blockSel.Position;
-            if (blockSel != null)
+            if (!byEntity.Controls.CtrlKey)
             {
-
-                if (((int)api.Side) == 1 && playNextSound < secondsUsed)
+                BlockPos pos = blockSel.Position;
+                if (blockSel != null)
                 {
-                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
-                    playNextSound += .8f;
+
+                    if (((int)api.Side) == 1 && playNextSound < secondsUsed)
+                    {
+                        api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
+                        playNextSound += .8f;
+                    }
+
+                    //Accumulate damage over time from current tools mining speed.
+                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
+
+                    //update lastSecondsUsed to this cycle
+                    lastSecondsUsed = secondsUsed;
+
+                    //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
+                    System.Diagnostics.Debug.WriteLine((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed);
+                    if (((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed) >= resistance)
+                    {
+                        SpawnOutput(recipe, pos);
+                        api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
+                        slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+                        return false;
+                    }
+
                 }
-
-                //Accumulate damage over time from current tools mining speed.
-                curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
-
-                //update lastSecondsUsed to this cycle
-                lastSecondsUsed = secondsUsed;
-
-                //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle               
-                if ((curDmgFromMiningSpeed / 4) * getToolModeMod(slot.Itemstack) + secondsUsed >= resistance)
-                {
-                    SpawnOutput(recipe, pos);
-                    api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
-                    slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
-                    return false;
-                }
-
+                return true;
             }
-            return true;
+            return false;
         }
 
         private float getToolModeMod(ItemStack stack)

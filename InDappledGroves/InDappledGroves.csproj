@@ -44,10 +44,25 @@
     <None Update="assets\indappledgroves\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\toolhead\grubaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\itemtypes\toolhead\forestaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\itemtypes\toolhead\maulhead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\itemtypes\tools\adze.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\tools\forestaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\itemtypes\tools\grubaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\itemtypes\tools\maul.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\lang\en.json">
@@ -81,6 +96,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\choppingblock\sticks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\choppingblock\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\grid\grubaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\grid\forestaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\grid\maul.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\grid\barkbasket.json">
@@ -117,6 +144,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\sawbuck\log.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\grubaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\forestaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\maulhead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\barkbasket.json">
@@ -185,6 +221,15 @@
     <None Update="assets\indappledgroves\shapes\item\toolhead\adze-stone.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\shapes\item\toolhead\forestaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\item\toolhead\grubaxehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\item\toolhead\maulhead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\item\tools\adze-metal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -194,10 +239,16 @@
     <None Update="assets\indappledgroves\shapes\item\tools\broadaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\shapes\item\tools\forestaxe.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\item\tools\grubaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\item\tools\handplaner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\item\tools\saw.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\item\tools\splittingmaul.json">

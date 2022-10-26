@@ -6,7 +6,16 @@
 		handbook: {
 			groupBy: ["maul-*"]
 		},
-		"woodWorkingProps": { "fellingmultiplier": 1.5, "splittingMod": 1.5}
+		groundStorageTransform: {
+			translation: { x: 0, y: 0.15, z: 0.2 },
+			rotation: { x: 25, y: -180, z: -90 },
+			scale: 1.25
+		},
+		toolrackTransform: {
+			translation: { x: -0.4, y: 0.1, z: 0 },
+			scale: 2.00
+		},
+		"woodWorkingProps": { "fellingMultiplier": 1.5, "splittingMod": 1.25}		
 	},
 		behaviors: [{
 		name: "GroundStorable",
