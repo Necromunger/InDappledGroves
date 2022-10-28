@@ -136,7 +136,7 @@ namespace InDappledGroves.Items.Tools
         {
             if (!byEntity.Controls.CtrlKey)
             {
-                BlockPos pos = blockSel.Position;
+                BlockPos pos = blockSel?.Position;
                 if (blockSel != null)
                 {
 
@@ -153,9 +153,10 @@ namespace InDappledGroves.Items.Tools
                     lastSecondsUsed = secondsUsed;
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-                    System.Diagnostics.Debug.WriteLine((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed);
-                    if (((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed) >= resistance)
+                    float toolModeMod = getToolModeMod(slot.Itemstack);
+                    if (((curDmgFromMiningSpeed / 3) + secondsUsed) * (toolModeMod != 0 ? toolModeMod : 1f) >= resistance)
                     {
+                        
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
                         slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
@@ -172,10 +173,10 @@ namespace InDappledGroves.Items.Tools
         {
             switch (GetToolModeName(stack))
             {
-                case "chopping": return stack.Collectible.Attributes["woodWorkingProps"]["splittingMod"].AsFloat();
-                case "sawing": return stack.Collectible.Attributes["woodWorkingProps"]["sawingMod"].AsFloat();
-                case "hewing": return stack.Collectible.Attributes["woodWorkingProps"]["hewingMod"].AsFloat();
-                case "planing": return stack.Collectible.Attributes["woodWorkingProps"]["planingMod"].AsFloat();
+                case "chopping": return stack.Collectible.Attributes["choppingProps"]["splittingMod"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["sawingProps"]["sawingMod"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["hewingProps"]["hewingMod"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["planingProps"]["planingMod"].AsFloat();
                 default: return 1f;
             }
 

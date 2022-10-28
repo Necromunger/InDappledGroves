@@ -204,7 +204,7 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
-			ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
+			ModelTransform transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
 
 			if (transform == null)
 			{
@@ -239,25 +239,25 @@ namespace InDappledGroves.BlockEntities
 
 		public float AddRotate(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["rotation"][side+axis].Exists ? transforms["rotation"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddTranslate(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["translation"][side+axis].Exists ? transforms["translation"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddOrigin(string side, string axis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["origin"][side+axis].Exists ? transforms["origin"][side+axis].AsFloat() : 0f;
 		}
 
 		public float AddScale(string side)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawBuckProps"]["idgSawBuckTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"];
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
 		}
 

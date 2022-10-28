@@ -11,7 +11,7 @@
 		{ "code": "cover", "states": ["free", "snow"] }		
 	],
 	"skipVariants": ["*-up-snow"],
-	"attributes": {"woodWorkingProps": {},
+	"attributes": {
 							"chiselShapeFromCollisionBox": true,
 							"handbook": {
 									"groupBy": ["logslab-*"],

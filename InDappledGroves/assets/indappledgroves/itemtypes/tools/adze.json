@@ -107,16 +107,6 @@
 			"plant": 2.7,
 			"leaves": 2.4
 		},
-		"*": {
-			"wood": 2.6,
-			"plant": 2.2,
-			"leaves": 1.7
-		},
-		"adze-wood-scrap": {
-			"wood": 4,
-			"plant": 2.6,
-			"leaves": 2.2
-		},		
 		"adze-wood-copper": {
 			"wood": 5.2,
 			"plant": 2.8,
@@ -161,6 +151,11 @@
 			"wood": 11,
 			"plant": 6,
 			"leaves": 4
+		},
+		"*": {
+			"wood": 2.6,
+			"plant": 2.2,
+			"leaves": 1.7
 		}
 	},
 	heldTpHitAnimation: "smithing",

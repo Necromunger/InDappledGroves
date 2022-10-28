@@ -77,13 +77,11 @@ namespace InDappledGroves
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-
-            System.Diagnostics.Debug.WriteLine("Remaining Tree Resistance is " + remainingResistance);
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["woodWorkingProps"]["fellingmultiplier"].AsFloat(1f));
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingmultiplier"].AsFloat(1f));
 
             BlockPos pos = blockSel.Position;
 

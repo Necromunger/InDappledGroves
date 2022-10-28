@@ -11,7 +11,7 @@
     "enabled": true,
     "op": "add",
     "path": "/attributes",
-    "value": {"woodWorkingPropsbyType": 
+    "value": {"workStationTransformsbyType": 
                 {
                 "plank-*":
                   {
