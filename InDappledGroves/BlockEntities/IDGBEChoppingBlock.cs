@@ -180,7 +180,7 @@ namespace InDappledGroves.BlockEntities
 
 			transform.EnsureDefaultValues();
 
-			//if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
+			if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
 			return meshData;
 		}
 

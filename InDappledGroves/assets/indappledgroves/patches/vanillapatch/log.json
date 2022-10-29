@@ -31,7 +31,8 @@
               "translation": {
                 "x": 0.027,
                 "y": 0.7,
-                "z": 0
+                "z": 0,
+                "scale": 0.7
               },
               "rotation": {
                 "x": 0,
