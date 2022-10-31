@@ -12,7 +12,8 @@
       "preventsDecay": true,
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
-      "treeFellingGroupSpreadIndex": 3
+      "treeFellingGroupSpreadIndex": 3,
+       "treeLoot": [{"dropStack": {"type":"block", "code": "game:mushroom-fieldmushroom-normal", "quantity": {"avg": 0.6, "var": 0.5, "dist": "strongerinvexp"}}, "dropReqs": {}}]
     },
     "variantgroups": [
       {

@@ -52,7 +52,8 @@
             if (this.inventory[0].Empty)
             {
                 var uf = new TreeHollows();
-                uf.AddItemStacks(this, uf.MakeItemStacks(block.FirstCodePart(1), this.Api as ICoreServerAPI, this.Pos));
+                // TODO: Call Updated ItemStack Generator
+                //uf.AddItemStacks(this, uf.MakeItemStacks(block.FirstCodePart(1), this.Api as ICoreServerAPI, this.Pos));
                 this.MarkDirty();
             }
         }
