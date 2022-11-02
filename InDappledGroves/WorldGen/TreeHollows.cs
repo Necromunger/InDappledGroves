@@ -104,40 +104,40 @@ namespace InDappledGroves.WorldGen
                     for (var z = 0; z < this.chunkSize; z++)
                     {
                         int terrainHeight = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos);
-                            blockPos.X = (chunkX * this.chunkSize) + x;
-                            blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos)+1;
-                            blockPos.Z = (chunkZ * this.chunkSize) + z;
-                            Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
+                        blockPos.X = (chunkX * this.chunkSize) + x;
+                        blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
+                        blockPos.Z = (chunkZ * this.chunkSize) + z;
+                        Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
 
-                            if (!IsStumpLog(curBlock)) continue;
-                            if ((this.chunkGenBlockAccessor.GetBlock(blockPos.DownCopy(), BlockLayersAccess.Default).Fertility > 0))
+                        if (!IsStumpLog(curBlock)) continue;
+                        if ((this.chunkGenBlockAccessor.GetBlock(blockPos.DownCopy(), BlockLayersAccess.Default).Fertility > 0))
+                        {
+                            if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
                             {
-                                if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble()<0.2))
-                                {
-                                    var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
-                                    if (hollowWasPlaced)
-                                    {
-                                        hollowsPlacedCount++;
-                                    }
-                                    continue;
-                                }
-                                else
-                                {
-                                    PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
-                                }
-                            }
-
-                            
-                            if (ShouldPlaceHollow() && hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
-                            {
-                                var hollowLocation = this.TryGetHollowLocation(blockPos);
-                                if (hollowLocation == null) continue;
-                                var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, hollowLocation);
+                                var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
                                 if (hollowWasPlaced)
                                 {
                                     hollowsPlacedCount++;
                                 }
+                                continue;
                             }
+                            else
+                            {
+                                PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
+                            }
+                        }
+
+
+                        if (ShouldPlaceHollow() && hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
+                        {
+                            var hollowLocation = this.TryGetHollowLocation(blockPos);
+                            if (hollowLocation == null) continue;
+                            var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, hollowLocation);
+                            if (hollowWasPlaced)
+                            {
+                                hollowsPlacedCount++;
+                            }
+                        }
 
                     }
                 }
@@ -264,7 +264,7 @@ namespace InDappledGroves.WorldGen
                         {
                             var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
                             ItemStack[] lootStacks = ConvertTreeLoot(block.Attributes["treeLoot"].AsArray(), pos);
-                            if(lootStacks != null) AddItemStacks(hollow, lootStacks);
+                            if (lootStacks != null) AddItemStacks(hollow, lootStacks);
                         }
                     }
                 }
@@ -286,7 +286,7 @@ namespace InDappledGroves.WorldGen
             var slotNumber = 0;
             if (itemStacks != null)
             {
-                
+
                 foreach (var itemStack in itemStacks)
                 {
                     slotNumber = Math.Min(slotNumber, hollow.Inventory.Count - 1);
@@ -300,7 +300,7 @@ namespace InDappledGroves.WorldGen
         private ItemStack[] ConvertTreeLoot(JsonObject[] treeLoot, BlockPos pos)
         {
             List<ItemStack> lootList = null;
-            int lootCount=0;
+            int lootCount = 0;
             ClimateCondition climate = sapi.World.BlockAccessor.GetClimateAt(pos);
             foreach (JsonObject lootStack in treeLoot)
             {
@@ -321,7 +321,7 @@ namespace InDappledGroves.WorldGen
                 }
             }
 
-            return lootList == null? null :lootList.ToArray();
+            return lootList == null ? null : lootList.ToArray();
         }
 
         private bool ClimateLootFilter(TreeLootObject obj, BlockPos pos)
@@ -335,13 +335,13 @@ namespace InDappledGroves.WorldGen
             && (local.Rainfall >= obj.cReqs.minRain)
             && (local.Rainfall <= obj.cReqs.maxRain)
             && (local.Temperature >= obj.cReqs.minTemperature)
-            && (local.Temperature <= obj.cReqs.maxTemperature);
+            && (local.Temperature <= obj.cReqs.maxTemperature)
             && ((((int)sapi.World.Calendar.GetSeason(pos)) == obj.cReqs.season) ||
-                (sapi.World.Calendar.GetSeason(pos) == 4))
+                obj.cReqs.season == 4);
         }
 
-}
-internal class TreeLootObject
+    }
+    internal class TreeLootObject
     {
         public BlockDropItemStack bstack { get; }
         public ClimateRequirements cReqs { get; }
@@ -351,7 +351,7 @@ internal class TreeLootObject
         {
             bstack = treeLoot["dropStack"].AsObject<BlockDropItemStack>();
             cReqs = treeLoot["dropReqs"].AsObject<ClimateRequirements>();
-            
+
         }
     }
 
