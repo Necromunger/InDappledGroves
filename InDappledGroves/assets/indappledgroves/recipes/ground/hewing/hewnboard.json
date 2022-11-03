@@ -1,5 +1,6 @@
 [
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -13,6 +14,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-east"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -26,6 +28,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-east"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -39,6 +42,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-north"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -52,6 +56,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-north"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -65,6 +70,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-south"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -78,6 +84,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-cured-south"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 
@@ -91,6 +98,7 @@
     "returnstack": {"type": "block", "code": "indappledgroves:idgboard-{wood}-hewn-green-west"}
   },
   {
+    "enabled": false,
     "toolmode": "hewing",
     "ingredients":
     [ 

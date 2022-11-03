@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Vintagestory.API.Common;
+
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using InDappledGroves.Util;
 using InDappledGroves.BlockEntities;
 using InDappledGroves.Blocks;
+using Vintagestory.API.Common;
 
 namespace InDappledGroves.WorldGen
 {
@@ -41,7 +42,7 @@ namespace InDappledGroves.WorldGen
 
                 //Registers our command with the system's command registry.
                 //1.17 disable /hollow
-                this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
+                //this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
                 //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
                 this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
                 //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
@@ -118,8 +119,9 @@ namespace InDappledGroves.WorldGen
                                 if (hollowWasPlaced)
                                 {
                                     hollowsPlacedCount++;
+                                    continue;
                                 }
-                                continue;
+                                PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
                             }
                             else
                             {
@@ -195,9 +197,7 @@ namespace InDappledGroves.WorldGen
                 stumpType = treeBlock.FirstCodePart(2);
             }
 
-            var hollowType = "up";
-
-            var withPath = "indappledgroves:treestump-" + "grown-" + stumpType + "-" + this.dirs[this.sapi.World.Rand.Next(4)];
+            var withPath = "indappledgroves:treestump-grown-" + stumpType + "-" + this.dirs[this.sapi.World.Rand.Next(4)];
             //Debug.WriteLine("With: " + withPath);
             var withBlockID = this.sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
@@ -219,7 +219,7 @@ namespace InDappledGroves.WorldGen
             */
 
             //consider moving it upwards
-            var upCount = this.sapi.World.Rand.Next(8);
+            var upCount = this.sapi.World.Rand.Next(2,8);
             var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
 
             if (upCandidateBlock.FirstCodePart() == "log")
@@ -287,11 +287,10 @@ namespace InDappledGroves.WorldGen
             if (itemStacks != null)
             {
 
-                foreach (var itemStack in itemStacks)
+                while (slotNumber < sapi.World.Rand.Next(hollow.Inventory.Count - 1))
                 {
-                    slotNumber = Math.Min(slotNumber, hollow.Inventory.Count - 1);
                     var slot = hollow.Inventory[slotNumber];
-                    slot.Itemstack = itemStack;
+                    slot.Itemstack = itemStacks[sapi.World.Rand.Next(0, itemStacks.Length - 1)];
                     slotNumber++;
                 }
             }

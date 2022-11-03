@@ -81,7 +81,7 @@ namespace InDappledGroves.Items.Tools
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            
+
 
             if (stack.Attributes.HasAttribute("toolMode"))
             {
@@ -156,7 +156,7 @@ namespace InDappledGroves.Items.Tools
                     float toolModeMod = getToolModeMod(slot.Itemstack);
                     if (((curDmgFromMiningSpeed / 3) + secondsUsed) * (toolModeMod != 0 ? toolModeMod : 1f) >= resistance)
                     {
-                        
+
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
                         slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
@@ -255,12 +255,14 @@ namespace InDappledGroves.Items.Tools
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
-                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt/treeResistance , counter);
-            } else {
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
+            }
+            else
+            {
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
             }
 
@@ -268,12 +270,13 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
-               return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
+                return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
             }
 
-            return base.OnBlockBrokenWith(world,byEntity,itemslot,blockSel,dropQuantityMultiplier);
+            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
         }
 
         #region Recipe Processing

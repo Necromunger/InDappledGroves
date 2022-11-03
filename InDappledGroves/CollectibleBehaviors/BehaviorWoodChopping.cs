@@ -1,7 +1,5 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Items.Tools;
-using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -119,7 +117,7 @@ namespace InDappledGroves
             float leavesMul = 1;
             float leavesBranchyMul = 0.8f;
             int blocksbroken = 0;
-
+            bool isStump = api.World.BlockAccessor.GetBlock(blockSel.Position).FirstCodePart() == "treestump";
             while (foundPositions.Count > 0)
             {
                 BlockPos pos = foundPositions.Pop();
@@ -185,7 +183,19 @@ namespace InDappledGroves
             Queue<Vec4i> queue = new();
             HashSet<BlockPos> checkedPositions = new();
             Stack<BlockPos> foundPositions = new();
+            Block startBlock = api.World.BlockAccessor.GetBlock(startPos);
+            BlockPos secondPos = null;
 
+            api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
+            {
+                if (block.Code.FirstCodePart() == "log") { secondPos = new BlockPos(x, y, z); }
+            }, true);
+
+            if (startBlock.Code.FirstCodePart() == "treestump")
+            {
+
+                startPos = secondPos != null ? secondPos : startPos;
+            }
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
 
