@@ -28,6 +28,27 @@
     "side": "server"
   },
   {
+    "op": "replace",
+    "path": "/ingredient/allowedVariants",
+    "value": ["copper"],
+    "file": "game:recipes/smithing/axe.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/enabled",
+    "value": false,
+    "file": "game:recipes/smithing/axe.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/variantgroups/0/states",
+    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
+    "file": "game:itemtypes/toolhead/axehead.json",
+    "side": "server"
+  },
+  {
     "op": "add",
     "path": "/class",
     "value": "idgtool",
@@ -40,5 +61,12 @@
     "value": [{"name": "woodsawer"}],
     "file": "game:itemtypes/tool/saw.json",
     "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/ingredient/allowedVariants",
+    "value": ["copper"],
+    "file": "game:recipes/smithing/axe.json",
+    "server": "server"
   }
 ]

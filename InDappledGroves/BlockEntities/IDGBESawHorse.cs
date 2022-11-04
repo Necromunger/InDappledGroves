@@ -257,7 +257,7 @@ namespace InDappledGroves.BlockEntities
                 this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Item.Shape.Base);
                 capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
             }
-            ModelTransform transform = stack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
+            ModelTransform transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"].AsObject<ModelTransform>() : null;
             if (transform == null)
             {
                 transform = new ModelTransform
@@ -292,24 +292,24 @@ namespace InDappledGroves.BlockEntities
 
         public float addRotate(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["rotation"][side][axis].Exists ? transforms["rotation"][side][axis].AsFloat() : 0f;
         }
 
         public float addTranslate(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["translation"][side][axis].Exists ? transforms["translation"][side][axis].AsFloat() : 0f;
         }
 
         public float addOrigin(string side, string axis)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["origin"][side][axis].Exists ? transforms["origin"][side][axis].AsFloat() : 0f;
         }
         public float addScale(string side)
         {
-            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgSawHorseProps"]["idgSawHorseTransform"];
+            JsonObject transforms = this.Inventory[1].Itemstack.Collectible.Attributes["workStationTransforms"]["idgSawHorseProps"]["idgSawHorseTransform"];
             return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
         }
         readonly Matrixf mat = new();

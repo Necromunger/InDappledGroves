@@ -19,6 +19,7 @@
 			- treefellingResistanceMult -> Higher numbers make chopping trees take longer, lower numbers increase speed of trees being choppped.
 	- Added smithing recipes for grubaxehead, forestaxehead, maulhead, as well as shapes and itemtypes.
 	- Added grid recipes for grub axe, forest axe, maul.
+	- Implemented Spear and Fang's Tree Hollows
 
 1.17-v0.4.0-dev
 	- Corrected error with leaf breaking

@@ -81,7 +81,7 @@ namespace InDappledGroves.Items.Tools
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack stack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            
+
 
             if (stack.Attributes.HasAttribute("toolMode"))
             {
@@ -136,7 +136,7 @@ namespace InDappledGroves.Items.Tools
         {
             if (!byEntity.Controls.CtrlKey)
             {
-                BlockPos pos = blockSel.Position;
+                BlockPos pos = blockSel?.Position;
                 if (blockSel != null)
                 {
 
@@ -153,9 +153,10 @@ namespace InDappledGroves.Items.Tools
                     lastSecondsUsed = secondsUsed;
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-                    System.Diagnostics.Debug.WriteLine((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed);
-                    if (((curDmgFromMiningSpeed/3 * getToolModeMod(slot.Itemstack)) + secondsUsed) >= resistance)
+                    float toolModeMod = getToolModeMod(slot.Itemstack);
+                    if (((curDmgFromMiningSpeed / 3) + secondsUsed) * (toolModeMod != 0 ? toolModeMod : 1f) >= resistance)
                     {
+
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
                         slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
@@ -172,10 +173,10 @@ namespace InDappledGroves.Items.Tools
         {
             switch (GetToolModeName(stack))
             {
-                case "chopping": return stack.Collectible.Attributes["woodWorkingProps"]["splittingMod"].AsFloat();
-                case "sawing": return stack.Collectible.Attributes["woodWorkingProps"]["sawingMod"].AsFloat();
-                case "hewing": return stack.Collectible.Attributes["woodWorkingProps"]["hewingMod"].AsFloat();
-                case "planing": return stack.Collectible.Attributes["woodWorkingProps"]["planingMod"].AsFloat();
+                case "chopping": return stack.Collectible.Attributes["choppingProps"]["splittingMod"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["sawingProps"]["sawingMod"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["hewingProps"]["hewingMod"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["planingProps"]["planingMod"].AsFloat();
                 default: return 1f;
             }
 
@@ -254,12 +255,14 @@ namespace InDappledGroves.Items.Tools
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
-                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt/treeResistance , counter);
-            } else {
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
+            }
+            else
+            {
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
             }
 
@@ -267,12 +270,13 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            if (this.HasBehavior<BehaviorWoodChopping>() && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
             {
-               return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
+                return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
             }
 
-            return base.OnBlockBrokenWith(world,byEntity,itemslot,blockSel,dropQuantityMultiplier);
+            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
         }
 
         #region Recipe Processing

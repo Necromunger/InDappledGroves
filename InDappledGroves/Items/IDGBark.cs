@@ -41,7 +41,7 @@ namespace InDappledGroves.Items
         {
             
             if(!inv[0].Empty)
-            for(int i=0; i<inv.Count; i++)
+                for (int i = 0; i < inv.Count; i++)
             {
                     if (inv[0].Empty && !slot.Empty) return false;
                     string barktype = inv[0].Itemstack.Collectible.Variant["bark"];

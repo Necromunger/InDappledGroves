@@ -157,9 +157,9 @@ namespace InDappledGroves.BlockEntities
 			bool flag = stack.Collectible.Attributes != null;
 
 			ModelTransform transform;
-			if (flag && stack.Collectible.Attributes["woodWorkingProps"].Exists)
+			if (flag && stack.Collectible.Attributes["workStationTransforms"].Exists)
 			{
-				transform = stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
+				transform = stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
 			}
 			else
             {
@@ -180,7 +180,7 @@ namespace InDappledGroves.BlockEntities
 
 			transform.EnsureDefaultValues();
 
-			//if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
+			if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
 			return meshData;
 		}
 
@@ -205,19 +205,19 @@ namespace InDappledGroves.BlockEntities
 
 		public float AddRotate(string sideAxis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["rotation"][sideAxis].Exists ? transforms["rotation"][sideAxis].AsFloat() : 0f;
 		}
 
 		public float AddTranslate(string sideAxis)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["translation"][sideAxis].Exists ? transforms["translation"][sideAxis].AsFloat() : 0f;
 		}
 
 		public float AddScale(string side)
 		{
-			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["woodWorkingProps"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
+			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 0.95f;
 		}
 

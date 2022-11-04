@@ -3,7 +3,7 @@
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/woodWorkingPropsByType",
+    "path": "/attributes/workStationTransformsByType",
     "value": {
       "*-placed-*":{
         "idgChoppingBlockProps": {               
@@ -31,7 +31,8 @@
               "translation": {
                 "x": 0.027,
                 "y": 0.7,
-                "z": 0
+                "z": 0,
+                "scale": 0.7
               },
               "rotation": {
                 "x": 0,
@@ -64,7 +65,7 @@
     "side": "server",
     "op": "add",
     "path": "/attributes",
-    "value": { "woodWorkingPropsByType": {
+    "value": { "workStationTransformsByType": {
       "*-placed-*":{
         "idgChoppingBlockProps": {               
             "idgChoppingBlockTransform": {
@@ -150,7 +151,7 @@
     "file": "game:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/woodWorkingPropsByType",
+    "path": "/attributes/workStationTransformsByType",
     "value": {
       "*-placed-*":{
         "idgChoppingBlockProps": {               

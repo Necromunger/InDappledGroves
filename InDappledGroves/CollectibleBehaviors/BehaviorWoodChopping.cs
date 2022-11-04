@@ -1,7 +1,5 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Items.Tools;
-using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -77,13 +75,11 @@ namespace InDappledGroves
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-
-            System.Diagnostics.Debug.WriteLine("Remaining Tree Resistance is " + remainingResistance);
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["woodWorkingProps"]["fellingmultiplier"].AsFloat(1f));
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingmultiplier"].AsFloat(1f));
 
             BlockPos pos = blockSel.Position;
 
@@ -121,7 +117,7 @@ namespace InDappledGroves
             float leavesMul = 1;
             float leavesBranchyMul = 0.8f;
             int blocksbroken = 0;
-
+            bool isStump = api.World.BlockAccessor.GetBlock(blockSel.Position).FirstCodePart() == "treestump";
             while (foundPositions.Count > 0)
             {
                 BlockPos pos = foundPositions.Pop();
@@ -187,7 +183,19 @@ namespace InDappledGroves
             Queue<Vec4i> queue = new();
             HashSet<BlockPos> checkedPositions = new();
             Stack<BlockPos> foundPositions = new();
+            Block startBlock = api.World.BlockAccessor.GetBlock(startPos);
+            BlockPos secondPos = null;
 
+            api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
+            {
+                if (block.Code.FirstCodePart() == "log") { secondPos = new BlockPos(x, y, z); }
+            }, true);
+
+            if (startBlock.Code.FirstCodePart() == "treestump")
+            {
+
+                startPos = secondPos != null ? secondPos : startPos;
+            }
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
 
