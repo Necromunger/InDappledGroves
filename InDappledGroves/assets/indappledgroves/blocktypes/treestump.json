@@ -1,7 +1,6 @@
 {
 	code: "treestump",
 	"__comment": "BlockLog contains only contains code for OnPickBlock",
-	class: "BlockLog",
 	behaviorsByType: {
 		"*-grown-*": [{name: "PushEventOnBlockBroken",	properties: {eventName: "testForDecay"}}, { name: "MyceliumHost" }],
 		"*": [{ name: "MyceliumHost" }, { name: "WrenchOrientable", properties: { baseCode: "treestump-placed-{wood}"  } }]
@@ -15,7 +14,7 @@
     }
 	],
 	creativeinventory: { "general": ["treestump-placed-*-east"], "flora": ["treestump-placed-*-east"], "construction": ["treestump-placed-*-east"] },
-	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "block/wood/treestump" }] },
+	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }] },
 	drawtype: "json",
 	blockmaterial: "Wood",
 	requiredMiningTier: 1,
@@ -62,7 +61,7 @@
 		}
 	},
 	drops: [
-		{ type: "block", code: "treestump-placed-{wood}-east", quantity: { avg: 1 }  }
+		{ type: "block", code: "game:log-placed-{wood}-ud", quantity: { avg: 1 }  }
 	],
 	combustiblePropsByType: {
 		"treestump-*-birch-*": {
