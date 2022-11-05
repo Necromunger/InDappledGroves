@@ -13,7 +13,7 @@
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
       "treeFellingGroupSpreadIndex": 3,
-       "treeLoot": [{"dropStack": {"type":"item", "code": "game:mushroom-fieldmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
+       "treeLoot": [{"dropStack": {"type":"block", "code": "game:mushroom-fieldmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:fruit-yellowapple", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:fruit-redapple", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:drygrass", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},

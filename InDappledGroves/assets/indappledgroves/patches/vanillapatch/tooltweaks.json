@@ -49,6 +49,20 @@
     "side": "server"
   },
   {
+    "op": "replace",
+    "path": "/variantgroups/0/states",
+    "value": ["scrap", "copper"],
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/choppingProps",
+    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.75 },
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
     "op": "add",
     "path": "/class",
     "value": "idgtool",

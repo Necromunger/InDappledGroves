@@ -79,7 +79,8 @@ namespace InDappledGroves
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingmultiplier"].AsFloat(1f));
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
+            System.Diagnostics.Debug.WriteLine(treeResistance);
 
             BlockPos pos = blockSel.Position;
 
@@ -193,7 +194,6 @@ namespace InDappledGroves
 
             if (startBlock.Code.FirstCodePart() == "treestump")
             {
-
                 startPos = secondPos != null ? secondPos : startPos;
             }
             Block block = world.BlockAccessor.GetBlock(startPos, 0);

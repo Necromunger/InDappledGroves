@@ -1,5 +1,6 @@
 {
 	code: "treestump",
+	"class": "BlockLog",
 	"__comment": "BlockLog contains only contains code for OnPickBlock",
 	behaviorsByType: {
 		"*-grown-*": [{name: "PushEventOnBlockBroken",	properties: {eventName: "testForDecay"}}, { name: "MyceliumHost" }],
@@ -52,12 +53,12 @@
 	replaceable: 500,
 	resistance: 4.5,
 	sounds: {
-		"place": "block/planks",
-		"walk": "walk/wood",
-		"hit": "block/planks",
-		"break": "block/planks",
+		"place": "game:block/planks",
+		"walk": "game:walk/wood",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
 		byTool: {
-			"Axe": { hit: "block/chop", break: "block/planks" }
+			"Axe": { hit: "game:block/chop", break: "game:block/planks" }
 		}
 	},
 	drops: [
@@ -106,20 +107,20 @@
 		}
 	},
 	"resistanceByType": {
-    "*-birch-*": 11.4,
-		"*-oak-*": 11.6,
-		"*-maple-*": 13,
-		"*-pine-*": 7.8,
-		"*-acacia-*": 20.6,
-		"*-kapok-*": 8,
-		"*-baldcypress-*": 4.6,
-		"*-larch-*": 7.4,
-		"*-redwood-*": 3.8,
-		"*-ebony-*": 29,
-		"*-walnut-*": 9,
-		"*-purpleheart-*": 24.4,
-		"*-aged-*": 9,
-		"*": 9
+    "*-birch-*": 57.0,
+		"*-oak-*": 57.0,
+		"*-maple-*": 65,
+		"*-pine-*": 39,
+		"*-acacia-*": 103,
+		"*-kapok-*": 40,
+		"*-baldcypress-*": 23,
+		"*-larch-*": 37,
+		"*-redwood-*": 19,
+		"*-ebony-*": 145,
+		"*-walnut-*": 45,
+		"*-purpleheart-*": 122,
+		"*-aged-*": 45,
+		"*": 45
     },
 	maxStackSize: 16,
 	materialDensity: 700,

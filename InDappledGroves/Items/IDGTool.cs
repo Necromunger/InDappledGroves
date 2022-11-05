@@ -160,6 +160,7 @@ namespace InDappledGroves.Items.Tools
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
                         slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+                        System.Diagnostics.Debug.WriteLine(this.Code.ToString() + ": " + secondsUsed);
                         return false;
                     }
 

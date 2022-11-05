@@ -113,11 +113,11 @@ namespace InDappledGroves.Util
                 return 100;
             }
 
-            public override void StartServerSide(ICoreServerAPI api)
+            public override void AssetsFinalize(ICoreAPI capi)
             {
                 IDGRecipeRegistry.Create();
-                this.api = api;
-                api.Event.SaveGameLoaded += LoadIDGRecipes;
+                LoadIDGRecipes();
+                base.AssetsFinalize(capi);
             }
 
             public override void AssetsLoaded(ICoreAPI api)
