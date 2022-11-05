@@ -184,7 +184,6 @@ namespace InDappledGroves.Util
                 }
             }
 
-
             serverChannel.BroadcastPacket(new RecipeUpload()
             {
                 cbvalues = crecipes,

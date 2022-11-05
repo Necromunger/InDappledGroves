@@ -9,6 +9,8 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
+using Vintagestory.GameContent;
 using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Items.Tools
@@ -225,12 +227,14 @@ namespace InDappledGroves.Items.Tools
         public GroundRecipe GetMatchingGroundRecipe(ItemSlot slot, string curTMode)
         {
             List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
-            if (recipes == null) return null;
 
+            api.World.Logger.Debug(recipes.ToString(), " Reached Ground Recipe Match ", recipes.Count.ToString());
+            if (recipes == null) return null;
             for (int j = 0; j < recipes.Count; j++)
             {
                 if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 {
+                    api.World.Logger.Debug("Recipe Reached, returned :" + recipes[j].Output.ResolvedItemstack.ToString());
                     return recipes[j];
                 }
             }

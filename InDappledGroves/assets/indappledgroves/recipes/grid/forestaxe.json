@@ -4,21 +4,12 @@
 	height: 2,
 	ingredients: {
 		"T": { 
-			type: "item", 
-			name: "toolhead",
-			code: "forestaxehead-*",
-			quantity: 1
+			type: "item", code: "indappledgroves:forestaxehead-*",	name: "toolhead",	quantity: 1},
+		"H": { type: "item", code: "game:stick",	name: "stick", quantity: 1}
 		},
-		"H": { 
-			type: "item", 
-			name: "stick",
-			code: "game:stick",
-			quantity: 1
-		}
-	},
 	output: { 
 		type: "item", 
-		code: "forestaxe-{toolhead}",
+		code: "indappledgroves:forestaxe-{toolhead}",
 		quantity: 1
 	}
 }

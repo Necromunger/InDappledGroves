@@ -123,6 +123,9 @@
     <None Update="assets\indappledgroves\recipes\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\grid\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\grid\grubaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
