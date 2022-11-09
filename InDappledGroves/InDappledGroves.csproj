@@ -57,6 +57,9 @@
     <None Update="assets\indappledgroves\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\toolhead\adzehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\itemtypes\toolhead\grubaxehead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -123,6 +126,9 @@
     <None Update="assets\indappledgroves\recipes\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\grid\adze.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\grid\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -165,10 +171,16 @@
     <None Update="assets\indappledgroves\recipes\ground\chopping\sticks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\knapping\adzehead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\sawhorse\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\sawbuck\log.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\adzehead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\smithing\grubaxehead.json">

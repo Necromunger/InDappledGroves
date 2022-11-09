@@ -117,7 +117,7 @@ namespace InDappledGroves.Util
             {
                 IDGRecipeRegistry.Create();
                 LoadIDGRecipes();
-                base.AssetsFinalize(capi);
+                base.AssetsFinalize(api);
             }
 
             public override void AssetsLoaded(ICoreAPI api)

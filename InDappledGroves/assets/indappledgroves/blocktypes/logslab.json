@@ -16,7 +16,7 @@
 							"handbook": {
 									"groupBy": ["logslab-*"],
 									"extraSections": [
-										{ "title": "indappledgroves:logslab-handbook-help-title", "text": "indappledgroves:logslab-handbook-help-text" }
+										{ "title": "indappledgroves:logslab-handbooktitle-logslab", "text": "indappledgroves:logslab-handbooktext-logslab" }
 									]
 								},
 								"partialAttachableByType": {

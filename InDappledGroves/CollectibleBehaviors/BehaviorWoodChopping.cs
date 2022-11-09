@@ -47,7 +47,7 @@ namespace InDappledGroves
                             Name = Lang.Get("Chopping", Array.Empty<object>())
                         }
                 };
-
+                 
                 if (capi != null)
                 {
                     for (int i = 0; i < array.Length; i++)

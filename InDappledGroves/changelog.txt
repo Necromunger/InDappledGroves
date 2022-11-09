@@ -1,4 +1,10 @@
-﻿1.17-v0.4.0-dev.2
+﻿1.17-v0.4.1-rc.2
+	- Actually made sure that the adzehead itemtype got included in the final file.
+
+1.17-v0.4.1-rc.1
+	- Added Adze grid, knapping and smithing recipes, as well as lang updates.
+
+1.17-v0.4.0-dev.2
 	- Updated lang file to work properly for stripped logs, added wood type to chopping blocks.
 	- Updated lang file to accommodate splitting maul and adze
 	- Corrected transforms on the Sawbuck and Chopping Block

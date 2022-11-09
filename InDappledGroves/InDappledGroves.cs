@@ -47,8 +47,6 @@ namespace InDappledGroves
             //Register BlockBehaviors
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
 
-
-
             //Check for Existing Config file, create one if none exists
             try
             {

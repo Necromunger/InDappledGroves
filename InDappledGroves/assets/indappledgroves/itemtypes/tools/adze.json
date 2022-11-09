@@ -60,7 +60,7 @@
 		"@adze-bone-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
 			"material": { base: "game:block/stone/rock/{material}1" },
 			"string": { base: "game:item/tool/material/string" },
-			"handle": { base: "game:block/bone-yellow" }
+			"handle": { base: "game:block/bone-yellow"}
 		},
 		"adze-wood-flint": { 
 			"material": { base: "game:block/stone/{material}" },
@@ -73,7 +73,7 @@
 			"handle": { base: "game:block/bone-yellow" }
 		},
 		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": {
-			"metal": { base: "game:block/metal/ingot/{material}" },
+			"material": { base: "game:block/metal/ingot/{material}" },
 			"handle": { base: "game:item/tool/material/handle" }
 		}
 	},

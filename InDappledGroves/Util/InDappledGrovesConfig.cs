@@ -23,6 +23,7 @@ namespace InDappledGroves.Util
         public float TreeHollowsSpawnProbability { get; set; } = 0.2f;
         public double TreeHollowsUpdateMinutes { get; set; } = 360.0;
 
+        public bool RunTreeGenOnChunkReload { get; set; } = false;
         public InDappledGrovesConfig()
         { }
 

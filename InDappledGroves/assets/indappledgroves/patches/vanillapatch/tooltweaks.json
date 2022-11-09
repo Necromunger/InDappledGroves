@@ -44,14 +44,28 @@
   {
     "op": "replace",
     "path": "/variantgroups/0/states",
-    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
+    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze"],
     "file": "game:itemtypes/toolhead/axehead.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes",
+    "value": {handbook: {excludeByType: {"*-tinbronze": true}}}, 
+    "file": "game:itemtypes/toolhead/axehead.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/handbook/excludeByType",
+    "value": {"*-tinbronze": true},
+    "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
   {
     "op": "replace",
     "path": "/variantgroups/0/states",
-    "value": ["scrap", "copper"],
+    "value": ["scrap", "copper", "tinbronze"],
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

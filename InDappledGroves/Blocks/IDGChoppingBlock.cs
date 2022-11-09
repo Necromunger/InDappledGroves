@@ -18,10 +18,6 @@ namespace InDappledGroves.Blocks
 		
 		ChoppingBlockRecipe recipe;
 		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
-		public override void OnLoaded(ICoreAPI api)
-		{
-			base.OnLoaded(api);
-		}
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
