@@ -49,36 +49,41 @@ namespace InDappledGroves.WorldGen
                 this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
                 //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
                 this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnGeneration, EnumWorldGenPass.PreDone, "standard");
-                this.sapi.Event.ChunkDirty += Event_ChunkDirty;
+                this.sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
+                //this.sapi.Event.ChunkDirty += Event_ChunkDirty;
             }
             this.sapi = api;
         }
 
         private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
         {
-            for (var i = 0; i < chunks.Length; i++)
+            foreach (IWorldChunk chunk in chunks)
             {
+                if (chunk.Empty /*|| chunk.GetModdata<bool>("hasIDGLoaded", false) == true*/) continue;
 
-                if (chunks[i].GetModdata<bool>("hasIDGLoaded", false) == true) break;
+                IMapChunk mc = sapi.World.BlockAccessor.GetMapChunk(chunkCoord);
+                if (mc == null) continue;   //this chunk isn't actually loaded, no need to examine it.
+
+                if (chunk.GetModdata<bool>("hasIDGLoaded", false) == true) break;
                 
-                    runTreeGen(chunks[i], new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
-                    chunks[i].SetModdata<bool>("hasIDGLoaded", true);
+                    runTreeGen(chunk, new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
+                    chunk.SetModdata<bool>("hasIDGLoaded", true);
             }
         }
 
-        private void Event_ChunkDirty(Vec3i chunkCoord, IWorldChunk chunk, EnumChunkDirtyReason reason)
-        {
-            if (!(reason == EnumChunkDirtyReason.NewlyLoaded)) return;
-            //if (!InDappledGrovesConfig.Current.RunTreeGenOnChunkReload) return;
-            if (chunk != null && !(chunkCoord.Y == 0) && chunk.GetModdata<bool>("hasIDGLoaded", false)== true) return;
-            if (reason == EnumChunkDirtyReason.NewlyLoaded)
-            {
-                System.Diagnostics.Debug.WriteLine("Checkpoint Beta");
-                this.runTreeGen(chunk, chunkCoord.AsBlockPos);
-                chunk.SetModdata<bool>("hasIDGLoaded", true);
-                System.Diagnostics.Debug.WriteLine(chunkCoord.ToString());
-            }
-        }
+        //private void Event_ChunkDirty(Vec3i chunkCoord, IWorldChunk chunk, EnumChunkDirtyReason reason)
+        //{
+        //    if (!(reason == EnumChunkDirtyReason.NewlyLoaded)) return;
+        //    //if (!InDappledGrovesConfig.Current.RunTreeGenOnChunkReload) return;
+        //    if (chunk != null && !(chunkCoord.Y == 0) && chunk.GetModdata<bool>("hasIDGLoaded", false)== true) return;
+        //    if (reason == EnumChunkDirtyReason.NewlyLoaded)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine("Checkpoint Beta");
+        //        this.runTreeGen(chunk, chunkCoord.AsBlockPos);
+        //        chunk.SetModdata<bool>("hasIDGLoaded", true);
+        //        System.Diagnostics.Debug.WriteLine(chunkCoord.ToString());
+        //    }
+        //}
 
 
         //Our mod only needs to be loaded by the server
