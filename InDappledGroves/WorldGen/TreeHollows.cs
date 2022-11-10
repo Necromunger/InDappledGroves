@@ -70,7 +70,7 @@ namespace InDappledGroves.WorldGen
         {
             if (!(reason == EnumChunkDirtyReason.NewlyLoaded)) return;
             //if (!InDappledGrovesConfig.Current.RunTreeGenOnChunkReload) return;
-            if (!(chunkCoord.Y == 0) && chunk.GetModdata<bool>("hasIDGLoaded", false)== true) return;
+            if (chunk != null && !(chunkCoord.Y == 0) && chunk.GetModdata<bool>("hasIDGLoaded", false)== true) return;
             if (reason == EnumChunkDirtyReason.NewlyLoaded)
             {
                 System.Diagnostics.Debug.WriteLine("Checkpoint Beta");
