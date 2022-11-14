@@ -14,7 +14,7 @@
 			translation: { x: -0.475, y: 0.12, z: 0.15 },
 			rotation: { x: 30, y: -180, z: -91 }
 		},
-		"choppingProps": { "fellingMultiplier": 0.5, "splittingMod": 0.7 }
+		"choppingProps": { "fellingMultiplier": 0.5, "splittingMod": 0.26 }
 	},
 		behaviors: [{
 		name: "GroundStorable",

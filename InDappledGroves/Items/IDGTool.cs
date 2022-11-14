@@ -18,16 +18,13 @@ namespace InDappledGroves.Items.Tools
 
     class IDGTool : Item, IIDGTool
     {
-
+        float startUseTime;
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
             capi = (api as ICoreClientAPI);
             toolModes = BuildSkillList();
-            baseWorkstationMiningSpdMult = InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult;
-            baseWorkstationResistanceMult = InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
-            baseGroundRecipeMiningSpdMult = InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult;
-            baseGroundRecipeResistaceMult = InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
+            
         }
 
         public IDGTool()
@@ -103,12 +100,23 @@ namespace InDappledGroves.Items.Tools
 
         #endregion ToolMode Stuff
 
+        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handling)
+        {
+            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handling);
+        }
+
+        public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel)
+        {
+            base.OnHeldAttackStop(secondsPassed, slot, byEntity, blockSelection, entitySel);
+        }
+
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
             if (!byEntity.Controls.CtrlKey)
             {
+                recipeComplete = false;
                 string curTMode = "";
-                if (slot.Itemstack.Collectible is IIDGTool tool) curTMode = tool.GetToolModeName(slot.Itemstack);
+                if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = getToolModeMod(slot.Itemstack); };
 
                 if (blockSel == null)
                     return;
@@ -117,7 +125,7 @@ namespace InDappledGroves.Items.Tools
 
                 recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
                 if (recipe == null) return;
-                resistance = Inventory[0].Itemstack.Block.Resistance;
+                resistance = Inventory[0].Itemstack.Block.Resistance * InDappledGroves.baseGroundRecipeResistaceMult;
 
                 if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
                 {
@@ -128,9 +136,10 @@ namespace InDappledGroves.Items.Tools
 
                 playNextSound = 0.25f;
 
-                handHandling = EnumHandHandling.PreventDefault;
+                handHandling = EnumHandHandling.Handled;
                 return;
             }
+            handHandling = EnumHandHandling.PreventDefault;
             base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
         }
 
@@ -149,20 +158,24 @@ namespace InDappledGroves.Items.Tools
                     }
 
                     //Accumulate damage over time from current tools mining speed.
-                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) * (secondsUsed - lastSecondsUsed);
+                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) 
+                        * (secondsUsed - lastSecondsUsed);
 
                     //update lastSecondsUsed to this cycle
                     lastSecondsUsed = secondsUsed;
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-                    float toolModeMod = getToolModeMod(slot.Itemstack);
-                    if (((curDmgFromMiningSpeed / 3) + secondsUsed) * (toolModeMod != 0 ? toolModeMod : 1f) >= resistance)
+                    
+                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod* InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
+                    float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+                    if (curMiningProgress >= curResistance)
                     {
 
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
-                        slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                         System.Diagnostics.Debug.WriteLine(this.Code.ToString() + ": " + secondsUsed);
+                        byEntity.StopAnimation("axechop");
+                        recipeComplete = true;
                         return false;
                     }
 
@@ -172,7 +185,15 @@ namespace InDappledGroves.Items.Tools
             return false;
         }
 
-        private float getToolModeMod(ItemStack stack)
+        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        {
+
+            if(recipeComplete)slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+            recipeComplete = false;
+            byEntity.StopAnimation("axechop");
+        }
+
+        public float getToolModeMod(ItemStack stack)
         {
             switch (GetToolModeName(stack))
             {
@@ -185,10 +206,7 @@ namespace InDappledGroves.Items.Tools
 
         }
 
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
-        {
-            byEntity.StopAnimation("axechop");
-        }
+
 
 
         //-- Spawns output when chopping cycle is finished --//
@@ -260,8 +278,10 @@ namespace InDappledGroves.Items.Tools
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
-            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown") 
+                || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown") 
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
@@ -346,6 +366,7 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
         public string InventoryClassName => "worldinventory";
+        public float toolModeMod;
         public InventoryBase Inventory { get; }
         public SkillItem[] toolModes;
         public GroundRecipe recipe;
@@ -355,5 +376,6 @@ namespace InDappledGroves.Items.Tools
         private float curDmgFromMiningSpeed;
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
+        private bool recipeComplete = false;
     }
 }

@@ -6,10 +6,12 @@
     using System.Text;
     using Vintagestory.API.Client;
     using Vintagestory.API.Common;
+    using Vintagestory.API.Config;
     using Vintagestory.API.MathTools;
     using Vintagestory.API.Util;
+    using Vintagestory.GameContent;
 
-        public class BlockTreeHollowGrown : Block
+    public class BlockTreeHollowGrown : Block
         {
             private WorldInteraction[] interactions;
             public override void OnLoaded(ICoreAPI api)
@@ -27,7 +29,7 @@
             });
             }
 
-            public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
+        public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
             {
                 var facing = SuggestedHVOrientation(byPlayer, blockSel)[0].ToString();
                 bool placed;
@@ -82,7 +84,15 @@
                 return mesh;
             }
 
-            public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
+        {
+            return Lang.Get("{0} Treehollow", new object[]
+            {
+                this.Variant["wood"].ToString().UcFirst()
+            });
+        }
+
+        public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
             {
                 if (world.BlockAccessor.GetBlockEntity(selection.Position) is BETreeHollowGrown bedc)
                 {

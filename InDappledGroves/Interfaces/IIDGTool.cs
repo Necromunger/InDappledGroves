@@ -8,5 +8,8 @@ namespace InDappledGroves.Interfaces
     interface IIDGTool 
     {
         public string GetToolModeName(ItemStack stack);
+
+        public float getToolModeMod(ItemStack stack);
+        
     }
 }

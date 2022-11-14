@@ -10,7 +10,8 @@
 			sprintKey: true,
 			selectionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.35, z2: 1 },
 			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
-		}},
+			}
+		},
 		{
 		"name": "woodhewer"
 		}
@@ -29,7 +30,8 @@
 			rotation: { y: 1, z: -1 },
 			translation: { x: -0.3, y: 0.6 },
 			scale: 1.25
-		}
+		},
+		"hewingProps": {"hewingMod": 1},
 	},
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },

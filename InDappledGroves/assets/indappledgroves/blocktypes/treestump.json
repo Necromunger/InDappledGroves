@@ -51,7 +51,6 @@
 		"oak3": {"base": "game:block/wood/treetrunk/{wood}"}
 	},
 	replaceable: 500,
-	resistance: 4.5,
 	sounds: {
 		"place": "game:block/planks",
 		"walk": "game:walk/wood",

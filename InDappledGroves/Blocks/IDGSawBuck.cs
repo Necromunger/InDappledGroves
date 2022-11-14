@@ -6,12 +6,14 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
 	// Token: 0x02000016 RID: 22
 	internal class IDGSawBuck : Block
 	{
+		
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
@@ -32,6 +34,7 @@ namespace InDappledGroves.Blocks
                 if (collectibleObject is IIDGTool iidgtool)
                 {
                     toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
+					toolModeMod = iidgtool.getToolModeMod(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
                 }
             }
 			if (idgbesawBuck.Inventory.Empty || byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
@@ -61,10 +64,12 @@ namespace InDappledGroves.Blocks
 					this.playNextSound += 0.7f;
 				}
 
-				curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+				curDmgFromMiningSpeed += (collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
 				lastSecondsUsed = secondsUsed;
 
-				if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawBuck.Inventory[0].Itemstack.Block.Resistance)
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				if (curMiningProgress >= curResistance)
 				{
 					this.SpawnOutput(this.recipe, blockSel.Position);
 					idgbesawBuck.Inventory.Clear();
@@ -92,8 +97,8 @@ namespace InDappledGroves.Blocks
 				this.api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05000000074505806, 0.10000000149011612, 0.05000000074505806));
 			}
 		}
-
-		private IDGRecipeNames.SawbuckRecipe recipe;
+		float toolModeMod;
+		private SawbuckRecipe recipe;
 		private float playNextSound;
 		private float resistance;
 		private float lastSecondsUsed;

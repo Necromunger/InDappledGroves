@@ -3,6 +3,8 @@
 	class: "idgtool",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
+		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.19},
+		"hewingProps": {"hewingMod": 1},
 		handbook: {
 			groupBy: ["grubaxe-*"]
 		},
@@ -42,8 +44,7 @@
 				}
 			}
 		},
-		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.5},
-		"hewingProps": {"hewingMod": 0.5}
+		
 	},
 		behaviors: [{
 		name: "GroundStorable",

@@ -2,6 +2,7 @@
 using InDappledGroves.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -18,7 +19,7 @@ namespace InDappledGroves
     {
         ICoreAPI api;
         ICoreClientAPI capi;
-
+        Stopwatch stopWatch = new();
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
 
@@ -47,7 +48,7 @@ namespace InDappledGroves
                             Name = Lang.Get("Chopping", Array.Empty<object>())
                         }
                 };
-                 
+
                 if (capi != null)
                 {
                     for (int i = 0; i < array.Length; i++)
@@ -72,15 +73,26 @@ namespace InDappledGroves
             });
         }
 
+        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandHandling handling)
+        {
+            
+            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
+        }
+
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
+            if (!stopWatch.IsRunning)
+            {
+                stopWatch.Start();
+            }
+            
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
             float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
-            System.Diagnostics.Debug.WriteLine(treeResistance);
+
 
             BlockPos pos = blockSel.Position;
 
@@ -101,13 +113,16 @@ namespace InDappledGroves
 
         public bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
+            stopWatch.Stop();
+            System.TimeSpan span = stopWatch.Elapsed;
+            System.Diagnostics.Debug.WriteLine(span.TotalSeconds);
+            stopWatch.Reset();
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
             double windspeed = api.ModLoader.GetModSystem<WeatherSystemBase>()?.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) ?? 0;
-
+            
             Stack<BlockPos> foundPositions = FindTree(world, blockSel.Position);
-
             if (foundPositions.Count == 0)
             {
                 return collObj.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
@@ -179,6 +194,8 @@ namespace InDappledGroves
             return true;
         }
 
+        
+
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos)
         {
             Queue<Vec4i> queue = new();
@@ -196,11 +213,20 @@ namespace InDappledGroves
             {
                 startPos = secondPos != null ? secondPos : startPos;
             }
+
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
-
-            string treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
-            int spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+            string treeFellingGroupCode;
+            int spreadIndex;
+            if (startBlock.Code.FirstCodePart() == "treehollowgrown")
+            {
+                treeFellingGroupCode = api.World.GetBlock(new AssetLocation("log-grown-"+block.LastCodePart(1)+"ud")).Attributes?["treeFellingGroupCode"].AsString();
+                spreadIndex = api.World.GetBlock(new AssetLocation("log-grown-" + block.LastCodePart(1) + "ud")).Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+            } else
+            {
+                treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
+                spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+            }
 
             // Must start with a log
             if (spreadIndex < 2) return foundPositions;

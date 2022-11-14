@@ -14,6 +14,13 @@
     "side": "server"
   },  
   {
+    "op": "add",
+    "path": "/attributes",
+    "value": {"choppingProps": { "fellingMultiplier": 1.25, "splittingMod": 0.1 }},
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
     "op": "replace",
     "path": "/class",
     "value": "idgtool",
@@ -51,14 +58,14 @@
   {
     "op": "add",
     "path": "/attributes",
-    "value": {handbook: {excludeByType: {"*-tinbronze": true}}}, 
+    "value": {"handbook": {"excludeByType": {"*-tinbronze": true}}}, 
     "file": "game:itemtypes/toolhead/axehead.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/attributes/handbook/excludeByType",
-    "value": {"*-tinbronze": true},
+    "path": "/attributes",
+    "value": {"handbook": {"excludeByType": {"*-tinbronze": true}}},
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
@@ -72,7 +79,53 @@
   {
     "op": "add",
     "path": "/attributes/choppingProps",
-    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.75 },
+    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.15 },
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/miningspeedbytype",
+    "value": { "axe-flint": {
+              "wood": 3,
+              "plant": 2.2,
+              "leaves": 1.6
+            },
+            "axe-bone-flint": {
+              "wood": 3,
+              "plant": 2.2,
+              "leaves": 1.6
+            },
+            "axe-obsidian": {
+              "wood": 3.5,
+              "plant": 2.7,
+              "leaves": 2.4
+            },
+            "axe-bone-obsidian": {
+              "wood": 3.5,
+              "plant": 2.7,
+              "leaves": 2.4
+            },
+            "*": {
+              "wood": 2.5,
+              "plant": 2.2,
+              "leaves": 1.7
+            }
+         },
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/choppingProps",
+    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.15 },
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/miningspeedbytype/axe-copper/wood",
+    "value": 5.2,
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

@@ -15,7 +15,7 @@
 			translation: { x: -0.4, y: 0.1, z: 0 },
 			scale: 2.00
 		},
-		"choppingProps": { "fellingMultiplier": 1.75, "splittingMod": 1.25}		
+		"choppingProps": { "fellingMultiplier": 1.75, "splittingMod": 0.45}		
 	},
 		behaviors: [{
 		name: "GroundStorable",

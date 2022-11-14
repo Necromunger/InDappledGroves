@@ -25,7 +25,21 @@
 								}
 	},
 	"blockmaterial": "Wood",
-	"resistance": 4.5,
+	"resistancbytype": {
+    "*-birch-*": 2.85,
+		"*-oak-*": 2.9,
+		"*-maple-*": 3.25,
+		"*-pine-*": 1.95,
+		"*-acacia-*": 5.15,
+		"*-kapok-*": 2,
+		"*-baldcypress-*": 1.15,
+		"*-larch-*": 1.85,
+		"*-redwood-*": 9.5,
+		"*-ebony-*": 7.25,
+		"*-walnut-*": 2.25,
+		"*-purpleheart-*": 6.1,
+		"*": 2.25
+    },
 	"creativeinventory": {
 		"general": ["*-down-free"], "construction": ["*-down-free"]
 	},

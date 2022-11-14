@@ -11,6 +11,10 @@ namespace InDappledGroves
 {
     public class InDappledGroves : ModSystem
     {
+           public static float baseWorkstationMiningSpdMult;
+           public static float baseWorkstationResistanceMult;
+           public static float baseGroundRecipeMiningSpdMult;
+           public static float baseGroundRecipeResistaceMult;
 
         public override void Start(ICoreAPI api)
         {
@@ -47,6 +51,8 @@ namespace InDappledGroves
             //Register BlockBehaviors
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
 
+            
+
             //Check for Existing Config file, create one if none exists
             try
             {
@@ -71,6 +77,11 @@ namespace InDappledGroves
             {
                 api.StoreModConfig(InDappledGrovesConfig.Current, "indappledgroves.json");
             }
+            baseWorkstationMiningSpdMult = InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult;
+            baseWorkstationResistanceMult = InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+            baseGroundRecipeMiningSpdMult = InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult;
+            baseGroundRecipeResistaceMult = InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
+
         }
     }
 }

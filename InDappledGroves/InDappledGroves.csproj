@@ -87,28 +87,28 @@
     <None Update="assets\indappledgroves\patches\AncientTools\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\boardpatch.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\boardpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\firewoodpatch.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\firewoodpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\plankslab.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\plankslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\plankstairs.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\plankstairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\planks.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\log.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\reciperemove.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\reciperemove.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\vanillapatch\tooltweaks.json">
+    <None Update="assets\indappledgroves\patches\idgvanilla\tooltweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\choppingblock\bark.json">

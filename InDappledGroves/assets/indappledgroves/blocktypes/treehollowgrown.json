@@ -12,8 +12,26 @@
       "preventsDecay": true,
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
-      "treeFellingGroupSpreadIndex": 3,
-       "treeLoot": [{"dropStack": {"type":"block", "code": "game:mushroom-fieldmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
+		  "treeFellingGroupSpreadIndexByType": {
+		  "*-birch-*": 4,
+		  "*-oak-*": 4,
+		  "*-maple-*": 4,
+		  "*-pine-*": 3,
+		  "*-acacia-*": 4,
+		  "*-kapok-*": 3,
+		  "*-baldcypress-*": 3,
+		  "*-larch-*": 3,
+		  "*-redwood-*": 3,
+		  "*-ebony-*": 6,
+		  "*-walnut-*": 4,
+		  "*-purpleheart-*": 5,
+		  "*-aged-*": 3,
+		  "*": 4
+		  },
+		  preventsDecayByType: {
+			  "treehollowgrown-*": true
+		  },
+      "treeLoot": [{"dropStack": {"type":"block", "code": "game:mushroom-fieldmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:fruit-yellowapple", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:fruit-redapple", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"item", "code": "game:drygrass", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
@@ -32,7 +50,8 @@
                     {"dropStack": {"type":"block", "code": "game:mushroom-commonmorel-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"block", "code": "game:mushroom-almondmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"block", "code": "game:mushroom-orangeoakbolete-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
-                    {"dropStack": {"type":"block", "code": "game:mushroom-flyagaric-harvested", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}}]
+                    {"dropStack": {"type":"block", "code": "game:mushroom-flyagaric-harvested", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}}],
+      
     },
     "variantgroups": [
       {
@@ -48,7 +67,7 @@
         "loadFromProperties": "abstract/horizontalorientation"
       }
     ],
-    "drops": [],
+    drops: [],
     "sideopaque": {
       "all": false
     },
@@ -115,7 +134,6 @@
       }
     },
     "replaceable": 500,
-    "resistance": 4.5,
     "lightAbsorption": 0,
     "textures": {
       "sides": {
@@ -128,6 +146,7 @@
         "base": "game:block/wood/treetrunk/{wood}"
       }
     },
+   
     "maxStackSize": 16,
     "materialDensity": 700,
     "drawtype": "json",

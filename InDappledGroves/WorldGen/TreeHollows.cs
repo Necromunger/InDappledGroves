@@ -57,17 +57,20 @@ namespace InDappledGroves.WorldGen
 
         private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
         {
-            foreach (IWorldChunk chunk in chunks)
+            if (InDappledGrovesConfig.Current.RunTreeGenOnChunkReload)
             {
-                if (chunk.Empty /*|| chunk.GetModdata<bool>("hasIDGLoaded", false) == true*/) continue;
+                foreach (IWorldChunk chunk in chunks)
+                {
+                    if (chunk.Empty /*|| chunk.GetModdata<bool>("hasIDGLoaded", false) == true*/) continue;
 
-                IMapChunk mc = sapi.World.BlockAccessor.GetMapChunk(chunkCoord);
-                if (mc == null) continue;   //this chunk isn't actually loaded, no need to examine it.
+                    IMapChunk mc = sapi.World.BlockAccessor.GetMapChunk(chunkCoord);
+                    if (mc == null) continue;   //this chunk isn't actually loaded, no need to examine it.
 
-                if (chunk.GetModdata<bool>("hasIDGLoaded", false) == true) break;
-                
+                    if (chunk.GetModdata<bool>("hasIDGLoaded", false) == true) break;
+
                     runTreeGen(chunk, new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
                     chunk.SetModdata<bool>("hasIDGLoaded", true);
+                }
             }
         }
 
@@ -141,54 +144,52 @@ namespace InDappledGroves.WorldGen
         {
             var hollowsPlacedCount = 0;
 
-                var blockPos = new BlockPos();
-                //arbitrarily limit x axis scan for performance reasons (/4)
-                for (var x = 0; x < this.chunkSize; x++)
+            var blockPos = new BlockPos();
+            //arbitrarily limit x axis scan for performance reasons (/4)
+            for (var x = 0; x < this.chunkSize; x++)
+            {
+                //arbitrarily limit z axis scan for performance reasons (/4)
+                for (var z = 0; z < this.chunkSize; z++)
                 {
-                    //arbitrarily limit z axis scan for performance reasons (/4)
-                    for (var z = 0; z < this.chunkSize; z++)
+                    int terrainHeight = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos);
+                    blockPos.X = (pos.X * this.chunkSize) + x;
+                    blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
+                    blockPos.Z = (pos.Z * this.chunkSize) + z;
+                    Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
+
+                    if (!IsStumpLog(curBlock)) continue;
+                    if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
                     {
-                        int terrainHeight = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos);
-                        blockPos.X = (pos.X * this.chunkSize) + x;
-                        blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
-                        blockPos.Z = (pos.Z * this.chunkSize) + z;
-                        Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
-
-                        if (!IsStumpLog(curBlock)) continue;
-                        if ((this.chunkGenBlockAccessor.GetBlock(blockPos.DownCopy(), BlockLayersAccess.Default).Fertility > 0))
+                        var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
+                        if (hollowWasPlaced)
                         {
-                            if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
-                            {
-                                var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
-                                if (hollowWasPlaced)
-                                {
-                                    hollowsPlacedCount++;
-                                    continue;
-                                }
-                                PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
-                            }
-                            else
-                            {
-                                PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
-                            }
+                            hollowsPlacedCount++;
+                            continue;
                         }
-
-
-                        if (ShouldPlaceHollow() && hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
-                        {
-                            var hollowLocation = this.TryGetHollowLocation(blockPos);
-                            if (hollowLocation == null) continue;
-                            var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, hollowLocation);
-                            if (hollowWasPlaced)
-                            {
-                                hollowsPlacedCount++;
-                            }
-                        }
-
+                        PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
                     }
+                    else
+                    {
+                        PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
+                    }
+
+
+
+                    if (ShouldPlaceHollow() && hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
+                    {
+                        var hollowLocation = this.TryGetHollowLocation(blockPos);
+                        if (hollowLocation == null) continue;
+                        var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, hollowLocation);
+                        if (hollowWasPlaced)
+                        {
+                            hollowsPlacedCount++;
+                        }
+                    }
+
                 }
-        }
-        
+
+            }
+        }        
 
         // Returns the location to place the hollow if the given world coordinates is a tree, null if it's not a tree.
         private BlockPos TryGetHollowLocation(BlockPos pos)
