@@ -9,7 +9,7 @@
    {
     "op": "add",
     "path": "/behaviors",
-    "value": [{"name": "woodsplitter"}],
+    "value": [{"name": "woodsplitter"}, {name: "GroundStorable"}],
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },  
@@ -30,7 +30,7 @@
   {
     "op": "add",
     "path": "/behaviors",
-    "value": [{"name": "woodsplitter"}],
+    "value": [{"name": "woodsplitter"}, {name: "GroundStorable"}],
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

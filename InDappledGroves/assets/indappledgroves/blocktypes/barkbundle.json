@@ -5,9 +5,23 @@
 		"*-soaked": "Transient"
 	},
 	attributes: {
-		handbook: { 
-			groupBy: ["barkbundle-*"] 
-		},
+		"handbook": {
+				"groupBy": ["barkbundle-*"],
+				"extraSections": [
+					{
+						"title": "indappledgroves:block-handbooktitle-barkbundledry",
+						"text": "indappledgroves:block-handbooktext-barkbundledry"
+					},
+					{
+						"title": "indappledgroves:block-handbooktitle-barkbundlesoaking",
+						"text": "indappledgroves:block-handbooktext-barkbundlesoaking"
+					},
+					{
+						"title": "indappledgroves:block-handbooktitle-barkbasketsoaked",
+						"text": "indappledgroves:block-handbooktext-barkbasketsoaked"
+					}
+				]
+			},
 		"transientPropsByType":{
 			"*-soaking": {
 				"convertFrom": "barkbundle-*-soaking",

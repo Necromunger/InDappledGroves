@@ -62,7 +62,6 @@ namespace InDappledGroves.Blocks
 			{
 				if (playNextSound < secondsUsed)
 				{
-					this.Textures
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }

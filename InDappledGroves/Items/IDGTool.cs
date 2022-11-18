@@ -10,6 +10,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.IDGRecipeNames;
 
@@ -41,6 +42,7 @@ namespace InDappledGroves.Items.Tools
             dustParticles.DieOnRainHeightmap = false;
             dustParticles.WindAffectednes = 0.5f;
             Inventory = new InventoryGeneric(1, "IDGTool-slot", null, null);
+            tempInv = new InventoryGeneric(1, "IDGTool-WorldInteract", null, null);
         }
 
         #region ToolMode Stuff
@@ -66,6 +68,17 @@ namespace InDappledGroves.Items.Tools
         public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
         {
             return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
+        }
+
+        public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
+        {
+            this.holder = (byEntity as EntityPlayer);
+            test(slot);
+            if (targetBlock != null && holder.BlockSelection?.Block != null)
+            {
+                this.targetBlock = holder.BlockSelection.Block;
+            }
+            base.OnHeldIdle(slot, byEntity);
         }
 
         public string GetToolModeName(ItemStack stack)
@@ -170,7 +183,7 @@ namespace InDappledGroves.Items.Tools
                     float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
                     if (curMiningProgress >= curResistance)
                     {
-
+                        
                         SpawnOutput(recipe, pos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
                         System.Diagnostics.Debug.WriteLine(this.Code.ToString() + ": " + secondsUsed);
@@ -365,9 +378,50 @@ namespace InDappledGroves.Items.Tools
             MaxSize = 0.1f,
             WindAffected = true
         };
+
+        public void test(ItemSlot slot)
+        {
+            if ((holder) != null && holder.BlockSelection?.Block != null)
+            {
+
+                Block targetBlock = holder.BlockSelection.Block;
+                tempInv[0].Itemstack = new(targetBlock);
+
+                GroundRecipe recipe = GetMatchingGroundRecipe(tempInv[0], GetToolModeName(slot.Itemstack));
+                if (recipe != null)
+                {
+                    outputDsc = Lang.Get("indappledgroves:heldhelp-" + this.GetToolModeName(slot.Itemstack), recipe.Output.ResolvedItemstack.StackSize + " " + recipe.Output.ResolvedItemstack.GetName().ToLower() + (recipe.Output.ResolvedItemstack.StackSize > 1 ? "s" : ""));
+                }
+                else
+                {
+                    outputDsc = null;
+                }
+            }
+            
+        }
+        
+
+        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
+        {
+            if (outputDsc != null)
+                {
+                    return new WorldInteraction[] {
+                    new WorldInteraction()
+                    {
+
+                        ActionLangCode = outputDsc,
+                        MouseButton = EnumMouseButton.Right
+                    }
+                }.Append(base.GetHeldInteractionHelp(inSlot));
+                return new WorldInteraction[] { };
+                }
+                return base.GetHeldInteractionHelp(inSlot);
+        }
+
         public string InventoryClassName => "worldinventory";
         public float toolModeMod;
         public InventoryBase Inventory { get; }
+        public InventoryBase tempInv { get; }
         public SkillItem[] toolModes;
         public GroundRecipe recipe;
         WorldInteraction[] interactions;
@@ -377,5 +431,11 @@ namespace InDappledGroves.Items.Tools
         private SimpleParticleProperties woodParticles;
         private float playNextSound;
         private bool recipeComplete = false;
+        private Block targetBlock;
+        private string outputDsc;
+        string playerUID;
+        private EntityPlayer holder;
     }
+
+    
 }

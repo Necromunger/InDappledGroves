@@ -90,7 +90,7 @@
 	},
 	miningspeedbytype: {
 		"adze-wood-flint": {
-			"wood": 2.8,
+			"wood": 3,
 			"plant": 2.2,
 			"leaves": 1.6
 		},
@@ -155,7 +155,7 @@
 			"leaves": 4
 		},
 		"*": {
-			"wood": 2.6,
+			"wood": 2.5,
 			"plant": 2.2,
 			"leaves": 1.7
 		}

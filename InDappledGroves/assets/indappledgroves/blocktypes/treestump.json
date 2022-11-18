@@ -16,6 +16,12 @@
 	],
 	creativeinventory: { "general": ["treestump-placed-*-east"], "flora": ["treestump-placed-*-east"], "construction": ["treestump-placed-*-east"] },
 	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }] },
+	"sidesolid": {
+		"all": "false"
+	},
+	"sideopaque": {
+		"all": "false"
+	},
 	drawtype: "json",
 	blockmaterial: "Wood",
 	requiredMiningTier: 1,

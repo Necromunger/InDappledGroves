@@ -1,4 +1,8 @@
-﻿1.17-v0.4.1-rc.2
+﻿1.17-v0.4.2-dev.1
+	- Added WorldInteraction feedback that tells person holding tool what ground recipe results will be.
+	- Addressed crash when tools break while in use.
+
+1.17-v0.4.1-rc.2
 	- Actually made sure that the adzehead itemtype got included in the final file.
 
 1.17-v0.4.1-rc.1

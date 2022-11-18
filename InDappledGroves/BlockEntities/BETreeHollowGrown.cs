@@ -21,8 +21,6 @@
         private readonly int maxSlots = 8;
         public override string InventoryClassName => "treehollowgrown";
 
-        protected InventoryGeneric inventory;
-
 
         private readonly double updateMinutes = InDappledGrovesConfig.Current.TreeHollowsUpdateMinutes;
         private long updateTick;
@@ -74,25 +72,7 @@
                 { return true; }
                 return false;
             }
-            // Comment out the put completely
-            /*
-            else
-            {
-                var colObj = playerSlot.Itemstack.Collectible;
-                if (colObj.Attributes != null)
-                {
-                    {
-                        if (this.TryPut(playerSlot, blockSel))
-                        {
-                            var sound = this.Block?.Sounds?.Place;
-                            this.Api.World.PlaySoundAt(sound ?? new AssetLocation("game:sounds/player/build"), byPlayer.Entity, byPlayer, true, 16);
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            }
-            */
+
             return false;
         }
 
@@ -110,30 +90,6 @@
             }
         }
 
-        // Returns the first available empty inventory slot
-        // returns -1 if all slots are full
-        /*
-        private int FirstFreeSlot()
-        {
-            var slot = 0;
-            var found = false;
-            do
-            {
-                if (this.inventory[slot].Empty)
-                { found = true; }
-                else
-                { slot++; }
-            }
-            while (slot < this.maxSlots && found == false);
-            if (!found)
-            { slot = -1; }
-            //Debug.WriteLine("Free Slot:" + slot);
-            return slot;
-        }
-        */
-
-        // Returns the last filled inventory slot
-        // returns -1 if all slots are empty
         private int LastFilledSlot()
         {
             var slot = this.maxSlots - 1;
@@ -146,27 +102,9 @@
                 { slot--; }
             }
             while (slot > -1 && found == false);
-            //Debug.WriteLine("Last Slot:" + slot);
             return slot;
         }
 
-        /*
-        //private bool TryPut(ItemSlot slot, BlockSelection blockSel)
-        private bool TryPut()
-        {
-            return false; //always return false;
-            var index = this.FirstFreeSlot();
-            if (index == -1)
-            { return false; } //inventory full
-            var moved = slot.TryPutInto(this.Api.World, this.inventory[index]);
-            if (moved > 0)
-            {
-                //this.updateMesh(index);
-                this.MarkDirty(true);
-            }
-            return moved > 0;
-        }
-        */
 
         private bool TryTake(IPlayer byPlayer) //, BlockSelection blockSel)
         {
@@ -186,7 +124,6 @@
                 this.Api.World.SpawnItemEntity(stack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5));
             }
 
-            //this.updateMesh(index);
             this.MarkDirty(true);
             return true;
         }
@@ -245,8 +182,6 @@
                     else
                     {
                         this.nowTesselatingObj = stack.Item;
-                        //var itemPath = stack.Item.Code.Path;
-                        //var itemPathPart = stack.Item.FirstCodePart(1);
                         if (stack?.Item?.Shape != null)
                         {
                             if ((stack.Collectible as ItemWearable) == null)

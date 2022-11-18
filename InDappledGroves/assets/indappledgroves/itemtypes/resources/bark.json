@@ -1,6 +1,28 @@
 {
 	code: "bark",
 	"class": "idgbark",
+	"attributes": {
+		"handbookByType": {
+		"*-dry":{ 
+			"groupBy": ["bark-*-dry"],
+					"extraSections": [
+						{
+							"title": "indappledgroves:item-handbooktitle-drybark",
+							"text": "indappledgroves:item-handbooktext-drybark"
+						}
+					]
+				},
+		"*-soaked": {
+			"groupBy":["bark-*-soaked"],
+				"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-soakedbark",
+						"text": "indappledgroves:item-handbooktext-soakedbark"
+					}
+				]	
+			}
+		}
+	},
 	creativeinventory: { "general": ["*"], "items": ["*"]},
 	behaviorsByType: {
 		"*": [

@@ -61,16 +61,16 @@ namespace InDappledGroves
                 return array;
             });
 
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
+            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
+            //{
+            //    return new WorldInteraction[] {
+            //        new WorldInteraction()
+            //            {
+            //                ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
+            //                MouseButton = EnumMouseButton.Right
+            //            },
+            //        };
+            //});
         }
 
         public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandHandling handling)
@@ -320,16 +320,6 @@ namespace InDappledGroves
         };
 
         #endregion TreeFelling
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "chopping")
-            {
-                return interactions;
-            }
-            return null;
-        }
 
         //Create function by which interactions will find recipes using the target block and the current tool mode.
         WorldInteraction[] interactions = null;

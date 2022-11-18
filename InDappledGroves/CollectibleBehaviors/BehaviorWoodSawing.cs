@@ -42,16 +42,16 @@ namespace InDappledGroves.CollectibleBehaviors
             this.api = api;
             this.capi = (api as ICoreClientAPI);
 
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
+            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
+            //{
+            //    return new WorldInteraction[] {
+            //        new WorldInteraction()
+            //            {
+            //                ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
+            //                MouseButton = EnumMouseButton.Right
+            //            },
+            //        };
+            //});
 
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgSawModes", delegate
@@ -78,16 +78,6 @@ namespace InDappledGroves.CollectibleBehaviors
 
                 return array;
             });
-        }
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "sawing")
-            {
-                return interactions;
-            }
-            return null;
         }
 
         WorldInteraction[] interactions;

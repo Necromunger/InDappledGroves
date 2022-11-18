@@ -50,6 +50,10 @@
 	"block-*-treehollowgrown-ebony-*": "Ebony Tree Hollow",
 	"block-*-treehollowgrown-walnut-*": "Walnut Tree Hollow",
 	"block-*-treehollowgrown-purpleheart-*": "Purpleheart Tree Hollow",
+
+	"block-handbooktitle-barkbasket": "",
+	"block-handbooktext-barkbasket": "Convenient baskets wrought from <a href=\"handbook://item-indappledgroves:bark-birch-soaked\">soaked bark</a>",
+	"barkbasketname": "Bark Baskets",
 	"block-*-barkbasket-aged-*": "Aged Bark Basket",
 	"block-*-barkbasket-birch-*": "Birch Bark Basket",
 	"block-*-barkbasket-oak-*": "Oak Bark Basket",
@@ -63,6 +67,27 @@
 	"block-*-barkbasket-ebony-*": "Ebony Bark Basket",
 	"block-*-barkbasket-walnut-*": "Walnut Bark Basket",
 	"block-*-barkbasket-purpleheart-*": "Purpleheart Bark Basket",
+
+	"block-handbooktitle-choppingblock": "How To Create:",	
+"block-handbooktext-choppingblock": "	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a>
+	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
+	<strong>Ingredients</strong>: <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">Any log slab</a>
+",
+	"block-handbooktitle-choppingblock2": "																			A Woodsman's Best Friend",
+	"block-handbooktext-choppingblock2": "
+	<font align='center'><i>Before Enlightenment -
+	Chop Wood, Carry Water,
+	After Enlightenment-
+	Chop Wood, Carry Water</i></font>
+	<font weight='bold' align='center'>- Zen Proverb </font>
+
+				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+		Chopping blocks are the foundation of the serious woodsmans set of workstations. This workstation provides an improvement in the effectiveness of your tools. Work performed on a chopping block is generally faster than on the ground.
+
+		In addition, there may be certain recipes that can only be performed with the help of a chopping block. For those intending to work with large amounts of wood, it should be the first workstation you acquire.
+",
+	
 	"block-choppingblock-aged-*": "Aged Chopping Block",
 	"block-choppingblock-birch-*": "Birch Chopping Block",
 	"block-choppingblock-oak-*": "Oak Chopping Block",
@@ -76,8 +101,15 @@
 	"block-choppingblock-ebony-*": "Ebony Chopping Block",
 	"block-choppingblock-walnut-*": "Walnut Chopping Block",
 	"block-choppingblock-purpleheart-*": "Purpleheart Chopping Block",
-	"indappledgroves:block-handbooktitle-choppingblock": "How to create:",
-	"indappledgroves:block-handbooktext-choppingblock": "Set down a <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">Log Slab</a> and use <right-click and hold> an adze on it. The slab must be laying flat for it to change. ",
+	
+	"block-handbooktitle-logslab":"How To Create",
+	"block-handbooktext-logslab": 
+	"	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a> & <a href=\"handbook://workstations-indappledgroves\">Workstation Crafting</a>
+	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Chopping</a>
+	<strong>Ingredients</strong>: <a href=\"handbook://block-log-placed-birch-ud\">Any Log</a>",
+	"block-handbooktitle-logslab2":"Log Slabs",
+	"block-handbooktext-logslab2": "The first stage on the way to making <a href=\"handbook://item-firewood\">fire wood</a>. The target <a href=\"handbook://block-log-placed-maple-ud\">log</a> must be upright, with the trunk exposed, rather than bark up. They can be made on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> or on the ground.",
+
   "block-logslab-aged-*": "Aged Log Slab",
 	"block-logslab-birch-*": "Birch Log Slab",
 	"block-logslab-oak-*": "Oak Log Slab",
@@ -246,5 +278,40 @@
 	"The Tyee and the bullcook...": "The Tyee and the bullcook...",
 	"...working sole and blade": "...working sole and blade",
 	"...with sturdy haft and bit": "...with sturdy haft and bit",
-	"...by dust and the dog": "...by dust and the dog"
+	"...by dust and the dog": "...by dust and the dog",
+
+	"heldhelp-chopping": "Chop to create {0}",
+	"heldhelp-hewing": "Hew to create {0}",
+	"heldhelp-planing": "Plane to create {0}",
+	"heldhelp-sawing": "Saw to create {0}",
+
+	//Ground Recipe Guide
+"indappledgroves:indappledgrovesguide-inworldcrafting-title": "Game Mechanic: In-World Crafting",
+"indappledgroves:indappledgrovesguide-inworldcrafting-text": 
+"<font weight='bold' align='center'>In-World Crafting</font>
+  In-World crafting takes place without the use of a grid recipe and is achieved by interacting with a block using a tool in a particular tool mode. 
+  The blocks entry in the handbook will indicate the recipe and toolmode necessary to produce the desired result.",
+
+	//Workstation Guide
+"indappledgroves:indappledgrovesguide-workstations-title": "Game Mechanic: Workstation Crafting",
+"indappledgroves:indappledgrovesguide-workstations-text": "<font weight='bold' align='center'>Workstation Crafting</font>
+In Dappled Groves introduces new workstations to aid you in your woodworking endeavours. These workstations reduce the time required to complete woodworking operations such as chopping <a href=\"handbook://block-game:log-placed-birch-ud\">logs</a> into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">log slabs.</a>
+<font weight='bold' align='center'>Basic Concepts</font>
+<font weight='bold' align='left'>Chopping Block</font>
+   The first is <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>
+
+<font weight='bold' align='left'>SawBuck</font>
+
+<font weight='bold' align='left'>Saw Horses</font>
+
+   This style of workstation isn't introduced in the current release. However, it will be integrated later providing a variety of woodworking options involving the use of planers and other tools.",
+
+//Tool Modes Guide
+"indappledgroves:indappledgrovesguide-toolmodes-title": "Game Mechanic: Tool Modes",
+"indappledgroves:indappledgrovesguide-toolmodes-text": 
+"<font weight='bold' align='center'>Tool Modes</font>
+<br>
+<font weight='bold' align='center'>Basic Concepts</font>
+<br>
+<font weight='bold' align='center'>Tool Modes</font>"
 }
