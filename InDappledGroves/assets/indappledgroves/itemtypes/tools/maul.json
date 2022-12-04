@@ -4,7 +4,13 @@
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		handbook: {
-			groupBy: ["maul-*"]
+			groupBy: ["maul-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-maul",
+						"text": "indappledgroves:item-handbooktext-maul"
+					}
+			]
 		},
 		groundStorageTransform: {
 			translation: { x: 0, y: 0.15, z: 0.2 },

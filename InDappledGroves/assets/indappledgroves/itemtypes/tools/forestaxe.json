@@ -4,7 +4,13 @@
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		handbook: {
-			groupBy: ["forestaxe-*"]
+			groupBy: ["forestaxe-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-forestaxe",
+						"text": "indappledgroves:item-handbooktext-forestaxe"
+					}
+			]
 		},
 		toolrackTransform: {
 			translation: { x: -0.4, y: 0.7, z: 0 },

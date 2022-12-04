@@ -10,6 +10,12 @@
     }
   ],
   "attributes": {
+    handbook: {
+			groupBy: ["treehollow-*-north"],
+			"extraSections": [
+										{ "title": "indappledgroves:block-handbooktitle-treehollow", "text": "indappledgroves:block-handbooktext-treehollow" }
+									]
+		},
     "partialAttachable": true,
     "inventoryClassName": "chest",
     "defaultType": "base",

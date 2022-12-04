@@ -19,7 +19,7 @@ namespace InDappledGroves.Items.Tools
 
     class IDGTool : Item, IIDGTool
     {
-        float startUseTime;
+        
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
@@ -73,7 +73,7 @@ namespace InDappledGroves.Items.Tools
         public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
         {
             this.holder = (byEntity as EntityPlayer);
-            test(slot);
+            //test(slot);
             if (targetBlock != null && holder.BlockSelection?.Block != null)
             {
                 this.targetBlock = holder.BlockSelection.Block;
@@ -127,7 +127,6 @@ namespace InDappledGroves.Items.Tools
         {
             if (!byEntity.Controls.CtrlKey)
             {
-                recipeComplete = false;
                 string curTMode = "";
                 if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = getToolModeMod(slot.Itemstack); };
 
@@ -139,12 +138,14 @@ namespace InDappledGroves.Items.Tools
                 recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
                 if (recipe == null) return;
                 resistance = Inventory[0].Itemstack.Block.Resistance * InDappledGroves.baseGroundRecipeResistaceMult;
-
+                recipeBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0);
+                recipePos = blockSel.Position;
                 if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
                 {
                     capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
                     return;
                 }
+
                 byEntity.StartAnimation("axechop");
 
                 playNextSound = 0.25f;
@@ -158,19 +159,20 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            if (!byEntity.Controls.CtrlKey)
+            if (!byEntity.Controls.CtrlKey && blockSel?.Position == recipePos && api.World.BlockAccessor.GetBlock(blockSel.Position) == recipeBlock)
             {
-                BlockPos pos = blockSel?.Position;
-                if (blockSel != null)
+                
+                if (recipePos != null)
                 {
 
                     if (((int)api.Side) == 1 && playNextSound < secondsUsed)
                     {
-                        api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, null, true, 32, 1f);
+                        api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
                         playNextSound += .8f;
                     }
 
                     //Accumulate damage over time from current tools mining speed.
+                    float toolMiningSpeed = slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer);
                     curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) 
                         * (secondsUsed - lastSecondsUsed);
 
@@ -179,14 +181,14 @@ namespace InDappledGroves.Items.Tools
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
                     
-                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod* InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-                    float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod* InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult);
+                    float curResistance = resistance * InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
+                    System.Diagnostics.Debug.WriteLine("Tool: " + toolMiningSpeed + " cuResist:" + curResistance + " " + curMiningProgress + " ");
                     if (curMiningProgress >= curResistance)
                     {
                         
-                        SpawnOutput(recipe, pos);
-                        api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, pos), pos);
-                        System.Diagnostics.Debug.WriteLine(this.Code.ToString() + ": " + secondsUsed);
+                        SpawnOutput(recipe, recipePos);
+                        api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
                         byEntity.StopAnimation("axechop");
                         recipeComplete = true;
                         return false;
@@ -308,8 +310,9 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            bool isLog = (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump");
-            if (this.HasBehavior<BehaviorWoodChopping>() && isLog && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown")
+            String brokenBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
+            bool isLog = (brokenBlock == "log" || brokenBlock == "treestump" || brokenBlock == "treehollowgrown");
+            if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
             }
@@ -379,44 +382,44 @@ namespace InDappledGroves.Items.Tools
             WindAffected = true
         };
 
-        public void test(ItemSlot slot)
-        {
-            if ((holder) != null && holder.BlockSelection?.Block != null)
-            {
+        //public void test(ItemSlot slot)
+        //{
+        //    if ((holder) != null && holder.BlockSelection?.Block != null)
+        //    {
 
-                Block targetBlock = holder.BlockSelection.Block;
-                tempInv[0].Itemstack = new(targetBlock);
+        //        Block targetBlock = holder.BlockSelection.Block;
+        //        tempInv[0].Itemstack = new(targetBlock);
 
-                GroundRecipe recipe = GetMatchingGroundRecipe(tempInv[0], GetToolModeName(slot.Itemstack));
-                if (recipe != null)
-                {
-                    outputDsc = Lang.Get("indappledgroves:heldhelp-" + this.GetToolModeName(slot.Itemstack), recipe.Output.ResolvedItemstack.StackSize + " " + recipe.Output.ResolvedItemstack.GetName().ToLower() + (recipe.Output.ResolvedItemstack.StackSize > 1 ? "s" : ""));
-                }
-                else
-                {
-                    outputDsc = null;
-                }
-            }
+        //        GroundRecipe recipe = GetMatchingGroundRecipe(tempInv[0], GetToolModeName(slot.Itemstack));
+        //        if (recipe != null)
+        //        {
+        //            outputDsc = Lang.Get("indappledgroves:heldhelp-" + this.GetToolModeName(slot.Itemstack), recipe.Output.ResolvedItemstack.StackSize + " " + recipe.Output.ResolvedItemstack.GetName().ToLower() + (recipe.Output.ResolvedItemstack.StackSize > 1 ? "s" : ""));
+        //        }
+        //        else
+        //        {
+        //            outputDsc = null;
+        //        }
+        //    }
             
-        }
+        //}
         
 
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        {
-            if (outputDsc != null)
-                {
-                    return new WorldInteraction[] {
-                    new WorldInteraction()
-                    {
+        //public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
+        //{
+        //    if (outputDsc != null)
+        //        {
+        //            return new WorldInteraction[] {
+        //            new WorldInteraction()
+        //            {
 
-                        ActionLangCode = outputDsc,
-                        MouseButton = EnumMouseButton.Right
-                    }
-                }.Append(base.GetHeldInteractionHelp(inSlot));
-                return new WorldInteraction[] { };
-                }
-                return base.GetHeldInteractionHelp(inSlot);
-        }
+        //                ActionLangCode = outputDsc,
+        //                MouseButton = EnumMouseButton.Right
+        //            }
+        //        }.Append(base.GetHeldInteractionHelp(inSlot));
+        //        return new WorldInteraction[] { };
+        //        }
+        //        return base.GetHeldInteractionHelp(inSlot);
+        //}
 
         public string InventoryClassName => "worldinventory";
         public float toolModeMod;
@@ -424,17 +427,16 @@ namespace InDappledGroves.Items.Tools
         public InventoryBase tempInv { get; }
         public SkillItem[] toolModes;
         public GroundRecipe recipe;
-        WorldInteraction[] interactions;
         private float resistance;
         private float lastSecondsUsed;
         private float curDmgFromMiningSpeed;
-        private SimpleParticleProperties woodParticles;
         private float playNextSound;
         private bool recipeComplete = false;
         private Block targetBlock;
-        private string outputDsc;
-        string playerUID;
+        //private string outputDsc;
         private EntityPlayer holder;
+        private BlockPos recipePos;
+        private Block recipeBlock;
     }
 
     

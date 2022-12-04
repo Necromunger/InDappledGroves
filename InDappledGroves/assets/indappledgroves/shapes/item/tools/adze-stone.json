@@ -8,9 +8,9 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"string": "item/tool/material/string",
-		"handle": "item/tool/material/handle",
-		"material": "block/stone/rock/peridotite1"
+		"string": "game:item/tool/material/string",
+		"handle": "game:item/tool/material/handle",
+		"material": "game:block/stone/rock/peridotite1"
 	},
 	"elements": [
 		{

@@ -6,7 +6,10 @@
   "maxstacksize": 2,
   "attributes": {
 		"handbook": {
-			"groupBy": ["sawhorse-birch-*-single-east"]
+			"groupBy": ["sawhorse-birch-*-single-east"],
+      "extraSections": [
+				{ "title": "indappledgroves:block-handbooktitle-sawhorse", "text": "indappledgroves:block-handbooktext-sawhorse" }
+			]
 		}
 	},
   "behaviorsByType": {

@@ -18,7 +18,13 @@
 	],
 	attributes: {
 		handbook: {
-			groupBy: ["adze-*"]
+			groupBy: ["adze-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-adze",
+						"text": "indappledgroves:item-handbooktext-adze"
+					}
+			]
 		},
 		groundStorageTransform: {
 			translation: { x: 0.05, y: 0.05, z: 0 },
@@ -35,7 +41,7 @@
 	},
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },
-    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "meteoriciron", "steel" ] },
+    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },
    ],
 	skipVariants: [
 		"adze-bone-copper",

@@ -74,21 +74,6 @@ namespace InDappledGroves.WorldGen
             }
         }
 
-        //private void Event_ChunkDirty(Vec3i chunkCoord, IWorldChunk chunk, EnumChunkDirtyReason reason)
-        //{
-        //    if (!(reason == EnumChunkDirtyReason.NewlyLoaded)) return;
-        //    //if (!InDappledGrovesConfig.Current.RunTreeGenOnChunkReload) return;
-        //    if (chunk != null && !(chunkCoord.Y == 0) && chunk.GetModdata<bool>("hasIDGLoaded", false)== true) return;
-        //    if (reason == EnumChunkDirtyReason.NewlyLoaded)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine("Checkpoint Beta");
-        //        this.runTreeGen(chunk, chunkCoord.AsBlockPos);
-        //        chunk.SetModdata<bool>("hasIDGLoaded", true);
-        //        System.Diagnostics.Debug.WriteLine(chunkCoord.ToString());
-        //    }
-        //}
-
-
         //Our mod only needs to be loaded by the server
         public override bool ShouldLoad(EnumAppSide side)
         {
@@ -157,7 +142,7 @@ namespace InDappledGroves.WorldGen
                     blockPos.Z = (pos.Z * this.chunkSize) + z;
                     Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
 
-                    if (!IsStumpLog(curBlock)) continue;
+                    if (!IsStumpLog(curBlock) || this.worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
                     if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
                     {
                         var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);

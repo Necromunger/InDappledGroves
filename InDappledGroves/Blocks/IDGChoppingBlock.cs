@@ -76,8 +76,9 @@ namespace InDappledGroves.Blocks
 				}
 
 				lastSecondsUsed = secondsUsed;
-				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * 1.5f/*InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult*/);
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				System.Diagnostics.Debug.WriteLine("Block: " + curResistance + " " + curMiningProgress);
 				if ( curMiningProgress >= curResistance) 
 				{
 
@@ -96,7 +97,6 @@ namespace InDappledGroves.Blocks
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
 					bechoppingblock.MarkDirty(true);
-					System.Diagnostics.Debug.WriteLine(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack.Collectible.Code.ToString() + ": " + secondsUsed);
 					return false;
                 }		
 				return !bechoppingblock.Inventory.Empty;

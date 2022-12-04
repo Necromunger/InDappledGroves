@@ -7,7 +7,7 @@
 			type: "item", 
 			name: "bark",
 			code: "indappledgroves:bark-*-soaked",
-			quantity: 3
+			quantity: 1
 		}
 	},
 	output: { 

@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"material": "block/metal/ingot/iron",
-		"handle": "item/tool/material/handle"
+		"material": "game:block/metal/ingot/iron",
+		"handle": "game:item/tool/material/handle"
 	},
 	"elements": [
 		{

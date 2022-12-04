@@ -42,16 +42,6 @@ namespace InDappledGroves.CollectibleBehaviors
             this.api = api;
             this.capi = (api as ICoreClientAPI);
 
-            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgsawInteractions", () =>
-            //{
-            //    return new WorldInteraction[] {
-            //        new WorldInteraction()
-            //            {
-            //                ActionLangCode = "indappledgroves:itemhelp-saw-sawwood",
-            //                MouseButton = EnumMouseButton.Right
-            //            },
-            //        };
-            //});
 
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgSawModes", delegate

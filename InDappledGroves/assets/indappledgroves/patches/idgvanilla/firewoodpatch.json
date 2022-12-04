@@ -33,5 +33,41 @@
     },
     "file": "game:itemtypes/resource/firewood.json",
     "side": "server"
+   },
+   {
+     "op": "replace",
+     "path": "/attributes",
+     "value": {
+    firepitConstructable: true,
+		isFirewood: true,
+		placeSound: "block/planks",
+		  "handbook": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:item-handbooktitle-firewood",
+						  "text": "indappledgroves:item-handbooktext-firewood"
+					  }
+          ]
+        }
+      },
+     "file": "game:itemtypes/resource/firewood.json",
+     "side": "server"
+   },
+   {
+     "op": "add",
+     "path": "/attributes",
+     "value": {
+		  "handbook": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:item-handbooktitle-stick",
+						  "text": "indappledgroves:item-handbooktext-stick"
+					  }
+          ]
+        }
+      },
+     "file": "game:itemtypes/resource/stick.json",
+     "side": "server"
+
    }
 ]

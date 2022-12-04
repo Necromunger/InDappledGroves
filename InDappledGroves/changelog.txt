@@ -1,4 +1,13 @@
-﻿1.17-v0.4.2-dev.1
+﻿1.17.0-v0.4.4.-rc.2
+	- Saw code update to fall into compliance with paradigm.
+	- Saw mining speeds altered to match those of axes to ensure consistent progression.
+
+1.17-v0.4.3-rc.1
+	- Documentation improvements
+	- Addressed bugs involving crashes when chopping treehollows as base block in a tree
+	- Corrected tree hollows not causing rest of tree to break when targeted when chopping tree.
+
+1.17-v0.4.2-dev.1
 	- Added WorldInteraction feedback that tells person holding tool what ground recipe results will be.
 	- Addressed crash when tools break while in use.
 

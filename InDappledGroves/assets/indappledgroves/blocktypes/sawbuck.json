@@ -8,7 +8,10 @@
   ],
   "attributes": {
 		"handbook": {
-			"groupBy": ["sawbuck-birch-*-east"]
+			"groupBy": ["sawbuck-birch-*-east"],
+			"extraSections": [
+				{ "title": "indappledgroves:block-handbooktitle-sawbuck", "text": "indappledgroves:block-handbooktext-sawbuck" }
+			]
 		}
 	},	
   "variantgroups": [

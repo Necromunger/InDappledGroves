@@ -12,9 +12,6 @@
     using Vintagestory.API.Util;
     using global::InDappledGroves.BlockEntities;
 
-    //using Vintagestory.GameContent;
-    //using System.Diagnostics;
-
 
     public class BlockTreeHollowPlaced : Block, ITexPositionSource
     {

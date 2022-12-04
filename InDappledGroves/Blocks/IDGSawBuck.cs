@@ -21,33 +21,32 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			ItemStack itemstack2 = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = itemstack2?.Collectible;
-			string toolmode = "";
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck idgbesawBuck)
-            {
-                return base.OnBlockInteractStart(world, byPlayer, blockSel);
-            }
-            if (collectibleObject != null)
+			string curTMode = "";
+			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
+			//Check to see if block entity exists
+			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+
+			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.getToolModeMod(slot.Itemstack); };
+
+			if (!besawbuck.Inventory.Empty)
 			{
-                if (collectibleObject is IIDGTool iidgtool)
-                {
-                    toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
-					toolModeMod = iidgtool.getToolModeMod(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
-                }
-            }
-			if (idgbesawBuck.Inventory.Empty || byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
-			{
-				return idgbesawBuck.OnInteract(byPlayer);
+				if (collObj is IIDGTool)
+				{
+					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
+					if (recipe != null)
+					{
+						resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+						byPlayer.Entity.StartAnimation("axechop");
+						return true;
+					}
+					return false;
+				}
 			}
-			this.recipe = idgbesawBuck.GetMatchingSawbuckRecipe(idgbesawBuck.InputSlot, toolmode);
-			if (this.recipe == null)
-			{
-				return false;
-			}
-			byPlayer.Entity.StartAnimation("axechop");
-			return true;
+
+			return besawbuck.OnInteract(byPlayer);
 		}
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)

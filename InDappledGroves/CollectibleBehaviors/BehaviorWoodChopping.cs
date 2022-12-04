@@ -2,7 +2,6 @@
 using InDappledGroves.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -16,10 +15,9 @@ using static InDappledGroves.Util.IDGRecipeNames;
 namespace InDappledGroves
 {
     class BehaviorWoodChopping : CollectibleBehavior, IBehaviorVariant
-    {
+    { 
         ICoreAPI api;
         ICoreClientAPI capi;
-        Stopwatch stopWatch = new();
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
 
@@ -82,10 +80,6 @@ namespace InDappledGroves
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            if (!stopWatch.IsRunning)
-            {
-                stopWatch.Start();
-            }
             
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
@@ -113,10 +107,6 @@ namespace InDappledGroves
 
         public bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            stopWatch.Stop();
-            System.TimeSpan span = stopWatch.Elapsed;
-            System.Diagnostics.Debug.WriteLine(span.TotalSeconds);
-            stopWatch.Reset();
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
@@ -216,17 +206,9 @@ namespace InDappledGroves
 
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
-            string treeFellingGroupCode;
-            int spreadIndex;
-            if (startBlock.Code.FirstCodePart() == "treehollowgrown")
-            {
-                treeFellingGroupCode = api.World.GetBlock(new AssetLocation("log-grown-"+block.LastCodePart(1)+"ud")).Attributes?["treeFellingGroupCode"].AsString();
-                spreadIndex = api.World.GetBlock(new AssetLocation("log-grown-" + block.LastCodePart(1) + "ud")).Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
-            } else
-            {
-                treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
-                spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
-            }
+            string treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
+            int spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+
 
             // Must start with a log
             if (spreadIndex < 2) return foundPositions;

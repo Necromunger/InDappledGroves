@@ -13,15 +13,12 @@
     using global::InDappledGroves.Blocks;
     using global::InDappledGroves.WorldGen;
 
-    //using System.Diagnostics;
-
-
     public class BETreeHollowGrown : BlockEntityDisplayCase, ITexPositionSource
     {
         private readonly int maxSlots = 8;
         public override string InventoryClassName => "treehollowgrown";
 
-
+        
         private readonly double updateMinutes = InDappledGrovesConfig.Current.TreeHollowsUpdateMinutes;
         private long updateTick;
 
@@ -34,6 +31,8 @@
             this.inventory = new InventoryGeneric(this.maxSlots, null, null);
             this.meshes = new MeshData[this.maxSlots];
         }
+
+
 
         public override void Initialize(ICoreAPI api)
         {

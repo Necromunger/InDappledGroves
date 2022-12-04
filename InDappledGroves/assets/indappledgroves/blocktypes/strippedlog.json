@@ -5,7 +5,7 @@
 		handbook: {
 			groupBy: ["strippedlog-*"],
 			extraSections: [
-				{ title: "handbook-crafting-title-strippedlog", text: "handbook-crafting-text-strippedlog" }
+				{ title: "indappledgroves:block-handbooktitle-strippedlog", text: "indappledgroves:block-handbooktext-strippedlog" }
 			]
 		},
 		"workStationTransforms": {
