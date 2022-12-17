@@ -19,7 +19,7 @@ namespace InDappledGroves.Blocks
 		ChoppingBlockRecipe recipe;
 		float toolModeMod;
 
-		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
+
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{

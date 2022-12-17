@@ -50,7 +50,8 @@
 		},
 		preventsDecayByType: {
 			"treestump-grown-*": true
-		}
+		},
+		"validStumpTypes": ["acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut"]
 	},
 	textures: {
 		"oak": { base: "game:block/wood/bark/{wood}" },

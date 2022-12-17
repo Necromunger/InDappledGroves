@@ -123,6 +123,9 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\axetweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

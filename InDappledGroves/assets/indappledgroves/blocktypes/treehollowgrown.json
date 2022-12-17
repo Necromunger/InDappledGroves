@@ -9,6 +9,7 @@
       }
     ],
     "attributes": {
+      "validHollowTypes": ["aged", "acacia", "birch", "kapok", "larch", "maple", "oak", "pine", "walnut"],
       "preventsDecay": true,
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",

@@ -1,6 +1,20 @@
-﻿1.17.0-v0.4.4.-rc.2
+﻿1.17-v0.4.7
+	- Fixed saw error, and *actually* fixed stumps not spawning.
+
+1.17-0-v0.4.6
+	- Fixed error with stumps not spawning after last update
+	- Made adjustments to make patching for mod compatibility more accessible.
+
+1.17.0-v0.4.5
+	- Corrected infinite loop caused when using an axe to chop a placed log. Oops.
+
+1.17.0-v0.4.4
+	- Stick recipe altered to drop only 2 sticks per firewood instead of 4.
+
+1.17.0-v0.4.3-rc.2
 	- Saw code update to fall into compliance with paradigm.
 	- Saw mining speeds altered to match those of axes to ensure consistent progression.
+	- Balanced log slab resistances to be half that of a full block.
 
 1.17-v0.4.3-rc.1
 	- Documentation improvements

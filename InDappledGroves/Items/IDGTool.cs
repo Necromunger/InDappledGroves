@@ -113,16 +113,6 @@ namespace InDappledGroves.Items.Tools
 
         #endregion ToolMode Stuff
 
-        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handling)
-        {
-            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handling);
-        }
-
-        public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel)
-        {
-            base.OnHeldAttackStop(secondsPassed, slot, byEntity, blockSelection, entitySel);
-        }
-
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
             if (!byEntity.Controls.CtrlKey)
@@ -310,8 +300,10 @@ namespace InDappledGroves.Items.Tools
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
         {
-            String brokenBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
-            bool isLog = (brokenBlock == "log" || brokenBlock == "treestump" || brokenBlock == "treehollowgrown");
+            String firstPart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
+            String typePart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"];
+            bool isLog = ((firstPart == "log" && typePart == "grown") || firstPart == "treestump" || firstPart == "treehollowgrown");
+            
             if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
