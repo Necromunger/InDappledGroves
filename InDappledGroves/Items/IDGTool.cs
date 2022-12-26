@@ -174,7 +174,7 @@ namespace InDappledGroves.Items.Tools
                     float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod* InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
                     System.Diagnostics.Debug.WriteLine("Tool: " + toolMiningSpeed + " cuResist:" + curResistance + " " + curMiningProgress + " ");
-                    if (curMiningProgress >= curResistance)
+                    if (api.World is Vintagestory.API.Server.IServerWorldAccessor && curMiningProgress >= curResistance)
                     {
                         
                         SpawnOutput(recipe, recipePos);
