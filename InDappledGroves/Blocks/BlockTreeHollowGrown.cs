@@ -103,5 +103,37 @@
                 }
                 return null;
             }
+
+        /// <summary>
+        /// Allows replacing logs with grown hollows.
+        /// </summary>
+        /// <param name="blockAccessor"></param>
+        /// <param name="pos"></param>
+        /// <param name="onBlockFace"></param>
+        /// <param name="worldgenRandom"></param>
+        /// <returns></returns>
+        public override bool TryPlaceBlockForWorldGen(IBlockAccessor blockAccessor, BlockPos pos, BlockFacing onBlockFace, LCGRandom worldgenRandom)
+        {
+            Block block = blockAccessor.GetBlock(pos);
+
+            if (block.IsReplacableBy(this) || block.FirstCodePart() == "log")
+            {
+                if (block.EntityClass != null)
+                {
+                    blockAccessor.RemoveBlockEntity(pos);
+                }
+
+                blockAccessor.SetBlock(BlockId, pos);
+
+                if (EntityClass != null)
+                {
+                    blockAccessor.SpawnBlockEntity(EntityClass, pos);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
         }
     }

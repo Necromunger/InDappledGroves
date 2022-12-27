@@ -136,10 +136,9 @@ namespace InDappledGroves.WorldGen
                 //arbitrarily limit z axis scan for performance reasons (/4)
                 for (var z = 0; z < this.chunkSize; z++)
                 {
-                    int terrainHeight = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos);
                     blockPos.X = (pos.X * this.chunkSize) + x;
-                    blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
                     blockPos.Z = (pos.Z * this.chunkSize) + z;
+                    blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
                     Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
 
                     if (!IsStumpLog(curBlock) || this.worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
@@ -151,12 +150,8 @@ namespace InDappledGroves.WorldGen
                             hollowsPlacedCount++;
                             continue;
                         }
-                        PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
                     }
-                    else
-                    {
-                        PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
-                    }
+                    PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
 
 
 
@@ -253,7 +248,7 @@ namespace InDappledGroves.WorldGen
             var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
 
             if (upCandidateBlock.FirstCodePart() == "log")
-            { pos = pos.Up(upCount); }
+            { pos = pos.UpCopy(upCount); }
 
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             //Debug.WriteLine("Will replace:" + treeBlock.Code.Path);
@@ -280,7 +275,6 @@ namespace InDappledGroves.WorldGen
             //Debug.WriteLine("With: " + withPath);
             var withBlockID = this.sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
-            blockAccessor.SetBlock(0, pos);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
             {
                 var block = blockAccessor.GetBlock(pos, BlockLayersAccess.Default) as BlockTreeHollowGrown;

@@ -21,6 +21,16 @@
             <param name="side">The side.</param>
             <returns></returns>
         </member>
+        <member name="M:InDappledGroves.Blocks.BlockTreeHollowGrown.TryPlaceBlockForWorldGen(Vintagestory.API.Common.IBlockAccessor,Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockFacing,Vintagestory.API.MathTools.LCGRandom)">
+            <summary>
+            Allows replacing logs with grown hollows.
+            </summary>
+            <param name="blockAccessor"></param>
+            <param name="pos"></param>
+            <param name="onBlockFace"></param>
+            <param name="worldgenRandom"></param>
+            <returns></returns>
+        </member>
         <member name="M:InDappledGroves.Blocks.IDGSawHorse.IsNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
             <summary>Determines whether [is not diagonal] [the specified position].</summary>
             <param name="pos">The position of the placed sawhorse block</param>
