@@ -12,9 +12,6 @@
     using Vintagestory.API.Util;
     using global::InDappledGroves.BlockEntities;
 
-    //using Vintagestory.GameContent;
-    //using System.Diagnostics;
-
 
     public class BlockTreeHollowPlaced : Block, ITexPositionSource
     {
@@ -353,7 +350,13 @@
                 dsc.AppendLine("\n" + Lang.Get("Quantity Slots: {0}", qslots));
             }
         }
-
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
+        {
+            return Lang.Get("{0} Treehollow", new object[]
+            {
+                this.Variant["wood"].ToString().UcFirst()
+            });
+        }
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
         {

@@ -17,14 +17,13 @@ namespace InDappledGroves.Blocks
 
 		
 		ChoppingBlockRecipe recipe;
-		// Token: 0x06000BD6 RID: 3030 RVA: 0x000068EB File Offset: 0x00004AEB
-		public override void OnLoaded(ICoreAPI api)
-		{
-			base.OnLoaded(api);
-		}
+		float toolModeMod;
+
+
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
+			
 			string curTMode = "";
 			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
@@ -33,7 +32,7 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) {curTMode = tool.GetToolModeName(slot.Itemstack);};
+			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.getToolModeMod(slot.Itemstack); };
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
@@ -42,7 +41,7 @@ namespace InDappledGroves.Blocks
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						resistance = bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance);
+						resistance = (bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
 							byPlayer.Entity.StartAnimation("axechop");
 							return true;
 					}
@@ -66,18 +65,21 @@ namespace InDappledGroves.Blocks
 					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
 					playNextSound += .7f;
                 }
-				
-				if(bechoppingblock.Inventory[0].Itemstack.Collectible is Block)
-                {
-					curDmgFromMiningSpeed += chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
-				} else
-                {
-					curDmgFromMiningSpeed += chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial] * (secondsUsed - lastSecondsUsed);
+
+				if (bechoppingblock.Inventory[0].Itemstack.Collectible is Block)
+				{
+					curDmgFromMiningSpeed += (chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
 				}
-				
+				else
+				{
+					curDmgFromMiningSpeed += (chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial]*InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+				}
+
 				lastSecondsUsed = secondsUsed;
-				System.Diagnostics.Debug.WriteLine((secondsUsed + (curDmgFromMiningSpeed / 2)));
-				if ((secondsUsed + (curDmgFromMiningSpeed/2)) >= resistance )
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				System.Diagnostics.Debug.WriteLine("Block: " + curResistance + " " + curMiningProgress);
+				if ( curMiningProgress >= curResistance) 
 				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);

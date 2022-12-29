@@ -4,7 +4,13 @@
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		handbook: {
-			groupBy: ["forestaxe-*"]
+			groupBy: ["forestaxe-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-forestaxe",
+						"text": "indappledgroves:item-handbooktext-forestaxe"
+					}
+			]
 		},
 		toolrackTransform: {
 			translation: { x: -0.4, y: 0.7, z: 0 },
@@ -14,7 +20,7 @@
 			translation: { x: -0.475, y: 0.12, z: 0.15 },
 			rotation: { x: 30, y: -180, z: -91 }
 		},
-		"choppingProps": { "fellingMultiplier": 0.8, "splittingMod": 0.6 }
+		"choppingProps": { "fellingMultiplier": 0.5, "splittingMod": 0.26 }
 	},
 		behaviors: [{
 		name: "GroundStorable",

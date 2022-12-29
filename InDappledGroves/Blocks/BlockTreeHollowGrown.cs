@@ -6,10 +6,12 @@
     using System.Text;
     using Vintagestory.API.Client;
     using Vintagestory.API.Common;
+    using Vintagestory.API.Config;
     using Vintagestory.API.MathTools;
     using Vintagestory.API.Util;
+    using Vintagestory.GameContent;
 
-        public class BlockTreeHollowGrown : Block
+    public class BlockTreeHollowGrown : Block
         {
             private WorldInteraction[] interactions;
             public override void OnLoaded(ICoreAPI api)
@@ -27,7 +29,7 @@
             });
             }
 
-            public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
+        public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
             {
                 var facing = SuggestedHVOrientation(byPlayer, blockSel)[0].ToString();
                 bool placed;
@@ -82,7 +84,15 @@
                 return mesh;
             }
 
-            public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
+        {
+            return Lang.Get("{0} Treehollow", new object[]
+            {
+                this.Variant["wood"].ToString().UcFirst()
+            });
+        }
+
+        public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
             {
                 if (world.BlockAccessor.GetBlockEntity(selection.Position) is BETreeHollowGrown bedc)
                 {
@@ -93,5 +103,37 @@
                 }
                 return null;
             }
+
+        /// <summary>
+        /// Allows replacing logs with grown hollows.
+        /// </summary>
+        /// <param name="blockAccessor"></param>
+        /// <param name="pos"></param>
+        /// <param name="onBlockFace"></param>
+        /// <param name="worldgenRandom"></param>
+        /// <returns></returns>
+        public override bool TryPlaceBlockForWorldGen(IBlockAccessor blockAccessor, BlockPos pos, BlockFacing onBlockFace, LCGRandom worldgenRandom)
+        {
+            Block block = blockAccessor.GetBlock(pos);
+
+            if (block.IsReplacableBy(this) || block.FirstCodePart() == "log")
+            {
+                if (block.EntityClass != null)
+                {
+                    blockAccessor.RemoveBlockEntity(pos);
+                }
+
+                blockAccessor.SetBlock(BlockId, pos);
+
+                if (EntityClass != null)
+                {
+                    blockAccessor.SpawnBlockEntity(EntityClass, pos);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
         }
     }

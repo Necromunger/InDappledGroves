@@ -38,16 +38,16 @@ namespace InDappledGroves.CollectibleBehaviors
             this.api = api;
             this.capi = (api as ICoreClientAPI);
 
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgadzeInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-adze-hewwood",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
+            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgadzeInteractions", () =>
+            //{
+            //    return new WorldInteraction[] {
+            //        new WorldInteraction()
+            //            {
+            //                ActionLangCode = "indappledgroves:itemhelp-adze-hewwood",
+            //                MouseButton = EnumMouseButton.Right
+            //            },
+            //        };
+            //});
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAdzeModes", delegate
             {
@@ -75,15 +75,6 @@ namespace InDappledGroves.CollectibleBehaviors
             });
         }
 
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "hewing")
-            {
-                return interactions;
-            }
-            return null;
-        }
 
         WorldInteraction[] interactions;
         public SkillItem[] toolModes;

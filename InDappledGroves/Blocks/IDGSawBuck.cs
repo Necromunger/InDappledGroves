@@ -6,12 +6,14 @@ using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
+using static InDappledGroves.Util.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
 	// Token: 0x02000016 RID: 22
 	internal class IDGSawBuck : Block
 	{
+		
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
@@ -19,32 +21,32 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			ItemStack itemstack2 = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = itemstack2?.Collectible;
-			string toolmode = "";
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck idgbesawBuck)
-            {
-                return base.OnBlockInteractStart(world, byPlayer, blockSel);
-            }
-            if (collectibleObject != null)
+			string curTMode = "";
+			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
+			//Check to see if block entity exists
+			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+
+			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.getToolModeMod(slot.Itemstack); };
+
+			if (!besawbuck.Inventory.Empty)
 			{
-                if (collectibleObject is IIDGTool iidgtool)
-                {
-                    toolmode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
-                }
-            }
-			if (idgbesawBuck.Inventory.Empty || byPlayer.InventoryManager.ActiveHotbarSlot.Empty)
-			{
-				return idgbesawBuck.OnInteract(byPlayer);
+				if (collObj is IIDGTool)
+				{
+					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
+					if (recipe != null)
+					{
+						resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+						byPlayer.Entity.StartAnimation("axechop");
+						return true;
+					}
+					return false;
+				}
 			}
-			this.recipe = idgbesawBuck.GetMatchingSawbuckRecipe(idgbesawBuck.InputSlot, toolmode);
-			if (this.recipe == null)
-			{
-				return false;
-			}
-			byPlayer.Entity.StartAnimation("axechop");
-			return true;
+
+			return besawbuck.OnInteract(byPlayer);
 		}
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -61,10 +63,12 @@ namespace InDappledGroves.Blocks
 					this.playNextSound += 0.7f;
 				}
 
-				curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
+				curDmgFromMiningSpeed += (collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
 				lastSecondsUsed = secondsUsed;
 
-				if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawBuck.Inventory[0].Itemstack.Block.Resistance)
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				if (curMiningProgress >= curResistance)
 				{
 					this.SpawnOutput(this.recipe, blockSel.Position);
 					idgbesawBuck.Inventory.Clear();
@@ -92,8 +96,8 @@ namespace InDappledGroves.Blocks
 				this.api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05000000074505806, 0.10000000149011612, 0.05000000074505806));
 			}
 		}
-
-		private IDGRecipeNames.SawbuckRecipe recipe;
+		float toolModeMod;
+		private SawbuckRecipe recipe;
 		private float playNextSound;
 		private float resistance;
 		private float lastSecondsUsed;

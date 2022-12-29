@@ -10,6 +10,12 @@
     }
   ],
   "attributes": {
+    handbook: {
+			groupBy: ["treehollow-*-north"],
+			"extraSections": [
+										{ "title": "indappledgroves:block-handbooktitle-treehollow", "text": "indappledgroves:block-handbooktext-treehollow" }
+									]
+		},
     "partialAttachable": true,
     "inventoryClassName": "chest",
     "defaultType": "base",
@@ -56,10 +62,7 @@
     "closeSound": "game:sounds/block/sand",
   },
   "variantgroups": [
-    {
-      "code": "wood",
-      "states": [ "acacia", "birch", "kapok", "larch", "maple", "oak", "pine", "walnut" ]
-    },
+    { code: "wood", states: ["aged"], loadFromProperties: "block/wood" },
     {
       "code": "side",
       "loadFromProperties": "abstract/horizontalorientation"

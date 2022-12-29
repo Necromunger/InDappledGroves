@@ -102,6 +102,23 @@ namespace InDappledGroves.Util
 
             IDGRecipeRegistry.Loaded.SawHorseRecipes = precipes;
 
+            if (networkMessage.gvalues != null)
+            {
+                foreach (string crec in networkMessage.gvalues)
+                {
+                    using (MemoryStream ms = new(Ascii85.Decode(crec)))
+                    {
+                        BinaryReader reader = new BinaryReader(ms);
+
+                        GroundRecipe retr = new GroundRecipe();
+                        retr.FromBytes(reader, clientApi.World);
+
+                        grecipes.Add(retr);
+                    }
+                }
+            }
+
+            IDGRecipeRegistry.Loaded.GroundRecipes = grecipes;
         }
 
         #endregion
@@ -183,7 +200,6 @@ namespace InDappledGroves.Util
                     grecipes.Add(value);
                 }
             }
-
 
             serverChannel.BroadcastPacket(new RecipeUpload()
             {

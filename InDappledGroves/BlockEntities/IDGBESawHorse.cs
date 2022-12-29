@@ -113,7 +113,6 @@ namespace InDappledGroves.BlockEntities
 
             for (int j = 0; j < recipes.Count; j++)
             {
-                System.Diagnostics.Debug.WriteLine(recipes[j].Ingredients[0].Inputs[0].ToString());
                 if (recipes[j].Matches(Api.World, slots) && curTMode == recipes[j].ToolMode)
                 {
                     return recipes[j];

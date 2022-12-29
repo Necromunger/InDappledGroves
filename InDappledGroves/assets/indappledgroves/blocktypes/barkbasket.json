@@ -4,7 +4,14 @@
 	entityclass: "GenericTypedContainer",
 attributes: {
 		handbook: { 
-			groupBy: ["barkbasket-*"] 
+			groupBy: ["barkbasket-*"],
+			"groupedName": "indappledgroves:barkbasketname",
+			"extraSections": [
+        {
+          "title": "indappledgroves:block-handbooktitle-barkbasket",
+          "text": "indappledgroves:block-handbooktext-barkbasket"
+        }
+      ]
 		},
 		inventoryClassName: "barkbasket",
 		defaultType: "basket",

@@ -9,6 +9,7 @@ namespace InDappledGroves.Blocks
     class BarkBasket : BlockGenericTypedContainer
     {
         //-- Copied from Block. The BlockContainer version was causing 'unknown texture' particles --//
+
         public override int GetRandomColor(ICoreClientAPI capi, BlockPos pos, BlockFacing facing, int rndIndex)
         {
             if (Textures == null || Textures.Count == 0) return 0;

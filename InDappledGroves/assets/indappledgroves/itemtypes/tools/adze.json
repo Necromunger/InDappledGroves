@@ -10,14 +10,21 @@
 			sprintKey: true,
 			selectionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.35, z2: 1 },
 			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
-		}},
+			}
+		},
 		{
 		"name": "woodhewer"
 		}
 	],
 	attributes: {
 		handbook: {
-			groupBy: ["adze-*"]
+			groupBy: ["adze-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-adze",
+						"text": "indappledgroves:item-handbooktext-adze"
+					}
+			]
 		},
 		groundStorageTransform: {
 			translation: { x: 0.05, y: 0.05, z: 0 },
@@ -29,11 +36,12 @@
 			rotation: { y: 1, z: -1 },
 			translation: { x: -0.3, y: 0.6 },
 			scale: 1.25
-		}
+		},
+		"hewingProps": {"hewingMod": 1},
 	},
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },
-    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "meteoriciron", "steel" ] },
+    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },
    ],
 	skipVariants: [
 		"adze-bone-copper",
@@ -60,7 +68,7 @@
 		"@adze-bone-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
 			"material": { base: "game:block/stone/rock/{material}1" },
 			"string": { base: "game:item/tool/material/string" },
-			"handle": { base: "game:block/bone-yellow" }
+			"handle": { base: "game:block/bone-yellow"}
 		},
 		"adze-wood-flint": { 
 			"material": { base: "game:block/stone/{material}" },
@@ -73,7 +81,7 @@
 			"handle": { base: "game:block/bone-yellow" }
 		},
 		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": {
-			"metal": { base: "game:block/metal/ingot/{material}" },
+			"material": { base: "game:block/metal/ingot/{material}" },
 			"handle": { base: "game:item/tool/material/handle" }
 		}
 	},
@@ -88,7 +96,7 @@
 	},
 	miningspeedbytype: {
 		"adze-wood-flint": {
-			"wood": 2.8,
+			"wood": 3,
 			"plant": 2.2,
 			"leaves": 1.6
 		},
@@ -153,7 +161,7 @@
 			"leaves": 4
 		},
 		"*": {
-			"wood": 2.6,
+			"wood": 2.5,
 			"plant": 2.2,
 			"leaves": 1.7
 		}

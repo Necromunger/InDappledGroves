@@ -155,6 +155,7 @@ namespace InDappledGroves.Blocks
 				if (iidgtool != null)
 				{
 					curTMode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
+					toolModeMod = iidgtool.getToolModeMod(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
 				}
 			}
 			if (collectibleObject != null && collectibleObject.HasBehavior<BehaviorWoodPlaning>(false) && !idgbesawHorse2.Inventory.Empty)
@@ -167,10 +168,10 @@ namespace InDappledGroves.Blocks
 						this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 						this.playNextSound += 0.7f;
 					}
-					curDmgFromMiningSpeed += collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawHorse.Inventory[0].Itemstack.Block, byPlayer) * (secondsUsed - lastSecondsUsed);
-					lastSecondsUsed = secondsUsed;
 
-					if (secondsUsed + (curDmgFromMiningSpeed / 2) >= idgbesawHorse.Inventory[0].Itemstack.Block.Resistance)
+					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
+					float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+					if (curMiningProgress >= curResistance)
 					{
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);
 						idgbesawHorse2.Inventory.Clear();
@@ -220,7 +221,7 @@ namespace InDappledGroves.Blocks
 		}
 
 		private IDGRecipeNames.SawHorseRecipe recipe;
-
+		private float toolModeMod;
 		private float playNextSound;
 		private float resistance;
 		private float lastSecondsUsed;

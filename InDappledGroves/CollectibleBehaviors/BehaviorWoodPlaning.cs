@@ -41,16 +41,16 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-tool-planewood",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
+            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
+            //{
+            //    return new WorldInteraction[] {
+            //        new WorldInteraction()
+            //            {
+            //                ActionLangCode = "indappledgroves:itemhelp-tool-planewood",
+            //                MouseButton = EnumMouseButton.Right
+            //            },
+            //        };
+            //});
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgPlaningModes", delegate
             {
@@ -76,16 +76,6 @@ namespace InDappledGroves.CollectibleBehaviors
 
                 return array;
             });
-        }
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "planing")
-            {
-                return interactions;
-            }
-            return null;
         }
 
         WorldInteraction[] interactions = null;

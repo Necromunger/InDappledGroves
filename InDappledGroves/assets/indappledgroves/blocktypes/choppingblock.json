@@ -8,7 +8,17 @@
   ],
   "attributes": {
 		"handbook": {
-			"groupBy": ["choppingblock-*-east"]
+			"groupBy": ["choppingblock-*-east"],
+      "extraSections": [
+        {
+          "title": "indappledgroves:block-handbooktitle-choppingblock",
+          "text": "indappledgroves:block-handbooktext-choppingblock"
+        },
+        {
+          "title": "indappledgroves:block-handbooktitle-choppingblock2",
+          "text": "indappledgroves:block-handbooktext-choppingblock2"
+        }
+      ]
 		}
   },
   "creativeinventory": { "general": ["*-east"]},

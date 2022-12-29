@@ -15,10 +15,9 @@ using static InDappledGroves.Util.IDGRecipeNames;
 namespace InDappledGroves
 {
     class BehaviorWoodChopping : CollectibleBehavior, IBehaviorVariant
-    {
+    { 
         ICoreAPI api;
         ICoreClientAPI capi;
-
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
 
@@ -60,26 +59,34 @@ namespace InDappledGroves
                 return array;
             });
 
-            interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
-            {
-                return new WorldInteraction[] {
-                    new WorldInteraction()
-                        {
-                            ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-                            MouseButton = EnumMouseButton.Right
-                        },
-                    };
-            });
+            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
+            //{
+            //    return new WorldInteraction[] {
+            //        new WorldInteraction()
+            //            {
+            //                ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
+            //                MouseButton = EnumMouseButton.Right
+            //            },
+            //        };
+            //});
+        }
+
+        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandHandling handling)
+        {
+            
+            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
         }
 
         #region TreeFelling
         public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
+            
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingmultiplier"].AsFloat(1f));
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
+
 
             BlockPos pos = blockSel.Position;
 
@@ -104,9 +111,8 @@ namespace InDappledGroves
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
             double windspeed = api.ModLoader.GetModSystem<WeatherSystemBase>()?.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) ?? 0;
-
+            
             Stack<BlockPos> foundPositions = FindTree(world, blockSel.Position);
-
             if (foundPositions.Count == 0)
             {
                 return collObj.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
@@ -178,6 +184,8 @@ namespace InDappledGroves
             return true;
         }
 
+        
+
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos)
         {
             Queue<Vec4i> queue = new();
@@ -193,14 +201,14 @@ namespace InDappledGroves
 
             if (startBlock.Code.FirstCodePart() == "treestump")
             {
-
                 startPos = secondPos != null ? secondPos : startPos;
             }
+
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
             if (block.Code == null) return foundPositions;
-
             string treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
             int spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+
 
             // Must start with a log
             if (spreadIndex < 2) return foundPositions;
@@ -294,16 +302,6 @@ namespace InDappledGroves
         };
 
         #endregion TreeFelling
-
-        public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot, ref EnumHandling handling)
-        {
-            handling = EnumHandling.PassThrough;
-            if (inSlot.Itemstack.Collectible is IIDGTool tool && tool.GetToolModeName(inSlot.Itemstack) == "chopping")
-            {
-                return interactions;
-            }
-            return null;
-        }
 
         //Create function by which interactions will find recipes using the target block and the current tool mode.
         WorldInteraction[] interactions = null;

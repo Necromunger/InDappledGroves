@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"oak": "/Users/vinte/AppData/Roaming/Vintagestory/1179/assets/survival/textures/block/wood/bark/oak",
-		"oak3": "/Users/vinte/AppData/Roaming/Vintagestory/1179/assets/survival/textures/block/wood/treetrunk/oak"
+		"oak": "block/wood/bark/oak",
+		"oak3": "block/wood/treetrunk/oak"
 	},
 	"elements": [
 		{
