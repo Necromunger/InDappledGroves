@@ -1,4 +1,8 @@
-﻿1.17-v0.4.7
+﻿1.17-v0.4.8
+	- Updated IDGTool to accommodate four block trees.
+	- Added feature to generate stumps and hollows in Wildcraft Trees (when present)
+
+1.17-v0.4.7
 	- Fixed saw error, and *actually* fixed stumps not spawning.
 
 1.17-0-v0.4.6

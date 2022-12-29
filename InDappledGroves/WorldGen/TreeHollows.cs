@@ -25,13 +25,18 @@ namespace InDappledGroves.WorldGen
         private IBlockAccessor chunkGenBlockAccessor; //Used for accessing blocks during chunk generation
         private IBlockAccessor worldBlockAccessor; //Used for accessing blocks after chunk generation
 
-        private readonly string[] dirs = { "north", "south", "east", "west" };
-        private readonly string[] woods = { "acacia", "birch", "kapok", "larch", "maple", "oak", "pine", "walnut" };
-        private readonly string[] stumps = { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut" };
+        private string[] dirs = { "north", "south", "east", "west" };
+        private List<string> woods = new(new string[] {"acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut"}) ;
+        private List<string> stumps = new(new string[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut" });
 
         public override void StartServerSide(ICoreServerAPI api)
         {
             this.sapi = api;
+            if (api.ModLoader.IsModEnabled("wildcrafttrees"))
+            {
+                woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
+                stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
+            }
             if (!api.ModLoader.IsModEnabled("primitivesurvival"))
             {
                 this.worldBlockAccessor = api.World.BlockAccessor;

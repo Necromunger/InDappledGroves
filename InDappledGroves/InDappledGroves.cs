@@ -18,8 +18,8 @@ namespace InDappledGroves
 
         public override void Start(ICoreAPI api)
         {
-            base.Start(api);
 
+            base.Start(api);
             //Register Items
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
             api.RegisterItemClass("idgplank", typeof(IDGPlank));

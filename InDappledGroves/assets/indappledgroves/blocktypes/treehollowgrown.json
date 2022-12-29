@@ -9,7 +9,6 @@
       }
     ],
     "attributes": {
-      "validHollowTypes": ["aged", "acacia", "birch", "kapok", "larch", "maple", "oak", "pine", "walnut"],
       "preventsDecay": true,
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
@@ -54,15 +53,28 @@
                     {"dropStack": {"type":"block", "code": "game:mushroom-flyagaric-harvested", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}}],
       
     },
+    "resistanceByType": {
+    "*-birch-*": 5.7,
+		"*-oak-*": 5.8,
+		"*-maple-*": 6.5,
+		"*-pine-*": 3.9,
+		"*-acacia-*": 10.3,
+		"*-kapok-*": 4,
+		"*-baldcypress-*": 2.3,
+		"*-larch-*": 3.7,
+		"*-redwood-*": 1.9,
+		"*-ebony-*": 14.5,
+		"*-walnut-*": 4.5,
+		"*-purpleheart-*": 12.2,
+		"*-aged-*": 4.5,
+		"*": 4.5
+    },
     "variantgroups": [
       {
         "code": "type",
         "states": [ "base", "base2", "up", "up2" ]
       },
-      {
-        "code": "wood",
-        "states": [ "acacia", "birch", "kapok", "larch", "maple", "oak", "pine", "walnut" ]
-      },
+      { code: "wood", states: ["aged"], loadFromProperties: "block/wood" },
       {
         "code": "side",
         "loadFromProperties": "abstract/horizontalorientation"

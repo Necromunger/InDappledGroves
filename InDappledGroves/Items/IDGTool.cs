@@ -19,13 +19,13 @@ namespace InDappledGroves.Items.Tools
 
     class IDGTool : Item, IIDGTool
     {
-        
+
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
             capi = (api as ICoreClientAPI);
             toolModes = BuildSkillList();
-            
+
         }
 
         public IDGTool()
@@ -151,7 +151,7 @@ namespace InDappledGroves.Items.Tools
         {
             if (!byEntity.Controls.CtrlKey && blockSel?.Position == recipePos && api.World.BlockAccessor.GetBlock(blockSel.Position) == recipeBlock)
             {
-                
+
                 if (recipePos != null)
                 {
 
@@ -163,20 +163,20 @@ namespace InDappledGroves.Items.Tools
 
                     //Accumulate damage over time from current tools mining speed.
                     float toolMiningSpeed = slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer);
-                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer) 
+                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer)
                         * (secondsUsed - lastSecondsUsed);
 
                     //update lastSecondsUsed to this cycle
                     lastSecondsUsed = secondsUsed;
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-                    
-                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod* InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult);
+
+                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
                     System.Diagnostics.Debug.WriteLine("Tool: " + toolMiningSpeed + " cuResist:" + curResistance + " " + curMiningProgress + " ");
                     if (curMiningProgress >= curResistance)
                     {
-                        
+
                         SpawnOutput(recipe, recipePos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
                         byEntity.StopAnimation("axechop");
@@ -193,7 +193,7 @@ namespace InDappledGroves.Items.Tools
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
 
-            if(recipeComplete)slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+            if (recipeComplete) slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
             recipeComplete = false;
             byEntity.StopAnimation("axechop");
         }
@@ -283,9 +283,11 @@ namespace InDappledGroves.Items.Tools
 
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
         {
-            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown") 
-                || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump" && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown") 
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown");
+            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection") 
+                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown");
             if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
@@ -302,8 +304,12 @@ namespace InDappledGroves.Items.Tools
         {
             String firstPart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
             String typePart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"];
-            bool isLog = ((firstPart == "log" && typePart == "grown") || firstPart == "treestump" || firstPart == "treehollowgrown");
-            
+            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
+                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown");
+
             if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);

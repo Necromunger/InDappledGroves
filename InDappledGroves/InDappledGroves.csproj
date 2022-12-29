@@ -96,7 +96,7 @@
     <None Update="assets\indappledgroves\lang\en.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\AncientTools\log.json">
+    <None Update="assets\indappledgroves\patches\ancienttools\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\boardpatch.json">
@@ -124,6 +124,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttrees\trees.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\choppingblock\bark.json">
