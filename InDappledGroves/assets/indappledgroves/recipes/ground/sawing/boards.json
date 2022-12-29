@@ -22,5 +22,17 @@
       }
     ],
     "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "indappledgroves:strippedlog-*-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
   }
 ]
