@@ -37,7 +37,7 @@ namespace InDappledGroves.Items
 				string failurecode = "";
 
 				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face), 0);
-				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgfirewoodblock")));
+				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgblockfirewood")));
 				bool flag = false;
 				if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))
 				{

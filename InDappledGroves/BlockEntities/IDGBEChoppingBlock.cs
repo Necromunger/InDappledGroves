@@ -53,13 +53,13 @@ namespace InDappledGroves.BlockEntities
 
             ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
-			if (itemstack == null)
+			if (activeHotbarSlot.Empty)
 			{
 				assetLocation = null;
 			}
 			else
 			{
-				Block block = itemstack.Block;
+				Block block = activeHotbarSlot.Itemstack.Block;
 				if (block == null)
 				{
 					assetLocation = null;
@@ -70,11 +70,10 @@ namespace InDappledGroves.BlockEntities
 					assetLocation = (sounds?.Place);
 				}
 			}
-			AssetLocation assetLocation2 = assetLocation;
 
 			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
 			{	 
-				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 updateMeshes();
 			}
 			return true;

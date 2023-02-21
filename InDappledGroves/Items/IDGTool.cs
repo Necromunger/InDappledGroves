@@ -251,13 +251,11 @@ namespace InDappledGroves.Items.Tools
         {
             List<GroundRecipe> recipes = IDGRecipeRegistry.Loaded.GroundRecipes;
 
-            api.World.Logger.Debug(recipes.ToString(), " Reached Ground Recipe Match ", recipes.Count.ToString());
             if (recipes == null) return null;
             for (int j = 0; j < recipes.Count; j++)
             {
                 if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 {
-                    api.World.Logger.Debug("Recipe Reached, returned :" + recipes[j].Output.ResolvedItemstack.ToString());
                     return recipes[j];
                 }
             }
@@ -286,8 +284,12 @@ namespace InDappledGroves.Items.Tools
             bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
                 || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
                 || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection") 
-                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown");
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
+                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown"
+                || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "ferntree"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "bamboo"
+                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "fruittree"));
+
             if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
                 float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
@@ -305,10 +307,13 @@ namespace InDappledGroves.Items.Tools
             String firstPart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
             String typePart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"];
             bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
-                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown");
+               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
+               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
+               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
+               && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown"
+               || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "ferntree"
+               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "bamboo"
+               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "fruittree"));
 
             if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
             {
@@ -379,45 +384,6 @@ namespace InDappledGroves.Items.Tools
             MaxSize = 0.1f,
             WindAffected = true
         };
-
-        //public void test(ItemSlot slot)
-        //{
-        //    if ((holder) != null && holder.BlockSelection?.Block != null)
-        //    {
-
-        //        Block targetBlock = holder.BlockSelection.Block;
-        //        tempInv[0].Itemstack = new(targetBlock);
-
-        //        GroundRecipe recipe = GetMatchingGroundRecipe(tempInv[0], GetToolModeName(slot.Itemstack));
-        //        if (recipe != null)
-        //        {
-        //            outputDsc = Lang.Get("indappledgroves:heldhelp-" + this.GetToolModeName(slot.Itemstack), recipe.Output.ResolvedItemstack.StackSize + " " + recipe.Output.ResolvedItemstack.GetName().ToLower() + (recipe.Output.ResolvedItemstack.StackSize > 1 ? "s" : ""));
-        //        }
-        //        else
-        //        {
-        //            outputDsc = null;
-        //        }
-        //    }
-            
-        //}
-        
-
-        //public override WorldInteraction[] GetHeldInteractionHelp(ItemSlot inSlot)
-        //{
-        //    if (outputDsc != null)
-        //        {
-        //            return new WorldInteraction[] {
-        //            new WorldInteraction()
-        //            {
-
-        //                ActionLangCode = outputDsc,
-        //                MouseButton = EnumMouseButton.Right
-        //            }
-        //        }.Append(base.GetHeldInteractionHelp(inSlot));
-        //        return new WorldInteraction[] { };
-        //        }
-        //        return base.GetHeldInteractionHelp(inSlot);
-        //}
 
         public string InventoryClassName => "worldinventory";
         public float toolModeMod;

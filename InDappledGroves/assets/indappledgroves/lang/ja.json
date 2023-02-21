@@ -1,0 +1,468 @@
+{
+	// Japanese localization file for 'In Dappled Groves'.
+	// Mod Version: v0.4.7
+	// Translated By: Macoto Hino
+	// Machine translation using PCOT and DeepL.
+
+	//"Tool Interactions and Mode Info Listed Below",
+  "Chopping": "割る",
+	"Sawing": "切る",
+	"Planing": "削る",
+	"Hewing": "加工する",
+	"itemhelp-axe-chopwood": "割る",
+  "itemhelp-saw-sawwood": "切る",
+	"itemhelp-adze-hewwood": "加工",
+	"itemhelp-tool-planewood": "削る",
+	"toolittledurability": "これを行うには、道具の耐久力が{0}必要です。",
+	
+	//Stump Entries
+	"block-handbooktitle-treestump": "※切り株",
+	"block-handbooktext-treestump": "<font align='center'><i>私はすべてから目を逸らした。
+地上のすべての物から。
+この地の精霊と守護者は
+水の中の古い木の切り株である。</i></font>
+	<font weight='bold' align='center'>11月 1962年 (譫妄状態で※意識混濁に加えて奇妙で脅迫的な思考や幻覚・錯覚が見られるような状態。) - アンナ・アフマートヴァ(※ロシアの詩人)</font>
+
+		<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+		
+		ほとんどの樹木は、下部に切り株を形成しています。この頑丈な切り株は取り除くのが難しく、そのままにしておくのが望ましい。また、直接切り出すよりも、その上から切り出す方が簡単になるかもしれない。いずれにせよ、最初に伐採する際には、この部分が残る。取り除くにはまた切る必要があり、非常に時間が掛かる作業となる。
+",
+	"block-treestump-*-aged-*": "古びた木の切り株",
+	"block-treestump-*-birch-*": "シラカバの木の切り株",
+	"block-treestump-*-oak-*": "オークの木の切り株",
+	"block-treestump-*-maple-*": "カエデの木の切り株",
+	"block-treestump-*-pine-*": "マツの木の切り株",
+	"block-treestump-*-acacia-*": "アカシアの木の切り株",
+	"block-treestump-*-kapok-*": "カポックの木の切り株",
+	"block-treestump-*-baldcypress-*": "ヌマスギの木の切り株",
+	"block-treestump-*-larch-*": "カラマツの木の切り株",
+	"block-treestump-*-redwood-*": "レッドウッドの木の切り株",
+	"block-treestump-*-ebony-*": "コクタンの木の切り株",
+	"block-treestump-*-walnut-*": "クルミの木の切り株",
+	"block-treestump-*-purpleheart-*": "パープルハートの木の切り株",
+
+	//Hollow Entries
+	"block-handbooktitle-treehollow": "",
+	"block-handbooktext-treehollow": "<font align='center'><i>自然が心に魔法を掛ける場所
+私みたいに勇気のある者は柵を乗り越え
+木の幹のほらを探そうとする。</i></font>
+<font weight='bold' align='center'>- デイビッド・ルイス・パジェット※(オーストラリアの詩人)</font>
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+	木のうろは、あらゆる種類の木に形成される。その中には、木の生き物の宝物や、時には先人たちの遺品が隠されていることもある。また、切り倒すと、原始的ではあるが、便利な保管場所になる。
+
+",
+	"block-*-treehollowplaced-aged-*": "古びた木のうろ",
+	"block-*-treehollowplaced-birch-*": "シラカバの木のうろ",
+	"block-*-treehollowplaced-oak-*": "オークの木のうろ",
+	"block-*-treehollowplaced-maple-*": "カエデの木のうろ",
+	"block-*-treehollowplaced-pine-*": "マツの木のうろ",
+	"block-*-treehollowplaced-acacia-*": "アカシアの木のうろ",
+	"block-*-treehollowplaced-kapok-*": "カポックの木のうろ",
+	"block-*-treehollowplaced-baldcypress-*": "ヌマスギの木のうろ",
+	"block-*-treehollowplaced-larch-*": "カラマツの木のうろ",
+	"block-*-treehollowplaced-redwood-*": "レッドウッドの木のうろ",
+	"block-*-treehollowplaced-ebony-*": "コクタンの木のうろ",
+	"block-*-treehollowplaced-walnut-*": "クルミの木のうろ",
+	"block-*-treehollowplaced-purpleheart-*": "パープルハートの木のうろ",
+	"block-*-treehollowgrown-aged-*": "古びた木のうろ",
+	"block-*-treehollowgrown-birch-*": "シラカバの木のうろ",
+	"block-*-treehollowgrown-oak-*": "オークの木のうろ",
+	"block-*-treehollowgrown-maple-*": "カエデの木のうろ",
+	"block-*-treehollowgrown-pine-*": "マツの木のうろ",
+	"block-*-treehollowgrown-acacia-*": "アカシアの木のうろ",
+	"block-*-treehollowgrown-kapok-*": "カポックの木のうろ",
+	"block-*-treehollowgrown-baldcypress-*": "ヌマスギの木のうろ",
+	"block-*-treehollowgrown-larch-*": "カラマツの木のうろ",
+	"block-*-treehollowgrown-redwood-*": "レッドウッドの木のうろ",
+	"block-*-treehollowgrown-ebony-*": "コクタンの木のうろ",
+	"block-*-treehollowgrown-walnut-*": "クルミの木のうろ",
+	"block-*-treehollowgrown-purpleheart-*": "パープルハートの木のうろ",
+
+
+	//Bark Basket Entries
+	"block-handbooktitle-barkbasket": "※樹皮バスケット",
+	"block-handbooktext-barkbasket": "<font align='center'><i>樹皮を編み込むと 
+私たちは故郷に近付いている気がする。</i></font>
+	<font weight='bold' align='center'>- バスケットの編み方について</font>
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+	これらのバスケットは、あらゆる樹木の<a href=\"handbook://item-indappledgroves:bark-birch-soaked\">浸した樹皮</a>から細工して作られている。 この時代を超えた技術は、腐敗を免れ、便利な保管場所を求めるセラフの礎となっている。
+					
+	樹皮は、世界中の地域でバスケットを作る為に使用されてきた長い歴史がある。サップミ地方のサーミ族、サルシ族、チルカット族などアメリカ北西部の先住民族をはじめ、数え切れないほどの文化にバスケットの痕跡が残っている。",
+	
+	"barkbasketname": "樹皮バスケット",
+	"block-*-barkbasket-aged-*": "古びた樹皮バスケット",
+	"block-*-barkbasket-birch-*": "シラカバの樹皮バスケット",
+	"block-*-barkbasket-oak-*": "オークの樹皮バスケット",
+	"block-*-barkbasket-maple-*": "カエデの樹皮バスケット",
+	"block-*-barkbasket-pine-*": "マツの樹皮バスケット",
+	"block-*-barkbasket-acacia-*": "アカシアの樹皮バスケット",
+	"block-*-barkbasket-kapok-*": "カポックの樹皮バスケット",
+	"block-*-barkbasket-baldcypress-*": "ヌマスギの樹皮バスケット",
+	"block-*-barkbasket-larch-*": "カラマツの樹皮バスケット",
+	"block-*-barkbasket-redwood-*": "レッドウッドの樹皮バスケット",
+	"block-*-barkbasket-ebony-*": "コクタンの樹皮バスケット",
+	"block-*-barkbasket-walnut-*": "クルミの樹皮バスケット",
+	"block-*-barkbasket-purpleheart-*": "パープルハートの樹皮バスケット",
+
+	//Chopping Block Entries
+	"block-handbooktitle-choppingblock": "作り方:",	
+	"block-handbooktext-choppingblock": "	<strong>レシピの種類:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">この世界の場合</a>
+	<strong>ツールモード:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">加工する</a>
+	<strong>材料</strong>: <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">丸太のハーフブロック</a>
+",
+	"block-handbooktitle-choppingblock2": "																			木こりの強い味方",
+	"block-handbooktext-choppingblock2": "
+	<font align='center'><i>悟りを開く前に -
+	木を伐り、水を運ぶ。
+	悟りの後 -
+	木を伐り、水を運ぶ。</i></font>
+	<font weight='bold' align='center'>- 禅の諺 ※(公案(こうあん)とも言い、禅宗における問答、または問題のこと。)</font>
+
+				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+		薪割台は、本格的な薪割り職人の作業台の基礎となる。この作業台は、道具の有効性を向上させることが出来る。薪割台の上で行う作業は、一般的に地上で行うよりも早く出来る。
+
+		また、薪割台がないと作れないレシピもあるかもしれない。大量の薪を扱うのであれば、最初に手に入れるべき作業台だ。
+",
+	
+	"block-choppingblock-aged-*": "古びた薪割台",
+	"block-choppingblock-birch-*": "シラカバの薪割台",
+	"block-choppingblock-oak-*": "オークの薪割台",
+	"block-choppingblock-maple-*": "カエデの薪割台",
+	"block-choppingblock-pine-*": "マツの薪割台",
+	"block-choppingblock-acacia-*": "アカシアの薪割台",
+	"block-choppingblock-kapok-*": "カポックの薪割台",
+	"block-choppingblock-baldcypress-*": "ヌマスギの薪割台",
+	"block-choppingblock-larch-*": "カラマツの薪割台",
+	"block-choppingblock-redwood-*": "レッドウッドの薪割台",
+	"block-choppingblock-ebony-*": "コクタンの薪割台",
+	"block-choppingblock-walnut-*": "クルミの薪割台",
+	"block-choppingblock-purpleheart-*": "パープルハートの薪割台",
+	
+	//LogSlab Entries
+	"block-handbooktitle-logslab":"作り方",
+	"block-handbooktext-logslab": 
+	"	<strong>レシピの種類:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">この世界の場合</a> ＆ <a href=\"handbook://workstations-indappledgroves\">作業台でのクラフト</a>
+	<strong>ツールモード:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">割る</a>
+	<strong>材料</strong>: <a href=\"handbook://block-log-placed-birch-ud\">丸太</a>
+		
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>",
+	"block-handbooktitle-logslab2":"丸太のハーフブロック",
+	"block-handbooktext-logslab2": "	<a href=\"handbook://item-firewood\">薪</a>を作るまでの第一段階。 薪は<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>や<a href=\"handbook://inworldcrafting-indappledgroves\">地面の上</a>で作ることも出来る。 対象となる<a href=\"handbook://block-log-placed-maple-ud\">丸太</a>は、樹皮が上になるのではなく、幹が剥き出しになるように直立している必要がある。 丸太のハーフブロックは、平らに置いて<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と薪割台、垂直に置いて<a href=\"handbook://toolmodes-indappledgroves\">割る</a>と薪に、<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と剥ぎ取られた丸太のハーフブロックになり、2つの樹皮を作ることが出来る。",
+
+  "block-logslab-aged-*": "古びた丸太のハーフブロック",
+	"block-logslab-birch-*": "シラカバの丸太のハーフブロック",
+	"block-logslab-oak-*": "オークの丸太のハーフブロック",
+	"block-logslab-maple-*": "カエデの丸太のハーフブロック",
+	"block-logslab-pine-*": "マツの丸太のハーフブロック",
+	"block-logslab-acacia-*": "アカシアの丸太のハーフブロック",
+	"block-logslab-kapok-*": "カポックの丸太のハーフブロック",
+	"block-logslab-baldcypress-*": "ヌマスギの丸太のハーフブロック",
+	"block-logslab-larch-*": "カラマツの丸太のハーフブロック",
+	"block-logslab-redwood-*": "レッドウッドの丸太のハーフブロック",
+	"block-logslab-ebony-*": "コクタンの丸太のハーフブロック",
+	"block-logslab-walnut-*": "クルミの丸太のハーフブロック",
+	"block-logslab-purpleheart-*": "パープルハートの丸太のハーフブロック",
+
+	//Sawhorse Entries
+	"block-handbooktitle-stripped丸太": "剥ぎ取られた丸太",
+	"block-handbooktext-stripped丸太": "<font align='center'><i>皮を剥いだ丸太のような裸身が
+時に甘い匂いを放つ
+男と女。
+木々の下で、余すところなく</i></font>
+<font weight='bold' align='center'>- ウィリアム・カーロス・ウィリアムズ※(アメリカの詩人)</font>
+				
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+剥いだ丸太は、樹皮を剥いだ<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>を<a href=\"handbook://toolmodes-indappledgroves\">加工</a>して作る。その後、剥ぎ取られた丸太のハーフブロックに分割することが出来る。
+
+<font weight='bold'>作り方</font>
+	<strong>レシピの種類:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">この世界の場合</a> ＆ <a href=\"handbook://workstations-indappledgroves\">作業台でのクラフト</a>
+	<strong>ツールモード:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">割る</a>
+	<strong>材料</strong>: <a href=\"handbook://block-log-placed-birch-ud\">丸太</a>		
+",
+	"block-strippedlog-aged-*": "剥ぎ取られた古びた丸太",
+	"block-strippedlog-birch-*": "剥ぎ取られたシラカバの丸太",
+	"block-strippedlog-oak-*": "剥ぎ取られたオークの丸太",
+	"block-strippedlog-maple-*": "剥ぎ取られたカエデの丸太",
+	"block-strippedlog-pine-*": "剥ぎ取られたマツの丸太",
+	"block-strippedlog-acacia-*": "剥ぎ取られたアカシアの丸太",
+	"block-strippedlog-kapok-*": "剥ぎ取られたカポックの丸太",
+	"block-strippedlog-baldcypress-*": "剥ぎ取られたヌマスギの丸太",
+	"block-strippedlog-larch-*": "剥ぎ取られたカラマツの丸太",
+	"block-strippedlog-redwood-*": "剥ぎ取られたレッドウッドの丸太",
+	"block-strippedlog-ebony-*": "剥ぎ取られたコクタンの丸太",
+	"block-strippedlog-walnut-*": "剥ぎ取られたクルミの丸太",
+	"block-strippedlog-purpleheart-*": "剥ぎ取られたパープルハートの丸太",
+
+	//Sawhorse Entries
+	"block-handbooktitle-sawhorse": "",
+	"block-handbooktext-sawhorse": "<font align='center'><i>左に斧、右に鋸。
+斧はブロックの中、鋸は木挽台の上。
+おが屑が歩く道を汚している。
+小屋の中で座って、雨が降るのを見ている。</i></font>
+<font weight='bold' align='center'>- ポール・キーネグ(※アメリカの作家、詩人)</font>
+
+
+",
+	"block-sawhorse-*-single-*": "木挽台(T型)",
+	"block-sawhorse-*-compound-*":"木挽場",
+
+	//Sawbuck Entries
+	"indappledgroves:block-handbooktitle-sawbuck": "木挽台(X型)",
+	"indappledgroves:block-handbooktext-sawbuck": "<font align='center'><i>風が鋸のように吹いていた。
+	そして、おが屑が舞う。</i></font>
+	<font weight='bold' align='center'>- チャールズ・ディケンズ(※イギリスの小説家)</font>
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+	
+	木挽台は、主に製材作業に使用される<a href=\"handbook://workstations-indappledgroves\">作業台</a>で、作業を少しでも早く、そして工具の消耗を少しでも少なくする為に使用される。
+	",
+	"block-sawbuck-*": "木挽台(X型)",
+
+	//Bark Bundle Entries
+	"indappledgroves:block-handbooktitle-barkbundledry": "乾いた樹皮の束",
+	"indappledgroves:block-handbooktext-barkbundledry": "
+		<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+			この樹皮の束は、すぐに加工出来る状態になっている。手に取って水のある場所に置くだけで、浸漬している状態になります。デフォルトでは、浸した後、浸した樹皮の束になるまで、ゲーム内で24時間掛かる。",
+		"indappledgroves:block-handbooktitle-barkbundlesoaked": "浸した樹皮の束",
+		"indappledgroves:block-handbooktext-barkbundlesoaked": "	樹皮は、<a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">樹皮バスケット</a>のような便利な道具を作るのに最適で万能な材料となる。Taska's <a href=\"https://mods.vintagestory.at/ancienttools\">Ancient Tools</a>を導入し、プレイしている場合、膏薬を作る為に浸したシラカバの樹皮も必要となる。浸した樹皮の束を右クリックすると、浸した樹皮を5個拾うことが出来る。",
+	"block-barkbundle-aged-dry": "乾いた古びた樹皮の束",
+	"block-barkbundle-birch-dry": "乾いたシラカバの樹皮の束",
+	"block-barkbundle-oak-dry": "乾いたオークの樹皮の束",
+	"block-barkbundle-maple-dry": "乾いたカエデの樹皮の束",
+	"block-barkbundle-pine-dry": "乾いたマツの樹皮の束",
+	"block-barkbundle-acacia-dry": "乾いたアカシアの樹皮の束",
+	"block-barkbundle-kapok-dry": "乾いたカポックの樹皮の束",
+	"block-barkbundle-baldcypress-dry": "乾いたヌマスギの樹皮の束",
+	"block-barkbundle-larch-dry": "乾いたカラマツの樹皮の束",
+	"block-barkbundle-redwood-dry": "乾いたレッドウッドの樹皮の束",
+	"block-barkbundle-ebony-dry": "乾いたコクタンの樹皮の束",
+	"block-barkbundle-walnut-dry": "乾いたクルミの樹皮の束",
+	"block-barkbundle-purpleheart-dry": "乾いたパープルハートの樹皮の束",
+	"block-barkbundle-aged-soaking": "浸している古びた樹皮の束",
+	"block-barkbundle-birch-soaking": "浸しているシラカバの樹皮の束",
+	"block-barkbundle-oak-soaking": "浸しているオークの樹皮の束",
+	"block-barkbundle-maple-soaking": "浸しているカエデの樹皮の束",
+	"block-barkbundle-pine-soaking": "浸しているマツの樹皮の束",
+	"block-barkbundle-acacia-soaking": "浸しているアカシアの樹皮の束",
+	"block-barkbundle-kapok-soaking": "浸しているカポックの樹皮の束",
+	"block-barkbundle-baldcypress-soaking": "浸しているヌマスギの樹皮の束",
+	"block-barkbundle-larch-soaking": "浸しているカラマツの樹皮の束",
+	"block-barkbundle-redwood-soaking": "浸しているレッドウッドの樹皮の束",
+	"block-barkbundle-ebony-soaking": "浸しているコクタンの樹皮の束",
+	"block-barkbundle-walnut-soaking": "浸しているクルミの樹皮の束",
+	"block-barkbundle-purpleheart-soaking": "浸しているパープルハートの樹皮の束",
+	"block-barkbundle-aged-soaked": "浸した古びた樹皮の束",
+	"block-barkbundle-birch-soaked": "浸したシラカバの樹皮の束",
+	"block-barkbundle-oak-soaked": "浸したオークの樹皮の束",
+	"block-barkbundle-maple-soaked": "浸したカエデの樹皮の束",
+	"block-barkbundle-pine-soaked": "浸したマツの樹皮の束",
+	"block-barkbundle-acacia-soaked": "浸したアカシアの樹皮の束",
+	"block-barkbundle-kapok-soaked": "浸したカポックの樹皮の束",
+	"block-barkbundle-baldcypress-soaked": "浸したヌマスギの樹皮の束",
+	"block-barkbundle-larch-soaked": "浸したカラマツの樹皮の束",
+	"block-barkbundle-redwood-soaked": "浸したレッドウッドの樹皮の束",
+	"block-barkbundle-ebony-soaked": "浸したコクタンの樹皮の束",
+	"block-barkbundle-walnut-soaked": "浸したクルミの樹皮の束",
+	"block-barkbundle-purpleheart-soaked": "浸したパープルハートの樹皮の束",
+
+	//Vanilla Replacement Entries
+	"item-handbooktitle-firewood": "薪",
+	"item-handbooktext-firewood": "	<a href=\"handbook://inworldcrafting-indappledgroves\">地面</a>に置いたり、<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>を使い、斧で<a href=\"handbook://toolmodes-indappledgroves\">割って</a>、<a href=\"handbook://item-stick\">棒</a>を作ることが出来る。",
+
+	"item-handbooktitle-stick": "棒",
+	"item-handbooktext-stick": "<font align='center'><i>私は遠く離れた森の中にいた
+完璧な棒を見付けた時
+私はそれが完璧なことに気付いた
+細過ぎず、太過ぎず</i></font>
+<font weight='bold' align='center'>-エイミー・ルドウィック・ヴァンダーウォーター(※アメリカの詩人)</font>
+
+		<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+		どんな形の斧でも、<a href=\"handbook://inworldcrafting-indappledgroves\">地面</a>や<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>で<a href=\"handbook://item-firewood\">薪</a>を<a href=\"handbook://toolmodes-indappledgroves\">割って</a>棒を作ることが出来る。",
+
+	//Grub Axe Entries
+	"item-handbooktitle-grubaxe": "切り開き斧(グラブ・アックス)",
+	"item-handbooktext-grubaxe": "切り開き斧は、長い柄と、斧の縦刃と横斧を組み合わせた頑丈な斧頭を兼ね備えている。 その結果、<a href=\"handbook://toolmodes-indappledgroves\">割ったり</a>、<a href=\"handbook://toolmodes-indappledgroves\">加工</a>出来る柔軟な道具となっている。",
+	"item-grubaxehead-tinbronze": "スズ青銅の切り開き斧の斧頭",
+	"item-grubaxehead-bismuthbronze": "ビスマス青銅の切り開き斧の斧頭",
+	"item-grubaxehead-blackbronze": "黒青銅の切り開き斧の斧頭",
+	"item-grubaxehead-iron": "鉄の切り開き斧の斧頭",
+	"item-grubaxehead-meteoriciron": "隕鉄の切り開き斧の斧頭",
+	"item-grubaxehead-steel": "鋼の切り開き斧の斧頭",
+	"item-grubaxe-tinbronze": "スズ青銅の切り開き斧",
+	"item-grubaxe-bismuthbronze": "ビスマス青銅の切り開き斧",
+	"item-grubaxe-blackbronze": "黒青銅の切り開き斧",
+	"item-grubaxe-iron": "鉄の切り開き斧",
+	"item-grubaxe-meteoriciron": "隕鉄の切り開き斧",
+	"item-grubaxe-steel": "鋼の切り開き斧",
+	
+	//Forest Axe Entries
+	"item-handbooktitle-forestaxe": "薪割り斧",
+	"item-handbooktext-forestaxe": "<font align='center'><i>痛む手足と痛む背中で
+木が割れる音に耳をすませば
+そして、雷のような音がして
+地面に叩きつけられた。</i></font>
+	
+<font weight='bold' align='center'>- ジョージ・サヴェージ(※元AFL選手、詩人)</font>
+
+				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+				
+		薪割り斧の特徴は、斧の頭が平らに細長く、丸みを帯びていること。薪割り斧は、伐採や枝打ちの際など、木の繊維の目を横切って切る為に特別に設計されている。	
+		その為、木を切り倒すのは得意だが、<a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">丸太のハーフブロック</a>や<a href=\"handbook://item-firewood\">薪</a>、<a href=\"handbook://item-stick\">棒</a>に<a href=\"handbook://toolmodes-indappledgroves\">する</a>のは苦手である。
+		",
+	"item-forestaxehead-tinbronze": "スズ青銅の薪割り斧の斧頭",
+	"item-forestaxehead-bismuthbronze": "ビスマス青銅の薪割り斧の斧頭",
+	"item-forestaxehead-blackbronze": "黒青銅の薪割り斧の斧頭",
+	"item-forestaxehead-iron": "鉄の薪割り斧の斧頭",
+	"item-forestaxehead-meteoriciron": "隕鉄の薪割り斧の斧頭",
+	"item-forestaxehead-steel": "鋼の薪割り斧の斧頭",
+	"item-forestaxe-tinbronze": "スズ青銅の薪割り斧",
+	"item-forestaxe-bismuthbronze": "ビスマス青銅の薪割り斧",
+	"item-forestaxe-blackbronze": "黒青銅の薪割り斧",
+	"item-forestaxe-iron": "鉄の薪割り斧",
+	"item-forestaxe-meteoriciron": "隕鉄の薪割り斧",
+	"item-forestaxe-steel": "鋼の薪割り斧",
+
+	//Maul Entries
+	"item-handbooktitle-maul": "薪割り鎚",
+	"item-handbooktext-maul": "	重厚な斧頭と分厚い<a href=\"handbook://toolmodes-indappledgroves\">割り</a>刃で、<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>を割って<a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">ハーフブロック</a>を作るのに最適な道具。 これがさらに<a href=\"handbook://item-firewood\">薪</a>になり、そこから<a href=\"handbook://item-stick\">棒</a>になる。",
+	"item-maulhead-tinbronze": "スズ青銅の薪割り鎚の斧頭",
+	"item-maulhead-bismuthbronze": "ビスマス青銅の薪割り鎚の斧頭",
+	"item-maulhead-blackbronze": "黒青銅の薪割り鎚の斧頭",
+	"item-maulhead-iron": "鉄の薪割り鎚の斧頭",
+	"item-maulhead-meteoriciron": "隕鉄の薪割り鎚の斧頭",
+	"item-maulhead-steel": "鋼の薪割り鎚の斧頭",
+	"item-maul-tinbronze": "スズ青銅の薪割り鎚",
+	"item-maul-bismuthbronze": "ビスマス青銅の薪割り鎚",
+	"item-maul-blackbronze": "黒青銅の薪割り鎚",
+	"item-maul-iron": "鉄の薪割り鎚",
+	"item-maul-meteoriciron": "隕鉄の薪割り鎚",
+	"item-maul-steel": "鋼の薪割り鎚",
+
+	
+
+	//Bark Entries
+	"item-handbooktitle-dryBark": "樹皮",
+	"item-handbooktext-dryBark": "	木から採れる樹皮は、<a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">樹皮バスケット</a>の材料として使うことが出来る。 これは、<a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">束ねた樹皮</a>をゲーム内で24時間浸しておき、出来上がった<a href=\"handbook://item-indappledgroves:bark-birch-soaked\">浸した樹皮</a>から作られる。",
+	"item-bark-aged-dry": "乾いた古びた樹皮",
+	"item-bark-birch-dry": "乾いたシラカバの樹皮",
+	"item-bark-oak-dry": "乾いたオークの樹皮",
+	"item-bark-maple-dry": "乾いたカエデの樹皮",
+	"item-bark-pine-dry": "乾いたマツの樹皮",
+	"item-bark-acacia-dry": "乾いたアカシアの樹皮",
+	"item-bark-kapok-dry": "乾いたカポックの樹皮",
+	"item-bark-baldcypress-dry": "乾いたヌマスギの樹皮",
+	"item-bark-larch-dry": "乾いたカラマツの樹皮",
+	"item-bark-redwood-dry": "乾いたレッドウッドの樹皮",
+	"item-bark-walnut-dry": "乾いたクルミの樹皮",
+	"item-bark-ebony-dry": "乾いたコクタンの樹皮",
+	"item-bark-purpleheart-dry": "乾いたパープルハートの樹皮",
+
+	//※Soaked Bark Entries
+	"item-handbooktitle-soakedbark": "※浸した樹皮",
+	"item-handbooktext-soakedbark": "※浸した樹皮は、<a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">束ねた樹皮</a>を水(水流も可、樽は不可)に24時間浸して作られる。 <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">樹皮バスケット</a>の材料として使うことが出来る。",
+	"item-bark-aged-soaked": "浸した古びた樹皮",
+	"item-bark-birch-soaked": "浸したシラカバの樹皮",
+	"item-bark-oak-soaked": "浸したオークの樹皮",
+	"item-bark-maple-soaked": "浸したカエデの樹皮",
+	"item-bark-pine-soaked": "浸したマツの樹皮",
+	"item-bark-acacia-soaked": "浸したアカシアの樹皮",
+	"item-bark-kapok-soaked": "浸したカポックの樹皮",
+	"item-bark-baldcypress-soaked": "浸したヌマスギの樹皮",
+	"item-bark-larch-soaked": "浸したカラマツの樹皮",
+	"item-bark-redwood-soaked": "浸したレッドウッドの樹皮",
+	"item-bark-ebony-soaked": "浸したコクタンの樹皮",
+	"item-bark-walnut-soaked": "浸したクルミの樹皮",
+	"item-bark-purpleheart-soaked": "浸したパープルハートの樹皮",
+
+	//Adze Info
+	"item-handbooktitle-adze": "釿（ちょうな）",
+	"item-handbooktext-adze": "※<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>から樹皮を剥ぐことに特化した斧。",
+	"item-adzehead-flint": "火打石の釿の斧頭", 
+	"item-adzehead-chert": "チャートの釿の斧頭",
+	"item-adzehead-granite": "花崗岩の釿の斧頭",
+	"item-adzehead-andesite": "安山岩の釿の斧頭",
+	"item-adzehead-basalt": "玄武岩の釿の斧頭",
+	"item-adzehead-obsidian": "黒曜石の釿の斧頭",
+	"item-adzehead-peridotite": "かんらん岩の釿の斧頭",
+	"item-adzehead-tinbronze": "スズ青銅の釿の斧頭",
+	"item-adzehead-bismuthbronze": "ビスマス青銅の釿の斧頭",
+	"item-adzehead-blackbronze": "黒青銅の釿の斧頭",
+	"item-adzehead-iron": "鉄の釿の斧頭",
+	"item-adzehead-steel": "鋼の釿の斧頭",
+	"item-adze-*-chert": "チャートの釿",
+	"item-adze-*-granite": "花崗岩の釿",
+	"item-adze-*-andesite": "安山岩の釿",
+	"item-adze-*-basalt": "玄武岩の釿",
+	"item-adze-*-obsidian": "黒曜石の釿",
+	"item-adze-*-peridotite": "かんらん岩の釿",
+	"item-adze-*-flint": "火打石の釿",
+	"item-adze-*-tinbronze": "スズ青銅の釿",
+	"item-adze-*-bismuthbronze": "ビスマス青銅の釿",
+	"item-adze-*-blackbronze": "黒青銅の釿",
+	"item-adze-*-iron": "鉄の釿",
+	"item-adze-*-meteoriciron": "隕鉄の釿",
+	"item-adze-*-steel": "鋼の釿",
+	
+	//Story Events
+	"The Tyee and the bullcook...": "ティーとブルコック...",
+	"...working sole and blade": "...作業靴と刃物",
+	"...with sturdy haft and bit": "...頑丈な柄と穂先で",
+	"...by dust and the dog": "...ホコリとイヌが",
+
+	//ToolMode Interaction Help
+	"heldhelp-chopping": "割って{0}を作る",
+	"heldhelp-hewing": "加工して{0}を作る",
+	"heldhelp-planing": "削って{0}を作る",
+	"heldhelp-sawing": "切って{0}を作る",
+
+	//Creative tabs
+  "game:tabname-indappledgroves": "※In Dappled Groves(木漏れ日の中で)",
+
+	//Ground Recipe Guide
+"indappledgroves:indappledgrovesguide-inworldcrafting-title": "ゲームメカニック: この世界でのクラフト",
+"indappledgroves:indappledgrovesguide-inworldcrafting-text": 
+"<font weight='bold' align='center'>この世界でのクラフト</font>
+  この世界でのクラフトはグリッドレシピを使わずに行われ、特定のツールモードでツールを使ってブロックとやり取りすることで成り立つ。
+  ハンドブックにあるブロックの項目には、目的の結果を得る為に必要なレシピとツールモードが記載されている。",
+
+	//Workstation Guide
+"indappledgroves:indappledgrovesguide-workstations-title": "ゲームメカニック: 作業台でのクラフト",
+"indappledgroves:indappledgrovesguide-workstations-text": "<font weight='bold' align='center'>作業台でのクラフト</font>
+In Dappled Grovesでは、木工作業を支援する新しい作業台を導入しています。この作業台は、<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>から<a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">丸太のハーフブロック</a>の切り出しなどの木工作業に必要な時間を短縮する。
+<font weight='bold' align='center'>作業台</font>
+<font weight='bold' align='left'>薪割台</font>
+   最初に製作する作業台は「<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>」である。 他の作業台と同様に、この作業台では行う処理を高速化し、将来的にはこの世界のクラフトでは手に入らないレシピを入手出来るようになるかもしれない。
+	 現在、<a href=\"handbook://toolmodes-indappledgroves\">割ったり</a>、<a href=\"handbook://toolmodes-indappledgroves\">加工</a>の工程に使用されているが、追加で薪割台を作ることは出来ない。
+
+<font weight='bold' align='left'>木挽台(X型)</font>
+	木挽台(X型)は<a href=\"handbook://item-boards\">板</a>を加工すると使えるようになる。薪割台と同様、処理速度が上がり、丸太を<a href=\"handbook://toolmodes-indappledgroves\">製材</a>して板を作るのに使用する。
+
+<font weight='bold' align='left'>木挽台(T型)</font>
+   この作業台は、今回のリリースでは導入されていない。しかし、後に統合され、鉋(かんな)やその他の工具を使用した様々な木工作業のオプションが提供される予定。",
+
+//Tool Modes Guide
+"indappledgroves:indappledgrovesguide-toolmodes-title": "ゲームメカニック: ツールモード",
+"indappledgroves:indappledgrovesguide-toolmodes-text": 
+"<font weight='bold' align='center'>ツールモード</font>
+ツールモードは、Aetherial Labs (Vinter Nachts modding group)がリリースする本MODと今後のMODで導入されるすべてのツールに不可欠な要素になる予定。これらは基本ゲームの一部であり、主に鍛冶のハンマーと大鎌に使用されている。私はここで、その可能性を広げることにした。
+
+<font weight='bold' align='center'>基本的な考え方</font>
+ツールモードは、新しいレシピの一部として組み込まれた。これは、ワールド内のブロックとやり取りする際の様々な方法を表し、それによって異なる結果を生み出すことを可能にする。現在、3つのツールモードが実装されており、4つ目は現在無効になっているが、「In Dappled Groves」で実装される予定だ。また、5つ目のモードも計画中だ。
+
+<font weight='bold' align='center'>ツールモード</font>
+
+	<font weight='bold'>割る:</font> このモードは、木をハーフブロック、薪、棒に割るのに使用する。将来の改訂で「分割」に変更される可能性があり。
+	<font weight='bold'>加工する:</font> 木の形を整えたり、樹皮を剥ぐなどの「剥ぎ取り」を行う際に使用するモード。現在は、樹皮を剥ぐ時と、ハーフブロックから薪割台を作る時のみ使用する。
+	<font weight='bold'>切る:</font> 丸太から板を作る時に使う。ノコギリのみのモード。
+
+	<font weight='bold' align='center'>将来のモード</font>
+	<font weight='bold'>鉋(かんな)掛け:</font> 鉋(かんな)掛けは、より踏み込んだ基板作りを行う際に、粗い状態から平滑な状態へと加工する為のモード。
+	<font weight='bold'>分割:</font> 斧や槌で割るよりも精度の高い方法で、丸太を板葺き板や梁など様々なパーツに分割することである。通常、鉈や逆刃鉈が使われる。"
+}

@@ -37,26 +37,24 @@ namespace InDappledGroves.WorldGen
                 woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
                 stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
             }
-            if (!api.ModLoader.IsModEnabled("primitivesurvival"))
-            {
-                this.worldBlockAccessor = api.World.BlockAccessor;
-                this.chunkSize = this.worldBlockAccessor.ChunkSize;
-                this.treeTypes = new HashSet<string>();
-                this.stumpTypes = new HashSet<string>();
-                this.LoadTreeTypes(this.treeTypes);
-                this.LoadStumpTypes(this.stumpTypes);
 
-                //Registers our command with the system's command registry.
-                //1.17 disable /hollow
-                this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
+            this.worldBlockAccessor = api.World.BlockAccessor;
+            this.chunkSize = this.worldBlockAccessor.ChunkSize;
+            this.treeTypes = new HashSet<string>();
+            this.stumpTypes = new HashSet<string>();
+            this.LoadTreeTypes(this.treeTypes);
+            this.LoadStumpTypes(this.stumpTypes);
 
-                //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
-                this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
-                //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
-                this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnGeneration, EnumWorldGenPass.PreDone, "standard");
-                this.sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
-                //this.sapi.Event.ChunkDirty += Event_ChunkDirty;
-            }
+            //Registers our command with the system's command registry.
+            //1.17 disable /hollow
+            this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
+
+            //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
+            this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
+            //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
+            this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnGeneration, EnumWorldGenPass.PreDone, "standard");
+            this.sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
+            //this.sapi.Event.ChunkDirty += Event_ChunkDirty;
             this.sapi = api;
         }
 
@@ -145,6 +143,13 @@ namespace InDappledGroves.WorldGen
                     blockPos.Z = (pos.Z * this.chunkSize) + z;
                     blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
                     Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
+                    if (sapi.ModLoader.IsModEnabled("primitivesurvival"))
+                    {
+                        if (IsStumpLog(curBlock)) {
+                            PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
+                        }
+                        continue;
+                    } 
 
                     if (!IsStumpLog(curBlock) || this.worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
                     if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))

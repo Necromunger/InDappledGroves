@@ -78,7 +78,6 @@ namespace InDappledGroves.Blocks
 				lastSecondsUsed = secondsUsed;
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
-				System.Diagnostics.Debug.WriteLine("Block: " + curResistance + " " + curMiningProgress);
 				if ( curMiningProgress >= curResistance) 
 				{
 

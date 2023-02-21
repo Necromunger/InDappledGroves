@@ -1,6 +1,19 @@
 ﻿1.17-v0.4.8
+	- Corrected axes not working with Fern Trees, Fruit Trees, and Bamboo.
+	- Updated Adze to have tooltype Hoe in it's itemtype to make ToolDurabilityModifier apply to it directly. May have unintended consequences.
+	- Updated Adze ground recipes for logs to drop 4 bark per log rather than 2.
 	- Updated IDGTool to accommodate four block trees.
 	- Added feature to generate stumps and hollows in Wildcraft Trees (when present)
+	- Implemented stripped logs to boards recipes for ground and sawbuck
+	- Made saws damage appropriately
+	- Corrected tree trunks spawning incorrectly.
+	- Corrected bark duplication issue (Noelle?)
+	- Corrected bark converting to last piece used (Noelle?)
+	- Made it possible to pick up a placed piece of firewood by right-clicking it.
+		- Further, this involved implementing a new behavior that may, in reality, just be a rewrite of the existing PickUpOnRightClick.
+	- Wildcraft Trees compatibilty complete(?)
+	- Released for testing to Patrons.
+
 
 1.17-v0.4.7
 	- Fixed saw error, and *actually* fixed stumps not spawning.

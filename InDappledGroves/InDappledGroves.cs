@@ -32,6 +32,7 @@ namespace InDappledGroves
             api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
             api.RegisterBlockClass("idgbarkbasket", typeof(BarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
+            api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
             api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));
             api.RegisterBlockClass("blocktreehollowplaced", typeof(BlockTreeHollowPlaced));
 
@@ -47,9 +48,11 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
+            
 
             //Register BlockBehaviors
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
+            api.RegisterBlockBehaviorClass("IDGPickup", typeof(BehaviorIDGPickup));
 
             
 

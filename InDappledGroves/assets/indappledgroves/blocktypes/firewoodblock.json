@@ -1,9 +1,9 @@
 {
-	"code": "idgfirewoodblock",
+	"code": "idgblockfirewood",
 	"class": "Block",
 	"shape": { "base": "game:item/firewood", "rotateX": 90},
 	"attributes": {},
-	"behaviors": [{"name": "Unstable"}],
+	"behaviors": [{"name": "Unstable"},{"name": "IDGPickup", "properties":{"type": "item","pickupdrop": "firewood", "quantity": 1}}],
 	"blockmaterial": "Wood",
 	"resistance": 2,
 	"sounds": {

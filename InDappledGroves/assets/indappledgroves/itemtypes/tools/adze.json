@@ -39,6 +39,7 @@
 		},
 		"hewingProps": {"hewingMod": 1},
 	},
+	"tool": "hoe",
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },
     { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },

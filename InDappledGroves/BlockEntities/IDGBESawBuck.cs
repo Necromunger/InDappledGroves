@@ -137,6 +137,7 @@ namespace InDappledGroves.BlockEntities
 			{
 				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
 			}
+
 		}
 
 		public bool DoesSlotMatchRecipe(ItemSlot slots)

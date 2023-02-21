@@ -52,10 +52,10 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = itemstack?.Collectible;
+			CollectibleObject sawtool = itemstack?.Collectible;
 			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos position = blockSel.Position;
-			if (collectibleObject != null && collectibleObject is IIDGTool && !idgbesawBuck.Inventory.Empty)
+			if (sawtool != null && sawtool is IIDGTool && !idgbesawBuck.Inventory.Empty)
 			{
 				if (this.playNextSound < secondsUsed)
 				{
@@ -63,14 +63,19 @@ namespace InDappledGroves.Blocks
 					this.playNextSound += 0.7f;
 				}
 
-				curDmgFromMiningSpeed += (collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+				curDmgFromMiningSpeed += (sawtool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
 				lastSecondsUsed = secondsUsed;
 
+				EntityPlayer playerEntity = byPlayer.Entity;
+				
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+
+				
 				if (curMiningProgress >= curResistance)
 				{
-					this.SpawnOutput(this.recipe, blockSel.Position);
+					idgbesawBuck.SpawnOutput(this.recipe, blockSel.Position);
+					sawtool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
 					idgbesawBuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
 					idgbesawBuck.MarkDirty(true, null);

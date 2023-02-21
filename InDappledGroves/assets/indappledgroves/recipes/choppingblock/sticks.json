@@ -21,7 +21,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgfirewoodblock"}
+         {"type": "block", "code": "indappledgroves:idgblockfirewood"}
        ]
       }
     ],
