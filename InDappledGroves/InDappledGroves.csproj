@@ -99,6 +99,9 @@
     <None Update="assets\indappledgroves\patches\ancienttools\log.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\carryable\carryable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\boardpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
