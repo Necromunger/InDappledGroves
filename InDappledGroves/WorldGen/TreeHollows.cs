@@ -26,20 +26,23 @@ namespace InDappledGroves.WorldGen
         private IBlockAccessor worldBlockAccessor; //Used for accessing blocks after chunk generation
 
         private string[] dirs = { "north", "south", "east", "west" };
-        private List<string> woods = new(new string[] {"acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut"}) ;
-        private List<string> stumps = new(new string[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart", "walnut" });
+        private List<string> woods = new();
+        private List<string> stumps = new();
 
         public override void StartServerSide(ICoreServerAPI api)
         {
             this.sapi = api;
-            if (api.ModLoader.IsModEnabled("wildcrafttrees"))
-            {
-                woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-                stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-            }
-
+            //if (api.ModLoader.IsModEnabled("wildcrafttrees"))
+            //{
+            //    woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
+            //    stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
+            //}
+            
             this.worldBlockAccessor = api.World.BlockAccessor;
             this.chunkSize = this.worldBlockAccessor.ChunkSize;
+
+            woods.AddRange(InDappledGrovesConfig.Current.woodTypes);
+            stumps.AddRange(InDappledGrovesConfig.Current.stumpTypes);
             this.treeTypes = new HashSet<string>();
             this.stumpTypes = new HashSet<string>();
             this.LoadTreeTypes(this.treeTypes);

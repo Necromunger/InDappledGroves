@@ -10,14 +10,6 @@ namespace InDappledGroves.Items
 	class IDGFirewood : ItemFirewood
 	{
 
-		protected override AssetLocation PileBlockCode
-		{
-			get
-			{
-				return new AssetLocation("firewoodpile");
-			}
-		}
-
 		public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
 		{
 			if (blockSel == null) return;

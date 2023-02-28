@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "alcmy1",
+  "name": "Aetherial Labs Core Mod 1: Materials And Resources",
+  "authors": ["Vinter Nacht"],
+  "description": "A Library For Mods Made By Aetherial Labs",
+  "version": "1.17.0-0.0.1-dev",
+  "dependency": {
+    "game": ""
+  }
+}

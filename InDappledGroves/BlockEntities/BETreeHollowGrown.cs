@@ -18,18 +18,19 @@
         private readonly int maxSlots = 8;
         public override string InventoryClassName => "treehollowgrown";
 
+
         
         private readonly double updateMinutes = InDappledGrovesConfig.Current.TreeHollowsUpdateMinutes;
         private long updateTick;
 
         //private const int MinItems = 1;
         //private const int MaxItems = 8;
-        public override InventoryBase Inventory => this.inventory;
+
+        public override InventoryBase Inventory { get; }
 
         public BETreeHollowGrown()
         {
-            this.inventory = new InventoryGeneric(this.maxSlots, null, null);
-            this.meshes = new MeshData[this.maxSlots];
+            this.Inventory = new InventoryGeneric(this.maxSlots, null, null);
         }
 
 
@@ -46,17 +47,15 @@
         public void TreeHollowUpdate(float par)
         {
             var block = this.Api.World.BlockAccessor.GetBlock(this.Pos, BlockLayersAccess.Default) as BlockTreeHollowGrown;
-            if (this.inventory[0].Empty)
+            if (this.Inventory[0].Empty)
             {
                 var uf = new TreeHollows();
-                // TODO: Call Updated ItemStack Generator
-                //uf.AddItemStacks(this, uf.MakeItemStacks(block.FirstCodePart(1), this.Api as ICoreServerAPI, this.Pos));
                 this.MarkDirty();
             }
         }
 
 
-        internal bool OnInteract(IPlayer byPlayer) //, BlockSelection blockSel)
+        internal bool OnInteract(IPlayer byPlayer)
         {
             if (this.Api.Side.IsServer()) //reset the listener on interact
             {
@@ -67,7 +66,7 @@
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             if (playerSlot.Empty)
             {
-                if (this.TryTake(byPlayer)) //, blockSel))
+                if (this.TryTake(byPlayer))
                 { return true; }
                 return false;
             }
@@ -75,13 +74,13 @@
             return false;
         }
 
-        internal void OnBreak() // IPlayer byPlayer, BlockPos pos)
+        internal void OnBreak()
         {
             for (var index = this.maxSlots - 1; index >= 0; index--)
             {
-                if (!this.inventory[index].Empty)
+                if (!this.Inventory[index].Empty)
                 {
-                    var stack = this.inventory[index].TakeOut(1);
+                    var stack = this.Inventory[index].TakeOut(1);
                     if (stack.StackSize > 0)
                     { this.Api.World.SpawnItemEntity(stack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5)); }
                     this.MarkDirty(true);
@@ -95,7 +94,7 @@
             var found = false;
             do
             {
-                if (!this.inventory[slot].Empty)
+                if (!this.Inventory[slot].Empty)
                 { found = true; }
                 else
                 { slot--; }
@@ -105,13 +104,13 @@
         }
 
 
-        private bool TryTake(IPlayer byPlayer) //, BlockSelection blockSel)
+        private bool TryTake(IPlayer byPlayer)
         {
             var index = this.LastFilledSlot();
             if (index == -1)
-            { return false; } //inventory empty
+            { return false; }
 
-            var stack = this.inventory[index].TakeOut(1);
+            var stack = this.Inventory[index].TakeOut(1);
             if (byPlayer.InventoryManager.TryGiveItemstack(stack))
             {
                 var sound = stack.Block?.Sounds?.Place;
@@ -144,9 +143,9 @@
             { return; } //inventory empty
             for (var slot = 0; slot < index; slot++)
             {
-                if (!this.inventory[slot].Empty)
+                if (!this.Inventory[slot].Empty)
                 {
-                    var stack = this.inventory[slot].Itemstack;
+                    var stack = this.Inventory[slot].Itemstack;
                     if (stack?.Item?.Shape != null)
                     {
                         if ((stack.Collectible as ItemWearable) == null)
@@ -171,7 +170,7 @@
             var index = this.LastFilledSlot();
             if (index > -1)
             {
-                var stack = this.inventory[index].Itemstack;
+                var stack = this.Inventory[index].Itemstack;
                 if (stack != null)
                 {
                     if (stack.Class == EnumItemClass.Block)
@@ -230,7 +229,7 @@
             { sb.AppendLine(Lang.Get("Empty")); }
             else
             {
-                var desc = this.inventory[index].Itemstack.GetName();
+                var desc = this.Inventory[index].Itemstack.GetName();
                 sb.AppendLine(Lang.Get(desc));
             }
             sb.AppendLine();

@@ -8,7 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82} = {D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82}
+		{0B9FF445-E74E-4AB2-B10E-57BF965DE637} = {0B9FF445-E74E-4AB2-B10E-57BF965DE637}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ALCMY1", "..\ALCMY1\ALCMY1\ALCMY1.csproj", "{0B9FF445-E74E-4AB2-B10E-57BF965DE637}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +27,10 @@ Global
 		{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9FF445-E74E-4AB2-B10E-57BF965DE637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9FF445-E74E-4AB2-B10E-57BF965DE637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9FF445-E74E-4AB2-B10E-57BF965DE637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9FF445-E74E-4AB2-B10E-57BF965DE637}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

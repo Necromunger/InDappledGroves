@@ -515,49 +515,49 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="AnimatedGif">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\AnimatedGif.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\AnimatedGif.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\cairo-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\cairo-sharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\Newtonsoft.Json.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\protobuf-net.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\protobuf-net.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VintagestoryAPI.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\VintagestoryAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VintagestoryLib.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="VSBuildLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VSBuildLib.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\VintagestoryLib.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSCreativeMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSCreativeMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSEssentials.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSEssentials.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSSurvivalMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSSurvivalMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if $(Configuration) == Debug (&#xD;&#xA;&#xD;&#xA;:: Clean the debug mod directory. ::&#xD;&#xA;del /f /s /q $(SolutionDir).debug\$(ProjectName) &gt; NUL&#xD;&#xA;rmdir /s /q $(SolutionDir).debug\$(ProjectName)&#xD;&#xA;&#xD;&#xA;:: Rebuild the necessary folders. ::&#xD;&#xA;if not exist $(SolutionDir).debug\$(ProjectName)\ mkdir $(SolutionDir).debug\$(ProjectName)\&#xD;&#xA;&#xD;&#xA;:: Copy all relevant files to debug directory. ::&#xD;&#xA;xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir).debug\$(ProjectName)&quot; /y /e /s&#xD;&#xA;&#xD;&#xA;)" />
+  </Target>
 
 </Project>
