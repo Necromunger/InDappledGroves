@@ -7,6 +7,7 @@
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
   "attributes": {
+    "inventoryclass": "choppingblock",
 		"handbook": {
 			"groupBy": ["choppingblock-*-east"],
       "extraSections": [

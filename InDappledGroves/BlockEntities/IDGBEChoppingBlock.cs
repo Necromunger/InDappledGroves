@@ -14,8 +14,9 @@ namespace InDappledGroves.BlockEntities
     class IDGBEChoppingBlock : BlockEntityDisplay
     {
 		public override InventoryBase Inventory { get; }
-		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "onDisplayTransform";
+		//public override string InventoryClassName => "choppingblock";
+		public override string InventoryClassName => Block.Attributes["choppingblock"].AsString();
+		public override string AttributeTransformCode => "onDisplayTransform";
 
 		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
@@ -28,11 +29,7 @@ namespace InDappledGroves.BlockEntities
 		{
 			base.Initialize(api);
 			this.capi = (api as ICoreClientAPI);
-			if (this.capi != null)
-			{
-				this.updateMeshes();
-			}
-		}
+        }
 
 		public ItemSlot InputSlot
 		{
@@ -75,7 +72,7 @@ namespace InDappledGroves.BlockEntities
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 updateMeshes();
-			}
+            }
 			return true;
 		}
 
@@ -122,8 +119,8 @@ namespace InDappledGroves.BlockEntities
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
 					base.MarkDirty(true, null);
-					this.updateMeshes();
-					return true;
+                    this.updateMeshes();
+                    return true;
 				}
 			}
 			return false;

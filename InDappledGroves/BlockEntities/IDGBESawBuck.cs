@@ -30,11 +30,11 @@ namespace InDappledGroves.BlockEntities
 		{
 			base.Initialize(api);
 			this.capi = (api as ICoreClientAPI);
-			if (this.capi != null)
-			{
-				this.updateMeshes();
-			}
-		}
+            if (this.capi != null)
+            {
+                this.updateMeshes();
+            }
+        }
 
 		internal bool OnInteract(IPlayer byPlayer)
 		{
