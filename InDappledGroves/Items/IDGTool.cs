@@ -171,8 +171,8 @@ namespace InDappledGroves.Items.Tools
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
 
-                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult);
-                    float curResistance = resistance * InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
+                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
+                    float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
                     System.Diagnostics.Debug.WriteLine("Tool: " + toolMiningSpeed + " cuResist:" + curResistance + " " + curMiningProgress + " ");
                     if (api.World is Vintagestory.API.Server.IServerWorldAccessor && curMiningProgress >= curResistance)
                     {

@@ -169,8 +169,8 @@ namespace InDappledGroves.Blocks
 						this.playNextSound += 0.7f;
 					}
 
-					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-					float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+					float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 					if (curMiningProgress >= curResistance)
 					{
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);

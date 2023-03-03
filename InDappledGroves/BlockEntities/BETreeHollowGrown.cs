@@ -20,7 +20,7 @@
 
 
         
-        private readonly double updateMinutes = InDappledGrovesConfig.Current.TreeHollowsUpdateMinutes;
+        private readonly double updateMinutes = IDGTreeConfig.Current.TreeHollowsUpdateMinutes;
         private long updateTick;
 
         //private const int MinItems = 1;

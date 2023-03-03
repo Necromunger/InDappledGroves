@@ -68,8 +68,8 @@ namespace InDappledGroves.Blocks
 
 				EntityPlayer playerEntity = byPlayer.Entity;
 				
-				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 
 				
 				if (curMiningProgress >= curResistance)

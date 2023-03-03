@@ -29,6 +29,7 @@ namespace InDappledGroves.WorldGen
         private List<string> woods = new();
         private List<string> stumps = new();
 
+        
         public override void StartServerSide(ICoreServerAPI api)
         {
             this.sapi = api;
@@ -40,9 +41,8 @@ namespace InDappledGroves.WorldGen
             
             this.worldBlockAccessor = api.World.BlockAccessor;
             this.chunkSize = this.worldBlockAccessor.ChunkSize;
-
-            woods.AddRange(InDappledGrovesConfig.Current.woodTypes);
-            stumps.AddRange(InDappledGrovesConfig.Current.stumpTypes);
+            woods.AddRange(IDGTreeConfig.Current.woodTypes);
+            stumps.AddRange(IDGTreeConfig.Current.stumpTypes);
             this.treeTypes = new HashSet<string>();
             this.stumpTypes = new HashSet<string>();
             this.LoadTreeTypes(this.treeTypes);
@@ -63,7 +63,7 @@ namespace InDappledGroves.WorldGen
 
         private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
         {
-            if (InDappledGrovesConfig.Current.RunTreeGenOnChunkReload)
+            if (IDGTreeConfig.Current.RunTreeGenOnChunkReload)
             {
                 foreach (IWorldChunk chunk in chunks)
                 {
@@ -155,7 +155,7 @@ namespace InDappledGroves.WorldGen
                     } 
 
                     if (!IsStumpLog(curBlock) || this.worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
-                    if (hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
+                    if (hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
                     {
                         var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
                         if (hollowWasPlaced)
@@ -168,7 +168,7 @@ namespace InDappledGroves.WorldGen
 
 
 
-                    if (ShouldPlaceHollow() && hollowsPlacedCount < InDappledGrovesConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
+                    if (ShouldPlaceHollow() && hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
                     {
                         var hollowLocation = this.TryGetHollowLocation(blockPos);
                         if (hollowLocation == null) continue;
@@ -300,7 +300,7 @@ namespace InDappledGroves.WorldGen
                         if (be is BETreeHollowGrown)
                         {
                             var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                            ItemStack[] lootStacks = ConvertTreeLoot(block.Attributes["treeLoot"].AsArray(), pos);
+                            ItemStack[] lootStacks = ConvertTreeLoot(IDGHollowLootConfig.Current.treehollowjson.ToArray(), pos);
                             if (lootStacks != null) AddItemStacks(hollow, lootStacks);
                         }
                     }
@@ -314,7 +314,7 @@ namespace InDappledGroves.WorldGen
         private bool ShouldPlaceHollow()
         {
             var randomNumber = this.sapi.World.Rand.Next(0, 100);
-            return randomNumber > 0 && randomNumber <= InDappledGrovesConfig.Current.TreeHollowsSpawnProbability * 100;
+            return randomNumber > 0 && randomNumber <= IDGTreeConfig.Current.TreeHollowsSpawnProbability * 100;
         }
 
         //Adds the given list of ItemStacks to the first slots in the given hollow.
@@ -387,7 +387,6 @@ namespace InDappledGroves.WorldGen
         {
             bstack = treeLoot["dropStack"].AsObject<BlockDropItemStack>();
             cReqs = treeLoot["dropReqs"].AsObject<ClimateRequirements>();
-
         }
     }
 
@@ -406,4 +405,6 @@ namespace InDappledGroves.WorldGen
         public ClimateRequirements() { }
 
     }
+
+
 }
