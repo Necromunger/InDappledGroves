@@ -1,5 +1,6 @@
 ﻿using InDappledGroves.Blocks;
 using InDappledGroves.Items.Tools;
+using InDappledGroves.WorldGen;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,9 +29,9 @@ namespace InDappledGroves.Util
         {
 
             IDGHollowLootConfig defaultConfig = new();
-            for (int i = 0; i < InDappledGroves.treehollowloot.Count; i++)
+            for (int i = 0; i < TreeHollows.treehollowloot.Count; i++)
             {
-                defaultConfig.treehollowjson.Add(JsonObject.FromJson(InDappledGroves.treehollowloot[i].Replace("/","")));
+                defaultConfig.treehollowjson.Add(JsonObject.FromJson(TreeHollows.treehollowloot[i].Replace("/","")));
             }
 
             return defaultConfig;
