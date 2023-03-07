@@ -9,7 +9,6 @@
     ".NETStandard,Version=v2.0/": {
       "InDappledGroves/1.0.0": {
         "dependencies": {
-          "ALCMY1": "1.0.0",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {

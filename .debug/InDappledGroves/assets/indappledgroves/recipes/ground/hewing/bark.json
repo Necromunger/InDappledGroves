@@ -63,7 +63,7 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 4},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -76,7 +76,7 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 4},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -89,7 +89,7 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 4},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -102,7 +102,7 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 4},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -115,6 +115,6 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 4},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   }
 ]

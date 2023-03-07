@@ -42,9 +42,6 @@
     <None Update="assets\indappledgroves\blocktypes\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\blocktypes\strippedlog.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\blocktypes\clapboard.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -514,50 +511,44 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ALCMY1\ALCMY1\ALCMY1.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\0Harmony.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="AnimatedGif">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\AnimatedGif.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\AnimatedGif.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\cairo-sharp.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\cairo-sharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\Newtonsoft.Json.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Lib\protobuf-net.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\protobuf-net.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\VintagestoryAPI.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\VintagestoryAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\VintagestoryLib.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\VintagestoryLib.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSCreativeMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSCreativeMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSEssentials.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSEssentials.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1181\Mods\VSSurvivalMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSSurvivalMod.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>

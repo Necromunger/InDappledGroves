@@ -4,7 +4,7 @@
   "name": "Aetherial Labs Core Mod 1: Materials And Resources",
   "authors": ["Vinter Nacht"],
   "description": "A Library For Mods Made By Aetherial Labs",
-  "version": "1.17.0-0.0.1-dev",
+  "version": "1.18.0-v0.0.1-dev1",
   "dependency": {
     "game": ""
   }

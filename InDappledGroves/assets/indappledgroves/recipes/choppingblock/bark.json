@@ -25,7 +25,7 @@
     ],
     "ToolDamage": 4,
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -38,6 +38,6 @@
       }
     ],
     "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
-    "returnstack": {"type": "block", "code": "indappledgroves:strippedlog-{wood}-ud"}
+    "returnstack": {"type": "block", "code": "game:debarkedlog-{wood}-ud"}
   }
 ]

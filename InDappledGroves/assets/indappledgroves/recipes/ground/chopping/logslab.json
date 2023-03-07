@@ -17,7 +17,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:strippedlog-*-ud", "name": "wood", "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:debarkedlog-{wood}-ud", "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],

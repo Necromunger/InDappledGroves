@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
@@ -143,6 +142,7 @@ namespace InDappledGroves.BlockEntities
 			String side = Block.Variant["side"];
 			if (stack != null && stack.Collectible is IContainedMeshSource containedMeshSource)
 			{
+
 				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
 				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
 			}

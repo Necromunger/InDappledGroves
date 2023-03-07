@@ -1,4 +1,7 @@
-﻿1.17-v0.4.8
+﻿1.18-v0.4.9-
+	- Made drops from treehollows configurable
+
+1.17-v0.4.8
 	- Corrected axes not working with Fern Trees, Fruit Trees, and Bamboo.
 	- Updated Adze to have tooltype Hoe in it's itemtype to make ToolDurabilityModifier apply to it directly. May have unintended consequences.
 	- Updated Adze ground recipes for logs to drop 4 bark per log rather than 2.
