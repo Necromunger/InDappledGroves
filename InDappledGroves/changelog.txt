@@ -1,5 +1,8 @@
 ﻿1.18-v0.4.9-
 	- Made drops from treehollows configurable
+	- Removed stripped log blocktype, added compat with vanilla debarked logs
+	- Updated recipes and patches to accommodate the latest recipes
+	- 
 
 1.17-v0.4.8
 	- Corrected axes not working with Fern Trees, Fruit Trees, and Bamboo.
