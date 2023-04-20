@@ -512,49 +512,49 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\0Harmony.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AnimatedGif">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\AnimatedGif.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\AnimatedGif.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\cairo-sharp.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\cairo-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\Newtonsoft.Json.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Lib\protobuf-net.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Tavis.JsonPatch">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Tavis.JsonPatch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\VintagestoryAPI.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\VintagestoryLib.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSCreativeMod.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSCreativeMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSEssentials.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSEssentials.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18.0-pre.5\Mods\VSSurvivalMod.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(Configuration) == Debug (&#xD;&#xA;&#xD;&#xA;:: Clean the debug mod directory. ::&#xD;&#xA;del /f /s /q $(SolutionDir).debug\$(ProjectName) &gt; NUL&#xD;&#xA;rmdir /s /q $(SolutionDir).debug\$(ProjectName)&#xD;&#xA;&#xD;&#xA;:: Rebuild the necessary folders. ::&#xD;&#xA;if not exist $(SolutionDir).debug\$(ProjectName)\ mkdir $(SolutionDir).debug\$(ProjectName)\&#xD;&#xA;&#xD;&#xA;:: Copy all relevant files to debug directory. ::&#xD;&#xA;xcopy &quot;$(TargetDir)&quot; &quot;$(SolutionDir).debug\$(ProjectName)&quot; /y /e /s&#xD;&#xA;&#xD;&#xA;)" />
-  </Target>
 
 </Project>

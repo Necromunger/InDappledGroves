@@ -32,13 +32,7 @@ namespace InDappledGroves.WorldGen
         
         public override void StartServerSide(ICoreServerAPI api)
         {
-            this.sapi = api;
-            //if (api.ModLoader.IsModEnabled("wildcrafttrees"))
-            //{
-            //    woods.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-            //    stumps.AddRange(new List<string>(new string[] {"douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa", "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"}));
-            //}
-            
+            this.sapi = api;          
             this.worldBlockAccessor = api.World.BlockAccessor;
             this.chunkSize = this.worldBlockAccessor.ChunkSize;
             woods.AddRange(IDGTreeConfig.Current.woodTypes);
@@ -55,7 +49,7 @@ namespace InDappledGroves.WorldGen
             //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
             this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
             //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
-            this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnGeneration, EnumWorldGenPass.PreDone, "standard");
+            this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnRequest, EnumWorldGenPass.PreDone, "standard");
             this.sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
             //this.sapi.Event.ChunkDirty += Event_ChunkDirty;
             this.sapi = api;
@@ -121,8 +115,11 @@ namespace InDappledGroves.WorldGen
         /// Called when a number of chunks have been generated. For each chunk we first determine if we should place a tree hollow
         /// and if we should we then loop through each block to find a tree. When one is found we place the block.
         /// </summary>
-        private void OnChunkColumnGeneration(IServerChunk[] chunks, int chunkX, int chunkZ, ITreeAttribute chunkgenparams)
+        private void OnChunkColumnRequest(IChunkColumnGenerateRequest request)
         {
+            var chunks = request.Chunks;
+            var chunkX = request.ChunkX;
+            var chunkZ = request.ChunkZ;
             //Debug.WriteLine("Entering the death loop for chunk " + chunkX + " " + chunkZ);
             for (var i = 0; i < chunks.Length; i++)
             {
@@ -165,8 +162,6 @@ namespace InDappledGroves.WorldGen
                         }
                     }
                     PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
-
-
 
                     if (ShouldPlaceHollow() && hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
                     {
@@ -247,14 +242,6 @@ namespace InDappledGroves.WorldGen
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
         private bool PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
         {
-            //Moved this to chunk gen to hopefully speed things up...a lot
-            /*
-            if (!this.ShouldPlaceHollow())
-            {
-                //Debug.WriteLine("cancelled!");
-                return true;
-            }
-            */
 
             //consider moving it upwards
             var upCount = this.sapi.World.Rand.Next(2,8);
@@ -285,7 +272,6 @@ namespace InDappledGroves.WorldGen
             }
 
             var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + this.dirs[this.sapi.World.Rand.Next(4)];
-            //Debug.WriteLine("With: " + withPath);
             var withBlockID = this.sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
@@ -378,7 +364,7 @@ namespace InDappledGroves.WorldGen
 
         public static List<String> treehollowloot { get; set; } = new()
         {
-            @"{ ""dropStack"": { ""type"":""block"", ""code"": ""game:mushroom-fieldmushroom-normal"", ""quantity"": { ""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""} }, ""dropReqs"": {}}",
+            @"{""dropStack"": {""type"":""block"", ""code"": ""game:mushroom-fieldmushroom-normal"", ""quantity"": { ""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""} }, ""dropReqs"": {}}",
             @"{""dropStack"": {""type"":""item"", ""code"": ""game:fruit-yellowapple"", ""quantity"": {""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""}}, ""dropReqs"": {}}",
             @"{""dropStack"": {""type"":""item"", ""code"": ""game:fruit-redapple"", ""quantity"": {""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""}}, ""dropReqs"": {}}",
             @"{""dropStack"": {""type"":""item"", ""code"": ""game:drygrass"", ""quantity"": {""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""}}, ""dropReqs"": {}}",

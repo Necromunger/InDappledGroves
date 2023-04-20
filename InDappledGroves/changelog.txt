@@ -1,4 +1,4 @@
-﻿1.18-v0.4.9-
+﻿1.18-v0.4.9-rc.1
 	- Made drops from treehollows configurable
 	- Removed stripped log blocktype, added compat with vanilla debarked logs
 	- Updated recipes and patches to accommodate the latest recipes
