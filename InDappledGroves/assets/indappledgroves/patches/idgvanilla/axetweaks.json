@@ -125,7 +125,7 @@
   {
     "op": "replace",
     "path": "/variantgroups/0/states",
-    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze"],
+    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint"],
     "file": "game:itemtypes/toolhead/axehead.json",
     "side": "server"
   },

@@ -50,7 +50,7 @@
                     {"dropStack": {"type":"block", "code": "game:mushroom-commonmorel-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"block", "code": "game:mushroom-almondmushroom-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
                     {"dropStack": {"type":"block", "code": "game:mushroom-orangeoakbolete-normal", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}},
-                    {"dropStack": {"type":"block", "code": "game:mushroom-flyagaric-harvested", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}}],
+                    {"dropStack": {"type":"block", "code": "game:mushroom-flyagaric-harvested", "quantity": {"avg": 0.5, "var": 2, "dist": "strongerinvexp"}}, "dropReqs": {}}]
       
     },
     "resistanceByType": {

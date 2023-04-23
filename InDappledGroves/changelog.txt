@@ -1,8 +1,20 @@
-﻿1.18-v0.4.9-rc.1
+﻿1.18-v0.4.9-rc.3
+	- Corrected logs from large trees (nw/ne/se/sw) not being able to be chopped in the world.
+
+1.18-v0.4.9-rc.2
+	- Updated a variety of blocks to make use of some clever options to reduce name bloat in the lang file.
+	- Corrected missing textures on Adze's and Bark Baskets
+	- Updated Handbook Entries for greater clarity
+	- Removed recipes for firewood and planks (again?)
+	- Removed Copper and Tin Bronze vanilla axes.
+	- Made firewood able to be used in Clay Ovens again.
+
+
+1.18-v0.4.9-rc.1
 	- Made drops from treehollows configurable
 	- Removed stripped log blocktype, added compat with vanilla debarked logs
 	- Updated recipes and patches to accommodate the latest recipes
-	- 
+	
 
 1.17-v0.4.8
 	- Corrected axes not working with Fern Trees, Fruit Trees, and Bamboo.

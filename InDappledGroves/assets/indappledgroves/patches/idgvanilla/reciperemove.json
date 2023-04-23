@@ -1,59 +1,64 @@
 [
   {
-    "file": "game:recipes/grid/firewood.json",
+    "file": "game:blocktypes/clay/mold/toolmold.json",
+    "op": "remove",
+    "path": "/variantgroups/1/states/0",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/tool/axe.json",
     "op": "add",
     "path": "/0/enabled",
-    "value": "false",
+    "value": false,
     "side": "server"
   },
   {
     "file": "game:recipes/grid/firewood.json",
-    "op": "add",
-    "path": "/1/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/2",
     "side": "server"
   },
   {
     "file": "game:recipes/grid/firewood.json",
-    "op": "add",
-    "path": "/2/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/1",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/0",
     "side": "server"
   },
   // Plank Recipes Disabled Below
   {
     "file": "game:recipes/grid/plank.json",
-    "op": "add",
-    "path": "/0/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/4",
     "side": "server"
   },
   {
     "file": "game:recipes/grid/plank.json",
-    "op": "add",
-    "path": "/1/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/3",
     "side": "server"
   },
   {
     "file": "game:recipes/grid/plank.json",
-    "op": "add",
-    "path": "/2/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/2",
     "side": "server"
   },
   {
     "file": "game:recipes/grid/plank.json",
-    "op": "add",
-    "path": "/3/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/1",
     "side": "server"
   },
   {
     "file": "game:recipes/grid/plank.json",
-    "op": "add",
-    "path": "/4/enabled",
-    "value": "false",
+    "op": "remove",
+    "path": "/0",
     "side": "server"
-  }
+  } 
 ]

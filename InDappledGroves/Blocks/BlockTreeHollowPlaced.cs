@@ -28,6 +28,17 @@
         public string SubtypeInventory => this.variantByGroupInventory == null ? "" : this.Variant[this.variantByGroupInventory];
 
         public TextureAtlasPosition this[string textureCode] => this.tmpTextureSource[this.curType + "-" + textureCode];
+        public override string GetHeldItemName(ItemStack stack) => GetName();
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+        public string GetName()
+        {
+            var material = Variant["wood"];
+
+            var part = Lang.Get($"{material}");
+            part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            return string.Format($"{part} {Lang.Get("indappledgroves:block-treehollow")}");
+        }
 
         public override void OnLoaded(ICoreAPI api)
         {
@@ -334,12 +345,6 @@
             return base.OnBlockInteractStart(world, byPlayer, blockSel);
         }
 
-        public override string GetHeldItemName(ItemStack itemStack)
-        {
-            var type = itemStack.Attributes.GetString("type");
-            return Lang.GetMatching(this.Code?.Domain + AssetLocation.LocationSeparator + "block-" + type + "-" + this.Code?.Path);
-        }
-
         public override void GetHeldItemInfo(ItemSlot inSlot, StringBuilder dsc, IWorldAccessor world, bool withDebugInfo)
         {
             base.GetHeldItemInfo(inSlot, dsc, world, withDebugInfo);
@@ -349,13 +354,6 @@
                 var qslots = inSlot.Itemstack.ItemAttributes?["quantitySlots"]?[type]?.AsInt(0);
                 dsc.AppendLine("\n" + Lang.Get("Quantity Slots: {0}", qslots));
             }
-        }
-        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
-        {
-            return Lang.Get("{0} Treehollow", new object[]
-            {
-                this.Variant["wood"].ToString().UcFirst()
-            });
         }
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)

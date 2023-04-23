@@ -8,7 +8,6 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"rhodium": "game:block/metal/ingot/rhodium",
 		"string": "game:item/tool/material/string",
 		"material": "game:block/metal/ingot/copper",
 		"handle": "game:item/tool/material/handle"
@@ -151,12 +150,12 @@
 					"rotationOrigin": [ 5.4, -1.6, -4.99 ],
 					"rotationY": 15.0,
 					"faces": {
-						"north": { "texture": "#rhodium", "uv": [ 7.0, 3.0, 7.5, 6.5 ] },
-						"east": { "texture": "#rhodium", "uv": [ 11.0, 2.0, 11.5, 5.5 ] },
-						"south": { "texture": "#rhodium", "uv": [ 6.0, 4.0, 6.5, 7.5 ], "enabled": false },
-						"west": { "texture": "#rhodium", "uv": [ 4.0, 4.0, 4.5, 7.5 ] },
-						"up": { "texture": "#rhodium", "uv": [ 9.0, 8.0, 9.5, 8.5 ] },
-						"down": { "texture": "#rhodium", "uv": [ 4.0, 3.0, 4.5, 3.5 ] }
+						"north": { "texture": "#material", "uv": [ 7.0, 3.0, 7.5, 6.5 ] },
+						"east": { "texture": "#material", "uv": [ 11.0, 2.0, 11.5, 5.5 ] },
+						"south": { "texture": "#material", "uv": [ 6.0, 4.0, 6.5, 7.5 ], "enabled": false },
+						"west": { "texture": "#material", "uv": [ 4.0, 4.0, 4.5, 7.5 ] },
+						"up": { "texture": "#material", "uv": [ 9.0, 8.0, 9.5, 8.5 ] },
+						"down": { "texture": "#material", "uv": [ 4.0, 3.0, 4.5, 3.5 ] }
 					}
 				}
 			]

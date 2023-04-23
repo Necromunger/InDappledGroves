@@ -14,7 +14,7 @@ namespace InDappledGroves.BlockEntities
     {
 		public override InventoryBase Inventory { get; }
 		//public override string InventoryClassName => "choppingblock";
-		public override string InventoryClassName => Block.Attributes["choppingblock"].AsString();
+		public override string InventoryClassName => Block.Attributes["inventoryclass"].AsString();
 		public override string AttributeTransformCode => "onDisplayTransform";
 
 		

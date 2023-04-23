@@ -1,6 +1,6 @@
 {
 	"code": "logslab",
-	"class": "BlockSlabSnowRemove",
+	"class": "idglogslab",
 	"behaviors": [
 		{	"name": "OmniRotatable",	"properties": {	"rotateSides": true, "facing": "block"	}	}
 	],

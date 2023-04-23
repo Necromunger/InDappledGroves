@@ -10,6 +10,8 @@
 	"itemhelp-adze-hewwood": "To Hew",
 	"itemhelp-tool-planewood": "To Plane",
 	"toolittledurability": "Your tool requires {0} durability to do this.",
+
+	"block-board": "Board",
 	
 	//Stump Entries
 	"block-handbooktitle-treestump": "",
@@ -23,22 +25,10 @@ is an old tree-stump in water.</i></font>
 		
 		Most trees form with a stump at the bottom. These sturdy bulwarks are difficult to remove, often making it preferable to leave them where they are. You may find it easier to chop above them, rather than chopping them directly. They'll be left behind on the initial felling of the tree either way. You'll have to chop them again to remove them, a lengthy process indeed.
 ",
-	"block-treestump-*-aged-*": "Aged Tree Stump",
-	"block-treestump-*-birch-*": "Birch Tree Stump",
-	"block-treestump-*-oak-*": "Oak Tree Stump",
-	"block-treestump-*-maple-*": "Maple Tree Stump",
-	"block-treestump-*-pine-*": "Pine Tree Stump",
-	"block-treestump-*-acacia-*": "Acacia Tree Stump",
-	"block-treestump-*-kapok-*": "Kapok Tree Stump",
-	"block-treestump-*-baldcypress-*": "Bald Cypress Tree Stump",
-	"block-treestump-*-larch-*": "Larch Tree Stump",
-	"block-treestump-*-redwood-*": "Redwood Tree Stump",
-	"block-treestump-*-ebony-*": "Ebony Tree Stump",
-	"block-treestump-*-walnut-*": "Walnut Tree Stump",
-	"block-treestump-*-purpleheart-*": "Purpleheart Tree Stump",
 	"treehollowcontents": "Tree Hollow Contents",
 
 	//Hollow Entries
+	"block-treehollow": "Tree Hollow",
 	"block-handbooktitle-treehollow": "",
 	"block-handbooktext-treehollow": "<font align='center'><i>Where nature casts a spell on the mind
 Of the one who dares, like me,
@@ -51,33 +41,6 @@ The bole of the hollow tree.</i></font>
 	Tree hollows can form in trees of all kinds. Within them can be found the stashed treasures of the creatures of the wood, and occasional artifacts of those who came before. When chopped down, they can also make a useful, if primitive, form of storage.
 
 ",
-	"block-*-treehollowplaced-aged-*": "Aged Tree Hollow",
-	"block-*-treehollowplaced-birch-*": "Birch Tree Hollow",
-	"block-*-treehollowplaced-oak-*": "Oak Tree Hollow",
-	"block-*-treehollowplaced-maple-*": "Maple Tree Hollow",
-	"block-*-treehollowplaced-pine-*": "Pine Tree Hollow",
-	"block-*-treehollowplaced-acacia-*": "Acacia Tree Hollow",
-	"block-*-treehollowplaced-kapok-*": "Kapok Tree Hollow",
-	"block-*-treehollowplaced-baldcypress-*": "Bald Cypress Tree Hollow",
-	"block-*-treehollowplaced-larch-*": "Larch Tree Hollow",
-	"block-*-treehollowplaced-redwood-*": "Redwood Tree Hollow",
-	"block-*-treehollowplaced-ebony-*": "Ebony Tree Hollow",
-	"block-*-treehollowplaced-walnut-*": "Walnut Tree Hollow",
-	"block-*-treehollowplaced-purpleheart-*": "Purpleheart Tree Hollow",
-	"block-*-treehollowgrown-aged-*": "Aged Tree Hollow",
-	"block-*-treehollowgrown-birch-*": "Birch Tree Hollow",
-	"block-*-treehollowgrown-oak-*": "Oak Tree Hollow",
-	"block-*-treehollowgrown-maple-*": "Maple Tree Hollow",
-	"block-*-treehollowgrown-pine-*": "Pine Tree Hollow",
-	"block-*-treehollowgrown-acacia-*": "Acacia Tree Hollow",
-	"block-*-treehollowgrown-kapok-*": "Kapok Tree Hollow",
-	"block-*-treehollowgrown-baldcypress-*": "Bald Cypress Tree Hollow",
-	"block-*-treehollowgrown-larch-*": "Larch Tree Hollow",
-	"block-*-treehollowgrown-redwood-*": "Redwood Tree Hollow",
-	"block-*-treehollowgrown-ebony-*": "Ebony Tree Hollow",
-	"block-*-treehollowgrown-walnut-*": "Walnut Tree Hollow",
-	"block-*-treehollowgrown-purpleheart-*": "Purpleheart Tree Hollow",
-
 
 	//Bark Basket Entries
 	"block-handbooktitle-barkbasket": "",
@@ -92,25 +55,13 @@ we are closer to home.</i></font>
 	Bark has a long history of being used for the making of baskets in areas all over the world. Evidence of baskets can be found in cultures ranging from the Sami of the Sapmi region, the Salsih, Chilkat, and other Native American Tribes of the American Northwest, and countless others.",
 	
 	"barkbasketname": "Bark Baskets",
-	"block-*-barkbasket-aged-*": "Aged Bark Basket",
-	"block-*-barkbasket-birch-*": "Birch Bark Basket",
-	"block-*-barkbasket-oak-*": "Oak Bark Basket",
-	"block-*-barkbasket-maple-*": "Maple Bark Basket",
-	"block-*-barkbasket-pine-*": "Pine Bark Basket",
-	"block-*-barkbasket-acacia-*": "Acacia Bark Basket",
-	"block-*-barkbasket-kapok-*": "Kapok Bark Basket",
-	"block-*-barkbasket-baldcypress-*": "Bald Cypress Bark Basket",
-	"block-*-barkbasket-larch-*": "Larch Bark Basket",
-	"block-*-barkbasket-redwood-*": "Redwood Bark Basket",
-	"block-*-barkbasket-ebony-*": "Ebony Bark Basket",
-	"block-*-barkbasket-walnut-*": "Walnut Bark Basket",
-	"block-*-barkbasket-purpleheart-*": "Purpleheart Bark Basket",
-
+	"block-barkbasket": "Bark Basket",
 	//Chopping Block Entries
 	"block-handbooktitle-choppingblock": "How To Create:",	
 	"block-handbooktext-choppingblock": "	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a>
 	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
 	<strong>Ingredients</strong>: <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">Any log slab</a>
+	<strong>Tools</strong>: Adze, Grub Axe
 ",
 	"block-handbooktitle-choppingblock2": "																			A Woodsman's Best Friend",
 	"block-handbooktext-choppingblock2": "
@@ -126,20 +77,7 @@ we are closer to home.</i></font>
 
 		In addition, there may be certain recipes that can only be performed with the help of a chopping block. For those intending to work with large amounts of wood, it should be the first workstation you acquire.
 ",
-	
-	"block-choppingblock-aged-*": "Aged Chopping Block",
-	"block-choppingblock-birch-*": "Birch Chopping Block",
-	"block-choppingblock-oak-*": "Oak Chopping Block",
-	"block-choppingblock-maple-*": "Maple Chopping Block",
-	"block-choppingblock-pine-*": "Pine Chopping Block",
-	"block-choppingblock-acacia-*": "Acacia Chopping Block",
-	"block-choppingblock-kapok-*": "Kapok Chopping Block",
-	"block-choppingblock-baldcypress-*": "Bald Cypress Chopping Block",
-	"block-choppingblock-larch-*": "Larch Chopping Block",
-	"block-choppingblock-redwood-*": "Redwood Chopping Block",
-	"block-choppingblock-ebony-*": "Ebony Chopping Block",
-	"block-choppingblock-walnut-*": "Walnut Chopping Block",
-	"block-choppingblock-purpleheart-*": "Purpleheart Chopping Block",
+	"block-choppingblock": "Chopping Block",
 	
 	//LogSlab Entries
 	"block-handbooktitle-logslab":"How To Create",
@@ -147,24 +85,12 @@ we are closer to home.</i></font>
 	"	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a> & <a href=\"handbook://workstations-indappledgroves\">Workstation Crafting</a>
 	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Chopping</a>
 	<strong>Ingredients</strong>: <a href=\"handbook://block-log-placed-birch-ud\">Any Log</a>
+	<strong>Tools</strong>: Axes
 		
 	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>",
 	"block-handbooktitle-logslab2":"Log Slabs",
 	"block-handbooktext-logslab2": "	The first stage on the way to making <a href=\"handbook://item-firewood\">fire wood</a>. They can be made on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> or on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a>. The target <a href=\"handbook://block-log-placed-maple-ud\">log</a> must be upright, with the trunk exposed, rather than bark up. Log slabs, when placed flat, can be <a href=\"handbook://toolmodes-indappledgroves\">hewn</a> into chopping blocks, when upright, they can be <a href=\"handbook://toolmodes-indappledgroves\">chopped</a> into firewood, or <a href=\"handbook://toolmodes-indappledgroves\">hewn</a> to create stripped log slabs and produce two bark.",
-
-  "block-logslab-aged-*": "Aged Log Slab",
-	"block-logslab-birch-*": "Birch Log Slab",
-	"block-logslab-oak-*": "Oak Log Slab",
-	"block-logslab-maple-*": "Maple Log Slab",
-	"block-logslab-pine-*": "Pine Log Slab",
-	"block-logslab-acacia-*": "Acacia Log Slab",
-	"block-logslab-kapok-*": "Kapok Log Slab",
-	"block-logslab-baldcypress-*": "Bald Cypress Log Slab",
-	"block-logslab-larch-*": "Larch Log Slab",
-	"block-logslab-redwood-*": "Redwood Log Slab",
-	"block-logslab-ebony-*": "Ebony Log Slab",
-	"block-logslab-walnut-*": "Walnut Log Slab",
-	"block-logslab-purpleheart-*": "Purpleheart Log Slab",
+	"block-logslab": "Log Slab",
 
 	//Sawhorse Entries
 	"block-handbooktitle-strippedlog": "Stripped Log",
@@ -180,8 +106,9 @@ Stripped logs are created by <a href=\"handbook://toolmodes-indappledgroves\">he
 
 <font weight='bold'>How To Create</font>
 	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a> & <a href=\"handbook://workstations-indappledgroves\">Workstation Crafting</a>
-	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Chopping</a>
+	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
 	<strong>Ingredients</strong>: <a href=\"handbook://block-log-placed-birch-ud\">Any Log</a>		
+	<strong>Common Tools</strong>: Adze, Grub Axe
 ",
 	"block-strippedlog-aged-*": "Stripped Aged Log",
 	"block-strippedlog-birch-*": "Stripped Birch Log",
@@ -203,12 +130,9 @@ Stripped logs are created by <a href=\"handbook://toolmodes-indappledgroves\">he
 The ax in the block, the saw on the sawhorse.
 Sawdust smothers the walk. Sitting in the
 shed to watch the rain come down.</i></font>
-<font weight='bold' align='center'>- Paol Keineg</font>
+<font weight='bold' align='center'>- Paol Keineg</font>",
 
-
-",
-	"block-sawhorse-*-single-*": "Sawhorse",
-	"block-sawhorse-*-compound-*":"Sawhorse Station",
+	"block-sawhorse": "Sawhorse",
 
 	//Sawbuck Entries
 	"indappledgroves:block-handbooktitle-sawbuck": "Sawbuck",
@@ -220,8 +144,7 @@ shed to watch the rain come down.</i></font>
 	
 	The sawbuck is a <a href=\"handbook://workstations-indappledgroves\">workstation</a> that is primarily used for sawing operations, making the process go a little faster, and putting a little less wear and tear on your tool.
 	",
-	"block-sawbuck-*": "Sawbuck",
-
+	"block-sawbuck": "Sawbuck",
 	//Bark Bundle Entries
 	"indappledgroves:block-handbooktitle-barkbundledry": "Dry Bark Bundle",
 	"indappledgroves:block-handbooktext-barkbundledry": "
@@ -229,45 +152,10 @@ shed to watch the rain come down.</i></font>
 			These bark bundles are ready for processing. Simply pick it up and place in a space containing water to start the soaking process. By default it will take 24 in-game hours for the bundle to process through soaking, to a soaked bark bundle.",
 		"indappledgroves:block-handbooktitle-barkbundlesoaked": "Soaked Bark Bundle",
 		"indappledgroves:block-handbooktext-barkbundlesoaked": "	Soaked bark is a versatile material perfect for crafting into useful tools such as <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. If playing with Taska's <a href=\"https://mods.vintagestory.at/ancienttools\">Ancient Tools</a> then you will also need to soak birchbark to make salves. Simply right click the soaked bark bundle to pick up 5 soaked bark.",
-	"block-barkbundle-aged-dry": "Dry Aged Bark Bundle",
-	"block-barkbundle-birch-dry": "Dry Birch Bark Bundle",
-	"block-barkbundle-oak-dry": "Dry Oak Bark Bundle",
-	"block-barkbundle-maple-dry": "Dry Maple Bark Bundle",
-	"block-barkbundle-pine-dry": "Dry Pine Bark Bundle",
-	"block-barkbundle-acacia-dry": "Dry Acacia Bark Bundle",
-	"block-barkbundle-kapok-dry": "Dry Kapok Bark Bundle",
-	"block-barkbundle-baldcypress-dry": "Dry Bald Cypress Bark Bundle",
-	"block-barkbundle-larch-dry": "Dry Larch Bark Bundle",
-	"block-barkbundle-redwood-dry": "Dry Redwood Bark Bundle",
-	"block-barkbundle-ebony-dry": "Dry Ebony Bark Bundle",
-	"block-barkbundle-walnut-dry": "Dry Walnut Bark Bundle",
-	"block-barkbundle-purpleheart-dry": "Dry Purpleheart Bark Bundle",
-	"block-barkbundle-aged-soaking": "Soaking Aged Bark Bundle",
-	"block-barkbundle-birch-soaking": "Soaking Birch Bark Bundle",
-	"block-barkbundle-oak-soaking": "Soaking Oak Bark Bundle",
-	"block-barkbundle-maple-soaking": "Soaking Maple Bark Bundle",
-	"block-barkbundle-pine-soaking": "Soaking Pine Bark Bundle",
-	"block-barkbundle-acacia-soaking": "Soaking Acacia Bark Bundle",
-	"block-barkbundle-kapok-soaking": "Soaking Kapok Bark Bundle",
-	"block-barkbundle-baldcypress-soaking": "Soaking Bald Cypress Bark Bundle",
-	"block-barkbundle-larch-soaking": "Soaking Larch Bark Bundle",
-	"block-barkbundle-redwood-soaking": "Soaking Redwood Bark Bundle",
-	"block-barkbundle-ebony-soaking": "Soaking Ebony Bark Bundle",
-	"block-barkbundle-walnut-soaking": "Soaking Walnut Bark Bundle",
-	"block-barkbundle-purpleheart-soaking": "Soaking Purpleheart Bark Bundle",
-	"block-barkbundle-aged-soaked": "Soaked Aged Bark Bundle",
-	"block-barkbundle-birch-soaked": "Soaked Birch Bark Bundle",
-	"block-barkbundle-oak-soaked": "Soaked Oak Bark Bundle",
-	"block-barkbundle-maple-soaked": "Soaked Maple Bark Bundle",
-	"block-barkbundle-pine-soaked": "Soaked Pine Bark Bundle",
-	"block-barkbundle-acacia-soaked": "Soaked Acacia Bark Bundle",
-	"block-barkbundle-kapok-soaked": "Soaked Kapok Bark Bundle",
-	"block-barkbundle-baldcypress-soaked": "Soaked Bald Cypress Bark Bundle",
-	"block-barkbundle-larch-soaked": "Soaked Larch Bark Bundle",
-	"block-barkbundle-redwood-soaked": "Soaked Redwood Bark Bundle",
-	"block-barkbundle-ebony-soaked": "Soaked Ebony Bark Bundle",
-	"block-barkbundle-walnut-soaked": "Soaked Walnut Bark Bundle",
-	"block-barkbundle-purpleheart-soaked": "Soaked Purpleheart Bark Bundle",
+	"block-barkbundle": "Bark Bundle",
+	"dry": "Dry",
+	"soaking": "Soaking",
+	"soaked": "Soaked",
 
 	//Vanilla Replacement Entries
 	"item-handbooktitle-firewood": "Fire wood",
@@ -348,32 +236,7 @@ As it came crashing to the ground.</i></font>
 	//Bark Entries
 	"item-handbooktitle-drybark": "Bark",
 	"item-handbooktext-drybark": "	Bark from trees is useful for making <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. This is accomplished by fashioning them into <a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">bark bundles</a> and soaking them for 24 hours to produce <a href=\"handbook://item-indappledgroves:bark-birch-soaked\">soaked bark</a>.",
-	"item-bark-aged-dry": "Dry Aged Bark",
-	"item-bark-birch-dry": "Dry Birch Bark",
-	"item-bark-oak-dry": "Dry Oak Bark",
-	"item-bark-maple-dry": "Dry Maple Bark",
-	"item-bark-pine-dry": "Dry Pine Bark",
-	"item-bark-acacia-dry": "Dry Acacia Bark",
-	"item-bark-kapok-dry": "Dry Kapok Bark",
-	"item-bark-baldcypress-dry": "Dry Bald Cypress Bark",
-	"item-bark-larch-dry": "Dry Larch Bark",
-	"item-bark-redwood-dry": "Dry Redwood Bark",
-	"item-bark-walnut-dry": "Dry Walnut Bark",
-	"item-bark-ebony-dry": "Dry Ebony Bark",
-	"item-bark-purpleheart-dry": "Dry Purpleheart Bark",
-	"item-bark-aged-soaked": "Soaked Aged Bark",
-	"item-bark-birch-soaked": "Soaked Birch Bark",
-	"item-bark-oak-soaked": "Soaked Oak Bark",
-	"item-bark-maple-soaked": "Soaked Maple Bark",
-	"item-bark-pine-soaked": "Soaked Pine Bark",
-	"item-bark-acacia-soaked": "Soaked Acacia Bark",
-	"item-bark-kapok-soaked": "Soaked Kapok Bark",
-	"item-bark-baldcypress-soaked": "Soaked Bald Cypress Bark",
-	"item-bark-larch-soaked": "Soaked Larch Bark",
-	"item-bark-redwood-soaked": "Soaked Redwood Bark",
-	"item-bark-ebony-soaked": "Soaked Ebony Bark",
-	"item-bark-walnut-soaked": "Soaked Walnut Bark",
-	"item-bark-purpleheart-soaked": "Soaked Purpleheart Bark",
+	"item-bark": "Bark",
 
 	//Adze Info
 	"item-handbooktitle-adze": "",
@@ -438,6 +301,7 @@ In Dappled Groves introduces new workstations to aid you in your woodworking end
 <font weight='bold' align='left'>Saw Horse</font>
    This workstation isn't introduced in the current release. However, it will be integrated later providing a variety of woodworking options involving the use of planers and other tools.",
 
+
 //Tool Modes Guide
 "indappledgroves:indappledgrovesguide-toolmodes-title": "Game Mechanic: Tool Modes",
 "indappledgroves:indappledgrovesguide-toolmodes-text": 
@@ -449,11 +313,14 @@ Tool modes are now intrinsic parts of a new body of recipes I've included. They 
 
 <font weight='bold' align='center'>Tool Modes</font>
 
-	<font weight='bold'>Chopping:</font> This mode is used when chopping wood into slabs, firewood, and sticks. May be changed to 'splitting' in a future revision.
-	<font weight='bold'>Hewing:</font> This mode is used when shaping wood or 'peeling' it, such as when removing bark. Currently used only for peeling bark and creating chopping blocks from slabs.
-	<font weight='bold'>Sawing:</font> This mode is solely used by saws, and is used when making boards out of logs.
+	<font weight='bold'>Chopping:</font> This mode is used when chopping wood into slabs, firewood, and sticks. May be changed to 'splitting' in a future revision. Found primarily in axes.
+	<font weight='bold'>Hewing:</font> This mode is used when shaping wood or 'peeling' it, such as when removing bark. Currently used only for peeling bark and creating chopping blocks from slabs. Found in Adze's and the Grub Axe.'
+	<font weight='bold'>Sawing:</font> This mode is solely used by saws, and is used when making boards out of logs. Found in, unsurprisingly, the saw.
 
 	<font weight='bold' align='center'>Future Modes</font>
 	<font weight='bold'>Planing:</font> Planing will be a mode used to process boards from a rough state into a smoothed state when more in-depth board making processes are introduced.
-	<font weight='bold'>Riving:</font> Riving is a process by which logs can be split into shingles, beams, and various other pieces that require methods more precise than splitting with an axe or maul. A froe or frow is usually used for this process."
+	<font weight='bold'>Riving:</font> Riving is a process by which logs can be split into shingles, beams, and various other pieces that require methods more precise than splitting with an axe or maul. A froe or frow is usually used for this process.",
+
+"item-handbooktitle-firewood": "In Dappled Groves Uses:",
+"item-handbooktext-firewood": "Can be made by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> a log slab after placing on the ground, or on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>. Can be placed on the ground or a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> and processed into sticks by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> them with an axe or other chopping tool. ",
 }

@@ -8,8 +8,8 @@ attributes: {
 			"groupedName": "indappledgroves:barkbasketname",
 			"extraSections": [
         {
-          "title": "indappledgroves:block-handbooktitle-barkbasket",
-          "text": "indappledgroves:block-handbooktext-barkbasket"
+          "title2": "indappledgroves:block-handbooktitle-barkbasket",
+          "text2": "indappledgroves:block-handbooktext-barkbasket"
         }
       ]
 		},
@@ -63,18 +63,6 @@ attributes: {
 		"*-south": { base: "block/barkbasket", rotateY: 180 },
 	},
 	texturesByType: {
-		"*-ebony-*": {
-			"bark": { base: "game:block/wood/bark/{variant}"},
-			"inside": { base: "block/strippedlog/ebony_outer", rotation: 90 },
-			"basket-bark": { base: "game:block/wood/bark/{variant}"},
-			"basket-inside": { base: "block/strippedlog/ebony_outer", rotation: 90 },
-		},
-		"*-purpleheart-*": {
-			"bark": { base: "game:block/wood/bark/{variant}"},
-			"inside": { base: "block/strippedlog/purpleheart_outer", rotation: 90 },
-			"basket-bark": { base: "game:block/wood/bark/{variant}"},
-			"basket-inside": { base: "block/strippedlog/purpleheart_outer", rotation: 90 },
-		},
 		"*": {
 			"bark": { base: "game:block/wood/bark/{variant}"},
 			"inside": { base: "game:block/wood/debarked/{variant}", rotation: 90 },

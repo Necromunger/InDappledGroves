@@ -179,6 +179,7 @@ namespace InDappledGroves.Items.Tools
 
                         SpawnOutput(recipe, recipePos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
+                        api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
                         byEntity.StopAnimation("axechop");
                         recipeComplete = true;
                         return false;

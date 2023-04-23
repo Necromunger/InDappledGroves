@@ -32,9 +32,11 @@ namespace InDappledGroves
 
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
+            api.RegisterBlockClass("idgbarkbundle", typeof(IDGBarkBundle));
+            api.RegisterBlockClass("idglogslab", typeof(IDGLogSlab));
             api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
             api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
-            api.RegisterBlockClass("idgbarkbasket", typeof(BarkBasket));
+            api.RegisterBlockClass("idgbarkbasket", typeof(IDGBarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
             api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
             api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));

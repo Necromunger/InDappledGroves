@@ -1,6 +1,6 @@
 {
 	// Japanese localization file for 'In Dappled Groves'.
-	// Mod Version: v0.4.7
+	// Mod Version: 0.4.9-rc.1
 	// Translated By: Macoto Hino
 	// Machine translation using PCOT and DeepL.
 
@@ -40,6 +40,7 @@
 	"block-treestump-*-ebony-*": "コクタンの木の切り株",
 	"block-treestump-*-walnut-*": "クルミの木の切り株",
 	"block-treestump-*-purpleheart-*": "パープルハートの木の切り株",
+	"treehollowcontents": "木のうろの中身",
 
 	//Hollow Entries
 	"block-handbooktitle-treehollow": "",
@@ -152,7 +153,7 @@
 		
 	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>",
 	"block-handbooktitle-logslab2":"丸太のハーフブロック",
-	"block-handbooktext-logslab2": "	<a href=\"handbook://item-firewood\">薪</a>を作るまでの第一段階。 薪は<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>や<a href=\"handbook://inworldcrafting-indappledgroves\">地面の上</a>で作ることも出来る。 対象となる<a href=\"handbook://block-log-placed-maple-ud\">丸太</a>は、樹皮が上になるのではなく、幹が剥き出しになるように直立している必要がある。 丸太のハーフブロックは、平らに置いて<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と薪割台、垂直に置いて<a href=\"handbook://toolmodes-indappledgroves\">割る</a>と薪に、<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と剥ぎ取られた丸太のハーフブロックになり、2つの樹皮を作ることが出来る。",
+	"block-handbooktext-logslab2": "	<a href=\"handbook://item-firewood\">薪</a>を作るまでの第一段階。 薪は<a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">薪割台</a>や<a href=\"handbook://inworldcrafting-indappledgroves\">地面の上</a>で作ることも出来る。 対象となる<a href=\"handbook://block-log-placed-maple-ud\">丸太</a>は、樹皮が上になるのではなく、幹が剥き出しになるように直立している必要がある。 丸太のハーフブロックは、平らに置いて<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と薪割台、垂直に置いて<a href=\"handbook://toolmodes-indappledgroves\">割る</a>と薪に、<a href=\"handbook://toolmodes-indappledgroves\">剥ぐ</a>と樹皮を剥いだ丸太のハーフブロックになり、2つの樹皮を作ることが出来る。",
 
   "block-logslab-aged-*": "古びた丸太のハーフブロック",
 	"block-logslab-birch-*": "シラカバの丸太のハーフブロック",
@@ -169,7 +170,7 @@
 	"block-logslab-purpleheart-*": "パープルハートの丸太のハーフブロック",
 
 	//Sawhorse Entries
-	"block-handbooktitle-stripped丸太": "剥ぎ取られた丸太",
+	"block-handbooktitle-stripped丸太": "樹皮を剥いだ丸太",
 	"block-handbooktext-stripped丸太": "<font align='center'><i>皮を剥いだ丸太のような裸身が
 時に甘い匂いを放つ
 男と女。
@@ -178,26 +179,26 @@
 				
 <font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
 
-剥いだ丸太は、樹皮を剥いだ<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>を<a href=\"handbook://toolmodes-indappledgroves\">加工</a>して作る。その後、剥ぎ取られた丸太のハーフブロックに分割することが出来る。
+剥いだ丸太は、樹皮を剥いだ<a href=\"handbook://block-log-placed-birch-ud\">丸太</a>を<a href=\"handbook://toolmodes-indappledgroves\">加工</a>して作る。その後、樹皮を剥いだ丸太のハーフブロックに分割することが出来る。
 
 <font weight='bold'>作り方</font>
 	<strong>レシピの種類:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">この世界の場合</a> ＆ <a href=\"handbook://workstations-indappledgroves\">作業台でのクラフト</a>
 	<strong>ツールモード:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">割る</a>
 	<strong>材料</strong>: <a href=\"handbook://block-log-placed-birch-ud\">丸太</a>		
 ",
-	"block-strippedlog-aged-*": "剥ぎ取られた古びた丸太",
-	"block-strippedlog-birch-*": "剥ぎ取られたシラカバの丸太",
-	"block-strippedlog-oak-*": "剥ぎ取られたオークの丸太",
-	"block-strippedlog-maple-*": "剥ぎ取られたカエデの丸太",
-	"block-strippedlog-pine-*": "剥ぎ取られたマツの丸太",
-	"block-strippedlog-acacia-*": "剥ぎ取られたアカシアの丸太",
-	"block-strippedlog-kapok-*": "剥ぎ取られたカポックの丸太",
-	"block-strippedlog-baldcypress-*": "剥ぎ取られたヌマスギの丸太",
-	"block-strippedlog-larch-*": "剥ぎ取られたカラマツの丸太",
-	"block-strippedlog-redwood-*": "剥ぎ取られたレッドウッドの丸太",
-	"block-strippedlog-ebony-*": "剥ぎ取られたコクタンの丸太",
-	"block-strippedlog-walnut-*": "剥ぎ取られたクルミの丸太",
-	"block-strippedlog-purpleheart-*": "剥ぎ取られたパープルハートの丸太",
+	"block-strippedlog-aged-*": "樹皮を剥いだ古びた丸太",
+	"block-strippedlog-birch-*": "樹皮を剥いだシラカバの丸太",
+	"block-strippedlog-oak-*": "樹皮を剥いだオークの丸太",
+	"block-strippedlog-maple-*": "樹皮を剥いだカエデの丸太",
+	"block-strippedlog-pine-*": "樹皮を剥いだマツの丸太",
+	"block-strippedlog-acacia-*": "樹皮を剥いだアカシアの丸太",
+	"block-strippedlog-kapok-*": "樹皮を剥いだカポックの丸太",
+	"block-strippedlog-baldcypress-*": "樹皮を剥いだヌマスギの丸太",
+	"block-strippedlog-larch-*": "樹皮を剥いだカラマツの丸太",
+	"block-strippedlog-redwood-*": "樹皮を剥いだレッドウッドの丸太",
+	"block-strippedlog-ebony-*": "樹皮を剥いだコクタンの丸太",
+	"block-strippedlog-walnut-*": "樹皮を剥いだクルミの丸太",
+	"block-strippedlog-purpleheart-*": "樹皮を剥いだパープルハートの丸太",
 
 	//Sawhorse Entries
 	"block-handbooktitle-sawhorse": "",
@@ -348,8 +349,8 @@
 	
 
 	//Bark Entries
-	"item-handbooktitle-dryBark": "樹皮",
-	"item-handbooktext-dryBark": "	木から採れる樹皮は、<a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">樹皮バスケット</a>の材料として使うことが出来る。 これは、<a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">束ねた樹皮</a>をゲーム内で24時間浸しておき、出来上がった<a href=\"handbook://item-indappledgroves:bark-birch-soaked\">浸した樹皮</a>から作られる。",
+	"item-handbooktitle-drybark": "樹皮",
+	"item-handbooktext-drybark": "	木から採れる樹皮は、<a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">樹皮バスケット</a>の材料として使うことが出来る。 これは、<a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">束ねた樹皮</a>をゲーム内で24時間浸しておき、出来上がった<a href=\"handbook://item-indappledgroves:bark-birch-soaked\">浸した樹皮</a>から作られる。",
 	"item-bark-aged-dry": "乾いた古びた樹皮",
 	"item-bark-birch-dry": "乾いたシラカバの樹皮",
 	"item-bark-oak-dry": "乾いたオークの樹皮",

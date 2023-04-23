@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
@@ -9,6 +10,20 @@ namespace InDappledGroves.Items
 {
     class IDGBark : Item
     {
+        public override string GetHeldItemName(ItemStack stack) => GetName();
+
+        public string GetName()
+        {
+            var material = Variant["bark"];
+            var state = Variant["state"];
+            var part = Lang.Get($"material-{material}");
+            var part2 = Lang.Get($"{state}");
+            part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";
+            return $"{part2} {part} {Lang.Get("indappledgroves:item-bark")}";
+        }
+
+
         /// <summary>Called when the player right clicks while holding this block/item in his hands</summary>
         /// <param name="slot">Players activehotbar slot</param>
         /// <param name="byEntity"></param>

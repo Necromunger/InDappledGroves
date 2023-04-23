@@ -1,14 +1,27 @@
 ﻿using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 
 namespace InDappledGroves.Blocks
 {
-    class BarkBasket : BlockGenericTypedContainer
+    class IDGBarkBasket : BlockGenericTypedContainer
     {
         //-- Copied from Block. The BlockContainer version was causing 'unknown texture' particles --//
+        
+        public override string GetHeldItemName(ItemStack stack) => GetName();
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+        public string GetName()
+        {
+            var material = Variant["variant"];
+
+            var part = Lang.Get($"{material}");
+            part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            return string.Format($"{part} {Lang.Get("indappledgroves:block-barkbasket")}");
+        }
 
         public override int GetRandomColor(ICoreClientAPI capi, BlockPos pos, BlockFacing facing, int rndIndex)
         {

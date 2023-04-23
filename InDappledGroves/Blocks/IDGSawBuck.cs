@@ -19,6 +19,20 @@ namespace InDappledGroves.Blocks
 			base.OnLoaded(api);
 		}
 
+		public override string GetHeldItemName(ItemStack stack) => GetName();
+		public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+		public string GetName()
+		{
+			var material1 = Variant["support"];
+			var material2 = Variant["crossbrace"];
+			var part1 = Lang.Get($"{material1}");
+			var part2 = Lang.Get($"{material2}");
+			part1 = $"{part1[0].ToString().ToUpper()}{part1.Substring(1)}";
+			part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";
+			return string.Format($"{part1} & ${part2} {Lang.Get("indappledgroves:block-sawbuck")}");
+		}
+
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			string curTMode = "";
