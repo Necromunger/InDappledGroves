@@ -1,5 +1,12 @@
 [
   {
+    "file": "game:recipes/clayforming/axemold.json",
+    "op": "add",
+    "path": "/enabled",
+    "value": "false",
+    "side": "server"
+  },
+  {
     "file": "game:recipes/grid/debarkedlog.json",
     "op": "remove",
     "path": "/0",

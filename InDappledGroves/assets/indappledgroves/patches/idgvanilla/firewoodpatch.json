@@ -35,9 +35,12 @@
     "side": "server"
    },
   {
-     "op": "add",
+     "op": "replace",
      "path": "/attributes",
      "value": {
+       firepitConstructable: true,
+		   isClayOvenFuel: true,
+		   placeSound: "block/planks",
 		  "handbook": {
 				"extraSections": [
 					  {

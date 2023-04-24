@@ -10,7 +10,7 @@
 		{ "code": "rot", "states": ["north", "east", "south", "west", "up", "down"] },
 		{ "code": "cover", "states": ["free", "snow"] }		
 	],
-	"skipVariants": ["*-up-snow"],
+	"skipVariants": ["*-up-snow", "*-veryaged-*","*-veryagedrotten-*"],
 	"attributes": {
 							"chiselShapeFromCollisionBox": true,
 							"handbook": {

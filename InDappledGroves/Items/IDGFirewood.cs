@@ -20,7 +20,7 @@ namespace InDappledGroves.Items
 			if (block is BlockFirepit || block is BlockPitkiln || block is BlockClayOven)
 			{
 				return;
-			}
+            }
 
 			//Determine if target block is *not* a BlockFirewoodPile
 			if (!byEntity.Controls.Sneak && !byEntity.Controls.Sprint && block is not BlockFirewoodPile)

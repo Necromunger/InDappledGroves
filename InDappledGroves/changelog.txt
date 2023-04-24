@@ -1,5 +1,9 @@
-﻿1.18-0.4.9-rc.3
+﻿1.18-0.4.9-rc.5
+	- Hotpatch to Fix Firewood Issue
+
+1.18-0.4.9-rc.4
 	- Corrected missing ruined axes.
+	- Cleaned up a few console errors.
 
 
 1.18-v0.4.9-rc.3
