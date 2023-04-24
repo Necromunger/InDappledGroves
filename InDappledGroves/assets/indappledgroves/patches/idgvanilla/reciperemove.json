@@ -1,5 +1,17 @@
 [
   {
+    "file": "game:recipes/grid/debarkedlog.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/beams.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
     "file": "game:blocktypes/clay/mold/toolmold.json",
     "op": "remove",
     "path": "/variantgroups/1/states/0",

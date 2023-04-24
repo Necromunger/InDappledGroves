@@ -34,6 +34,22 @@
     "file": "game:itemtypes/resource/firewood.json",
     "side": "server"
    },
+  {
+     "op": "add",
+     "path": "/attributes",
+     "value": {
+		  "handbook": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:item-handbooktitle-firewood",
+						  "text": "indappledgroves:item-handbooktext-firewood"
+					  }
+          ]
+        }
+      },
+     "file": "game:itemtypes/resource/firewood.json",
+     "side": "server"
+   },
    {
      "op": "add",
      "path": "/attributes",
@@ -49,6 +65,5 @@
       },
      "file": "game:itemtypes/resource/stick.json",
      "side": "server"
-
    }
 ]

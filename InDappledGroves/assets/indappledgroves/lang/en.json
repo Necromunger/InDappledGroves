@@ -25,6 +25,7 @@ is an old tree-stump in water.</i></font>
 		
 		Most trees form with a stump at the bottom. These sturdy bulwarks are difficult to remove, often making it preferable to leave them where they are. You may find it easier to chop above them, rather than chopping them directly. They'll be left behind on the initial felling of the tree either way. You'll have to chop them again to remove them, a lengthy process indeed.
 ",
+	"block-treestump": "Stump",
 	"treehollowcontents": "Tree Hollow Contents",
 
 	//Hollow Entries
@@ -145,6 +146,7 @@ shed to watch the rain come down.</i></font>
 	The sawbuck is a <a href=\"handbook://workstations-indappledgroves\">workstation</a> that is primarily used for sawing operations, making the process go a little faster, and putting a little less wear and tear on your tool.
 	",
 	"block-sawbuck": "Sawbuck",
+
 	//Bark Bundle Entries
 	"indappledgroves:block-handbooktitle-barkbundledry": "Dry Bark Bundle",
 	"indappledgroves:block-handbooktext-barkbundledry": "
@@ -157,12 +159,16 @@ shed to watch the rain come down.</i></font>
 	"soaking": "Soaking",
 	"soaked": "Soaked",
 
-	//Vanilla Replacement Entries
-	"item-handbooktitle-firewood": "Fire wood",
-	"item-handbooktext-firewood": "	Can be placed on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a> or using a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> and <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> with an axe to make <a href=\"handbook://item-stick\">sticks</a>.",
 
-	"item-handbooktitle-stick": "Sticks",
-	"item-handbooktext-stick": "<font align='center'><i>I was far off in the forest
+	"indappledgroves:item-handbooktitle-soakedbark": "Soaked Bark", 
+	"indappledgroves:item-handbooktext-soakedbark": "After soaking your bark, you can use it to construct <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>.  It will remain soaked for 24 hour before reverted to dry bark.",
+
+	//Vanilla Replacement Entries
+	"indappledgroves:item-handbooktitle-firewood": "Firewood",
+	"indappledgroves:item-handbooktext-firewood": "	Can be placed on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a> or using a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> and <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> with an axe to make <a href=\"handbook://item-stick\">sticks</a>.",
+
+	"indappledgroves:item-handbooktitle-stick": "Sticks",
+	"indappledgroves:item-handbooktext-stick": "<font align='center'><i>I was far off in the forest
 When I found the perfect stick
 I knew that it was perfect
 Not too skinny, Not too thick</i></font>
@@ -172,6 +178,20 @@ Not too skinny, Not too thick</i></font>
 
 		You can use any form of axe to <a href=\"handbook://toolmodes-indappledgroves\">chop</a> <a href=\"handbook://item-firewood\">fire wood</a> on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a> or on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> to create sticks.",
 
+
+  "indappledgroves:block-handbooktitle-debarkedlog": "Crafting Method",
+  "indappledgroves:block-handbooktext-debarkedlog": "
+	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a> & <a href=\"handbook://workstations-indappledgroves\">Workstation Crafting</a>
+	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
+	<strong>Ingredients</strong>: <a href=\"handbook://block-log-placed-birch-ud\">Any Log</a>		
+	<strong>Common Tools</strong>: Adze, Grub Axe",
+
+  "indappledgroves:block-handbooktitle-supportbeam": "Crafting Method",
+  "indappledgroves:block-handbooktext-supportbeam": "
+	<strong>Recipe Type:</strong> <a href=\"handbook://workstations-indappledgroves\">Saw Buck</a>
+	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
+	<strong>Ingredients</strong>: <a href=\"handbook://block-debarkedlog-birch-ud\">Any Debarked Log</a>		
+	<strong>Common Tools</strong>: Adze, Grub Axe",
 	//Grub Axe Entries
 	"item-handbooktitle-grubaxe": "Grub Axe",
 	"item-handbooktext-grubaxe": "A grub axe has a long handle and a stout head combining a vertical axe blade with a horizontal adze. This makes it a flexible tool capable of <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> or <a href=\"handbook://toolmodes-indappledgroves\">hewing.</a>",
@@ -202,6 +222,7 @@ As it came crashing to the ground.</i></font>
 		The distinguishing feature of Forest Axes is a long, rounded edge, with a flat elongated axe head. Forest Axes are specially designed to cut across the grain of the wood fibres, for example when felling and limbing.	
 		This makes them exceptionally good for chopping down trees, though they perform poorly when attempting to <a href=\"handbook://toolmodes-indappledgroves\">chop</a> lumber into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">log slabs</a>, <a href=\"handbook://item-firewood\">fire wood</a>, and <a href=\"handbook://item-stick\">sticks</a>.
 		",
+
 	"item-forestaxehead-tinbronze": "Tin Bronze Forest Axe Head",
 	"item-forestaxehead-bismuthbronze": "Bismuth Bronze Forest Axe Head",
 	"item-forestaxehead-blackbronze": "Black Bronze Forest Axe Head",
@@ -217,7 +238,7 @@ As it came crashing to the ground.</i></font>
 
 	//Maul Entries
 	"item-handbooktitle-maul": "Splitting Maul",
-	"item-handbooktext-maul": "	This tool has a heavy head with a thick <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> blade making it perfect for splitting <a href=\"handbook://block-log-placed-birch-ud\">logs</a> into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">slabs</a>. These can be further split into <a href=\"handbook://item-firewood\">fire wood</a>, and from there into <a href=\"handbook://item-stick\">sticks.</a> ",
+	"item-handbooktext-maul": "This tool has a heavy head with a thick <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> blade making it perfect for splitting <a href=\"handbook://block-log-placed-birch-ud\">logs</a> into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">slabs</a>. These can be further split into <a href=\"handbook://item-firewood\">fire wood</a>, and from there into <a href=\"handbook://item-stick\">sticks.</a> ",
 	"item-maulhead-tinbronze": "Tin Bronze Splitting Maul Head",
 	"item-maulhead-bismuthbronze": "Bismuth Bronze Splitting Maul Head",
 	"item-maulhead-blackbronze": "Black Bronze Splitting Maul Head",
@@ -231,11 +252,9 @@ As it came crashing to the ground.</i></font>
 	"item-maul-meteoriciron": "Meteoric Iron Splitting Maul",
 	"item-maul-steel": "Steel Splitting Maul",
 
-	
-
 	//Bark Entries
 	"item-handbooktitle-drybark": "Bark",
-	"item-handbooktext-drybark": "	Bark from trees is useful for making <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. This is accomplished by fashioning them into <a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">bark bundles</a> and soaking them for 24 hours to produce <a href=\"handbook://item-indappledgroves:bark-birch-soaked\">soaked bark</a>.",
+	"item-handbooktext-drybark": "Bark from trees is useful for making <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. This is accomplished by fashioning them into <a href=\"handbook://block-indappledgroves:barkbundle-birch-dry\">bark bundles</a> and soaking them for 24 hours to produce <a href=\"handbook://item-indappledgroves:bark-birch-soaked\">soaked bark</a>.",
 	"item-bark": "Bark",
 
 	//Adze Info
@@ -291,7 +310,7 @@ As it came crashing to the ground.</i></font>
 "indappledgroves:indappledgrovesguide-workstations-text": "<font weight='bold' align='center'>Workstation Crafting</font>
 In Dappled Groves introduces new workstations to aid you in your woodworking endeavours. These workstations reduce the time required to complete woodworking operations such as chopping <a href=\"handbook://block-log-placed-birch-ud\">logs</a> into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">log slabs.</a>
 <font weight='bold' align='center'>Workstations</font>
-<font weight='bold' align='left'>Chopping Block</font>
+<font weight='bold' align='left'>Chopping Block</font><a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>
    The first workstation most will craft is the <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>.  Like all workstations, it speeds up the processes performed on it, and may provide access to recipes not available via in-world crafting in the future.
 	 Currently it is used for <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> and <a href=\"handbook://toolmodes-indappledgroves\">hewing</a> processes, but cannot be used to make additional chopping blocks.
 

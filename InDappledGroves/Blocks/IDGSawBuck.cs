@@ -30,7 +30,7 @@ namespace InDappledGroves.Blocks
 			var part2 = Lang.Get($"{material2}");
 			part1 = $"{part1[0].ToString().ToUpper()}{part1.Substring(1)}";
 			part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";
-			return string.Format($"{part1} & ${part2} {Lang.Get("indappledgroves:block-sawbuck")}");
+			return string.Format($"{part1} & {part2} {Lang.Get("indappledgroves:block-sawbuck")}");
 		}
 
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -52,7 +52,7 @@ namespace InDappledGroves.Blocks
 					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+						resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
 						byPlayer.Entity.StartAnimation("axechop");
 						return true;
 					}

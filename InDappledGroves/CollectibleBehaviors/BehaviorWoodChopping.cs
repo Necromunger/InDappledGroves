@@ -78,9 +78,8 @@ namespace InDappledGroves
         }
 
         #region TreeFelling
-        public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
+        public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
         {
-            
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
@@ -96,31 +95,37 @@ namespace InDappledGroves
                 treeResistance = (float)Math.Max(1, Math.Sqrt(foundPositions.Count));
                 if (collObj.ToolTier < woodTier - 3)
                 {
-                    return remainingResistance;
+                    return treeResistance * 1.25f;
                 }
                 tempAttr.SetFloat("treeResistance", treeResistance);
+            }
+            else
+            {
+                treeResistance = tempAttr.GetFloat("treeResistance", 1f);
             }
 
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
             return treeResistance * 1.25f;
-
         }
 
-        public bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
+        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
         {
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
-            double windspeed = api.ModLoader.GetModSystem<WeatherSystemBase>()?.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) ?? 0;
+            WeatherSystemBase modSystem = this.api.ModLoader.GetModSystem<WeatherSystemBase>(true);
+            double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
             int num;
             int woodTier;
 
-            Stack<BlockPos> foundPositions = FindTree(world, blockSel.Position, out num, out woodTier);
+            Stack<BlockPos> foundPositions = this.FindTree(world, blockSel.Position, out num, out woodTier);
+
             if (foundPositions.Count == 0)
             {
-                return collObj.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
+                bhHandling = EnumHandling.Handled;
+                return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
             }
 
             bool damageable = collObj.DamagedBy != null && collObj.DamagedBy.Contains(EnumItemDamageSource.BlockBreaking);
@@ -185,6 +190,7 @@ namespace InDappledGroves
                 api.World.PlaySoundAt(new AssetLocation("sounds/effect/treefell"), pos.X, pos.Y, pos.Z, byPlayer, false, 32, GameMath.Clamp(blocksbroken / 100f, 0.25f, 1));
             }
 
+            bhHandling = EnumHandling.Handled;
             return true;
         }
 
@@ -202,7 +208,7 @@ namespace InDappledGroves
 
             api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
             {
-                string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo"};
+                string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow"};
                 if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y, z); }
             }, true);
 

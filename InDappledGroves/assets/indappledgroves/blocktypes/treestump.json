@@ -1,6 +1,6 @@
 {
 	code: "treestump",
-	"class": "BlockLog",
+	"class": "idgblockstump",
 	"__comment": "BlockLog contains only contains code for OnPickBlock",
 	behaviorsByType: {
 		"*-grown-*": [{name: "PushEventOnBlockBroken",	properties: {eventName: "testForDecay"}}, { name: "MyceliumHost" }],
@@ -8,13 +8,20 @@
 	},
 	variantgroups: [
 		{ code: "type", states: ["grown", "placed"] },
-		{ code: "wood", states: ["aged"], loadFromProperties: "block/wood" },
+		{ code: "wood", loadFromProperties: "block/wood" },
     {
       "code": "side",
       "loadFromProperties": "abstract/horizontalorientation"
     }
 	],
-	creativeinventory: { "general": ["treestump-placed-*-east"], "flora": ["treestump-placed-*-east"], "construction": ["treestump-placed-*-east"] },
+	"attributes": {
+		handbook: {
+			excludeByType: {
+				"*-placed-*": true
+			}
+		},
+	},
+	creativeinventory: { "general": ["treestump-grown-*-east"], "flora": ["treestump-grown-*-east"], "construction": ["treestump-grown-*-east"] },
 	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }] },
 	"sidesolid": {
 		"all": "false"

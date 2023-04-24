@@ -40,10 +40,15 @@ namespace InDappledGroves.BlockBehaviors
                     world.SpawnItemEntity(new ItemStack(new Item(world.GetItem(pickupdropcode).ItemId), quantity), blockSel.Position.ToVec3d().Add(0.5, 0.5, 0.5));
                     world.BlockAccessor.SetBlock(0, blockSel.Position);
 
-                } 
-       
+                }
+
+                handling = EnumHandling.Handled;
+
             }
-            handling = EnumHandling.Handled;
+            else
+            {
+                handling = EnumHandling.PassThrough;
+            }
             return true;
         }
     }

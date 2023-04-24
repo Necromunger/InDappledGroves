@@ -8,8 +8,8 @@ attributes: {
 			"groupedName": "indappledgroves:barkbasketname",
 			"extraSections": [
         {
-          "title2": "indappledgroves:block-handbooktitle-barkbasket",
-          "text2": "indappledgroves:block-handbooktext-barkbasket"
+          "title": "indappledgroves:block-handbooktitle-barkbasket",
+          "text": "indappledgroves:block-handbooktext-barkbasket"
         }
       ]
 		},

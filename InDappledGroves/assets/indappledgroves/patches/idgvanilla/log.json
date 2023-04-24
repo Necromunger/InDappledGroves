@@ -1,5 +1,37 @@
 [
   {
+     "op": "add",
+     "path": "/attributes",
+     "value": {
+		  "handbook": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:block-handbooktitle-debarkedlog",
+						  "text": "indappledgroves:block-handbooktext-debarkedlog"
+					  }
+          ]
+        }
+      },
+     "file": "game:blocktypes/wood/woodtyped/log-debarked.json",
+     "side": "server"
+  },
+  {
+     "op": "add",
+     "path": "/attributes",
+     "value": {
+		  "handbook": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:block-handbooktitle-supportbeam",
+						  "text": "indappledgroves:block-handbooktext-supportbeam"
+					  }
+          ]
+        }
+      },
+     "file": "game:blocktypes/wood/woodtyped/suppportbeam.json",
+     "side": "server"
+  },
+  {
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
@@ -64,9 +96,8 @@
     "file": "game:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/workStationTransformsByType",
+    "path": "/attributes/workStationTransforms",
     "value": {
-      "*-placed-*":{
         "idgChoppingBlockProps": {               
             "idgChoppingBlockTransform": {
             "translation": {
@@ -119,7 +150,6 @@
           }
         }
       }
-    }
   },
   {
     "file": "game:blocktypes/wood/woodtyped/planks.json",

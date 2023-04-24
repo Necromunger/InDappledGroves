@@ -83,7 +83,7 @@
   {
     "op": "add",
     "path": "/attributes/handbook",
-    "value": {"excludeByType": {"*-felling-tinbronze": true}},
+    "value": {"excludeByType": {"*-felling-*": true}},
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
@@ -138,8 +138,8 @@
   },
   {
     "op": "replace",
-    "path": "/variantgroups/0/states",
-    "value": ["scrap", "copper", "tinbronze"],
+    "path": "/variantgroups/1/states",
+    "value": ["scrap", "copper", "tinbronze", "ruined"],
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

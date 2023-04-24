@@ -212,9 +212,6 @@ namespace InDappledGroves.Items.Tools
 
         }
 
-
-
-
         //-- Spawns output when chopping cycle is finished --//
         private int ReturnStackId(GroundRecipe recipe, BlockPos pos)
         {
@@ -280,50 +277,7 @@ namespace InDappledGroves.Items.Tools
             return false;
         }
 
-        public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
-        {
-            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
-                && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown"
-                || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "ferntree"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "bamboo"
-                || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "fruittree"));
-
-            if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
-            {
-                float treeResistance = GetBehavior<BehaviorWoodChopping>().OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
-                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt / treeResistance, counter);
-            }
-            else
-            {
-                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter);
-            }
-
-        }
-
-        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
-        {
-            String firstPart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart();
-            String typePart = api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"];
-            bool isLog = ((api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "log"
-               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treestump"
-               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "treehollowgrown"
-               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "logsection")
-               && api.World.BlockAccessor.GetBlock(blockSel.Position, 0).Variant["type"] == "grown"
-               || (api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "ferntree"
-               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "bamboo"
-               || api.World.BlockAccessor.GetBlock(blockSel.Position, 0).FirstCodePart() == "fruittree"));
-
-            if (this.HasBehavior<BehaviorWoodChopping>() && isLog)
-            {
-                return this.GetBehavior<BehaviorWoodChopping>().OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier = 1);
-            }
-
-            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
-        }
-
+      
         #region Recipe Processing
         public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
         {
@@ -398,7 +352,6 @@ namespace InDappledGroves.Items.Tools
         private float playNextSound;
         private bool recipeComplete = false;
         private Block targetBlock;
-        //private string outputDsc;
         private EntityPlayer holder;
         private BlockPos recipePos;
         private Block recipeBlock;

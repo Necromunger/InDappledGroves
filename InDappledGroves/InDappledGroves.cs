@@ -41,6 +41,7 @@ namespace InDappledGroves
             api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
             api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));
             api.RegisterBlockClass("blocktreehollowplaced", typeof(BlockTreeHollowPlaced));
+            api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));

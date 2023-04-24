@@ -1,5 +1,13 @@
-﻿1.18-v0.4.9-rc.3
+﻿1.18-0.4.9-rc.3
+	- Corrected missing ruined axes.
+
+
+1.18-v0.4.9-rc.3
 	- Corrected logs from large trees (nw/ne/se/sw) not being able to be chopped in the world.
+	- Removed vanilla recipes for debarked logs and support beams
+	- Integrated debarked logs and support beam recipes as appropriate.
+	- Made updates to the handbook
+	- Continued working on Wildcraft Trees Integration, but some Lang file entries still aren't taking.
 
 1.18-v0.4.9-rc.2
 	- Updated a variety of blocks to make use of some clever options to reduce name bloat in the lang file.
