@@ -39,17 +39,16 @@
 		},
 		"hewingProps": {"hewingMod": 1},
 	},
+	"tool": "hoe",
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },
-    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },
+    { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },
    ],
 	skipVariants: [
 		"adze-bone-copper",
 		"adze-bone-tinbronze",
 		"adze-bone-bismuthbronze",
 		"adze-bone-blackbronze",
-		"adze-bone-gold", 
-		"adze-bone-silver", 
 		"adze-bone-iron", 
 		"adze-bone-meteoriciron", 
 		"adze-bone-steel"
@@ -68,7 +67,7 @@
 		"@adze-bone-(chert|granite|andesite|basalt|obsidian|peridotite)": { 
 			"material": { base: "game:block/stone/rock/{material}1" },
 			"string": { base: "game:item/tool/material/string" },
-			"handle": { base: "game:block/bone-yellow"}
+			"handle": { base: "game:block/creature/bone-yellow"}
 		},
 		"adze-wood-flint": { 
 			"material": { base: "game:block/stone/{material}" },
@@ -78,7 +77,7 @@
 		"adze-bone-flint": { 
 			"material": { base: "game:block/stone/{material}" },
 			"string": { base: "game:item/tool/material/string" },
-			"handle": { base: "game:block/bone-yellow" }
+			"handle": { base: "game:block/creature/bone-yellow" }
 		},
 		"@adze-wood-(copper|tinbronze|bismuthbronze|blackbronze|gold|silver|iron|meteoriciron|steel)": {
 			"material": { base: "game:block/metal/ingot/{material}" },

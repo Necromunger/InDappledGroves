@@ -1,5 +1,12 @@
 [
   {
+    "enabled": false,
+    "op": "replace",
+    "path": "/class",
+    "value": "idgplank",
+    "file": "game:itemtypes/resource/plank.json"
+  },
+  {
     "file": "game:blocktypes/wood/woodtyped/planks.json",
     "side": "server",
     "op": "add",

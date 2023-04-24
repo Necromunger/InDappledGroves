@@ -1,6 +1,6 @@
 {
 	code: "adzehead",
-	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"] },
+	creativeinventory: { "general": ["*"], "items": ["*"]},
 	attributes: {
 		handbook: {
 			groupBy: ["adzehead-*"]
@@ -18,7 +18,7 @@
 		{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } }
 	],
 	variantgroups: [
-        { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "meteoriciron", "steel" ] },
+        { code: "material", states: ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] },
     ],
 	drawtype: "json",
     shapeByType: { 

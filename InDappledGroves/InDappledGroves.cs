@@ -6,15 +6,19 @@ using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
 using InDappledGroves.BlockBehaviors;
 using Vintagestory.API.Common;
+using System.Collections.Generic;
+using System;
+using HarmonyLib;
 
 namespace InDappledGroves
 {
+    
     public class InDappledGroves : ModSystem
     {
-           public static float baseWorkstationMiningSpdMult;
-           public static float baseWorkstationResistanceMult;
-           public static float baseGroundRecipeMiningSpdMult;
-           public static float baseGroundRecipeResistaceMult;
+        public static float baseWorkstationMiningSpdMult;
+        public static float baseWorkstationResistanceMult;
+        public static float baseGroundRecipeMiningSpdMult;
+        public static float baseGroundRecipeResistaceMult;
 
         public override void Start(ICoreAPI api)
         {
@@ -28,12 +32,16 @@ namespace InDappledGroves
 
             //Register Blocks
             api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
+            api.RegisterBlockClass("idgbarkbundle", typeof(IDGBarkBundle));
+            api.RegisterBlockClass("idglogslab", typeof(IDGLogSlab));
             api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
             api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
-            api.RegisterBlockClass("idgbarkbasket", typeof(BarkBasket));
+            api.RegisterBlockClass("idgbarkbasket", typeof(IDGBarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
+            api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
             api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));
             api.RegisterBlockClass("blocktreehollowplaced", typeof(BlockTreeHollowPlaced));
+            api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
@@ -48,40 +56,93 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
 
+
             //Register BlockBehaviors
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
+            api.RegisterBlockBehaviorClass("IDGPickup", typeof(BehaviorIDGPickup));
 
-            
 
+
+            //Tool/Workstation Config
             //Check for Existing Config file, create one if none exists
             try
             {
-                var Config = api.LoadModConfig<InDappledGrovesConfig>("indappledgroves.json");
+                var Config = api.LoadModConfig<IDGToolConfig>("indappledgroves/toolconfig.json");
                 if (Config != null)
                 {
                     api.Logger.Notification("Mod Config successfully loaded.");
-                    InDappledGrovesConfig.Current = Config;
+                    IDGToolConfig.Current = Config;
                 }
                 else
                 {
                     api.Logger.Notification("No Mod Config specified. Falling back to default settings");
-                    InDappledGrovesConfig.Current = InDappledGrovesConfig.GetDefault();
+                    IDGToolConfig.Current = IDGToolConfig.GetDefault();
                 }
             }
             catch
             {
-                InDappledGrovesConfig.Current = InDappledGrovesConfig.GetDefault();
+                IDGToolConfig.Current = IDGToolConfig.GetDefault();
                 api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
             }
             finally
             {
-                api.StoreModConfig(InDappledGrovesConfig.Current, "indappledgroves.json");
+                api.StoreModConfig(IDGToolConfig.Current, "indappledgroves/toolconfig.json");
             }
-            baseWorkstationMiningSpdMult = InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult;
-            baseWorkstationResistanceMult = InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
-            baseGroundRecipeMiningSpdMult = InDappledGrovesConfig.Current.baseGroundRecipeMiningSpdMult;
-            baseGroundRecipeResistaceMult = InDappledGrovesConfig.Current.baseGroundRecipeResistaceMult;
 
+            baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
+            baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
+            baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
+            baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
+
+            //Tree Config
+            try
+            {
+                var Config = api.LoadModConfig<IDGTreeConfig>("indappledgroves/treeconfig.json");
+                if (Config != null)
+                {
+                    api.Logger.Notification("Mod Config successfully loaded.");
+                    IDGTreeConfig.Current = Config;
+                }
+                else
+                {
+                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
+                    IDGTreeConfig.Current = IDGTreeConfig.GetDefault();
+                }
+            }
+            catch
+            {
+                IDGTreeConfig.Current = IDGTreeConfig.GetDefault();
+                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
+            }
+            finally
+            {
+                api.StoreModConfig(IDGTreeConfig.Current, "indappledgroves/treeconfig.json");
+            }
+
+            //TreeHollowLoot Config
+            try
+            {
+                var Config = api.LoadModConfig<IDGHollowLootConfig>("indappledgroves/hollowloot.json");
+                if (Config != null)
+                {
+                    api.Logger.Notification("Mod Config successfully loaded.");
+                    IDGHollowLootConfig.Current = Config;
+                }
+                else
+                {
+                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
+                    IDGHollowLootConfig.Current = IDGHollowLootConfig.GetDefault();
+                }
+            }
+            catch
+            {
+                IDGHollowLootConfig.Current = IDGHollowLootConfig.GetDefault();
+                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
+            }
+            finally
+            {
+                api.StoreModConfig(IDGHollowLootConfig.Current, "indappledgroves/hollowloot.json");
+            }
         }
     }
 }

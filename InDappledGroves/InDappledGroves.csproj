@@ -42,9 +42,6 @@
     <None Update="assets\indappledgroves\blocktypes\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\blocktypes\strippedlog.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\blocktypes\clapboard.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -103,6 +100,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\boardpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\game\patches\enlang.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\firewoodpatch.json">
@@ -195,10 +195,13 @@
     <None Update="assets\indappledgroves\recipes\knapping\adzehead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\sawbuck\supportbeam.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\sawhorse\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\sawbuck\log.json">
+    <None Update="assets\indappledgroves\recipes\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\smithing\adzehead.json">
@@ -378,10 +381,31 @@
     <None Update="assets\indappledgroves\textures\block\strippedlog\aged.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\alder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\baldcypress.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\bearnut.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\beech.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\birch.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\blackpoplar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\catalpa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\cedar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\douglasfir.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\ebony.png">
@@ -390,10 +414,22 @@
     <None Update="assets\indappledgroves\textures\block\strippedlog\ebony_outer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\elm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\eucalyptus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\honeylocust.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\kapok.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\larch.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\mahogany.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\maple.png">
@@ -411,10 +447,28 @@
     <None Update="assets\indappledgroves\textures\block\strippedlog\purpleheart_outer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\pyramidalpoplar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\redwood.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\sal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\saxaul.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\spruce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\sycamore.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\walnut.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\willow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\treehollow\inside.png">
@@ -464,48 +518,48 @@
 
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\0Harmony.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="AnimatedGif">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\AnimatedGif.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\AnimatedGif.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\cairo-sharp.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\cairo-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\Newtonsoft.Json.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Lib\protobuf-net.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Tavis.JsonPatch">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Tavis.JsonPatch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VintagestoryAPI.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VintagestoryLib.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="VSBuildLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\VSBuildLib.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSCreativeMod.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSCreativeMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSEssentials.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSEssentials.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1179\Mods\VSSurvivalMod.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
 

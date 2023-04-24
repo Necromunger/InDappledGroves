@@ -1,4 +1,5 @@
 {
+  "enabled": false,
   "code": "clapboard",
   "class": "BlockPlanks",
   "creativeinventory": { "general": ["*-east"]},

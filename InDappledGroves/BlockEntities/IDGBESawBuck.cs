@@ -19,7 +19,6 @@ namespace InDappledGroves.BlockEntities
 		public IDGBESawBuck()
 		{
 			Inventory = new InventoryGeneric(2, "sawbuck-slot", null, null);
-			meshes = new MeshData[1];
 		}
 
 		public ItemSlot InputSlot
@@ -31,11 +30,11 @@ namespace InDappledGroves.BlockEntities
 		{
 			base.Initialize(api);
 			this.capi = (api as ICoreClientAPI);
-			if (this.capi != null)
-			{
-				this.updateMeshes();
-			}
-		}
+            if (this.capi != null)
+            {
+                this.updateMeshes();
+            }
+        }
 
 		internal bool OnInteract(IPlayer byPlayer)
 		{
@@ -137,6 +136,7 @@ namespace InDappledGroves.BlockEntities
 			{
 				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
 			}
+
 		}
 
 		public bool DoesSlotMatchRecipe(ItemSlot slots)
@@ -171,41 +171,32 @@ namespace InDappledGroves.BlockEntities
 			return null;
 		}
 
-		public override void TranslateMesh(MeshData mesh, int index)
-		{
-			float x = 0.0f;
-			float y = 0.0f;
-			float z = 0f;
-			Vec4f offset = mat.TransformVector(new Vec4f(x, y, z, 0));
-			mesh.Translate(offset.XYZ);
-		}
-
-		protected override MeshData genMesh(ItemStack stack)
+		protected ModelTransform genTransform(ItemStack stack)
 		{
 			MeshData meshData;
 			String side = Block.Variant["side"];
-			if (stack.Collectible is IContainedMeshSource containedMeshSource)
-			{
-				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
-				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
-			}
-			else
-			{
-				this.nowTesselatingObj = stack.Collectible;
-				this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
-				if (stack.Collectible is Block)
+			ModelTransform transform;
+				if (stack != null && stack.Collectible is IContainedMeshSource containedMeshSource)
 				{
-					capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
+					meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
+					meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
 				}
-				else
+				else if (capi != null)
 				{
-					capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
+					this.nowTesselatingObj = stack.Collectible;
+					this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
+					if (stack.Collectible is Block)
+					{
+						capi.Tesselator.TesselateShape(stack.Collectible, nowTesselatingShape, out meshData, null, null, null);
+					}
+					else
+					{
+						capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
+					}
+
+
 				}
-
-
-			}
-			ModelTransform transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
-
+				transform = stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgSawBuckProps"]["idgSawBuckTransform"].AsObject<ModelTransform>() : null;
 			if (transform == null)
 			{
 				transform = new ModelTransform
@@ -217,9 +208,8 @@ namespace InDappledGroves.BlockEntities
 			}
 			transform.EnsureDefaultValues();
 
-			
-			meshData.ModelTransform(ProcessTransform(transform, side));
-			return meshData;
+			if (stack != null) transform = ProcessTransform(transform, side);
+			return transform;
 		}
 
 		private ModelTransform ProcessTransform(ModelTransform transform, String side)
@@ -261,34 +251,41 @@ namespace InDappledGroves.BlockEntities
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 1f;
 		}
 
-		public override void updateMeshes()
-		{
-			for (int i = 0; i < this.meshes.Length; i++)
-			{
-				this.updateMesh(i);
-			}
-			base.updateMeshes();
-		}
 		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
 		{
 			//Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
 			//If no tool is held, return only contents
 		}
 
-		protected override void updateMesh(int index)
+		protected override float[][] genTransformationMatrices()
 		{
-			if (this.Api == null || this.Api.Side == EnumAppSide.Server)
+			float[][] tfMatrices = new float[1][];
+			for (int index = 0; index < 1; index++)
 			{
-				return;
+
+				ItemSlot itemSlot = this.Inventory[index];
+				JsonObject jsonObject;
+				if (itemSlot == null)
+				{
+					jsonObject = null;
+				}
+				else
+				{
+					ItemStack itemstack = itemSlot.Itemstack;
+					if (itemstack == null)
+					{
+						jsonObject = null;
+					}
+					else
+					{
+						CollectibleObject collectible = itemstack.Collectible;
+						jsonObject = ((collectible != null) ? collectible.Attributes : null);
+						tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
+					}
+				}
+
 			}
-			if (this.Inventory[index].Empty)
-			{
-				this.meshes[index] = null;
-				return;
-			}
-			MeshData meshData = this.genMesh(this.Inventory[index].Itemstack);
-			this.TranslateMesh(meshData, index);
-			this.meshes[index] = meshData;
+			return tfMatrices;
 		}
 
 		private readonly Matrixf mat = new();

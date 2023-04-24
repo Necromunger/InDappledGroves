@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
@@ -14,26 +13,25 @@ namespace InDappledGroves.BlockEntities
     class IDGBEChoppingBlock : BlockEntityDisplay
     {
 		public override InventoryBase Inventory { get; }
-		public override string InventoryClassName => "choppingblock";
-        public override string AttributeTransformCode => "onDisplayTransform";
+		//public override string InventoryClassName => "choppingblock";
+		public override string InventoryClassName => Block.Attributes["inventoryclass"].AsString();
+		public override string AttributeTransformCode => "onDisplayTransform";
+
+		
 
 		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
 		public IDGBEChoppingBlock()
 		{
 			Inventory = new InventoryDisplayed(this, 1, "choppingblock-slot", null, null);
-			meshes = new MeshData[1];
 		}
 
 		public override void Initialize(ICoreAPI api)
 		{
 			base.Initialize(api);
 			this.capi = (api as ICoreClientAPI);
-			if (this.capi != null)
-			{
-				this.updateMeshes();
-			}
-		}
+        }
+
 		public ItemSlot InputSlot
 		{
 			get { return Inventory[0]; }
@@ -53,13 +51,13 @@ namespace InDappledGroves.BlockEntities
 
             ItemStack itemstack = activeHotbarSlot.Itemstack;
 			AssetLocation assetLocation;
-			if (itemstack == null)
+			if (activeHotbarSlot.Empty)
 			{
 				assetLocation = null;
 			}
 			else
 			{
-				Block block = itemstack.Block;
+				Block block = activeHotbarSlot.Itemstack.Block;
 				if (block == null)
 				{
 					assetLocation = null;
@@ -70,13 +68,12 @@ namespace InDappledGroves.BlockEntities
 					assetLocation = (sounds?.Place);
 				}
 			}
-			AssetLocation assetLocation2 = assetLocation;
 
 			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
 			{	 
-				this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 updateMeshes();
-			}
+            }
 			return true;
 		}
 
@@ -123,23 +120,35 @@ namespace InDappledGroves.BlockEntities
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
 					base.MarkDirty(true, null);
-					this.updateMeshes();
-					return true;
+                    this.updateMeshes();
+                    return true;
 				}
 			}
 			return false;
 		}
 
-		protected override MeshData genMesh(ItemStack stack)
+
+
+		#region ProcessTransform
+		/// <summary>
+		/// Processes the transform.
+		/// </summary>
+		/// <param name="transform">The transform.</param>
+		/// <param name="side">The side.</param>
+		/// <returns></returns>
+		/// 
+
+		protected ModelTransform genTransform(ItemStack stack)
 		{
 			MeshData meshData;
 			String side = Block.Variant["side"];
-			if (stack.Collectible is IContainedMeshSource containedMeshSource)
+			if (stack != null && stack.Collectible is IContainedMeshSource containedMeshSource)
 			{
+
 				meshData = containedMeshSource.GenMesh(stack, this.capi.BlockTextureAtlas, this.Pos);
 				meshData.Rotate(new Vec3f(0.5f, 0.5f, 0.5f), 0f, base.Block.Shape.rotateY * 0.017453292f, 0f);
 			}
-			else
+			else if (capi != null)
 			{
 				this.nowTesselatingObj = stack.Collectible;
 				this.nowTesselatingShape = capi.TesselatorManager.GetCachedShape(stack.Collectible is Block ? (stack.Block.ShapeInventory?.Base == null ? stack.Block.Shape.Base : stack.Block.ShapeInventory.Base) : stack.Item.Shape.Base);
@@ -154,21 +163,19 @@ namespace InDappledGroves.BlockEntities
 
 
 			}
-			bool flag = stack.Collectible.Attributes != null;
 
 			ModelTransform transform;
-			if (flag && stack.Collectible.Attributes["workStationTransforms"].Exists)
+			if (stack != null && stack.Collectible.Attributes["workStationTransforms"].Exists)
 			{
 				transform = stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
 			}
 			else
-            {
+			{
 				transform = null;
 			}
 
-			
-			if(transform == null)
-            {
+			if (transform == null)
+			{
 				transform = new ModelTransform
 				{
 					Translation = new Vec3f(),
@@ -180,17 +187,11 @@ namespace InDappledGroves.BlockEntities
 
 			transform.EnsureDefaultValues();
 
-			if(flag) meshData.ModelTransform(ProcessTransform(transform, side));
-			return meshData;
+			if (stack != null) transform = ProcessTransform(transform, side);
+			return transform;
 		}
 
-        /// <summary>
-        /// Processes the transform.
-        /// </summary>
-        /// <param name="transform">The transform.</param>
-        /// <param name="side">The side.</param>
-        /// <returns></returns>
-        private ModelTransform ProcessTransform(ModelTransform transform, String side)
+		private ModelTransform ProcessTransform(ModelTransform transform, String side)
 		{
 
 				transform.Rotation.X += AddRotate(side + "x");
@@ -220,6 +221,7 @@ namespace InDappledGroves.BlockEntities
 			JsonObject transforms = this.Inventory[0].Itemstack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"];
 			return transforms["scale"][side].Exists ? transforms["scale"][side].AsFloat() : 0.95f;
 		}
+		#endregion
 
 		public bool DoesSlotMatchRecipe(IWorldAccessor world, ItemSlot slots)
 		{
@@ -267,11 +269,36 @@ namespace InDappledGroves.BlockEntities
 			//Alter this code to produce an output based on the recipe that results from the held tool and its current mode.
 			//If no tool is held, return only contents
 		}
-		public override void updateMeshes()
-        {
-			base.updateMeshes();
-        }
 
-		private readonly Matrixf mat = new();
+		protected override float[][] genTransformationMatrices()
+		{
+			float[][] tfMatrices = new float[1][];
+			for (int index = 0; index < 1; index++)
+			{
+
+				ItemSlot itemSlot = this.Inventory[index];
+				JsonObject jsonObject;
+				if (itemSlot == null)
+				{
+					jsonObject = null;
+				}
+				else
+				{
+					ItemStack itemstack = itemSlot.Itemstack;
+					if (itemstack == null)
+					{
+						jsonObject = null;
+					}
+					else
+					{
+						CollectibleObject collectible = itemstack.Collectible;
+						jsonObject = ((collectible != null) ? collectible.Attributes : null);
+						tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
+					}
+				}
+				
+			}
+			return tfMatrices;
+		}
 	}
 }

@@ -4,6 +4,7 @@ using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util;
 using Vintagestory.API.Common;
+using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 
 namespace InDappledGroves.Blocks
@@ -11,11 +12,23 @@ namespace InDappledGroves.Blocks
 
 	internal class IDGSawHorse : Block
 	{
+
+		public override string GetHeldItemName(ItemStack stack) => GetName();
+		public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+		public string GetName()
+		{
+			var material1 = Variant["support"];
+			var material2 = Variant["crossbrace"];
+			var part = Lang.Get($"{material1}") + " & " + Lang.Get($"{material2}");
+			part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+			return string.Format($"{part} {Lang.Get("block-sawhorse")}" + Variant["state"]=="compound"?" Station":"");
+		}
+
 		public override void OnLoaded(ICoreAPI api)
 		{
 			base.OnLoaded(api);
 		}
-
 
 		public override bool TryPlaceBlock(IWorldAccessor world, IPlayer byPlayer, ItemStack itemstack, BlockSelection blockSel, ref string failureCode)
 		{
@@ -169,8 +182,8 @@ namespace InDappledGroves.Blocks
 						this.playNextSound += 0.7f;
 					}
 
-					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-					float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+					float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 					if (curMiningProgress >= curResistance)
 					{
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);

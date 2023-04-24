@@ -13,7 +13,20 @@
 
     public class BlockTreeHollowGrown : Block
         {
-            private WorldInteraction[] interactions;
+
+        public override string GetHeldItemName(ItemStack stack) => GetName();
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+        public string GetName()
+        {
+            var material = Variant["wood"];
+
+            var part = Lang.Get($"{material}");
+            part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            return string.Format($"{part} {Lang.Get("indappledgroves:block-treehollow")}");
+        }
+
+        private WorldInteraction[] interactions;
             public override void OnLoaded(ICoreAPI api)
             {
                 if (api.Side != EnumAppSide.Client)
@@ -83,14 +96,6 @@
                 }
                 return mesh;
             }
-
-        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos)
-        {
-            return Lang.Get("{0} Treehollow", new object[]
-            {
-                this.Variant["wood"].ToString().UcFirst()
-            });
-        }
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
             {

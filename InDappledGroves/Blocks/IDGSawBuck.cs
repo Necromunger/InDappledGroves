@@ -19,6 +19,20 @@ namespace InDappledGroves.Blocks
 			base.OnLoaded(api);
 		}
 
+		public override string GetHeldItemName(ItemStack stack) => GetName();
+		public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
+
+		public string GetName()
+		{
+			var material1 = Variant["support"];
+			var material2 = Variant["crossbrace"];
+			var part1 = Lang.Get($"{material1}");
+			var part2 = Lang.Get($"{material2}");
+			part1 = $"{part1[0].ToString().ToUpper()}{part1.Substring(1)}";
+			part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";
+			return string.Format($"{part1} & {part2} {Lang.Get("indappledgroves:block-sawbuck")}");
+		}
+
 		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			string curTMode = "";
@@ -38,7 +52,7 @@ namespace InDappledGroves.Blocks
 					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+						resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
 						byPlayer.Entity.StartAnimation("axechop");
 						return true;
 					}
@@ -52,10 +66,10 @@ namespace InDappledGroves.Blocks
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
-			CollectibleObject collectibleObject = itemstack?.Collectible;
+			CollectibleObject sawtool = itemstack?.Collectible;
 			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos position = blockSel.Position;
-			if (collectibleObject != null && collectibleObject is IIDGTool && !idgbesawBuck.Inventory.Empty)
+			if (sawtool != null && sawtool is IIDGTool && !idgbesawBuck.Inventory.Empty)
 			{
 				if (this.playNextSound < secondsUsed)
 				{
@@ -63,14 +77,19 @@ namespace InDappledGroves.Blocks
 					this.playNextSound += 0.7f;
 				}
 
-				curDmgFromMiningSpeed += (collectibleObject.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+				curDmgFromMiningSpeed += (sawtool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbesawBuck.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
 				lastSecondsUsed = secondsUsed;
 
-				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
+				EntityPlayer playerEntity = byPlayer.Entity;
+				
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
+
+				
 				if (curMiningProgress >= curResistance)
 				{
-					this.SpawnOutput(this.recipe, blockSel.Position);
+					idgbesawBuck.SpawnOutput(this.recipe, blockSel.Position);
+					sawtool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
 					idgbesawBuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
 					idgbesawBuck.MarkDirty(true, null);

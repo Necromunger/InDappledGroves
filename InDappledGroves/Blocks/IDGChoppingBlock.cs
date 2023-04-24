@@ -19,9 +19,19 @@ namespace InDappledGroves.Blocks
 		ChoppingBlockRecipe recipe;
 		float toolModeMod;
 
+        public override string GetHeldItemName(ItemStack stack) => GetName();
+        public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
+        public string GetName()
+        {
+            var material = Variant["wood"];
+            
+			var part = Lang.Get($"{material}");
+			part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            return string.Format($"{part} {Lang.Get("indappledgroves:block-choppingblock")}");
+        }
 
-		public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+        public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
 			
 			string curTMode = "";
@@ -76,9 +86,8 @@ namespace InDappledGroves.Blocks
 				}
 
 				lastSecondsUsed = secondsUsed;
-				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * InDappledGrovesConfig.Current.baseWorkstationMiningSpdMult);
-				float curResistance = resistance * InDappledGrovesConfig.Current.baseWorkstationResistanceMult;
-				System.Diagnostics.Debug.WriteLine("Block: " + curResistance + " " + curMiningProgress);
+				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 				if ( curMiningProgress >= curResistance) 
 				{
 

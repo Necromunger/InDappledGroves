@@ -10,14 +10,6 @@ namespace InDappledGroves.Items
 	class IDGFirewood : ItemFirewood
 	{
 
-		protected override AssetLocation PileBlockCode
-		{
-			get
-			{
-				return new AssetLocation("firewoodpile");
-			}
-		}
-
 		public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handling)
 		{
 			if (blockSel == null) return;
@@ -28,7 +20,7 @@ namespace InDappledGroves.Items
 			if (block is BlockFirepit || block is BlockPitkiln || block is BlockClayOven)
 			{
 				return;
-			}
+            }
 
 			//Determine if target block is *not* a BlockFirewoodPile
 			if (!byEntity.Controls.Sneak && !byEntity.Controls.Sprint && block is not BlockFirewoodPile)
@@ -37,7 +29,7 @@ namespace InDappledGroves.Items
 				string failurecode = "";
 
 				Block targetBlock = api.World.BlockAccessor.GetBlock(blockSel.Position.AddCopy(blockSel.Face), 0);
-				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgfirewoodblock")));
+				ItemStack stackWood = new ItemStack(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgblockfirewood")));
 				bool flag = false;
 				if (targetBlock.Replaceable > 5000 && stackWood.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackWood, blockSel, ref failurecode))
 				{

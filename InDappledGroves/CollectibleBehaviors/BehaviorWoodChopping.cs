@@ -78,51 +78,61 @@ namespace InDappledGroves
         }
 
         #region TreeFelling
-        public float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter)
+        public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
         {
-            
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
-
-
             BlockPos pos = blockSel.Position;
-
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
+            
             if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
             {
-                Stack<BlockPos> foundPositions = FindTree(player.Entity.World, pos);
+                int baseResistance;
+                int woodTier;
+                Stack<BlockPos> foundPositions = FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
                 treeResistance = (float)Math.Max(1, Math.Sqrt(foundPositions.Count));
-
+                if (collObj.ToolTier < woodTier - 3)
+                {
+                    return treeResistance * 1.25f;
+                }
                 tempAttr.SetFloat("treeResistance", treeResistance);
+            }
+            else
+            {
+                treeResistance = tempAttr.GetFloat("treeResistance", 1f);
             }
 
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
             return treeResistance * 1.25f;
-
         }
 
-        public bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1)
+        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
         {
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
-            double windspeed = api.ModLoader.GetModSystem<WeatherSystemBase>()?.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) ?? 0;
-            
-            Stack<BlockPos> foundPositions = FindTree(world, blockSel.Position);
+            WeatherSystemBase modSystem = this.api.ModLoader.GetModSystem<WeatherSystemBase>(true);
+            double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
+            int num;
+            int woodTier;
+
+            Stack<BlockPos> foundPositions = this.FindTree(world, blockSel.Position, out num, out woodTier);
+
             if (foundPositions.Count == 0)
             {
-                return collObj.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier);
+                bhHandling = EnumHandling.Handled;
+                return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
             }
 
             bool damageable = collObj.DamagedBy != null && collObj.DamagedBy.Contains(EnumItemDamageSource.BlockBreaking);
-
-            float leavesMul = 1;
+            float leavesMul = 1f;
             float leavesBranchyMul = 0.8f;
             int blocksbroken = 0;
+
             bool isStump = api.World.BlockAccessor.GetBlock(blockSel.Position).FirstCodePart() == "treestump";
             while (foundPositions.Count > 0)
             {
@@ -130,7 +140,6 @@ namespace InDappledGroves
                 blocksbroken++;
 
                 Block block = world.BlockAccessor.GetBlock(pos, 0);
-
                 bool isLog = block.BlockMaterial == EnumBlockMaterial.Wood;
                 bool isBranchy = block.Code.Path.Contains("branchy");
                 bool isLeaves = block.BlockMaterial == EnumBlockMaterial.Leaves;
@@ -181,22 +190,26 @@ namespace InDappledGroves
                 api.World.PlaySoundAt(new AssetLocation("sounds/effect/treefell"), pos.X, pos.Y, pos.Z, byPlayer, false, 32, GameMath.Clamp(blocksbroken / 100f, 0.25f, 1));
             }
 
+            bhHandling = EnumHandling.Handled;
             return true;
         }
 
         
 
-        public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos)
+        public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out int resistance, out int woodTier)
         {
             Queue<Vec4i> queue = new();
             HashSet<BlockPos> checkedPositions = new();
             Stack<BlockPos> foundPositions = new();
             Block startBlock = api.World.BlockAccessor.GetBlock(startPos);
             BlockPos secondPos = null;
+            resistance = 0;
+            woodTier = 0;
 
             api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
             {
-                if (block.Code.FirstCodePart() == "log") { secondPos = new BlockPos(x, y, z); }
+                string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow"};
+                if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y, z); }
             }, true);
 
             if (startBlock.Code.FirstCodePart() == "treestump")
@@ -205,57 +218,106 @@ namespace InDappledGroves
             }
 
             Block block = world.BlockAccessor.GetBlock(startPos, 0);
-            if (block.Code == null) return foundPositions;
-            string treeFellingGroupCode = block.Attributes?["treeFellingGroupCode"].AsString();
-            int spreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
 
+            if (block.Code == null) return foundPositions;
+
+            JsonObject attributes = block.Attributes;
+            string treeFellingGroupCode = attributes?["treeFellingGroupCode"].AsString();
+            JsonObject attributes2 = block.Attributes;
+            int spreadIndex = attributes2?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
+            JsonObject attributes3 = block.Attributes;
+
+            if (attributes3 != null && !attributes3["treeFellingCanChop"].AsBool(true))
+            {
+                return foundPositions;
+            }
 
             // Must start with a log
+            EnumTreeFellingBehavior bh = EnumTreeFellingBehavior.Chop;
+            ICustomTreeFellingBehavior ctfbh = block as ICustomTreeFellingBehavior;
+            if (ctfbh != null)
+            {
+                bh = ctfbh.GetTreeFellingBehavior(startPos, null, spreadIndex);
+                if (bh == EnumTreeFellingBehavior.NoChop)
+                {
+                    return foundPositions;
+                }
+            }
+
             if (spreadIndex < 2) return foundPositions;
+
             if (treeFellingGroupCode == null) return foundPositions;
+
+            string treeFellingGroupLeafCode = null;
 
             queue.Enqueue(new Vec4i(startPos.X, startPos.Y, startPos.Z, spreadIndex));
             foundPositions.Push(startPos);
             checkedPositions.Add(startPos);
 
-            while (queue.Count > 0)
+            while (queue.Count > 0 && foundPositions.Count <= 2500)
             {
-                if (foundPositions.Count > 2500)
-                {
-                    break;
-                }
 
                 Vec4i pos = queue.Dequeue();
-
-                for (int i = 0; i < Vec3i.DirectAndIndirectNeighbours.Length; i++)
+                block = world.BlockAccessor.GetBlock(pos.X, pos.Y, pos.Z);
+                ICustomTreeFellingBehavior ctfbhh = block as ICustomTreeFellingBehavior;
+                if (ctfbhh != null)
                 {
-                    Vec3i facing = Vec3i.DirectAndIndirectNeighbours[i];
-                    BlockPos neibPos = new(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z);
+                    bh = ctfbhh.GetTreeFellingBehavior(startPos, null, spreadIndex);
+                }
+                if (bh != EnumTreeFellingBehavior.NoChop)
+                {
+                    for (int i = 0; i < Vec3i.DirectAndIndirectNeighbours.Length; i++)
+                    {
+                        Vec3i facing = Vec3i.DirectAndIndirectNeighbours[i];
+                        BlockPos neibPos = new(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z);
 
-                    float hordist = GameMath.Sqrt(neibPos.HorDistanceSqTo(startPos.X, startPos.Z));
-                    float vertdist = (neibPos.Y - startPos.Y);
+                        float hordist = GameMath.Sqrt(neibPos.HorDistanceSqTo((double)startPos.X, (double)startPos.Z));
+                        float vertdist = (float)(neibPos.Y - startPos.Y);
+                        float f = (bh == EnumTreeFellingBehavior.ChopSpreadVertical) ? 0.5f : 2f;
 
-                    // "only breaks blocks inside an upside down square base pyramid"
-                    if (hordist - 1 >= 2 * vertdist) continue;
-                    if (checkedPositions.Contains(neibPos)) continue;
-
-                    block = world.BlockAccessor.GetBlock(neibPos, 0);
-                    if (block.Code == null || block.Id == 0) continue;
-
-                    string ngcode = block.Attributes?["treeFellingGroupCode"].AsString();
-
-                    // Only break the same type tree blocks
-                    if (ngcode != treeFellingGroupCode) continue;
-
-                    // Only spread from "high to low". i.e. spread from log to leaves, but not from leaves to logs
-                    int nspreadIndex = block.Attributes?["treeFellingGroupSpreadIndex"].AsInt(0) ?? 0;
-                    if (pos.W < nspreadIndex) continue;
-
-                    foundPositions.Push(neibPos.Copy());
-                    queue.Enqueue(new Vec4i(neibPos.X, neibPos.Y, neibPos.Z, nspreadIndex));
-
-
-                    checkedPositions.Add(neibPos);
+                        // "only breaks blocks inside an upside down square base pyramid"
+                        if (hordist - 1f < f * vertdist && !checkedPositions.Contains(neibPos))
+                        {
+                            block = world.BlockAccessor.GetBlock(neibPos);
+                            if (!(block.Code == null) && block.Id != 0)
+                            {
+                                JsonObject attributes4 = block.Attributes;
+                                string ngcode = (attributes4 != null) ? attributes4["treeFellingGroupCode"].AsString(null) : null;
+                                if (ngcode != treeFellingGroupCode)
+                                {
+                                    if (ngcode == null)
+                                    {
+                                        goto IL_32A;
+                                    }
+                                    if (ngcode != treeFellingGroupLeafCode)
+                                    {
+                                        if (treeFellingGroupLeafCode != null || block.BlockMaterial != EnumBlockMaterial.Leaves || ngcode.Length != treeFellingGroupCode.Length + 1 || !ngcode.EndsWith(treeFellingGroupCode))
+                                        {
+                                            goto IL_32A;
+                                        }
+                                        treeFellingGroupLeafCode = ngcode;
+                                    }
+                                }
+                                JsonObject attributes5 = block.Attributes;
+                                int nspreadIndex = (attributes5 != null) ? attributes5["treeFellingGroupSpreadIndex"].AsInt(0) : 0;
+                                if (pos.W >= nspreadIndex)
+                                {
+                                    checkedPositions.Add(neibPos);
+                                    if (bh != EnumTreeFellingBehavior.ChopSpreadVertical || facing.Equals(0, 1, 0) || nspreadIndex <= 0)
+                                    {
+                                        resistance += nspreadIndex + 1;
+                                        if (woodTier == 0)
+                                        {
+                                            woodTier = nspreadIndex;
+                                        }
+                                        foundPositions.Push(neibPos.Copy());
+                                        queue.Enqueue(new Vec4i(neibPos.X, neibPos.Y, neibPos.Z, nspreadIndex));
+                                    }
+                                }
+                            }
+                        }
+                    IL_32A:;
+                    }
                 }
             }
             return foundPositions;

@@ -32,7 +32,6 @@ namespace InDappledGroves.BlockEntities
         public IDGBESawHorse()
         {
             inv = new InventoryGeneric(2, "sawhorse-slot", null, null);
-            meshes = new MeshData[2];
         }
 
         public ItemSlot InputSlot()
@@ -224,23 +223,7 @@ namespace InDappledGroves.BlockEntities
             base.updateMeshes();
         }
 
-        protected override void updateMesh(int index)
-        {
-            if (this.Api == null || this.Api.Side == EnumAppSide.Server)
-            {
-                return;
-            }
-            if (this.Inventory[index].Empty)
-            {
-                this.meshes[index] = null;
-                return;
-            }
-            MeshData meshData = this.genMesh(this.Inventory[index].Itemstack);
-            this.TranslateMesh(meshData, index);
-            this.meshes[index] = meshData;
-        }
-
-        protected override MeshData genMesh(ItemStack stack)
+        protected ModelTransform genTransform(ItemStack stack)
         {
 
             IContainedMeshSource containedMeshSource = stack.Collectible as IContainedMeshSource;
@@ -268,10 +251,10 @@ namespace InDappledGroves.BlockEntities
             }
             transform.EnsureDefaultValues();
             String side = Block.Variant["side"];
-            transform = ProcessTransform(transform, side);
-            meshData.ModelTransform(transform);
+            transform.EnsureDefaultValues();
 
-            return meshData;
+            if (stack != null) transform = ProcessTransform(transform, side);
+            return transform;
         }
 
         private ModelTransform ProcessTransform(ModelTransform transform, String side)
@@ -346,6 +329,37 @@ namespace InDappledGroves.BlockEntities
                 //If no tool is held, return only contents
                 dsc.AppendLine("Contains " + (ConBlockPos != null && Api.World.BlockAccessor.GetBlockEntity(ConBlockPos) is IDGBESawHorse besawhorse ? besawhorse.inv[1].Empty ? "nothing" : besawhorse.inv[1].Itemstack.ToString() : "nothing"));
             }
+        }
+
+        protected override float[][] genTransformationMatrices()
+        {
+            float[][] tfMatrices = new float[1][];
+            for (int index = 0; index < 1; index++)
+            {
+
+                ItemSlot itemSlot = this.Inventory[index];
+                JsonObject jsonObject;
+                if (itemSlot == null)
+                {
+                    jsonObject = null;
+                }
+                else
+                {
+                    ItemStack itemstack = itemSlot.Itemstack;
+                    if (itemstack == null)
+                    {
+                        jsonObject = null;
+                    }
+                    else
+                    {
+                        CollectibleObject collectible = itemstack.Collectible;
+                        jsonObject = ((collectible != null) ? collectible.Attributes : null);
+                        tfMatrices[index] = new Matrixf().Set(genTransform(itemstack).AsMatrix).Values;
+                    }
+                }
+
+            }
+            return tfMatrices;
         }
     }
 }

@@ -7,10 +7,22 @@
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
-   {
+  {
     "op": "add",
     "path": "/behaviors",
     "value": [{"name": "woodsplitter"}, {name: "GroundStorable"}],
+    "file": "game:itemtypes/tool/axe-stone.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
+    "path": "/attributes/groundStorageTransform",
+    "value": {
+        translation: { x: 0, y: 0.2, z: 0.15 },
+			  rotation: { x: -30, y: 180, z: -88 },
+			  origin: { x: 0.5, y: 0.4, z: 0.3 },
+			  scale: 0.88
+      },
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
@@ -71,14 +83,28 @@
   {
     "op": "add",
     "path": "/attributes/handbook",
-    "value": {"excludeByType": {"*-tinbronze": true}},
+    "value": {"excludeByType": {"*-felling-*": true}},
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/attributes/choppingProps",
-    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.15 },
+    "path": "/attributes/choppingPropsbytype",
+    "value": { 
+      "*-felling-*": {"fellingMultiplier": 1.25, "splittingMod": 0.15 }
+    },
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/groundStorageTransform",
+    "value": {
+        translation: { x: 0, y: 0.2, z: 0.15 },
+			  rotation: { x: -30, y: 180, z: -88 },
+			  origin: { x: 0.5, y: 0.4, z: 0.3 },
+			  scale: 0.88
+      },
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
@@ -99,7 +125,7 @@
   {
     "op": "replace",
     "path": "/variantgroups/0/states",
-    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper", "tinbronze"],
+    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint"],
     "file": "game:itemtypes/toolhead/axehead.json",
     "side": "server"
   },
@@ -112,16 +138,8 @@
   },
   {
     "op": "replace",
-    "path": "/variantgroups/0/states",
-    "value": ["scrap", "copper", "tinbronze"],
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  
-  {
-    "op": "replace",
-    "path": "/miningspeedbytype/axe-copper/wood",
-    "value": 5.2,
+    "path": "/variantgroups/1/states",
+    "value": ["scrap", "copper", "tinbronze", "ruined"],
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

@@ -195,7 +195,7 @@
   "creativeinventoryStacksByType": {
     "*-north": [
       {
-        "tabs": [ "general", "primitive" ],
+        "tabs": [ "general" ],
         "stacks": [
           {
             "type": "block",
