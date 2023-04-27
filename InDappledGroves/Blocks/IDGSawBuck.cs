@@ -85,9 +85,8 @@ namespace InDappledGroves.Blocks
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 
-				
-				if (curMiningProgress >= curResistance)
-				{
+                if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
+                {
 					idgbesawBuck.SpawnOutput(this.recipe, blockSel.Position);
 					sawtool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
 					idgbesawBuck.Inventory.Clear();

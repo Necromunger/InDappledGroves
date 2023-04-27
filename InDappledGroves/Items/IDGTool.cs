@@ -174,7 +174,7 @@ namespace InDappledGroves.Items.Tools
                     float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
                     System.Diagnostics.Debug.WriteLine("Tool: " + toolMiningSpeed + " cuResist:" + curResistance + " " + curMiningProgress + " ");
-                    if (api.World is Vintagestory.API.Server.IServerWorldAccessor && curMiningProgress >= curResistance)
+                    if (api.Side == EnumAppSide.Server/*api.World is Vintagestory.API.Server.IServerWorldAccessor*/ && curMiningProgress >= curResistance)
                     {
 
                         SpawnOutput(recipe, recipePos);
@@ -195,6 +195,7 @@ namespace InDappledGroves.Items.Tools
         {
 
             if (recipeComplete) slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+            api.World.BlockAccessor.MarkBlockDirty(blockSel.Position);
             recipeComplete = false;
             byEntity.StopAnimation("axechop");
         }

@@ -184,8 +184,8 @@ namespace InDappledGroves.Blocks
 
 					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 					float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
-					if (curMiningProgress >= curResistance)
-					{
+                    if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
+                    {
 						idgbesawHorse2.SpawnOutput(this.recipe, byPlayer.Entity, blockSel.Position);
 						idgbesawHorse2.Inventory.Clear();
 						(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawHorse).updateMeshes();

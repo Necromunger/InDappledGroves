@@ -88,7 +88,7 @@ namespace InDappledGroves.Blocks
 				lastSecondsUsed = secondsUsed;
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
-				if ( curMiningProgress >= curResistance) 
+				if ( api.Side == EnumAppSide.Server && curMiningProgress >= curResistance) 
 				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
@@ -105,12 +105,11 @@ namespace InDappledGroves.Blocks
 						bechoppingblock.Inventory[0].Itemstack = recipe.ReturnStack.ResolvedItemstack.Clone();
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
-					bechoppingblock.MarkDirty(true);
-					return false;
-                }		
+                    bechoppingblock.MarkDirty(true);
+                }
 				return !bechoppingblock.Inventory.Empty;
-			}
-			return false;
+            }
+            return false;
         }
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -120,6 +119,7 @@ namespace InDappledGroves.Blocks
 			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
+
 		}
 
 		private float playNextSound;

@@ -1,0 +1,30 @@
+[
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "game:recipes/barrel/weaktannin.json",
+    "op": "replace",
+    "path": "/0/enabled",
+    "value": false
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "game:recipes/barrel/weaktannin.json",
+    "op": "replace",
+    "path": "/1/enabled",
+    "value": false
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "game:recipes/barrel/strongtannin.json",
+    "op": "replace",
+    "path": "/0/enabled",
+    "value": false
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "game:recipes/barrel/strongtannin.json",
+    "op": "replace",
+    "path": "/1/enabled",
+    "value": false
+  }
+]

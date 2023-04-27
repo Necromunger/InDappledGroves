@@ -8,7 +8,7 @@ namespace InDappledGroves.Util
     class IDGTreeConfig
     {
         //Multiplier applied when trees are being chopped, higher numbers reduces chopping speed of trees, lower numbers reduce time to chop trees.
-        public float treeFellingResistanceMult { get; set; }
+        public float treeFellingDivisor { get; set; }
         //Rate at which Tree Hollows Update
         public int TreeHollowsMaxItems { get; set; }
 
@@ -29,7 +29,7 @@ namespace InDappledGroves.Util
         {
             IDGTreeConfig defaultConfig = new();
 
-            defaultConfig.treeFellingResistanceMult = 1f;
+            defaultConfig.treeFellingDivisor = 2;
             defaultConfig.TreeHollowsUpdateMinutes = 15f;
             defaultConfig.TreeHollowsMaxItems = 8;
             defaultConfig.TreeHollowsMaxPerChunk = 1;

@@ -3,7 +3,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-aged", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-aged-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -13,7 +13,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-birch", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-birch-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -24,7 +24,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-oak", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-oak-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -34,7 +34,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-maple", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-maple-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -45,7 +45,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-pine", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-pine-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -56,7 +56,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-acacia", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-acacia-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -67,7 +67,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-kapok", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-kapok-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -78,7 +78,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-baldcypress", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-baldcypress-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -89,7 +89,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-larch", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-larch-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -100,7 +100,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-redwood", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-redwood-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -111,7 +111,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-ebony", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-ebony-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -122,7 +122,7 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-walnut", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-walnut-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
@@ -133,10 +133,186 @@
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
-			"P": { "type": "item", "code": "game:plank-purpleheart", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+			"P": { "type": "block", "code": "indappledgroves:logslab-purpleheart-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
 		},
 		"width": 3,
 		"height": 3,
 		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-purpleheart-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-douglasfir-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-douglasfir-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-willow-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-willow-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-honeylocust-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-bearnut-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-blackpoplar-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-blackpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-pyramidalpoplar-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-pyramidalpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-catalpa-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-catalpa-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-mahogany-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-mahogany-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sal-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sal-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-saxaul-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-saxaul-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-spruce-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-spruce-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sycamore-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sycamore-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-elm-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-elm-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-beech-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-beech-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-eucalpytus-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-eucalpytus-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-cedar-debarked-down-free", "name": "crossbeam", "states": ["aged"], "loadFromProperties": "game:block/wood"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-cedar-east"}
 	}
 ]

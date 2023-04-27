@@ -138,6 +138,13 @@
   },
   {
     "op": "replace",
+    "path": "/variantgroups/0/states",
+    "value": ["scrap", "bearded", "battle", "bardiche", "double"],
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "replace",
     "path": "/variantgroups/1/states",
     "value": ["scrap", "copper", "tinbronze", "ruined"],
     "file": "game:itemtypes/tool/axe-metal.json",
