@@ -514,6 +514,7 @@
 
   <ItemGroup>
     <Folder Include="assets\indappledgroves\textures\block\treehollow\" />
+    <Folder Include="CollectibleBehaviors\" />
   </ItemGroup>
 
   <ItemGroup>
