@@ -25,7 +25,7 @@ namespace InDappledGroves.WorldGen
         private ISet<string> stumpTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private IBlockAccessor chunkGenBlockAccessor; //Used for accessing blocks during chunk generation
         private IBlockAccessor worldBlockAccessor; //Used for accessing blocks after chunk generation
-
+        private TreeLootObject[] treelootbase;
         private string[] dirs = { "north", "south", "east", "west" };
         private List<string> woods = new();
         private List<string> stumps = new();
@@ -42,7 +42,7 @@ namespace InDappledGroves.WorldGen
             this.stumpTypes = new HashSet<string>();
             this.LoadTreeTypes(this.treeTypes);
             this.LoadStumpTypes(this.stumpTypes);
-
+            this.treelootbase(ConvertLootList())
             //Registers our command with the system's command registry.
             //1.17 disable /hollow
             this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
@@ -107,9 +107,6 @@ namespace InDappledGroves.WorldGen
         {
             this.chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
         }
-
-
-
 
         /// <summary>
         /// Called when a number of chunks have been generated. For each chunk we first determine if we should place a tree hollow
@@ -286,7 +283,7 @@ namespace InDappledGroves.WorldGen
                         if (be is BETreeHollowGrown)
                         {
                             var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                            ItemStack[] lootStacks = ConvertTreeLoot(IDGHollowLootConfig.Current.treehollowjson.ToArray(), pos);
+                            ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
                             if (lootStacks != null) AddItemStacks(hollow, lootStacks);
                         }
                     }
@@ -318,55 +315,60 @@ namespace InDappledGroves.WorldGen
             }
         }
 
-        public void RegenItemStacks(ICoreAPI api, BETreeHollowGrown hollow, JsonObject[] itemStacks, BlockPos pos)
-        {
-            if (api.Side == EnumAppSide.Client)
-            {
-                ItemStack[] lootStacks = ConvertTreeLoot(itemStacks, pos);
-                if (lootStacks != null) AddItemStacks(hollow, lootStacks);
+        //public void RegenItemStacks(ICoreAPI api, BETreeHollowGrown hollow, JsonObject[] itemStacks, BlockPos pos)
+        //{
+        //    if (api.Side == EnumAppSide.Client)
+        //    {
+        //        ItemStack[] lootStacks = ConvertTreeLoot(itemStacks, pos);
+        //        if (lootStacks != null) AddItemStacks(hollow, lootStacks);
 
-                if (itemStacks != null)
-                {
-                    var slotNumber = 0;
-                    while (slotNumber < hollow.Inventory.Count - 1)
-                    {
-                        var slot = hollow.Inventory[slotNumber].Itemstack;
-                        slot = lootStacks[api.World.Rand.Next(0, itemStacks.Length - 1)];
-                        slotNumber++;
-                    }
-                }
-            }
-        }
+        //        if (itemStacks != null)
+        //        {
+        //            var slotNumber = 0;
+        //            while (slotNumber < hollow.Inventory.Count - 1)
+        //            {
+        //                var slot = hollow.Inventory[slotNumber].Itemstack;
+        //                slot = lootStacks[api.World.Rand.Next(0, itemStacks.Length - 1)];
+        //                slotNumber++;
+        //            }
+        //        }
+        //    }
+        //}
 
-        private ItemStack[] ConvertTreeLoot(JsonObject[] treeLoot, BlockPos pos)
+        private ItemStack[] GetTreeLoot(TreeLootObject[] treeLoot, BlockPos pos)
         {
-            List<ItemStack> lootList = null;
-            int lootCount = 0;
+            List<ItemStack> lootList = new();
             if (sapi != null)
             {
                 ClimateCondition climate = sapi.World.BlockAccessor.GetClimateAt(pos);
 
-                foreach (JsonObject lootStack in treeLoot)
+                foreach (TreeLootObject lootItem in treeLoot)
                 {
 
-                    TreeLootObject obj = new TreeLootObject(lootStack);
-                    if (lootList == null && ClimateLootFilter(obj, pos))
+                    if (lootList[0] != null && ClimateLootFilter(lootItem, pos) && lootList.Count >= 0 && lootList.Count <= 8)
                     {
-                        obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code);
-                        lootList = new();
-                        lootList.Add(obj.bstack.GetNextItemStack());
-                        continue;
-                    }
-                    if (lootList != null && ClimateLootFilter(obj, pos) && lootList.Count >= 0 && lootList.Count <= 8)
-                    {
-                        obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code);
+                        lootItem.bstack.Resolve(sapi.World, "treedrop: ", lootItem.bstack.Code);
 
-                        lootList.Add(obj.bstack.GetNextItemStack());
+                        lootList.Add(lootItem.bstack.GetNextItemStack());
                     }
                 }
             }
 
-            return lootList == null ? null : lootList.ToArray();
+            return lootList[0] == null ? null : lootList.ToArray();
+        }
+
+        private TreeLootObject[] CreateTreeLootList(JsonObject[] treeLoot) 
+        {
+            List<TreeLootObject> treelootlist = null;
+            foreach (JsonObject lootStack in treeLoot)
+            {
+                TreeLootObject obj = new TreeLootObject(lootStack);
+                if(obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code))
+                {
+                    treelootlist.Add(obj);
+                }
+            }
+            return treelootlist == null ? null : treelootlist.ToArray();
         }
 
         private bool ClimateLootFilter(TreeLootObject obj, BlockPos pos)
@@ -438,6 +440,4 @@ namespace InDappledGroves.WorldGen
         public ClimateRequirements() { }
 
     }
-
-
 }

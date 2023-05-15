@@ -1,5 +1,6 @@
 [
 	{
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -10,6 +11,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-aged-single-east"}
 	},
 	{
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -20,7 +22,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-birch-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -31,6 +33,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-oak-single-east"}
 	},
 	{
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -41,7 +44,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-maple-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -52,7 +55,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-pine-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -63,7 +66,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-acacia-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -74,7 +77,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-kapok-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -85,7 +88,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-baldcypress-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -96,7 +99,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-larch-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -107,7 +110,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-redwood-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -118,7 +121,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-ebony-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},
@@ -129,7 +132,7 @@
 		"output": { "type": "block", "code": "indappledgroves:sawhorse-{supports}-walnut-single-east"}
 	},
 	{
-		
+		"enabled": false,
 		"ingredientPattern": "B_B,_P_,B_B",
 		"ingredients": {
 			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "states": ["aged"], "loadFromProperties": "game:block/wood"},

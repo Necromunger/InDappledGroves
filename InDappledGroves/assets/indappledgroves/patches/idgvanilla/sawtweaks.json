@@ -23,54 +23,49 @@
   {
     "op": "replace",
     "path": "/miningspeedbytype",
-    "value": {
-		"*-scrap": {
-			"wood": 4,
-			"plant": 2.6,
-			"leaves": 2.2
-		},		
+    "value": {	
 		"*-copper": {
-			"wood": 5.2,
+			"wood": 2.6,
 			"plant": 2.8,
 			"leaves": 2.4
 		},
 		"*-silver": {
-			"wood": 4.5,
+			"wood": 2.25,
 			"plant": 3.3,
 			"leaves": 3
 		},
 		"*-gold": {
-			"wood": 4.5,
+			"wood": 2.25,
 			"plant": 3.3,
 			"leaves": 3
 		},
 		"*-bismuthbronze": {
-			"wood": 5.8,
+			"wood": 2.9,
 			"plant": 3.5,
 			"leaves": 2.6
 		},
 		"*-tinbronze": {
-			"wood": 6.3,
+			"wood": 3.15,
 			"plant": 3.8,
 			"leaves": 3
 		},
 		"*-blackbronze": {
-			"wood": 6.6,
+			"wood": 3.3,
 			"plant": 4,
 			"leaves": 3.1
 		},
 		"*-iron": {
-			"wood": 8.4,
+			"wood": 4.2,
 			"plant": 5,
 			"leaves": 3.2
 		},
 		"*-meteoriciron": {
-			"wood": 9.6,
+			"wood": 4.8,
 			"plant": 5.5,
 			"leaves": 3.6
 		},
 		"*-steel": {
-			"wood": 11,
+			"wood": 6,
 			"plant": 6,
 			"leaves": 4
 		}
