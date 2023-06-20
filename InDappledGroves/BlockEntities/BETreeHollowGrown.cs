@@ -53,19 +53,18 @@
                 RegenItemStacks(this.Api, this, IDGHollowLootConfig.Current.treehollowjson.ToArray(), Pos);
                 this.updateMeshes();
                 this.MarkDirty(true);
-
         }
 
 
         internal bool OnInteract(IPlayer byPlayer)
         {
-            if (this.Api.Side.IsClient() && this.Inventory.Empty) //reset the listener on interact
-            {
-                this.UnregisterGameTickListener(this.updateTick);
-                this.updateTick = this.RegisterGameTickListener(this.TreeHollowUpdate, (int)(this.updateMinutes * 60000));
-                TreeHollowUpdate(this.updateTick);
-                return false;
-            }
+            //if (this.Api.Side.IsClient() && this.Inventory.Empty) //reset the listener on interact
+            //{
+            //    this.UnregisterGameTickListener(this.updateTick);
+            //    this.updateTick = this.RegisterGameTickListener(this.TreeHollowUpdate, (int)(this.updateMinutes * 60000));
+            //    TreeHollowUpdate(this.updateTick);
+            //    return false;
+            //}
 
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             if (playerSlot.Empty)
@@ -185,10 +184,10 @@
             if (this.Api != null)
             {
                 ClimateCondition climate = this.Api.World.BlockAccessor.GetClimateAt(pos);
-
+                
                 foreach (JsonObject lootStack in treeLoot)
                 {
-
+                    
                     TreeLootObject obj = new TreeLootObject(lootStack);
                     if (lootList == null && ClimateLootFilter(obj, pos))
                     {

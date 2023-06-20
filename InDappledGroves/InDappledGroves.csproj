@@ -34,7 +34,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\blocktypes\sawhorse.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\blocktypes\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

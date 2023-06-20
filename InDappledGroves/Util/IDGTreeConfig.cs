@@ -30,11 +30,10 @@ namespace InDappledGroves.Util
             IDGTreeConfig defaultConfig = new();
 
             defaultConfig.treeFellingDivisor = 2;
-            defaultConfig.TreeHollowsUpdateMinutes = 15f;
             defaultConfig.TreeHollowsMaxItems = 8;
             defaultConfig.TreeHollowsMaxPerChunk = 1;
             defaultConfig.TreeHollowsSpawnProbability = 0.2f;
-            defaultConfig.TreeHollowsUpdateMinutes = 360;
+            defaultConfig.TreeHollowsUpdateMinutes = 360f;
             defaultConfig.RunTreeGenOnChunkReload = false;
             defaultConfig.stumpTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa",
