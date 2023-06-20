@@ -299,12 +299,12 @@ namespace InDappledGroves.WorldGen
                     {
                         blockAccessor.SpawnBlockEntity(block.EntityClass, pos);
                         var be = blockAccessor.GetBlockEntity(pos);
-                        if (be is BETreeHollowGrown && sapi != null)
-                        {
-                            var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                            ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
-                            if (lootStacks != null) AddItemStacks(hollow, lootStacks);
-                        }
+                        //if (be is BETreeHollowGrown && sapi != null)
+                        //{
+                        //    var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
+                        //    ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
+                        //    if (lootStacks != null) AddItemStacks(hollow, lootStacks);
+                        //}
                     }
                 }
                 return true;
