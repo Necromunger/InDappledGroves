@@ -31,21 +31,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="AnimatedGif">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\AnimatedGif.dll</HintPath>
-    </Reference>
-    <Reference Include="cairo-sharp">
+    <Reference Include="cairo-sharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\cairo-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="protobuf-net">
+    <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,22 +59,35 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tavis.JsonPatch">
+    <Reference Include="Tavis.JsonPatch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Tavis.JsonPatch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="VintagestoryAPI">
+    <Reference Include="VintagestoryAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="VintagestoryLib">
+    <Reference Include="VintagestoryLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="VSCreativeMod">
+    <Reference Include="VSBuildLib">
+      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VSBuildLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="VSCreativeMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSCreativeMod.dll</HintPath>
     </Reference>
-    <Reference Include="VSEssentials">
+    <Reference Include="VSEssentials, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSEssentials.dll</HintPath>
     </Reference>
-    <Reference Include="VSSurvivalMod">
+    <Reference Include="VSSurvivalMod, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSSurvivalMod.dll</HintPath>
     </Reference>
   </ItemGroup>
