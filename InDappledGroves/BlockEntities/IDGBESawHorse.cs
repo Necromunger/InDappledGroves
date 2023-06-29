@@ -1,6 +1,5 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items.Tools;
-using InDappledGroves.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +9,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
-using static InDappledGroves.Util.IDGRecipeNames;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {

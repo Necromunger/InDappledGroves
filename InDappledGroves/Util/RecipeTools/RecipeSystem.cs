@@ -9,9 +9,9 @@ using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.ServerMods;
 using Vintagestory.GameContent;
-using static InDappledGroves.Util.IDGRecipeNames.IDGRecipeLoader;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames.IDGRecipeLoader;
 
-namespace InDappledGroves.Util
+namespace InDappledGroves.Util.RecipeTools
 {
     public class IDGRecipeNames : ICookingRecipeNamingHelper
     {
@@ -160,7 +160,7 @@ namespace InDappledGroves.Util
                     }
                     if (val.Value is JArray)
                     {
-                        foreach (var token in (val.Value as JArray))
+                        foreach (var token in val.Value as JArray)
                         {
                             GroundRecipe rec = token.ToObject<GroundRecipe>();
                             if (!rec.Enabled) continue;
@@ -344,7 +344,7 @@ namespace InDappledGroves.Util
                     }
                     if (val.Value is JArray)
                     {
-                        foreach (var token in (val.Value as JArray))
+                        foreach (var token in val.Value as JArray)
                         {
                             SawbuckRecipe rec = token.ToObject<SawbuckRecipe>();
                             if (!rec.Enabled) continue;
@@ -526,7 +526,7 @@ namespace InDappledGroves.Util
                     }
                     if (val.Value is JArray)
                     {
-                        foreach (var token in (val.Value as JArray))
+                        foreach (var token in val.Value as JArray)
                         {
                             SawHorseRecipe rec = token.ToObject<SawHorseRecipe>();
                             if (!rec.Enabled) continue;
@@ -708,7 +708,7 @@ namespace InDappledGroves.Util
                     }
                     if (val.Value is JArray)
                     {
-                        foreach (var token in (val.Value as JArray))
+                        foreach (var token in val.Value as JArray)
                         {
                             ChoppingBlockRecipe rec = token.ToObject<ChoppingBlockRecipe>();
                             if (!rec.Enabled) continue;
@@ -888,7 +888,7 @@ namespace InDappledGroves.Util
 
             public int IngredientMaterial { get; set; } = 4;
             public double IngredientResistance { get; set; } = 4.0;
-                        
+
             public string ToolMode { get; set; } = "chopping";
 
             public ChoppingBlockIngredient[] Ingredients;
@@ -1162,7 +1162,7 @@ namespace InDappledGroves.Util
             public SawbuckIngredient[] Ingredients;
 
             public JsonItemStack Output;
-            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block }; 
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1355,7 +1355,7 @@ namespace InDappledGroves.Util
                     Name = Name,
                     Ingredients = ingredients
                 };
-                
+
             }
 
             public Dictionary<string, string[]> GetNameToCodeMapping(IWorldAccessor world)
@@ -1421,7 +1421,7 @@ namespace InDappledGroves.Util
             public string Code = "sawhorserecipe";
             public bool Enabled { get; set; } = true;
             public AssetLocation Name { get; set; }
-            
+
             public string ToolMode = "planing";
             public int IngredientMaterial { get; set; } = 4;
             public double IngredientResistance { get; set; } = 4.0;
@@ -1694,7 +1694,7 @@ namespace InDappledGroves.Util
 
             public JsonItemStack Output;
 
-            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1};
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1881,7 +1881,7 @@ namespace InDappledGroves.Util
                     Ingredients = ingredients,
                     Output = Output.Clone(),
                     ReturnStack = ReturnStack.Clone(),
-                    
+
                 };
             }
 

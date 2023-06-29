@@ -1,6 +1,6 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Util;
+using InDappledGroves.Util.Config;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -8,7 +8,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using static InDappledGroves.Util.IDGRecipeNames;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {

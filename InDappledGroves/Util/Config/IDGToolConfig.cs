@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace InDappledGroves.Util
+namespace InDappledGroves.Util.Config
 {
     class IDGToolConfig
     {
@@ -15,7 +15,7 @@ namespace InDappledGroves.Util
         public float baseGroundRecipeMiningSpdMult { get; set; }
         //Multiplier applied to the Resistance of a block being worked on the ground. Should default to 1. Less than 1 speeds up, more than 1 slows down work.
         public float baseGroundRecipeResistaceMult { get; set; }
-        
+
 
         public IDGToolConfig()
         { }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace InDappledGroves.Util
+namespace InDappledGroves.Util.Config
 {
     class IDGTreeConfig
     {

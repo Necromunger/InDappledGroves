@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
-using InDappledGroves.Util;
 using InDappledGroves.Blocks;
 using Vintagestory.API.Common;
 using Vintagestory.API.Client;
@@ -12,8 +11,9 @@ using HarmonyLib;
 using Vintagestory.ServerMods;
 using System.Reflection.Emit;
 using Vintagestory.ServerMods.NoObf;
+using InDappledGroves.Util.Config;
 
-namespace InDappledGroves.WorldGen
+namespace InDappledGroves.Util.WorldGen
 {
 
     public class TreeHollows : ModSystem
@@ -36,9 +36,9 @@ namespace InDappledGroves.WorldGen
 
         public override void Start(ICoreAPI api)
         {
-            this.sapi = api as ICoreServerAPI;
+            sapi = api as ICoreServerAPI;
             base.Start(api);
-            PatchGame();
+            //PatchGame();
         }
 
         public override double ExecuteOrder()
@@ -55,67 +55,67 @@ namespace InDappledGroves.WorldGen
         public override void StartServerSide(ICoreServerAPI api)
         {
             //this.sapi = api;
-            this.worldBlockAccessor = api.World.BlockAccessor;
-            this.chunkSize = this.worldBlockAccessor.ChunkSize;
+            worldBlockAccessor = api.World.BlockAccessor;
+            chunkSize = worldBlockAccessor.ChunkSize;
             woods.AddRange(IDGTreeConfig.Current.woodTypes);
             stumps.AddRange(IDGTreeConfig.Current.stumpTypes);
-            this.hollowTypes = new HashSet<string>();
-            this.stumpTypes = new HashSet<string>();
-            this.LoadTreeTypes(this.hollowTypes);
-            this.LoadStumpTypes(this.stumpTypes);
+            hollowTypes = new HashSet<string>();
+            stumpTypes = new HashSet<string>();
+            LoadTreeTypes(hollowTypes);
+            LoadStumpTypes(stumpTypes);
             //Registers our command with the system's command registry.
             //1.17 disable /hollow
-            this.sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", this.PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
+            sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
             //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
-            this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
+            sapi.Event.GetWorldgenBlockAccessor(OnWorldGenBlockAccessor);
             //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
-            this.sapi.Event.ChunkColumnGeneration(this.OnChunkColumnRequest, EnumWorldGenPass.PreDone, "standard");
-            this.sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
-            this.sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
-            TreeHollows.TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
+            sapi.Event.ChunkColumnGeneration(OnChunkColumnRequest, EnumWorldGenPass.PreDone, "standard");
+            sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
+            sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
+            TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
         }
 
         private void ClearTreeGen()
         {
-            TreeHollows.TreeDone.OnTreeGenCompleteEvent -= NewChunkStumpAndHollowGen;
+            TreeDone.OnTreeGenCompleteEvent -= NewChunkStumpAndHollowGen;
         }
 
         public override void AssetsFinalize(ICoreAPI api)
         {
             base.AssetsFinalize(api);
-            this.treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
+            treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
         }
 
-        public override void Dispose()
-        {
-            var harmony = new Harmony("harmoniousIDG");
-            harmony.UnpatchAll("harmoniousIDG");
-        }
+        //public override void Dispose()
+        //{
+        //    var harmony = new Harmony("harmoniousIDG");
+        //    harmony.UnpatchAll("harmoniousIDG");
+        //}
 
-        private void PatchGame()
-        {
-            Mod.Logger.Event("Applying Harmony patches");
-            var harmony = new Harmony("harmoniousIDG");
-            var original = typeof(TreeGen).GetMethod("GrowTree");
-            var patches = (Harmony.GetPatchInfo(original));
-            if (patches != null && patches.Owners.Contains("harmoniousIDG"))
-            {
-                return;
-            }
-            harmony.PatchAll();
-        }
+        //private void PatchGame()
+        //{
+        //    Mod.Logger.Event("Applying Harmony patches");
+        //    var harmony = new Harmony("harmoniousIDG");
+        //    var original = typeof(TreeGen).GetMethod("GrowTree");
+        //    var patches = Harmony.GetPatchInfo(original);
+        //    if (patches != null && patches.Owners.Contains("harmoniousIDG"))
+        //    {
+        //        return;
+        //    }
+        //    harmony.PatchAll();
+        //}
 
 
 
 
 #pragma warning disable IDE0051 // Remove unused private members
-        private void UnPatchGame()
+        //private void UnPatchGame()
 
-        {
-            Mod.Logger.Event("Unapplying Harmony patches");
+        //{
+        //    Mod.Logger.Event("Unapplying Harmony patches");
 
-            _harmony.UnpatchAll();
-        }
+        //    _harmony.UnpatchAll();
+        //}
 
         private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
         {
@@ -128,10 +128,10 @@ namespace InDappledGroves.WorldGen
                     IMapChunk mc = sapi.World.BlockAccessor.GetMapChunk(chunkCoord);
                     if (mc == null) continue;   //this chunk isn't actually loaded, no need to examine it.
 
-                    if (chunk.GetModdata<bool>("hasIDGLoaded", false) == true) break;
+                    if (chunk.GetModdata("hasIDGLoaded", false) == true) break;
 
                     runExistingWorldTreeGen(chunk, new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
-                    chunk.SetModdata<bool>("hasIDGLoaded", true);
+                    chunk.SetModdata("hasIDGLoaded", true);
                     return;
                 }
             }
@@ -139,7 +139,7 @@ namespace InDappledGroves.WorldGen
 
         private void LoadTreeTypes(ISet<string> treeTypes)
         {
-            foreach (var variant in this.woods)
+            foreach (var variant in woods)
             {
                 treeTypes.Add($"log-grown-" + variant + "-ud");
             }
@@ -148,7 +148,7 @@ namespace InDappledGroves.WorldGen
         private void LoadStumpTypes(ISet<string> stumpTypes)
         {
 
-            foreach (var variant in this.stumps)
+            foreach (var variant in stumps)
             {
                 stumpTypes.Add($"log-grown-" + variant + "-ud");
             }
@@ -161,7 +161,7 @@ namespace InDappledGroves.WorldGen
         /// </summary>
         private void OnWorldGenBlockAccessor(IChunkProviderThread chunkProvider)
         {
-            this.chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
+            chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace InDappledGroves.WorldGen
                 {
                     runExistingWorldTreeGen(chunks[i], new BlockPos(chunkX, 0, chunkZ));
                 }
-                chunks[i].SetModdata<bool>("hasIDGLoaded", true);
+                chunks[i].SetModdata("hasIDGLoaded", true);
             }
         }
 
@@ -190,41 +190,41 @@ namespace InDappledGroves.WorldGen
 
             var blockPos = new BlockPos();
             //arbitrarily limit x axis scan for performance reasons (/4)
-            for (var x = 0; x < this.chunkSize; x++)
+            for (var x = 0; x < chunkSize; x++)
             {
                 //arbitrarily limit z axis scan for performance reasons (/4)
-                for (var z = 0; z < this.chunkSize; z++)
+                for (var z = 0; z < chunkSize; z++)
                 {
-                    blockPos.X = (pos.X * this.chunkSize) + x;
-                    blockPos.Z = (pos.Z * this.chunkSize) + z;
-                    blockPos.Y = this.worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
-                    Block curBlock = this.chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
+                    blockPos.X = pos.X * chunkSize + x;
+                    blockPos.Z = pos.Z * chunkSize + z;
+                    blockPos.Y = worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
+                    Block curBlock = chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
                     if (sapi.ModLoader.IsModEnabled("primitivesurvival"))
                     {
                         if (IsStumpLog(curBlock))
                         {
-                            PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
+                            PlaceTreeStump(chunkGenBlockAccessor, blockPos);
                         }
                         continue;
                     }
 
-                    if (!IsStumpLog(curBlock) || this.worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
-                    if (hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && (sapi.World.Rand.NextDouble() < 0.2))
+                    if (!IsStumpLog(curBlock) || worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
+                    if (hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && sapi.World.Rand.NextDouble() < 0.2)
                     {
-                        var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, blockPos);
+                        var hollowWasPlaced = PlaceTreeHollow(chunkGenBlockAccessor, blockPos);
                         if (hollowWasPlaced)
                         {
                             hollowsPlacedCount++;
                             continue;
                         }
                     }
-                    PlaceTreeStump(this.chunkGenBlockAccessor, blockPos);
+                    PlaceTreeStump(chunkGenBlockAccessor, blockPos);
 
                     if (ShouldPlaceHollow() && hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
                     {
-                        var hollowLocation = this.TryGetHollowLocation(blockPos);
+                        var hollowLocation = TryGetHollowLocation(blockPos);
                         if (hollowLocation == null) continue;
-                        var hollowWasPlaced = this.PlaceTreeHollow(this.chunkGenBlockAccessor, hollowLocation);
+                        var hollowWasPlaced = PlaceTreeHollow(chunkGenBlockAccessor, hollowLocation);
                         if (hollowWasPlaced)
                         {
                             hollowsPlacedCount++;
@@ -244,7 +244,7 @@ namespace InDappledGroves.WorldGen
                 System.Diagnostics.Debug.WriteLine("Hit");
                 if (IsStumpLog(block))
                 {
-                    PlaceTreeStump(this.chunkGenBlockAccessor, pos);
+                    PlaceTreeStump(chunkGenBlockAccessor, pos);
                     System.Diagnostics.Debug.WriteLine("Hit");
                 }
             });
@@ -253,15 +253,15 @@ namespace InDappledGroves.WorldGen
         // Returns the location to place the hollow if the given world coordinates is a tree, null if it's not a tree.
         private BlockPos TryGetHollowLocation(BlockPos pos)
         {
-            var block = this.chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-            if (this.IsTreeLog(block))
+            var block = chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+            if (IsTreeLog(block))
             {
                 for (var posY = pos.Y; posY >= 0; posY--)
                 {
                     while (pos.Y-- > 0)
                     {
-                        var underBlock = this.chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-                        if (this.IsTreeLog(underBlock))
+                        var underBlock = chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+                        if (IsTreeLog(underBlock))
                         {
                             continue;
                         }
@@ -274,18 +274,18 @@ namespace InDappledGroves.WorldGen
 
         private bool IsTreeLog(Block block)
         {
-            return this.hollowTypes.Contains(block.Code.Path);
+            return hollowTypes.Contains(block.Code.Path);
         }
 
         private bool IsStumpLog(Block block)
         {
-            return this.stumpTypes.Contains(block.Code.Path);
+            return stumpTypes.Contains(block.Code.Path);
         }
 
         // Delegate for /hollow command. Places a treehollow 2 blocks in front of the player
         private void PlaceTreeHollowInFrontOfPlayer(IServerPlayer player, int groupId, CmdArgs args)
         {
-            this.PlaceTreeHollow(this.sapi.World.BlockAccessor, player.Entity.Pos.HorizontalAheadCopy(2).AsBlockPos);
+            PlaceTreeHollow(sapi.World.BlockAccessor, player.Entity.Pos.HorizontalAheadCopy(2).AsBlockPos);
         }
 
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
@@ -301,9 +301,9 @@ namespace InDappledGroves.WorldGen
                 stumpType = treeBlock.FirstCodePart(2);
             }
 
-            var withPath = "indappledgroves:treestump-grown-" + stumpType + "-" + this.dirs[this.sapi.World.Rand.Next(4)];
+            var withPath = "indappledgroves:treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
             //Debug.WriteLine("With: " + withPath);
-            var withBlockID = this.sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
+            var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             blockAccessor.SetBlock(0, pos);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null)) return true;
@@ -315,7 +315,7 @@ namespace InDappledGroves.WorldGen
         {
 
             //consider moving it upwards
-            var upCount = this.sapi.World.Rand.Next(2, 8);
+            var upCount = sapi.World.Rand.Next(2, 8);
             var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
 
             if (upCandidateBlock.FirstCodePart() == "log")
@@ -331,19 +331,19 @@ namespace InDappledGroves.WorldGen
             }
 
             var hollowType = "up";
-            if (this.sapi.World.Rand.Next(2) == 1)
+            if (sapi.World.Rand.Next(2) == 1)
             { hollowType = "up2"; }
             var belowBlock = blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default);
             if (belowBlock.Fertility > 0) //fertile ground below?
             {
-                if (this.sapi.World.Rand.Next(2) == 1)
+                if (sapi.World.Rand.Next(2) == 1)
                 { hollowType = "base"; }
                 else
                 { hollowType = "base2"; }
             }
 
-            var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + this.dirs[this.sapi.World.Rand.Next(4)];
-            var withBlockID = this.sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
+            var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + dirs[sapi.World.Rand.Next(4)];
+            var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
             {
@@ -370,7 +370,7 @@ namespace InDappledGroves.WorldGen
 
         private bool ShouldPlaceHollow()
         {
-            var randomNumber = this.sapi.World.Rand.Next(0, 100);
+            var randomNumber = sapi.World.Rand.Next(0, 100);
             return randomNumber > 0 && randomNumber <= IDGTreeConfig.Current.TreeHollowsSpawnProbability * 100;
         }
 
@@ -455,19 +455,19 @@ namespace InDappledGroves.WorldGen
         {
             ClimateCondition local = sapi.World.BlockAccessor.GetClimateAt(pos);
 
-            return (local.ForestDensity >= obj.cReqs.minForest)
-            && (local.ForestDensity <= obj.cReqs.maxForest)
-            && (local.ShrubDensity >= obj.cReqs.minShrub)
-            && (local.ShrubDensity <= obj.cReqs.maxShrub)
-            && (local.Rainfall >= obj.cReqs.minRain)
-            && (local.Rainfall <= obj.cReqs.maxRain)
-            && (local.Temperature >= obj.cReqs.minTemperature)
-            && (local.Temperature <= obj.cReqs.maxTemperature)
-            && ((((int)sapi.World.Calendar.GetSeason(pos)) == obj.cReqs.season) ||
+            return local.ForestDensity >= obj.cReqs.minForest
+            && local.ForestDensity <= obj.cReqs.maxForest
+            && local.ShrubDensity >= obj.cReqs.minShrub
+            && local.ShrubDensity <= obj.cReqs.maxShrub
+            && local.Rainfall >= obj.cReqs.minRain
+            && local.Rainfall <= obj.cReqs.maxRain
+            && local.Temperature >= obj.cReqs.minTemperature
+            && local.Temperature <= obj.cReqs.maxTemperature
+            && ((int)sapi.World.Calendar.GetSeason(pos) == obj.cReqs.season ||
                 obj.cReqs.season == 4);
         }
 
-        public static List<String> treehollowloot { get; set; } = new()
+        public static List<string> treehollowloot { get; set; } = new()
         {
             @"{""dropStack"": {""type"":""block"", ""code"": ""game:mushroom-fieldmushroom-normal"", ""quantity"": { ""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""} }, ""dropReqs"": {}}",
             @"{""dropStack"": {""type"":""item"", ""code"": ""game:fruit-yellowapple"", ""quantity"": {""avg"": 0.5, ""var"": 2, ""dist"": ""strongerinvexp""}}, ""dropReqs"": {}}",
@@ -536,29 +536,29 @@ namespace InDappledGroves.WorldGen
 
     }
 
-    [HarmonyPatch]
-    [HarmonyPatch(typeof(TreeGen), "GrowTree")]   
-    class TreeGenPatches
-    {
-      
+    //[HarmonyPatch]
+    //[HarmonyPatch(typeof(TreeGen), "GrowTree")]
+    //class TreeGenPatches
+    //{
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(TreeGen), "GrowTree")]
-        static void Patch_TreeGen_GrowTree_Postfix(BlockPos pos)
-        {
-            TreeHollows.TreeDone.OnTreeGenComplete(pos);
-        }
 
-        //[HarmonyPatch]
-        //public class OriginalClass
-        //{
-        //    [HarmonyPrefix]
-        //    [HarmonyPatch(typeof(OriginalClass), "OrginalPrivateMethod")]
-        //    private static bool Harmony_OriginalClass_OrginalPrivateMethod_Prefix(string strParam, ref string ___privateString)
-        //    {
-        //        ___privateString = strParam.ToUpper();
-        //    }
-        //}
-    }
+    //    //[HarmonyPostfix]
+    //    //[HarmonyPatch(typeof(TreeGen), "GrowTree")]
+    //    //static void Patch_TreeGen_GrowTree_Postfix(BlockPos pos)
+    //    //{
+    //    //    TreeHollows.TreeDone.OnTreeGenComplete(pos);
+    //    //}
+
+    //    //[HarmonyPatch]
+    //    //public class OriginalClass
+    //    //{
+    //    //    [HarmonyPrefix]
+    //    //    [HarmonyPatch(typeof(OriginalClass), "OrginalPrivateMethod")]
+    //    //    private static bool Harmony_OriginalClass_OrginalPrivateMethod_Prefix(string strParam, ref string ___privateString)
+    //    //    {
+    //    //        ___privateString = strParam.ToUpper();
+    //    //    }
+    //    //}
+    //}
 
 }
