@@ -44,6 +44,7 @@ namespace InDappledGroves.Util.HarmonyPatches
                     Block block = blockAccessor.GetBlock(blockId);
                     if (block.FirstCodePart() == "log")
                     {
+                        currentPos.Y = blockAccessor.GetTerrainMapheightAt(currentPos) + 1;
                         TreeBase.Add(currentPos, block);
                     }
                 }
@@ -59,8 +60,8 @@ namespace InDappledGroves.Util.HarmonyPatches
                     string stumpType = entry.Value.FirstCodePart(2);
                     AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + stumpType + "-" + "east");
                     Block withBlock = thisBlockAccessor.GetBlock(withPath);
-                    thisBlockAccessor.SetBlock(0, entry.Key);
-                    withBlock.TryPlaceBlockForWorldGen(thisBlockAccessor, entry.Key, BlockFacing.UP, null);
+                    thisBlockAccessor.SetBlock(withBlock.Id, entry.Key);
+                    //withBlock.TryPlaceBlockForWorldGen(thisBlockAccessor, entry.Key, BlockFacing.UP, null);
                 }
                 TreeBase.Clear();
             }
