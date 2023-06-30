@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InDappledGroves", "InDappledGroves\InDappledGroves.csproj", "{D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Launcher", "Launcher\Launcher.csproj", "{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Launcher", "Launcher\Launcher.csproj", "{AA9E20B4-0BF3-4F7D-80C0-8EAD6196E578}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82} = {D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82}
 	EndProjectSection

@@ -6,6 +6,8 @@ using Vintagestory.API.MathTools;
 
 using HarmonyLib;
 using Vintagestory.ServerMods.NoObf;
+using System.Linq;
+using Vintagestory.API.Config;
 
 namespace InDappledGroves.Util.HarmonyPatches
 {
@@ -15,7 +17,7 @@ namespace InDappledGroves.Util.HarmonyPatches
         private readonly string harmonyId = "teacupangel.vinternacht.transpiler";
 
         private static ICoreServerAPI sapi;
-        private static IWorldGenBlockAccessor blockAccessor;
+        private static IBlockAccessor thisBlockAccessor;
 
         private static Dictionary<BlockPos, Block> TreeBase = new();
 
@@ -26,30 +28,41 @@ namespace InDappledGroves.Util.HarmonyPatches
             harmony = new Harmony(harmonyId);
 
             sapi.Logger.Notification("VinterTranspiler: Executing");
-
             TreeGenPatch.Execute(harmony);
         }
 
         public static void GrowBranchTranspilerCall(IBlockAccessor blockAccessor, int depth, int iteration, int blockId, BlockPos currentPos, bool wideTrunk)
         {
-            
-            if (depth == 0)
+            if (thisBlockAccessor == null)
             {
-                //if (rootBlockId == -1) GetBlockIds();
-                System.Diagnostics.Debug.WriteLine("wideTrunk is " + wideTrunk);
-                if (wideTrunk?iteration<=4:iteration == 1)
+                thisBlockAccessor = blockAccessor;
+            }
+            if (depth == 0 && iteration == 1)
+            {
+                if (((wideTrunk && TreeBase.Count < 5 || !wideTrunk && TreeBase.Count < 1)))
                 {
                     Block block = blockAccessor.GetBlock(blockId);
-
-                    // Have to check if it's wood, because once it gets thin enough the game starts placing leaves instead of wood blocks
-                    // and we don't want to replace those
-                    if (block.BlockMaterial == EnumBlockMaterial.Wood)
+                    if (block.FirstCodePart() == "log")
                     {
                         TreeBase.Add(currentPos, block);
-                        System.Diagnostics.Debug.WriteLine("TreeBase Length is " + TreeBase.Count + "At Iteration " + iteration);
-                        //blockAccessor.SetBlock(rootBlockId, currentPos);
                     }
                 }
+            }
+        }
+
+        public static void growTreePostfix()
+        {
+            if (TreeBase.Count != 0)
+            {
+                foreach (KeyValuePair<BlockPos,Block> entry in TreeBase)
+                {
+                    string stumpType = entry.Value.FirstCodePart(2);
+                    AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + stumpType + "-" + "east");
+                    Block withBlock = thisBlockAccessor.GetBlock(withPath);
+                    thisBlockAccessor.SetBlock(0, entry.Key);
+                    withBlock.TryPlaceBlockForWorldGen(thisBlockAccessor, entry.Key, BlockFacing.UP, null);
+                }
+                TreeBase.Clear();
             }
         }
 
@@ -59,12 +72,10 @@ namespace InDappledGroves.Util.HarmonyPatches
             harmony = null;
 
             sapi = null;
-            blockAccessor = null;
+            thisBlockAccessor = null;
             System.Diagnostics.Debug.WriteLine("TreeBase Length is " + TreeBase.Count);
             TreeBase.Clear();
 
-            //rootBlockId = -1;
-            //trunkBlockId = -1;
         }
     }
 }

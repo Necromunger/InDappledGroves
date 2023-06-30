@@ -1,22 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-	<TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>10</LangVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>C:\Users\vinte\source\repos\InDappledGroves\InDappledGroves\indappledgroves-doc.xml</DocumentationFile>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Launcher\**" />
     <EmbeddedResource Remove="Launcher\**" />
     <None Remove="Launcher\**" />
   </ItemGroup>
-
   <ItemGroup>
     <None Update="assets\game\patches\tanninrecipes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -511,7 +507,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -519,64 +514,63 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="assets\indappledgroves\textures\block\treehollow\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\0Harmony.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\cairo-sharp.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\cairo-sharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JsonDiffPatch">
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\JsonDiffPatch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Newtonsoft.Json.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\protobuf-net.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\protobuf-net.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Tavis.JsonPatch">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Lib\Tavis.JsonPatch.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Lib\Tavis.JsonPatch.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Vintagestory">
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Vintagestory.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryAPI.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\VintagestoryAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VintagestoryLib.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="VSBuildLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\VSBuildLib.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\VintagestoryLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSCreativeMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Mods\VSCreativeMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSEssentials.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Mods\VSEssentials.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.18\Mods\VSSurvivalMod.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\VintagestoryNet7\1.18\Mods\VSSurvivalMod.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
-
 </Project>

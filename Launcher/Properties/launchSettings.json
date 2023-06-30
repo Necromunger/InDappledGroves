@@ -1,9 +1,10 @@
 {
   "profiles": {
-    "InDappledGroves": {
+    "Launcher": {
       "commandName": "Project",
+      "commandLineArgs": "\r\n",
       "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\VintagestoryNet7\\1.18\\",
-      "nativeDebugging": false
+      "nativeDebugging": true
     }
   }
 }
