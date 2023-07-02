@@ -12,6 +12,8 @@ using Vintagestory.ServerMods;
 using System.Reflection.Emit;
 using Vintagestory.ServerMods.NoObf;
 using InDappledGroves.Util.Config;
+using System.Linq;
+using InDappledGroves.BlockEntities;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -86,36 +88,8 @@ namespace InDappledGroves.Util.WorldGen
             treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
         }
 
-        //public override void Dispose()
-        //{
-        //    var harmony = new Harmony("harmoniousIDG");
-        //    harmony.UnpatchAll("harmoniousIDG");
-        //}
-
-        //private void PatchGame()
-        //{
-        //    Mod.Logger.Event("Applying Harmony patches");
-        //    var harmony = new Harmony("harmoniousIDG");
-        //    var original = typeof(TreeGen).GetMethod("GrowTree");
-        //    var patches = Harmony.GetPatchInfo(original);
-        //    if (patches != null && patches.Owners.Contains("harmoniousIDG"))
-        //    {
-        //        return;
-        //    }
-        //    harmony.PatchAll();
-        //}
-
-
-
 
 #pragma warning disable IDE0051 // Remove unused private members
-        //private void UnPatchGame()
-
-        //{
-        //    Mod.Logger.Event("Unapplying Harmony patches");
-
-        //    _harmony.UnpatchAll();
-        //}
 
         private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
         {
@@ -236,18 +210,21 @@ namespace InDappledGroves.Util.WorldGen
             }
         }
 
-        private void NewChunkStumpAndHollowGen(BlockPos pos)
+        private void NewChunkStumpAndHollowGen(Dictionary<BlockPos, Block> treeBaseDict, IBlockAccessor ba, bool isWideTrunk)
         {
-            pos.UpCopy();
-            sapi.World.BlockAccessor.WalkBlocks(pos.AddCopy(-1, 0, -1), pos.AddCopy(1, 0, 1), delegate (Block block, int x, int y, int z)
+            if (treeBaseDict.Count != 0)
             {
-                System.Diagnostics.Debug.WriteLine("Hit");
-                if (IsStumpLog(block))
+                foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
                 {
-                    PlaceTreeStump(chunkGenBlockAccessor, pos);
-                    System.Diagnostics.Debug.WriteLine("Hit");
+                    if (IsStumpLog(entry.Value))
+                    {
+                        AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + entry.Value.FirstCodePart(2) + "-" + "east");
+                        Block withBlock = ba.GetBlock(withPath);
+                        ba.SetBlock(withBlock.Id, entry.Key);
+                    }
                 }
-            });
+                PlaceTreeHollow(ba, treeBaseDict.Last().Key);
+            }
         }
 
         // Returns the location to place the hollow if the given world coordinates is a tree, null if it's not a tree.
@@ -354,18 +331,20 @@ namespace InDappledGroves.Util.WorldGen
                     {
                         blockAccessor.SpawnBlockEntity(block.EntityClass, pos);
                         var be = blockAccessor.GetBlockEntity(pos);
-                        //if (be is BETreeHollowGrown && sapi != null)
-                        //{
-                        //    var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                        //    ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
-                        //    if (lootStacks != null) AddItemStacks(hollow, lootStacks);
-                        //}
+                        if (be is BETreeHollowGrown && sapi != null)
+                        {
+                            var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
+                            ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
+                            if (lootStacks != null) AddItemStacks(hollow, lootStacks);
+                        }
                     }
                 }
                 return true;
             }
             else
-            { return false; }
+            { 
+                return false;
+            }
         }
 
         private bool ShouldPlaceHollow()
@@ -388,26 +367,6 @@ namespace InDappledGroves.Util.WorldGen
                 }
             }
         }
-
-        //public void RegenItemStacks(ICoreAPI api, BETreeHollowGrown hollow, JsonObject[] itemStacks, BlockPos pos)
-        //{
-        //    if (api.Side == EnumAppSide.Client)
-        //    {
-        //        ItemStack[] lootStacks = ConvertTreeLoot(itemStacks, pos);
-        //        if (lootStacks != null) AddItemStacks(hollow, lootStacks);
-
-        //        if (itemStacks != null)
-        //        {
-        //            var slotNumber = 0;
-        //            while (slotNumber < hollow.Inventory.Count - 1)
-        //            {
-        //                var slot = hollow.Inventory[slotNumber].Itemstack;
-        //                slot = lootStacks[api.World.Rand.Next(0, itemStacks.Length - 1)];
-        //                slotNumber++;
-        //            }
-        //        }
-        //    }
-        //}
 
         private ItemStack[] GetTreeLoot(TreeLootObject[] treeLoot, BlockPos pos)
         {
@@ -521,7 +480,7 @@ namespace InDappledGroves.Util.WorldGen
 
     }
 
-    public delegate void TreeGenCompleteDelegate(BlockPos pos);
+    public delegate void TreeGenCompleteDelegate(Dictionary<BlockPos, Block> treeBaseDict, IBlockAccessor ba, bool isWideTrunk);
     //subscriber class
 
     public class TreeGenComplete
@@ -529,36 +488,10 @@ namespace InDappledGroves.Util.WorldGen
 
         public event TreeGenCompleteDelegate OnTreeGenCompleteEvent;
 
-        public void OnTreeGenComplete(BlockPos pos)
+        public void OnTreeGenComplete(Dictionary<BlockPos, Block> treeBaseDict, IBlockAccessor ba, bool isWideTrunk)
         {
-            OnTreeGenCompleteEvent?.Invoke(pos);
+            OnTreeGenCompleteEvent?.Invoke(treeBaseDict, ba, isWideTrunk);
         }
 
     }
-
-    //[HarmonyPatch]
-    //[HarmonyPatch(typeof(TreeGen), "GrowTree")]
-    //class TreeGenPatches
-    //{
-
-
-    //    //[HarmonyPostfix]
-    //    //[HarmonyPatch(typeof(TreeGen), "GrowTree")]
-    //    //static void Patch_TreeGen_GrowTree_Postfix(BlockPos pos)
-    //    //{
-    //    //    TreeHollows.TreeDone.OnTreeGenComplete(pos);
-    //    //}
-
-    //    //[HarmonyPatch]
-    //    //public class OriginalClass
-    //    //{
-    //    //    [HarmonyPrefix]
-    //    //    [HarmonyPatch(typeof(OriginalClass), "OrginalPrivateMethod")]
-    //    //    private static bool Harmony_OriginalClass_OrginalPrivateMethod_Prefix(string strParam, ref string ___privateString)
-    //    //    {
-    //    //        ___privateString = strParam.ToUpper();
-    //    //    }
-    //    //}
-    //}
-
 }

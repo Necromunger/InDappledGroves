@@ -7,6 +7,7 @@
     using Vintagestory.GameContent;
     using Vintagestory.API.Datastructures;
     using global::InDappledGroves.Util.Config;
+    using Vintagestory.API.Server;
 
     public class BETreeHollowGrown : BlockEntityDisplayCase, ITexPositionSource
     {
@@ -17,6 +18,8 @@
         
         private readonly double updateMinutes = IDGTreeConfig.Current.TreeHollowsUpdateMinutes;
         private long updateTick;
+        private ICoreClientAPI capi;
+        private ICoreServerAPI sapi;
 
         //private const int MinItems = 1;
         //private const int MaxItems = 8;
@@ -33,6 +36,14 @@
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
+            if (api.Side.IsServer())
+            {
+                sapi = api as ICoreServerAPI;
+            } else
+            {
+                capi = api as ICoreClientAPI;
+            }
+            
             //if (api.Side.IsServer())
             //{
             //    var updateTick = this.RegisterGameTickListener(this.TreeHollowUpdate, (int)(this.updateMinutes * 60000));
