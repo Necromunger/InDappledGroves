@@ -20,8 +20,6 @@ namespace InDappledGroves.Util.WorldGen
 
     public class TreeHollows : ModSystem
     {
-        private const int MinItems = 1;
-        private const int MaxItems = 8;
         private ICoreServerAPI sapi; //The main interface we will use for interacting with Vintage Story
         private ICoreClientAPI capi;
         private int chunkSize; //Size of chunks. Chunks are cubes so this is the size of the cube.
@@ -33,14 +31,13 @@ namespace InDappledGroves.Util.WorldGen
         private string[] dirs = { "north", "south", "east", "west" };
         private List<string> woods = new();
         private List<string> stumps = new();
-        private readonly Harmony _harmony = new("harmoniousIDG");
         public static TreeGenComplete TreeDone = new();
 
         public override void Start(ICoreAPI api)
         {
             sapi = api as ICoreServerAPI;
+            capi = api as ICoreClientAPI;
             base.Start(api);
-            //PatchGame();
         }
 
         public override double ExecuteOrder()
@@ -65,14 +62,6 @@ namespace InDappledGroves.Util.WorldGen
             stumpTypes = new HashSet<string>();
             LoadTreeTypes(hollowTypes);
             LoadStumpTypes(stumpTypes);
-            //Registers our command with the system's command registry.
-            //1.17 disable /hollow
-            sapi.RegisterCommand("hollow", "Place a tree hollow with random items", "", PlaceTreeHollowInFrontOfPlayer, Privilege.controlserver);
-            //Registers a delegate to be called so we can get a reference to the chunk gen block accessor
-            sapi.Event.GetWorldgenBlockAccessor(OnWorldGenBlockAccessor);
-            //Registers a delegate to be called when a chunk column is generating in the Vegetation phase of generation
-            sapi.Event.ChunkColumnGeneration(OnChunkColumnRequest, EnumWorldGenPass.PreDone, "standard");
-            sapi.Event.ChunkColumnLoaded += Event_ChunkColumnLoaded;
             sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
             TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
         }
@@ -88,29 +77,6 @@ namespace InDappledGroves.Util.WorldGen
             treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
         }
 
-
-#pragma warning disable IDE0051 // Remove unused private members
-
-        private void Event_ChunkColumnLoaded(Vec2i chunkCoord, IWorldChunk[] chunks)
-        {
-            if (IDGTreeConfig.Current.RunTreeGenOnChunkReload)
-            {
-                foreach (IWorldChunk chunk in chunks)
-                {
-                    if (chunk.Empty /*|| chunk.GetModdata<bool>("hasIDGLoaded", false) == true*/) continue;
-
-                    IMapChunk mc = sapi.World.BlockAccessor.GetMapChunk(chunkCoord);
-                    if (mc == null) continue;   //this chunk isn't actually loaded, no need to examine it.
-
-                    if (chunk.GetModdata("hasIDGLoaded", false) == true) break;
-
-                    runExistingWorldTreeGen(chunk, new BlockPos(chunkCoord.X, 0, chunkCoord.Y));
-                    chunk.SetModdata("hasIDGLoaded", true);
-                    return;
-                }
-            }
-        }
-
         private void LoadTreeTypes(ISet<string> treeTypes)
         {
             foreach (var variant in woods)
@@ -121,92 +87,9 @@ namespace InDappledGroves.Util.WorldGen
 
         private void LoadStumpTypes(ISet<string> stumpTypes)
         {
-
             foreach (var variant in stumps)
             {
                 stumpTypes.Add($"log-grown-" + variant + "-ud");
-            }
-        }
-
-        /// <summary>
-        /// Stores the chunk gen thread's IBlockAccessor for use when generating tree hollows during chunk gen. This callback
-        /// is necessary because chunk loading happens in a separate thread and it's important to use this block accessor
-        /// when placing tree hollows during chunk gen.
-        /// </summary>
-        private void OnWorldGenBlockAccessor(IChunkProviderThread chunkProvider)
-        {
-            chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
-        }
-
-        /// <summary>
-        /// Called when a number of chunks have been generated. For each chunk we first determine if we should place a tree hollow
-        /// and if we should we then loop through each block to find a tree. When one is found we place the block.
-        /// </summary>
-        private void OnChunkColumnRequest(IChunkColumnGenerateRequest request)
-        {
-            var chunks = request.Chunks;
-            var chunkX = request.ChunkX;
-            var chunkZ = request.ChunkZ;
-            //Debug.WriteLine("Entering the death loop for chunk " + chunkX + " " + chunkZ);
-            for (var i = 0; i < chunks.Length; i++)
-            {
-                if (IDGTreeConfig.Current.RunTreeGenOnChunkReload)
-                {
-                    runExistingWorldTreeGen(chunks[i], new BlockPos(chunkX, 0, chunkZ));
-                }
-                chunks[i].SetModdata("hasIDGLoaded", true);
-            }
-        }
-
-        private void runExistingWorldTreeGen(IWorldChunk chunk, BlockPos pos)
-        {
-            var hollowsPlacedCount = 0;
-
-            var blockPos = new BlockPos();
-            //arbitrarily limit x axis scan for performance reasons (/4)
-            for (var x = 0; x < chunkSize; x++)
-            {
-                //arbitrarily limit z axis scan for performance reasons (/4)
-                for (var z = 0; z < chunkSize; z++)
-                {
-                    blockPos.X = pos.X * chunkSize + x;
-                    blockPos.Z = pos.Z * chunkSize + z;
-                    blockPos.Y = worldBlockAccessor.GetTerrainMapheightAt(blockPos) + 1;
-                    Block curBlock = chunkGenBlockAccessor.GetBlock(blockPos, BlockLayersAccess.Default);
-                    if (sapi.ModLoader.IsModEnabled("primitivesurvival"))
-                    {
-                        if (IsStumpLog(curBlock))
-                        {
-                            PlaceTreeStump(chunkGenBlockAccessor, blockPos);
-                        }
-                        continue;
-                    }
-
-                    if (!IsStumpLog(curBlock) || worldBlockAccessor.GetBlock(blockPos.DownCopy()).Fertility > 0) continue;
-                    if (hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && sapi.World.Rand.NextDouble() < 0.2)
-                    {
-                        var hollowWasPlaced = PlaceTreeHollow(chunkGenBlockAccessor, blockPos);
-                        if (hollowWasPlaced)
-                        {
-                            hollowsPlacedCount++;
-                            continue;
-                        }
-                    }
-                    PlaceTreeStump(chunkGenBlockAccessor, blockPos);
-
-                    if (ShouldPlaceHollow() && hollowsPlacedCount < IDGTreeConfig.Current.TreeHollowsMaxPerChunk && IsTreeLog(curBlock))
-                    {
-                        var hollowLocation = TryGetHollowLocation(blockPos);
-                        if (hollowLocation == null) continue;
-                        var hollowWasPlaced = PlaceTreeHollow(chunkGenBlockAccessor, hollowLocation);
-                        if (hollowWasPlaced)
-                        {
-                            hollowsPlacedCount++;
-                        }
-                    }
-
-                }
-
             }
         }
 
@@ -218,40 +101,16 @@ namespace InDappledGroves.Util.WorldGen
                 {
                     if (IsStumpLog(entry.Value))
                     {
-                        AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + entry.Value.FirstCodePart(2) + "-" + "east");
-                        Block withBlock = ba.GetBlock(withPath);
-                        ba.SetBlock(withBlock.Id, entry.Key);
+                        PlaceTreeStump(ba, entry.Key);
+                        //AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + entry.Value.FirstCodePart(2) + "-" + "east");
+                        //Block withBlock = ba.GetBlock(withPath);
+                        //ba.SetBlock(withBlock.Id, entry.Key);
                     }
                 }
+                //if (ShouldPlaceHollow()){
                 PlaceTreeHollow(ba, treeBaseDict.Last().Key);
+                //}
             }
-        }
-
-        // Returns the location to place the hollow if the given world coordinates is a tree, null if it's not a tree.
-        private BlockPos TryGetHollowLocation(BlockPos pos)
-        {
-            var block = chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-            if (IsTreeLog(block))
-            {
-                for (var posY = pos.Y; posY >= 0; posY--)
-                {
-                    while (pos.Y-- > 0)
-                    {
-                        var underBlock = chunkGenBlockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-                        if (IsTreeLog(underBlock))
-                        {
-                            continue;
-                        }
-                        return pos.UpCopy();
-                    }
-                }
-            }
-            return null;
-        }
-
-        private bool IsTreeLog(Block block)
-        {
-            return hollowTypes.Contains(block.Code.Path);
         }
 
         private bool IsStumpLog(Block block)
@@ -299,7 +158,6 @@ namespace InDappledGroves.Util.WorldGen
             { pos = pos.UpCopy(upCount); }
 
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-            //Debug.WriteLine("Will replace:" + treeBlock.Code.Path);
             var woodType = "pine";
 
             if (treeBlock.FirstCodePart() == "log")
@@ -329,13 +187,13 @@ namespace InDappledGroves.Util.WorldGen
                 {
                     if (block.EntityClass == withBlock.EntityClass)
                     {
-                        blockAccessor.SpawnBlockEntity(block.EntityClass, pos);
-                        var be = blockAccessor.GetBlockEntity(pos);
+                        var be = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
                         if (be is BETreeHollowGrown && sapi != null)
                         {
-                            var hollow = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
                             ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
-                            if (lootStacks != null) AddItemStacks(hollow, lootStacks);
+                            if (lootStacks != null) AddItemStacks(be, lootStacks);
+                            InventoryBase test = be.Inventory;
+                            be.MarkDirty();
                         }
                     }
                 }
@@ -359,10 +217,11 @@ namespace InDappledGroves.Util.WorldGen
             var slotNumber = 0;
             if (itemStacks != null)
             {
-                while (slotNumber < sapi.World.Rand.Next(hollow.Inventory.Count - 1))
+                while (slotNumber < hollow.Inventory.Count)
                 {
                     var slot = hollow.Inventory[slotNumber];
-                    slot.Itemstack = itemStacks[sapi.World.Rand.Next(0, itemStacks.Length - 1)];
+                    slot.Itemstack = itemStacks[slotNumber];
+                    hollow.Inventory.MarkSlotDirty(slotNumber);
                     slotNumber++;
                 }
             }
@@ -480,7 +339,7 @@ namespace InDappledGroves.Util.WorldGen
 
     }
 
-    public delegate void TreeGenCompleteDelegate(Dictionary<BlockPos, Block> treeBaseDict, IBlockAccessor ba, bool isWideTrunk);
+    public delegate void TreeGenCompleteDelegate(Dictionary<BlockPos, Block> treeBaseDict, IWorldGenBlockAccessor ba, bool isWideTrunk);
     //subscriber class
 
     public class TreeGenComplete
@@ -488,7 +347,7 @@ namespace InDappledGroves.Util.WorldGen
 
         public event TreeGenCompleteDelegate OnTreeGenCompleteEvent;
 
-        public void OnTreeGenComplete(Dictionary<BlockPos, Block> treeBaseDict, IBlockAccessor ba, bool isWideTrunk)
+        public void OnTreeGenComplete(Dictionary<BlockPos, Block> treeBaseDict, IWorldGenBlockAccessor ba, bool isWideTrunk)
         {
             OnTreeGenCompleteEvent?.Invoke(treeBaseDict, ba, isWideTrunk);
         }

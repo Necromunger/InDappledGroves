@@ -133,6 +133,7 @@
                 if (EntityClass != null)
                 {
                     blockAccessor.SpawnBlockEntity(EntityClass, pos);
+
                 }
 
                 return true;
