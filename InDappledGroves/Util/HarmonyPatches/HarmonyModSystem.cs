@@ -10,6 +10,8 @@ using System.Linq;
 using Vintagestory.API.Config;
 using Vintagestory.API.Common.Entities;
 using InDappledGroves.Util.WorldGen;
+using InDappledGroves.Util.Config;
+using Vintagestory.GameContent;
 
 namespace InDappledGroves.Util.HarmonyPatches
 {
@@ -67,6 +69,14 @@ namespace InDappledGroves.Util.HarmonyPatches
                 isWideTrunk = false;
             }
         }
+
+        //public static void OnLoadedPostfix(BlockLog __instance, ICoreAPI api)
+        //{
+        //    if(/*IDGTreeConfig.Current.RunTreeGenOnChunkReload == */true)
+        //    {
+        //        __instance.
+        //    }
+        //}
 
         public override void Dispose()
         {

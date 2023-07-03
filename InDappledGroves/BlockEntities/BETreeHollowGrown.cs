@@ -14,21 +14,17 @@
     {
         private int Slots = 8;
         public override string InventoryClassName => "treehollowgrown";
-
         private ICoreClientAPI capi;
         private ICoreServerAPI sapi;
-
-        //private const int MinItems = 1;
-        //private const int MaxItems = 8;
 
         public override InventoryBase Inventory { get; }
 
         public BETreeHollowGrown()
         {
-            Slots = new Random().Next(1, 8);
             this.Inventory = new InventoryGeneric(Slots, null, null);
         }
 
+        
         public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
@@ -43,6 +39,7 @@
 
         internal bool OnInteract(IPlayer byPlayer)
         {
+
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             if (playerSlot.Empty)
             {

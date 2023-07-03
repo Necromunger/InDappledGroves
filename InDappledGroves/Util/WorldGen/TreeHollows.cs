@@ -14,6 +14,7 @@ using Vintagestory.ServerMods.NoObf;
 using InDappledGroves.Util.Config;
 using System.Linq;
 using InDappledGroves.BlockEntities;
+using Vintagestory.API.Config;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -54,16 +55,21 @@ namespace InDappledGroves.Util.WorldGen
         public override void StartServerSide(ICoreServerAPI api)
         {
             //this.sapi = api;
-            worldBlockAccessor = api.World.BlockAccessor;
-            chunkSize = worldBlockAccessor.ChunkSize;
+            //chunkSize = worldBlockAccessor.ChunkSize;
             woods.AddRange(IDGTreeConfig.Current.woodTypes);
             stumps.AddRange(IDGTreeConfig.Current.stumpTypes);
             hollowTypes = new HashSet<string>();
             stumpTypes = new HashSet<string>();
             LoadTreeTypes(hollowTypes);
             LoadStumpTypes(stumpTypes);
+            this.sapi.Event.GetWorldgenBlockAccessor(this.OnWorldGenBlockAccessor);
             sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
             TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
+        }
+
+        private void OnWorldGenBlockAccessor(IChunkProviderThread chunkProvider)
+        {
+            this.chunkGenBlockAccessor = chunkProvider.GetBlockAccessor(true);
         }
 
         private void ClearTreeGen()
@@ -102,9 +108,6 @@ namespace InDappledGroves.Util.WorldGen
                     if (IsStumpLog(entry.Value))
                     {
                         PlaceTreeStump(ba, entry.Key);
-                        //AssetLocation withPath = new AssetLocation("indappledgroves:treestump-grown-" + entry.Value.FirstCodePart(2) + "-" + "east");
-                        //Block withBlock = ba.GetBlock(withPath);
-                        //ba.SetBlock(withBlock.Id, entry.Key);
                     }
                 }
                 //if (ShouldPlaceHollow()){
@@ -147,7 +150,7 @@ namespace InDappledGroves.Util.WorldGen
         }
 
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
-        private bool PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
+        private BlockPos PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
         {
 
             //consider moving it upwards
@@ -188,21 +191,17 @@ namespace InDappledGroves.Util.WorldGen
                     if (block.EntityClass == withBlock.EntityClass)
                     {
                         var be = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                        if (be is BETreeHollowGrown && sapi != null)
+                        if (be is BETreeHollowGrown)
                         {
                             ItemStack[] lootStacks = GetTreeLoot(treelootbase, pos);
                             if (lootStacks != null) AddItemStacks(be, lootStacks);
-                            InventoryBase test = be.Inventory;
-                            be.MarkDirty();
+                            be.MarkDirty(true);
                         }
                     }
                 }
-                return true;
+                return pos;
             }
-            else
-            { 
-                return false;
-            }
+            return null;
         }
 
         private bool ShouldPlaceHollow()
