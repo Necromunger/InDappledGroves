@@ -118,7 +118,7 @@
   {
     "op": "add",
     "path": "/enabled",
-    "value": false,
+    "value": true,
     "file": "game:recipes/smithing/axe.json",
     "side": "server"
   },
