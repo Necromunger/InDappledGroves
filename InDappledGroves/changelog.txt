@@ -1,4 +1,8 @@
-﻿1.18-0.4.10-dev.1
+﻿1.18-0.4.10-dev.2
+    - Added adze based recipes for fences, gates, and crude doors.
+	- Copper axe reintegrated into the system
+
+1.18-0.4.10-dev.1
 	- Implemented hollows regenerating after a period of time.
 	- Corrected (?) outputs occasionally failing to spawn after processing time.
 	- Add oak bark recipe for both strong and weak tannin, and from weak tannin to strong.
