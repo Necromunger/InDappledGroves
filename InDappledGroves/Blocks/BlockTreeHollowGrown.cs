@@ -1,15 +1,12 @@
 ﻿namespace InDappledGroves.Blocks
 {
     using global::InDappledGroves.BlockEntities;
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using global::InDappledGroves.Util.Config;
     using Vintagestory.API.Client;
     using Vintagestory.API.Common;
     using Vintagestory.API.Config;
     using Vintagestory.API.MathTools;
     using Vintagestory.API.Util;
-    using Vintagestory.GameContent;
 
     public class BlockTreeHollowGrown : Block
         {
@@ -60,22 +57,25 @@
 
             public override void OnBlockBroken(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
             {
-                if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowGrown bedc)
-                {
-                    Block blockToBreak = this;
-                    bedc.OnBreak(); //  byPlayer, pos);
-
-                    var newPath = "indappledgroves:treehollowplaced-" + blockToBreak.FirstCodePart(2) + "-north";
-                    var newBlock = this.api.World.GetBlock(new AssetLocation(newPath)) as BlockTreeHollowPlaced;
-                    world.BlockAccessor.SetBlock(newBlock.BlockId, pos);
-                    if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowPlaced be)
+                if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowGrown bedc && api.World.Rand.NextDouble() <= IDGTreeConfig.Current.HollowBreakChance)
                     {
-                        be.Initialize(this.api);
-                        be.type = blockToBreak.FirstCodePart(1);
-                        be.MarkDirty();
-                        world.BlockAccessor.BreakBlock(pos, null, 1);
+                        Block blockToBreak = this;
+                        bedc.OnBreak();
+
+                        var newPath = "indappledgroves:treehollowplaced-" + blockToBreak.FirstCodePart(2) + "-north";
+                        var newBlock = this.api.World.GetBlock(new AssetLocation(newPath)) as BlockTreeHollowPlaced;
+                        world.BlockAccessor.SetBlock(newBlock.BlockId, pos);
+                        if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowPlaced be)
+                        {
+                            be.Initialize(this.api);
+                            be.type = blockToBreak.FirstCodePart(1);
+                            be.MarkDirty();
+                            world.BlockAccessor.BreakBlock(pos, null, 1);
+                        }
+                    } else if (api.World.Rand.NextDouble() >= IDGTreeConfig.Current.HollowBreakChance) {
+                    if(api.Side == EnumAppSide.Server)
+                    api.World.SpawnItemEntity(new ItemStack(api.World.GetItem(new AssetLocation("game:firewood")), 2),pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
                     }
-                }
                 base.OnBlockBroken(world, pos, byPlayer, dropQuantityMultiplier);
             }
 

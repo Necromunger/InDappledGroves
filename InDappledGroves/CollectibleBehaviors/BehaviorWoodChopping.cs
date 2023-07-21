@@ -97,7 +97,7 @@ namespace InDappledGroves
                 int woodTier;
 
                 Stack<BlockPos> foundPositions = FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
-                treeResistance = (float)baseResistance/IDGTreeConfig.Current.treeFellingDivisor;
+                treeResistance = (float)baseResistance/IDGTreeConfig.Current.TreeFellingDivisor;
                 if (collObj.ToolTier < woodTier - 3)
                 {
                     handled = EnumHandling.Handled;

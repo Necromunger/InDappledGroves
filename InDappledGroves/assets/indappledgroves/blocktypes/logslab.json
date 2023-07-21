@@ -37,19 +37,19 @@
 	},
 	"blockmaterial": "Wood",
 	"resistanceByType": {
-    "*-birch-*": 2.85,
-		"*-oak-*": 2.9,
-		"*-maple-*": 3.25,
-		"*-pine-*": 1.95,
-		"*-acacia-*": 5.15,
-		"*-kapok-*": 2,
-		"*-baldcypress-*": 1.15,
-		"*-larch-*": 1.85,
-		"*-redwood-*": 9.5,
-		"*-ebony-*": 7.25,
-		"*-walnut-*": 2.25,
-		"*-purpleheart-*": 6.1,
-		"*": 2.25
+    "*-birch-*": 4.25,
+		"*-oak-*": 4.35,
+		"*-maple-*": 4.87,
+		"*-pine-*": 2.9,
+		"*-acacia-*": 7.72,
+		"*-kapok-*": 3,
+		"*-baldcypress-*": 1.75,
+		"*-larch-*": 2.77,
+		"*-redwood-*": 1.42,
+		"*-ebony-*": 10.88,
+		"*-purpleheart-*": 9.15,
+		"*-aged-*": 3.38,
+		"*": 3.34
     },
 	"creativeinventory": {
 		"general": ["*-down-free"], "construction": ["*-down-free"]

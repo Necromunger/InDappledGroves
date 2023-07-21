@@ -103,7 +103,7 @@ namespace InDappledGroves.Util.WorldGen
                     }
                 }
                 float randNumb = (float)sapi.World.Rand.NextDouble();
-                if (randNumb <= 0.02) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
+                if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
             }
         }
 
@@ -125,17 +125,19 @@ namespace InDappledGroves.Util.WorldGen
             //Debug.WriteLine("Will replace:" + treeBlock.Code.Path);
             var stumpType = "pine";
 
-            if (treeBlock.FirstCodePart() == "log")
+            if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "treestump")
             {
                 stumpType = treeBlock.FirstCodePart(2);
             }
 
             var withPath = "indappledgroves:treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
-            //Debug.WriteLine("With: " + withPath);
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             blockAccessor.SetBlock(0, pos);
-            if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null)) return true;
+            if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
+            {
+                return true;
+            }
             return false;
         }
 
@@ -198,9 +200,10 @@ namespace InDappledGroves.Util.WorldGen
         public void AddItemStacks(IBlockEntityContainer hollow, ItemStack[] itemStacks)
         {
             var slotNumber = 0;
+            var lootNumber = sapi.World.Rand.NextInt64(1, hollow.Inventory.Count-1);
             if (itemStacks != null)
             {
-                while (slotNumber < hollow.Inventory.Count)
+                while (slotNumber < hollow.Inventory.Count-1 && slotNumber < lootNumber)
                 {
                     var slot = hollow.Inventory[slotNumber];
                     slot.Itemstack = itemStacks[slotNumber];

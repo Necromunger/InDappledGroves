@@ -106,6 +106,7 @@ namespace InDappledGroves.Blocks
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
                     bechoppingblock.MarkDirty(true);
+					return false;
                 }
 				return !bechoppingblock.Inventory.Empty;
             }

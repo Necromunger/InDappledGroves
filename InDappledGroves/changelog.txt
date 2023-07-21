@@ -1,6 +1,11 @@
-﻿1.18-0.4.10-dev.2
+﻿1.18-0.4.10-dev.3
+	- Corrected stump spawning errors occuring with Old English Oaks.
+	- Corrected issue with recipes with returnblocks producing multiple output stacks. 
+
+1.18-0.4.10-dev.2
     - Added adze based recipes for fences, gates, and crude doors.
 	- Copper axe reintegrated into the system
+	- Randomized number of items that appear in Tree Hollows.
 
 1.18-0.4.10-dev.1
 	- Implemented hollows regenerating after a period of time.
