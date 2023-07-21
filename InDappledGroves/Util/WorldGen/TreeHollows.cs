@@ -200,7 +200,7 @@ namespace InDappledGroves.Util.WorldGen
         public void AddItemStacks(IBlockEntityContainer hollow, ItemStack[] itemStacks)
         {
             var slotNumber = 0;
-            var lootNumber = sapi.World.Rand.NextInt64(1, hollow.Inventory.Count-1);
+            var lootNumber = sapi.World.Rand.Next(1, hollow.Inventory.Count-1);
             if (itemStacks != null)
             {
                 while (slotNumber < hollow.Inventory.Count-1 && slotNumber < lootNumber)

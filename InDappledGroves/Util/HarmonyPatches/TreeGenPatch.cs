@@ -1,14 +1,11 @@
-﻿using System;
+﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Reflection.Emit;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
 using Vintagestory.ServerMods;
-using HarmonyLib;
-using System.Reflection.Emit;
-using InDappledGroves.Util.WorldGen;
-using Vintagestory.ServerMods.NoObf;
-using Vintagestory.GameContent;
 
 namespace InDappledGroves.Util.HarmonyPatches
 {
