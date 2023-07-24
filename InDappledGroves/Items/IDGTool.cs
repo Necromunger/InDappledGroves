@@ -150,7 +150,7 @@ namespace InDappledGroves.Items.Tools
 
                 if (recipePos != null)
                 {
-
+                    
                     if (((int)api.Side) == 1 && playNextSound < secondsUsed)
                     {
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
@@ -169,6 +169,7 @@ namespace InDappledGroves.Items.Tools
 
                     float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
+                    System.Diagnostics.Debug.WriteLine("seconds Used " + secondsUsed + ". " + "curResistance: " + curResistance + ". curMiningProgress: " + curMiningProgress + ".");
                     if (api.Side == EnumAppSide.Server/*api.World is Vintagestory.API.Server.IServerWorldAccessor*/ && curMiningProgress >= curResistance)
                     {
 
@@ -189,7 +190,10 @@ namespace InDappledGroves.Items.Tools
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
             if (recipeComplete) slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
-            api.World.BlockAccessor.MarkBlockDirty(blockSel.Position);
+            if (blockSel != null)
+            {
+                api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
+            }
             recipeComplete = false;
             byEntity.StopAnimation("axechop");
             //base.OnHeldInteractStop(secondsUsed, slot, byEntity, blockSel, entitySel);
