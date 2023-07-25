@@ -1,4 +1,10 @@
-﻿1.18-0.4.10-dev.3
+﻿
+1.18-0.4.10-dev.5
+	- Adjusted saw times a little more (steel/meteoric iron/iron should be faster)
+	- Corrected (?) NRE error when moving cursor off of a block while chopping.
+	- Ensured animation stops after leaving workstations block mid-recipe.
+	
+1.18-0.4.10-dev.3
 	- Corrected stump spawning errors occuring with Old English Oaks.
 	- Corrected issue with recipes with returnblocks producing multiple output stacks. 
 

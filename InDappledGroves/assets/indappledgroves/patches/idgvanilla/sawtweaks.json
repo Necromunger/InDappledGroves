@@ -60,12 +60,12 @@
 			"leaves": 2
 		},
 		"*-meteoriciron": {
-			"wood": 2.25,
+			"wood": 3,
 			"plant": 2.25,
 			"leaves": 2.25
 		},
 		"*-steel": {
-			"wood": 3,
+			"wood": 4,
 			"plant": 3,
 			"leaves": 3
 		}

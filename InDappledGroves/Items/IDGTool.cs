@@ -8,6 +8,7 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Items.Tools
@@ -21,7 +22,6 @@ namespace InDappledGroves.Items.Tools
             base.OnLoaded(api);
             capi = (api as ICoreClientAPI);
             toolModes = BuildSkillList();
-
         }
 
         public IDGTool()
@@ -74,9 +74,14 @@ namespace InDappledGroves.Items.Tools
             {
                 this.targetBlock = holder.BlockSelection.Block;
             }
+            else if (!byEntity.Controls.RightMouseDown && !byEntity.Controls.LeftMouseDown && byEntity.AnimManager.ActiveAnimationsByAnimCode.ContainsKey("axechop")) 
+            {
+                byEntity.StopAnimation("axechop");
+            }
+
             base.OnHeldIdle(slot, byEntity);
         }
-
+        
         public string GetToolModeName(ItemStack stack)
         {
             return toolModes[Math.Min(this.toolModes.Length - 1, stack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
@@ -135,7 +140,6 @@ namespace InDappledGroves.Items.Tools
                 byEntity.StartAnimation("axechop");
 
                 playNextSound = 0.25f;
-
                 handHandling = EnumHandHandling.Handled;
                 return;
             }
@@ -147,10 +151,9 @@ namespace InDappledGroves.Items.Tools
         {
             if (!byEntity.Controls.CtrlKey && blockSel?.Position == recipePos && api.World.BlockAccessor.GetBlock(blockSel.Position) == recipeBlock)
             {
-
                 if (recipePos != null)
                 {
-
+                    
                     if (((int)api.Side) == 1 && playNextSound < secondsUsed)
                     {
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
@@ -169,9 +172,8 @@ namespace InDappledGroves.Items.Tools
 
                     float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
-                    if (api.Side == EnumAppSide.Server/*api.World is Vintagestory.API.Server.IServerWorldAccessor*/ && curMiningProgress >= curResistance)
+                    if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
                     {
-
                         SpawnOutput(recipe, recipePos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
                         api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
@@ -179,27 +181,36 @@ namespace InDappledGroves.Items.Tools
                         recipeComplete = true;
                         return false;
                     }
-
-                }
-                return true;
+                   }
+               return true;
             }
+            byEntity.StopAnimation("axechop");
             return false;
         }
 
         public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
         {
-            if (recipeComplete) slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
-            api.World.BlockAccessor.MarkBlockDirty(blockSel.Position);
+            if (recipeComplete)
+            {
+                slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
+                byEntity.StopAnimation("axechop");
+            }
+            if (blockSel != null)
+            {
+                api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
+                byEntity.StopAnimation("axechop");
+            }
             recipeComplete = false;
             byEntity.StopAnimation("axechop");
-            //base.OnHeldInteractStop(secondsUsed, slot, byEntity, blockSel, entitySel);
         }
 
         public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
         {
+            byEntity.StopAnimation("axechop");
             return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason);
         }
 
+        
         public float getToolModeMod(ItemStack stack)
         {
             switch (GetToolModeName(stack))

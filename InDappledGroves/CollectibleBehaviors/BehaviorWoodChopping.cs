@@ -115,21 +115,13 @@ namespace InDappledGroves
             tempAttr.SetInt("lastposZ", pos.Z);
             float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10);
             remainingResistance = treeDmg;
-            if (api.Side == EnumAppSide.Client)
-            {
-                System.Diagnostics.Debug.WriteLine("Counter: " + counter.ToString());
-                System.Diagnostics.Debug.WriteLine("tree resistance: " + treeResistance.ToString());
-                System.Diagnostics.Debug.WriteLine("treeDmg: " + treeDmg.ToString());
-                System.Diagnostics.Debug.WriteLine("remaining resistance: " + remainingResistance.ToString());
-            }
-                return treeDmg;
+            return treeDmg;
         }
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
         {
             
 
-            System.Diagnostics.Debug.WriteLine("End Break: " + api.World.ElapsedMilliseconds);
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
@@ -221,7 +213,6 @@ namespace InDappledGroves
 
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out float resistance, out int woodTier)
         {
-            System.Diagnostics.Debug.WriteLine("First Start: " + api.World.ElapsedMilliseconds);
             Queue<Vec4i> queue = new();
             HashSet<BlockPos> checkedPositions = new();
             Stack<BlockPos> foundPositions = new();
@@ -344,7 +335,6 @@ namespace InDappledGroves
                     }
                 }
             }
-            System.Diagnostics.Debug.WriteLine("FoundPosition: " + foundPositions.Count);
             return foundPositions;
         }
 
