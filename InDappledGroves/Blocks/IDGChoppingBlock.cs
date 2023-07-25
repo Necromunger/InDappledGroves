@@ -1,11 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
-using System;
-using System.Collections.Generic;
-using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
@@ -33,8 +29,7 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			
-			string curTMode = "";
+            string curTMode = "";
 			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
@@ -106,12 +101,15 @@ namespace InDappledGroves.Blocks
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
                     bechoppingblock.MarkDirty(true);
-					return false;
+                    byPlayer.Entity.StopAnimation("axechop");
+                    return false;
                 }
 				return !bechoppingblock.Inventory.Empty;
             }
             return false;
         }
+
+		
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
