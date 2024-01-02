@@ -4,6 +4,7 @@ using InDappledGroves.Util.Config;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
@@ -59,6 +60,10 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
+			//if(world.Api.Side == EnumAppSide.Client)
+			//{
+
+			//}
 			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;

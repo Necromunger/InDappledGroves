@@ -2,8 +2,8 @@
   "profiles": {
     "InDappledGroves": {
       "commandName": "Project",
-      "commandLineArgs": "--addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\"  --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\"",
-      "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\VintagestoryNet7\\1.18\\",
+      "commandLineArgs": "--addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\"",
+      "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.18",
       "nativeDebugging": false
     }
   }

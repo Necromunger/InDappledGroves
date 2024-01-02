@@ -1,4 +1,14 @@
 ﻿
+1-18.0.4.10-dev.8
+	- Wild Farming Compatibility REALLY achieved (?)
+
+1-18.0.4.10-dev.7
+	- Wild Farming Compatibility achieved (?)
+
+1-18.0.4.10-dev.6
+	- Simplified sawbuck recipe to accept any kind of log slab, barked or debarked. Recipe was always working, but wasn't clear that it wanted debarked slabs.
+	- Correct ground transform issues with copper and stone axes.
+
 1.18-0.4.10-dev.5
 	- Adjusted saw times a little more (steel/meteoric iron/iron should be faster)
 	- Corrected (?) NRE error when moving cursor off of a block while chopping.

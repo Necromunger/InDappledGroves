@@ -60,8 +60,8 @@
 		}
 	},
 	textures: {
-		"oak": { base: "game:block/wood/bark/{wood}" },
-		"oak3": {"base": "game:block/wood/treetrunk/{wood}"}
+		"all": { base: "game:block/wood/bark/{wood}" },
+		"up": {"base": "game:block/wood/treetrunk/{wood}"}
 	},
 	replaceable: 500,
 	sounds: {

@@ -95,17 +95,19 @@ namespace InDappledGroves.Util.WorldGen
         {
             if (treeBaseDict.Count != 0)
             {
-                foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
-                {
-                    if (IsStumpLog(entry.Value))
+                    foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
                     {
-                        PlaceTreeStump(ba, entry.Key);
+
+                        if (IsStumpLog(entry.Value))
+                        {
+                            PlaceTreeStump(ba, entry.Key);
+                        }
                     }
-                }
-                float randNumb = (float)sapi.World.Rand.NextDouble();
-                if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
             }
+                float randNumb = (float)sapi.World.Rand.NextDouble();
+                if (!sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
         }
+
 
         private bool IsStumpLog(Block block)
         {
@@ -121,11 +123,13 @@ namespace InDappledGroves.Util.WorldGen
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
         private bool PlaceTreeStump(IBlockAccessor blockAccessor, BlockPos pos)
         {
+            
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             //Debug.WriteLine("Will replace:" + treeBlock.Code.Path);
             var stumpType = "pine";
+            //if (sapi.ModLoader.IsModSystemEnabled("wildfarmingrevival") && ) { return false; }
 
-            if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "treestump")
+            if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "treestump" && blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default).FirstCodePart() == "trunk")
             {
                 stumpType = treeBlock.FirstCodePart(2);
             }
@@ -178,7 +182,7 @@ namespace InDappledGroves.Util.WorldGen
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
             {
                 var block = blockAccessor.GetBlock(pos, BlockLayersAccess.Default) as BlockTreeHollowGrown;
-                if (block.EntityClass != null)
+                if (block?.EntityClass != null)
                 {
                     if (block.EntityClass == withBlock.EntityClass)
                     {

@@ -63,7 +63,7 @@ namespace InDappledGroves.Util.HarmonyPatches
             {
                 foreach (KeyValuePair<BlockPos, Block> entry in TreeBase)
                 {
-                    TreeHollows.TreeDone.OnTreeGenComplete(TreeBase, thisBlockAccessor, isWideTrunk);
+                    TreeHollows.TreeDone.OnTreeGenComplete(TreeBase, thisBlockAccessor, isWideTrunk = false);
                 }
                 TreeBase.Clear();
                 isWideTrunk = false;

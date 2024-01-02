@@ -8,8 +8,6 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"all": "block/wood/bark/all",
-		"up": "block/wood/treetrunk/all"
 	},
 	"elements": [
 		{
@@ -171,6 +169,7 @@
 			"name": "Cube12",
 			"from": [ -3.0, -1.0, 18.0 ], 
 			"to": [ 1.0, 12.0, 21.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ -3.0, 0.0, 18.0 ],
 			"rotationX": -17.0,
 			"rotationY": -18.0,
@@ -236,6 +235,7 @@
 			"name": "Cube16",
 			"from": [ 17.0, -2.0, -1.0 ], 
 			"to": [ 21.0, 13.0, 14.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 19.0, -1.0, -1.0 ],
 			"rotationZ": 21.0,
 			"faces": {
@@ -251,6 +251,7 @@
 			"name": "Cube17",
 			"from": [ 2.0, -2.0, 20.0 ], 
 			"to": [ 9.0, 16.0, 24.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 2.0, -2.0, 20.0 ],
 			"rotationX": -25.5,
 			"faces": {
@@ -266,6 +267,7 @@
 			"name": "Cube18",
 			"from": [ 15.0, -3.0, 18.0 ], 
 			"to": [ 22.0, 7.0, 22.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 15.0, -3.0, 18.0 ],
 			"rotationX": -22.5,
 			"rotationY": 54.3,
@@ -283,6 +285,7 @@
 			"name": "Cube19",
 			"from": [ 9.0, -1.0, 22.0 ], 
 			"to": [ 14.0, 15.0, 26.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 9.0, -1.0, 22.0 ],
 			"rotationX": -38.1,
 			"faces": {
@@ -330,6 +333,7 @@
 			"name": "Cube22",
 			"from": [ 25.0, -1.0, 23.0 ], 
 			"to": [ 27.0, 9.0, 25.0 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 25.0, -1.0, 23.0 ],
 			"rotationY": -45.0,
 			"rotationZ": 67.5,
@@ -346,6 +350,7 @@
 			"name": "Cube23",
 			"from": [ 16.0, 1.0, 27.0 ], 
 			"to": [ 17.4, 9.0, 28.5 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 16.0, 0.0, 27.0 ],
 			"rotationX": -1.0,
 			"rotationY": 67.5,
@@ -363,6 +368,7 @@
 			"name": "Cube24",
 			"from": [ 13.6, 5.4, 17.9 ], 
 			"to": [ 20.6, 14.6, 21.9 ], 
+			"renderInEditor": false,
 			"rotationOrigin": [ 13.6, 5.3, 17.9 ],
 			"rotationX": -53.0,
 			"rotationY": 40.2,
