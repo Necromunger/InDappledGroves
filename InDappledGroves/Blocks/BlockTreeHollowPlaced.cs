@@ -147,24 +147,25 @@
 
         public override void OnBeforeRender(ICoreClientAPI capi, ItemStack itemstack, EnumItemRenderTarget target, ref ItemRenderInfo renderinfo)
         {
-            var meshrefs = new Dictionary<string, MeshRef>();
+            var meshrefs = new Dictionary<string, MultiTextureMeshRef>();
             var key = "genericTypedContainerMeshRefs" + this.FirstCodePart() + this.SubtypeInventory;
             meshrefs = ObjectCacheUtil.GetOrCreate(capi, key, () =>
             {
                 var meshes = this.GenGuiMeshes(capi);
                 foreach (var val in meshes)
                 {
-                    meshrefs[val.Key] = capi.Render.UploadMesh(val.Value);
+                    meshrefs[val.Key] = capi.Render.UploadMultiTextureMesh(val.Value);
                 }
                 return meshrefs;
             });
 
 
             var type = itemstack.Attributes.GetString("type", this.defaultType);
+            
             if (!meshrefs.TryGetValue(type, out renderinfo.ModelRef))
             {
                 var mesh = this.GenGuiMesh(capi, type);
-                meshrefs[type] = renderinfo.ModelRef = capi.Render.UploadMesh(mesh);
+                meshrefs[type] = renderinfo.ModelRef = capi.Render.UploadMultiTextureMesh(mesh);
             }
 
         }
