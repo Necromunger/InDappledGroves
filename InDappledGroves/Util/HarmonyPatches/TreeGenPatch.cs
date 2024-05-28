@@ -30,7 +30,9 @@ namespace InDappledGroves.Util.HarmonyPatches
 
             // Find where the tree generator places blocks, and jump right behind it
             codeMatcher.MatchEndForward(
-                new CodeMatch(instruction => instruction.Calls(typeof(TreeGen).GetMethod("PlaceBlockEtc", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(BlockPos), typeof(Random), typeof(float), typeof(float) }, null)))
+                new CodeMatch(instruction => instruction.Calls(typeof(TreeGen).
+                GetMethod("PlaceBlockEtc", BindingFlags.NonPublic | BindingFlags.Instance, null, 
+                new Type[] { typeof(int), typeof(BlockPos), typeof(Random), typeof(float), typeof(float) }, null)))
             )
             .Advance(1);
 
