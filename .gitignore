@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Launcher2/Properties/AssemblyInfo.cs
+/Launcher2/Launcher2.csproj
+/.gitignore
+/Launcher/Launcher.csproj
+/InDappledGroves/InDappledGroves.csproj

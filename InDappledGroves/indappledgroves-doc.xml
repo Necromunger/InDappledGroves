@@ -77,22 +77,9 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
-        <member name="M:InDappledGroves.Util.IDGRecipeNames.IDGRecipeLoader.GroundIngredient.ToBytes(System.IO.BinaryWriter)">
+        <member name="M:InDappledGroves.Util.RecipeTools.IDGRecipeNames.IDGRecipeLoader.GroundIngredient.ToBytes(System.IO.BinaryWriter)">
             <summary>Converts to bytes.</summary>
             <param name="writer">The writer.</param>
-        </member>
-        <member name="M:InDappledGroves.WorldGen.TreeHollows.OnWorldGenBlockAccessor(Vintagestory.API.Server.IChunkProviderThread)">
-            <summary>
-            Stores the chunk gen thread's IBlockAccessor for use when generating tree hollows during chunk gen. This callback
-            is necessary because chunk loading happens in a separate thread and it's important to use this block accessor
-            when placing tree hollows during chunk gen.
-            </summary>
-        </member>
-        <member name="M:InDappledGroves.WorldGen.TreeHollows.OnChunkColumnRequest(Vintagestory.API.Server.IChunkColumnGenerateRequest)">
-            <summary>
-            Called when a number of chunks have been generated. For each chunk we first determine if we should place a tree hollow
-            and if we should we then loop through each block to find a tree. When one is found we place the block.
-            </summary>
         </member>
     </members>
 </doc>

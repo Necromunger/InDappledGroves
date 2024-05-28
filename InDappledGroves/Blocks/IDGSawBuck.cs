@@ -1,17 +1,18 @@
 ﻿using System;
 using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Util;
+using InDappledGroves.Util.Config;
+using InDappledGroves.Util.RecipeTools;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using static InDappledGroves.Util.IDGRecipeNames;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
-	// Token: 0x02000016 RID: 22
-	internal class IDGSawBuck : Block
+    // Token: 0x02000016 RID: 22
+    internal class IDGSawBuck : Block
 	{
 		
 		public override void OnLoaded(ICoreAPI api)
@@ -85,9 +86,8 @@ namespace InDappledGroves.Blocks
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 
-				
-				if (curMiningProgress >= curResistance)
-				{
+                if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
+                {
 					idgbesawBuck.SpawnOutput(this.recipe, blockSel.Position);
 					sawtool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
 					idgbesawBuck.Inventory.Clear();

@@ -1,0 +1,8 @@
+[
+  {
+    "op": "replace",
+    "path": "/shapeByType/*",
+    "value": {"base": "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }]},
+    "file": "wildfarmingrevival:blocktypes/wood/trunk.json"
+  }
+]

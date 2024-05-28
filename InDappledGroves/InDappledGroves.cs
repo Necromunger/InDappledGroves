@@ -1,6 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Blocks;
-using InDappledGroves.Util;
 using InDappledGroves.Items.Tools;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
@@ -9,10 +8,11 @@ using Vintagestory.API.Common;
 using System.Collections.Generic;
 using System;
 using HarmonyLib;
+using InDappledGroves.Util.Config;
 
 namespace InDappledGroves
 {
-    
+
     public class InDappledGroves : ModSystem
     {
         public static float baseWorkstationMiningSpdMult;

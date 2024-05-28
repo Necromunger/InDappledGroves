@@ -1,4 +1,48 @@
-﻿1.18-0.4.9-rc.5
+﻿
+1-18.0.4.10-dev.8
+	- Wild Farming Compatibility REALLY achieved (?)
+
+1-18.0.4.10-dev.7
+	- Wild Farming Compatibility achieved (?)
+
+1-18.0.4.10-dev.6
+	- Simplified sawbuck recipe to accept any kind of log slab, barked or debarked. Recipe was always working, but wasn't clear that it wanted debarked slabs.
+	- Correct ground transform issues with copper and stone axes.
+
+1.18-0.4.10-dev.5
+	- Adjusted saw times a little more (steel/meteoric iron/iron should be faster)
+	- Corrected (?) NRE error when moving cursor off of a block while chopping.
+	- Ensured animation stops after leaving workstations block mid-recipe.
+	
+1.18-0.4.10-dev.3
+	- Corrected stump spawning errors occuring with Old English Oaks.
+	- Corrected issue with recipes with returnblocks producing multiple output stacks. 
+
+1.18-0.4.10-dev.2
+    - Added adze based recipes for fences, gates, and crude doors.
+	- Copper axe reintegrated into the system
+	- Randomized number of items that appear in Tree Hollows.
+
+1.18-0.4.10-dev.1
+	- Implemented hollows regenerating after a period of time.
+	- Corrected (?) outputs occasionally failing to spawn after processing time.
+	- Add oak bark recipe for both strong and weak tannin, and from weak tannin to strong.
+	- Updated tree hollow/stump generation to be more cycle efficient
+
+1.18-0.4.9-rc.8
+	- Corrected issue where axes would break any block they touch instantly. 
+
+1.18-0.4.9-rc.7
+	- Corrected treefelling times
+	- Altered how treeResistance is determined
+	- Adding "treeFellingDivisor" configurable option to impact how final treeResistance is determined.
+		- Set to 2 by default, which halves the resistance of the tree. Higher numbers reduces the resistance, lower increases.
+	- Fix firewood block lang entry
+
+1.18-0.4.9-rc.6
+	- Hotpatch to fix crashing when axe breaks.  Became apparent further tweaking of tree resistance is going to be necessary, trees fall too fast.
+
+1.18-0.4.9-rc.5
 	- Hotpatch to Fix Firewood Issue
 
 1.18-0.4.9-rc.4

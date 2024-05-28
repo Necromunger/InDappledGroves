@@ -6,11 +6,11 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
-using static InDappledGroves.Util.IDGRecipeNames;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {
-	class IDGBESawBuck : BlockEntityDisplay
+    class IDGBESawBuck : BlockEntityDisplay
 	{
 		public override InventoryBase Inventory { get; }
 		public override string InventoryClassName => "sawbuck";

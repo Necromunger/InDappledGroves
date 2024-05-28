@@ -1,7 +1,9 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
+using InDappledGroves.Util.Config;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Common.Entities;
@@ -10,7 +12,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using static InDappledGroves.Util.IDGRecipeNames;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves
 {
@@ -71,30 +73,34 @@ namespace InDappledGroves
             //});
         }
 
-        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandHandling handling)
-        {
-            
-            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
-        }
-
         #region TreeFelling
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
         {
+            BlockPos pos = blockSel.Position;
+            string[] woods = new[] {"log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection"};
+            if (api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
+            {
+                handled = EnumHandling.PreventSubsequent;
+                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter, ref handled);
+            };
+
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            BlockPos pos = blockSel.Position;
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1) * (itemslot.Itemstack.Collectible.Attributes["choppingProps"]["fellingMultiplier"].AsFloat(1f));
             
+            float treeResistance = tempAttr.GetFloat("treeResistance", 1);
+
             if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
             {
-                int baseResistance;
+                float baseResistance;
                 int woodTier;
+
                 Stack<BlockPos> foundPositions = FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
-                treeResistance = (float)Math.Max(1, Math.Sqrt(foundPositions.Count));
+                treeResistance = (float)baseResistance/IDGTreeConfig.Current.TreeFellingDivisor;
                 if (collObj.ToolTier < woodTier - 3)
                 {
+                    handled = EnumHandling.Handled;
                     return treeResistance * 1.25f;
                 }
                 tempAttr.SetFloat("treeResistance", treeResistance);
@@ -103,21 +109,25 @@ namespace InDappledGroves
             {
                 treeResistance = tempAttr.GetFloat("treeResistance", 1f);
             }
-
+            handled = EnumHandling.Handled;
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
-            return treeResistance * 1.25f;
+            float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10);
+            remainingResistance = treeDmg;
+            return treeDmg;
         }
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
         {
+            
+
             IPlayer byPlayer = null;
             if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
 
             WeatherSystemBase modSystem = this.api.ModLoader.GetModSystem<WeatherSystemBase>(true);
             double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
-            int num;
+            float num;
             int woodTier;
 
             Stack<BlockPos> foundPositions = this.FindTree(world, blockSel.Position, out num, out woodTier);
@@ -178,7 +188,12 @@ namespace InDappledGroves
                     collObj.DamageItem(world, byEntity, itemslot);
                 }
 
-                if (itemslot.Itemstack == null) return true;
+
+                if (itemslot.Itemstack == null)
+                {
+                    bhHandling = EnumHandling.PreventDefault;
+                    return true;
+                }
 
                 if (isLeaves && leavesMul > 0.03f) leavesMul *= 0.85f;
                 if (isBranchy && leavesBranchyMul > 0.015f) leavesBranchyMul *= 0.6f;
@@ -191,12 +206,12 @@ namespace InDappledGroves
             }
 
             bhHandling = EnumHandling.Handled;
-            return true;
+            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
         }
 
         
 
-        public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out int resistance, out int woodTier)
+        public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out float resistance, out int woodTier)
         {
             Queue<Vec4i> queue = new();
             HashSet<BlockPos> checkedPositions = new();
@@ -305,7 +320,7 @@ namespace InDappledGroves
                                     checkedPositions.Add(neibPos);
                                     if (bh != EnumTreeFellingBehavior.ChopSpreadVertical || facing.Equals(0, 1, 0) || nspreadIndex <= 0)
                                     {
-                                        resistance += nspreadIndex + 1;
+                                        resistance += block.Resistance;
                                         if (woodTier == 0)
                                         {
                                             woodTier = nspreadIndex;

@@ -4,7 +4,7 @@
 	"__comment": "BlockLog contains only contains code for OnPickBlock",
 	behaviorsByType: {
 		"*-grown-*": [{name: "PushEventOnBlockBroken",	properties: {eventName: "testForDecay"}}, { name: "MyceliumHost" }],
-		"*": [{ name: "MyceliumHost" }, { name: "WrenchOrientable", properties: { baseCode: "treestump-placed-{wood}"  } }]
+		"*": [{ name: "MyceliumHost" }]
 	},
 	variantgroups: [
 		{ code: "type", states: ["grown", "placed"] },
@@ -60,8 +60,8 @@
 		}
 	},
 	textures: {
-		"oak": { base: "game:block/wood/bark/{wood}" },
-		"oak3": {"base": "game:block/wood/treetrunk/{wood}"}
+		"all": { base: "game:block/wood/bark/{wood}" },
+		"up": {"base": "game:block/wood/treetrunk/{wood}"}
 	},
 	replaceable: 500,
 	sounds: {

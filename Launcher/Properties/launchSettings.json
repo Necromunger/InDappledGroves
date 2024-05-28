@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Launcher": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\Vintagestory.exe",
+      "commandLineArgs": "--addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\"  --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\"\r\n",
+      "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\",
+      "nativeDebugging": false
+    }
+  }
+}

@@ -1,14 +1,11 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Interfaces;
-using InDappledGroves.Util;
-using System;
-using System.Collections.Generic;
-using Vintagestory.API.Client;
+using InDappledGroves.Util.Config;
 using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using static InDappledGroves.Util.IDGRecipeNames;
+using Vintagestory.GameContent;
+using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
 {
@@ -33,8 +30,7 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
-			
-			string curTMode = "";
+            string curTMode = "";
 			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
@@ -64,6 +60,10 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
+			//if(world.Api.Side == EnumAppSide.Client)
+			//{
+
+			//}
 			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;
@@ -88,7 +88,7 @@ namespace InDappledGroves.Blocks
 				lastSecondsUsed = secondsUsed;
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
-				if ( curMiningProgress >= curResistance) 
+				if ( api.Side == EnumAppSide.Server && curMiningProgress >= curResistance) 
 				{
 
 					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
@@ -105,13 +105,16 @@ namespace InDappledGroves.Blocks
 						bechoppingblock.Inventory[0].Itemstack = recipe.ReturnStack.ResolvedItemstack.Clone();
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
-					bechoppingblock.MarkDirty(true);
-					return false;
-                }		
+                    bechoppingblock.MarkDirty(true);
+                    byPlayer.Entity.StopAnimation("axechop");
+                    return false;
+                }
 				return !bechoppingblock.Inventory.Empty;
-			}
-			return false;
+            }
+            return false;
         }
+
+		
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
@@ -120,6 +123,7 @@ namespace InDappledGroves.Blocks
 			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
 			byPlayer.Entity.StopAnimation("axechop");
+
 		}
 
 		private float playNextSound;
