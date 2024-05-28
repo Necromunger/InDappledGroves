@@ -5,6 +5,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InDappledGroves", "InDappledGroves\InDappledGroves.csproj", "{D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Launcher", "Launcher\Launcher.csproj", "{0CB26D44-0578-41B9-89FD-F09E55A02B59}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82} = {D142BA0B-3EB4-4FEC-ABFE-0E777ED20A82}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,11 +25,12 @@ namespace InDappledGroves.Util.HarmonyPatches
 
         public static IEnumerable<CodeInstruction> growBranchTranspiler(IEnumerable<CodeInstruction> instructions)
         {
+            
             CodeMatcher codeMatcher = new CodeMatcher(instructions);
 
             // Find where the tree generator places blocks, and jump right behind it
             codeMatcher.MatchEndForward(
-                new CodeMatch(instruction => instruction.Calls(typeof(IBlockAccessor).GetMethod("SetBlock", BindingFlags.Public | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(BlockPos) }, null)))
+                new CodeMatch(instruction => instruction.Calls(typeof(TreeGen).GetMethod("PlaceBlockEtc", BindingFlags.NonPublic | BindingFlags.Instance, null, new Type[] { typeof(int), typeof(BlockPos), typeof(Random), typeof(float), typeof(float) }, null)))
             )
             .Advance(1);
 
@@ -37,10 +38,10 @@ namespace InDappledGroves.Util.HarmonyPatches
             codeMatcher.Insert(
                 new CodeInstruction(OpCodes.Ldarg_0), // Put "argument 0" (`this`) on stack, so that the next instruction can use it
                 CodeInstruction.LoadField(typeof(TreeGen), "blockAccessor"), // Load the BlockAccessor used by the tree generator itself
-                new CodeInstruction(OpCodes.Ldarg_2), // Load 2nd argument of the method we are patching (`BlockPos basepos`)
-                new CodeInstruction(OpCodes.Ldloc_S, 10), // Load method local variable #10 (`int iteration`)
-                new CodeInstruction(OpCodes.Ldloc_S, 22), // Load method local variable #22 (`int blockId`)
-                new CodeInstruction(OpCodes.Ldloc_S, 17), // Load method local variable #17 (`BlockPos currentPos`)
+                new CodeInstruction(OpCodes.Ldarg_2), // Load 2nd argument of the method we are patching (`BlockPos pos`)
+                new CodeInstruction(OpCodes.Ldloc_S, 9), // Load method local variable #10 (`int iteration`) 
+                new CodeInstruction(OpCodes.Ldloc_S, 21), // Load method local variable #22 (`int blockId`)
+                new CodeInstruction(OpCodes.Ldloc_S, 11), // Load method local variable #17 (`BlockPos currentPos`) 
                 new CodeInstruction(OpCodes.Ldarg, 12), //Load local argument #12 ('WideTrunk')
                 CodeInstruction.Call(typeof(HarmonyModSystem), "GrowBranchTranspilerCall")
             );
