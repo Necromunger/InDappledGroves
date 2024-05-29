@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -40,11 +40,11 @@ namespace InDappledGroves.Util.HarmonyPatches
             codeMatcher.Insert(
                 new CodeInstruction(OpCodes.Ldarg_0), // Put "argument 0" (`this`) on stack, so that the next instruction can use it
                 CodeInstruction.LoadField(typeof(TreeGen), "blockAccessor"), // Load the BlockAccessor used by the tree generator itself
-                new CodeInstruction(OpCodes.Ldarg_2), // Load 2nd argument of the method we are patching (`BlockPos pos`)
-                new CodeInstruction(OpCodes.Ldloc_S, 9), // Load method local variable #10 (`int iteration`) 
-                new CodeInstruction(OpCodes.Ldloc_S, 21), // Load method local variable #22 (`int blockId`)
-                new CodeInstruction(OpCodes.Ldloc_S, 11), // Load method local variable #17 (`BlockPos currentPos`) 
-                new CodeInstruction(OpCodes.Ldarg, 12), //Load local argument #12 ('WideTrunk')
+                new CodeInstruction(OpCodes.Ldarg_2), // Load 2nd argument of the method we are patching (`int depth`)
+                new CodeInstruction(OpCodes.Ldloc_S, 10), // Load method local variable #11 (`int iteration`) 
+                new CodeInstruction(OpCodes.Ldloc_S, 22), // Load method local variable #23 (`int blockId`)
+                new CodeInstruction(OpCodes.Ldloc_S, 17), // Load method local variable #18 (`BlockPos currentPos`) 
+                new CodeInstruction(OpCodes.Ldarg, 13), //Load local argument #14 ('bool WideTrunk')
                 CodeInstruction.Call(typeof(HarmonyModSystem), "GrowBranchTranspilerCall")
             );
 
