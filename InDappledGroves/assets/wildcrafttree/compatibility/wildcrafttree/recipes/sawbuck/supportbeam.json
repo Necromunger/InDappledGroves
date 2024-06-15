@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:debarkedlog-*-ud", "name": "wood",  "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "wildcrafttree:supportbeam-{wood}", "quantity": 3}
+  }
+]

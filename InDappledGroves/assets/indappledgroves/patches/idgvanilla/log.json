@@ -214,11 +214,13 @@
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server",
     "op": "remove",
     "path": "/resistance"
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server",
     "op": "add",
     "path": "/resistanceByType",
     "value": {
@@ -240,12 +242,42 @@
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log-debarked.json",
+    "side": "server",
     "op": "remove",
     "path": "/resistance"
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log-debarked.json",
+    "side": "server",
     "op": "add",
+    "path": "/resistanceByType",
+    "value": {
+    "*-birch-*": 5.7,
+		"*-oak-*": 5.8,
+		"*-maple-*": 6.5,
+		"*-pine-*": 3.9,
+		"*-acacia-*": 10.3,
+		"*-kapok-*": 4,
+		"*-baldcypress-*": 2.3,
+		"*-larch-*": 3.7,
+		"*-redwood-*": 1.9,
+		"*-ebony-*": 14.5,
+		"*-walnut-*": 4.5,
+		"*-purpleheart-*": 12.2,
+		"*-aged-*": 4.5,
+		"*": 4.5
+    }
+  },
+  {
+    "file": "game:blocktypes/wood/woodtyped/log-withresin.json",
+    "op": "remove",
+    "side": "server",
+    "path": "/resistance"
+  },
+  {
+    "file": "game:blocktypes/wood/woodtyped/log-withresin.json",
+    "op": "add",
+    "side": "server",
     "path": "/resistanceByType",
     "value": {
     "*-birch-*": 5.7,

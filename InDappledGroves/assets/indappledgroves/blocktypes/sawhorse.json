@@ -19,7 +19,7 @@
   ]
   },
   "variantgroups": [
-    { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood"},
     { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
     { "code": "state", "states": ["single","compound"]},
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }

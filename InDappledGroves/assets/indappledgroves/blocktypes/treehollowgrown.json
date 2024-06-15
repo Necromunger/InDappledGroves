@@ -74,7 +74,7 @@
         "code": "type",
         "states": [ "base", "base2", "up", "up2" ]
       },
-      { code: "wood", states: ["aged"], loadFromProperties: "block/wood" },
+      { code: "wood", loadFromProperties: "block/wood" },
       {
         "code": "side",
         "loadFromProperties": "abstract/horizontalorientation"

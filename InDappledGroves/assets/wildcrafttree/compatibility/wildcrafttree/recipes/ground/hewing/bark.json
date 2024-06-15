@@ -1,0 +1,120 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-north-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-east-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-south-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-west-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:log-placed-*-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 4},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-ne-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 4},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-nw-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 4},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-se-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 4},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-sw-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 4},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
+  }
+]

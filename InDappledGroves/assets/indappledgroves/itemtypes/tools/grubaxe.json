@@ -5,6 +5,7 @@
 	attributes: {
 		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.19},
 		"hewingProps": {"hewingMod": 1},
+		"workanimation": "axesplit-fp",
 		handbook: {
 			groupBy: ["grubaxe-*"],
 			"extraSections": [

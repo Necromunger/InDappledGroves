@@ -73,6 +73,7 @@ namespace InDappledGroves.BlockEntities
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 updateMeshes();
+                base.MarkDirty(true, null);
             }
 			return true;
 		}
@@ -89,7 +90,9 @@ namespace InDappledGroves.BlockEntities
                     return num3 > 0;
                 }
             }
-			return false;
+            this.updateMeshes();
+            base.MarkDirty(true, null);
+            return false;
 		}
 
 		private bool TryTake(IPlayer byPlayer)
@@ -119,12 +122,14 @@ namespace InDappledGroves.BlockEntities
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
-					base.MarkDirty(true, null);
-                    this.updateMeshes();
+					this.updateMeshes();
+                    base.MarkDirty(true, null);
                     return true;
 				}
 			}
-			return false;
+            this.updateMeshes();
+            base.MarkDirty(true, null);
+            return false;
 		}
 
 
@@ -168,6 +173,7 @@ namespace InDappledGroves.BlockEntities
 			if (stack != null && stack.Collectible.Attributes["workStationTransforms"].Exists)
 			{
 				transform = stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
+				transform.Scale = 2f;
 			}
 			else
 			{
@@ -262,7 +268,9 @@ namespace InDappledGroves.BlockEntities
 			{
 				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
 			}
-		}
+			updateMeshes();
+            base.MarkDirty(true, null);
+        }
 
 		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
 		{

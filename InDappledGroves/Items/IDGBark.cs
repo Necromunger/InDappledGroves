@@ -47,7 +47,7 @@ namespace InDappledGroves.Items
                         //Deteremine if the block is being placed in water.  This is a temporary patch solution until BehaviorSubmergible gets fully processed.
                         string bundlestate = api.World.BlockAccessor.GetBlock(blockSel.Position, BlockLayersAccess.Fluid).FirstCodePart() == "water" ? "-soaking" : "-dry";
                         //Set the resultant block into the world.
-                        api.World.BlockAccessor.SetBlock(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:barkbundle-" + slot.Itemstack.Collectible.Variant["bark"] + bundlestate)).BlockId, blockSel.Position);
+                        api.World.BlockAccessor.SetBlock(api.World.BlockAccessor.GetBlock(new AssetLocation(bebgs.Inventory[0].Itemstack.Collectible.Code.Domain + ":barkbundle-" + slot.Itemstack.Collectible.Variant["bark"] + bundlestate)).BlockId, blockSel.Position);
                     }
                     //Consume the last piece of bark on both client and server.
                     slot.TakeOut(1);

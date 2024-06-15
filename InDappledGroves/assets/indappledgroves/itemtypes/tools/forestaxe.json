@@ -3,6 +3,7 @@
 	class: "idgtool",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
+		"workanimation": "axesplit-fp",
 		handbook: {
 			groupBy: ["forestaxe-*"],
 			"extraSections": [

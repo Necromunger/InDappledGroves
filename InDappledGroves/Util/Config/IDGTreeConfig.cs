@@ -32,10 +32,10 @@ namespace InDappledGroves.Util.Config
             defaultConfig.TreeHollowsSpawnProbability = 0.2f;
             defaultConfig.RunTreeGenOnChunkReload = false;
             defaultConfig.stumpTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
-                "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa",
+                "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa", 
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"};
             defaultConfig.woodTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
-                "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "pyramidalpoplar", "catalpa",
+                "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa",
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"};
 
             return defaultConfig;

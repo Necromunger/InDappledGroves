@@ -48,7 +48,7 @@ namespace InDappledGroves.Blocks
 					if (recipe != null)
 					{
 						resistance = (bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
-							byPlayer.Entity.StartAnimation("axechop");
+							byPlayer.Entity.StartAnimation("axesplit-fp");
 							return true;
 					}
 					return false;
@@ -106,7 +106,7 @@ namespace InDappledGroves.Blocks
                     }
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
                     bechoppingblock.MarkDirty(true);
-                    byPlayer.Entity.StopAnimation("axechop");
+                    byPlayer.Entity.StopAnimation("axesplit-fp");
                     return false;
                 }
 				return !bechoppingblock.Inventory.Empty;
@@ -122,8 +122,8 @@ namespace InDappledGroves.Blocks
 			lastSecondsUsed = 0;
 			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
-			byPlayer.Entity.StopAnimation("axechop");
-
+			byPlayer.Entity.StopAnimation("axesplit-fp");
+			
 		}
 
 		private float playNextSound;

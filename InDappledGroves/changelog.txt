@@ -1,4 +1,10 @@
-﻿
+﻿1-19.0.5.0-dev.1
+	- Compatibility added for Wildcraft Trees (Trees, bark, bark bundles, bark baskets, logslabs, etc.)
+	- New animations for sawing and chopping added by Maltiez
+	- Tree resistance adjusted. Remember: Don't bring a nail file to take down an I-Beam. Flint's not good for Ebony or other hardwoods.
+	- Saw rate adjusted to reward advancing tools. Yes, this means they're slower now.
+	- New bugs probably introduced.
+
 1-18.0.4.10-dev.8
 	- Wild Farming Compatibility REALLY achieved (?)
 

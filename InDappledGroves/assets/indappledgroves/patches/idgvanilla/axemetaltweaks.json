@@ -47,6 +47,13 @@
     "side": "server"
   },
   {
+    "op": "add",
+    "path": "/attributes",
+    "value": {"workanimation": "axesplit-fp"},
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
     "op": "replace",
     "path": "/behaviors",
     "value": [{"name": "woodsplitter"}, { 

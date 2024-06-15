@@ -26,7 +26,7 @@ is an old tree-stump in water.</i></font>
 		Most trees form with a stump at the bottom. These sturdy bulwarks are difficult to remove, often making it preferable to leave them where they are. You may find it easier to chop above them, rather than chopping them directly. They'll be left behind on the initial felling of the tree either way. You'll have to chop them again to remove them, a lengthy process indeed.
 ",
 	"block-treestump": "Stump",
-	"treehollowcontents": "Tree Hollow Contents",
+	"treehollowcontents": "Tree Hollow's Secret",
 
 	//Hollow Entries
 	"block-treehollow": "Tree Hollow",
@@ -57,6 +57,7 @@ we are closer to home.</i></font>
 	
 	"barkbasketname": "Bark Baskets",
 	"block-barkbasket": "Bark Basket",
+	"barkbasketcontents": "Bark Basket",
 	//Chopping Block Entries
 	"block-handbooktitle-choppingblock": "How To Create:",	
 	"block-handbooktext-choppingblock": "	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a>

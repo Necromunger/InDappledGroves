@@ -54,7 +54,7 @@ namespace InDappledGroves.Blocks
 					if (recipe != null)
 					{
 						resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
-						byPlayer.Entity.StartAnimation("axechop");
+						byPlayer.Entity.StartAnimation("sawsaw-fp");
 						return true;
 					}
 					return false;
@@ -93,7 +93,8 @@ namespace InDappledGroves.Blocks
 					idgbesawBuck.Inventory.Clear();
 					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck).updateMeshes();
 					idgbesawBuck.MarkDirty(true, null);
-				}
+                    byPlayer.Entity.StopAnimation("sawsaw-fp");
+                }
 				return !idgbesawBuck.Inventory.Empty;
 			}
 			return false;
@@ -105,7 +106,7 @@ namespace InDappledGroves.Blocks
 			lastSecondsUsed = 0;
 			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
-			byPlayer.Entity.StopAnimation("axechop");
+			byPlayer.Entity.StopAnimation("sawsaw-fp");
 		}
 
 		public void SpawnOutput(IDGRecipeNames.SawbuckRecipe recipe, BlockPos pos)

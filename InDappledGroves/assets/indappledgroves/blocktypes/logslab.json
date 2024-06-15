@@ -33,7 +33,29 @@
 								"partialAttachableByType": {
 									"*-down-*": true,
 									"*-up-*": true
-								}
+								},
+								"workStationTransforms": {
+										"idgChoppingBlockProps":  {
+											"idgChoppingBlockTransform": {
+													"translation": {
+														"x": 0.025,
+														"y": 0.125,
+														"z": 0.725
+													},
+													"rotation": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													},
+													"origin": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"scale": 0.95
+											}
+										}
+							}
 	},
 	"blockmaterial": "Wood",
 	"resistanceByType": {
@@ -73,8 +95,8 @@
 		"*-debarked-*": {
 					"all": { "base": "game:block/wood/treetrunk/{wood}" },
 					"trunk": {"base": "indappledgroves:block/strippedlog/{wood}" },
-					"bark": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
-					"bark2": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
+					"bark": {"base": "game:block/wood/debarked/{wood}"},
+					"bark2": {"base": "game:block/wood/debarked/{wood}"},
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
 					"snowcover": { "base": "game:block/snow/normal1" }
 		}

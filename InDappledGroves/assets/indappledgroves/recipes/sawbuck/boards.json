@@ -5,11 +5,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood",  "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood",  "skipVariants": [ "veryaged", "veryagedrotten" ], "states": ["aged"], "loadFromProperties": "block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten" ], "quantity": 12}
   },
   {
     "toolmode": "sawing",
@@ -17,11 +17,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:logsection-placed-*-ne-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ],"states": ["aged"], "loadFromProperties": "block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten" ], "quantity": 12}
   },
   {
     "toolmode": "sawing",
@@ -29,10 +29,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "states": ["aged"], "loadFromProperties": "block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten" ], "quantity": 12}
   }
 ]

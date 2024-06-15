@@ -62,7 +62,7 @@
     "closeSound": "game:sounds/block/sand",
   },
   "variantgroups": [
-    { code: "wood", states: ["aged"], loadFromProperties: "block/wood" },
+    { code: "wood", loadFromProperties: "block/wood" },
     {
       "code": "side",
       "loadFromProperties": "abstract/horizontalorientation"

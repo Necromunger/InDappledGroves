@@ -15,6 +15,8 @@ using InDappledGroves.Util.Config;
 using System.Linq;
 using InDappledGroves.BlockEntities;
 using Vintagestory.API.Config;
+using Vintagestory;
+using static OpenTK.Graphics.OpenGL.GL;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -100,6 +102,7 @@ namespace InDappledGroves.Util.WorldGen
 
                         if (IsStumpLog(entry.Value))
                         {
+
                             PlaceTreeStump(ba, entry.Key);
                         }
                     }
@@ -134,7 +137,7 @@ namespace InDappledGroves.Util.WorldGen
                 stumpType = treeBlock.FirstCodePart(2);
             }
 
-            var withPath = "indappledgroves:treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
+            var withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             blockAccessor.SetBlock(0, pos);
@@ -176,7 +179,8 @@ namespace InDappledGroves.Util.WorldGen
                 { hollowType = "base2"; }
             }
 
-            var withPath = "indappledgroves:treehollowgrown-" + hollowType + "-" + woodType + "-" + dirs[sapi.World.Rand.Next(4)];
+            
+            var withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treehollowgrown-" + hollowType + "-" + woodType + "-" + dirs[sapi.World.Rand.Next(4)];
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))

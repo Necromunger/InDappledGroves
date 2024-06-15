@@ -65,7 +65,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:debarkedlogs-*-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "states": ["aged"], "loadFromProperties": "block/wood"}
        ]
       }
     ],

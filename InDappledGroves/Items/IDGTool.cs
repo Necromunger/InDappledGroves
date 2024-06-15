@@ -39,6 +39,7 @@ namespace InDappledGroves.Items.Tools
             dustParticles.WindAffectednes = 0.5f;
             Inventory = new InventoryGeneric(1, "IDGTool-slot", null, null);
             tempInv = new InventoryGeneric(1, "IDGTool-WorldInteract", null, null);
+            
         }
 
         #region ToolMode Stuff
@@ -116,6 +117,9 @@ namespace InDappledGroves.Items.Tools
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
+            workAnimation = this.Attributes["workanimation"].Exists ? this.Attributes["workanimation"].ToString() : "axechop";
+            ;
+
             if (!byEntity.Controls.CtrlKey)
             {
                 string curTMode = "";
@@ -137,7 +141,7 @@ namespace InDappledGroves.Items.Tools
                     return;
                 }
 
-                byEntity.StartAnimation("axechop");
+                byEntity.StartAnimation(workAnimation);
 
                 playNextSound = 0.25f;
                 handHandling = EnumHandHandling.Handled;
@@ -177,14 +181,14 @@ namespace InDappledGroves.Items.Tools
                         SpawnOutput(recipe, recipePos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
                         api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
-                        byEntity.StopAnimation("axechop");
+                        byEntity.StartAnimation(this.Attributes["workanimation"].ToString());
                         recipeComplete = true;
                         return false;
                     }
                    }
                return true;
             }
-            byEntity.StopAnimation("axechop");
+            byEntity.StopAnimation(workAnimation);
             return false;
         }
 
@@ -193,20 +197,20 @@ namespace InDappledGroves.Items.Tools
             if (recipeComplete)
             {
                 slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
-                byEntity.StopAnimation("axechop");
+                byEntity.StopAnimation(workAnimation);
             }
             if (blockSel != null)
             {
                 api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
-                byEntity.StopAnimation("axechop");
+                byEntity.StopAnimation(workAnimation);
             }
             recipeComplete = false;
-            byEntity.StopAnimation("axechop");
+            byEntity.StopAnimation(workAnimation);
         }
 
         public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
         {
-            byEntity.StopAnimation("axechop");
+            byEntity.StopAnimation(workAnimation);
             return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason);
         }
 
@@ -367,6 +371,7 @@ namespace InDappledGroves.Items.Tools
         private EntityPlayer holder;
         private BlockPos recipePos;
         private Block recipeBlock;
+        private String workAnimation;
     }
 
     

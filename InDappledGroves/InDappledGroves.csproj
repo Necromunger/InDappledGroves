@@ -56,21 +56,6 @@
     <None Update="assets\indappledgroves\blocktypes\treestump.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\wildcraftrevival\trunk.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\compatibility\wildcrafttrees\patches\recipes\roughhewnfence.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\compatibility\wildcrafttrees\patches\recipes\roughhewngate.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\compatibility\wildcrafttrees\patches\recipes\sawbuck.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\compatibility\wildcrafttrees\patches\recipes\sawhorse.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\config\handbook\indappledgrovestoolmodes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -116,6 +101,18 @@
     <None Update="assets\indappledgroves\patches\carryable\carryable.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\animations\axesplit-fp.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\animations\axesplit.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\animations\sawsaw-fp.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\animations\sawsaw.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\axemetaltweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -147,9 +144,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\patches\wildcrafttrees\trees.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\barrel\strongtanninbark.json">
@@ -519,6 +513,60 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\icons\sawing.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\treehollowgrown.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\treehollowplaced.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\treestump.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\itemtypes\resources\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\hewing\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\hewing\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\sawing\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="changelog.txt">
