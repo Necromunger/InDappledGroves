@@ -1,0 +1,32 @@
+[
+  {
+    "file": "wildcrafttree:recipes/grid/debarkedlog.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/beams.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/2",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  }
+]

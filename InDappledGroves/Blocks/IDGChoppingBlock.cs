@@ -2,6 +2,7 @@
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
@@ -38,7 +39,7 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.getToolModeMod(slot.Itemstack); };
+			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.GetToolModeMod(slot.Itemstack); };
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
@@ -47,7 +48,7 @@ namespace InDappledGroves.Blocks
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
 					{
-						resistance = (bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+						resistance = (bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : bechoppingblock.Inventory[0].Itemstack.Collectible.Attributes["resistance"].AsFloat() * InDappledGroves.baseWorkstationResistanceMult);
 							byPlayer.Entity.StartAnimation("axesplit-fp");
 							return true;
 					}
@@ -88,6 +89,7 @@ namespace InDappledGroves.Blocks
 				lastSecondsUsed = secondsUsed;
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
+				api.Logger.Debug("Resistance of item on block is: " + resistance + ". Resistance after multiplier is " + curResistance + ".");
 				if ( api.Side == EnumAppSide.Server && curMiningProgress >= curResistance) 
 				{
 

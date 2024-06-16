@@ -146,6 +146,18 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\lognarrowpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\logpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\reciperemove.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\stumppatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\barrel\strongtanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -551,6 +563,9 @@
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -653,4 +668,5 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties assets_4indappledgroves_4patches_4idgvanilla_4log_1json__JsonSchema="https://chat-agents.lobehub.com/schema/lobeAgentSchema_v1.json" /></VisualStudio></ProjectExtensions>
 </Project>

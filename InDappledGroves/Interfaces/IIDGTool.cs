@@ -9,7 +9,7 @@ namespace InDappledGroves.Interfaces
     {
         public string GetToolModeName(ItemStack stack);
 
-        public float getToolModeMod(ItemStack stack);
+        public float GetToolModeMod(ItemStack stack);
         
     }
 }

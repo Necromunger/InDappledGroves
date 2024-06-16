@@ -10,6 +10,7 @@
      "op": "replace",
      "path": "/attributes",
      "value": {
+       "resistance": 1.5,
        firepitConstructable: true,
 		   isClayOvenFuel: true,
 		   placeSound: "block/planks",
@@ -21,7 +22,7 @@
 					  }
           ]
         }
-      },
+     },
      "file": "game:itemtypes/resource/firewood.json",
      "side": "server"
   },
@@ -65,8 +66,8 @@
 					  }
           ]
         }
-      },
+     },
      "file": "game:itemtypes/resource/stick.json",
      "side": "server"
-   }
+   }   
 ]

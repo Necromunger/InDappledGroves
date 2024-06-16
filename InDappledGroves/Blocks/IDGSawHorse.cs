@@ -169,7 +169,7 @@ namespace InDappledGroves.Blocks
 				if (iidgtool != null)
 				{
 					curTMode = iidgtool.GetToolModeName(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
-					toolModeMod = iidgtool.getToolModeMod(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
+					toolModeMod = iidgtool.GetToolModeMod(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack);
 				}
 			}
 			if (collectibleObject != null && collectibleObject.HasBehavior<BehaviorWoodPlaning>(false) && !idgbesawHorse2.Inventory.Empty)

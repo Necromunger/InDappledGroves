@@ -1,4 +1,10 @@
-﻿1-19.0.5.0-dev.1
+﻿1-19.0.5.0-rc.2
+	- Error with stone axes not working to split wood resolved.
+	- Narrow logs integrated with Wildcraft compat updates.
+	- Firewood block and item resistance adjusted downward for speedier firewood. A bit.
+	- Probably some other tinkering I don't recall.
+
+1-19.0.5.0-rc.1
 	- Compatibility added for Wildcraft Trees (Trees, bark, bark bundles, bark baskets, logslabs, etc.)
 	- New animations for sawing and chopping added by Maltiez
 	- Tree resistance adjusted. Remember: Don't bring a nail file to take down an I-Beam. Flint's not good for Ebony or other hardwoods.

@@ -44,7 +44,7 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.getToolModeMod(slot.Itemstack); };
+			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.GetToolModeMod(slot.Itemstack); };
 
 			if (!besawbuck.Inventory.Empty)
 			{

@@ -123,7 +123,7 @@ namespace InDappledGroves.Items.Tools
             if (!byEntity.Controls.CtrlKey)
             {
                 string curTMode = "";
-                if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = getToolModeMod(slot.Itemstack); };
+                if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = GetToolModeMod(slot.Itemstack); };
 
                 if (blockSel == null)
                     return;
@@ -181,7 +181,7 @@ namespace InDappledGroves.Items.Tools
                         SpawnOutput(recipe, recipePos);
                         api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
                         api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
-                        byEntity.StartAnimation(this.Attributes["workanimation"].ToString());
+                        byEntity.StartAnimation(workAnimation);
                         recipeComplete = true;
                         return false;
                     }
@@ -215,7 +215,7 @@ namespace InDappledGroves.Items.Tools
         }
 
         
-        public float getToolModeMod(ItemStack stack)
+        public float GetToolModeMod(ItemStack stack)
         {
             switch (GetToolModeName(stack))
             {
