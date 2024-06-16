@@ -59,7 +59,7 @@ namespace InDappledGroves.Items.Tools
 
         public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
         {
-            return this.toolModes;
+            return this.toolModes;  
         }
 
         public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
@@ -118,11 +118,18 @@ namespace InDappledGroves.Items.Tools
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
         {
             workAnimation = this.Attributes["workanimation"].Exists ? this.Attributes["workanimation"].ToString() : "axechop";
-            ;
+            if (this.toolModes.Length == 0)
+            {
+                //If for some reason the tool doesn't have a mode set.
+                
+                return;
+            }
 
             if (!byEntity.Controls.CtrlKey)
             {
                 string curTMode = "";
+             
+
                 if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = GetToolModeMod(slot.Itemstack); };
 
                 if (blockSel == null)

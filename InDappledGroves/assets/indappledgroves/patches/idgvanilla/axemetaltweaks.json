@@ -36,17 +36,6 @@
     "side": "server"
   },
   {
-    "op": "replace",
-    "path": "/attributes/groundStorageTransformByType/*",
-    "value": {	
-			translation: { x: 0.1, y: 0.19, z: -0.125 },
-			rotation: { x: 26, y: 88, z: -87 },
-			scale: 0.88
-    },
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
     "op": "add",
     "path": "/attributes",
     "value": {"workanimation": "axesplit-fp"},
@@ -75,6 +64,23 @@
     "value": { 
       "*-felling-*": {"fellingMultiplier": 1.25, "splittingMod": 0.15 }
     },
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/groundStorageTransformByType",
+    "file": "game:itemtypes/tool/axe-metal.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/groundStorageTransform",
+    "value": 
+      { 
+          translation: { x: 0.02, y: 0.32, z: -0.24 },
+			    rotation: { x: 40, y: 99, z: -95 }
+		  },
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },

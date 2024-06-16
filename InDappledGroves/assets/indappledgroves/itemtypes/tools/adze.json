@@ -2,6 +2,30 @@
 	code: "adze",
 	class: "idgtool",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
+	attributes: {
+		"workanimation": "axesplit-fp",
+		handbook: {
+			groupBy: ["adze-*"],
+			"extraSections": [
+					{
+						"title": "indappledgroves:item-handbooktitle-adze",
+						"text": "indappledgroves:item-handbooktext-adze"
+					}
+			]
+		},
+		groundStorageTransform: {
+			translation: { x: 0.05, y: 0.05, z: -0.12 },
+			rotation: { x: 13, y: 88, z: -87 },
+			scale: 0.88
+		},
+		rackable: true,
+		toolrackTransform: {
+			rotation: { y: 1, z: -1 },
+			translation: { x: -0.3, y: 0.6 },
+			scale: 1.25
+		},
+		"hewingProps": {"hewingMod": 1},
+	},
 	behaviors: [{
 		name: "GroundStorable",
 		properties: {
@@ -16,29 +40,6 @@
 		"name": "woodhewer"
 		}
 	],
-	attributes: {
-		handbook: {
-			groupBy: ["adze-*"],
-			"extraSections": [
-					{
-						"title": "indappledgroves:item-handbooktitle-adze",
-						"text": "indappledgroves:item-handbooktext-adze"
-					}
-			]
-		},
-		groundStorageTransform: {
-			translation: { x: 0.05, y: 0.05, z: 0 },
-			rotation: { x: 13, y: 88, z: -87 },
-			scale: 0.88
-		},
-		rackable: true,
-		toolrackTransform: {
-			rotation: { y: 1, z: -1 },
-			translation: { x: -0.3, y: 0.6 },
-			scale: 1.25
-		},
-		"hewingProps": {"hewingMod": 1},
-	},
 	"tool": "hoe",
 	variantgroups: [
 		{ code: "handle", states: ["wood", "bone"] },
