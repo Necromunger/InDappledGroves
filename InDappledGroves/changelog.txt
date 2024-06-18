@@ -1,7 +1,9 @@
 ﻿1-19-0.5.0-rc.3
 	- Fixed bug with copper axes not leaning against the wall properly.
 	- Added chopping animation to the Adze
+	- Added Wildcraft Tree woods to Sawbuck
 	- Gave up on trying to fix the adze's not leaning against the wall properly... That's a headache for another day.
+	- Updated Chopping Block, Sawbuck, and Bark transforms for aesthetic improvement.
 
 1-19.0.5.0-rc.2
 	- Error with stone axes not working to split wood resolved.

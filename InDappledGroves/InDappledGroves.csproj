@@ -539,6 +539,9 @@
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\treehollowgrown.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -561,6 +564,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\sawbuck.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\firewood.json">
