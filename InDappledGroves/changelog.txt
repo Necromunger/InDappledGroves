@@ -1,4 +1,8 @@
-﻿1-19-0.5.1-dev.1
+﻿1-19-0.5.1-dev.2
+	- Vanilla axes removed from trader loot & loot vessels
+	- Forest Axes and Metal Adzes added to trader loot and loot vessels
+
+1-19-0.5.1-dev.1
 	- Large trees no longer produce pine stumps, though Kapok trees generating weirdly.
 	- Plank recipes removed from Wildcraft Trees, replaced with sawhorse recipes.
 	- Return Output added to chopping blocks, they will now put out on log slab and retain the other, the same will happen with firewood.  The visual weirdness is known, and will be worked on as time permits.

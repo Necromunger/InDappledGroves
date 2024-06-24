@@ -1,0 +1,255 @@
+[
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/selling/list/15",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/selling/list/14",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/selling/list/13",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:forestaxe-tinbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 10,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:forestaxe-bismuthbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 11,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:forestaxe-blackbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 12,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:adze-tinbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 10,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:adze-bismuthbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 11,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "value": {"code": "indappledgroves:adze-blackbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 2,
+                    "var": 0.5
+                },
+                "price": {
+                    "avg": 12,
+                    "var": 2.25
+                }
+            },
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/buying/list/5",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/buying/list/4",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "side": "server"
+  },
+  {
+    "op": "remove",
+    "path": "/attributes/tradeProps/buying/list/3",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:forestaxe-tinbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 4,
+                    "var": 1
+                }
+             },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:forestaxe-bismuthbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 5,
+                    "var": 1.25
+                }
+             },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:forestaxe-blackbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 6,
+                    "var": 1.25
+                }
+             },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:adze-tinbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 4,
+                    "var": 1
+                }
+             },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:adze-bismuthbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 5,
+                    "var": 1.25
+                }
+             },
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/tradeProps/buying/list/-",
+    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "value": {"code": "indappledgroves:adze-blackbronze",
+                "type": "item",
+                "stacksize": 1,
+                "stock": {
+                    "avg": 1,
+                    "var": 0.25
+                },
+                "price": {
+                    "avg": 6,
+                    "var": 1.25
+                }
+             },
+    "side": "server"
+  }             
+]    
+

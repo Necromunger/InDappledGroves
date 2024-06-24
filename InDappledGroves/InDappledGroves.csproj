@@ -125,6 +125,9 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\firewoodpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\lootvesselpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\plankslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -144,6 +147,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\traderupdate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\wildcrafttree\lognarrowpatch.json">
