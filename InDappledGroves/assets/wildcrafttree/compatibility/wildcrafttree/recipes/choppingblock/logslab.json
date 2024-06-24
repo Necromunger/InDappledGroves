@@ -9,7 +9,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free"}
   },
     {
     "toolmode": "chopping",
@@ -21,7 +22,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free"}
   },
     {
     "toolmode": "chopping",
@@ -33,7 +35,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free"}
   },
     {
     "toolmode": "chopping",
@@ -45,7 +48,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free"}
   },
     {
     "toolmode": "chopping",
@@ -57,7 +61,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-down-free"}
   },
   {
     "toolmode": "chopping",
@@ -69,6 +74,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-down-free", "quantity": 2}
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-down-free"}
   }
 ]

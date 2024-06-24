@@ -68,12 +68,6 @@
     "side": "server"
   },
   {
-    "op": "remove",
-    "path": "/attributes/groundStorageTransformByType",
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
     "op": "add",
     "path": "/attributes/groundStorageTransform",
     "value": 

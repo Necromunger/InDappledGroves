@@ -124,12 +124,6 @@ namespace InDappledGroves.Util.WorldGen
             sapi.Logger.Debug(treeBlock.FirstCodePart());
             if (treeBlock.FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log") return false;
 
-            //Abortive attempt at fixing the Kapok Issue
-            //if (treeBlock.FirstCodePart() == "log" && treeBlock.FirstCodePart(2) == "kapok")
-            //{
-            //    return (OldKapokStumps(blockAccessor, pos, sapi.World));
-            //}
-
             if (treeBlock.FirstCodePart() == "log" && blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() != "treestump")
             {   
                 stumpType = treeBlock.FirstCodePart(2);
@@ -145,27 +139,6 @@ namespace InDappledGroves.Util.WorldGen
             }
             return false;
         }
-
-        //Abortive attempt at fixing the Kapok issue.  Does nothing different than the original code that only placed two out of four stumps on a large Kapok.
-        //private bool OldKapokStumps(IBlockAccessor blockAccessor, BlockPos pos, IWorldAccessor world)
-        //{
-        //    BlockPos secondPos = null;
-        //    sapi.World.BlockAccessor.WalkBlocks(pos.AddCopy(1, 0, 1), pos.AddCopy(-1, 0, -1), (block, x, y, z) =>
-        //    {
-        //    var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-        //    var stumpType = "kapok";
-        //    if (treeBlock.FirstCodePart() == "log" && blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() != "treestump" && blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() != "log")
-        //    {
-        //        stumpType = treeBlock.FirstCodePart(2);
-        //    }
-        //    var withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[world.Rand.Next(4)];
-        //    var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
-        //    var withBlock = blockAccessor.GetBlock(withBlockID);
-        //    blockAccessor.SetBlock(0, pos);
-        //    withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null);
-        //    }, true);
-        //    return false;
-        //}
 
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
         private BlockPos PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)

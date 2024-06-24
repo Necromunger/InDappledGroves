@@ -1,5 +1,9 @@
 ﻿1-19-0.5.1-dev.1
-	- Working on large trees generating with pine trunks.
+	- Large trees no longer produce pine stumps, though Kapok trees generating weirdly.
+	- Plank recipes removed from Wildcraft Trees, replaced with sawhorse recipes.
+	- Return Output added to chopping blocks, they will now put out on log slab and retain the other, the same will happen with firewood.  The visual weirdness is known, and will be worked on as time permits.
+	- All wooden fences, plank slabs, stairs, etc should be able to be broken down on the chopping block, they will output firewood or sticks in balance with their inputs.
+
 1-19-0.5.0-rc.3
 	- Fixed bug with copper axes not leaning against the wall properly.
 	- Added chopping animation to the Adze

@@ -554,6 +554,15 @@
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\planks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\plankslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\plankstairs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -561,6 +570,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
@@ -573,6 +585,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\chopping\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\hewing\bark.json">

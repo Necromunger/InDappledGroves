@@ -28,5 +28,101 @@
     "op": "remove",
     "path": "/0",
     "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/weaktannin.json",
+    "op": "remove",
+    "path": "/2",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/weaktannin.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/weaktannin.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/strongtannin.json",
+    "op": "remove",
+    "path": "/2",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/strongtannin.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/barrel/strongtannin.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/9",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/8",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/7",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/6",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/5",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/4",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/3",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/2",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server"
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server"
   }
 ]

@@ -15,9 +15,7 @@ namespace InDappledGroves.BlockEntities
 		public override InventoryBase Inventory { get; }
 		//public override string InventoryClassName => "choppingblock";
 		public override string InventoryClassName => Block.Attributes["inventoryclass"].AsString();
-		public override string AttributeTransformCode => "onDisplayTransform";
-
-		
+		public override string AttributeTransformCode => "idgChoppingBlockTransform";
 
 		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
@@ -72,13 +70,23 @@ namespace InDappledGroves.BlockEntities
 			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-                updateMeshes();
+                this.updateMeshes();
                 base.MarkDirty(true, null);
             }
 			return true;
 		}
 
-		private bool TryPut(ItemSlot slot)
+		public void ReturnStackPut(ItemStack stack)
+		{
+			if (this.Inventory[0].Empty) {
+				this.Inventory[0].Itemstack = stack;
+                base.MarkDirty(true, null);
+                this.updateMeshes();
+                
+            }
+		}
+
+        public bool TryPut(ItemSlot slot)
 		{
 			for (int i = 0; i < Inventory.Count; i++)
 			{
@@ -95,7 +103,7 @@ namespace InDappledGroves.BlockEntities
             return false;
 		}
 
-		private bool TryTake(IPlayer byPlayer)
+        private bool TryTake(IPlayer byPlayer)
 		{
 			for (int i = 0; i < Inventory.Count; i++)
 			{
@@ -143,7 +151,7 @@ namespace InDappledGroves.BlockEntities
 		/// <returns></returns>
 		/// 
 
-		protected ModelTransform genTransform(ItemStack stack)
+		public ModelTransform genTransform(ItemStack stack)
 		{
 			MeshData meshData;
 			String side = Block.Variant["side"];
@@ -166,11 +174,10 @@ namespace InDappledGroves.BlockEntities
 					capi.Tesselator.TesselateItem(stack.Item, out meshData, this);
 				}
 
-
 			}
 
 			ModelTransform transform;
-			if (stack != null && stack.Collectible.Attributes["workStationTransforms"].Exists)
+			if ((bool)stack?.Collectible.Attributes?["workStationTransforms"]?.Exists)
 			{
 				transform = stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].Exists ? stack.Collectible.Attributes["workStationTransforms"]["idgChoppingBlockProps"]["idgChoppingBlockTransform"].AsObject<ModelTransform>() : null;
 				transform.Scale = 2f;

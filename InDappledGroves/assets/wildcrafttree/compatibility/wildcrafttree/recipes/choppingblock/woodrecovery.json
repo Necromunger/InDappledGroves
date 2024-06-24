@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankstairs-*"}
+         {"type": "block", "code": "wildcrafttree:plankstairs-*"}
        ]
       }
     ],
@@ -17,7 +17,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:planks-*"}
+         {"type": "block", "code": "wildcrafttree:planks-*"}
        ]
       }
     ],
@@ -29,7 +29,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:roughhewnfence-*"}
+         {"type": "block", "code": "wildcrafttree:roughhewnfence-*"}
        ]
       }
     ],
@@ -41,7 +41,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:roughhewnfencegate-*"}
+         {"type": "block", "code": "wildcrafttree:roughhewnfencegate-*"}
        ]
       }
     ],
@@ -53,7 +53,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:woodenfence-*"}
+         {"type": "block", "code": "wildcrafttree:woodenfence-*"}
        ]
       }
     ],
@@ -65,11 +65,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:woodenfencegate-*"}
+         {"type": "block", "code": "wildcrafttree:woodenfencegate-*"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:stick", "quantity": 6}
+    "output": {"type": "item", "code": "game:stick", "quantity": 2}
   },
   {
     "toolmode": "chopping",
@@ -77,10 +77,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankslab-*"}
+         {"type": "block", "code": "wildcrafttree:plankslab-*"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+    "output": {"type": "item", "code": "game:stick", "quantity": 1}
   }
 ]

@@ -9,6 +9,7 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:firewood", "quantity": 2}
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1},
+    "returnstack": {"type": "item", "code": "game:firewood"}
   }
 ]

@@ -15,36 +15,6 @@ namespace InDappledGroves.Items
 			if (blockSel == null) return;
 			BlockPos pos = blockSel.Position;
 			Block block = byEntity.World.BlockAccessor.GetBlock(pos, 0);
-
-			//if (!byEntity.Controls.Sneak && !byEntity.Controls.Sprint && block is not BlockPlankPile)
-			//{
-
-			//	string failurecode = "";
-   //             ItemStack stackBoard = new(api.World.BlockAccessor.GetBlock(new AssetLocation("indappledgroves:idgboard-" + slot.Itemstack.Collectible.Variant["wood"] + "-" + GetType(slot.Itemstack.Collectible) + "-" + GetState(slot.Itemstack.Collectible) + "-" + SuggestedHVOrientation(((EntityPlayer)byEntity).Player, blockSel).GetValue(0).ToString())));
-   //             bool flag = false;
-			//	if (block.Replaceable > 5000 && stackBoard.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackBoard, blockSel, ref failurecode))
-			//	{
-			//		flag = true;
-			//		slot.TakeOut(1);
-			//	}
-			//	else
-			//	{
-			//		BlockSelection bs2 = blockSel;
-			//		bs2.Position = bs2.Position.AddCopy(blockSel.Face);
-			//		if (stackBoard.Block.TryPlaceBlock(byEntity.World, ((EntityPlayer)byEntity).Player, stackBoard, bs2, ref failurecode))
-			//		{
-			//			flag = true;
-			//			slot.TakeOut(1);
-			//		}
-			//	}
-			//	if (flag)
-			//	{
-			//		this.api.World.PlaySoundAt(new AssetLocation("sounds/player/build"), byEntity, ((EntityPlayer)byEntity).Player, true, 16f, 1f);
-
-			//	}
-			//	handling = EnumHandHandling.PreventDefault;
-			//	return;
-			//}
 			base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handling);
 		}
 

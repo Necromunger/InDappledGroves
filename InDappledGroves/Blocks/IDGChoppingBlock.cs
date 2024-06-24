@@ -61,10 +61,6 @@ namespace InDappledGroves.Blocks
 
 		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-			//if(world.Api.Side == EnumAppSide.Client)
-			//{
-
-			//}
 			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;
@@ -90,25 +86,27 @@ namespace InDappledGroves.Blocks
 				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 				api.Logger.Debug("Resistance of item on block is: " + resistance + ". Resistance after multiplier is " + curResistance + ".");
-				if ( api.Side == EnumAppSide.Server && curMiningProgress >= curResistance) 
+				if (curMiningProgress >= curResistance) 
 				{
-
-					bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
-
-					EntityPlayer playerEntity = byPlayer.Entity;
-
-					chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
-					
-					if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
+					if (api.Side == EnumAppSide.Server)
 					{
-						bechoppingblock.Inventory.Clear();
-					} else
-                    {
-						bechoppingblock.Inventory[0].Itemstack = recipe.ReturnStack.ResolvedItemstack.Clone();
-                    }
-					(world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
-                    bechoppingblock.MarkDirty(true);
-                    byPlayer.Entity.StopAnimation("axesplit-fp");
+						bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+
+						EntityPlayer playerEntity = byPlayer.Entity;
+
+						chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
+
+						if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
+						{
+							bechoppingblock.Inventory.Clear();
+						}
+						else
+						{
+							bechoppingblock.Inventory.Clear();
+							bechoppingblock.ReturnStackPut(recipe.ReturnStack.ResolvedItemstack.Clone());
+						}
+						byPlayer.Entity.StopAnimation("axesplit-fp");
+					}
                     return false;
                 }
 				return !bechoppingblock.Inventory.Empty;
@@ -124,7 +122,10 @@ namespace InDappledGroves.Blocks
 			lastSecondsUsed = 0;
 			curDmgFromMiningSpeed = 0;
 			playNextSound = 0.7f;
-			byPlayer.Entity.StopAnimation("axesplit-fp");
+            IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
+            bechoppingblock.MarkDirty(true);
+            bechoppingblock.updateMeshes();
+            byPlayer.Entity.StopAnimation("axesplit-fp");
 			
 		}
 
