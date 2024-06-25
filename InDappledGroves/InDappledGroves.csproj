@@ -17,6 +17,75 @@
     <None Remove="Launcher\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\treehollowgrown.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\treehollowplaced.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\treestump.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\itemtypes\resources\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\grid\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\chopping\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\chopping\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\chopping\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\hewing\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\hewing\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\sawing\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\supportbeam.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\game\patches\tanninrecipes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -99,6 +168,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\carryable\carryable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\lognarrowpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\logpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\planks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\plankslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\plankstairs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\reciperemove.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\stumppatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\animations\axesplit-fp.json">

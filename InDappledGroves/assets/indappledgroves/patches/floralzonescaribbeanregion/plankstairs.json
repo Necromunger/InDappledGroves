@@ -1,6 +1,6 @@
 [
   {
-    "file": "wildcrafttree:blocktypes/wood/woodtyped/plankstairs.json",
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/plankstairs.json",
     "side": "server",
     "op": "add",
     "path": "/attributes",
@@ -28,6 +28,6 @@
         }
       }
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
   }
 ]

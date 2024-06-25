@@ -60,13 +60,15 @@
             }
           }
         }
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
     "op": "remove",
 		"side": "server",
-    "path": "/resistance"
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
@@ -107,13 +109,15 @@
 		"*-willow-*":1.69,
 		"*-yew-*":4.51,
 		"*": 4.5
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
     "op": "remove",
 		"side": "server",
-    "path": "/resistance"
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
@@ -154,7 +158,8 @@
 		"*-willow-*":1.69,
 		"*-yew-*":4.51,
 		"*": 4.5
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
@@ -215,13 +220,15 @@
           } 
         }
       }
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
 	},
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
     "op": "remove",
 		"side": "server",
-    "path": "/resistance"
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
@@ -262,7 +269,8 @@
 		"*-willow-*":1.69,
 		"*-yew-*":4.51,
 		"*": 4.5
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
@@ -325,13 +333,15 @@
           }
         }
       }
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-withresin.json",
 		"side": "server",
     "op": "remove",
-    "path": "/resistance"
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-withresin.json",
@@ -372,6 +382,7 @@
 		"*-willow-*":1.69,
 		"*-yew-*":4.51,
 		"*": 4.5
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   }
 ]

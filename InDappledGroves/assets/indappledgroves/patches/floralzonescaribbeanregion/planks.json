@@ -1,6 +1,14 @@
 [
   {
-    "file": "wildcrafttree:blocktypes/wood/woodtyped/plankstairs.json",
+    "enabled": false,
+    "op": "replace",
+    "path": "/class",
+    "value": "idgplank",
+    "file": "floralzonescaribbeanregion:itemtypes/resource/plank.json",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/planks.json",
     "side": "server",
     "op": "add",
     "path": "/attributes",
@@ -28,6 +36,6 @@
         }
       }
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
   }
 ]

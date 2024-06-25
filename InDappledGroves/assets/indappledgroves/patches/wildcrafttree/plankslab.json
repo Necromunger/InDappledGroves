@@ -27,6 +27,7 @@
           }
         }
       }
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   }
 ]

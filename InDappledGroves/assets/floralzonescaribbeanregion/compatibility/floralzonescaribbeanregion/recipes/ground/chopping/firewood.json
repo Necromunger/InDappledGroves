@@ -1,0 +1,26 @@
+[
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logslab-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:lognarrow-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 2}
+  }
+]

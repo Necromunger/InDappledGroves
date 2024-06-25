@@ -1,0 +1,195 @@
+[
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log.json",
+    "side": "server",
+    "op": "add",
+    "path": "/attributes",
+    "value": { 
+      "workStationTransformsByType": {
+          "*-placed-*":{
+            "idgChoppingBlockProps": {               
+                "idgChoppingBlockTransform": {
+                "translation": {
+                  "x": 0,
+                  "y": 0.0625,
+                  "z": 0,
+                  "scale": 0.95
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "origin": {
+                  "x": 0.5,
+                  "y": 0,
+                  "z": 0.5
+                }
+              }
+          },
+          "idgSawBuckProps": {
+              "idgSawBuckTransform": {
+                  "translation": {
+                    "x": 0.027,
+                    "y": 0.7,
+                    "z": 0,
+                    "scale": 0.7
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "northx": 90,
+                    "southx": 90,
+                    "eastx": 45,
+                    "westx": 45,
+                    "y": 0,
+                    "northy": 45,
+                    "southy": 45,
+                    "easty": 90,
+                    "westy": 90, 
+                    "z": 0,
+                    "eastz": 90,
+                    "westz": 90
+                            
+                  },
+                  "origin": {
+                    "x": 0.5,
+                    "y": 0.5,
+                    "z": 0.5
+                  }
+              }
+            }
+          }
+        }
+    },
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log.json",
+    "op": "add",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-lysilomalatisiliquum-*": 8,
+		"*": 3.34
+    },
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log-debarked.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log-debarked.json",
+    "op": "add",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-banyan-*":6.94,
+		"*-bearnut-*":1.45,
+		"*-beech-*":3.85,
+		"*-bluemahoe-*":4.21,
+		"*-catalpa-*":1.63,
+		"*-cedar-*":2.67,
+		"*-chlorociboria-*":1.45,
+		"*-dalbergia-*":7.47,
+		"*-douglasfir-*":1.95,
+		"*-elm-*":2.28,
+		"*-empresstree-*":3.85,
+		"*-eucalyptus-*":3.33,
+		"*-ghost gum-*":4.45,
+		"*-ginkgo-*":3.20,
+		"*-guajacum-*":13.35,
+		"*-honey locust-*":4.59,
+		"*-jacaranda-*":8.48,
+		"*-kauri-*":4.00,
+		"*-mahogany-*":7.71,
+		"*-ohia-*":6.20,
+		"*-petrified-*":11.86,
+		"*-poplar-*":1.60,
+		"*-red cedar-*":2.67,
+		"*-sal-*":6.17,
+		"*-satin ash-*":4.39,
+		"*-saxaul-*":3.66,
+		"*-spruce-*":1.92,
+		"*-sycamore-*":2.28,
+		"*-tuja-*":3.44,
+		"*-umnini-*":9.58,
+		"*-willow-*":1.69,
+		"*-yew-*":4.51,
+		"*": 4.5
+    },
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+	{
+    "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log-debarked.json",
+    "side": "server",
+    "op": "replace",
+    "path": "/attributes",
+    "value": { 
+        "workStationTransforms": {
+          "idgChoppingBlockProps": {               
+            "idgChoppingBlockTransform": {
+            "translation": {
+              "x": 0,
+              "y": 0.0625,
+              "z": 0,
+              "scale": 0.95
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "origin": {
+              "x": 0.5,
+              "y": 0,
+              "z": 0.5
+            }
+          }
+        },
+        "idgSawBuckProps": {
+          "idgSawBuckTransform": {
+            "translation": {
+              "x": 0.027,
+              "y": 0.7,
+              "z": 0,
+              "scale": 0.7
+            },
+            "rotation": {
+              "x": 0,
+              "northx": 90,
+              "southx": 90,
+              "eastx": 45,
+              "westx": 45,
+              "y": 0,
+              "northy": 45,
+              "southy": 45,
+              "easty": 90,
+              "westy": 90, 
+              "z": 0,
+              "eastz": 90,
+              "westz": 90
+                            
+            },
+            "origin": {
+              "x": 0.5,
+              "y": 0.5,
+              "z": 0.5
+            }
+          } 
+        }
+      }
+    },
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+	}
+]

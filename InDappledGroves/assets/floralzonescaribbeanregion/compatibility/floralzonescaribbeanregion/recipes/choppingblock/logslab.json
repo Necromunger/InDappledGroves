@@ -1,0 +1,80 @@
+[
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-nw-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-se-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-sw-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-barked-down-free"}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-down-free"}
+  }
+]

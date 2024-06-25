@@ -1,0 +1,38 @@
+[
+  {"skipVariants": [ "veryaged", "veryagedrotten" ],
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:debarkedlog-*-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
+  }
+]

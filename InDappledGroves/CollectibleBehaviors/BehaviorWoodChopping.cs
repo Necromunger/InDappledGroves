@@ -60,17 +60,6 @@ namespace InDappledGroves
 
                 return array;
             });
-
-            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgaxeInteractions", () =>
-            //{
-            //    return new WorldInteraction[] {
-            //        new WorldInteraction()
-            //            {
-            //                ActionLangCode = "indappledgroves:itemhelp-axe-chopwood",
-            //                MouseButton = EnumMouseButton.Right
-            //            },
-            //        };
-            //});
         }
 
         #region TreeFelling

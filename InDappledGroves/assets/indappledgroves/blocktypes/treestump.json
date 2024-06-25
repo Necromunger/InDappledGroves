@@ -14,13 +14,6 @@
       "loadFromProperties": "abstract/horizontalorientation"
     }
 	],
-	"attributes": {
-		handbook: {
-			excludeByType: {
-				"*-placed-*": true
-			}
-		},
-	},
 	creativeinventory: { "general": ["treestump-grown-*-east"], "flora": ["treestump-grown-*-east"], "construction": ["treestump-grown-*-east"] },
 	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }] },
 	"sidesolid": {
@@ -32,9 +25,12 @@
 	drawtype: "json",
 	blockmaterial: "Wood",
 	requiredMiningTier: 1,
-	attributes: {
-		handbook: {
-			groupBy: ["treestump-*-{wood}-*"]
+	attributes: 
+		{
+				handbook: {
+			excludeByType: {
+				"*-placed-*": true
+			}
 		},
 		treeFellingGroupCodeByType: {
 			"treestump-grown-*": "{wood}"

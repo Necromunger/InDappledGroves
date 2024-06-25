@@ -21,14 +21,16 @@
           }
 				}
 			}
-		}
+		},
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
 	},
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/thintrunk.json",
     "op": "remove",
 		"side": "server",
-    "path": "/resistance"
-  },
+    "path": "/resistance",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+	},
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/thintrunk.json",
     "op": "add",
@@ -80,6 +82,7 @@
 		"*-wiliwili-*": 0.89,
 		"*-yew-*": 2.25,
 		"*": 2.25
-    }
+    },
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
   }
 ]

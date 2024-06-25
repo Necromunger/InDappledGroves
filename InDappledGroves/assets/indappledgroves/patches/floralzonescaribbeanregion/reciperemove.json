@@ -1,0 +1,58 @@
+[
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/debarkedlog.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/beams.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/firewood.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/plank.json",
+    "op": "remove",
+    "path": "/4",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/plank.json",
+    "op": "remove",
+    "path": "/3",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/plank.json",
+    "op": "remove",
+    "path": "/2",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/plank.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/plank.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  }
+]
