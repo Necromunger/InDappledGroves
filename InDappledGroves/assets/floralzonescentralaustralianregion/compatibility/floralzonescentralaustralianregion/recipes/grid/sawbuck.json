@@ -1,0 +1,307 @@
+[
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-aged-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-aged-east"}
+	},	
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-oak-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-oak-east"}
+	},
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-maple-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-maple-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-pine-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-pine-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-acacia-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-acacia-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-kapok-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-kapok-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-baldcypress-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-baldcypress-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-larch-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-larch-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-redwood-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-redwood-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-ebony-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-ebony-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-walnut-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-walnut-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-purpleheart-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-purpleheart-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-douglasfir-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-douglasfir-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-willow-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-willow-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-honeylocust-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-bearnut-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-blackpoplar-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-blackpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-pyramidalpoplar-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-pyramidalpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-catalpa-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-catalpa-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-mahogany-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-mahogany-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sal-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sal-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-saxaul-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-saxaul-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-spruce-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-spruce-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sycamore-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sycamore-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-elm-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-elm-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-beech-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-beech-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-eucalpytus-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-eucalpytus-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-cedar-*-down-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-cedar-east"}
+	}
+]

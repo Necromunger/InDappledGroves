@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:supportbeam-{wood}", "quantity": 3}
+  }
+]

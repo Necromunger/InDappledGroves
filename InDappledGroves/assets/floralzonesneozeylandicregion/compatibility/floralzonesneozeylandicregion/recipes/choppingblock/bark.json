@@ -1,0 +1,43 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-down-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 2,
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-down-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 4,
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-{wood}-ud"}
+  }
+]

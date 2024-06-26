@@ -1,0 +1,74 @@
+[
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  },
+    {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-nw-ud", "name": "wood","loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  },
+    {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-se-ud", "name": "wood","loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  },
+    {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-sw-ud", "name": "wood","loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-*-ud", "name": "wood","loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}", "quantity": 12}
+  }
+]

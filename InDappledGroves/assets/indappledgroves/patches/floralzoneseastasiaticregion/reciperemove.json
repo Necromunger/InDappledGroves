@@ -1,0 +1,9 @@
+[
+  {
+    "file": "floralzoneseastasiaticregion:recipes/grid/wood/firewood.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzoneseastasiaticregion" } ]
+  }
+]

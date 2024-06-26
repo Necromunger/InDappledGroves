@@ -1,0 +1,29 @@
+
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "Block", "code": "floralzonescentralaustralianregion:logslab-*-barked-down-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 0},
+    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:choppingblock-{wood}-east"}
+  },
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "Block", "code": "floralzonescentralaustralianregion:logslab-*-debarked-down-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 0},
+    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:choppingblock-{wood}-east"}
+  }
+]

@@ -1,0 +1,20 @@
+[
+	{
+		"code": "weaktannin",
+		"sealHours": 24,
+		"ingredients": [
+			{ "type": "item", "code": "floralzonesneozeylandicregion:bark-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "item", "code": "game:waterportion",  "litres": 10 }
+		],
+		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 10 }
+	},
+	{
+		"code": "weaktannin",
+		"sealHours": 24,
+		"ingredients": [
+			{ "type": "block", "code": "floralzonesneozeylandicregion:barkbundle-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
+		],
+		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 50 }
+	}
+]

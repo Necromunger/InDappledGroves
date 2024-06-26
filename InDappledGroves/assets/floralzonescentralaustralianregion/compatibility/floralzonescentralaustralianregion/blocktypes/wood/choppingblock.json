@@ -1,0 +1,50 @@
+{
+  "code": "choppingblock",
+  "class": "idgchoppingblock",
+  "entityClass": "idgbechoppingblock",
+  "maxstacksize": 1,
+  "behaviors": [
+    {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
+  ],
+  "attributes": {
+    "inventoryclass": "choppingblock",
+		"handbook": {
+			"groupBy": ["choppingblock-*-east"],
+      "extraSections": [
+        {
+          "title": "indappledgroves:block-handbooktitle-choppingblock",
+          "text": "indappledgroves:block-handbooktext-choppingblock"
+        },
+        {
+          "title": "indappledgroves:block-handbooktitle-choppingblock2",
+          "text": "indappledgroves:block-handbooktext-choppingblock2"
+        }
+      ]
+		}
+  },
+  "creativeinventory": { "general": ["*-east"]},
+  "variantgroups": [
+    { "code": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood" },
+    { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
+  ],
+  "heldTpIdleAnimation": "holdbothhandslarge",
+  "helpTpUseAnimation": "twohandplaceblock",
+  "textures": {		
+      "wood": { "base": "floralzonescentralaustralianregion:block/wood/treetrunk/{wood}" },
+			"bark": { "base": "floralzonescentralaustralianregion:block/wood/bark/{wood}" }
+	},
+  "shape": { "base": "indappledgroves:block/choppingblock"},
+  "lightabsorption": 0,
+  "sideopaque": { "all": false },
+  "sidesolid": { "all": false },
+  "blockmaterial": "wood",
+  "sounds": {"place": "game:block/planks"},
+  tpHandTransform: {
+		translation: { x: -0.84, y: -1.1, z: -0.58 },
+		rotation: { x: -78, y: -14, z: -96 },
+		origin: { x: 0.5, y: 0.4, z: 0.5 },
+		scale: 0.75
+	},
+  "collisionbox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 },
+  "selectionBox": { "x1": 0.0625, "y1": 0.125, "z1": 0.0625, "x2": 0.9375, "y2": 1, "z2": 0.9375 }
+}

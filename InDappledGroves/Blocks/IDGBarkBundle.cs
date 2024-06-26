@@ -16,7 +16,7 @@ namespace InDappledGroves.Blocks
         {
             var material = Variant["bark"];
             var state = Variant["stage"];
-            var part1 = Lang.Get($"{material}");
+            var part1 = Lang.Get("material-" + $"{material}");
             var part2 = Lang.Get($"{state}");
             part1 = $"{part1[0].ToString().ToUpper()}{part1.Substring(1)}";
             part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";

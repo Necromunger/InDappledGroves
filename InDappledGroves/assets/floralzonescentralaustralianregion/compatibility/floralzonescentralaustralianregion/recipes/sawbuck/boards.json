@@ -1,0 +1,38 @@
+[
+  {"skipVariants": [ "veryaged", "veryagedrotten" ],
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:logsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:plank-{wood}", "quantity": 12}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:debarkedlog-*-ud", "name": "wood","loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:plank-{wood}", "quantity": 12}
+  }
+]

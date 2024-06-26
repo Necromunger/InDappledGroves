@@ -25,10 +25,10 @@ namespace InDappledGroves.Blocks
 
 		public string GetName()
 		{
-			var material1 = Variant["support"];
-			var material2 = Variant["crossbrace"];
-			var part1 = Lang.Get($"{material1}");
-			var part2 = Lang.Get($"{material2}");
+			var material1 = "material-" + Variant["support"];
+			var material2 = "material-" + Variant["crossbrace"];
+			var part1 = Lang.Get(material1);
+			var part2 = Lang.Get(material2);
 			part1 = $"{part1[0].ToString().ToUpper()}{part1.Substring(1)}";
 			part2 = $"{part2[0].ToString().ToUpper()}{part2.Substring(1)}";
 			return string.Format($"{part1} & {part2} {Lang.Get("indappledgroves:block-sawbuck")}");
@@ -116,6 +116,7 @@ namespace InDappledGroves.Blocks
 				this.api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05000000074505806, 0.10000000149011612, 0.05000000074505806));
 			}
 		}
+
 		float toolModeMod;
 		private SawbuckRecipe recipe;
 		private float playNextSound;

@@ -1,0 +1,41 @@
+[
+  {
+    "enabled": false,
+    "op": "replace",
+    "path": "/class",
+    "value": "idgplank",
+    "file": "floralzonesneozeylandicregion:itemtypes/resource/plank.json",
+		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/planks.json",
+    "side": "server",
+    "op": "add",
+    "path": "/attributes",
+    "value": { "workStationTransforms": 
+      {
+        "idgChoppingBlockProps": {               
+          "idgChoppingBlockTransform": {
+            "translation": {
+            "x": 0,
+            "y": 0.1125,
+            "z": 0,
+            "scale": 0.95
+            },
+            "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+            },
+            "origin": {
+            "x": 0.5,
+            "y": 0,
+            "z": 0.5
+            }
+          }
+        }
+      }
+    },
+		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
+  }
+]
