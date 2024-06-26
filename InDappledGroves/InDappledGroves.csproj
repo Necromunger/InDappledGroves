@@ -17,6 +17,75 @@
     <None Remove="Launcher\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\treehollowgrown.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\treehollowplaced.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\treestump.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\itemtypes\resources\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\grid\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\chopping\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\chopping\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\chopping\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\hewing\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\hewing\choppingblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\sawing\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\supportbeam.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\barkbasket.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -168,6 +237,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\carryable\carryable.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\lognarrowpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\logpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\planks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\plankslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\plankstairs.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\reciperemove.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\stumppatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\lognarrowpatch.json">

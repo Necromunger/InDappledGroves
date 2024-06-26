@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregion:logslab-*"}
+         {"type": "block", "code": "floralzonescaperegion:logslab-*"}
        ]
       }
     ],
@@ -17,7 +17,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregion:lognarrow-*"}
+         {"type": "block", "code": "floralzonescaperegion:lognarrow-*"}
        ]
       }
     ],

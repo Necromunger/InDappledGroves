@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:debarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:supportbeam-{wood}", "quantity": 3}
+  }
+]

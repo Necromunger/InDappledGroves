@@ -1,0 +1,86 @@
+[
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion::plankstairs-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:planks-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:roughhewnfence-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:roughhewnfencegate-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 8}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:woodenfence-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:woodenfencegate-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 6}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:plankslab-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  }
+]

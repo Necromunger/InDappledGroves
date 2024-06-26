@@ -1,0 +1,80 @@
+[
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-nw-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-se-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-sw-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-down-free"}
+  }
+]
