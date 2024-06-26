@@ -58,12 +58,13 @@ we are closer to home.</i></font>
 	"barkbasketname": "Bark Baskets",
 	"block-barkbasket": "Bark Basket",
 	"barkbasketcontents": "Bark Basket",
+
 	//Chopping Block Entries
 	"block-handbooktitle-choppingblock": "How To Create:",	
 	"block-handbooktext-choppingblock": "	<strong>Recipe Type:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">In World</a>
 	<strong>Tool Mode:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Hewing</a>
 	<strong>Ingredients</strong>: <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">Any log slab</a>
-	<strong>Tools</strong>: Adze, Grub Axe
+	<strong>Tools</strong>: <a href=\"handbook://item-indappledgroves:adze-wood-flint\">Adze</a>, <a href=\"handbook://item-indappledgroves:grubaxe-tinbronze\">Grub Axe</a>
 ",
 	"block-handbooktitle-choppingblock2": "																			A Woodsman's Best Friend",
 	"block-handbooktext-choppingblock2": "
@@ -75,9 +76,11 @@ we are closer to home.</i></font>
 
 				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
 
-		Chopping blocks are the foundation of the serious woodsmans set of workstations. This workstation provides an improvement in the effectiveness of your tools. Work performed on a chopping block is generally faster than on the ground.
+			Made by laying any log slab flat on the ground, and <a href=\"handbook://inworldcrafting-indappledgroves\">hewing</a> it with an adze or other hewing tool, chopping blocks are the foundation of the serious woodsmans set of workstations. 
+								 
+			This workstation provides an improvement in the effectiveness of your tools. Work performed on a chopping block is generally faster than on the ground.
 
-		In addition, there may be certain recipes that can only be performed with the help of a chopping block. For those intending to work with large amounts of wood, it should be the first workstation you acquire.
+			In addition, there may be certain recipes that can only be performed with the help of a chopping block. For those intending to work with large amounts of wood, it should be the first workstation you acquire. 
 ",
 	"block-choppingblock": "Chopping Block",
 	
@@ -301,15 +304,33 @@ As it came crashing to the ground.</i></font>
 	"heldhelp-sawing": "Saw to create {0}",
 
 	//Ground Recipe Guide
-"indappledgroves:indappledgrovesguide-inworldcrafting-title": "Game Mechanic: In-World Crafting",
-"indappledgroves:indappledgrovesguide-inworldcrafting-text": 
+"indappledgrovesguide-inworldcrafting-title": "Game Mechanic: In-World Crafting",
+"indappledgrovesguide-inworldcrafting-text": 
 "<font weight='bold' align='center'>In-World Crafting</font>
-  In-World crafting takes place without the use of a grid recipe and is achieved by interacting with a block using a tool in a particular tool mode. 
-  The blocks entry in the handbook will indicate the recipe and toolmode necessary to produce the desired result.",
+	In-World Crafting works to remove the dependence on the crafting 
+grid to create a more immersive experience. In Dappled Groves applies
+this principle by providing two new mechanics to your woodworking
+adventures.
+
+	The first mechanic is the ability to process wood without the grid.
+You can place a log, log slab, or piece of firewood on the ground and
+interact with it with a tool such as an <a href=\"handbook://item-axe-chert\">axe</a>, <a href=\"handbook://item-indappledgroves:adze-wood-flint\">adze</a>, or <a href=\"handbook://item-saw-copper\">saw</a>. The results depend on the tool used and the selected <a href=\"handbook://toolmodes-indappledgroves\">toolmode</a>.  For instance, a <a href=\"handbook://item-indappledgroves:grubaxe-tinbronze\">Grub Axe</a> set to hewing used on a log will produce bark, while selecting the chopping tool mode will result in log slabs.
+
+	<a href=\"handbook://workstations-indappledgroves\">Workstations</a> are the second mechanic. These currently include the
+chopping block and saw buck. These workstations serve to provide a boost to efficiency when processing recipes
+on them. Like before, the <a href=\"handbook://toolmodes-indappledgroves\">toolmode</a> of your tool alters the results.
+
+	Working materials on or off of a <a href=\"handbook://workstations-indappledgroves\">workstation</a> is done the same way. 
+Simply target the block and hold down the right-mouse button. The
+working animation will begin, and soon you'll see your results. Wood
+types vary in their hardness, so the time required may vary. Pine is a 
+softer wood, and will process quickly. Ebony is one of the world's
+hardest woods, and will take significantly longer, especially with
+stone tools.",
 
 	//Workstation Guide
-"indappledgroves:indappledgrovesguide-workstations-title": "Game Mechanic: Workstation Crafting",
-"indappledgroves:indappledgrovesguide-workstations-text": "<font weight='bold' align='center'>Workstation Crafting</font>
+"indappledgrovesguide-workstations-title": "Game Mechanic: Workstation Crafting",
+"indappledgrovesguide-workstations-text": "<font weight='bold' align='center'>Workstation Crafting</font>
 In Dappled Groves introduces new workstations to aid you in your woodworking endeavours. These workstations reduce the time required to complete woodworking operations such as chopping <a href=\"handbook://block-log-placed-birch-ud\">logs</a> into <a href=\"handbook://block-indappledgroves:logslab-birch-barked-down-free\">log slabs.</a>
 <font weight='bold' align='center'>Workstations</font>
 <font weight='bold' align='left'>Chopping Block</font><a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>
@@ -324,23 +345,39 @@ In Dappled Groves introduces new workstations to aid you in your woodworking end
 
 
 //Tool Modes Guide
-"indappledgroves:indappledgrovesguide-toolmodes-title": "Game Mechanic: Tool Modes",
-"indappledgroves:indappledgrovesguide-toolmodes-text": 
+"indappledgrovesguide-toolmodes-title": "Game Mechanic: Tool Modes",
+"indappledgrovesguide-toolmodes-text": 
 "<font weight='bold' align='center'>Tool Modes</font>
-Tool modes are going to be an integral part of all tools introduced in this and future mods released by Aetherial Labs (Vinter Nachts modding group). These are part of the base game, primarily used for the smithy hammer and scythe. I've decided to expand upon their potential here.
+	Tool modes provide options in how a tool is used, and can be changed
+by pressing the F key while holding a tool that has them. In vanilla, 
+tool modes can be seen with the chisel and prospecting pick. This mod
+adds these options to other tools to provide more dynamic crafting
+opportunities when combined with different materials and <a href=\"handbook://workstations-indappledgroves\">Workstations</a>.
 
 <font weight='bold' align='center'>Basic Concepts</font>
-Tool modes are now intrinsic parts of a new body of recipes I've included. They represent different ways you can interact with the blocks in the world, allowing you to produce different results by doing so. Currently there are three tool modes implemented, with a fourth currently disabled but planned to be implemented in In Dappled Groves. A fifth is planned.
+	Tool modes in this mod provide access to different recipes and
+therefore different outputs based the tool, crafting station, and
+input. Three different tool modes have been implemented as of this
+version, with a fourth presently disabled and a fifth being planned.
+
+	Not all tools will have access to the same tool modes, nor will
+all tools that have access to a tool mode be guaranteed to be effective
+at the indicated process. Some tools are simply better at some things 
+than others. For instance, you can hew wood with the backside of a 
+<a href=\"handbook://item-indappledgroves:grubaxe-tinbronze\">Grub Axe</a>, but it's not as effective as the same tier <a href=\"handbook://item-indappledgroves:adze-wood-tinbronze\">adze</a> will be.
 
 <font weight='bold' align='center'>Tool Modes</font>
 
-	<font weight='bold'>Chopping:</font> This mode is used when chopping wood into slabs, firewood, and sticks. May be changed to 'splitting' in a future revision. Found primarily in axes.
-	<font weight='bold'>Hewing:</font> This mode is used when shaping wood or 'peeling' it, such as when removing bark. Currently used only for peeling bark and creating chopping blocks from slabs. Found in Adze's and the Grub Axe.'
-	<font weight='bold'>Sawing:</font> This mode is solely used by saws, and is used when making boards out of logs. Found in, unsurprisingly, the saw.
+<font weight='bold'>Chopping:</font> This mode is used when chopping wood into slabs, firewood, and sticks. May be changed to 'splitting' in a future revision. Found in any form of <a href=\"handbook://item-axe-wood-tinbronze\">axe</a>, including <a href=\"handbook://item-indappledgroves:forestaxe-tinbronze\">forest axes</a>, <a href=\"handbook://item-indappledgroves:grubaxe-tinbronze\">grub axes</a>, and <a href=\"handbook://item-indappledgroves:maul-tinbronze\">mauls</a>.
 
-	<font weight='bold' align='center'>Future Modes</font>
-	<font weight='bold'>Planing:</font> Planing will be a mode used to process boards from a rough state into a smoothed state when more in-depth board making processes are introduced.
-	<font weight='bold'>Riving:</font> Riving is a process by which logs can be split into shingles, beams, and various other pieces that require methods more precise than splitting with an axe or maul. A froe or frow is usually used for this process.",
+<font weight='bold'>Hewing:</font> This mode is used when shaping wood or 'peeling' it, such as when removing bark. Currently used only for peeling bark, creating chopping blocks from slabs, and making beams on the <a href=\"handbook://block-indappledgroves:sawbuck-birch-oak-east\">sawbuck</a>. Found in any <a href=\"handbook://item-indappledgroves:adze-wood-tinbronze\">adze</a> or <a href=\"handbook://item-indappledgroves:grubaxe-tinbronze\">Grub Axe.</a>'
+
+<font weight='bold'>Sawing:</font> This mode is solely used by saws, and is used when making boards out of logs. Found in, unsurprisingly, the <a href=\"handbook://item-indappledgroves:saw-copper\">saw.</a>
+
+<font weight='bold' align='center'>Future Modes</font>
+<font weight='bold'>Planing:</font>  Planing will be a mode used to process boards from a rough state into a smoothed state when more in-depth board making processes are introduced.
+
+<font weight='bold'>Riving:</font> Riving is a process by which logs can be split into shingles, beams, and various other pieces that require methods more precise than splitting with an axe or maul. A froe, or frow axe is usually used for this process.",
 
 "item-handbooktitle-firewood": "In Dappled Groves Uses:",
 "item-handbooktext-firewood": "Can be made by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> a log slab after placing on the ground, or on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>. Can be placed on the ground or a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> and processed into sticks by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> them with an axe or other chopping tool. ",

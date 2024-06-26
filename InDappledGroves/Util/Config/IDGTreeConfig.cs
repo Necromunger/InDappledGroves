@@ -33,10 +33,14 @@ namespace InDappledGroves.Util.Config
             defaultConfig.RunTreeGenOnChunkReload = false;
             defaultConfig.stumpTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa", 
-                "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"};
+                "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus", 
+                "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum", 
+                "nothofagusmenziesii", "podocarpustotara"};
             defaultConfig.woodTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa",
-                "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar"};
+                "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus", 
+                "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum",
+                "nothofagusmenziesii", "podocarpustotara"};
 
             return defaultConfig;
         }

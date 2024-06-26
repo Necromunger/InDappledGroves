@@ -1,7 +1,9 @@
 ﻿1-19-0.5.1-dev.2
 	- Vanilla axes removed from trader loot & loot vessels
 	- Forest Axes and Metal Adzes added to trader loot and loot vessels
-	- Added Floral Zones Carribean Region Compatibility
+	- Added Floral Zones Carribean, Cape, Central Australian, East Asiatic, and Neozeylandic Region Compatibility
+		- Removed tannin recipes where appropriate, added back tannin recipes with bark
+	- Updated code for providing material names for sawbucks/chopping blocks/slabs/bark to be more adaptive.
 
 1-19-0.5.1-dev.1
 	- Large trees no longer produce pine stumps, though Kapok trees generating weirdly.
