@@ -356,6 +356,9 @@
     <None Update="assets\indappledgroves\blocktypes\treestump.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\config\handbook\indappledgroveswoodresistance.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\config\handbook\indappledgrovestoolmodes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

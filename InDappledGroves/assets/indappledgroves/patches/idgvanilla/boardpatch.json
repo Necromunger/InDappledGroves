@@ -35,5 +35,20 @@
              },
     "file": "game:itemtypes/resource/plank.json",
     "side": "server"
+  },
+  {
+     "enabled": true,
+     "op": "add",
+     "path": "/attributes/handbook",
+     "value": {
+				"extraSections": [
+					  {
+              "title": "indappledgroves:item-handbooktitle-plank",
+						  "text": "indappledgroves:item-handbooktext-plank"
+					  }
+          ]
+        },
+     "file": "game:itemtypes/resource/plank.json",
+     "side": "server"
   }
 ]
