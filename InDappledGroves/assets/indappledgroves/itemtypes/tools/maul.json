@@ -1,6 +1,6 @@
 {
 	code: "maul",
-	class: "idgtool",
+	class: "itemaxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		"workanimation": "axesplit-fp",
@@ -35,6 +35,9 @@
 		}},
 		{
 			"name": "woodsplitter"
+		},
+		{
+		"name": "idgtool"
 		}
 	],
 	tool: "axe",

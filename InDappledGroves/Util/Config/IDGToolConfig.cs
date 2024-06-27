@@ -1,9 +1,4 @@
-﻿using InDappledGroves.Items.Tools;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InDappledGroves.Util.Config
+﻿namespace InDappledGroves.Util.Config
 {
     class IDGToolConfig
     {

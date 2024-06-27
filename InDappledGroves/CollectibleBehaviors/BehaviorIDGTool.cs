@@ -1,5 +1,4 @@
-﻿using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Interfaces;
+﻿using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using System;
 using System.Collections.Generic;
@@ -10,21 +9,24 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
+using static OpenTK.Graphics.OpenGL.GL;
 
-namespace InDappledGroves.Items.Tools
+namespace InDappledGroves.CollectibleBehaviors
 {
 
-    class IDGTool : Item, IIDGTool
+    class BehaviorIDGTool : CollectibleBehavior, IIDGTool
     {
 
         public override void OnLoaded(ICoreAPI api)
         {
             base.OnLoaded(api);
-            capi = (api as ICoreClientAPI);
-            toolModes = BuildSkillList();
+            this.api = api as ICoreAPI;
+            capi = this.api as ICoreClientAPI;
+            sapi = this.api as ICoreServerAPI;
+            //toolModes = BuildSkillList();
         }
 
-        public IDGTool()
+        public BehaviorIDGTool(CollectibleObject collobj) : base(collobj)
         {
             dustParticles.ParticleModel = EnumParticleModel.Quad;
             dustParticles.AddPos.Set(1, 1, 1);
@@ -39,14 +41,14 @@ namespace InDappledGroves.Items.Tools
             dustParticles.WindAffectednes = 0.5f;
             Inventory = new InventoryGeneric(1, "IDGTool-slot", null, null);
             tempInv = new InventoryGeneric(1, "IDGTool-WorldInteract", null, null);
-            
+
         }
 
         #region ToolMode Stuff
         private SkillItem[] BuildSkillList()
         {
             var skillList = new List<SkillItem>();
-            foreach (var behaviour in CollectibleBehaviors)
+            foreach (var behaviour in collObj.CollectibleBehaviors)
             {
                 if (behaviour is not IBehaviorVariant bwc) continue;
                 foreach (var mode in bwc.GetSkillItems())
@@ -57,35 +59,10 @@ namespace InDappledGroves.Items.Tools
             return skillList.ToArray();
         }
 
-        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
-        {
-            return this.toolModes;  
-        }
-
-        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            return Math.Min(this.toolModes.Length - 1, slot.Itemstack.Attributes.GetInt("toolMode", 0));
-        }
-
-        public override void OnHeldIdle(ItemSlot slot, EntityAgent byEntity)
-        {
-            this.holder = (byEntity as EntityPlayer);
-            //test(slot);
-            if (targetBlock != null && holder.BlockSelection?.Block != null)
-            {
-                this.targetBlock = holder.BlockSelection.Block;
-            }
-            else if (!byEntity.Controls.RightMouseDown && !byEntity.Controls.LeftMouseDown && byEntity.AnimManager.ActiveAnimationsByAnimCode.ContainsKey("axechop")) 
-            {
-                byEntity.StopAnimation("axechop");
-            }
-
-            base.OnHeldIdle(slot, byEntity);
-        }
-        
         public string GetToolModeName(ItemStack stack)
         {
-            return toolModes[Math.Min(this.toolModes.Length - 1, stack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
+            toolModes = BuildSkillList();
+            return toolModes[Math.Min(toolModes.Length - 1, stack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
         }
 
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
@@ -103,11 +80,11 @@ namespace InDappledGroves.Items.Tools
 
                 if (target is EnumItemRenderTarget.HandFp)
                 {
-                    renderinfo.Transform = transformAttributes?["fpHandTransform"].AsObject<ModelTransform>() ?? FpHandTransform;
+                    renderinfo.Transform = transformAttributes?["fpHandTransform"].AsObject<ModelTransform>() ?? collObj.FpHandTransform;
                 }
                 if (target is EnumItemRenderTarget.HandTp)
                 {
-                    renderinfo.Transform = transformAttributes?["tpHandTransform"].AsObject<ModelTransform>() ?? TpHandTransform;
+                    renderinfo.Transform = transformAttributes?["tpHandTransform"].AsObject<ModelTransform>() ?? collObj.TpHandTransform;
                 }
             }
             base.OnBeforeRender(capi, stack, target, ref renderinfo);
@@ -115,33 +92,31 @@ namespace InDappledGroves.Items.Tools
 
         #endregion ToolMode Stuff
 
-        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling)
+        public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            workAnimation = this.Attributes["workanimation"].Exists ? this.Attributes["workanimation"].ToString() : "axechop";
-            if (this.toolModes.Length == 0)
-            {
-                //If for some reason the tool doesn't have a mode set.
-                
-                return;
-            }
+            workAnimation = collObj.Attributes["workanimation"].Exists ? collObj.Attributes["workanimation"].ToString() : "axechop";
 
             if (!byEntity.Controls.CtrlKey)
             {
                 string curTMode = "";
-             
 
-                if (slot.Itemstack.Collectible is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = GetToolModeMod(slot.Itemstack); };
 
-                if (blockSel == null)
-                    return;
+                curTMode = GetToolModeName(slot.Itemstack); toolModeMod = GetToolModeMod(slot.Itemstack) == 0?1f: GetToolModeMod(slot.Itemstack);
+
+                if (blockSel == null)  return;
 
                 Inventory[0].Itemstack = new ItemStack(api.World.BlockAccessor.GetBlock(blockSel.Position, 0));
 
                 recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
+
                 if (recipe == null) return;
+
                 resistance = Inventory[0].Itemstack.Block.Resistance * InDappledGroves.baseGroundRecipeResistaceMult;
+
                 recipeBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0);
+
                 recipePos = blockSel.Position;
+
                 if (slot.Itemstack.Attributes.GetInt("durability") < recipe.BaseToolDmg && slot.Itemstack.Attributes.GetInt("durability") != 0)
                 {
                     capi.TriggerIngameError(this, "toolittledurability", Lang.Get("indappledgroves:toolittledurability", recipe.BaseToolDmg));
@@ -155,17 +130,18 @@ namespace InDappledGroves.Items.Tools
                 return;
             }
             handHandling = EnumHandHandling.PreventDefault;
-            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling);
+            base.OnHeldInteractStart(slot, byEntity, blockSel, entitySel, firstEvent, ref handHandling, ref handling);
         }
 
-        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
+
             if (!byEntity.Controls.CtrlKey && blockSel?.Position == recipePos && api.World.BlockAccessor.GetBlock(blockSel.Position) == recipeBlock)
             {
                 if (recipePos != null)
                 {
-                    
-                    if (((int)api.Side) == 1 && playNextSound < secondsUsed)
+
+                    if ((int)api.Side == 1 && playNextSound < secondsUsed)
                     {
                         api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
                         playNextSound += .8f;
@@ -180,9 +156,9 @@ namespace InDappledGroves.Items.Tools
                     lastSecondsUsed = secondsUsed;
 
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-
-                    float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
+                    float curMiningProgress = (secondsUsed + curDmgFromMiningSpeed) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
+
                     if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
                     {
                         SpawnOutput(recipe, recipePos);
@@ -192,22 +168,27 @@ namespace InDappledGroves.Items.Tools
                         recipeComplete = true;
                         return false;
                     }
-                   }
-               return true;
+                }
+                handling = EnumHandling.Handled;
+                return true;
             }
             byEntity.StopAnimation(workAnimation);
             return false;
         }
 
-        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel)
+        public override void OnHeldInteractStop(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
             if (recipeComplete)
             {
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                 slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                 byEntity.StopAnimation(workAnimation);
             }
             if (blockSel != null)
             {
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
                 api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
                 byEntity.StopAnimation(workAnimation);
             }
@@ -215,13 +196,13 @@ namespace InDappledGroves.Items.Tools
             byEntity.StopAnimation(workAnimation);
         }
 
-        public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason)
+        public override bool OnHeldInteractCancel(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, EnumItemUseCancelReason cancelReason, ref EnumHandling handling)
         {
             byEntity.StopAnimation(workAnimation);
-            return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason);
+            return base.OnHeldInteractCancel(secondsUsed, slot, byEntity, blockSel, entitySel, cancelReason, ref handling);
         }
 
-        
+
         public float GetToolModeMod(ItemStack stack)
         {
             switch (GetToolModeName(stack))
@@ -255,6 +236,8 @@ namespace InDappledGroves.Items.Tools
             int j = recipe.Output.StackSize;
             for (int i = j; i > 0; i--)
             {
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
                 api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
         }
@@ -264,7 +247,9 @@ namespace InDappledGroves.Items.Tools
             int j = stack.StackSize;
             for (int i = j; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+                capi.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
         }
 
@@ -275,6 +260,8 @@ namespace InDappledGroves.Items.Tools
             if (recipes == null) return null;
             for (int j = 0; j < recipes.Count; j++)
             {
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 {
                     return recipes[j];
@@ -291,7 +278,9 @@ namespace InDappledGroves.Items.Tools
 
             for (int j = 0; j < recipes.Count; j++)
             {
-                if (recipes[j].Matches(api.World, slots))
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //if (recipes[j].Matches(api.World, slots))
+                if (recipes[j].Matches(capi.World, slots))
                 {
                     return true;
                 }
@@ -300,7 +289,7 @@ namespace InDappledGroves.Items.Tools
             return false;
         }
 
-      
+
         #region Recipe Processing
         public GroundRecipe GetMatchingGroundRecipe(IWorldAccessor world, ItemSlot slot, string curTMode)
         {
@@ -309,7 +298,9 @@ namespace InDappledGroves.Items.Tools
 
             for (int j = 0; j < recipes.Count; j++)
             {
-                if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
+                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
+                //if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
+                if (recipes[j].Matches(capi.World, slot) && recipes[j].ToolMode == curTMode)
                 {
                     return recipes[j];
                 }
@@ -320,7 +311,9 @@ namespace InDappledGroves.Items.Tools
         #endregion Recipe Processing
 
         //Particle Handlers
-        ICoreClientAPI capi;
+        public ICoreAPI api;
+        public ICoreClientAPI capi;
+        public ICoreServerAPI sapi;
         public float baseWorkstationMiningSpdMult;
         public float baseWorkstationResistanceMult;
         public float baseGroundRecipeMiningSpdMult;
@@ -378,8 +371,8 @@ namespace InDappledGroves.Items.Tools
         private EntityPlayer holder;
         private BlockPos recipePos;
         private Block recipeBlock;
-        private String workAnimation;
+        private string workAnimation;
     }
 
-    
+
 }

@@ -1,0 +1,41 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "idgtool"},
+    "file": "toolworks:itemtypes/tool/axe.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "woodsplitter"},
+    "file": "toolworks:itemtypes/tool/axe.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/workanimation",
+    "value": "axesplit-fp",
+    "file": "toolworks:itemtypes/tool/axe.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/choppingPropsByType",
+    "value": {
+    "*-copper": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-gold": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-silver": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-bismuthbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-tinbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-blackbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-iron": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-meteoriciron": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*-steel": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
+		"*": { "fellingMultiplier": 1.25, "splittingMod": 0.15 }
+    },
+    "file": "toolworks:itemtypes/tool/axe.json",
+    "side": "server"
+  }
+]

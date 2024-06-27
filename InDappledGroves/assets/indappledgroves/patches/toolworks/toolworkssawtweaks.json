@@ -1,0 +1,99 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "idgtool"},
+    "file": "toolworks:itemtypes/tool/saw.json",
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks"}]
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "woodsawer"},
+    "file": "toolworks:itemtypes/tool/saw.json",
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks"}]
+  },
+  {
+    "op": "add",
+    "path": "/attributes/workanimation",
+    "value": "sawsaw-fp",
+    "file": "toolworks:itemtypes/tool/saw.json",
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks"}]
+  },
+  {
+    "op": "add",
+    "path": "/attributes/sawingPropsByType",
+    "value": {
+    "*-copper": {"sawingMod": 0.46 },
+		"*-gold": {"sawingMod": 0.46 },
+		"*-silver": {"sawingMod": 0.46 },
+		"*-bismuthbronze": {"sawingMod": 0.46 },
+		"*-tinbronze": {"sawingMod": 0.46 },
+		"*-blackbronze": {"sawingMod": 0.46 },
+		"*-iron": {"sawingMod": 0.46 },
+		"*-meteoriciron": {"sawingMod": 0.46 },
+		"*-steel": {"sawingMod": 0.46 },
+		"*": {"sawingMod": 0.46 }
+    },
+    "file": "toolworks:itemtypes/tool/saw.json",
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks"}]
+  },
+  {
+    "op": "replace",
+    "path": "/miningspeedbytype",
+    "value": {	
+		"*-copper": {
+			"wood": 1,
+			"plant": 1,
+			"leaves": 1
+		},
+		"*-silver": {
+			"wood": 0.75,
+			"plant": 0.75,
+			"leaves": 0.75
+		},
+		"*-gold": {
+			"wood": 0.75,
+			"plant": 0.75,
+			"leaves": 0.75
+		},
+		"*-bismuthbronze": {
+			"wood": 1.25,
+			"plant": 1.25,
+			"leaves": 1.25
+		},
+		"*-tinbronze": {
+			"wood": 1.5,
+			"plant": 1.5,
+			"leaves": 1.5
+		},
+		"*-blackbronze": {
+			"wood": 1.75,
+			"plant": 1.75,
+			"leaves": 1.75
+		},
+		"*-iron": {
+			"wood": 2,
+			"plant": 2,
+			"leaves": 2
+		},
+		"*-meteoriciron": {
+			"wood": 3,
+			"plant": 2.25,
+			"leaves": 2.25
+		},
+		"*-steel": {
+			"wood": 4,
+			"plant": 3,
+			"leaves": 3
+		}
+	},
+		"file": "toolworks:itemtypes/tool/saw.json",
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks"}]
+  }
+]

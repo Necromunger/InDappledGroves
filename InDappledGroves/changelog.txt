@@ -4,6 +4,8 @@
 	- Added Floral Zones Carribean, Cape, Central Australian, East Asiatic, and Neozeylandic Region Compatibility
 		- Removed tannin recipes where appropriate, added back tannin recipes with bark
 	- Updated code for providing material names for sawbucks/chopping blocks/slabs/bark to be more adaptive.
+	- Code overhauled to make IDG function as a group of behaviors, huge compatibility upgrade.
+	- Added compatibility with Toolworks tools. IDG tools manufacture compatibility will require Toolworks mod author assistance.
 
 1-19-0.5.1-dev.1
 	- Large trees no longer produce pine stumps, though Kapok trees generating weirdly.

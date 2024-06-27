@@ -1,9 +1,9 @@
 [
   //Stone Axes
   {
-    "op": "replace",
-    "path": "/class",
-    "value": "idgtool",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "idgtool"},
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },

@@ -1,6 +1,6 @@
 {
 	code: "grubaxe",
-	class: "idgtool",
+	class: "itemaxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.19},
@@ -67,6 +67,9 @@
 		},
 		{
 			"name": "woodhewer"
+		},
+		{
+		"name": "idgtool"
 		}
 	],
 	tool: "axe",

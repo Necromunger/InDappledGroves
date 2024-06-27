@@ -1,6 +1,5 @@
 {
 	code: "adze",
-	class: "idgtool",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		"workanimation": "axesplit-fp",
@@ -38,6 +37,9 @@
 		},
 		{
 		"name": "woodhewer"
+		},
+		{
+		"name": "idgtool"
 		}
 	],
 	"tool": "hoe",

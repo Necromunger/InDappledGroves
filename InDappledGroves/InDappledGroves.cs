@@ -1,6 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.Blocks;
-using InDappledGroves.Items.Tools;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
 using InDappledGroves.BlockBehaviors;
@@ -27,7 +26,6 @@ namespace InDappledGroves
             //Register Items
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
             api.RegisterItemClass("idgplank", typeof(IDGPlank));
-            api.RegisterItemClass("idgtool", typeof(IDGTool));
             api.RegisterItemClass("idgbark", typeof(IDGBark));
 
             //Register Blocks
@@ -55,6 +53,7 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodsawer", typeof(BehaviorWoodSawing));
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
+            api.RegisterCollectibleBehaviorClass("idgtool", typeof(BehaviorIDGTool));
 
 
             //Register BlockBehaviors

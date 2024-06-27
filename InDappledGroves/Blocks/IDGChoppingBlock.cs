@@ -1,4 +1,5 @@
 ﻿using InDappledGroves.BlockEntities;
+using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using Vintagestory.API.Common;
@@ -39,11 +40,11 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.GetToolModeMod(slot.Itemstack); };
+			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); };
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
-				if (collObj is IIDGTool)
+				if (collObj.HasBehavior<BehaviorIDGTool>())
 				{
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)
@@ -65,7 +66,7 @@ namespace InDappledGroves.Blocks
 			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
 			BlockPos pos = blockSel.Position;
 
-			if (chopTool != null && chopTool is IIDGTool && !bechoppingblock.Inventory.Empty)
+			if (chopTool != null && chopTool.HasBehavior<BehaviorIDGTool>() && !bechoppingblock.Inventory.Empty)
 			{
 				if (playNextSound < secondsUsed)
 				{

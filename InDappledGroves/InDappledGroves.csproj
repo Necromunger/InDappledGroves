@@ -560,6 +560,12 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\traderupdate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\toolworks\toolworkssawtweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\toolworks\toolworksaxetweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\wildcrafttree\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

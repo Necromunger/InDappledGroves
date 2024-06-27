@@ -1,5 +1,6 @@
 ﻿using System;
 using InDappledGroves.BlockEntities;
+using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using InDappledGroves.Util.RecipeTools;
@@ -44,11 +45,14 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj is IIDGTool tool) { curTMode = tool.GetToolModeName(slot.Itemstack); toolModeMod = tool.GetToolModeMod(slot.Itemstack); };
+			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { 
+				curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
+				toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); 
+			};
 
 			if (!besawbuck.Inventory.Empty)
 			{
-				if (collObj is IIDGTool)
+				if (collObj.HasBehavior<BehaviorIDGTool>())
 				{
 					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
 					if (recipe != null)
@@ -70,7 +74,7 @@ namespace InDappledGroves.Blocks
 			CollectibleObject sawtool = itemstack?.Collectible;
 			IDGBESawBuck idgbesawBuck = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBESawBuck;
 			BlockPos position = blockSel.Position;
-			if (sawtool != null && sawtool is IIDGTool && !idgbesawBuck.Inventory.Empty)
+			if (sawtool != null && sawtool.HasBehavior<BehaviorIDGTool>() && !idgbesawBuck.Inventory.Empty)
 			{
 				if (this.playNextSound < secondsUsed)
 				{

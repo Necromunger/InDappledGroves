@@ -1,5 +1,4 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Items.Tools;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -72,8 +71,8 @@ namespace InDappledGroves.BlockEntities
             }
             else if (colObj != null && colObj.HasBehavior<BehaviorWoodPlaning>() && !this.Inventory.Empty)
             {
-                if (slot.Itemstack.Collectible is IDGTool tool) {
-                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1], tool.GetToolModeName(slot.Itemstack));
+                if (slot.Itemstack.Collectible.HasBehavior<BehaviorIDGTool>()) {
+                    recipe = GetMatchingSawHorseRecipe(byPlayer.Entity.World, Inventory[1],colObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack));
                     if (recipe != null)
                     {
                         

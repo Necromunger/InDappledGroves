@@ -1,15 +1,15 @@
 [
   {
     "op": "add",
-    "path": "/class",
-    "value": "idgtool",
+    "path": "/behaviors/-",
+    "value": {"name": "idgtool"},
     "file": "game:itemtypes/tool/saw.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/behaviors",
-    "value": [{"name": "woodsawer"}],
+    "path": "/behaviors/-",
+    "value": {"name": "woodsawer"},
     "file": "game:itemtypes/tool/saw.json",
     "side": "server"
   },

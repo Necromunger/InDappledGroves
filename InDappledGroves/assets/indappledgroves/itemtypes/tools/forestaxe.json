@@ -1,6 +1,6 @@
 {
 	code: "forestaxe",
-	class: "idgtool",
+	class: "ItemAxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
 	attributes: {
 		"workanimation": "axesplit-fp",
@@ -34,6 +34,9 @@
 		}},
 		{
 		"name": "woodsplitter"
+		},
+		{
+		"name": "idgtool"
 		}
 	],
 	tool: "axe",

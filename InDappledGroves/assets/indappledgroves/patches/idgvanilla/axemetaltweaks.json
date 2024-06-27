@@ -5,7 +5,8 @@
     "path": "/attributes",
     "value": {"handbook": {"excludeByType": {"*-tinbronze": true}}}, 
     "file": "game:itemtypes/toolhead/axehead.json",
-    "side": "server"
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks", "invert": true}]
   },
   {
     "op": "replace",
@@ -29,9 +30,9 @@
     "side": "server"
   },
   {
-    "op": "replace",
-    "path": "/class",
-    "value": "idgtool",
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {"name": "idgtool"},
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"
   },
@@ -83,6 +84,7 @@
     "path": "/variantgroups/0/states",
     "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
     "file": "game:itemtypes/toolhead/axehead.json",
-    "side": "server"
+    "side": "server",
+    "dependsOn": [{"modid": "toolworks", "invert": true}]
   }
 ]
