@@ -22,7 +22,7 @@
       ]
 		}
   },
-  "creativeinventory": { "general": ["*-east"]},
+  "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*"]},
   "variantgroups": [
     { "code": "wood", "loadFromProperties": "floralzonescaperegion:block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }

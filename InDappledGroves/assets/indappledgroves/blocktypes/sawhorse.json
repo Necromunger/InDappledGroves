@@ -27,7 +27,7 @@
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
-  "creativeinventory": { "general": ["*-single-east"]},
+  "creativeinventory": { "general": ["*-single-east"], "indappledgroves": ["*-single-east"]},
   "textures": {		
       "support": { "base": "game:block/wood/planks/{support}1" },
 			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }

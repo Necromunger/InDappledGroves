@@ -1,4 +1,9 @@
-﻿1-19-0.6.0-dev.1
+﻿1-19-0.6.0-dev.2
+	- Fixed bug where interacting with a workstation caused a crash.
+	- Added a handbook tab for IDG
+	- Added a creative category for IDG blocks
+
+1-19-0.6.0-dev.1
 	- Vanilla axes removed from trader loot & loot vessels
 	- Forest Axes and Metal Adzes added to trader loot and loot vessels
 	- Added Floral Zones Carribean, Cape, Central Australian, East Asiatic, and Neozeylandic Region Compatibility

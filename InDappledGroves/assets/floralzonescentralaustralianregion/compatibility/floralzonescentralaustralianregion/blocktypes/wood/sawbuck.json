@@ -21,7 +21,7 @@
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
-  "creativeinventory": { "general": ["*-east"]},
+  "creativeinventory": { "general": ["*-east"], "indapplegroves": ["*-down-free"]},
   "textures": {		
       "support": { "base": "floralzonescentralaustralianregion:block/wood/planks/{support}1" },
 			"crossbrace": { "base": "floralzonescentralaustralianregion:block/wood/planks/{crossbrace}1" }

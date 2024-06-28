@@ -74,7 +74,7 @@
 		"*": 3.34
     },
 	"creativeinventory": {
-		"general": ["*-down-free"], "construction": ["*-down-free"]
+		"general": ["*-down-free"], "construction": ["*-down-free"], "indappledgroves": ["*-down-free"]
 	},
 	"dropsByType":{
 		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-down-free" }]

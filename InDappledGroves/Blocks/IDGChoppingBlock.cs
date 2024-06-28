@@ -44,7 +44,7 @@ namespace InDappledGroves.Blocks
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{
-				if (collObj.HasBehavior<BehaviorIDGTool>())
+				if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>())
 				{
 					recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
 					if (recipe != null)

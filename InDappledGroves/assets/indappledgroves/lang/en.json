@@ -10,9 +10,11 @@
 	"itemhelp-adze-hewwood": "To Hew",
 	"itemhelp-tool-planewood": "To Plane",
 	"toolittledurability": "Your tool requires {0} durability to do this.",
-
 	"block-board": "Board",
-	
+
+	"game:tabname-indappledgroves": "In Dappled Groves",
+	"game:handbook-category-indappledgroves": "In Dappled Groves",
+
 	//Stump Entries
 	"block-handbooktitle-treestump": "",
 	"block-handbooktext-treestump": "<font align='center'><i>I have turned aside from everything,
@@ -370,7 +372,7 @@ As it came crashing to the ground.</i></font>
 	"heldhelp-sawing": "Saw to create {0}",
 
 	//Ground Recipe Guide
-"indappledgrovesguide-inworldcrafting-title": "IDG Mechanic: In-World Crafting",
+"indappledgrovesguide-inworldcrafting-title": "IDG: In-World Crafting",
 "indappledgrovesguide-inworldcrafting-text": 
 "<font weight='bold' align='center'>In-World Crafting</font>
 	In-World Crafting works to remove the dependence on the crafting 
@@ -398,7 +400,7 @@ hardest woods, and will take significantly longer, especially with
 stone tools.",
 
 	//Workstation Guide
-"indappledgrovesguide-workstations-title": "IDG Mechanic: Workstation Crafting",
+"indappledgrovesguide-workstations-title": "IDG: Workstation Crafting",
 "indappledgrovesguide-workstations-text": "
 <font weight='bold' align='center'>Workstation Crafting</font>
 <font align='center'><i>‘And while I worked it made me think
@@ -424,7 +426,7 @@ The sawbuck becomes available after you craft <a href=\"handbook://item-plank-bi
 
 
 //Tool Modes Guide
-"indappledgrovesguide-toolmodes-title": "IDG Mechanic: Tool Modes",
+"indappledgrovesguide-toolmodes-title": "IDG: Tool Modes",
 "indappledgrovesguide-toolmodes-text": 
 "<font weight='bold' align='center'>Tool Modes</font>
 	Tool modes provide options in how a tool is used, and can be changed
@@ -461,7 +463,7 @@ than others. For instance, you can hew wood with the backside of a
 "item-handbooktitle-firewood": "In Dappled Groves Uses:",
 "item-handbooktext-firewood": "Can be made by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> a log slab after placing on the ground, or on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a>. Can be placed on the ground or a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> and processed into sticks by <a href=\"handbook://toolmodes-indappledgroves\">chopping</a> them with an axe or other chopping tool. ",
 //Wood Resistance Information
-"woodresistance-indappledgroves":"IDG Mechanic: Varied Wood Resistance",
+"woodresistance-indappledgroves":"IDG: Varied Wood Resistance",
 "indappledgroves:indappledgrovesguide-woodresistance-title":"IDG Mechanic: Varied Wood Resistance",
 "indappledgroves:indappledgrovesguide-woodresistance-text": "<font align='center'><i>Good timber does not grow with ease,
 The stronger wind, the stronger trees;
@@ -495,7 +497,6 @@ Redwood, Larch, Pine, Kapok, Walnut, Birch, Oak, Maple, Acacia, Purpleheart, Ebo
 
 <font size=14 weight='bold'>Wildcraft Trees And Shrubs</font>: <font size=12>
 Bearnut, Chlorocibora, Poplar, Catalpa, (Vanilla: Redwood), Willow, Spruce, Douglas Fir, Elm, Sycamore, Red Cedar, Cedar, Ginkgo, Eucalyptus, Tuja, Saxaul, Empress Tree, Beech, Kauri, (Vanilla: Kapok), Blue Majoe, Satin Ash, Ghost Gum, (Vanilla: Walnut), Yew, Honey Locust, Sal, Ohia, Banyan, Dalbergia, Mahogany, Jacaranda, Umini, (Vanilla: Acacia), Petrified, Guajacum, (Vanilla: Ebony)</font>
-
 ",
 
 "indappledgroves:item-handbooktitle-plank": "<font align='center'>IDG Board Information</font>",

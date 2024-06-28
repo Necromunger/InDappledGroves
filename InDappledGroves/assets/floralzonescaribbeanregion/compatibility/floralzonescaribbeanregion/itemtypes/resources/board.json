@@ -37,7 +37,7 @@
 			"wood": { "base": "game:block/wood/debarked/{wood}" }
 		}
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"] },
+	creativeinventory: { "general": ["*"], "items": ["*"]},
 	attributes: {
 		handbook: {
 			groupBy: ["plank-*"]

@@ -27,7 +27,7 @@
 			}
     }
 	},
-	"creativeinventory": { "general": ["*-dry"]},
+	"creativeinventory": { "general": ["*-dry"], "indappledgroves": ["*-dry"]},
 	"behaviorsByType": {
 	"*-dry": [{"name": "Unstable"}, {"name": "RightClickPickup"}, {"name": "Submergible", "properties": {"liquidcode": "water","outputcode": "floralzonescaribbeanregion:barkbundle-{bark}-soaking"}}],
 	"*-soaking": [{"name": "Unstable"}, {"name": "RightClickPickup", "properties": {"dropsPickupMode": true}}],

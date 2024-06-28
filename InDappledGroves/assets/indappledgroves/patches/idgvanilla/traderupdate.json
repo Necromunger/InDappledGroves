@@ -75,7 +75,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-survivalgoods.json",
-    "value": {"code": "indappledgroves:adze-tinbronze",
+    "value": {"code": "indappledgroves:adze-wood-tinbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {
@@ -93,7 +93,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-survivalgoods.json",
-    "value": {"code": "indappledgroves:adze-bismuthbronze",
+    "value": {"code": "indappledgroves:adze-wood-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {
@@ -111,7 +111,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-survivalgoods.json",
-    "value": {"code": "indappledgroves:adze-blackbronze",
+    "value": {"code": "indappledgroves:adze-wood-blackbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {
@@ -201,7 +201,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-buildmaterials.json",
-    "value": {"code": "indappledgroves:adze-tinbronze",
+    "value": {"code": "indappledgroves:adze-wood-tinbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {
@@ -219,7 +219,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-buildmaterials.json",
-    "value": {"code": "indappledgroves:adze-bismuthbronze",
+    "value": {"code": "indappledgroves:adze-wood-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {
@@ -237,7 +237,7 @@
     "op": "add",
     "path": "/attributes/tradeProps/buying/list/-",
     "file": "game:entities/humanoid/trader-buildmaterials.json",
-    "value": {"code": "indappledgroves:adze-blackbronze",
+    "value": {"code": "indappledgroves:adze-wood-blackbronze",
                 "type": "item",
                 "stacksize": 1,
                 "stock": {

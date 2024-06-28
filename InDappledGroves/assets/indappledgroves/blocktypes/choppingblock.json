@@ -22,7 +22,7 @@
       ]
 		}
   },
-  "creativeinventory": { "general": ["*-east"]},
+  "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
   "variantgroups": [
     { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }

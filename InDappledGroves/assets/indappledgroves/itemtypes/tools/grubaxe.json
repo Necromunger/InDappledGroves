@@ -1,7 +1,7 @@
 {
 	code: "grubaxe",
 	class: "itemaxe",
-	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
+	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "indappledgroves": ["*"]},
 	attributes: {
 		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.19},
 		"hewingProps": {"hewingMod": 1},

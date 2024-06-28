@@ -48,7 +48,7 @@
 	creativeinventoryStacksByType: {
 		"*-east": [
 			{
-				tabs: [ "general", "decorative"],
+				tabs: [ "general", "decorative", "indappledgroves" ],
 				stacks: [
 					{ type: "block", code: "floralzonescentralaustralianregion:barkbasket-{variant}-east" }
 				]

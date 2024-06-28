@@ -44,26 +44,28 @@ namespace InDappledGroves.Blocks
 
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBESawBuck besawbuck) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+			
+			if (collObj == null) return besawbuck.OnInteract(byPlayer);
 
-			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { 
-				curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
-				toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); 
-			};
+            if (collObj.HasBehavior<BehaviorIDGTool>()) { 
+					curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
+					toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); 
+				};
 
-			if (!besawbuck.Inventory.Empty)
-			{
-				if (collObj.HasBehavior<BehaviorIDGTool>())
+				if (!besawbuck.Inventory.Empty)
 				{
-					recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
-					if (recipe != null)
+					if (collObj.HasBehavior<BehaviorIDGTool>())
 					{
-						resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
-						byPlayer.Entity.StartAnimation("sawsaw-fp");
-						return true;
+						recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
+						if (recipe != null)
+						{
+							resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+							byPlayer.Entity.StartAnimation("sawsaw-fp");
+							return true;
+						}
+						return false;
 					}
-					return false;
 				}
-			}
 
 			return besawbuck.OnInteract(byPlayer);
 		}

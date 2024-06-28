@@ -167,7 +167,7 @@
   "drawtype": "json",
   "blockmaterial": "Wood",
   "requiredMiningTier": 1,
-  "creativeinventory": {},
+  "creativeinventory": {"indappledgroves": ["*-east"]},
   "creativeinventoryStacksByType": {
     "*-north": [
       {

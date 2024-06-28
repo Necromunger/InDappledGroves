@@ -22,7 +22,7 @@
       ]
 		}
   },
-  "creativeinventory": { "general": ["*-east"]},
+  "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-down-free"]},
   "variantgroups": [
     { "code": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }

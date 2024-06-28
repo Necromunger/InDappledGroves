@@ -23,7 +23,7 @@
 			}
 		}
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"]},
+	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"]},
 	behaviorsByType: {
 		"*": [
 			{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } }

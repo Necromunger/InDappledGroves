@@ -8,7 +8,7 @@
 	textures: {
 			"material": { base: "game:block/metal/ingot/{material}" }
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"] },
+	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"] },
 	fpHandTransform: {
 		translation: { x: 0.1, y: -0.4, z: 0 },
 		rotation: { x: 25, y: 0, z: 86 },

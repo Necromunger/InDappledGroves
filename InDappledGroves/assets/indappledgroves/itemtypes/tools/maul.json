@@ -1,7 +1,7 @@
 {
 	code: "maul",
 	class: "itemaxe",
-	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"]},
+	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "indappledgroves": ["*"]},
 	attributes: {
 		"workanimation": "axesplit-fp",
 		handbook: {
