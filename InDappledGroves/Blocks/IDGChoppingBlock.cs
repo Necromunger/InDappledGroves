@@ -21,15 +21,6 @@ namespace InDappledGroves.Blocks
         public override string GetHeldItemName(ItemStack stack) => GetName();
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
-        public string GetName()
-        {
-            var material = Variant["wood"];
-            
-			var part = Lang.Get("material-" + $"{material}");
-			part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
-            return string.Format($"{part} {Lang.Get("indappledgroves:block-choppingblock")}");
-        }
-
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{
             string curTMode = "";
@@ -130,7 +121,16 @@ namespace InDappledGroves.Blocks
 			
 		}
 
-		private float playNextSound;
+        public string GetName()
+        {
+            var material = Variant["wood"];
+
+            var part = Lang.Get("material-" + $"{material}");
+            part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
+            return string.Format($"{part} {Lang.Get("indappledgroves:block-choppingblock")}");
+        }
+
+        private float playNextSound;
 		private float resistance;
 		private float lastSecondsUsed;
 		private float curDmgFromMiningSpeed;

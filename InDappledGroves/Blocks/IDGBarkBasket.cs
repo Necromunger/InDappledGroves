@@ -14,6 +14,8 @@ namespace InDappledGroves.Blocks
         public override string GetHeldItemName(ItemStack stack) => GetName();
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
+
+
         public string GetName()
         {
             var material = Variant["variant"];

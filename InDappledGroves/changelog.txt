@@ -1,4 +1,7 @@
-﻿1-19-0.6.0-dev.2
+﻿1-19-0.6.0-dev.3
+	- Updated code for providing material names for stumps and hollows to be more adaptive. 
+
+1-19-0.6.0-dev.2
 	- Fixed bug where interacting with a workstation caused a crash.
 	- Added a handbook tab for IDG
 	- Added a creative category for IDG blocks

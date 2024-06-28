@@ -18,7 +18,7 @@
         {
             var material = Variant["wood"];
 
-            var part = Lang.Get($"{material}");
+            var part = Lang.Get("material-" + $"{material}");
             part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
             return string.Format($"{part} {Lang.Get("indappledgroves:block-treehollow")}");
         }
