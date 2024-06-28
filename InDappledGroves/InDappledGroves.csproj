@@ -23,10 +23,19 @@
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\barrel\weaktanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\grid\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\grid\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\barrel\strongtanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\barrel\weaktanninbark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\grid\barkbundle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\barkbasket.json">
@@ -75,6 +84,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\grid\barkbundle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\grid\sawbuck.json">
@@ -605,6 +617,9 @@
     <None Update="assets\indappledgroves\recipes\grid\adze.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\grid\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\grid\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -999,6 +1014,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbundle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\sawbuck.json">

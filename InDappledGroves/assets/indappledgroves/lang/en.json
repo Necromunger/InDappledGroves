@@ -166,28 +166,30 @@ And the king of them all was the stringy-bark tree..</i></font>
 
 Creating a dry bark bundle is a simple process. Simply shift-right-click
 the ground in one of the four corners of a block with a handful of 
-<a href=\"item-indappledgroves:bark-birch-dry\">dry bark</a> to create a ground storage. Fill the remaining three spaces with 
-the same kind of bark, and then click in the center with a fifth piece 
+<a href=\"item-indappledgroves:bark-birch-dry\">dry bark</a> to create a ground storage. Fill the remaining three spaces 
+with the same kind of bark, and then click in the center with a fifth piece 
 to make a dry bark bundle.
 
 Your bark bundle is now ready for processing. Pick it up and place it 
-on a block covered by water to begin the soaking process. 24 hours later
-you'll have a <a href=\"handbook://block-indappledgroves:barkbundle-maple-soaked\">soaked bark bundle</a>. Pick it up and you'll recieve 5 pieces
-of <a href=\"handbook://item-indappledgroves bark:bark-birch-soaked\">soaked bark</a>, ready to be made into a basket.
+on a block covered by water to begin the soaking process. 24 hours
+later you'll have a <a href=\"handbook://block-indappledgroves:barkbundle-maple-soaked\">soaked bark bundle</a>. Pick it up and you'll recieve 5 pieces of <a href=\"handbook://item-indappledgroves bark:bark-birch-soaked\">soaked bark</a>, ready to be made into a basket.
 ",
 
-
-		"indappledgroves:block-handbooktitle-barkbundlesoaked": "Soaked Bark Bundle",
-		"indappledgroves:block-handbooktext-barkbundlesoaked": "
+"indappledgroves:block-handbooktitle-barkbundlesoaked": "Soaked Bark Bundle",
+"indappledgroves:block-handbooktext-barkbundlesoaked": "
 <font align='center'><i>Then of stringy-bark slabs were the walls of the hut,
 And from stringy-bark saplings the rafters were cut;
 And the roof that long sheltered my brothers and me
 Was of broad sheets of bark from the stringy-bark tree.</i></font>
 <font weight='bold' align='center'>- Stringy-Bark Tree Poem by Henry Lawson</font>
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
 		Soaked bark is obtained by placing a <a href=\"handbook://block-indappledgroves:barkbundle-maple-dry\">dry bark bundle</a> into water by right-clicking a water covered block.  This will place the dry bark bundle, turning it into a soaking bark bundle.  Over time, it will convert into a soaked bark bundle. Simply right click the soaked bark bundle to pick up 5 <a href=\"handbook://item-indappledgroves bark:bark-birch-soaked\">soaked bark</a>.
 
-		Soaked bark is a versatile material perfect for crafting into useful containers, the <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. If you also have Taska's <a href=\"https://mods.vintagestory.at/ancienttools\">Ancient Tools</a> installed, then you will also need to soak <a href=\"handbook://item-indappledgroves bark:bark-birch-soaked\">soaked bark</a>birchbark</a> to make salves.
+		Soaked bark is a versatile material perfect for crafting into useful containers, the <a href=\"handbook://block-indappledgroves:barkbasket-maple-east\">bark baskets</a>. If you also have Taska's <a href=\"https://mods.vintagestory.at/ancienttools\">Ancient Tools</a> installed, then you will also need to soak <a href=\"handbook://item-indappledgroves bark:bark-birch-soaked\">soaked bark</a> to make salves.
 ",
+
 	"block-barkbundle": "Bark Bundle",
 	"dry": "Dry",
 	"soaking": "Soaking",

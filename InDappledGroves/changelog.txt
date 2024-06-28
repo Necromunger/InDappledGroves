@@ -1,4 +1,4 @@
-﻿1-19-0.5.1-dev.2
+﻿1-19-0.6.0-dev.1
 	- Vanilla axes removed from trader loot & loot vessels
 	- Forest Axes and Metal Adzes added to trader loot and loot vessels
 	- Added Floral Zones Carribean, Cape, Central Australian, East Asiatic, and Neozeylandic Region Compatibility
@@ -6,6 +6,7 @@
 	- Updated code for providing material names for sawbucks/chopping blocks/slabs/bark to be more adaptive.
 	- Code overhauled to make IDG function as a group of behaviors, huge compatibility upgrade.
 	- Added compatibility with Toolworks tools. IDG tools manufacture compatibility will require Toolworks mod author assistance.
+	- Added compatibility for More Piles in the form of grid recipes for bark bundles... Only available when MorePiles is installed.
 
 1-19-0.5.1-dev.1
 	- Large trees no longer produce pine stumps, though Kapok trees generating weirdly.
