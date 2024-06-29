@@ -175,21 +175,21 @@
             base.OnDecalTesselation(world, decalMesh, pos);
         }
 
-        public override void OnUnloaded(ICoreAPI api)
-        {
-            if (!(api is ICoreClientAPI capi))
-            { return; }
-            var key = "genericTypedContainerMeshRefs" + this.FirstCodePart() + this.SubtypeInventory;
-            var meshrefs = ObjectCacheUtil.TryGet<Dictionary<string, MeshRef>>(api, key);
-            if (meshrefs != null)
-            {
-                foreach (var val in meshrefs)
-                {
-                    val.Value.Dispose();
-                }
-                capi.ObjectCache.Remove(key);
-            }
-        }
+        //public override void OnUnloaded(ICoreAPI api)
+        //{
+        //    if (!(api is ICoreClientAPI capi))
+        //    { return; }
+        //    var key = "genericTypedContainerMeshRefs" + this.FirstCodePart() + this.SubtypeInventory;
+        //    var meshrefs = ObjectCacheUtil.TryGet<Dictionary<string, MeshRef>>(api, key);
+        //    if (meshrefs != null)
+        //    {
+        //        foreach (var val in meshrefs)
+        //        {
+        //            val.Value.Dispose();
+        //        }
+        //        capi.ObjectCache.Remove(key);
+        //    }
+        //}
 
         private MeshData GenGuiMesh(ICoreClientAPI capi, string type)
         {

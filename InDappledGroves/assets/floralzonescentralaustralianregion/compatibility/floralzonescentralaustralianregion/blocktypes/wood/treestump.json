@@ -25,8 +25,7 @@
 			"treestump-grown-*": "{wood}"
 		},
 		treeFellingGroupSpreadIndexByType: {
-		"*-lysilomalatisiliquum-*": 8,
-		"*": 3.34
+		"*": 4
 		},
 		preventsDecayByType: {
 			"treestump-grown-*": true

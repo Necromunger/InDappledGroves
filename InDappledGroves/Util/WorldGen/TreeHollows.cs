@@ -121,7 +121,6 @@ namespace InDappledGroves.Util.WorldGen
             
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             var stumpType = "pine";
-            sapi.Logger.Debug(treeBlock.FirstCodePart());
             if (treeBlock.FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log") return false;
 
             if (treeBlock.FirstCodePart() == "log" && blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() != "treestump")

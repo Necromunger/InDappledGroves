@@ -494,9 +494,6 @@
     <None Update="assets\indappledgroves\patches\floralzonescaperegion\reciperemove.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonescaperegion\stumppatch.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -59,8 +59,9 @@
 	},
 	"blockmaterial": "Wood",
 	"resistanceByType": {
-		"*-lysilomalatisiliquum-*": 8,
-		"*": 3.34
+		"*-searsialancea-*": 6,
+    "*-afrocarpusfalcatus-*": 11.87,
+    "*": 4
     },
 	"creativeinventory": {
 		"general": ["*-down-free"], "construction": ["*-down-free"], "indappledgroves": ["*-down-free"]

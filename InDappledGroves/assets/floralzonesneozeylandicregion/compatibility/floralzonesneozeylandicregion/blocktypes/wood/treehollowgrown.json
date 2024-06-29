@@ -42,7 +42,10 @@
       
     },
     "resistanceByType": {
-    "*-lysilomalatisiliquum-*": 8,
+    "*-araucariaheterophylla-*": 1.93,
+    "*-dacrydiumcupressinum-*": 12.19,
+    "*-nothofagusmenziesii-*": 13.35,
+    "*-podocarpustotara-*": 1.54,
 		"*": 3.34
     },
     "variantgroups": [
@@ -61,8 +64,7 @@
 			"treehollowgrown-*": "{wood}"
 		},
 		treeFellingGroupSpreadIndexByType: {
-		"*-lysilomalatisiliquum-*": 8,
-		"*": 3.34
+		"*": 4
 		},
 		preventsDecay: true,
     "sideopaque": {

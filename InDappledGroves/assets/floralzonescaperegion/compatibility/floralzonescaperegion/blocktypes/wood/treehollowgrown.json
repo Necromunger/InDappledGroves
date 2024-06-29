@@ -13,8 +13,7 @@
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
 		  "treeFellingGroupSpreadIndexByType": {
-		  "*-lysilomalatisiliquum-*": 8,
-		  "*": 3.34
+		  "*": 4
 		  },
 		  preventsDecayByType: {
 			  "treehollowgrown-*": true
@@ -42,8 +41,9 @@
       
     },
     "resistanceByType": {
-    "*-lysilomalatisiliquum-*": 8,
-		"*": 3.34
+    "*-searsialancea-*": 6,
+    "*-afrocarpusfalcatus-*": 11.87,
+    "*": 4
     },
     "variantgroups": [
       {

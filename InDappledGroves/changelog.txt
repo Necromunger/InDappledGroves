@@ -1,5 +1,8 @@
 ﻿1-19-0.6.0-dev.3
-	- Updated code for providing material names for stumps and hollows to be more adaptive. 
+	- Updated code for providing material names for stumps and hollows to be more adaptive.
+	- Fixed bug where switching blocks while chopping a tree caused it to fall instantly.
+	- Updated various values in blockTypes to bring treeStumps into line and to have correct TreeFellingIndex values
+
 
 1-19-0.6.0-dev.2
 	- Fixed bug where interacting with a workstation caused a crash.

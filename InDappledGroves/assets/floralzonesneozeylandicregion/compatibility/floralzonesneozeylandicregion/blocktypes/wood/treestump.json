@@ -25,8 +25,7 @@
 			"treestump-grown-*": "{wood}"
 		},
 		treeFellingGroupSpreadIndexByType: {
-		"*-lysilomalatisiliquum-*": 8,
-		"*": 3.34
+		"*": 4
 		},
 		preventsDecayByType: {
 			"treestump-grown-*": true
@@ -67,8 +66,11 @@
 		}
 	},
 	"resistanceByType": {
-		"*-lysilomalatisiliquum-*": 80,
-		"*": 33.34
+		"*-araucariaheterophylla-*": 19.30,
+    "*-dacrydiumcupressinum-*": 121.9,
+    "*-nothofagusmenziesii-*": 133.5,
+    "*-podocarpustotara-*": 15.4,
+		"*": 33.4
     },
 	maxStackSize: 16,
 	materialDensity: 700,

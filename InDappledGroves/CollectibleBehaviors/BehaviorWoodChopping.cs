@@ -20,6 +20,7 @@ namespace InDappledGroves
     { 
         ICoreAPI api;
         ICoreClientAPI capi;
+        BlockPos oldBlockPos = null;
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
 
@@ -65,9 +66,10 @@ namespace InDappledGroves
         #region TreeFelling
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
         {
+            if(oldBlockPos == null) { oldBlockPos = blockSel.Position; };
             BlockPos pos = blockSel.Position;
             string[] woods = new[] {"log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection"};
-            if (api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
+            if (oldBlockPos != blockSel.Position || api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
             {
                 handled = EnumHandling.PreventSubsequent;
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter, ref handled);

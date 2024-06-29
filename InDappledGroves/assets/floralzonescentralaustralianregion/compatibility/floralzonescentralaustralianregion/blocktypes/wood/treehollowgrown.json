@@ -13,8 +13,7 @@
       "forageStatAffected": true,
       "treeFellingGroupCode": "{wood}",
 		  "treeFellingGroupSpreadIndexByType": {
-		  "*-lysilomalatisiliquum-*": 8,
-		  "*": 3.34
+		  "*": 4
 		  },
 		  preventsDecayByType: {
 			  "treehollowgrown-*": true
