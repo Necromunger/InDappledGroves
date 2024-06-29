@@ -68,10 +68,13 @@ namespace InDappledGroves
         {
             if(oldBlockPos == null) { oldBlockPos = blockSel.Position; };
             BlockPos pos = blockSel.Position;
-            string[] woods = new[] {"log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection"};
+            string[] woods = new[] {"log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection", "treestump"};
             if (oldBlockPos != blockSel.Position || api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
             {
-                handled = EnumHandling.PreventSubsequent;
+                api.Logger.Debug("blockSel is " + blockSel.Position.ToString() + ". Log Variant is placed: " + (api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed")
+                + ". Woods contains " + api.World.BlockAccessor.GetBlock(pos).FirstCodePart().ToString() + " is " + (woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart().ToString())));
+                oldBlockPos = null;
+                handled = EnumHandling.PassThrough;
                 return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter, ref handled);
             };
 
@@ -100,13 +103,25 @@ namespace InDappledGroves
             {
                 treeResistance = tempAttr.GetFloat("treeResistance", 1f);
             }
-            handled = EnumHandling.Handled;
+            
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
-            float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10);
+            float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10) ;
             remainingResistance = treeDmg;
+            if (remainingResistance > 0)
+            {
+                api.Logger.Debug("Side is " + api.Side + ". treeDmg now greater than zero = " + treeDmg.ToString());
+                handled = EnumHandling.PassThrough;
+                return treeDmg;
+            }
+            api.Logger.Debug("Side is " + api.Side + "treeDmg now below zero = " + treeDmg.ToString());
+            handled = EnumHandling.Handled;
             return treeDmg;
+            
+
+            api.Logger.Debug(treeDmg.ToString());
+            
         }
 
         public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
@@ -199,8 +214,6 @@ namespace InDappledGroves
             bhHandling = EnumHandling.Handled;
             return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
         }
-
-        
 
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out float resistance, out int woodTier)
         {

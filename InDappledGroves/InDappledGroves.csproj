@@ -428,9 +428,6 @@
     <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\logpatch.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
