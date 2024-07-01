@@ -3,9 +3,6 @@
 	class: "itemaxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "indappledgroves": ["*"]},
 	attributes: {
-		"choppingProps": {"fellingMultiplier": 1.25, "splittingMod": 0.19},
-		"hewingProps": {"hewingMod": 1},
-		"workanimation": "axesplit-fp",
 		handbook: {
 			groupBy: ["grubaxe-*"],
 			"extraSections": [
@@ -51,7 +48,9 @@
 				}
 			}
 		},
-		
+		"choppingProps": {"fellingMultiplier": 1.25, "splittingMultiplier": 0.19},
+		"hewingProps": {"hewingMultiplier": 1},
+		"workanimation": "axesplit-fp"
 	},
 		behaviors: [{
 		name: "GroundStorable",
@@ -63,13 +62,13 @@
 			collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
 		}},
 		{
-		"name": "woodsplitter"
+			"name": "woodsplitter"
 		},
 		{
 			"name": "woodhewer"
 		},
 		{
-		"name": "idgtool"
+			"name": "idgtool"
 		}
 	],
 	tool: "axe",

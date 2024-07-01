@@ -1,5 +1,9 @@
 ﻿1-19-0.6.0-dev.4
-
+	- Fixed bug where switching blocks while chopping a tree caused it to fall instantly.(For realsies, I promise)
+	- Finally implemented some axes being better at felling trees than others.
+	- Fixed Wildcraft and other modded trees not felling properly.
+	- Confirmed transforms for chopping block and sawbuck working properly. 
+		(This was related to the trees not felling properly... Stupid JSON patching)
 
 1-19-0.6.0-dev.3
 	- Updated code for providing material names for stumps and hollows to be more adaptive.

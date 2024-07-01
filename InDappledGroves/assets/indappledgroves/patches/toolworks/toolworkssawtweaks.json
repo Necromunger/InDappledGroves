@@ -25,19 +25,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/sawingPropsByType",
-    "value": {
-    "*-copper": {"sawingMod": 0.46 },
-		"*-gold": {"sawingMod": 0.46 },
-		"*-silver": {"sawingMod": 0.46 },
-		"*-bismuthbronze": {"sawingMod": 0.46 },
-		"*-tinbronze": {"sawingMod": 0.46 },
-		"*-blackbronze": {"sawingMod": 0.46 },
-		"*-iron": {"sawingMod": 0.46 },
-		"*-meteoriciron": {"sawingMod": 0.46 },
-		"*-steel": {"sawingMod": 0.46 },
-		"*": {"sawingMod": 0.46 }
-    },
+    "path": "/attributes/sawingProps",
+    "value": { "sawingMultiplier": 0.46 },
     "file": "toolworks:itemtypes/tool/saw.json",
     "side": "server",
     "dependsOn": [{"modid": "toolworks"}]

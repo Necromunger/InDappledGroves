@@ -17,7 +17,7 @@
   {
     "op": "add",
     "path": "/attributes/choppingProps",
-    "value": { "fellingMultiplier": 1.25, "splittingMod": 0.15 },
+    "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.15 },
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },

@@ -3,7 +3,7 @@
 		"code": "weaktannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "item", "code": "indappledgroves:bark-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "item", "code": "floralzonescaperegion:bark-searsialancea-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:waterportion",  "litres": 10 }
 		],
 		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 10 }
@@ -12,7 +12,7 @@
 		"code": "weaktannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "item", "code": "indappledgroves:bark-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "item", "code": "floralzonescaperegion:bark-afrocarpusfalcatus-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:waterportion",  "litres": 10 }
 		],
 		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 10 }
@@ -21,7 +21,7 @@
 		"code": "weaktannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "block", "code": "floralzonescaperegion:barkbundle-searsialancea-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
 		],
 		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 50 }
@@ -30,7 +30,7 @@
 		"code": "weaktannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "block", "code": "indappledgroves:barkbundle-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "block", "code": "floralzonescaperegion:barkbundle-afrocarpusfalcatus-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
 		],
 		"output": { "type": "item", "code": "game:weaktanninportion", "litres": 50 }

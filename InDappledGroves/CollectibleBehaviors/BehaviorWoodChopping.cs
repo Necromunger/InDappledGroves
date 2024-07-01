@@ -89,53 +89,40 @@ namespace InDappledGroves
 
         #region TreeFelling
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
-        {   
-            BlockPos pos = blockSel.Position;
-            if (oldBlockPos == null) { oldBlockPos = pos; };
+        {
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            float treeResistance = tempAttr.GetFloat("treeResistance", 1);
-
-            string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection" };
-            if (oldBlockPos != pos || api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
-            {
-                oldBlockPos = pos;
-                api.Logger.Debug(api.Side.ToString() + " registered a blockPos change from " + oldBlockPos.ToString() + " to " + pos.ToString() + " at counter " + counter.ToString());
-                api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
-                handled = EnumHandling.PreventDefault;
-                return remainingResistance;
-            };
-
+            BlockPos pos = blockSel.Position;
+            float treeResistance;
             if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
             {
                 float baseResistance;
                 int woodTier;
-
-                Stack<BlockPos> foundPositions = FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
-                treeResistance = (float)baseResistance/IDGTreeConfig.Current.TreeFellingDivisor;
+                this.FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
                 if (collObj.ToolTier < woodTier - 3)
                 {
-                    //handled = EnumHandling.Handled;
-                    return treeResistance * 1.25f;
+                    handled = EnumHandling.PreventDefault;
+                    return remainingResistance;
                 }
+                treeResistance = (float)Math.Max(1.0, Math.Sqrt((double)baseResistance / 1.45)) * IDGTreeConfig.Current.TreeFellingMultiplier;
                 tempAttr.SetFloat("treeResistance", treeResistance);
             }
             else
             {
                 treeResistance = tempAttr.GetFloat("treeResistance", 1f);
             }
-            
             tempAttr.SetInt("lastposX", pos.X);
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
-            float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10) ;
-            //api.Logger.Debug("collObj is " + collObj.Code.ToString() + " and its mining speed is " + collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player));
+            float treeFellingModifier = collObj.Attributes["choppingprops"]["fellingmultiplier"].AsFloat();
+            float treeDmg = remainingResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)*treeFellingModifier) * dt);
             remainingResistance = treeDmg;
-            api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
+
+            api.Logger.Debug("Remaining Resistance is " + remainingResistance.ToString() + " tool mining speed is " + collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player));
             handled = EnumHandling.PreventDefault;
-            return treeDmg;            
+            return remainingResistance;            
         }
         
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out float resistance, out int woodTier)
@@ -264,34 +251,6 @@ namespace InDappledGroves
             }
             return foundPositions;
         }
-
-
-        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
-        {
-            //IPlayer byPlayer = null;
-            //if (byEntity is EntityPlayer)
-            //{
-            //    byPlayer = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-            //}
-
-            if (oldBlockPos != null && oldBlockPos != blockSel.Position) { bhHandling = EnumHandling.PreventDefault; return false; }
-
-            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
-        }
-
-
-        //public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1f, ref EnumHandling bhHandling)
-        //{
-        //    IPlayer byPlayer = null;
-        //    if (byEntity is EntityPlayer)
-        //    {
-        //        byPlayer = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
-        //    }
-        //    if (oldBlockPos != null && oldBlockPos != blockSel.Position) { return false; }
-
-        //    return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
-        //}
-
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()

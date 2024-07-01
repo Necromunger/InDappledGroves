@@ -182,7 +182,6 @@ namespace InDappledGroves.Blocks
 						this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 						this.playNextSound += 0.7f;
 					}
-
 					float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
 					float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
                     if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)

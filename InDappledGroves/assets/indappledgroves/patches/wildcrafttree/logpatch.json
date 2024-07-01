@@ -3,12 +3,10 @@
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes",
+    "path": "/attributes/workStationTransforms",
     "value": { 
-      "workStationTransformsByType": {
-          "*-placed-*":{
-            "idgChoppingBlockProps": {               
-                "idgChoppingBlockTransform": {
+            "idgchoppingblockprops": {               
+                "idgchoppingblocktransform": {
                 "translation": {
                   "x": 0,
                   "y": 0.0625,
@@ -27,8 +25,8 @@
                 }
               }
           },
-          "idgSawBuckProps": {
-              "idgSawBuckTransform": {
+          "idgsawbuckprops": {
+              "idgsawbucktransform": {
                   "translation": {
                     "x": 0.027,
                     "y": 0.7,
@@ -58,23 +56,21 @@
                   }
               }
             }
-          }
-        }
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
     "op": "remove",
 		"side": "server",
     "path": "/resistance",
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
     "op": "add",
 		"side": "server",
-    "path": "/resistanceByType",
+    "path": "/resistancebytype",
     "value": {
     "*-banyan-*":6.94,
 		"*-bearnut-*":1.45,
@@ -110,20 +106,20 @@
 		"*-yew-*":4.51,
 		"*": 4.5
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
     "op": "remove",
 		"side": "server",
     "path": "/resistance",
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
     "op": "add",
 		"side": "server",
-    "path": "/resistanceByType",
+    "path": "/resistancebytype",
     "value": {
     "*-banyan-*":6.94,
 		"*-bearnut-*":1.45,
@@ -159,17 +155,17 @@
 		"*-yew-*":4.51,
 		"*": 4.5
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
-    "op": "replace",
+    "op": "add",
     "path": "/attributes",
-    "value": { 
-        "workStationTransforms": {
-          "idgChoppingBlockProps": {               
-            "idgChoppingBlockTransform": {
+    "value": {"workStationTransforms":
+          { 
+          "idgchoppingblockprops": {               
+            "idgchoppingblocktransform": {
             "translation": {
               "x": 0,
               "y": 0.0625,
@@ -188,8 +184,8 @@
             }
           }
         },
-        "idgSawBuckProps": {
-          "idgSawBuckTransform": {
+        "idgsawbuckprops": {
+          "idgsawbucktransform": {
             "translation": {
               "x": 0.027,
               "y": 0.7,
@@ -221,20 +217,20 @@
         }
       }
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
 	},
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
     "op": "remove",
 		"side": "server",
     "path": "/resistance",
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
     "op": "add",
 		"side": "server",
-    "path": "/resistanceByType",
+    "path": "/resistancebytype",
     "value": {
     "*-banyan-*":6.94,
 		"*-bearnut-*":1.45,
@@ -270,18 +266,16 @@
 		"*-yew-*":4.51,
 		"*": 4.5
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes",
-    "value": { 
-      "workStationTransformsByType": {
-        "*-placed-*":{
-          "idgChoppingBlockProps": {               
-              "idgChoppingBlockTransform": {
+    "path": "/attributes/workStationTransforms",
+    "value": {     
+          "idgchoppingblockprops": {               
+              "idgchoppingblocktransform": {
               "translation": {
                 "x": 0,
                 "y": 0.0625,
@@ -300,8 +294,8 @@
               }
             }
         },
-        "idgSawBuckProps": {
-            "idgSawBuckTransform": {
+        "idgsawbuckprops": {
+            "idgsawbucktransform": {
                 "translation": {
                   "x": 0.027,
                   "y": 0.7,
@@ -331,23 +325,21 @@
                 }
             }
           }
-        }
-      }
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-withresin.json",
 		"side": "server",
     "op": "remove",
     "path": "/resistance",
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   },
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-withresin.json",
     "op": "add",
 		"side": "server",
-    "path": "/resistanceByType",
+    "path": "/resistancebytype",
     "value": {
     "*-banyan-*":6.94,
 		"*-bearnut-*":1.45,
@@ -383,6 +375,6 @@
 		"*-yew-*":4.51,
 		"*": 4.5
     },
-		"dependsOn": [ { "modid": "wildcrafttree" } ]
+		"dependson": [ { "modid": "wildcrafttree" } ]
   }
 ]

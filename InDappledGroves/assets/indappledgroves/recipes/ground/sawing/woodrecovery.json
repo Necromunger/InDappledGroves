@@ -1,0 +1,74 @@
+[
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:planks-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:plankstairs-*-up-east-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:plankstairs-*-up-west-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:plankstairs-*-up-north-free","name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:plankstairs-*-up-south-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:plankslab-*-down-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 1}
+  }
+]

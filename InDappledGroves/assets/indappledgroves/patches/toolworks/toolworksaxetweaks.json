@@ -22,19 +22,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/choppingPropsByType",
-    "value": {
-    "*-copper": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-gold": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-silver": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-bismuthbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-tinbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-blackbronze": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-iron": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-meteoriciron": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*-steel": { "fellingMultiplier": 1.25, "splittingMod": 0.20 },
-		"*": { "fellingMultiplier": 1.25, "splittingMod": 0.15 }
-    },
+    "path": "/attributes/choppingProps",
+    "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.20 },
     "file": "toolworks:itemtypes/tool/axe.json",
     "side": "server"
   }

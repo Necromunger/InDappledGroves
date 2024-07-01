@@ -208,10 +208,10 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             switch (GetToolModeName(stack))
             {
-                case "chopping": return stack.Collectible.Attributes["choppingProps"]["splittingMod"].AsFloat();
-                case "sawing": return stack.Collectible.Attributes["sawingProps"]["sawingMod"].AsFloat();
-                case "hewing": return stack.Collectible.Attributes["hewingProps"]["hewingMod"].AsFloat();
-                case "planing": return stack.Collectible.Attributes["planingProps"]["planingMod"].AsFloat();
+                case "chopping": return stack.Collectible.Attributes["choppingProps"]["splittingMultiplier"].AsFloat();
+                case "sawing": return stack.Collectible.Attributes["sawingProps"]["sawingMultiplier"].AsFloat();
+                case "hewing": return stack.Collectible.Attributes["hewingProps"]["hewingMultiplier"].AsFloat();
+                case "planing": return stack.Collectible.Attributes["planingProps"]["planingMultiplier"].AsFloat();
                 default: return 1f;
             }
 

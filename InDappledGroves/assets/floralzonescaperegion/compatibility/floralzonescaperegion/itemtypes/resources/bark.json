@@ -1,5 +1,5 @@
 {
-	code: "bark",
+	"code": "bark",
 	"class": "idgbark",
 	"attributes": {
 		"handbookByType": {
@@ -13,7 +13,7 @@
 					]
 				},
 		"*-soaked": {
-			"groupBy":["bark-*-soaked"],
+			"groupBy":["floralzonescaperegion:bark-*-soaked"],
 				"extraSections": [
 					{
 						"title": "indappledgroves:item-handbooktitle-soakedbark",
@@ -23,61 +23,61 @@
 			}
 		}
 	},
-	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"]},
-	behaviorsByType: {
+	"creativeinventory": { "general": ["*"], "items": ["*"], "indappledgroves": ["*"]},
+	"behaviorsByType": {
 		"*": [
 			{ "name": "GroundStorable", "properties": { "layout": "Quadrants" } }
 		]
 	},
-	transitionablePropsByType: {
+	"transitionablePropsByType": {
 		"*-soaked": [
 			{
-				type: "Cure",
-				freshHours: { avg: 0 },
-				transitionHours: { avg: 24 },
-				transitionedStack: { type: "item", code: "floralzonescaperegion:bark-{bark}-dry"},
-				transitionRatio: 1
+				"type": "Cure",
+				"freshHours": { "avg": 0 },
+				"transitionHours": { "avg": 24 },
+				"transitionedStack": { "type": "item", "code": "floralzonescaperegion:bark-{bark}-dry"},
+				"transitionRatio": 1
 			}
 		]
 	},
-	variantgroups: [
-        { code: "bark", "loadFromProperties": "floralzonescaperegion:block/wood"},
+	"variantgroups": [
+        { "code": "bark", "loadFromProperties": "floralzonescaperegion:block/wood"},
 				{ "code": "state", "states": ["dry","soaked"]}
     ],
-	drawtype: "json",
-    shape: { base: "indappledgroves:item/resource/bark" },
-    textures: {
-        bark: { base: "floralzonescaperegion:block/wood/bark/{bark}" }
+	"drawtype": "json",
+    "shape": { "base": "indappledgroves:item/resource/bark" },
+    "textures": {
+        "bark": { "base": "floralzonescaperegion:block/wood/bark/{bark}" }
     },
-	maxstacksize: 64,
-	combustiblePropsByType: {
+	"maxstacksize": 64,
+	"combustiblePropsByType": {
 		"*-dry": {
-			burnTemperature: 800,
-			burnDuration: 8,
+			"burnTemperature": 800,
+			"burnDuration": 8,
 		}
 	},
-	guiTransform: {
-		translation: { x: 3, y: 4, z: 0 },
-		rotation: { x: -25, y: -44, z: -168 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 3.47
+	"guiTransform": {
+		"translation": { "x": 3, "y": 4, "z": 0 },
+		"rotation": { "x": -25, "y": -44, "z": -168 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 3.47
 	},
-	fpHandTransform: {
-		translation: { x: -0.05, y: 0.3, z: 0.1 },
-		rotation: { x: 17, y: -8, z: 14 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 2.21
+	"fpHandTransform": {
+		"translation": { "x": -0.05, "y": 0.3, "z": 0.1 },
+		"rotation": { "x": 17, "y": -8, "z": 14 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 2.21
 	},
-	tpHandTransform: {
-		translation: { x: -1, y: 0, z: -0.8 },
-		rotation: { x: 0, y: -86, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
-		scale: 0.57
+	"tpHandTransform": {
+		"translation": { "x": -1, "y": 0, "z": -0.8 },
+		"rotation": { "x": 0, "y": -86, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 0.57
 	},
-	groundTransform: {
-		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: 0, y: 0, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5299 },
-		scale: 3.5
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5299 },
+		"scale": 3.5
 	}
 }

@@ -63,7 +63,7 @@
     "op": "add",
     "path": "/attributes/choppingPropsbytype",
     "value": { 
-      "*-felling-*": {"fellingMultiplier": 1.25, "splittingMod": 0.15 }
+      "*-felling-*": {"fellingMultiplier": 1.25, "splittingMultiplier": 0.15 }
     },
     "file": "game:itemtypes/tool/axe-metal.json",
     "side": "server"

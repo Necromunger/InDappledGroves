@@ -3,9 +3,8 @@
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/workStationTransformsByType",
+    "path": "/attributes/workStationTransforms",
     "value": { 
-          "*-placed-*":{
             "idgChoppingBlockProps": {               
                 "idgChoppingBlockTransform": {
                 "translation": {
@@ -57,7 +56,6 @@
                   }
               }
             }
-          }
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
@@ -107,9 +105,8 @@
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes",
+    "path": "/attributes/workStationTransforms",
     "value": {
-        "workStationTransforms": {
           "idgChoppingBlockProps": {               
             "idgChoppingBlockTransform": {
             "translation": {
@@ -161,7 +158,6 @@
             }
           } 
         }
-      }
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
 	},
@@ -169,9 +165,8 @@
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/workStationTransformsByType",
+    "path": "/attributes/workStationTransforms",
     "value": { 
-          "*-placed-*":{
             "idgChoppingBlockProps": {               
                 "idgChoppingBlockTransform": {
                 "translation": {
@@ -223,7 +218,6 @@
                   }
               }
             }
-          }
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
