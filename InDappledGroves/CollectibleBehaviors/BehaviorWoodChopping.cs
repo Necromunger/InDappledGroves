@@ -58,32 +58,54 @@ namespace InDappledGroves
                         array[i].TexturePremultipliedAlpha = false;
                     }
                 }
-
                 return array;
             });
         }
 
+        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandling handling)
+        {
+            if(oldBlockPos != null && blockSel != null && oldBlockPos != blockSel.Position)
+            {
+                handHandling = EnumHandHandling.NotHandled;
+                handling = EnumHandling.PassThrough;
+            }
+            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
+
+        }
+        public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, ref EnumHandling handling)
+        {
+            return base.OnHeldAttackStep(secondsPassed, slot, byEntity, blockSelection, entitySel, ref handling);
+        }
+
+        public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, ref EnumHandling handling)
+        {
+            base.OnHeldAttackStop(secondsPassed, slot, byEntity, blockSelection, entitySel, ref handling);
+        }
+
+        public override bool OnHeldAttackCancel(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, EnumItemUseCancelReason cancelReason, ref EnumHandling handling)
+        {
+            return base.OnHeldAttackCancel(secondsPassed, slot, byEntity, blockSelection, entitySel, cancelReason, ref handling);
+        }
+
         #region TreeFelling
         public override float OnBlockBreaking(IPlayer player, BlockSelection blockSel, ItemSlot itemslot, float remainingResistance, float dt, int counter, ref EnumHandling handled)
-        {
-            if(oldBlockPos == null) { oldBlockPos = blockSel.Position; };
+        {   
             BlockPos pos = blockSel.Position;
-            string[] woods = new[] {"log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection", "treestump"};
-            if (oldBlockPos != blockSel.Position || api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
-            {
-                api.Logger.Debug("blockSel is " + blockSel.Position.ToString() + ". Log Variant is placed: " + (api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed")
-                + ". Woods contains " + api.World.BlockAccessor.GetBlock(pos).FirstCodePart().ToString() + " is " + (woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart().ToString())));
-                oldBlockPos = null;
-                handled = EnumHandling.PassThrough;
-                return base.OnBlockBreaking(player, blockSel, itemslot, remainingResistance, dt, counter, ref handled);
-            };
-
+            if (oldBlockPos == null) { oldBlockPos = pos; };
             ITreeAttribute tempAttr = itemslot.Itemstack.TempAttributes;
             int posx = tempAttr.GetInt("lastposX", -1);
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
-            
             float treeResistance = tempAttr.GetFloat("treeResistance", 1);
+
+            string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow", "logsection" };
+            if (oldBlockPos != pos || api.World.BlockAccessor.GetBlock(pos).Variant["type"] == "placed" || !woods.Contains(api.World.BlockAccessor.GetBlock(pos).FirstCodePart()))
+            {
+                oldBlockPos = pos;
+                api.Logger.Debug(api.Side.ToString() + " registered a blockPos change from " + oldBlockPos.ToString() + " to " + pos.ToString() + " at counter " + counter.ToString());
+                api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
+                return remainingResistance;
+            };
 
             if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
             {
@@ -94,7 +116,7 @@ namespace InDappledGroves
                 treeResistance = (float)baseResistance/IDGTreeConfig.Current.TreeFellingDivisor;
                 if (collObj.ToolTier < woodTier - 3)
                 {
-                    handled = EnumHandling.Handled;
+                    //handled = EnumHandling.Handled;
                     return treeResistance * 1.25f;
                 }
                 tempAttr.SetFloat("treeResistance", treeResistance);
@@ -108,113 +130,13 @@ namespace InDappledGroves
             tempAttr.SetInt("lastposY", pos.Y);
             tempAttr.SetInt("lastposZ", pos.Z);
             float treeDmg = treeResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)) * counter / 10) ;
+            //api.Logger.Debug("collObj is " + collObj.Code.ToString() + " and its mining speed is " + collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player));
             remainingResistance = treeDmg;
-            if (remainingResistance > 0)
-            {
-                api.Logger.Debug("Side is " + api.Side + ". treeDmg now greater than zero = " + treeDmg.ToString());
-                handled = EnumHandling.PassThrough;
-                return treeDmg;
-            }
-            api.Logger.Debug("Side is " + api.Side + "treeDmg now below zero = " + treeDmg.ToString());
+            api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
             handled = EnumHandling.Handled;
-            return treeDmg;
-            
-
-            api.Logger.Debug(treeDmg.ToString());
-            
+            return treeDmg;            
         }
-
-        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
-        {
-            
-
-            IPlayer byPlayer = null;
-            if (byEntity is EntityPlayer player) byPlayer = byEntity.World.PlayerByUid(player.PlayerUID);
-
-            WeatherSystemBase modSystem = this.api.ModLoader.GetModSystem<WeatherSystemBase>(true);
-            double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
-            float num;
-            int woodTier;
-
-            Stack<BlockPos> foundPositions = this.FindTree(world, blockSel.Position, out num, out woodTier);
-
-            if (foundPositions.Count == 0)
-            {
-                bhHandling = EnumHandling.Handled;
-                return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
-            }
-
-            bool damageable = collObj.DamagedBy != null && collObj.DamagedBy.Contains(EnumItemDamageSource.BlockBreaking);
-            float leavesMul = 1f;
-            float leavesBranchyMul = 0.8f;
-            int blocksbroken = 0;
-
-            bool isStump = api.World.BlockAccessor.GetBlock(blockSel.Position).FirstCodePart() == "treestump";
-            while (foundPositions.Count > 0)
-            {
-                BlockPos pos = foundPositions.Pop();
-                blocksbroken++;
-
-                Block block = world.BlockAccessor.GetBlock(pos, 0);
-                bool isLog = block.BlockMaterial == EnumBlockMaterial.Wood;
-                bool isBranchy = block.Code.Path.Contains("branchy");
-                bool isLeaves = block.BlockMaterial == EnumBlockMaterial.Leaves;
-
-                world.BlockAccessor.BreakBlock(pos, byPlayer, isLeaves ? leavesMul : (isBranchy ? leavesBranchyMul : 1));
-
-                if (world.Side == EnumAppSide.Client)
-                {
-                    dustParticles.Color = block.GetRandomColor(world.Api as ICoreClientAPI, pos, BlockFacing.UP);
-                    dustParticles.Color |= 255 << 24;
-                    dustParticles.MinPos.Set(pos.X, pos.Y, pos.Z);
-
-                    if (block.BlockMaterial == EnumBlockMaterial.Leaves)
-                    {
-                        dustParticles.GravityEffect = (float)world.Rand.NextDouble() * 0.1f + 0.01f;
-                        dustParticles.ParticleModel = EnumParticleModel.Quad;
-                        dustParticles.MinVelocity.Set(-0.4f + 4 * (float)windspeed, -0.4f, -0.4f);
-                        dustParticles.AddVelocity.Set(0.8f + 4 * (float)windspeed, 1.2f, 0.8f);
-
-                    }
-                    else
-                    {
-                        dustParticles.GravityEffect = 0.8f;
-                        dustParticles.ParticleModel = EnumParticleModel.Cube;
-                        dustParticles.MinVelocity.Set(-0.4f + (float)windspeed, -0.4f, -0.4f);
-                        dustParticles.AddVelocity.Set(0.8f + (float)windspeed, 1.2f, 0.8f);
-                    }
-
-
-                    world.SpawnParticles(dustParticles);
-                }
-
-
-                if (damageable && isLog)
-                {
-                    collObj.DamageItem(world, byEntity, itemslot);
-                }
-
-
-                if (itemslot.Itemstack == null)
-                {
-                    bhHandling = EnumHandling.PreventDefault;
-                    return true;
-                }
-
-                if (isLeaves && leavesMul > 0.03f) leavesMul *= 0.85f;
-                if (isBranchy && leavesBranchyMul > 0.015f) leavesBranchyMul *= 0.6f;
-            }
-
-            if (blocksbroken > 35)
-            {
-                Vec3d pos = blockSel.Position.ToVec3d().Add(0.5, 0.5, 0.5);
-                api.World.PlaySoundAt(new AssetLocation("sounds/effect/treefell"), pos.X, pos.Y, pos.Z, byPlayer, false, 32, GameMath.Clamp(blocksbroken / 100f, 0.25f, 1));
-            }
-
-            bhHandling = EnumHandling.Handled;
-            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
-        }
-
+        
         public Stack<BlockPos> FindTree(IWorldAccessor world, BlockPos startPos, out float resistance, out int woodTier)
         {
             Queue<Vec4i> queue = new();

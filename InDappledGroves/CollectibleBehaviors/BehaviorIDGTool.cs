@@ -13,7 +13,7 @@ using static OpenTK.Graphics.OpenGL.GL;
 
 namespace InDappledGroves.CollectibleBehaviors
 {
-
+    
     class BehaviorIDGTool : CollectibleBehavior, IIDGTool
     {
 
@@ -185,15 +185,11 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             if (recipeComplete)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                 slot.Itemstack.Collectible.DamageItem(api.World, byEntity, slot, recipe.BaseToolDmg);
                 byEntity.StopAnimation(workAnimation);
             }
             if (blockSel != null)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
                 api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
                 byEntity.StopAnimation(workAnimation);
             }
@@ -241,8 +237,6 @@ namespace InDappledGroves.CollectibleBehaviors
             int j = recipe.Output.StackSize;
             for (int i = j; i > 0; i--)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
                 api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
         }
@@ -252,8 +246,6 @@ namespace InDappledGroves.CollectibleBehaviors
             int j = stack.StackSize;
             for (int i = j; i > 0; i--)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
                 capi.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
         }
@@ -265,8 +257,6 @@ namespace InDappledGroves.CollectibleBehaviors
             if (recipes == null) return null;
             for (int j = 0; j < recipes.Count; j++)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 {
                     return recipes[j];
@@ -283,8 +273,6 @@ namespace InDappledGroves.CollectibleBehaviors
 
             for (int j = 0; j < recipes.Count; j++)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //if (recipes[j].Matches(api.World, slots))
                 if (recipes[j].Matches(capi.World, slots))
                 {
                     return true;
@@ -303,8 +291,6 @@ namespace InDappledGroves.CollectibleBehaviors
 
             for (int j = 0; j < recipes.Count; j++)
             {
-                //TODO: Figure Out This Process. Is it ok for it to only be calling the client? Seems suspicious.
-                //if (recipes[j].Matches(api.World, slot) && recipes[j].ToolMode == curTMode)
                 if (recipes[j].Matches(capi.World, slot) && recipes[j].ToolMode == curTMode)
                 {
                     return recipes[j];
