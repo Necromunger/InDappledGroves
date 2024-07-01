@@ -64,11 +64,11 @@ namespace InDappledGroves
 
         public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            if(oldBlockPos != null && blockSel != null && oldBlockPos != blockSel.Position)
-            {
-                handHandling = EnumHandHandling.NotHandled;
-                handling = EnumHandling.PassThrough;
-            }
+            //if(oldBlockPos != null && blockSel != null && oldBlockPos != blockSel.Position)
+            //{
+            //    handHandling = EnumHandHandling.NotHandled;
+            //    handling = EnumHandling.PassThrough;
+            //}
             base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
 
         }
@@ -104,6 +104,7 @@ namespace InDappledGroves
                 oldBlockPos = pos;
                 api.Logger.Debug(api.Side.ToString() + " registered a blockPos change from " + oldBlockPos.ToString() + " to " + pos.ToString() + " at counter " + counter.ToString());
                 api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
+                handled = EnumHandling.PreventDefault;
                 return remainingResistance;
             };
 
@@ -133,7 +134,7 @@ namespace InDappledGroves
             //api.Logger.Debug("collObj is " + collObj.Code.ToString() + " and its mining speed is " + collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player));
             remainingResistance = treeDmg;
             api.Logger.Debug(api.Side.ToString() + " remaining resistance is " + remainingResistance);
-            handled = EnumHandling.Handled;
+            handled = EnumHandling.PreventDefault;
             return treeDmg;            
         }
         
@@ -263,6 +264,34 @@ namespace InDappledGroves
             }
             return foundPositions;
         }
+
+
+        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
+        {
+            //IPlayer byPlayer = null;
+            //if (byEntity is EntityPlayer)
+            //{
+            //    byPlayer = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+            //}
+
+            if (oldBlockPos != null && oldBlockPos != blockSel.Position) { bhHandling = EnumHandling.PreventDefault; return false; }
+
+            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
+        }
+
+
+        //public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier = 1f, ref EnumHandling bhHandling)
+        //{
+        //    IPlayer byPlayer = null;
+        //    if (byEntity is EntityPlayer)
+        //    {
+        //        byPlayer = byEntity.World.PlayerByUid(((EntityPlayer)byEntity).PlayerUID);
+        //    }
+        //    if (oldBlockPos != null && oldBlockPos != blockSel.Position) { return false; }
+
+        //    return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
+        //}
+
 
         //Particle Handlers
         private SimpleParticleProperties InitializeWoodParticles()
