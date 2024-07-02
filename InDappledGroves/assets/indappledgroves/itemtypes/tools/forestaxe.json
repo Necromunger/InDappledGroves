@@ -1,6 +1,6 @@
 {
 	code: "forestaxe",
-	class: "game:itemaxe",
+	class: "ItemAxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "indappledgroves": ["*"]},
 	attributes: {
 		"workanimation": "axesplit-fp",

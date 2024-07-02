@@ -1,6 +1,6 @@
 {
 	code: "grubaxe",
-	class: "itemaxe",
+	class: "ItemAxe",
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"], "indappledgroves": ["*"]},
 	attributes: {
 		handbook: {

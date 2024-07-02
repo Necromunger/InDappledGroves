@@ -1,4 +1,7 @@
-﻿1-19-0.6.0-dev.4
+﻿1-19-0.0.6.1-dev.4
+	- Quick patchfix for specialty axes not chopping trees properly.
+
+1-19-0.6.0-dev.4
 	- Fixed bug where switching blocks while chopping a tree caused it to fall instantly.(For realsies, I promise)
 	- Finally implemented some axes being better at felling trees than others.
 	- Fixed Wildcraft and other modded trees not felling properly.

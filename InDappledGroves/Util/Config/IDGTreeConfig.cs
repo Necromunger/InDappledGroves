@@ -35,12 +35,12 @@ namespace InDappledGroves.Util.Config
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa", 
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus", 
                 "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum", 
-                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja"};
+                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri"};
             defaultConfig.woodTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa",
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus", 
                 "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum",
-                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja"};
+                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri"};
 
             return defaultConfig;
         }

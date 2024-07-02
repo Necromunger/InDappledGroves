@@ -25,8 +25,45 @@
             "z": 0.5
             }
           }
+        },
+        "idgSawBuckProps": {               
+          "idgSawBuckTransform": {
+            "translation": {
+            "westx": 1,
+            "westy": 0.5,
+            "westz": 0.5,
+            "southx": 0.5,
+            "southy": 0.5,
+            "northx": 0.5,
+            "northy": 0.5,
+            "northz": 1,
+            "eastx": 1,
+            "easty": 0.5,
+            "eastz": 0.5,
+            "scale": 0.95
+            },
+            "rotation": {
+            "westx": 0,
+            "westy": 0,
+            "westz": 0,
+            "southx": 0,
+            "southy": 0,
+            "southz": 45,
+            "northx": 0,
+            "northy": -180,
+            "northz": 45,
+            "eastx": 45,
+            "easty": 90,
+            "eastz": 0,
+            },
+            "origin": {
+            "westx": 0.5,
+            "westy": 0,
+            "westz": 0.5
+            }
+          }
         }
-      }
+               }
     }
   }
 ]
