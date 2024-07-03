@@ -74,6 +74,10 @@ namespace InDappledGroves.Util.WorldGen
             foreach (var variant in woods)
             {
                 treeTypes.Add($"log-grown-" + variant + "-ud");
+                treeTypes.Add($"logsection-grown-" + variant + "-ne-ud");
+                treeTypes.Add($"logsection-grown-" + variant + "-nw-ud");
+                treeTypes.Add($"logsection-grown-" + variant + "-sw-ud");
+                treeTypes.Add($"logsection-grown-" + variant + "-se-ud");
             }
         }
 
@@ -82,6 +86,10 @@ namespace InDappledGroves.Util.WorldGen
             foreach (var variant in stumps)
             {
                 stumpTypes.Add($"log-grown-" + variant + "-ud");
+                stumpTypes.Add($"logsection-grown-" + variant + "-ne-ud");
+                stumpTypes.Add($"logsection-grown-" + variant + "-nw-ud");
+                stumpTypes.Add($"logsection-grown-" + variant + "-sw-ud");
+                stumpTypes.Add($"logsection-grown-" + variant + "-se-ud");
             }
         }
 
@@ -121,9 +129,12 @@ namespace InDappledGroves.Util.WorldGen
             
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             var stumpType = "pine";
-            if (treeBlock.FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump" || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log") return false;
+            if (treeBlock.FirstCodePart() == "treestump" 
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump" 
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log" 
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "logsection") return false;
 
-            if (treeBlock.FirstCodePart() == "log" && blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() != "treestump")
+            if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "logsection" )
             {   
                 stumpType = treeBlock.FirstCodePart(2);
             }

@@ -42,12 +42,17 @@ namespace InDappledGroves.Util.HarmonyPatches
             {
                 thisBlockAccessor = blockAccessor;
             }
-            if (depth == 0 && ((!wideTrunk && iteration == 1) || (wideTrunk && iteration <= 3)))
+            if (depth == 0 && ((!wideTrunk && iteration == 1) || (wideTrunk && TreeBase.Count < 4)))
             {
-                if (((wideTrunk && TreeBase.Count < 5 || !wideTrunk && TreeBase.Count < 1)))
+                if (((wideTrunk && TreeBase.Count < 4 || !wideTrunk && TreeBase.Count < 1)))
                 {
                     Block block = blockAccessor.GetBlock(blockId);
-                    if (block.FirstCodePart() == "log" || block.FirstCodePart() == "logsection")
+                    if (block.FirstCodePart() == "log")
+                    {
+                        TreeBase[currentPos.Copy()] = block;
+                    }
+
+                    if (block.FirstCodePart() == "logsection" && (TreeBase.Count == 0 || currentPos.Y == TreeBase.First().Key.Y))
                     {
                         TreeBase[currentPos.Copy()] = block;
                     }
