@@ -97,18 +97,18 @@ namespace InDappledGroves.Util.WorldGen
         {
             if (treeBaseDict.Count != 0)
             {
-                    foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
+                foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
+                {
+
+                    if (IsStumpLog(entry.Value))
                     {
 
-                        if (IsStumpLog(entry.Value))
-                        {
-
-                            PlaceTreeStump(ba, entry.Key);
-                        }
+                        PlaceTreeStump(ba, entry.Key);
                     }
+                }
             }
-                float randNumb = (float)sapi.World.Rand.NextDouble();
-                if (!sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
+            float randNumb = (float)sapi.World.Rand.NextDouble();
+            if (!sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, treeBaseDict.Last().Key);
         }
 
 
@@ -126,22 +126,39 @@ namespace InDappledGroves.Util.WorldGen
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
         private bool PlaceTreeStump(IBlockAccessor blockAccessor, BlockPos pos)
         {
-            
-            var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
-            var stumpType = "pine";
-            if (treeBlock.FirstCodePart() == "treestump" 
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump" 
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log" 
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "logsection") return false;
 
+            var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+            
+            if (treeBlock.FirstCodePart() == "treestump"
+                || treeBlock.FirstCodePart() == "treestumpsection"
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump"
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log"
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "logsection"
+                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestumpsection") return false;
+
+            string stumpType = treeBlock.FirstCodePart(2);
             if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "logsection" )
             {   
-                stumpType = treeBlock.FirstCodePart(2);
+               stumpType = treeBlock.FirstCodePart(2);
             }
 
-            var withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
+            string withPath;
+            if (treeBlock.FirstCodePart() == "logsection")
+            {
+                withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestumpsection-grown-" + stumpType + "-" + treeBlock.Variant["segment"];
+            } else
+            {
+                withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
+            }
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
+            
+            if(blockAccessor.GetBlock(pos.DownCopy()).BlockId == 0)
+            {
+                //TODO: Quality Test This
+                return(withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos.DownCopy(), BlockFacing.UP, null));
+                
+            }
             blockAccessor.SetBlock(0, pos);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
             {
@@ -153,18 +170,23 @@ namespace InDappledGroves.Util.WorldGen
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
         private BlockPos PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
         {
-
             //consider moving it upwards
             var upCount = sapi.World.Rand.Next(2, 8);
             var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
 
+
             if (upCandidateBlock.FirstCodePart() == "log")
-            { pos = pos.UpCopy(upCount); }
+            { 
+                pos = pos.UpCopy(upCount); 
+            }
 
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+
+           
             var woodType = "pine";
 
-            if (treeBlock.FirstCodePart() == "log")
+            if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "logsection" || treeBlock.FirstCodePart() == "treestump"
+                || treeBlock.FirstCodePart() == "treestumpsection")
             {
                 woodType = treeBlock.FirstCodePart(2);
             }

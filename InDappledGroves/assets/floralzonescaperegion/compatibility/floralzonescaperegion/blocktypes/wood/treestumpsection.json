@@ -1,0 +1,92 @@
+{
+	code: "treestumpsection",
+	"class": "idgblockstump",
+	"__comment": "BlockLog contains only contains code for OnPickBlock",
+	behaviorsByType: {
+		"*-grown-*": [{name: "PushEventOnBlockBroken",	properties: {eventName: "testForDecay"}}, { name: "MyceliumHost" }],
+		"*": [{ name: "MyceliumHost" }]
+	},
+	variantgroups: [
+		{ code: "type", states: ["grown", "placed"] },
+		{ code: "wood", states: ["afrocarpusfalcatus"] },
+    { code: "segment", states: ["ne", "se", "sw", "nw"] },
+	],
+	creativeinventory: { "general": ["treestumpsection-grown-*-ne"], "flora": ["treestumpsection-grown-*-ne"], "indappledgroves": ["treestumpsection-grown-*-ne"] },
+	shape: {base: "indappledgroves:block/wood/treestump-section-{segment}"},
+	"sidesolid": {
+		"all": "false"
+	},
+	"sideopaque": {
+		"all": "false"
+	},
+	drawtype: "json",
+	blockmaterial: "Wood",
+	requiredMiningTier: 1,
+	attributes: 
+		{
+				handbook: {
+					excludeByType: {
+						"*-placed-*": true
+				}
+		},
+		treeFellingGroupCodeByType: {
+			"treestumpsection-grown-*": "{wood}"
+		},
+		treeFellingGroupSpreadIndexByType: {
+		"*": 4
+		},
+		preventsDecayByType: {
+			"treestumpsection-grown-*": true
+		}
+	},
+	textures: {
+		"bark": { base: "floralzonescaperegion:block/wood/bark/{wood}-2x2" },
+		"wood": { base: "floralzonescaperegion:block/wood/treetrunk/{wood}-2x2" },
+		"inside": { base: "floralzonescaperegion:block/wood/debarked/{wood}-2x2" },
+
+		"north": { base: "floralzonescaperegion:block/wood/treetrunk/{wood}" },
+		"up": { base: "floralzonescaperegion:block/wood/treetrunk/{wood}" },
+		"down": { base: "floralzonescaperegion:block/wood/bark/{wood}" },
+		"east": { base: "floralzonescaperegion:block/wood/bark/{wood}" },
+		"south": { base: "floralzonescaperegion:block/wood/bark/{wood}" },
+		"west": { base: "floralzonescaperegion:block/wood/bark/{wood}" },
+
+		
+		"inside-north": { base: "floralzonescaperegion:block/wood/debarked/{wood}" },
+		"inside-east": { base: "floralzonescaperegion:block/wood/debarked/{wood}" },
+		"inside-south": { base: "floralzonescaperegion:block/wood/debarked/{wood}" },
+		"inside-west": { base: "floralzonescaperegion:block/wood/debarked/{wood}" }
+
+	},
+	replaceable: 500,
+	sounds: {
+		"place": "game:block/planks",
+		"walk": "game:walk/wood",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
+		byTool: {
+			"Axe": { hit: "game:block/chop", break: "game:block/planks" }
+		}
+	},
+	drops: [
+		{ type: "block", code: "floralzonescaperegion:log-placed-{wood}-ud", quantity: { avg: 1 }  }
+	],
+	combustiblePropsByType: {
+		"*": {
+			burnTemperature: 800,
+			burnDuration: 72
+		}
+	},
+	"resistanceByType": {
+		"*-afrocarpusfalcatus-*": 118.7,
+		"*": 33.4
+    },
+	maxStackSize: 16,
+	materialDensity: 700,
+	heldTpIdleAnimation: "holdbothhandslarge", heldTpUseAnimation: "twohandplaceblock",
+	tpHandTransform: {
+		translation: { x: -1.23, y: -0.91, z: -0.8 },
+		rotation: { x: -2, y: 25, z: -78 },
+		scale: 0.4
+	}
+}

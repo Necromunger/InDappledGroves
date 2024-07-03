@@ -2,6 +2,10 @@
 	- Got skillItems rendering again on all tools with BehaviorIDGTool
 	- Fixed issue with snow texture not rendering on logslabs
 	- Fixed copper axe not working on chopping blocks/in-world recipes.
+	- Fixed 2x2 trees generating without stumps
+	- Added sectional stumps for appropriate trees
+	- Attempted to fix stumps floating above blocks of air. It's a proof of concept patch, rather than a full fix.
+
 
 
 1-19-0.0.6.1-dev.4
