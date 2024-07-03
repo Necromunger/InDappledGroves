@@ -46,7 +46,7 @@ namespace InDappledGroves
                         new SkillItem
                         {
                             Code = new AssetLocation("chopping"),
-                            Name = Lang.Get("Chopping", Array.Empty<object>())
+                            Name = Lang.Get("Chop", Array.Empty<object>())
                         }
                 };
 
@@ -55,7 +55,6 @@ namespace InDappledGroves
                     for (int i = 0; i < array.Length; i++)
                     {
                         array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        array[i].TexturePremultipliedAlpha = false;
                     }
                 }
                 return array;
@@ -120,7 +119,6 @@ namespace InDappledGroves
             float treeDmg = remainingResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)*treeFellingModifier) * dt);
             remainingResistance = treeDmg;
 
-            api.Logger.Debug("Remaining Resistance is " + remainingResistance.ToString() + " tool mining speed is " + collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player));
             handled = EnumHandling.PreventDefault;
             return remainingResistance;            
         }

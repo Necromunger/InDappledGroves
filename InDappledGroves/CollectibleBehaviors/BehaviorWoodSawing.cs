@@ -52,7 +52,7 @@ namespace InDappledGroves.CollectibleBehaviors
                         new SkillItem
                         {
                             Code = new AssetLocation("sawing"),
-                            Name = Lang.Get("Sawing", Array.Empty<object>())
+                            Name = Lang.Get("Saw", Array.Empty<object>())
                         }
                 };
 
@@ -61,7 +61,6 @@ namespace InDappledGroves.CollectibleBehaviors
                     for (int i = 0; i < array.Length; i++)
                     {
                         array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        array[i].TexturePremultipliedAlpha = false;
                     }
                 }
 

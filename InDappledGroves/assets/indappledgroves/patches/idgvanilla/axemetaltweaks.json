@@ -1,90 +1,71 @@
 //Metal Axes
 [
-  {
-    "op": "add",
-    "path": "/attributes",
-    "value": {"handbook": {"excludeByType": {"*-tinbronze": true}}}, 
-    "file": "game:itemtypes/toolhead/axehead.json",
-    "side": "server",
-    "dependsOn": [{"modid": "toolworks", "invert": true}]
-  },
-  {
-    "op": "replace",
-    "path": "/ingredient/allowedVariants",
-    "value": ["copper"],
-    "file": "game:recipes/smithing/axe.json",
-    "side": "server"
-  },
-  {
-    "op": "replace",
-    "path": "/variantgroups/0/states",
-    "value": ["scrap", "bearded", "battle", "bardiche", "double", "felling"],
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "replace",
-    "path": "/variantgroups/1/states",
-    "value": ["scrap", "copper", "ruined"],
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/behaviors/-",
-    "value": {"name": "idgtool"},
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes",
-    "value": {"workanimation": "axesplit-fp"},
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "replace",
-    "path": "/behaviors",
-    "value": [{"name": "woodsplitter"}, { 
-		    name: "GroundStorable",
-		    properties: {
-			    layout: 'WallHalves',
-			    wallOffY: 1,
-			    sprintKey: true,
-			    selectionBox: { x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.1, z2: 1 },
-			    collisionBox: { x1: 0, y1: 0, z1: 0, x2: 0, y2: 0, z2: 0 },
-		    }
-	  }],
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/choppingPropsbytype",
-    "value": { 
-      "*-felling-*": {"fellingMultiplier": 1.25, "splittingMultiplier": 0.15 }
+    {
+      "op": "replace",
+      "path": "/ingredient/allowedVariants",
+      "value": ["copper"],
+      "file": "game:recipes/smithing/axe.json",
+      "side": "server"
     },
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/groundStorageTransform",
-    "value": 
-      { 
-          translation: { x: 0.02, y: 0.32, z: -0.24 },
-			    rotation: { x: 40, y: 99, z: -95 }
-		  },
-    "file": "game:itemtypes/tool/axe-metal.json",
-    "side": "server"
-  },
-  {
-    "op": "replace",
-    "path": "/variantgroups/0/states",
-    "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
-    "file": "game:itemtypes/toolhead/axehead.json",
-    "side": "server",
-    "dependsOn": [{"modid": "toolworks", "invert": true}]
-  }
+    {
+      "op": "replace",
+      "path": "/variantgroups/0/states",
+      "value": ["scrap", "bearded", "battle", "bardiche", "double", "felling"],
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "replace",
+      "path": "/variantgroups/1/states",
+      "value": ["scrap", "copper", "ruined"],
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "replace",
+      "path": "/variantgroups/0/states",
+      "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
+      "file": "game:itemtypes/toolhead/axehead.json",
+      "side": "server",
+      "dependsOn": [{"modid": "toolworks", "invert": true}]
+    },
+    {
+      "op": "add",
+      "path": "/behaviors/-",
+      "value": {"name": "indappledidgtool"},
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "add",
+      "path": "/behaviors/-",
+      "value": {"name": "woodsplitter"},
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "add",
+      "path": "/attributes",
+      "value": {"workanimation": "axesplit-fp"},
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "add",
+      "path": "/attributes/choppingProps",
+      "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.15 },
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    },
+    {
+      "op": "add",
+      "path": "/attributes/groundStorageTransform",
+      "value": 
+        { 
+            translation: { x: 0.02, y: 0.32, z: -0.24 },
+			      rotation: { x: 40, y: 99, z: -95 }
+		    },
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server"
+    }
 ]

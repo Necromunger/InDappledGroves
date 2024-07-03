@@ -23,7 +23,7 @@
 		},
 		"choppingProps": { "fellingMultiplier": 1.15, "splittingMultiplier": 0.26 }
 	},
-		behaviors: [{
+	behaviors: [{
 		name: "GroundStorable",
 		properties: {
 			layout: 'WallHalves',

@@ -41,16 +41,6 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             this.api = api;
             this.capi = (api as ICoreClientAPI);
-            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgplaneInteractions", () =>
-            //{
-            //    return new WorldInteraction[] {
-            //        new WorldInteraction()
-            //            {
-            //                ActionLangCode = "indappledgroves:itemhelp-tool-planewood",
-            //                MouseButton = EnumMouseButton.Right
-            //            },
-            //        };
-            //});
 
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgPlaningModes", delegate
             {
@@ -61,7 +51,7 @@ namespace InDappledGroves.CollectibleBehaviors
                         new SkillItem
                         {
                             Code = new AssetLocation("planing"),
-                            Name = Lang.Get("Planing", Array.Empty<object>())
+                            Name = Lang.Get("Plane", Array.Empty<object>())
                         }
                 };
 
@@ -70,7 +60,6 @@ namespace InDappledGroves.CollectibleBehaviors
                     for (int i = 0; i < array.Length; i++)
                     {
                         array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        array[i].TexturePremultipliedAlpha = false;
                     }
                 }
 

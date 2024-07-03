@@ -80,7 +80,7 @@
 					"bark": {"base": "floralzonescaperegion:block/wood/bark/{wood}" },
 					"bark2": {"base": "floralzonescaperegion:block/wood/bark/{wood}" },
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
-					"snowcover": { "base": "game:block/snow/normal1" }
+					"snowcover": { "base": "game:block/liquid/snow/normal1" }
 					},
 		"*-debarked-*": {
 					"all": { "base": "floralzonescaperegion:block/wood/treetrunk/{wood}" },
@@ -88,7 +88,7 @@
 					"bark": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
 					"bark2": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
-					"snowcover": { "base": "game:block/snow/normal1" }
+					"snowcover": { "base": "game:block/liquid/snow/normal1" }
 		}
 	},
 	"sideSolidOpaqueAoByType": {

@@ -37,17 +37,6 @@ namespace InDappledGroves.CollectibleBehaviors
             this.api = api;
             this.capi = (api as ICoreClientAPI);
 
-            //interactions = ObjectCacheUtil.GetOrCreate(api, "idgadzeInteractions", () =>
-            //{
-            //    return new WorldInteraction[] {
-            //        new WorldInteraction()
-            //            {
-            //                ActionLangCode = "indappledgroves:itemhelp-adze-hewwood",
-            //                MouseButton = EnumMouseButton.Right
-            //            },
-            //        };
-            //});
-
             this.toolModes = ObjectCacheUtil.GetOrCreate<SkillItem[]>(api, "idgAdzeModes", delegate
             {
 
@@ -57,7 +46,7 @@ namespace InDappledGroves.CollectibleBehaviors
                         new SkillItem
                         {
                             Code = new AssetLocation("hewing"),
-                            Name = Lang.Get("Hewing", Array.Empty<object>())
+                            Name = Lang.Get("Hew", Array.Empty<object>())
                         }
                 };
 
@@ -66,7 +55,6 @@ namespace InDappledGroves.CollectibleBehaviors
                     for (int i = 0; i < array.Length; i++)
                     {
                         array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
-                        array[i].TexturePremultipliedAlpha = false;
                     }
                 }
 

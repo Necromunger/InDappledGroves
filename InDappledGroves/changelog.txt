@@ -1,4 +1,10 @@
-﻿1-19-0.0.6.1-dev.4
+﻿1-19-0.0.6.2-dev.4
+	- Got skillItems rendering again on all tools with BehaviorIDGTool
+	- Fixed issue with snow texture not rendering on logslabs
+	- Fixed copper axe not working on chopping blocks/in-world recipes.
+
+
+1-19-0.0.6.1-dev.4
 	- Quick patchfix for specialty axes not chopping trees properly.
 
 1-19-0.6.0-dev.4

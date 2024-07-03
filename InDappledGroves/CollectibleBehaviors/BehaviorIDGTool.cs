@@ -8,6 +8,7 @@ using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
+using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 using static OpenTK.Graphics.OpenGL.GL;
 
@@ -22,8 +23,7 @@ namespace InDappledGroves.CollectibleBehaviors
             base.OnLoaded(api);
             this.api = api as ICoreAPI;
             capi = this.api as ICoreClientAPI;
-            sapi = this.api as ICoreServerAPI;
-            //toolModes = BuildSkillList();
+            toolModes = BuildSkillList();
         }
 
         public BehaviorIDGTool(CollectibleObject collobj) : base(collobj)
@@ -57,6 +57,12 @@ namespace InDappledGroves.CollectibleBehaviors
                 }
             }
             return skillList.ToArray();
+        }
+
+        public override SkillItem[] GetToolModes(ItemSlot slot, IClientPlayer forPlayer, BlockSelection blockSel)
+        {
+
+            return BuildSkillList();
         }
 
         public string GetToolModeName(ItemStack stack)
