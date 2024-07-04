@@ -28,6 +28,7 @@ namespace InDappledGroves.Util.WorldGen
 
         public override void Start(ICoreAPI api)
         {
+            ICoreAPI coreApi = api;
             sapi = api as ICoreServerAPI;
             capi = api as ICoreClientAPI;
             base.Start(api);
@@ -103,7 +104,7 @@ namespace InDappledGroves.Util.WorldGen
                     if (IsStumpLog(entry.Value))
                     {
 
-                        PlaceTreeStump(ba, entry.Key);
+                        PlaceTreeStump(ba, entry);
                     }
                 }
             }
@@ -124,17 +125,17 @@ namespace InDappledGroves.Util.WorldGen
         }
 
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
-        private bool PlaceTreeStump(IBlockAccessor blockAccessor, BlockPos pos)
+        private bool PlaceTreeStump(IBlockAccessor blockAccessor, KeyValuePair<BlockPos, Block> posPair)
         {
 
-            var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+            var treeBlock = posPair.Value;
             
             if (treeBlock.FirstCodePart() == "treestump"
                 || treeBlock.FirstCodePart() == "treestumpsection"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "logsection"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestumpsection") return false;
+                || blockAccessor.GetBlock(posPair.Key.DownCopy(), 0).FirstCodePart() == "treestump"
+                || blockAccessor.GetBlock(posPair.Key.DownCopy(), 0).FirstCodePart() == "log"
+                || blockAccessor.GetBlock(posPair.Key.DownCopy(), 0).FirstCodePart() == "logsection"
+                || blockAccessor.GetBlock(posPair.Key.DownCopy(), 0).FirstCodePart() == "treestumpsection") return false;
 
             string stumpType = treeBlock.FirstCodePart(2);
             if (treeBlock.FirstCodePart() == "log" || treeBlock.FirstCodePart() == "logsection" )
@@ -153,14 +154,14 @@ namespace InDappledGroves.Util.WorldGen
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);
             
-            if(blockAccessor.GetBlock(pos.DownCopy()).BlockId == 0)
+            if(blockAccessor.GetBlock(posPair.Key.DownCopy()).BlockId == 0 && withBlock.TryPlaceBlockForWorldGen(blockAccessor, posPair.Key.DownCopy(), BlockFacing.UP, null))
             {
                 //TODO: Quality Test This
-                return(withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos.DownCopy(), BlockFacing.UP, null));
+                return true;
                 
             }
-            blockAccessor.SetBlock(0, pos);
-            if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
+            blockAccessor.SetBlock(0, posPair.Key);
+            if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, posPair.Key, BlockFacing.UP, null))
             {
                 return true;
             }

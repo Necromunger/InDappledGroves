@@ -42,7 +42,7 @@ namespace InDappledGroves.Util.HarmonyPatches
             {
                 thisBlockAccessor = blockAccessor;
             }
-            if (depth == 0 && ((!wideTrunk && iteration == 1) || (wideTrunk && TreeBase.Count < 4)))
+            if (depth == 0 && ((!wideTrunk && TreeBase.Count < 1) || (wideTrunk && TreeBase.Count < 4)))
             {
                 if (((wideTrunk && TreeBase.Count < 4 || !wideTrunk && TreeBase.Count < 1)))
                 {
