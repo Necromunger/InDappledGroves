@@ -12,6 +12,7 @@ using Vintagestory.API.Common.Entities;
 using InDappledGroves.Util.WorldGen;
 using InDappledGroves.Util.Config;
 using Vintagestory.GameContent;
+using Vintagestory.API.Util;
 
 namespace InDappledGroves.Util.HarmonyPatches
 {
@@ -38,11 +39,9 @@ namespace InDappledGroves.Util.HarmonyPatches
 
         public static void GrowBranchTranspilerCall(IWorldGenBlockAccessor blockAccessor, int depth, int iteration, int blockId, BlockPos currentPos, bool wideTrunk)
         {
-            if (thisBlockAccessor == null)
-            {
-                thisBlockAccessor = blockAccessor;
-            }
-            if (depth == 0 && ((!wideTrunk && TreeBase.Count < 1) || (wideTrunk && TreeBase.Count < 4)))
+            //grab the new blockaccessor
+            thisBlockAccessor = blockAccessor;
+            if (depth == 0 && ((!wideTrunk && iteration == 1) || (wideTrunk && TreeBase.Count < 4)))
             {
                 if (((wideTrunk && TreeBase.Count < 4 || !wideTrunk && TreeBase.Count < 1)))
                 {
@@ -56,15 +55,19 @@ namespace InDappledGroves.Util.HarmonyPatches
                     {
                         TreeBase[currentPos.Copy()] = block;
                     }
+
+                    if (block.FirstCodePart() == "sapling" && (TreeBase.Count == 0 || currentPos.Y == TreeBase.First().Key.Y))
+                    {
+                        TreeBase[currentPos.Copy()] = block;
+                    }
                 }
-               
             }
-            isWideTrunk = wideTrunk;
+            wideTrunk = isWideTrunk;
         }
 
         public static void growTreePostfix()
         {
-            if (TreeBase.Count > 0)
+            if (TreeBase.Count > 0 )
             {
                 foreach (KeyValuePair<BlockPos, Block> entry in TreeBase)
                 {
@@ -73,7 +76,23 @@ namespace InDappledGroves.Util.HarmonyPatches
                 TreeBase.Clear();
                 isWideTrunk = false;
             }
+            
+
+            
         }
+
+        //public static void checkGrowPostfix()
+        //{
+        //    if (TreeBase.Count > 0)
+        //    {
+        //        foreach (KeyValuePair<BlockPos, Block> entry in TreeBase)
+        //        {
+        //            TreeHollows.TreeDone.OnTreeGenComplete(TreeBase, thisBlockAccessor, isWideTrunk = false);
+        //        }
+        //        TreeBase.Clear();
+        //        isWideTrunk = false;
+        //    }
+        //}
 
         public override void Dispose()
         {

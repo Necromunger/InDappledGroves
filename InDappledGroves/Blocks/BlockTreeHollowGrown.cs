@@ -30,7 +30,7 @@
                 { return; }
                 var capi = api as ICoreClientAPI;
                 this.interactions = ObjectCacheUtil.GetOrCreate(api, "treehollowInteractions", () => new WorldInteraction[] {
-                new WorldInteraction()
+                new()
                 {
                     ActionLangCode = "blockhelp-behavior-rightclickpickup",
                     MouseButton = EnumMouseButton.Right,
@@ -62,7 +62,7 @@
                         Block blockToBreak = this;
                         bedc.OnBreak();
 
-                        var newPath = "indappledgroves:treehollowplaced-" + blockToBreak.FirstCodePart(2) + "-north";
+                        var newPath = blockToBreak.Code.Domain + ":treehollowplaced-" + blockToBreak.FirstCodePart(2) + "-north";
                         var newBlock = this.api.World.GetBlock(new AssetLocation(newPath)) as BlockTreeHollowPlaced;
                         world.BlockAccessor.SetBlock(newBlock.BlockId, pos);
                         if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowPlaced be)

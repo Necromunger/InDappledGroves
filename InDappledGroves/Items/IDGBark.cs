@@ -23,7 +23,6 @@ namespace InDappledGroves.Items
             return $"{part2} {part} {Lang.Get("indappledgroves:item-bark")}";
         }
 
-
         /// <summary>Called when the player right clicks while holding this block/item in his hands</summary>
         /// <param name="slot">Players activehotbar slot</param>
         /// <param name="byEntity"></param>

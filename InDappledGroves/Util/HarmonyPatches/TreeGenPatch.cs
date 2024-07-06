@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
 using Vintagestory.ServerMods;
 
 namespace InDappledGroves.Util.HarmonyPatches
@@ -20,6 +21,10 @@ namespace InDappledGroves.Util.HarmonyPatches
             harmony.Patch(typeof(TreeGen).GetMethod("GrowTree", BindingFlags.Instance | BindingFlags.Public),
                 postfix: new HarmonyMethod(typeof(HarmonyModSystem).GetMethod("growTreePostfix", BindingFlags.Static | BindingFlags.Public))
             );
+
+            //harmony.Patch(typeof(BlockEntitySapling).GetMethod("CheckGrow", BindingFlags.Instance | BindingFlags.NonPublic),
+            //    postfix: new HarmonyMethod(typeof(HarmonyModSystem).GetMethod("checkGrowPostfix", BindingFlags.Static | BindingFlags.Public))
+            //);
 
         }
 
