@@ -23,7 +23,7 @@
 			translation: { x: -0.3, y: 0.6 },
 			scale: 1.25
 		},
-		"hewingProps": {"hewingModifier": 1},
+		"hewingProps": {"hewingMultiplier": 1},
 	},
 	behaviors: [{
 		name: "GroundStorable",

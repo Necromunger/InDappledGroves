@@ -1,9 +1,15 @@
-﻿1-19-0.0.7.0-dev.1
+﻿1-19-0.7.1-dev.2
+	- Added two new stump models provided by Captain Oats
+	- Fixed issue in Adze itemtype that interfered with its performance on chopping blocks.
+
+1-19-0.7.1-dev.1
+	- Fixed copper axe not working on chopping blocks/in-world recipes. (For Real This Time)
+
+1-19-0.7.0-dev.1
 	- Got skillItems rendering again on all tools with BehaviorIDGTool
 	- Fixed issue with snow texture not rendering on logslabs
-	- Fixed copper axe not working on chopping blocks/in-world recipes.
 	- Fixed 2x2 trees generating without stumps
-	- Added sectional stumps for appropriate trees
+	- Added sectional stumps for approprivate trees
 	- Attempted to fix stumps floating above blocks of air. It's a proof of concept patch, rather than a full fix.
 	- Fixed(?) planted trees not generating with stumps.
 	- Fixed error where breaking a compat treehollow would result in an error.

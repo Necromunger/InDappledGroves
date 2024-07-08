@@ -31,7 +31,9 @@ namespace InDappledGroves.Blocks
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); };
+			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
+				toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); 
+			};
 			          
 			if (!bechoppingblock.Inventory.Empty)
 			{

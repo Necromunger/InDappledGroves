@@ -32,7 +32,7 @@
     {
       "op": "add",
       "path": "/behaviors/-",
-      "value": {"name": "indappledidgtool"},
+      "value": {"name": "idgtool"},
       "file": "game:itemtypes/tool/axe-metal.json",
       "side": "server"
     },

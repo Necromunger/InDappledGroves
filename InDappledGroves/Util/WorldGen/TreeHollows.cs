@@ -109,7 +109,7 @@ namespace InDappledGroves.Util.WorldGen
                         if (hollowcount == 0)
                         {
                             float randNumb = (float)sapi.World.Rand.NextDouble();
-                            if (!sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
+                            if (!isWideTrunk && !sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
                                 PlaceTreeHollow(ba, entry.Key);
                             hollowcount++;
                         }
@@ -229,10 +229,7 @@ namespace InDappledGroves.Util.WorldGen
             var belowBlock = blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default);
             if (belowBlock.Fertility > 0) //fertile ground below?
             {
-                if (sapi.World.Rand.Next(2) == 1)
                 { hollowType = "base"; }
-                else
-                { hollowType = "base2"; }
             }
 
 

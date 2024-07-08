@@ -32,7 +32,7 @@
 		}
 	},
 	creativeinventory: { "general": ["treestump-grown-*-east"], "flora": ["treestump-grown-*-east"], "construction": ["treestump-grown-*-east"] },
-	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" }] },
+	shape: { base: "indappledgroves:block/wood/treestump2", "alternates": [{"base": "indappledgroves:block/wood/treestump" },{"base": "indappledgroves:block/wood/treestumpfin1" },{"base": "indappledgroves:block/wood/treestumpfin1"}] },
 	"sidesolid": {
 		"all": "false"
 	},
