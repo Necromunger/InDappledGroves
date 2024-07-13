@@ -1,0 +1,107 @@
+{
+	"enabled": true,
+	"code": "idgburl",
+	"class": "idgblockburl",
+	"blockmaterial": "Wood",
+	"behaviors": [{ "name": "Unstable", "properties": { "attachedToFaces": ["north", "south", "east", "west"] } }, {"name": "HorizontalAttachable", "properties": {"handleDrops":  false}}],
+	"variantgroups": [
+		{ "code": "wood", "loadFromProperties": "floralzonescaperegion:block/wood" },
+		{ "code": "type","states": ["grown","placed"]},
+		{ "code": "burltype", "states": ["burl1","burl2","burl3","burl4","fatburl1","fatburl2"]},
+		{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
+	],
+	"dropsByType": {
+		"*-burl*": [{ 
+			"type": "item",
+      "code": "game:firewood",
+			"quantity": { "avg": 1.5, "var": 0.5 } 
+		  }],
+		"*-fatburl*": [{ 
+			"type": "item",
+      "code": "game:firewood",
+			"quantity": { "avg": 2, "var": 1 } 
+		  }]
+	},
+	"attributes": {
+		"preventsDecayByType": {
+			"*-grown-*": true
+		},
+		"treeFellingGroupCodeByType": {
+			"*-grown-*": "{wood}"
+		},
+		"treeFellingGroupSpreadIndex": 3
+	},
+	"shapeByType":{
+		"*": {"base": "indappledgroves:block/wood/tree{burltype}", "rotateYByType": {
+					"*-north": 0,
+          "*-east": 270,
+          "*-south": 180,
+          "*-west": 90
+					}},
+	},
+	
+	sounds: {
+		"place": "game:block/planks",
+		"walk": "game:walk/wood",
+		"hit": "game:block/planks",
+		"break": "game:block/planks",
+		"byTool": {
+			"Axe": { "hit": "game:block/chop", "break": "game:block/planks" }
+		}
+	},
+	"creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
+
+	"resistance": 4,
+	"textures": {
+		"bark": { "base": "floralzonescaperegion:block/wood/bark/{wood}", 
+							"alternates": 
+							[{ "base": "floralzonescaperegion:block/wood/bark/{wood}", "blendedoverlays": [{"base": "floralzonescaperegion:block/overlay/lichen1"}]}, 
+							 { "base": "floralzonescaperegion:block/wood/bark/{wood}", "blendedoverlays": [{ "base": "floralzonescaperegion:block/overlay/lichen2"}]},
+							 { "base": "floralzonescaperegion:block/wood/bark/{wood}", "blendedoverlays": [{ "base": "floralzonescaperegion:block/overlay/moss1"}]},
+							 { "base": "floralzonescaperegion:block/wood/bark/{wood}", "blendedoverlays": [{ "base": "floralzonescaperegion:block/overlay/moss2"}]},
+							 { "base": "floralzonescaperegion:block/wood/bark/{wood}", "blendedoverlays": [{ "base": "floralzonescaperegion:block/overlay/moss1"}]}
+							]
+						}
+	},
+	"lightabsorption": 1,
+	"sideopaque": { "all": false },
+  "sidesolid": { "all": false },
+	"collisionBox": {"x1": 0.1816, "y1": 0.126, "z1": 0, "x2": 0.7475, "y2": 0.7815, "z2": 0.0562, "rotateYByType": {
+					"*-north": 0,
+          "*-east": 270,
+          "*-south": 180,
+          "*-west": 90
+					}
+	},
+				"selectionBox": { "x1": 0.1816, "y1": 0.126, "z1": 0, "x2": 0.7475, "y2": 0.7815, "z2": 0.0562,"rotateYByType": {
+					"*-north": 0,
+          "*-east": 270,
+          "*-south": 180,
+          "*-west": 90
+					}
+	},
+	"guiTransform": {
+		"translation": { "x": 0, "y": 2, "z": 0 },
+		"rotation": { "x": -55, "y": 94, "z": 27 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.45 },
+		"scale": 1.86
+	},
+	"fpHandTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 3, "y": -33, "z": -25 },
+		"origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+		"scale": 1.98
+	},
+		"groundTransform": {
+		"translation": { "x": 0, "y": 0.33, "z": 0 },
+		"rotation": { "x": -90, "y": -5, "z": 5 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 3.25
+	},
+	"tpHandTransform": {
+		"translation": { "x": -0.6, "y": -0.06, "z": -0.44 },
+		"rotation": { "x": 109, "y": 51, "z": 1 },
+		"origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+		"scale": 0.86
+	}
+}

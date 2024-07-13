@@ -10,6 +10,7 @@ using System.Linq;
 using InDappledGroves.BlockEntities;
 using static OpenTK.Graphics.OpenGL.GL;
 using System;
+using Vintagestory.API.Config;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -99,6 +100,7 @@ namespace InDappledGroves.Util.WorldGen
             if (treeBaseDict.Count != 0)
             {
                 int hollowcount = 0;
+                int burlcount = 0;
                 foreach (KeyValuePair<BlockPos, Block> entry in treeBaseDict)
                 {
 
@@ -109,17 +111,90 @@ namespace InDappledGroves.Util.WorldGen
                         if (hollowcount == 0)
                         {
                             float randNumb = (float)sapi.World.Rand.NextDouble();
-                            if (!isWideTrunk && !sapi.ModLoader.IsModSystemEnabled("primitivesurvival") && randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
-                                PlaceTreeHollow(ba, entry.Key);
-                            hollowcount++;
+                            if (!sapi.ModLoader.IsModEnabled("primitivesurvival") && !IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled){
+                                if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
+                                    PlaceTreeHollow(ba, entry.Key);
+                                hollowcount++;
+                            }
+                        }
+                        if (burlcount == 0)
+                        {
+                            float randNumb = (float)sapi.World.Rand.NextDouble();
+                            if(randNumb <= 0.02)
+                            {
+                            PlaceTreeBurl(ba, entry.Key);
+                            burlcount++;
+                            }
                         }
                     }
                 }
-
-                
             }
         }
 
+        private void PlaceTreeBurl(IBlockAccessor blockAccessor, BlockPos pos)
+        {
+            var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
+            var upCount = sapi.World.Rand.Next(2, 6);
+            var upCandidateBlock = blockAccessor.GetBlock(pos.UpCopy(upCount), BlockLayersAccess.Default);
+            string firstCodePartUpCandidate = upCandidateBlock.FirstCodePart();
+            string treeBlockFirstCodePart = blockAccessor.GetBlock(pos, BlockLayersAccess.Default).FirstCodePart();
+
+            if (firstCodePartUpCandidate == "log" || firstCodePartUpCandidate == "logsection")
+            {
+                pos = pos.UpCopy(upCount);
+            }
+
+            var woodType = "pine";
+            List<string> directions = new();
+            if (treeBlockFirstCodePart == "log" || treeBlockFirstCodePart == "treestump")
+            {
+                woodType = treeBlock.FirstCodePart(2);
+                directions.Add(dirs[sapi.World.Rand.Next(4)]);
+            }
+            else if (treeBlockFirstCodePart == "logsection" || treeBlockFirstCodePart == "treestumpsection")
+            {
+                woodType = treeBlock.FirstCodePart(2);
+                switch (treeBlock.FirstCodePart(3))
+                {
+                    case "nw":
+                        directions.Add("south");
+                        directions.Add("east");
+                        break;
+                    case "ne":
+                        directions.Add("south");
+                        directions.Add("west");
+                        break;
+                    case "sw":
+                        directions.Add("north");
+                        directions.Add("east");
+                        break;
+                    case "se":
+                        directions.Add("north");
+                        directions.Add("west");
+                        break;
+                }
+
+            } else if (firstCodePartUpCandidate == "treehollow")
+            {
+                return;
+            }
+            var burltype = sapi.World.Rand.NextDouble()<=0.7?"burl"+sapi.World.Rand.Next(1,4): "fatburl" + sapi.World.Rand.Next(1, 2);
+
+            var withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":idgburl-" + woodType + "-" + "grown" + "-" + burltype + "-" + directions[sapi.World.Rand.Next(directions.Count)].ToString();
+            var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
+            var withBlock = blockAccessor.GetBlock(withBlockID);
+            BlockPos thispos = pos;
+            switch (withBlock.Variant["side"])
+            {
+                case "north": thispos = pos.SouthCopy(); break;
+                case "south": thispos = pos.NorthCopy(); break;
+                case "east": thispos = pos.WestCopy(); break;
+                case "west": thispos = pos.EastCopy(); break;
+                default: return;
+            }
+            withBlock.TryPlaceBlockForWorldGen(blockAccessor, thispos, BlockFacing.UP, null);
+            
+        }
 
         private bool IsStumpLog(Block block)
         {
@@ -229,7 +304,7 @@ namespace InDappledGroves.Util.WorldGen
             var belowBlock = blockAccessor.GetBlock(pos.DownCopy(), BlockLayersAccess.Default);
             if (belowBlock.Fertility > 0) //fertile ground below?
             {
-                { hollowType = "base"; }
+                return null; 
             }
 
 

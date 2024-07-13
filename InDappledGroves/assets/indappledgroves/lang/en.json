@@ -45,6 +45,15 @@ The bole of the hollow tree.</i></font>
 
 ",
 
+	//Burl Entries
+	"block-idgburl": "Burl",
+	"block-handbooktitle-idgburl": "",
+	"block-handbooktext-idgburl": "<font align='center'><i>The bark tangles into burls and knobs,
+	An eddying stream of living wood, branching
+	Into sky-fed tributaries. </i></font>
+	<font weight='bold' align='center'>- Giles Watson</font> 
+	",
+
 	//Bark Basket Entries
 	"block-handbooktitle-barkbasket": "",
 	"block-handbooktext-barkbasket": "<font align='center'><i>With each weave of the bark, 
@@ -99,7 +108,8 @@ we are closer to home.</i></font>
 	"block-handbooktext-logslab2": "	The first stage on the way to making <a href=\"handbook://item-firewood\">fire wood</a>. They can be made on a <a href=\"handbook://block-indappledgroves:choppingblock-birch-east\">chopping block</a> or on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a>. The target <a href=\"handbook://block-log-placed-maple-ud\">log</a> must be upright, with the trunk exposed, rather than bark up. Log slabs, when placed flat, can be <a href=\"handbook://toolmodes-indappledgroves\">hewn</a> into chopping blocks, when upright, they can be <a href=\"handbook://toolmodes-indappledgroves\">chopped</a> into firewood, or <a href=\"handbook://toolmodes-indappledgroves\">hewn</a> to create stripped log slabs and produce two bark.",
 	"block-logslab": "Log Slab",
 	"block-idgblockfirewood": "Firewood",
-	//Sawhorse Entries
+
+	//Stripped Log Entries
 	"block-handbooktitle-strippedlog": "Stripped Log",
 	"block-handbooktext-strippedlog": "<font align='center'><i>Nude bodies like peeled logs
 sometimes give off a sweetest

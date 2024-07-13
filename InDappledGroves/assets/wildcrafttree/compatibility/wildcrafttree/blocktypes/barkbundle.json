@@ -23,7 +23,7 @@
 			"*-soaking": {
 				"convertFrom": "wildcrafttree:barkbundle-*-soaking",
 				"convertTo": "wildcrafttree:barkbundle-*-soaked",
-				"inGameHours": "24"
+				"inGameHours": "6"
 			}
     }
 	},

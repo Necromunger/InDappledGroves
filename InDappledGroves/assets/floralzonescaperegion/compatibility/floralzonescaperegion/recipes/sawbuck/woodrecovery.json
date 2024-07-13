@@ -17,6 +17,30 @@
     [ 
       {"inputs": 
        [
+         {"type": "block", "code": "floralzonescaperegion:planks-*-ew", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
          {"type": "block", "code": "floralzonescaperegion:plankstairs-*-up-east-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
        ]
       }

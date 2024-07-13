@@ -34,7 +34,7 @@
 			"bark": { "base": "game:block/wood/bark/{wood}" }
 	},
   "shape": { "base": "block/choppingblock"},
-  "lightabsorption": 0,
+  "lightabsorption": 32,
   "sideopaque": { "all": false },
   "sidesolid": { "all": false },
   "blockmaterial": "wood",

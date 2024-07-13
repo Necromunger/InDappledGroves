@@ -5,7 +5,31 @@
     [ 
       {"inputs": 
        [
+         {"type": "block", "code": "floralzonescentralaustralianregion:planks-*-ew", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
          {"type": "block", "code": "floralzonescentralaustralianregion:planks-*-ud", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
        ]
       }
     ],

@@ -23,7 +23,7 @@
 			"*-soaking": {
 				"convertFrom": "floralzonescaribbeanregion:barkbundle-*-soaking",
 				"convertTo": "floralzonescaribbeanregion:barkbundle-*-soaked",
-				"inGameHours": "24"
+				"inGameHours": "6"
 			}
     }
 	},

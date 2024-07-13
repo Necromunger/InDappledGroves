@@ -5,7 +5,31 @@
     [ 
       {"inputs": 
        [
+         {"type": "block", "code": "floralzonescaperegion:planks-*-we", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
          {"type": "block", "code": "floralzonescaperegion:planks-*-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
        ]
       }
     ],

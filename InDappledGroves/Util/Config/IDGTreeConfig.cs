@@ -16,6 +16,7 @@ namespace InDappledGroves.Util.Config
         public string[] stumpTypes { get; set; }
         public string[] woodTypes { get; set; }
         public double HollowBreakChance { get; set; }
+        public bool DisableIDGHollowsWithPrimitiveSurvivalInstalled { get; set; }
         public IDGTreeConfig()
         { }
 
@@ -31,6 +32,7 @@ namespace InDappledGroves.Util.Config
             defaultConfig.TreeHollowsMaxItems = 8;
             defaultConfig.TreeHollowsSpawnProbability = 0.2f;
             defaultConfig.RunTreeGenOnChunkReload = false;
+            defaultConfig.DisableIDGHollowsWithPrimitiveSurvivalInstalled = true;
             defaultConfig.stumpTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa", 
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus", 

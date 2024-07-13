@@ -5,7 +5,31 @@
     [ 
       {"inputs": 
        [
+         {"type": "block", "code": "floralzonescaribbeanregion:planks-*-we", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
          {"type": "block", "code": "floralzonescaribbeanregion:planks-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],

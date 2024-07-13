@@ -23,9 +23,9 @@
 			"*-soaking": {
 				"convertFrom": "barkbundle-*-soaking",
 				"convertTo": "barkbundle-*-soaked",
-				"inGameHours": "24"
+				"inGameHours": "6"
 			}
-    }
+		}
 	},
 	"creativeinventory": { "general": ["*-dry"], "indappledgroves":["*-dry"]},
 	"behaviorsByType": {

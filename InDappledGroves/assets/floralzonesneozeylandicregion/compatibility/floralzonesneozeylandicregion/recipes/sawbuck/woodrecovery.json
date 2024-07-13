@@ -5,7 +5,31 @@
     [ 
       {"inputs": 
        [
+         {"type": "block", "code": "floralzonesneozeylandicregion:planks-*-ew", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
          {"type": "block", "code": "floralzonesneozeylandicregion:planks-*-ud", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesneozeylandicregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
        ]
       }
     ],

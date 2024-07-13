@@ -13,7 +13,6 @@ namespace InDappledGroves.Blocks
         public override string GetHeldItemName(ItemStack stack) => GetName();
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
-
         public string GetName()
         {
             var material = Variant["wood"];
@@ -22,5 +21,6 @@ namespace InDappledGroves.Blocks
             part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
             return string.Format($"{part} {Lang.Get("indappledgroves:block-treestump")}");
         }
+
     }
 }

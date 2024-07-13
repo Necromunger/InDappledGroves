@@ -1,6 +1,13 @@
-﻿1-19-0.7.1-dev.2
-	- Added two new stump models provided by Captain Oats
+﻿1-19-0.7.2-dev.1
+	- Added new stump models provided by Captain Oats
 	- Fixed issue in Adze itemtype that interfered with its performance on chopping blocks.
+	- Corrected crash caused by breaking non-vanilla bark bark baskets
+	- Shortened soak time to 6 in game hours.
+	- Added burls that spawn on trees. Currently drop firewood when broken.
+	- Fixed bug where Primitive Survival being installed didn't stop IDG Hollows from Forming
+	- Wood Recovery Recipes updated for ground interactions, slabs must be laid flat to recover boards with saw.
+	- Wood Recovery Recipes updated for sawbucks, they will look stupid and broken as the transforms still 
+	need handling.  Remember folks, dev build! 
 
 1-19-0.7.1-dev.1
 	- Fixed copper axe not working on chopping blocks/in-world recipes. (For Real This Time)

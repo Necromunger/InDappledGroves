@@ -19,10 +19,11 @@ namespace InDappledGroves.BlockBehaviors
             quantity = properties["quantity"].Exists ? properties["quantity"].AsInt() : 1;
             type = properties["type"].AsString();
         }
-        //This is a hacky as fuck solution to the firewood block not responding to the onBlockInteractStart method for... reasons? Will correct later.
+        
         public BehaviorIDGPickup(Block block) : base(block)
         {
         }
+
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ref EnumHandling handling)
         {
 

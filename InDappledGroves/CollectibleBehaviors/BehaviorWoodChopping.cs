@@ -10,6 +10,7 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
@@ -63,13 +64,7 @@ namespace InDappledGroves
 
         public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            //if(oldBlockPos != null && blockSel != null && oldBlockPos != blockSel.Position)
-            //{
-            //    handHandling = EnumHandHandling.NotHandled;
-            //    handling = EnumHandling.PassThrough;
-            //}
             base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
-
         }
         public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, ref EnumHandling handling)
         {
@@ -94,32 +89,34 @@ namespace InDappledGroves
             int posy = tempAttr.GetInt("lastposY", -1);
             int posz = tempAttr.GetInt("lastposZ", -1);
             BlockPos pos = blockSel.Position;
-            float treeResistance;
-            if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
-            {
-                float baseResistance;
-                int woodTier;
-                this.FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
-                if (collObj.ToolTier < woodTier - 3)
+            
+                float treeResistance;
+                if (pos.X != posx || pos.Y != posy || pos.Z != posz || counter % 30 == 0)
                 {
-                    handled = EnumHandling.PreventDefault;
-                    return remainingResistance;
+                    float baseResistance;
+                    int woodTier;
+                    this.FindTree(player.Entity.World, pos, out baseResistance, out woodTier);
+                    if (collObj.ToolTier < woodTier - 3)
+                    {
+                        handled = EnumHandling.PreventDefault;
+                        return remainingResistance;
+                    }
+                    treeResistance = (float)Math.Max(1.0, Math.Sqrt((double)baseResistance / 1.45)) * IDGTreeConfig.Current.TreeFellingMultiplier;
+                    tempAttr.SetFloat("treeResistance", treeResistance);
                 }
-                treeResistance = (float)Math.Max(1.0, Math.Sqrt((double)baseResistance / 1.45)) * IDGTreeConfig.Current.TreeFellingMultiplier;
-                tempAttr.SetFloat("treeResistance", treeResistance);
-            }
-            else
-            {
-                treeResistance = tempAttr.GetFloat("treeResistance", 1f);
-            }
-            tempAttr.SetInt("lastposX", pos.X);
-            tempAttr.SetInt("lastposY", pos.Y);
-            tempAttr.SetInt("lastposZ", pos.Z);
-            float treeFellingModifier = collObj.Attributes["choppingprops"]["fellingmultiplier"].AsFloat();
-            float treeDmg = remainingResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player)*treeFellingModifier) * dt);
-            remainingResistance = treeDmg;
+                else
+                {
+                    treeResistance = tempAttr.GetFloat("treeResistance", 1f);
+                }
+                tempAttr.SetInt("lastposX", pos.X);
+                tempAttr.SetInt("lastposY", pos.Y);
+                tempAttr.SetInt("lastposZ", pos.Z);
 
+                float treeFellingMultiplier = collObj.Attributes["choppingprops"]["fellingmultiplier"].AsFloat();
+                float treeDmg = remainingResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player) * treeFellingMultiplier) * dt);
+                remainingResistance = treeDmg;
             handled = EnumHandling.PreventDefault;
+            api.Logger.Debug(api.Side.ToString() + " remaining resistance is: " + remainingResistance);
             return remainingResistance;            
         }
         
@@ -136,7 +133,7 @@ namespace InDappledGroves
             api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
             {
                 string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow"};
-                if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y, z); }
+                if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y, z, 0); }
             }, true);
 
             if (startBlock.Code.FirstCodePart() == "treestump")
@@ -185,7 +182,7 @@ namespace InDappledGroves
             {
 
                 Vec4i pos = queue.Dequeue();
-                block = world.BlockAccessor.GetBlock(pos.X, pos.Y, pos.Z);
+                block = world.BlockAccessor.GetBlock(new BlockPos(pos.X, pos.Y, pos.Z, 0));
                 ICustomTreeFellingBehavior ctfbhh = block as ICustomTreeFellingBehavior;
                 if (ctfbhh != null)
                 {
@@ -196,7 +193,7 @@ namespace InDappledGroves
                     for (int i = 0; i < Vec3i.DirectAndIndirectNeighbours.Length; i++)
                     {
                         Vec3i facing = Vec3i.DirectAndIndirectNeighbours[i];
-                        BlockPos neibPos = new(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z);
+                        BlockPos neibPos = new(pos.X + facing.X, pos.Y + facing.Y, pos.Z + facing.Z, 0);
 
                         float hordist = GameMath.Sqrt(neibPos.HorDistanceSqTo((double)startPos.X, (double)startPos.Z));
                         float vertdist = (float)(neibPos.Y - startPos.Y);

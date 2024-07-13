@@ -4,10 +4,8 @@ using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Items;
 using InDappledGroves.BlockBehaviors;
 using Vintagestory.API.Common;
-using System.Collections.Generic;
-using System;
-using HarmonyLib;
 using InDappledGroves.Util.Config;
+using Vintagestory.API.Client;
 
 namespace InDappledGroves
 {
@@ -21,7 +19,6 @@ namespace InDappledGroves
 
         public override void Start(ICoreAPI api)
         {
-
             base.Start(api);
             //Register Items
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
@@ -40,6 +37,7 @@ namespace InDappledGroves
             api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));
             api.RegisterBlockClass("blocktreehollowplaced", typeof(BlockTreeHollowPlaced));
             api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
+            api.RegisterBlockClass("idgblockburl", typeof(BlockBurl));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
@@ -87,12 +85,7 @@ namespace InDappledGroves
             {
                 api.StoreModConfig(IDGToolConfig.Current, "indappledgroves/toolconfig.json");
             }
-
-            baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
-            baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
-            baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
-            baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
-
+            
             //Tree Config
             try
             {

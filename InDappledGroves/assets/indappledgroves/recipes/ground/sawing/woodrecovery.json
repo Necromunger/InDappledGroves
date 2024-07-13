@@ -1,4 +1,27 @@
-[
+[{
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:planks-*-we", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:planks-*-ns", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+  },
   {
     "toolmode": "sawing",
     "ingredients":

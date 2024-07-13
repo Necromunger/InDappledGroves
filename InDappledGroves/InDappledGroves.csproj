@@ -17,6 +17,9 @@
     <None Remove="Launcher\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\burlblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\barrel\strongtanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -35,6 +38,24 @@
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\treestumpsection.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\textures\block\overlay\lichen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\textures\block\overlay\lichen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\textures\block\overlay\moss1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\textures\block\overlay\moss2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\textures\block\overlay\moss3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\wood\burlblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\grid\barkbundle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -42,6 +63,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\lichen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\lichen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\moss1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\moss2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\moss3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\blocktypes\wood\burlblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\barrel\strongtanninbark.json">
@@ -59,10 +98,28 @@
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\lichen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\lichen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\moss1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\moss2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\moss3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\barkbasket.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\barkbundle.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\wood\burlblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\wood\choppingblock.json">
@@ -87,6 +144,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\itemtypes\resources\bark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\lang\en.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\patches\langpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\barrel\strongtanninbark.json">
@@ -359,6 +422,21 @@
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\lichen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\lichen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\moss1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\moss2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\moss3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\game\patches\tanninrecipes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -369,6 +447,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\blocktypes\boardblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\blocktypes\burlblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\blocktypes\firewoodblock.json">
@@ -455,22 +536,25 @@
     <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\tanninrecipes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\lognarrowpatch.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\langpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\planks.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\plankslab.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\plankstairs.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\plankslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\reciperemove.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\plankstairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonesneozylandicregion\stumppatch.json">
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\reciperemove.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\stumppatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\floralzoneseastasiaticregion\lognarrowpatch.json">
@@ -779,6 +863,15 @@
     <None Update="assets\indappledgroves\shapes\block\wedges.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\groundhewnplank.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\groundplank.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\groundroughplank.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\block\wood\logslab-down.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -797,6 +890,60 @@
     <None Update="assets\indappledgroves\shapes\block\wood\logslab-west.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\protoburl.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treeburl1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treeburl2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treeburl3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treeburl4.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treefatburl1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treefatburl2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-base2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-stumphollow.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-stumphollow2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-up-loaded.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-up.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-up2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestump-branches.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpfin3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpfin4.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpfin5.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpfin6.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\block\wood\snow-logslab-down.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -810,6 +957,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\wood\snow-logslab-west.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treehollow-stumphollow3.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\wood\treehollow-base.json">
@@ -843,6 +993,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\wood\treestumpfin2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpredwood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\wood\treestumpredwood2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\item\resource\bark.json">
@@ -1004,6 +1160,9 @@
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\barkbundle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\burlblock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\blocktypes\wood\choppingblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1086,6 +1245,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\textures\block\overlay\lichen1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\textures\block\overlay\lichen2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\textures\block\overlay\moss1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\textures\block\overlay\moss2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\textures\block\overlay\moss3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="changelog.txt">

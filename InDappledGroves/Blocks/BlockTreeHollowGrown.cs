@@ -86,17 +86,6 @@
                 return base.OnBlockInteractStart(world, byPlayer, blockSel);
             }
 
-            //public MeshData GenMesh(ICoreClientAPI capi, string shapePath, ITexPositionSource texture, ITesselatorAPI tesselator = null)
-            //{
-            //    MeshData mesh = null;
-            //    var shape = capi.Assets.TryGet(shapePath + ".json").ToObject<Shape>();
-            //    if (shape != null && texture != null)
-            //    {
-            //        tesselator.TesselateShape(shapePath, shape, out mesh, texture, new Vec3f(this.Shape.rotateX, this.Shape.rotateY, this.Shape.rotateZ));
-            //    }
-            //    return mesh;
-            //}
-
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
             {
                 if (world.BlockAccessor.GetBlockEntity(selection.Position) is BETreeHollowGrown bedc)

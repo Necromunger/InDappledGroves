@@ -44,6 +44,7 @@ namespace InDappledGroves.Blocks
 
             return color;
         }
+
         //-- Copied from Block. The BlockContainer version was causing a crash. Probably from AssetLocation domain being 'game'. --//
         public override void GetDecal(IWorldAccessor world, BlockPos pos, ITexPositionSource decalTexSource, ref MeshData decalModelData, ref MeshData blockModelData)
         {
@@ -58,13 +59,13 @@ namespace InDappledGroves.Blocks
                     return;
                 }
 
-                blockModelData = GenMesh(capi, be.type, shapename);
-
-                AssetLocation shapeloc = new AssetLocation("indappledgroves", shapename).WithPathPrefix("shapes/");
+                blockModelData = GenMesh(capi, be.type, shapename);                
+                AssetLocation shapeloc = new AssetLocation("indappledgroves:" + shapename).WithPathPrefix("shapes/");
                 Shape shape = capi.Assets.TryGet(shapeloc + ".json")?.ToObject<Shape>();
                 if (shape == null)
                 {
-                    shape = capi.Assets.TryGet(shapeloc + "1.json").ToObject<Shape>();
+                    shapeloc = new AssetLocation(shapename).WithPathPrefix("shapes/");
+                    shape = capi.Assets.TryGet(shapeloc + ".json").ToObject<Shape>();
                 }
 
                 MeshData md;

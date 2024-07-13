@@ -1,4 +1,15 @@
-[
+[{
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:planks-*-we", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:plank-{wood}",  "quantity": 3}
+  },
   {
     "toolmode": "sawing",
     "ingredients":
@@ -6,6 +17,18 @@
       {"inputs": 
        [
          {"type": "block", "code": "wildcrafttree:planks-*-ud", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:planks-*-ns", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
        ]
       }
     ],

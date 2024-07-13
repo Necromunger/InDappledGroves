@@ -23,7 +23,7 @@
 			"*-soaking": {
 				"convertFrom": "floralzonescentralaustralianregion:barkbundle-*-soaking",
 				"convertTo": "floralzonescentralaustralianregion:barkbundle-*-soaked",
-				"inGameHours": "24"
+				"inGameHours": "6"
 			}
     }
 	},
