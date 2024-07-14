@@ -69,7 +69,21 @@ namespace InDappledGroves.Blocks
                     this.playNextSound += 0.7f;
                 }
 
-                curDmgFromMiningSpeed += (chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+                if (playNextSound < secondsUsed)
+                {
+                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), position.X, position.Y, position.Z, byPlayer, true, 32, 1f);
+                    playNextSound += .7f;
+                }
+
+                if (idgbechoppingblock.Inventory[0].Itemstack.Collectible is Block)
+                {
+                    curDmgFromMiningSpeed += (chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+                }
+                else
+                {
+                    curDmgFromMiningSpeed += (chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial] * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+                }
+
                 lastSecondsUsed = secondsUsed;
 
                 EntityPlayer playerEntity = byPlayer.Entity;

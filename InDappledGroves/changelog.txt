@@ -1,4 +1,11 @@
-﻿1-19-0.7.2-dev.2
+﻿1-19-0.7.3-dev.2
+	- Another hotfix to fix the stuff I broke with the hotfix.  No more crashes on chopping blocks.
+
+	Reported Errors I can't replicate:
+	1 - Trees insta breaking with one hit from axes.  This is not happening in the development build tested on vanilla and modded trees.
+	2 - I've had two reports of two people being unable to chop a slab 
+
+1-19-0.7.2-dev.2
 	- Hotfix for in world recipes being instant and chopping blocks not working.
 
 1-19-0.7.1-dev.2
