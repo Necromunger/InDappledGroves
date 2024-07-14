@@ -85,7 +85,12 @@ namespace InDappledGroves
             {
                 api.StoreModConfig(IDGToolConfig.Current, "indappledgroves/toolconfig.json");
             }
-            
+
+            baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
+            baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
+            baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
+            baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
+
             //Tree Config
             try
             {

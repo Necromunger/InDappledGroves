@@ -169,6 +169,7 @@ namespace InDappledGroves.CollectibleBehaviors
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
                     float curMiningProgress = (secondsUsed + curDmgFromMiningSpeed) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
+                    api.Logger.Debug("Mining Progress on " + api.Side.ToString() + " is " + curMiningProgress);
 
                     if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
                     {
@@ -255,7 +256,7 @@ namespace InDappledGroves.CollectibleBehaviors
             int j = stack.StackSize;
             for (int i = j; i > 0; i--)
             {
-                capi.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+                api.World.SpawnItemEntity(new ItemStack(recipe.ReturnStack.ResolvedItemstack.Collectible), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
             }
         }
 

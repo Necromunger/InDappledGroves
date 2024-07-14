@@ -1,4 +1,7 @@
-﻿1-19-0.7.2-dev.1
+﻿1-19-0.7.2-dev.2
+	- Hotfix for in world recipes being instant and chopping blocks not working.
+
+1-19-0.7.1-dev.2
 	- Added new stump models provided by Captain Oats
 	- Fixed issue in Adze itemtype that interfered with its performance on chopping blocks.
 	- Corrected crash caused by breaking non-vanilla bark bark baskets

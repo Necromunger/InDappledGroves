@@ -1,12 +1,9 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
-using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.Blocks
@@ -17,6 +14,7 @@ namespace InDappledGroves.Blocks
 		
 		ChoppingBlockRecipe recipe;
 		float toolModeMod;
+        bool recipecomplete = false;
 
         public override string GetHeldItemName(ItemStack stack) => GetName();
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
@@ -27,11 +25,11 @@ namespace InDappledGroves.Blocks
 			ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
 			ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
 			CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-
 			//Check to see if block entity exists
 			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
 
-			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
+			if (collObj != null && collObj.HasBehavior<BehaviorIDGTool>()) { 
+				curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack); 
 				toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack); 
 			};
 			          
@@ -52,63 +50,61 @@ namespace InDappledGroves.Blocks
 
 			return bechoppingblock.OnInteract(byPlayer);
 		}
-
-		public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+        public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-			CollectibleObject chopTool = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
-			IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock;
-			BlockPos pos = blockSel.Position;
+            ItemStack itemstack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+            CollectibleObject chopTool = itemstack?.Collectible;
+            BlockPos position = blockSel.Position;
+            
+            if (chopTool != null && chopTool.HasBehavior<BehaviorIDGTool>() 
+                && world.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBEChoppingBlock idgbechoppingblock 
+                && !idgbechoppingblock.Inventory.Empty)
+            {
+                idgbechoppingblock.updateMeshes();
+                idgbechoppingblock.MarkDirty(true, null);
 
-			if (chopTool != null && chopTool.HasBehavior<BehaviorIDGTool>() && !bechoppingblock.Inventory.Empty)
-			{
-				if (playNextSound < secondsUsed)
-				{
-					api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), pos.X, pos.Y, pos.Z, byPlayer, true, 32, 1f);
-					playNextSound += .7f;
+                if (this.playNextSound < secondsUsed)
+                {
+                    this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
+                    this.playNextSound += 0.7f;
                 }
 
-				if (bechoppingblock.Inventory[0].Itemstack.Collectible is Block)
-				{
-					curDmgFromMiningSpeed += (chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, bechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
-				}
-				else
-				{
-					curDmgFromMiningSpeed += (chopTool.MiningSpeed[(EnumBlockMaterial)recipe.IngredientMaterial]*InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
-				}
+                curDmgFromMiningSpeed += (chopTool.GetMiningSpeed(byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack, blockSel, idgbechoppingblock.Inventory[0].Itemstack.Block, byPlayer) * InDappledGroves.baseWorkstationMiningSpdMult) * (secondsUsed - lastSecondsUsed);
+                lastSecondsUsed = secondsUsed;
 
-				lastSecondsUsed = secondsUsed;
-				float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
-				float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
-				api.Logger.Debug("Resistance of item on block is: " + resistance + ". Resistance after multiplier is " + curResistance + ".");
-				if (curMiningProgress >= curResistance) 
-				{
-					if (api.Side == EnumAppSide.Server)
-					{
-						bechoppingblock.SpawnOutput(recipe, byPlayer.Entity, blockSel.Position);
+                EntityPlayer playerEntity = byPlayer.Entity;
 
-						EntityPlayer playerEntity = byPlayer.Entity;
+                float curMiningProgress = (secondsUsed + (curDmgFromMiningSpeed)) * (toolModeMod * IDGToolConfig.Current.baseWorkstationMiningSpdMult);
+                float curResistance = resistance * IDGToolConfig.Current.baseWorkstationResistanceMult;
 
-						chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
+                if (curMiningProgress >= curResistance)
+                {
+                    if (api.Side == EnumAppSide.Server)
+                    {
+                        idgbechoppingblock.SpawnOutput(this.recipe, playerEntity, blockSel.Position);
+                        chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
+                        if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
+                        {
+                            idgbechoppingblock.Inventory.Clear();
+                        }
+                        else
+                        {
+                            idgbechoppingblock.Inventory.Clear();
+                            idgbechoppingblock.ReturnStackPut(recipe.ReturnStack.ResolvedItemstack.Clone());
 
-						if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
-						{
-							bechoppingblock.Inventory.Clear();
-						}
-						else
-						{
-							bechoppingblock.Inventory.Clear();
-							bechoppingblock.ReturnStackPut(recipe.ReturnStack.ResolvedItemstack.Clone());
-						}
-						byPlayer.Entity.StopAnimation("axesplit-fp");
-					}
-                    return false;
+                        }
+                        (world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEChoppingBlock).updateMeshes();
+                        idgbechoppingblock.MarkDirty(true, null);
+                        byPlayer.Entity.StopAnimation("axesplit-fp");
+                        
+                        return false;
+                    }
+                    
                 }
-				return !bechoppingblock.Inventory.Empty;
+                return !idgbechoppingblock.Inventory.Empty;
             }
             return false;
         }
-
-		
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
 		{

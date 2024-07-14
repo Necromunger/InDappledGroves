@@ -59,7 +59,7 @@ namespace InDappledGroves.Blocks
 						recipe = besawbuck.GetMatchingSawbuckRecipe(besawbuck.InputSlot, curTMode);
 						if (recipe != null)
 						{
-							resistance = resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+							resistance = (besawbuck.Inventory[0].Itemstack.Collectible is Block ? besawbuck.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
 							byPlayer.Entity.StartAnimation("sawsaw-fp");
 							return true;
 						}
