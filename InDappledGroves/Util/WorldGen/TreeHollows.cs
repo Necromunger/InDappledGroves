@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Vintagestory.API.Datastructures;
+using VSJsonObject = Vintagestory.API.Datastructures.JsonObject;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using InDappledGroves.Blocks;
@@ -8,13 +8,13 @@ using Vintagestory.API.Client;
 using InDappledGroves.Util.Config;
 using System.Linq;
 using InDappledGroves.BlockEntities;
-using static OpenTK.Graphics.OpenGL.GL;
 using System;
-using Vintagestory.API.Config;
+using Newtonsoft.Json.Linq;
+using System.Collections;
+using SystemJsonObject = System.Text.Json.Nodes.JsonObject;
 
 namespace InDappledGroves.Util.WorldGen
 {
-
     public class TreeHollows : ModSystem
     {
         private ICoreServerAPI sapi; //The main interface we will use for interacting with Vintage Story
@@ -22,7 +22,7 @@ namespace InDappledGroves.Util.WorldGen
         private int chunkSize; //Size of chunks. Chunks are cubes so this is the size of the cube.
         private ISet<string> hollowTypes; //Stores tree types that will be used for detecting trees for placing our tree hollows
         private ISet<string> stumpTypes; //Stores tree types that will be used for detecting trees for placing our tree stumps
-        private TreeLootObject[] treelootbase;
+        public TreeLootObject[] treelootbase;
         private string[] dirs = { "north", "south", "east", "west" };
         private List<string> woods = new();
         private List<string> stumps = new();
@@ -56,7 +56,6 @@ namespace InDappledGroves.Util.WorldGen
             stumpTypes = new HashSet<string>();
             LoadTreeTypes(hollowTypes);
             LoadStumpTypes(stumpTypes);
-            sapi.Event.ServerRunPhase(EnumServerRunPhase.Shutdown, ClearTreeGen);
             TreeDone.OnTreeGenCompleteEvent += NewChunkStumpAndHollowGen;
         }
 
@@ -68,6 +67,7 @@ namespace InDappledGroves.Util.WorldGen
         public override void AssetsFinalize(ICoreAPI api)
         {
             base.AssetsFinalize(api);
+            api.Logger.Debug("AssetFinalize Tree Hollows has run");
             treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
         }
 
@@ -111,11 +111,13 @@ namespace InDappledGroves.Util.WorldGen
                         if (hollowcount == 0)
                         {
                             float randNumb = (float)sapi.World.Rand.NextDouble();
-                            if (!sapi.ModLoader.IsModEnabled("primitivesurvival") && !IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled){
+                            bool flag = sapi.ModLoader.IsModEnabled("primitivesurvival");
+                            if (!sapi.ModLoader.IsModEnabled("primitivesurvival") && IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled){
                                 if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
                                     PlaceTreeHollow(ba, entry.Key);
                                 hollowcount++;
                             }
+                            if (capi != null) { capi.SendChatMessage(entry.Key.ToString()); };
                         }
                         if (burlcount == 0)
                         {
@@ -129,6 +131,11 @@ namespace InDappledGroves.Util.WorldGen
                     }
                 }
             }
+        }
+
+        private bool IsStumpLog(Block block)
+        {
+            return stumpTypes.Contains(block.Code.Path);
         }
 
         private void PlaceTreeBurl(IBlockAccessor blockAccessor, BlockPos pos)
@@ -196,17 +203,6 @@ namespace InDappledGroves.Util.WorldGen
             
         }
 
-        private bool IsStumpLog(Block block)
-        {
-            return stumpTypes.Contains(block.Code.Path);
-        }
-
-        // Delegate for /hollow command. Places a treehollow 2 blocks in front of the player
-        private void PlaceTreeHollowInFrontOfPlayer(IServerPlayer player, int groupId, CmdArgs args)
-        {
-            PlaceTreeHollow(sapi.World.BlockAccessor, player.Entity.Pos.HorizontalAheadCopy(2).AsBlockPos);
-        }
-
         // Places a tree stump at the given world coordinates using the given IBlockAccessor
         private bool PlaceTreeStump(IBlockAccessor blockAccessor, KeyValuePair<BlockPos, Block> posPair)
         {
@@ -249,9 +245,21 @@ namespace InDappledGroves.Util.WorldGen
             return false;
         }
 
+      
+
+        // Delegate for /hollow command. Places a treehollow 2 blocks in front of the player
+        private void PlaceTreeHollowInFrontOfPlayer(IServerPlayer player, int groupId, CmdArgs args)
+        {
+            PlaceTreeHollow(sapi.World.BlockAccessor, player.Entity.Pos.HorizontalAheadCopy(2).AsBlockPos);
+        }
+
         // Places a tree hollow filled with random items at the given world coordinates using the given IBlockAccessor
         private BlockPos PlaceTreeHollow(IBlockAccessor blockAccessor, BlockPos pos)
         {
+            if(treelootbase == null)
+            {
+                treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
+            }
             //consider moving it upwards
             var treeBlock = blockAccessor.GetBlock(pos, BlockLayersAccess.Default);
             var upCount = sapi.World.Rand.Next(3, 8);
@@ -263,7 +271,6 @@ namespace InDappledGroves.Util.WorldGen
             {
                 pos = pos.UpCopy(upCount);
             }
-
             //if(treeBlockFistCodePart == "air") return null;
 
             var woodType = "pine";
@@ -328,7 +335,8 @@ namespace InDappledGroves.Util.WorldGen
                         }
                     }
                 }
-                return pos;
+                
+            return pos;
             }
             return null;
         }
@@ -378,12 +386,16 @@ namespace InDappledGroves.Util.WorldGen
             return lootList == null ? null : lootList.ToArray();
         }
 
-        private TreeLootObject[] CreateTreeLootList(JsonObject[] treeLoot)
+        private TreeLootObject[] CreateTreeLootList(JToken[] treeLoot)
         {
+
             List<TreeLootObject> treelootlist = new();
-            foreach (JsonObject lootStack in treeLoot)
+            foreach (JToken lootStack in treeLoot)
             {
-                TreeLootObject obj = new TreeLootObject(lootStack);
+           
+                TreeLootObject obj = new TreeLootObject(VSJsonObject.FromJson(lootStack.ToString()));
+                obj.bstack = VSJsonObject.FromJson(lootStack["Token"]["dropStack"].ToString()).AsObject<BlockDropItemStack>();
+                obj.cReqs = VSJsonObject.FromJson(lootStack["Token"]["dropReqs"].ToString()).AsObject<ClimateRequirements>();
                 if (obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code))
                 {
                     treelootlist.Add(obj);
@@ -395,7 +407,7 @@ namespace InDappledGroves.Util.WorldGen
         private bool ClimateLootFilter(string woodType, TreeLootObject obj, BlockPos pos)
         {
             ClimateCondition local = sapi.World.BlockAccessor.GetClimateAt(pos);
-            return local.ForestDensity >= obj.cReqs.minForest
+            bool meetsReqs = local.ForestDensity >= obj.cReqs.minForest
             && local.ForestDensity <= obj.cReqs.maxForest
             && local.ShrubDensity >= obj.cReqs.minShrub
             && local.ShrubDensity <= obj.cReqs.maxShrub
@@ -405,6 +417,7 @@ namespace InDappledGroves.Util.WorldGen
             && local.Temperature <= obj.cReqs.maxTemperature
             && (obj.cReqs.season.Contains(((int)sapi.World.Calendar.GetSeason(pos))) || obj.cReqs.season[0] == 4)
             && (obj.cReqs.treeTypes[0] == "all" || obj.cReqs.treeTypes.Contains<string>(woodType));
+            return meetsReqs;
         }
 
         public static List<string> treehollowloot { get; set; } = new()
@@ -432,20 +445,20 @@ namespace InDappledGroves.Util.WorldGen
         };
 
     }
-    internal class TreeLootObject
+    public class TreeLootObject
     {
-        public BlockDropItemStack bstack { get; }
-        public ClimateRequirements cReqs { get; }
+        public BlockDropItemStack bstack { get; set; }
+        public ClimateRequirements cReqs { get; set;  }
 
         public TreeLootObject() { }
-        public TreeLootObject(JsonObject treeLoot)
+        public TreeLootObject(VSJsonObject treeLoot)
         {
             bstack = treeLoot["dropStack"].AsObject<BlockDropItemStack>();
             cReqs = treeLoot["dropReqs"].AsObject<ClimateRequirements>();
         }
     }
 
-    internal class ClimateRequirements
+    public class ClimateRequirements
     {
         public float minForest { get; set; } = 0.0f;
         public float maxForest { get; set; } = 1f;

@@ -81,8 +81,8 @@
 
             public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
             {
-                if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BETreeHollowGrown bedc)
-                { return bedc.OnInteract(byPlayer); } //, blockSel); }
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BETreeHollowGrown bedc)
+            { return bedc.OnInteract(byPlayer); }
                 return base.OnBlockInteractStart(world, byPlayer, blockSel);
             }
 

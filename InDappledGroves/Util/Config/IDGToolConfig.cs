@@ -1,4 +1,8 @@
-﻿namespace InDappledGroves.Util.Config
+﻿using ProtoBuf;
+using Vintagestory.API.Server;
+using static OpenTK.Graphics.OpenGL.GL;
+
+namespace InDappledGroves.Util.Config
 {
     class IDGToolConfig
     {
@@ -27,6 +31,35 @@
             defaultConfig.baseGroundRecipeResistaceMult = 1f;
 
             return defaultConfig;
+        }
+
+        public static void createConfigFile(ICoreServerAPI api)
+        {
+            //Tool/Workstation Config
+            //Check for Existing Config file, create one if none exists
+            try
+            {
+                var Config = api.LoadModConfig<IDGToolConfig>("indappledgroves/toolconfig.json");
+                if (Config != null)
+                {
+                    api.Logger.Notification("Mod Config successfully loaded.");
+                    IDGToolConfig.Current = Config;
+                }
+                else
+                {
+                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
+                    IDGToolConfig.Current = IDGToolConfig.GetDefault();
+                }
+            }
+            catch
+            {
+                IDGToolConfig.Current = IDGToolConfig.GetDefault();
+                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
+            }
+            finally
+            {
+                api.StoreModConfig(IDGToolConfig.Current, "indappledgroves/toolconfig.json");
+            }
         }
     }
 }

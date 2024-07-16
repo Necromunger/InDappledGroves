@@ -6,6 +6,11 @@ using InDappledGroves.BlockBehaviors;
 using Vintagestory.API.Common;
 using InDappledGroves.Util.Config;
 using Vintagestory.API.Client;
+using Vintagestory.API.Server;
+using ProtoBuf;
+using Vintagestory.API.Config;
+using InDappledGroves.Util.Network;
+using InDappledGroves.Util.WorldGen;
 
 namespace InDappledGroves
 {
@@ -16,9 +21,32 @@ namespace InDappledGroves
         public static float baseWorkstationResistanceMult;
         public static float baseGroundRecipeMiningSpdMult;
         public static float baseGroundRecipeResistaceMult;
+        NetworkHandler networkHandler;
+
+        #region Client
+        public override void StartClientSide(ICoreClientAPI api)
+        {
+            networkHandler.InitializeClientSideNetworkHandler(api);
+        }
+        #endregion
+
+        #region server
+        public override void StartServerSide(ICoreServerAPI api)
+        {
+            IDGToolConfig.createConfigFile(api);
+            api.Logger.Debug("IDGToolConfig.createConfigFile Tool Config has run");
+            IDGTreeConfig.createConfigFile(api);
+            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Config has run");
+            //IDGHollowLootConfig.createConfigFile(api);
+            //api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
+            networkHandler.InitializeServerSideNetworkHandler(api);
+            
+        }
+        #endregion
 
         public override void Start(ICoreAPI api)
         {
+            networkHandler = new NetworkHandler();
             base.Start(api);
             //Register Items
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
@@ -58,88 +86,15 @@ namespace InDappledGroves
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
             api.RegisterBlockBehaviorClass("IDGPickup", typeof(BehaviorIDGPickup));
 
-
-
-            //Tool/Workstation Config
-            //Check for Existing Config file, create one if none exists
-            try
+            if (api.Side.IsServer())
             {
-                var Config = api.LoadModConfig<IDGToolConfig>("indappledgroves/toolconfig.json");
-                if (Config != null)
-                {
-                    api.Logger.Notification("Mod Config successfully loaded.");
-                    IDGToolConfig.Current = Config;
-                }
-                else
-                {
-                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
-                    IDGToolConfig.Current = IDGToolConfig.GetDefault();
-                }
-            }
-            catch
-            {
-                IDGToolConfig.Current = IDGToolConfig.GetDefault();
-                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
-            }
-            finally
-            {
-                api.StoreModConfig(IDGToolConfig.Current, "indappledgroves/toolconfig.json");
+                IDGHollowLootConfig.createConfigFile(api as ICoreServerAPI);
+                api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
             }
 
-            baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
-            baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
-            baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
-            baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
-
-            //Tree Config
-            try
-            {
-                var Config = api.LoadModConfig<IDGTreeConfig>("indappledgroves/treeconfig.json");
-                if (Config != null)
-                {
-                    api.Logger.Notification("Mod Config successfully loaded.");
-                    IDGTreeConfig.Current = Config;
-                }
-                else
-                {
-                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
-                    IDGTreeConfig.Current = IDGTreeConfig.GetDefault();
-                }
-            }
-            catch
-            {
-                IDGTreeConfig.Current = IDGTreeConfig.GetDefault();
-                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
-            }
-            finally
-            {
-                api.StoreModConfig(IDGTreeConfig.Current, "indappledgroves/treeconfig.json");
-            }
-
-            //TreeHollowLoot Config
-            try
-            {
-                var Config = api.LoadModConfig<IDGHollowLootConfig>("indappledgroves/hollowloot.json");
-                if (Config != null)
-                {
-                    api.Logger.Notification("Mod Config successfully loaded.");
-                    IDGHollowLootConfig.Current = Config;
-                }
-                else
-                {
-                    api.Logger.Notification("No Mod Config specified. Falling back to default settings");
-                    IDGHollowLootConfig.Current = IDGHollowLootConfig.GetDefault();
-                }
-            }
-            catch
-            {
-                IDGHollowLootConfig.Current = IDGHollowLootConfig.GetDefault();
-                api.Logger.Error("Failed to load custom mod configuration. Falling back to default settings!");
-            }
-            finally
-            {
-                api.StoreModConfig(IDGHollowLootConfig.Current, "indappledgroves/hollowloot.json");
-            }
+            //Registers Channels and Message Types
+            networkHandler.RegisterMessages(api);
+            api.Logger.Debug("Start Method has finished.");
         }
     }
 }
