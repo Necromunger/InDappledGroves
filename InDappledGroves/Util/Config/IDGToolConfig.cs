@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 using static OpenTK.Graphics.OpenGL.GL;
 
@@ -33,7 +34,7 @@ namespace InDappledGroves.Util.Config
             return defaultConfig;
         }
 
-        public static void createConfigFile(ICoreServerAPI api)
+        public static void createConfigFile(ICoreAPI api)
         {
             //Tool/Workstation Config
             //Check for Existing Config file, create one if none exists

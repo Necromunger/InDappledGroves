@@ -394,8 +394,8 @@ namespace InDappledGroves.Util.WorldGen
             {
            
                 TreeLootObject obj = new TreeLootObject(VSJsonObject.FromJson(lootStack.ToString()));
-                obj.bstack = VSJsonObject.FromJson(lootStack["Token"]["dropStack"].ToString()).AsObject<BlockDropItemStack>();
-                obj.cReqs = VSJsonObject.FromJson(lootStack["Token"]["dropReqs"].ToString()).AsObject<ClimateRequirements>();
+                obj.bstack = VSJsonObject.FromJson(lootStack["dropStack"].ToString()).AsObject<BlockDropItemStack>();
+                obj.cReqs = VSJsonObject.FromJson(lootStack["dropReqs"].ToString()).AsObject<ClimateRequirements>();
                 if (obj.bstack.Resolve(sapi.World, "treedrop: ", obj.bstack.Code))
                 {
                     treelootlist.Add(obj);

@@ -37,7 +37,7 @@ namespace InDappledGroves.Util.Config
 
         
 
-        public static void createConfigFile(ICoreServerAPI api)
+        public static void createConfigFile(ICoreAPI api)
         {
             api.Logger.Debug("IDGHollowLootConfig has started");
             //TreeHollowLoot Config

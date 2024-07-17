@@ -33,14 +33,7 @@ namespace InDappledGroves
         #region server
         public override void StartServerSide(ICoreServerAPI api)
         {
-            IDGToolConfig.createConfigFile(api);
-            api.Logger.Debug("IDGToolConfig.createConfigFile Tool Config has run");
-            IDGTreeConfig.createConfigFile(api);
-            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Config has run");
-            //IDGHollowLootConfig.createConfigFile(api);
-            //api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
             networkHandler.InitializeServerSideNetworkHandler(api);
-            
         }
         #endregion
 
@@ -86,14 +79,16 @@ namespace InDappledGroves
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));
             api.RegisterBlockBehaviorClass("IDGPickup", typeof(BehaviorIDGPickup));
 
-            if (api.Side.IsServer())
-            {
-                IDGHollowLootConfig.createConfigFile(api as ICoreServerAPI);
-                api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
-            }
-
             //Registers Channels and Message Types
             networkHandler.RegisterMessages(api);
+
+            IDGToolConfig.createConfigFile(api);
+            api.Logger.Debug("IDGToolConfig.createConfigFile Tool Config has run");
+            IDGTreeConfig.createConfigFile(api);
+            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Config has run");
+            IDGHollowLootConfig.createConfigFile(api);
+            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
+
             api.Logger.Debug("Start Method has finished.");
         }
     }

@@ -46,7 +46,7 @@ namespace InDappledGroves.Util.HarmonyPatches
                 if (((wideTrunk && TreeBase.Count < 4 || !wideTrunk && TreeBase.Count < 1)))
                 {
                     Block block = blockAccessor.GetBlock(blockId);
-                    if (block.FirstCodePart() == "log")
+                    if (block.FirstCodePart() == "log" && (TreeBase.Count < 1 || currentPos.Y == TreeBase.First().Key.Y))
                     {
                         TreeBase[currentPos.Copy()] = block;
                     }
@@ -76,9 +76,6 @@ namespace InDappledGroves.Util.HarmonyPatches
                 TreeBase.Clear();
                 isWideTrunk = false;
             }
-            
-
-            
         }
 
         //public static void checkGrowPostfix()

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 
 namespace InDappledGroves.Util.Config
@@ -19,16 +20,19 @@ namespace InDappledGroves.Util.Config
         public int TreeHollowsMaxItems { get; set; }
         [ProtoMember(3)]
         public float TreeHollowsSpawnProbability { get; set; }
+
         [ProtoMember(4)]
-        public bool RunTreeGenOnChunkReload { get; set; }
-        [ProtoMember(5)]
-        public string[] stumpTypes { get; set; }
-        [ProtoMember(6)]
-        public string[] woodTypes { get; set; }
-        [ProtoMember(7)]
         public double HollowBreakChance { get; set; }
-        [ProtoMember(8)]
+        [ProtoMember(5)]
         public bool DisableIDGHollowsWithPrimitiveSurvivalInstalled { get; set; }
+
+        [ProtoMember(6)]
+        public bool RunTreeGenOnChunkReload { get; set; }
+        [ProtoMember(7)]
+        public string[] stumpTypes { get; set; }
+        [ProtoMember(8)]
+        public string[] woodTypes { get; set; }
+        
         public IDGTreeConfig()
         { }
 
@@ -58,7 +62,7 @@ namespace InDappledGroves.Util.Config
             return defaultConfig;
         }
 
-        public static void createConfigFile(ICoreServerAPI api)
+        public static void createConfigFile(ICoreAPI api)
         {
 
             //Tree Config
