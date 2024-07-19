@@ -677,6 +677,12 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\traderupdate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\morepiles\barkrecipes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\Pileful\barkrecipes.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\toolworks\toolworkssawtweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

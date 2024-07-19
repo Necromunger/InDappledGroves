@@ -126,7 +126,6 @@
         public override bool DoPlaceBlock(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, ItemStack byItemStack)
         {
             var val = base.DoPlaceBlock(world, byPlayer, blockSel, byItemStack);
-            //Debug.WriteLine(byItemStack.Block.Code.Path);
             if (val)
             {
                 if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BETreeHollowPlaced bect)

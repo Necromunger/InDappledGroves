@@ -1,6 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Util.Config;
+using System.Runtime.CompilerServices;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
@@ -15,7 +16,7 @@ namespace InDappledGroves.Blocks
 		ChoppingBlockRecipe recipe;
 		float toolModeMod;
         bool recipecomplete = false;
-
+        
         public override string GetHeldItemName(ItemStack stack) => GetName();
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
@@ -69,11 +70,11 @@ namespace InDappledGroves.Blocks
                     this.playNextSound += 0.7f;
                 }
 
-                if (playNextSound < secondsUsed)
-                {
-                    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), position.X, position.Y, position.Z, byPlayer, true, 32, 1f);
-                    playNextSound += .7f;
-                }
+                //if (playNextSound < secondsUsed)
+                //{
+                //    api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), position.X, position.Y, position.Z, byPlayer, true, 32, 1f);
+                //    playNextSound += 0.7f;
+                //}
 
                 if (idgbechoppingblock.Inventory[0].Itemstack.Collectible is Block)
                 {
@@ -136,7 +137,6 @@ namespace InDappledGroves.Blocks
         public string GetName()
         {
             var material = Variant["wood"];
-
             var part = Lang.Get("material-" + $"{material}");
             part = $"{part[0].ToString().ToUpper()}{part.Substring(1)}";
             return string.Format($"{part} {Lang.Get("indappledgroves:block-choppingblock")}");

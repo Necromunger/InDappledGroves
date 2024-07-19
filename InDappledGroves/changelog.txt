@@ -1,6 +1,9 @@
 ﻿1-19-0.8.0-dev.1
 	- Updated config handling to ensure serverside config is respected.
 	- Fixed stump generation weirdness with Acacia, Old Oak, Old Kapok, and likely any other "wide" tree that generates with logs rather than log-sections.
+	- Added pileful patch
+	- Ensured both pileful and more piles patch were added to final compile
+	- Fixed Copper Axe not sitting on Tool Rack correctly and associated errors.
 
 1-19-0.7.3-dev.2
 	- Another hotfix to fix the stuff I broke with the hotfix.  No more crashes on chopping blocks.

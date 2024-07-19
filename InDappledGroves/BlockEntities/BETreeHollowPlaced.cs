@@ -75,7 +75,6 @@ namespace InDappledGroves.BlockEntities
             if (byItemStack?.Attributes != null)
             {
                 var nowType = byItemStack.Attributes.GetString("type", this.defaultType);
-                //Debug.WriteLine(nowType);
                 if (nowType != this.type)
                 {
                     this.type = nowType;

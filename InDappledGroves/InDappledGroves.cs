@@ -26,7 +26,7 @@ namespace InDappledGroves
         #region Client
         public override void StartClientSide(ICoreClientAPI api)
         {
-            networkHandler.InitializeClientSideNetworkHandler(api);
+            networkHandler.InitializeClientSideNetworkHandler(api);            
         }
         #endregion
 
@@ -34,6 +34,10 @@ namespace InDappledGroves
         public override void StartServerSide(ICoreServerAPI api)
         {
             networkHandler.InitializeServerSideNetworkHandler(api);
+            InDappledGroves.baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
+            InDappledGroves.baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
+            InDappledGroves.baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
+            InDappledGroves.baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
         }
         #endregion
 
@@ -83,13 +87,9 @@ namespace InDappledGroves
             networkHandler.RegisterMessages(api);
 
             IDGToolConfig.createConfigFile(api);
-            api.Logger.Debug("IDGToolConfig.createConfigFile Tool Config has run");
             IDGTreeConfig.createConfigFile(api);
-            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Config has run");
             IDGHollowLootConfig.createConfigFile(api);
-            api.Logger.Debug("IDGTreeConfig.createConfigFile Tree Hollows has run");
 
-            api.Logger.Debug("Start Method has finished.");
         }
     }
 }

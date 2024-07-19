@@ -21,13 +21,15 @@ namespace InDappledGroves
     { 
         ICoreAPI api;
         ICoreClientAPI capi;
+
         BlockPos oldBlockPos = null;
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
-
+            BehaviorWoodChopping test = new BehaviorWoodChopping(collObj);
             this.collObj = collObj;
         }
 
+        
         public SkillItem[] GetSkillItems()
         {
             return toolModes ?? new SkillItem[] { null };
@@ -60,25 +62,6 @@ namespace InDappledGroves
                 }
                 return array;
             });
-        }
-
-        public override void OnHeldAttackStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandHandling handHandling, ref EnumHandling handling)
-        {
-            base.OnHeldAttackStart(slot, byEntity, blockSel, entitySel, ref handHandling, ref handling);
-        }
-        public override bool OnHeldAttackStep(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, ref EnumHandling handling)
-        {
-            return base.OnHeldAttackStep(secondsPassed, slot, byEntity, blockSelection, entitySel, ref handling);
-        }
-
-        public override void OnHeldAttackStop(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, ref EnumHandling handling)
-        {
-            base.OnHeldAttackStop(secondsPassed, slot, byEntity, blockSelection, entitySel, ref handling);
-        }
-
-        public override bool OnHeldAttackCancel(float secondsPassed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSelection, EntitySelection entitySel, EnumItemUseCancelReason cancelReason, ref EnumHandling handling)
-        {
-            return base.OnHeldAttackCancel(secondsPassed, slot, byEntity, blockSelection, entitySel, cancelReason, ref handling);
         }
 
         #region TreeFelling
@@ -116,7 +99,6 @@ namespace InDappledGroves
                 float treeDmg = remainingResistance - ((collObj.GetMiningSpeed(itemslot.Itemstack, blockSel, api.World.BlockAccessor.GetBlock(pos), player) * treeFellingMultiplier) * dt);
                 remainingResistance = treeDmg;
             handled = EnumHandling.PreventDefault;
-            api.Logger.Debug(api.Side.ToString() + " remaining resistance is: " + remainingResistance);
             return remainingResistance;            
         }
         

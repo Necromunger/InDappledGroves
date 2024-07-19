@@ -1,0 +1,152 @@
+[
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "indappledgroves:recipes/grid/barkbundle.json",
+    "op": "add",
+		"path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "indappledgroves:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "indappledgroves:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+    },
+		"dependsOn": [{ "modid": "pileful" }]
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "floralzonescaperegion:recipes/grid/barkbundle.json",
+    "op": "add",
+    "path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "ifloralzonescaperegion:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "floralzonescaperegion:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+		},
+    "dependsOn": [{ "modid": "pileful" }, { "modid": "floralzonescaperegion" }],
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "floralzonescaribbeanregion:recipes/grid/barkbundle.json",
+    "op": "add",
+    "path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "floralzonescaribbeanregion:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "floralzonescaribbeanregion:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+		},
+    "dependsOn": [{ "modid": "pileful" }, { "modid": "floralzonescaribbeanregion" }]
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "floralzonescentralaustralianregion:recipes/grid/barkbundle.json",
+    "op": "add",
+    "path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "floralzonescentralaustralianregion:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "floralzonescentralaustralianregion:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+		},
+    "dependsOn": [{ "modid": "pileful" }, { "modid": "floralzonescentralaustralianregion" }]
+  },
+  {
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "floralzonesneozeylandicregion:recipes/grid/barkbundle.json",
+   "op": "add",
+    "path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "floralzonesneozeylandicregion:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "floralzonesneozeylandicregion:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+		},
+    "dependsOn": [{ "modid": "pileful" }, { "modid": "floralzonesneozeylandicregion" }]
+  },
+	{
+    // If you add enabled: false to your recipe, you can simply enable it when the desired mod is loaded
+    "file": "wildcrafttree:recipes/grid/barkbundle.json",
+    "op": "add",
+		"path": "/-",
+    "value": {
+		"ingredientPattern": "BBB,B_B",
+		"width": 3,
+		"height": 2,
+		"ingredients": {
+			"B": { 
+				"type": "item", 
+				"name": "bark",
+				"code": "wildcrafttree:bark-*-dry",
+				"quantity": 1
+			}
+		},
+		"output": { 
+			"type": "block", 
+			"code": "wildcrafttree:barkbundle-{bark}-dry",
+			"quantity": 1
+			}
+		},
+		"dependsOn": [{ "modid": "pileful" }, { "modid": "wildcrafttree" }]
+	}
+]

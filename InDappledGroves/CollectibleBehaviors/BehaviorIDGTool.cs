@@ -169,7 +169,6 @@ namespace InDappledGroves.CollectibleBehaviors
                     //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
                     float curMiningProgress = (secondsUsed + curDmgFromMiningSpeed) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
                     float curResistance = resistance * IDGToolConfig.Current.baseGroundRecipeResistaceMult;
-                    api.Logger.Debug("Mining Progress on " + api.Side.ToString() + " is " + curMiningProgress);
 
                     if (api.Side == EnumAppSide.Server && curMiningProgress >= curResistance)
                     {

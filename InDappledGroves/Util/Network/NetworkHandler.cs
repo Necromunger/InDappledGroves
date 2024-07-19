@@ -58,11 +58,9 @@ namespace InDappledGroves.Util.Network
             IDGTreeConfig.Current.HollowBreakChance = toolConfig.HollowBreakChance;
             IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled = toolConfig.DisableIDGHollowsWithPrimitiveSurvivalInstalled;
 
-            ////Set Client HollowLootConfigSettings from Server
+            //Set Client HollowLootConfigSettings from Server
             IDGHollowLootConfig.Current.treehollowjson = JsonUtil.FromString<List<JToken>>(toolConfig.treehollowjson);
 
-            //TODO: Test the following debuggers.
-            //serverApi.Logger.Debug("RecieveToolConfigAction has completed, treehollowjson has " + toolConfig.treehollowjson.length + " members.")
 
         }
 

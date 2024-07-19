@@ -1,8 +1,15 @@
 {
   "profiles": {
-    "Launcher": {
+    "ServerLaunch": {
       "commandName": "Executable",
-      "executablePath": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\Vintagestory.exe ",
+      "executablePath": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\Vintagestoryserver.exe",
+      "commandLineArgs": "--dataPath \"%appdata%/VintagestoryData_Server\" --addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\"  --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\" ",
+      "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\",
+      "nativeDebugging": false
+    },
+    "StdLauncher": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\Vintagestory.exe",
       "commandLineArgs": "--dataPath \"%appdata%/VintagestoryData_Modding\" --addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\"  --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\" ",
       "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.19\\",
       "nativeDebugging": false

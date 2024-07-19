@@ -45,8 +45,8 @@
     },
     {
       "op": "add",
-      "path": "/attributes",
-      "value": {"workanimation": "axesplit-fp"},
+      "path": "/attributes/workanimation",
+      "value": "axesplit-fp",
       "file": "game:itemtypes/tool/axe-metal.json",
       "side": "server"
     },

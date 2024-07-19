@@ -13,7 +13,7 @@ namespace InDappledGroves.Blocks
 
     internal class IDGSawHorse : Block
 	{
-
+		
 		public override string GetHeldItemName(ItemStack stack) => GetName();
 		public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
