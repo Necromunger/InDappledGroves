@@ -19,7 +19,7 @@ namespace InDappledGroves.BlockEntities
 
 		static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
 
-		public IDGBEChoppingBlock()
+        public IDGBEChoppingBlock()
 		{
 			Inventory = new InventoryDisplayed(this, 1, "choppingblock-slot", null, null);
 		}

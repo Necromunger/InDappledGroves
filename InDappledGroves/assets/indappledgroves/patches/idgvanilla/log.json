@@ -16,22 +16,6 @@
      "side": "server"
   },
   {
-     "op": "add",
-     "path": "/attributes",
-     "value": {
-		  "handbook": {
-				"extraSections": [
-					  {
-              "title": "indappledgroves:block-handbooktitle-supportbeam",
-						  "text": "indappledgroves:block-handbooktext-supportbeam"
-					  }
-          ]
-        }
-      },
-     "file": "game:blocktypes/wood/woodtyped/suppportbeam.json",
-     "side": "server"
-  },
-  {
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",

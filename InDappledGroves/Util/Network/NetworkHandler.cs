@@ -160,7 +160,6 @@ namespace InDappledGroves.Util.Network
 
             [ProtoMember(5)]
             public float TreeFellingMultiplier = IDGTreeConfig.Current.TreeFellingMultiplier;
-            //Rate at which Tree Hollows Update
             [ProtoMember(6)]
             public int TreeHollowsMaxItems = IDGTreeConfig.Current.TreeHollowsMaxItems;
             [ProtoMember(7)]

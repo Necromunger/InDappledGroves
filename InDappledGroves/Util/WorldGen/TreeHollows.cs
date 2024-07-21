@@ -2,16 +2,15 @@
 using VSJsonObject = Vintagestory.API.Datastructures.JsonObject;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
-using InDappledGroves.Blocks;
 using Vintagestory.API.Common;
 using Vintagestory.API.Client;
 using InDappledGroves.Util.Config;
 using System.Linq;
-using InDappledGroves.BlockEntities;
 using System;
 using Newtonsoft.Json.Linq;
-using System.Collections;
+using InDappledGroves.BlockBehaviors;
 using SystemJsonObject = System.Text.Json.Nodes.JsonObject;
+using InDappledGroves.BlockEntities;
 
 namespace InDappledGroves.Util.WorldGen
 {
@@ -67,7 +66,6 @@ namespace InDappledGroves.Util.WorldGen
         public override void AssetsFinalize(ICoreAPI api)
         {
             base.AssetsFinalize(api);
-            api.Logger.Debug("AssetFinalize Tree Hollows has run");
             treelootbase = CreateTreeLootList(IDGHollowLootConfig.Current.treehollowjson.ToArray());
         }
 
@@ -321,13 +319,12 @@ namespace InDappledGroves.Util.WorldGen
             blockAccessor.SetBlock(0, pos);
             if (withBlock.TryPlaceBlockForWorldGen(blockAccessor, pos, BlockFacing.UP, null))
             {
-                var block = blockAccessor.GetBlock(pos, BlockLayersAccess.Default) as BlockTreeHollowGrown;
+                var block = blockAccessor.GetBlock(pos, BlockLayersAccess.Default) as Blocks.BlockTreeHollowGrown;
                 if (block?.EntityClass != null)
                 {
                     if (block.EntityClass == withBlock.EntityClass)
                     {
-                        var be = blockAccessor.GetBlockEntity(pos) as BETreeHollowGrown;
-                        if (be is BETreeHollowGrown)
+                        var be = blockAccessor.GetBlockEntity(pos) as BlockEntities.BETreeHollowGrown;
                         {
                             ItemStack[] lootStacks = GetTreeLoot(woodType, treelootbase, pos);
                             if (lootStacks != null) AddItemStacks(be, lootStacks);

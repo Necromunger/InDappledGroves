@@ -59,8 +59,8 @@ namespace InDappledGroves
             api.RegisterBlockClass("idgbarkbasket", typeof(IDGBarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
             api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
-            api.RegisterBlockClass("blocktreehollowgrown", typeof(BlockTreeHollowGrown));
-            api.RegisterBlockClass("blocktreehollowplaced", typeof(BlockTreeHollowPlaced));
+            api.RegisterBlockClass("blocktreehollowgrown", typeof(Blocks.BlockTreeHollowGrown));
+            api.RegisterBlockClass("blocktreehollowplaced", typeof(Blocks.BlockTreeHollowPlaced));
             api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
             api.RegisterBlockClass("idgblockburl", typeof(BlockBurl));
 
@@ -68,8 +68,8 @@ namespace InDappledGroves
             api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
             api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
-            api.RegisterBlockEntityClass("betreehollowgrown", typeof(BETreeHollowGrown));
-            api.RegisterBlockEntityClass("betreehollowplaced", typeof(BETreeHollowPlaced));
+            api.RegisterBlockEntityClass("betreehollowgrown", typeof(BlockEntities.BETreeHollowGrown));
+            api.RegisterBlockEntityClass("betreehollowplaced", typeof(BlockEntities.BETreeHollowPlaced));
 
             //Register CollectibleBehaviors
             api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));

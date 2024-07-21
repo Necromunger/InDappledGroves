@@ -11,13 +11,6 @@
     "path": "/0",
     "side": "server"
   },
-  //{
-  //  "file": "game:recipes/grid/tool/axe.json",
-  //  "op": "replace",
-  //  "path": "/0/ingredients/T/allowedVariants",
-  //  "value": ["copper"],
-  //  "side": "server"
-  //},
   {
     "file": "game:recipes/grid/firewood.json",
     "op": "remove",

@@ -25,7 +25,6 @@ namespace InDappledGroves
         BlockPos oldBlockPos = null;
         public BehaviorWoodChopping(CollectibleObject collObj) : base(collObj)
         {
-            BehaviorWoodChopping test = new BehaviorWoodChopping(collObj);
             this.collObj = collObj;
         }
 

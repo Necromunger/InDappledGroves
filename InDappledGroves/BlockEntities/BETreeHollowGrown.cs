@@ -45,14 +45,12 @@
         {
 
             var playerSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
-            if (playerSlot.Empty)
-            {
+            //if (playerSlot.Empty)
+            //{
                 if (this.TryTake(byPlayer))
                 { return true; }
                 return false;
-            }
-
-            return false;
+            //}
         }
 
         internal void OnBreak()
@@ -100,7 +98,7 @@
 
             if (stack.StackSize > 0)
             {
-                this.Api.World.SpawnItemEntity(stack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5));
+                this.Api.World.SpawnItemEntity(stack.Clone(), this.Pos.ToVec3d().Add(1, 0.5, 1));
             }
 
             this.MarkDirty(true);

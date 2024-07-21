@@ -3,7 +3,10 @@
 	- Fixed stump generation weirdness with Acacia, Old Oak, Old Kapok, and likely any other "wide" tree that generates with logs rather than log-sections.
 	- Added pileful patch
 	- Ensured both pileful and more piles patch were added to final compile
-	- Fixed Copper Axe not sitting on Tool Rack correctly and associated errors.
+	- Fixed Copper Axe patch that caused a variety of errors.
+	- Fixed error that resulted in support beams losing their ability to support things.
+	- Attempted to fix IDG side issues causing potential conflicts with Primitive Survival when IDG Hollows remain enabled.
+	- Corrected issues with chopping block recipes with Return Stacks (Logs -> Log Slabs) not allowing through processing (Holding rightclick through log and log slab)
 
 1-19-0.7.3-dev.2
 	- Another hotfix to fix the stuff I broke with the hotfix.  No more crashes on chopping blocks.
@@ -25,6 +28,7 @@
 	- Wood Recovery Recipes updated for ground interactions, slabs must be laid flat to recover boards with saw.
 	- Wood Recovery Recipes updated for sawbucks, they will look stupid and broken as the transforms still 
 	need handling.  Remember folks, dev build! 
+	
 
 1-19-0.7.1-dev.1
 	- Fixed copper axe not working on chopping blocks/in-world recipes. (For Real This Time)

@@ -2,7 +2,13 @@
 	code: "barkbasket",
 	class: "idgbarkbasket",
 	entityclass: "GenericTypedContainer",
-attributes: {
+	behaviors: [{name: "Lockable" }, {name: "Container"}, {name: "UnstableFalling"}],
+		entityBehaviors: [{ name: "Animatable" }],
+		variantgroups: [
+			{ code: "variant", loadFromProperties: "game:block/wood", states:["aged"]},
+			{ code:"side", loadFromProperties: "game:abstract/horizontalorientation" }
+	],
+	attributes: {
 		handbook: { 
 			groupBy: ["barkbasket-*"],
 			"groupedName": "indappledgroves:barkbasketname",
@@ -39,12 +45,7 @@ attributes: {
 		variantByGroup: "variant",
 		variantByGroupInventory: "variant"
 	},
-	behaviors: [{name: "Lockable" }, {name: "Container"}, {name: "UnstableFalling"}],
-	entityBehaviors: [{ name: "Animatable" }],
-	variantgroups: [
-		{ code: "variant", loadFromProperties: "game:block/wood", states:["aged"]},
-		{ code:"side", loadFromProperties: "game:abstract/horizontalorientation" }
-	],
+
 	creativeinventoryStacksByType: {
 		"*-east": [
 			{

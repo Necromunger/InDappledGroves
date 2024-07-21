@@ -57,15 +57,15 @@
 
             public override void OnBlockBroken(IWorldAccessor world, BlockPos pos, IPlayer byPlayer, float dropQuantityMultiplier = 1)
             {
-                if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowGrown bedc && api.World.Rand.NextDouble() <= IDGTreeConfig.Current.HollowBreakChance)
+                if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntities.BETreeHollowGrown bedc && api.World.Rand.NextDouble() <= IDGTreeConfig.Current.HollowBreakChance)
                     {
                         Block blockToBreak = this;
                         bedc.OnBreak();
 
                         var newPath = blockToBreak.Code.Domain + ":treehollowplaced-" + blockToBreak.FirstCodePart(2) + "-north";
-                        var newBlock = this.api.World.GetBlock(new AssetLocation(newPath)) as BlockTreeHollowPlaced;
+                        var newBlock = this.api.World.GetBlock(new AssetLocation(newPath)) as Blocks.BlockTreeHollowPlaced;
                         world.BlockAccessor.SetBlock(newBlock.BlockId, pos);
-                        if (world.BlockAccessor.GetBlockEntity(pos) is BETreeHollowPlaced be)
+                        if (world.BlockAccessor.GetBlockEntity(pos) is BlockEntities.BETreeHollowPlaced be)
                         {
                             be.Initialize(this.api);
                             be.type = blockToBreak.FirstCodePart(1);
@@ -81,14 +81,14 @@
 
             public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
             {
-            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BETreeHollowGrown bedc)
+            if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is BlockEntities.BETreeHollowGrown bedc)
             { return bedc.OnInteract(byPlayer); }
                 return base.OnBlockInteractStart(world, byPlayer, blockSel);
             }
 
         public override WorldInteraction[] GetPlacedBlockInteractionHelp(IWorldAccessor world, BlockSelection selection, IPlayer forPlayer)
             {
-                if (world.BlockAccessor.GetBlockEntity(selection.Position) is BETreeHollowGrown bedc)
+                if (world.BlockAccessor.GetBlockEntity(selection.Position) is BlockEntities.BETreeHollowGrown bedc)
                 {
                     if (!bedc.Inventory.Empty)
                     {
