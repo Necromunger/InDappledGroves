@@ -7,6 +7,8 @@
 	- Fixed error that resulted in support beams losing their ability to support things.
 	- Attempted to fix IDG side issues causing potential conflicts with Primitive Survival when IDG Hollows remain enabled.
 	- Corrected issues with chopping block recipes with Return Stacks (Logs -> Log Slabs) not allowing through processing (Holding rightclick through log and log slab)
+	- Wood Recovery Recipes disabled for sawbucks until the transforms can be properly ironed out.
+	- Fixed minor issue with Tree Hollows not outputting contents when interacted with with full recipe.  Will now spawn into the world.
 
 1-19-0.7.3-dev.2
 	- Another hotfix to fix the stuff I broke with the hotfix.  No more crashes on chopping blocks.
@@ -26,8 +28,7 @@
 	- Added burls that spawn on trees. Currently drop firewood when broken.
 	- Fixed bug where Primitive Survival being installed didn't stop IDG Hollows from Forming
 	- Wood Recovery Recipes updated for ground interactions, slabs must be laid flat to recover boards with saw.
-	- Wood Recovery Recipes updated for sawbucks, they will look stupid and broken as the transforms still 
-	need handling.  Remember folks, dev build! 
+	
 	
 
 1-19-0.7.1-dev.1

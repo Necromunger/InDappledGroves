@@ -107,11 +107,13 @@ namespace InDappledGroves.Blocks
                         chopTool.DamageItem(api.World, playerEntity, playerEntity.RightHandItemSlot, recipe.BaseToolDmg);
                         if (recipe.ReturnStack.ResolvedItemstack.Collectible.FirstCodePart() == "air")
                         {
+                            if (idgbechoppingblock.Inventory[0].Empty) return false;
                             idgbechoppingblock.Inventory.Clear();
                             return false; //If no stack is returned, clear stack
                         }
                         else
                         {
+                            //TODO: Determine if check needed to prevent spawning of excess resources
                             idgbechoppingblock.Inventory.Clear();
                             idgbechoppingblock.ReturnStackPut(recipe.ReturnStack.ResolvedItemstack.Clone());
                             curDmgFromMiningSpeed = 0; //Reset damage accumulation to ensure resistance doesn't carry over.

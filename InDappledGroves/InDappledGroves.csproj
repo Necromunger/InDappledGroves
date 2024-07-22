@@ -17,6 +17,13 @@
     <None Remove="Launcher\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\woodrecovery.json" />
+    <None Remove="assets\indappledgroves\recipes\sawbuck\woodrecovery.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\burlblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -30,9 +37,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\sawing\woodrecovery.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\wood\treestumpsection.json">
@@ -60,9 +64,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\sawing\woodrecovery.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\textures\block\overlay\lichen1.png">
@@ -93,9 +94,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\ground\sawing\woodrecovery.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\textures\block\overlay\lichen1.png">
@@ -417,9 +415,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\supportbeam.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\textures\block\overlay\lichen1.png">
@@ -786,9 +781,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\sawbuck\supportbeam.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\recipes\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\sawhorse\planks.json">
