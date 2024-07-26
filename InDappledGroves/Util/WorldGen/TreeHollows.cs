@@ -211,8 +211,6 @@ namespace InDappledGroves.Util.WorldGen
             if (treeBlock.FirstCodePart() == "treestump"
                 || treeBlock.FirstCodePart() == "treestumpsection"
                 || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestump"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "log"
-                || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "logsection"
                 || blockAccessor.GetBlock(pos.DownCopy(), 0).FirstCodePart() == "treestumpsection") return false;
 
             string stumpType = treeBlock.FirstCodePart(2);

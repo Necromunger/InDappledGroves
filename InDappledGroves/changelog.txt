@@ -1,4 +1,19 @@
-﻿1-19-0.8.0-dev.1
+﻿1-19-0.8.0-dev.6
+	Removed this. from UpdateMeshes. (?)
+
+1-19-0.8.0-dev.5
+	Added additional additional updateMeshes();
+
+1-19-0.8.0-dev.4
+	Added additional updateMeshes();
+
+1-19-0.8.0-dev.3
+	- Removed test code for checking if a workstation is in use or not.
+
+1-19-0.8.0-dev.2
+	- Packaged for server testing.
+
+1-19-0.8.0-dev.1
 	- Updated config handling to ensure serverside config is respected.
 	- Fixed stump generation weirdness with Acacia, Old Oak, Old Kapok, and likely any other "wide" tree that generates with logs rather than log-sections.
 	- Added pileful patch

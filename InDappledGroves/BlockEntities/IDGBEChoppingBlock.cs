@@ -70,7 +70,7 @@ namespace InDappledGroves.BlockEntities
 			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-                this.updateMeshes();
+                updateMeshes();
                 base.MarkDirty(true, null);
             }
 			return true;
@@ -80,9 +80,9 @@ namespace InDappledGroves.BlockEntities
 		{
 			if (this.Inventory[0].Empty) {
 				this.Inventory[0].Itemstack = stack;
+                updateMeshes();
                 base.MarkDirty(true, null);
-                this.updateMeshes();
-                
+
             }
 		}
 
@@ -93,12 +93,12 @@ namespace InDappledGroves.BlockEntities
                 if (this.Inventory[i].Empty)
                 {
                     int num3 = slot.TryPutInto(this.Api.World, this.Inventory[i], 1);
-                    this.updateMeshes();
-                    base.MarkDirty(true, null);
+                    updateMeshes();
+                    base.MarkDirty(true);
                     return num3 > 0;
                 }
             }
-            this.updateMeshes();
+            updateMeshes();
             base.MarkDirty(true, null);
             return false;
 		}
@@ -130,12 +130,12 @@ namespace InDappledGroves.BlockEntities
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
-					this.updateMeshes();
+					updateMeshes();
                     base.MarkDirty(true, null);
                     return true;
 				}
 			}
-            this.updateMeshes();
+            updateMeshes();
             base.MarkDirty(true, null);
             return false;
 		}
