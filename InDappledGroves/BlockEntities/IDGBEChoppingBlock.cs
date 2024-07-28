@@ -35,14 +35,15 @@ namespace InDappledGroves.BlockEntities
 			get { return Inventory[0]; }
 		}
 
-		internal bool OnInteract(IPlayer byPlayer)
+		public bool OnInteract(IPlayer byPlayer)
 		{
 			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
 			//If The Players Hand Is Empty
 			if (activeHotbarSlot.Empty)
 			{
-				return this.TryTake(byPlayer);
+				bool tryTakeResult = this.TryTake(byPlayer);
+				return tryTakeResult;
 			}
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;	
@@ -67,13 +68,17 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
 
-			if (DoesSlotMatchRecipe(Api.World, activeHotbarSlot) && this.TryPut(activeHotbarSlot))
+            bool matchRecipeResult = DoesSlotMatchRecipe(Api.World, activeHotbarSlot);
+
+            if (matchRecipeResult && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-                updateMeshes();
                 base.MarkDirty(true, null);
+                updateMeshes();
+				return true;
+
             }
-			return true;
+            return true;
 		}
 
 		public void ReturnStackPut(ItemStack stack)

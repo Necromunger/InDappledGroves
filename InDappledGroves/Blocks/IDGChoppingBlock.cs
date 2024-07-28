@@ -30,12 +30,48 @@ namespace InDappledGroves.Blocks
         public override string GetPlacedBlockName(IWorldAccessor world, BlockPos pos) => GetName();
 
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-		{
-			//Check to see if block entity exists
-			if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+        {
+            IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(byPlayer.Entity.BlockSelection.Position) as IDGBEChoppingBlock;
+            //Check to see if block entity exists
+            if (bechoppingblock == null) return base.OnBlockInteractStart(world, byPlayer, byPlayer.Entity.BlockSelection);
+            return bechoppingblock.OnInteract(byPlayer);
+        }
 
-			return bechoppingblock.OnInteract(byPlayer);
-		}
+        //public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
+        //{
+        //    string curTMode = "";
+        //    ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        //    ItemStack stack = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+        //    CollectibleObject collObj = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
+        //    //Check to see if block entity exists
+        //    if (world.BlockAccessor.GetBlockEntity(blockSel.Position) is not IDGBEChoppingBlock bechoppingblock) return base.OnBlockInteractStart(world, byPlayer, blockSel);
+
+        //    if (collObj == null) return bechoppingblock.OnInteract(byPlayer);
+
+        //    if (collObj.HasBehavior<BehaviorIDGTool>())
+        //    {
+        //        curTMode = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack);
+        //        toolModeMod = collObj.GetBehavior<BehaviorIDGTool>().GetToolModeMod(slot.Itemstack);
+        //    };
+
+        //    if (!bechoppingblock.Inventory.Empty)
+        //    {
+        //        if (collObj.HasBehavior<BehaviorIDGTool>())
+        //        {
+        //            recipe = bechoppingblock.GetMatchingChoppingBlockRecipe(world, bechoppingblock.InputSlot, curTMode);
+        //            if (recipe != null)
+        //            {
+        //                resistance = (bechoppingblock.Inventory[0].Itemstack.Collectible is Block ? bechoppingblock.Inventory[0].Itemstack.Block.Resistance : ((float)recipe.IngredientResistance)) * InDappledGroves.baseWorkstationResistanceMult;
+        //                byPlayer.Entity.StartAnimation("sawsaw-fp");
+        //                return true;
+        //            }
+        //            return false;
+        //        }
+        //    }
+
+        //    return bechoppingblock.OnInteract(byPlayer);
+        //}
         public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
 
