@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InDappledGroves.CollectibleBehaviors;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Vintagestory.API.Client;
@@ -78,7 +79,8 @@ namespace InDappledGroves.BlockEntities
 				return true;
 
             }
-            return true;
+			if (byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack.Collectible.HasBehavior<BehaviorIDGTool>()) return true;
+            return false;
 		}
 
 		public void ReturnStackPut(ItemStack stack)

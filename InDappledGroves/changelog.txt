@@ -1,4 +1,10 @@
-﻿1-19-0.8.0-dev.7
+﻿1-19-0.8.0-dev.9
+	Made changes to IDGChoppingBlock onInteractStart and IDGBEChoppingBlock OnInteract that may make a difference.
+
+1-19-0.8.0-dev.7
+	Added loggers to test theory.
+
+1-19-0.8.0-dev.7
 	Added loggers to test theory.
 
 1-19-0.8.0-dev.6

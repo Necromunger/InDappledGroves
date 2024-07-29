@@ -34,6 +34,7 @@ namespace InDappledGroves.Blocks
             IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(byPlayer.Entity.BlockSelection.Position) as IDGBEChoppingBlock;
             //Check to see if block entity exists
             if (bechoppingblock == null) return base.OnBlockInteractStart(world, byPlayer, byPlayer.Entity.BlockSelection);
+
             return bechoppingblock.OnInteract(byPlayer);
         }
 
