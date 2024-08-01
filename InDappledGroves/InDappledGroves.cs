@@ -26,13 +26,15 @@ namespace InDappledGroves
         #region Client
         public override void StartClientSide(ICoreClientAPI api)
         {
-            networkHandler.InitializeClientSideNetworkHandler(api);            
+            networkHandler.InitializeClientSideNetworkHandler(api);    
+            
         }
         #endregion
 
         #region server
         public override void StartServerSide(ICoreServerAPI api)
         {
+            
             networkHandler.InitializeServerSideNetworkHandler(api);
             InDappledGroves.baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
             InDappledGroves.baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;

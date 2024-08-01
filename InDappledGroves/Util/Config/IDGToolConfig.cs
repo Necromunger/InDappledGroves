@@ -26,7 +26,7 @@ namespace InDappledGroves.Util.Config
         {
             IDGToolConfig defaultConfig = new();
 
-            defaultConfig.baseWorkstationMiningSpdMult = 1.25f;
+            defaultConfig.baseWorkstationMiningSpdMult = 2f;
             defaultConfig.baseWorkstationResistanceMult = 1f;
             defaultConfig.baseGroundRecipeMiningSpdMult = 1f;
             defaultConfig.baseGroundRecipeResistaceMult = 1f;

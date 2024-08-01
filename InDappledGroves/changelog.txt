@@ -1,5 +1,16 @@
-﻿1-19-0.8.0-dev.9
-	Made changes to IDGChoppingBlock onInteractStart and IDGBEChoppingBlock OnInteract that may make a difference.
+﻿1-19-0.8.1-dev.1
+	- Reset testing, continuing exploration of OTHER players clientside rendering when on a remote server.
+
+1-19-0.8.0-dev.11
+	- Further tinkering
+
+1-19-0.8.0-dev.10	
+	- Updated IDGChoppingBlock and IDGBEChoppingBlock to enhance effectiveness of tools.
+	- Updated default workstationMiningSpeedMultiplier to 2f
+	- Updated IDGChoppingBlock and IDGSawBuck resistance logic into two steps for clarity.
+
+1-19-0.8.0-dev.9
+	- Made changes to IDGChoppingBlock onInteractStart and IDGBEChoppingBlock OnInteract that may make a difference.
 
 1-19-0.8.0-dev.7
 	Added loggers to test theory.

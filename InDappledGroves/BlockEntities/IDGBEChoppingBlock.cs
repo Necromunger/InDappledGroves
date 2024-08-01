@@ -8,6 +8,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
+using static OpenTK.Graphics.OpenGL.GL;
 
 namespace InDappledGroves.BlockEntities
 {
@@ -40,11 +41,14 @@ namespace InDappledGroves.BlockEntities
 		{
 			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
 
-			//If The Players Hand Is Empty
-			if (activeHotbarSlot.Empty)
+            //If The Players Hand Is Empty
+            if (activeHotbarSlot.Empty)
 			{
-				bool tryTakeResult = this.TryTake(byPlayer);
-				return tryTakeResult;
+
+                bool tryTakeResult = this.TryTake(byPlayer);
+				updateMeshes();
+				MarkDirty(true);
+                return false;
 			}
 
 			CollectibleObject collectible = activeHotbarSlot.Itemstack.Collectible;	
@@ -74,12 +78,13 @@ namespace InDappledGroves.BlockEntities
             if (matchRecipeResult && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-                base.MarkDirty(true, null);
-                updateMeshes();
-				return true;
+                return false;
 
             }
-			if (byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack.Collectible.HasBehavior<BehaviorIDGTool>()) return true;
+			if (byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack.Collectible.HasBehavior<BehaviorIDGTool>())
+			{
+                return true;
+			}
             return false;
 		}
 
@@ -87,11 +92,8 @@ namespace InDappledGroves.BlockEntities
 		{
 			if (this.Inventory[0].Empty) {
 				this.Inventory[0].Itemstack = stack;
-                updateMeshes();
-                base.MarkDirty(true, null);
-
             }
-		}
+        }
 
         public bool TryPut(ItemSlot slot)
 		{
@@ -99,14 +101,10 @@ namespace InDappledGroves.BlockEntities
 			{
                 if (this.Inventory[i].Empty)
                 {
-                    int num3 = slot.TryPutInto(this.Api.World, this.Inventory[i], 1);
-                    updateMeshes();
-                    base.MarkDirty(true);
+                    int num3 = slot.TryPutInto(this.Api.World, this.Inventory[i], 1);				
                     return num3 > 0;
                 }
             }
-            updateMeshes();
-            base.MarkDirty(true, null);
             return false;
 		}
 
@@ -137,8 +135,7 @@ namespace InDappledGroves.BlockEntities
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
-					updateMeshes();
-                    base.MarkDirty(true, null);
+					
                     return true;
 				}
 			}
