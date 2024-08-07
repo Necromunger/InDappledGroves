@@ -33,6 +33,7 @@ namespace InDappledGroves.Blocks
         public override bool OnBlockInteractStart(IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             
+            if(blockSel == null || byPlayer.Entity.BlockSelection.Position == null) return base.OnBlockInteractStart(world, byPlayer, blockSel);
             IDGBEChoppingBlock bechoppingblock = world.BlockAccessor.GetBlockEntity(byPlayer.Entity.BlockSelection.Position) as IDGBEChoppingBlock;
 
             if (bechoppingblock == null) 
@@ -55,9 +56,8 @@ namespace InDappledGroves.Blocks
             {
                 bool oninteractresult = idgbechoppingblock.OnInteract(byPlayer);
                 idgbechoppingblock.updateMeshes();
-                idgbechoppingblock.Inventory[0].MarkDirty();
                 idgbechoppingblock.MarkDirty(true);
-                System.Diagnostics.Debug.WriteLine("Inventory on " + api.Side.IsClient() + " contains " + idgbechoppingblock.Inventory[0].ToString());
+                System.Diagnostics.Debug.WriteLine("Inventory on " + api.Side.ToString() + " contains " + idgbechoppingblock.Inventory[0].ToString());
                 return oninteractresult;
             }
 

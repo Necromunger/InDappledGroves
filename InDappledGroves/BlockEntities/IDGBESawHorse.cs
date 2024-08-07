@@ -177,6 +177,7 @@ namespace InDappledGroves.BlockEntities
             ConBlockPos = Pos;
             pairedBlockPos = placedSawHorse;
         }
+        //TODO: Test to see if the addition of the following methods corrects the syncing issue.
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
@@ -198,9 +199,9 @@ namespace InDappledGroves.BlockEntities
             {
                 pairedBlockPos = null;
             }
-            
+            Inventory.FromTreeAttributes(tree.GetTreeAttribute("inventory"));
         }
-
+      
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
         {
             base.FromTreeAttributes(tree, worldForResolving);
@@ -209,7 +210,12 @@ namespace InDappledGroves.BlockEntities
             IsConBlock = tree.GetBool("isconblock");
             ConBlockPos = tree.GetBlockPos("conblock", null);
             pairedBlockPos = tree.GetBlockPos("pairedblock", null);
-            
+            if (Inventory != null)
+            {
+                ITreeAttribute treeAttribute = new TreeAttribute();
+                Inventory.ToTreeAttributes(treeAttribute);
+                tree["inventory"] = treeAttribute;
+            }
             MarkDirty(true);
         }
 

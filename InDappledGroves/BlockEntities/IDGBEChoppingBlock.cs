@@ -46,7 +46,8 @@ namespace InDappledGroves.BlockEntities
 			{
 
                 bool tryTakeResult = this.TryTake(byPlayer);
-				updateMeshes();
+                updateMeshes();
+                Inventory.MarkSlotDirty(0);
 				MarkDirty(true);
                 return false;
 			}
@@ -78,6 +79,9 @@ namespace InDappledGroves.BlockEntities
             if (matchRecipeResult && this.TryPut(activeHotbarSlot))
 			{	 
 				this.Api.World.PlaySoundAt(assetLocation ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
+                updateMeshes();
+                Inventory.MarkSlotDirty(0);
+                MarkDirty(true);
                 return false;
 
             }
@@ -107,6 +111,25 @@ namespace InDappledGroves.BlockEntities
             }
             return false;
 		}
+
+		//TODO: Test to see if the addition of the following methods corrects the syncing issue.
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        {
+            base.FromTreeAttributes(tree, worldForResolving);
+            Inventory.FromTreeAttributes(tree.GetTreeAttribute("inventory"));
+			updateMeshes();
+        }
+
+        public override void ToTreeAttributes(ITreeAttribute tree)
+        {
+            base.ToTreeAttributes(tree);
+            if (Inventory != null)
+            {
+                ITreeAttribute treeAttribute = new TreeAttribute();
+                Inventory.ToTreeAttributes(treeAttribute);
+                tree["inventory"] = treeAttribute;
+            }
+        }
 
         private bool TryTake(IPlayer byPlayer)
 		{
@@ -140,11 +163,10 @@ namespace InDappledGroves.BlockEntities
 				}
 			}
             updateMeshes();
-            base.MarkDirty(true, null);
+            Inventory.MarkSlotDirty(0);
+            MarkDirty(true);
             return false;
 		}
-
-
 
 		#region ProcessTransform
 		/// <summary>

@@ -1,37 +1,9 @@
-﻿1-19-0.8.1-dev.1
-	- Reset testing, continuing exploration of OTHER players clientside rendering when on a remote server.
+﻿1-19-0.8.2-dev.1
+	- Fixed issue with launching into charSel.
 
-1-19-0.8.0-dev.11
-	- Further tinkering
-
-1-19-0.8.0-dev.10	
-	- Updated IDGChoppingBlock and IDGBEChoppingBlock to enhance effectiveness of tools.
-	- Updated default workstationMiningSpeedMultiplier to 2f
-	- Updated IDGChoppingBlock and IDGSawBuck resistance logic into two steps for clarity.
-
-1-19-0.8.0-dev.9
-	- Made changes to IDGChoppingBlock onInteractStart and IDGBEChoppingBlock OnInteract that may make a difference.
-
-1-19-0.8.0-dev.7
-	Added loggers to test theory.
-
-1-19-0.8.0-dev.7
-	Added loggers to test theory.
-
-1-19-0.8.0-dev.6
-	Removed this. from UpdateMeshes. (?)
-
-1-19-0.8.0-dev.5
-	Added additional additional updateMeshes();
-
-1-19-0.8.0-dev.4
-	Added additional updateMeshes();
-
-1-19-0.8.0-dev.3
-	- Removed test code for checking if a workstation is in use or not.
-
-1-19-0.8.0-dev.2
-	- Packaged for server testing.
+1-19-0.8.2
+	- Gotta put this out sometime.  There's still a known bug on multiplayer servers. Nothing game breaking, but sometimes things won't render on the workstations for players who didn't put them there.
+	- Additionally, when they do show for other players, the rendering results can be pretty strange.  Everything mechanical seems to work fine though.
 
 1-19-0.8.0-dev.1
 	- Updated config handling to ensure serverside config is respected.

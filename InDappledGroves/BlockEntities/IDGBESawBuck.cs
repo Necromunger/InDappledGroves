@@ -257,7 +257,24 @@ namespace InDappledGroves.BlockEntities
 			//If no tool is held, return only contents
 		}
 
-		protected override float[][] genTransformationMatrices()
+        //TODO: Test to see if the addition of the following methods corrects the syncing issue.
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        {
+            base.FromTreeAttributes(tree, worldForResolving);
+            Inventory.FromTreeAttributes(tree.GetTreeAttribute("inventory"));
+        }
+
+        public override void ToTreeAttributes(ITreeAttribute tree)
+        {
+            base.ToTreeAttributes(tree);
+            if (Inventory != null)
+            {
+                ITreeAttribute treeAttribute = new TreeAttribute();
+                Inventory.ToTreeAttributes(treeAttribute);
+                tree["inventory"] = treeAttribute;
+            }
+        }
+        protected override float[][] genTransformationMatrices()
 		{
 			float[][] tfMatrices = new float[1][];
 			for (int index = 0; index < 1; index++)

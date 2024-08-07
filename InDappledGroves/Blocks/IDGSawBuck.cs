@@ -82,7 +82,7 @@ namespace InDappledGroves.Blocks
 			{
 				if (this.playNextSound < secondsUsed)
 				{
-					this.api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
+					this.api.World.PlaySoundAt(new AssetLocation("indappledgroves:sounds/block/saw1"), (double)position.X, (double)position.Y, (double)position.Z, byPlayer, true, 32f, 1f);
 					this.playNextSound += 0.7f;
 				}
 

@@ -7,10 +7,7 @@ using Vintagestory.API.Common;
 using InDappledGroves.Util.Config;
 using Vintagestory.API.Client;
 using Vintagestory.API.Server;
-using ProtoBuf;
-using Vintagestory.API.Config;
 using InDappledGroves.Util.Network;
-using InDappledGroves.Util.WorldGen;
 
 namespace InDappledGroves
 {
@@ -22,6 +19,10 @@ namespace InDappledGroves
         public static float baseGroundRecipeMiningSpdMult;
         public static float baseGroundRecipeResistaceMult;
         NetworkHandler networkHandler;
+        public override bool ShouldLoad(EnumAppSide forSide)
+        {
+            return true;
+        }
 
         #region Client
         public override void StartClientSide(ICoreClientAPI api)
