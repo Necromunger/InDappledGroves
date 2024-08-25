@@ -262,6 +262,8 @@ namespace InDappledGroves.BlockEntities
         {
             base.FromTreeAttributes(tree, worldForResolving);
             Inventory.FromTreeAttributes(tree.GetTreeAttribute("inventory"));
+            updateMeshes();
+            MarkDirty(true);
         }
 
         public override void ToTreeAttributes(ITreeAttribute tree)

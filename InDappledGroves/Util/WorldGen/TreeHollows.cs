@@ -106,16 +106,11 @@ namespace InDappledGroves.Util.WorldGen
                     {
                         PlaceTreeStump(ba, entry);
 
-                        if (hollowcount == 0)
+                        if (!sapi.ModLoader.IsModEnabled("primitivesurvival") && IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled && hollowcount == 0)
                         {
-                            float randNumb = (float)sapi.World.Rand.NextDouble();
-                            bool flag = sapi.ModLoader.IsModEnabled("primitivesurvival");
-                            if (!sapi.ModLoader.IsModEnabled("primitivesurvival") && IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled){
-                                if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability)
-                                    PlaceTreeHollow(ba, entry.Key);
+                                float randNumb = (float)sapi.World.Rand.NextDouble();
+                                if (randNumb <= IDGTreeConfig.Current.TreeHollowsSpawnProbability) PlaceTreeHollow(ba, entry.Key);
                                 hollowcount++;
-                            }
-                            if (capi != null) { capi.SendChatMessage(entry.Key.ToString()); };
                         }
                         if (burlcount == 0)
                         {
@@ -222,7 +217,9 @@ namespace InDappledGroves.Util.WorldGen
             }
             else
             {
-                withPath = (treeBlock.Code.Domain == "game" ? "indappledgroves" : treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
+                withPath = (treeBlock.Code.Domain == "game" ? 
+                    "indappledgroves" : 
+                    treeBlock.Code.Domain) + ":treestump-grown-" + stumpType + "-" + dirs[sapi.World.Rand.Next(4)];
             }
             var withBlockID = sapi.WorldManager.GetBlockId(new AssetLocation(withPath));
             var withBlock = blockAccessor.GetBlock(withBlockID);

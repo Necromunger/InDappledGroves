@@ -1,5 +1,6 @@
-﻿1-19-0.8.2-dev.1
+﻿1-19-0.8.3
 	- Fixed issue with launching into charSel.
+	- Fixed rendering issue.
 
 1-19-0.8.2
 	- Gotta put this out sometime.  There's still a known bug on multiplayer servers. Nothing game breaking, but sometimes things won't render on the workstations for players who didn't put them there.
