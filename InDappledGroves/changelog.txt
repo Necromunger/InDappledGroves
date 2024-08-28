@@ -1,4 +1,7 @@
-﻿1-19-0.8.3
+﻿1-19-0.8.4
+	- Fixed issue where trees would stop generating.
+
+1-19-0.8.3
 	- Fixed issue with launching into charSel.
 	- Fixed rendering issue.
 
