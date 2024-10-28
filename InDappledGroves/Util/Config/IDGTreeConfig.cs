@@ -1,6 +1,7 @@
 ﻿using ProtoBuf;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using Vintagestory.API.Common;
 using Vintagestory.API.Server;
@@ -45,26 +46,25 @@ namespace InDappledGroves.Util.Config
             defaultConfig.TreeFellingMultiplier = 1;
             defaultConfig.HollowBreakChance = 0.2f;
             defaultConfig.TreeHollowsMaxItems = 8;
-            defaultConfig.TreeHollowsSpawnProbability = 0.2f;
+            defaultConfig.TreeHollowsSpawnProbability = 0.02f;
             defaultConfig.RunTreeGenOnChunkReload = false;
             defaultConfig.DisableIDGHollowsWithPrimitiveSurvivalInstalled = true;
             defaultConfig.stumpTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa",
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus",
                 "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum",
-                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri"};
+                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri", "fir","linden","ash", "horsechestnut", "leadwood", "tigerwood" , "spurgetree", "mangrove", "sapele", "tamanu", "azobe"};
             defaultConfig.woodTypes = new[] { "acacia", "baldcypress", "birch", "ebony", "kapok", "larch", "maple", "oak", "pine", "purpleheart",
                 "walnut", "douglasfir", "willow", "honeylocust", "bearnut", "blackpoplar", "poplar", "pyramidalpoplar", "catalpa",
                 "mahogany", "sal", "saxaul", "spruce", "sycamore", "elm", "beech", "eucalyptus", "cedar", "searsialancea", "afrocarpusfalcatus",
                 "lysilomalatisiliquum", "eucalyptuscamaldulensis", "corymbiaaparrerinja", "araucariaheterophylla","dacrydiumcupressinum",
-                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri"};
+                "nothofagusmenziesii", "podocarpustotara", "empresstree", "bluemahoe", "redwood", "yew", "dalbergia", "tuja", "kauri", "fir","linden","ash", "horsechestnut", "leadwood", "tigerwood" , "spurgetree", "mangrove", "sapele", "tamanu", "azobe"};
 
             return defaultConfig;
         }
 
         public static void createConfigFile(ICoreAPI api)
         {
-
             //Tree Config
             try
             {

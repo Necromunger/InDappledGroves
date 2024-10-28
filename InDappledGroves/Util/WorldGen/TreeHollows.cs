@@ -400,6 +400,7 @@ namespace InDappledGroves.Util.WorldGen
         private bool ClimateLootFilter(string woodType, TreeLootObject obj, BlockPos pos)
         {
             ClimateCondition local = sapi.World.BlockAccessor.GetClimateAt(pos);
+            if(local == null) { return false; }
             bool meetsReqs = local.ForestDensity >= obj.cReqs.minForest
             && local.ForestDensity <= obj.cReqs.maxForest
             && local.ShrubDensity >= obj.cReqs.minShrub
