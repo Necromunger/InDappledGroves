@@ -11,6 +11,7 @@
     using Vintagestory.API.Util;
     using Vintagestory.API.Server;
 using InDappledGroves.Blocks;
+using System.Runtime.InteropServices;
 
 namespace InDappledGroves.BlockEntities
 {
@@ -50,6 +51,8 @@ namespace InDappledGroves.BlockEntities
 
         public override string InventoryClassName => this.inventoryClassName;
 
+        
+
         private BlockEntityAnimationUtil AnimUtil => this.GetBehavior<BEBehaviorAnimatable>()?.animUtil;
 
         private readonly Vec3f rendererRot = new Vec3f();
@@ -68,6 +71,19 @@ namespace InDappledGroves.BlockEntities
             if (this.inventory == null)
             { this.InitInventory(this.Block); }
             base.Initialize(api);
+            inventory.OnAcquireTransitionSpeed += Inventory_OnAcquireTransitionSpeed;
+        }
+
+        private float Inventory_OnAcquireTransitionSpeed(EnumTransitionType transType, ItemStack stack, float baseMul)
+        {
+            if (transType == EnumTransitionType.Dry || transType == EnumTransitionType.Melt) return container.Room?.ExitCount == 0 ? 2f : 0.5f;
+            if (Api == null) return 0;
+            if (transType == EnumTransitionType.Perish || transType == EnumTransitionType.Ripen)
+            {
+                float perishRate = container.GetPerishRate();
+                return perishRate;
+            }
+            return 0;
         }
 
         public override void OnBlockPlaced(ItemStack byItemStack = null)
@@ -81,7 +97,6 @@ namespace InDappledGroves.BlockEntities
                     this.InitInventory(this.Block);
                     this.Inventory.LateInitialize(this.InventoryClassName + "-" + this.Pos.X + "/" + this.Pos.Y + "/" + this.Pos.Z, this.Api);
                     this.Inventory.ResolveBlocksOrItems();
-                    this.Inventory.OnAcquireTransitionSpeed = this.Inventory_OnAcquireTransitionSpeed;
                     this.MarkDirty();
                 }
             }
@@ -233,7 +248,7 @@ namespace InDappledGroves.BlockEntities
                 }
                 ((ICoreServerAPI)this.Api).Network.SendBlockEntityPacket(
                     (IServerPlayer)byPlayer,
-                    this.Pos.X, this.Pos.Y, this.Pos.Z,
+                    this.Pos,
                     (int)EnumBlockContainerPacketId.OpenInventory,
                     data
                 );

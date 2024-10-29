@@ -52,7 +52,7 @@ namespace InDappledGroves.Util.HarmonyPatches
                 new CodeInstruction(OpCodes.Ldarg, 13), //Load local argument #14 ('bool WideTrunk')
                 CodeInstruction.Call(typeof(HarmonyModSystem), "GrowBranchTranspilerCall")
             );
-
+            
             // Return the newly patched code
             return codeMatcher.InstructionEnumeration();
         }

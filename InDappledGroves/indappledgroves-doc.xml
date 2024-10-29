@@ -22,7 +22,7 @@
             <returns></returns>
             
         </member>
-        <member name="M:InDappledGroves.Blocks.BlockTreeHollowGrown.TryPlaceBlockForWorldGen(Vintagestory.API.Common.IBlockAccessor,Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockFacing,Vintagestory.API.MathTools.LCGRandom)">
+        <member name="M:InDappledGroves.Blocks.BlockTreeHollowGrown.TryPlaceBlockForWorldGen(Vintagestory.API.Common.IBlockAccessor,Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockFacing,Vintagestory.API.MathTools.IRandom,Vintagestory.API.Common.BlockPatchAttributes)">
             <summary>
             Allows replacing logs with grown hollows.
             </summary>

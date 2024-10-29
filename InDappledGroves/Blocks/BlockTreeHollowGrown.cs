@@ -106,7 +106,7 @@
         /// <param name="onBlockFace"></param>
         /// <param name="worldgenRandom"></param>
         /// <returns></returns>
-        public override bool TryPlaceBlockForWorldGen(IBlockAccessor blockAccessor, BlockPos pos, BlockFacing onBlockFace, LCGRandom worldgenRandom)
+        public override bool TryPlaceBlockForWorldGen(IBlockAccessor blockAccessor, BlockPos pos, BlockFacing onBlockFace, IRandom worldgenRandom, BlockPatchAttributes attributes = null)
         {
             Block block = blockAccessor.GetBlock(pos);
 
