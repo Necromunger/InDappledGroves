@@ -37,7 +37,7 @@ namespace InDappledGroves.Util.HarmonyPatches
             codeMatcher.MatchEndForward(
                 new CodeMatch(instruction => instruction.Calls(typeof(TreeGen).
                 GetMethod("PlaceBlockEtc", BindingFlags.NonPublic | BindingFlags.Instance, null, 
-                new Type[] { typeof(int), typeof(BlockPos), typeof(Random), typeof(float), typeof(float) }, null)))
+                new Type[] { typeof(int), typeof(BlockPos), typeof(IRandom), typeof(float), typeof(float) }, null)))
             )
             .Advance(1);
 
@@ -47,7 +47,7 @@ namespace InDappledGroves.Util.HarmonyPatches
                 CodeInstruction.LoadField(typeof(TreeGen), "blockAccessor"), // Load the BlockAccessor used by the tree generator itself
                 new CodeInstruction(OpCodes.Ldarg_2), // Load 2nd argument of the method we are patching (`int depth`)
                 new CodeInstruction(OpCodes.Ldloc_S, 10), // Load method local variable #11 (`int iteration`) 
-                new CodeInstruction(OpCodes.Ldloc_S, 22), // Load method local variable #23 (`int blockId`)
+                new CodeInstruction(OpCodes.Ldloc_S, 22), // Load method local variable #22 (`int blockId`)
                 new CodeInstruction(OpCodes.Ldloc_S, 17), // Load method local variable #18 (`BlockPos currentPos`) 
                 new CodeInstruction(OpCodes.Ldarg, 13), //Load local argument #14 ('bool WideTrunk')
                 CodeInstruction.Call(typeof(HarmonyModSystem), "GrowBranchTranspilerCall")

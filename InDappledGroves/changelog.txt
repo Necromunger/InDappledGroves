@@ -1,4 +1,8 @@
-﻿1-19-0.8.5
+﻿1-20-1.0.0
+	- Updated to 1.20
+	- Changed typeof{Random} to typeof{IRandom} in GrowBranchTranspiler to account for core code changes.
+
+1-19-0.8.5
 	- Added Wildcraft Trees 1.2.0 compatibility
 
 1-19-0.8.4
