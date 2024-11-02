@@ -32,18 +32,6 @@
             <param name="worldgenRandom"></param>
             <returns></returns>
         </member>
-        <member name="M:InDappledGroves.Blocks.IDGSawHorse.IsNotDiagonal(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos)">
-            <summary>Determines whether [is not diagonal] [the specified position].</summary>
-            <param name="pos">The position of the placed sawhorse block</param>
-            <param name="neibpos">The position of a neighboring sawhorse block</param>
-            <returns> <c>true</c> if [is not diagonal] [the specified position]; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:InDappledGroves.Blocks.IDGSawHorse.getFacing(Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockPos,System.String)">
-            <summary>Determines what the appropriate placing is based on the location of the first and second blocks that make up a sawhorse station relative to each other.</summary>
-            <param name="pos">The position of the first block in a sawhorse station</param>
-            <param name="neibpos">The position of the second block in a sawhorse station</param>
-            <param name="which">A string indicating which of the two blocks that make up a sawhorse station are being checked.</param>
-        </member>
         <member name="M:InDappledGroves.Items.IDGBark.OnHeldInteractStart(Vintagestory.API.Common.ItemSlot,Vintagestory.API.Common.EntityAgent,Vintagestory.API.Common.BlockSelection,Vintagestory.API.Common.EntitySelection,System.Boolean,Vintagestory.API.Common.EnumHandHandling@)">
             <summary>Called when the player right clicks while holding this block/item in his hands</summary>
             <param name="slot">Players activehotbar slot</param>

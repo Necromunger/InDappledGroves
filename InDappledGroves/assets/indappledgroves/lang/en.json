@@ -5,15 +5,20 @@
 	"Sawing": "Sawing",
 	"Planing": "Planing",
 	"Hewing": "Hewing",
+	"Hewing": "Pounding",
 	"itemhelp-axe-chopwood": "To Chop",
   "itemhelp-saw-sawwood": "To Saw",
 	"itemhelp-adze-hewwood": "To Hew",
 	"itemhelp-tool-planewood": "To Plane",
+	"itemhelp-tool-pound": "To Pound",
 	"toolittledurability": "Your tool requires {0} durability to do this.",
 	"block-board": "Board",
 
 	"game:tabname-indappledgroves": "In Dappled Groves",
 	"game:handbook-category-indappledgroves": "In Dappled Groves",
+
+
+	"block-logsplitter": "Log Splitter",
 
 	//Stump Entries
 	"block-handbooktitle-treestump": "",

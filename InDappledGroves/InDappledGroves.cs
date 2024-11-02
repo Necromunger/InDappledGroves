@@ -18,6 +18,7 @@ namespace InDappledGroves
         public static float baseWorkstationResistanceMult;
         public static float baseGroundRecipeMiningSpdMult;
         public static float baseGroundRecipeResistaceMult;
+
         NetworkHandler networkHandler;
         public override bool ShouldLoad(EnumAppSide forSide)
         {
@@ -80,6 +81,7 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodplaner", typeof(BehaviorWoodPlaning));
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
             api.RegisterCollectibleBehaviorClass("idgtool", typeof(BehaviorIDGTool));
+            api.RegisterCollectibleBehaviorClass("pounder", typeof(BehaviorPounding));
 
 
             //Register BlockBehaviors

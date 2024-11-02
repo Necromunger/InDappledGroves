@@ -14,6 +14,7 @@ namespace InDappledGroves.Util.Config
         //Multiplier applied to the Mining Speed of a tool used in a ground recipe. Should default to 1. Less than 1 slows down, more than 1 speeds up work.
         public float baseGroundRecipeMiningSpdMult { get; set; }
         //Multiplier applied to the Resistance of a block being worked on the ground. Should default to 1. Less than 1 speeds up, more than 1 slows down work.
+
         public float baseGroundRecipeResistaceMult { get; set; }
 
 
@@ -29,6 +30,7 @@ namespace InDappledGroves.Util.Config
             defaultConfig.baseWorkstationMiningSpdMult = 2f;
             defaultConfig.baseWorkstationResistanceMult = 1f;
             defaultConfig.baseGroundRecipeMiningSpdMult = 1f;
+            defaultConfig.baseGroundRecipeResistaceMult = 1f;
             defaultConfig.baseGroundRecipeResistaceMult = 1f;
 
             return defaultConfig;

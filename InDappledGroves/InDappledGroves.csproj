@@ -447,6 +447,9 @@
     <None Update="assets\indappledgroves\blocktypes\burlblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\blocktypes\logsplitter.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\blocktypes\firewoodblock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -801,6 +804,9 @@
     <None Update="assets\indappledgroves\recipes\smithing\maulhead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\splitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\block\barkbasket.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -838,6 +844,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\logpile.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\block\logsplitter.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\planks\clapboard.json">
@@ -1002,6 +1011,12 @@
     <None Update="assets\indappledgroves\shapes\item\resource\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\shapes\item\resource\splittercrossblade.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\shapes\item\resource\splittersingleblade.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\shapes\item\toolhead\adze-metal.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1144,6 +1159,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\icons\hewing.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\icons\pounding.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\icons\planing.svg">

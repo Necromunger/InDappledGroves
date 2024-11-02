@@ -1,0 +1,80 @@
+[
+  {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+  },
+    {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    },
+    {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:logsection-placed-*-nw-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    },
+    {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:logsection-placed-*-se-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    },
+    {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:logsection-placed-*-sw-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+  },
+  {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free"}
+  }
+]

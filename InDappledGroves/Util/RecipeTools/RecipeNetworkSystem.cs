@@ -12,6 +12,7 @@ namespace InDappledGroves.Util.RecipeTools
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
     public class RecipeUpload
     {
+        public List<string> lsvalues;  //Log Splitter Recipe Values
         public List<string> cbvalues;  //ChoppingBlock Recipe Values
         public List<string> sbvalues;  //SawBuck Recipe Values
         public List<string> shvalues;  //SawHorse Recipe Values
@@ -44,11 +45,14 @@ namespace InDappledGroves.Util.RecipeTools
 
         private void OnServerMessage(RecipeUpload networkMessage)
         {
+            
             List<ChoppingBlockRecipe> crecipes = new();
             List<SawbuckRecipe> srecipes = new();
-            List<SawHorseRecipe> precipes = new();
+          //List<SawHorseRecipe> precipes = new();
+            List<SplitterRecipe> lsrecipes = new();
             List<GroundRecipe> grecipes = new();
 
+            #region Register Sawbuck Recipes
             if (networkMessage.cbvalues != null)
             {
                 foreach (string crec in networkMessage.cbvalues)
@@ -64,8 +68,11 @@ namespace InDappledGroves.Util.RecipeTools
                     }
                 }
             }
-            IDGRecipeRegistry.Loaded.ChoppingBlockRecipes = crecipes;
 
+            IDGRecipeRegistry.Loaded.ChoppingBlockRecipes = crecipes;
+            #endregion
+
+            #region Register Sawbuck Recipes
             if (networkMessage.sbvalues != null)
             {
                 foreach (string srec in networkMessage.sbvalues)
@@ -83,25 +90,29 @@ namespace InDappledGroves.Util.RecipeTools
             }
 
             IDGRecipeRegistry.Loaded.SawbuckRecipes = srecipes;
+            #endregion
 
-            if (networkMessage.shvalues != null)
-            {
-                foreach (string prec in networkMessage.shvalues)
-                {
-                    using (MemoryStream ms = new MemoryStream(Ascii85.Decode(prec)))
-                    {
-                        BinaryReader reader = new BinaryReader(ms);
+            //#region Register SawHorse Recipes
+            //if (networkMessage.shvalues != null)
+            //{
+            //    foreach (string prec in networkMessage.shvalues)
+            //    {
+            //        using (MemoryStream ms = new MemoryStream(Ascii85.Decode(prec)))
+            //        {
+            //            BinaryReader reader = new BinaryReader(ms);
 
-                        SawHorseRecipe retr = new SawHorseRecipe();
-                        retr.FromBytes(reader, clientApi.World);
+            //            SawHorseRecipe retr = new SawHorseRecipe();
+            //            retr.FromBytes(reader, clientApi.World);
 
-                        precipes.Add(retr);
-                    }
-                }
-            }
+            //            precipes.Add(retr);
+            //        }
+            //    }
+            //}
+            
+            //IDGRecipeRegistry.Loaded.SawHorseRecipes = precipes;
+            //#endregion
 
-            IDGRecipeRegistry.Loaded.SawHorseRecipes = precipes;
-
+            #region Register Ground Recipes
             if (networkMessage.gvalues != null)
             {
                 foreach (string crec in networkMessage.gvalues)
@@ -119,8 +130,28 @@ namespace InDappledGroves.Util.RecipeTools
             }
 
             IDGRecipeRegistry.Loaded.GroundRecipes = grecipes;
-        }
+            #endregion
 
+            #region Register Log Splitter Recipes
+            if (networkMessage.lsvalues != null)
+            {
+                foreach (string lsrec in networkMessage.lsvalues)
+                {
+                    using (MemoryStream ms = new(Ascii85.Decode(lsrec)))
+                    {
+                        BinaryReader reader = new BinaryReader(ms);
+
+                        SplitterRecipe retr = new SplitterRecipe();
+                        retr.FromBytes(reader, clientApi.World);
+
+                        lsrecipes.Add(retr);
+                    }
+                }
+            }
+            IDGRecipeRegistry.Loaded.SplitterRecipes = lsrecipes;
+            #endregion
+
+        }
         #endregion
 
         #region Server
@@ -146,8 +177,10 @@ namespace InDappledGroves.Util.RecipeTools
         {
             List<string> crecipes = new List<string>();
             List<string> srecipes = new List<string>();
+            List<string> lsrecipes = new List<string>();
             List<string> precipes = new List<string>();
             List<string> grecipes = new List<string>();
+            
 
             foreach (ChoppingBlockRecipe crec in IDGRecipeRegistry.Loaded.ChoppingBlockRecipes)
             {
@@ -175,13 +208,26 @@ namespace InDappledGroves.Util.RecipeTools
                 }
             }
 
-            foreach (SawHorseRecipe prec in IDGRecipeRegistry.Loaded.SawHorseRecipes)
+            //foreach (SawHorseRecipe prec in IDGRecipeRegistry.Loaded.SawHorseRecipes)
+            //{
+            //    using (MemoryStream ms = new MemoryStream())
+            //    {
+            //        BinaryWriter writer = new BinaryWriter(ms);
+
+            //        prec.ToBytes(writer);
+
+            //        string value = Ascii85.Encode(ms.ToArray());
+            //        precipes.Add(value);
+            //    }
+            //}
+
+            foreach (SplitterRecipe lsrec in IDGRecipeRegistry.Loaded.SplitterRecipes)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     BinaryWriter writer = new BinaryWriter(ms);
 
-                    prec.ToBytes(writer);
+                    lsrec.ToBytes(writer);
 
                     string value = Ascii85.Encode(ms.ToArray());
                     precipes.Add(value);
@@ -206,6 +252,7 @@ namespace InDappledGroves.Util.RecipeTools
                 cbvalues = crecipes,
                 sbvalues = srecipes,
                 shvalues = precipes,
+                lsvalues = lsrecipes,
                 gvalues = grecipes,
             });
         }
