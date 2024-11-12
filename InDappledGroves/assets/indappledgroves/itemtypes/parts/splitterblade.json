@@ -1,0 +1,53 @@
+{
+	code: "splitterblade",
+	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"]},
+	attributes: {
+		handbook: {
+			groupBy: ["splitterblade-*"]
+		},
+		groundStorageTransformByType: {
+			"splitterblade-single-*": { translation: { x: 0, y: -0.5, z: 0 }, rotation: { x: 0, y: -87, z: 0 }},
+			"splitterblade-cross-*": {	translation: { x: 0, y: -0.5, z: 0 }},
+		},
+		"logSplitterTransform":  {
+		"translation": {"x": 0, "y": -0.85, "z": 0},
+		"scale": 1.3
+		}
+	},
+	behaviors: [
+		{ "name": "GroundStorable", "properties": { "layout": "SingleCenter" } } 
+
+	],
+	variantgroups: [
+				{ code: "style", states: ["single", "cross"] },
+        { code: "material", states: ["tinbronze", "bismuthbronze", "blackbronze", "iron", "meteoriciron", "steel" ] }
+    ],
+	durabilitybytype: {
+		"*-tinbronze": 400,
+		"*-bismuthbronze": 500,
+		"*-blackbronze": 600,
+		"*-iron": 900,
+		"*-meteoriciron": 1200,
+		"*-steel": 1800
+	},
+	drawtype: "json",
+  shapeByType: { 
+		"splitterblade-cross-*": { base: "indappledgroves:item/resource/splittercrossblade" },
+		"splitterblade-single-*": { base: "indappledgroves:item/resource/splittersingleblade" },
+	},
+	"textures": {
+			"material": { base: "game:block/metal/ingot/{material}" }
+	},
+	guiTransform: {
+		translation: { x: 3, y: 4.4, z: 0 },
+		rotation: { x: -159, y: 54, z: -58 },
+		origin: { x: 0.6, y: 0.6, z: 0.5 },
+		scale: 1.94
+	},
+	tpHandTransform: {
+		translation: { x: -0.9, y: -0.8, z: -0.5 },
+		rotation: { x: -115, y: -62, z: 18 },
+		scale: 0.78
+	},
+	maxstacksize: 1,
+}

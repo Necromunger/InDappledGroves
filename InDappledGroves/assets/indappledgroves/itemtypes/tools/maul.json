@@ -13,6 +13,34 @@
 					}
 			]
 		},
+		"modeTransforms": {
+			"chopping": {
+				fpHandTransform: {
+					translation: { x: -0.2, y: -0.2, z: 0.2 },
+					rotation: { x: -29, y: 1, z: 88 },
+					scale: 2.5
+				},
+					tpHandTransform: {
+					translation: { x: -1.15, y: 0.01, z: -1.13},
+					rotation: { x: 90, y: 1, z: 0 },
+					origin: { x: 0.5, y: 0, z: 0.5 },
+					scale: 0.8
+				}
+			},
+			"pounding": {
+				fpHandTransform: {
+					translation: { x: -0.2, y: -0.2, z: 0.2 },
+					rotation: { x: -29, y: -179, z: 88 },
+					scale: 2.49
+				},
+				tpHandTransform: {
+					translation: { x: -1.15, y: 0.01, z: -0.12 },
+					rotation: { x: -89, y: 0, z: 0 },
+					origin: { x: 0.5, y: 0, z: 0.5 },
+					scale: 0.8
+				}
+			}
+		},
 		groundStorageTransform: {
 			translation: { x: 0, y: 0.15, z: 0.2 },
 			rotation: { x: 25, y: -180, z: -90 },
@@ -22,7 +50,8 @@
 			translation: { x: -0.4, y: 0.1, z: 0 },
 			scale: 2.00
 		},
-		"choppingProps": { "fellingMultiplier": 1.75, "splittingMultiplier": 0.45}		
+		"choppingProps": { "fellingMultiplier": 1.75, "splittingMultiplier": 0.45},
+		"poundingProps": { "poundingMultiplier": 1.75}
 	},
 		behaviors: [{
 		name: "GroundStorable",

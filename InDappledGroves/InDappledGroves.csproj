@@ -492,6 +492,9 @@
     <None Update="assets\indappledgroves\config\handbook\indappledgrovesworkstationguide.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\itemtypes\parts\splitterblade.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -738,6 +741,9 @@
     <None Update="assets\indappledgroves\recipes\grid\forestaxe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\recipes\grid\logsplitter.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\recipes\grid\maul.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -802,6 +808,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\smithing\maulhead.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\splitterbladecross.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\splitter\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\splitter\logslab.json">

@@ -21,11 +21,6 @@ namespace InDappledGroves.Util.HarmonyPatches
             harmony.Patch(typeof(TreeGen).GetMethod("GrowTree", BindingFlags.Instance | BindingFlags.Public),
                 postfix: new HarmonyMethod(typeof(HarmonyModSystem).GetMethod("growTreePostfix", BindingFlags.Static | BindingFlags.Public))
             );
-
-            //harmony.Patch(typeof(BlockEntitySapling).GetMethod("CheckGrow", BindingFlags.Instance | BindingFlags.NonPublic),
-            //    postfix: new HarmonyMethod(typeof(HarmonyModSystem).GetMethod("checkGrowPostfix", BindingFlags.Static | BindingFlags.Public))
-            //);
-
         }
 
         public static IEnumerable<CodeInstruction> growBranchTranspiler(IEnumerable<CodeInstruction> instructions)

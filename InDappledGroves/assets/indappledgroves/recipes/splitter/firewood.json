@@ -9,7 +9,7 @@
        ]
       }
     ],
-    "bladeType": "single",
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
+    "bladeType": "cross",
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
   }
 ]

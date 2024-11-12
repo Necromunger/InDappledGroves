@@ -22,6 +22,15 @@
             <returns></returns>
             
         </member>
+        <member name="M:InDappledGroves.BlockEntities.IDGBELogSplitter.genTransform(Vintagestory.API.Common.ItemStack)">
+            <summary>
+            Processes the transform.
+            </summary>
+            <param name="transform">The transform.</param>
+            <param name="side">The side.</param>
+            <returns></returns>
+            
+        </member>
         <member name="M:InDappledGroves.Blocks.BlockTreeHollowGrown.TryPlaceBlockForWorldGen(Vintagestory.API.Common.IBlockAccessor,Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockFacing,Vintagestory.API.MathTools.IRandom,Vintagestory.API.Common.BlockPatchAttributes)">
             <summary>
             Allows replacing logs with grown hollows.

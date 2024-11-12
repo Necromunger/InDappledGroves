@@ -27,7 +27,7 @@ namespace InDappledGroves.Util.RecipeTools
             private List<SawbuckRecipe> sawbuckRecipes = new List<SawbuckRecipe>();
             //private List<SawHorseRecipe> sawhorseRecipes = new List<SawHorseRecipe>();
             private List<GroundRecipe> groundRecipes = new List<GroundRecipe>();
-            private List<SplitterRecipe> splitterRecipes = new List<SplitterRecipe>();
+            private List<LogSplitterRecipe> logSplitterRecipes = new List<LogSplitterRecipe>();
 
             public List<ChoppingBlockRecipe> ChoppingBlockRecipes
             {
@@ -41,15 +41,15 @@ namespace InDappledGroves.Util.RecipeTools
                 }
             }
 
-            public List<SplitterRecipe> SplitterRecipes
+            public List<LogSplitterRecipe> LogSplitterRecipes
             {
                 get
                 {
-                    return splitterRecipes;
+                    return logSplitterRecipes;
                 }
                 set
                 {
-                    splitterRecipes = value;
+                    logSplitterRecipes = value;
                 }
             }
 
@@ -167,7 +167,7 @@ namespace InDappledGroves.Util.RecipeTools
                 {
                     if (val.Value is JObject)
                     {
-                        SplitterRecipe rec = val.Value.ToObject<SplitterRecipe>();
+                        LogSplitterRecipe rec = val.Value.ToObject<LogSplitterRecipe>();
                         if (!rec.Enabled) continue;
 
                         LoadSplitterRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
@@ -176,7 +176,7 @@ namespace InDappledGroves.Util.RecipeTools
                     {
                         foreach (var token in val.Value as JArray)
                         {
-                            SplitterRecipe rec = token.ToObject<SplitterRecipe>();
+                            LogSplitterRecipe rec = token.ToObject<LogSplitterRecipe>();
                             if (!rec.Enabled) continue;
 
                             LoadSplitterRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
@@ -188,7 +188,7 @@ namespace InDappledGroves.Util.RecipeTools
                 //api.World.Logger.StoryEvent(Lang.Get("indappledgroves:working sole and blade..."));
             }
 
-            public void LoadSplitterRecipe(AssetLocation path, SplitterRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
+            public void LoadSplitterRecipe(AssetLocation path, LogSplitterRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
@@ -198,7 +198,7 @@ namespace InDappledGroves.Util.RecipeTools
 
                 if (nameToCodeMapping.Count > 0)
                 {
-                    List<SplitterRecipe> subRecipes = new List<SplitterRecipe>();
+                    List<LogSplitterRecipe> subRecipes = new List<LogSplitterRecipe>();
 
                     int qCombs = 0;
                     bool first = true;
@@ -217,7 +217,7 @@ namespace InDappledGroves.Util.RecipeTools
 
                         for (int i = 0; i < qCombs; i++)
                         {
-                            SplitterRecipe rec;
+                            LogSplitterRecipe rec;
 
                             if (first) subRecipes.Add(rec = recipe.Clone());
                             else rec = subRecipes[i];
@@ -248,14 +248,14 @@ namespace InDappledGroves.Util.RecipeTools
                         api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
                     }
 
-                    foreach (SplitterRecipe subRecipe in subRecipes)
+                    foreach (LogSplitterRecipe subRecipe in subRecipes)
                     {
                         if (!subRecipe.Resolve(api.World, className + " " + path))
                         {
                             quantityIgnored++;
                             continue;
                         }
-                        IDGRecipeRegistry.Loaded.SplitterRecipes.Add(subRecipe);
+                        IDGRecipeRegistry.Loaded.LogSplitterRecipes.Add(subRecipe);
                         quantityRegistered++;
                     }
 
@@ -268,7 +268,7 @@ namespace InDappledGroves.Util.RecipeTools
                         return;
                     }
 
-                    IDGRecipeRegistry.Loaded.SplitterRecipes.Add(recipe);
+                    IDGRecipeRegistry.Loaded.LogSplitterRecipes.Add(recipe);
                     quantityRegistered++;
                 }
             }
@@ -1282,7 +1282,7 @@ namespace InDappledGroves.Util.RecipeTools
             }
         }
 
-        public class SplitterRecipe : IByteSerializable
+        public class LogSplitterRecipe : IByteSerializable
         {
             public string Code = "SplitterRecipe";
 
@@ -1477,7 +1477,7 @@ namespace InDappledGroves.Util.RecipeTools
                 ReturnStack.Resolve(resolver, "Log Splitter Recipe (FromBytes)");
             }
 
-            public SplitterRecipe Clone()
+            public LogSplitterRecipe Clone()
             {
                 ChoppingBlockIngredient[] ingredients = new ChoppingBlockIngredient[Ingredients.Length];
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1485,7 +1485,7 @@ namespace InDappledGroves.Util.RecipeTools
                     ingredients[i] = Ingredients[i].Clone();
                 }
 
-                return new SplitterRecipe()
+                return new LogSplitterRecipe()
                 {
 
                     Output = Output.Clone(),

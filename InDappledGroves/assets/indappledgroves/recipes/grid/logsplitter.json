@@ -1,0 +1,147 @@
+[
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-tinbronze",
+				quantity: 1
+			},
+		"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-tinbronze",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-tinbronze",
+			quantity: 1
+		}
+	},
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-bismuthbronze",
+				quantity: 1
+			},
+			"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-bismuthbronze",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-bismuthbronze",
+			quantity: 1
+		}
+	},
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-blackbronze",
+				quantity: 1
+			},
+			"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-blackbronze",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-blackbronze",
+			quantity: 1
+		}
+	},
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-iron",
+				quantity: 1
+			},
+			"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-iron",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-iron",
+			quantity: 1
+		}
+	},
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-meteoriciron",
+				quantity: 1
+			},
+			"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-meteoriciron",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-meteoriciron",
+			quantity: 1
+		}
+	},
+	{
+		ingredientPattern: "_H_,_R_,_H_",
+		width: 3,
+		height: 3,
+		ingredients: {
+			"H": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:hoop-steel",
+				quantity: 1
+			},
+			"R": { 
+				type: "item", 
+				name: "hoop",
+				code: "game:rod-steel",
+				quantity: 4
+			}
+		},
+		output: { 
+			type: "block", 
+			code: "indappledgroves:logsplitter-steel",
+			quantity: 1
+		}
+	}
+]
+

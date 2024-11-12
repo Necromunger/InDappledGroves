@@ -2,6 +2,14 @@
 	- Added Behavior Pounding
 	- Copied planing.SVG to use as stand-in for future pounding.svg
 	- Update of Lang File for basic entries. No block descriptions.
+	- Added Log Splitter Block and Block Entity
+	- Implemented custom recipes for log splitter
+	- Added ability to insert blade and ingredients into Log Splitter
+	- Get ingredient from Log Splitter.
+	- Add durability to splitter blades
+	- Add splitter blade being damaged after recipe complete
+	- Updated lang files
+	- Updated BlockInfo on Splitter to show held log, blade type, and remaining durability of blade.
 
 1-20-1.0.0
 	- Updated to 1.20

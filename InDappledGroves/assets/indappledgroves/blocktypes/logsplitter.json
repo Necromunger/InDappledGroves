@@ -4,7 +4,7 @@
   "entityClass": "idgbelogsplitter",
   "maxstacksize": 1,
   "behaviors": [
-    {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
+    {"name": "Unstable" }
   ],
   "attributes": {
     "inventoryclass": "logsplitter",
@@ -22,28 +22,35 @@
       ]
 		}
   },
-  "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
+  "creativeinventory": { "general": ["*"], "indappledgroves": ["*"]},
   "variantgroups": [
-    { "code": "frame", "states": ["aged"]}
+    { "code": "frame", "states": ["tinbronze","bismuthbronze","blackbronze","iron","meteoriciron","steel"]}
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "textures": {		
-      "wood": { "base": "game:block/wood/treetrunk/{wood}" },
-			"bark": { "base": "game:block/wood/bark/{wood}" }
+      "frame": { "base": "game:block/metal/ingot/{frame}" }
 	},
-  "shape": { "base": "block/logsplitter"},
+  "shape": { "base": "indappledgroves:block/logsplitter"},
   "lightabsorption": 32,
   "sideopaque": { "all": false },
   "sidesolid": { "all": false },
-  "blockmaterial": "wood",
+  "blockmaterial": "metal",
   "sounds": {"place": "game:block/planks"},
-  tpHandTransform: {
+  "tpHandTransform": {
 		translation: { x: -0.9, y: -1.1, z: -0.637 },
 		rotation: { x: 18, y: 10, z: -98 },
 		origin: { x: 0.5, y: 0.4, z: 0.5 },
 		scale: 0.75
 	},
-  "collisionbox": { "x1": 0, "y1": 0, "z1": 0, "x2": 1, "y2": 0.125, "z2": 1 },
-  "selectionBox": { "x1": 0.0625, "y1": 0.125, "z1": 0.0625, "x2": 0.9375, "y2": 1, "z2": 0.9375 }
+  "collisionBoxes": [
+		{ x1: 0, y1: 0, z1: 0, x2: 0.125, y2: 0.9375, z2: 1 },
+		{ x1: 1, y1: 0, z1: 0, x2: 0.875, y2: 0.9375, z2: 1 },
+		{ x1: 0.125, y1: 0, z1: 0, x2: 0.875, y2: 0.9375, z2: 0.125 },
+		{ x1: 0.125, y1: 0, z1: 0.875, x2: 0.875, y2: 0.9375, z2: 1 },
+		{ x1: 0.125, y1: 0.5, z1: 0.125, x2: 0.875, y2: 0.6875, z2: 0.9375 }
+	],
+  "selectionBoxes": [
+		{ x1: 0, y1: 0, z1: 0, x2: 1, y2: 0.9375, z2: 1 }
+	]
 }

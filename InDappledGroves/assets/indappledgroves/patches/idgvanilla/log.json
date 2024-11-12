@@ -19,6 +19,13 @@
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
+    "path": "/idgLogSplitterTransform",
+    "value": {}
+  },
+  {
+    "file": "game:blocktypes/wood/woodtyped/log.json",
+    "side": "server",
+    "op": "add",
     "path": "/attributes/workStationTransformsByType",
     "value": {
       "*-placed-*":{

@@ -219,16 +219,16 @@ namespace InDappledGroves.CollectibleBehaviors
         {
             if (api.Side.IsServer())
             {
-                switch (GetToolModeName(stack))
+                String propString = GetToolModeName(stack) + "Props";
+                String multString = GetToolModeName(stack) + "Multiplier";
+                if (stack.Collectible.Attributes[propString].Exists && stack.Collectible.Attributes[propString][multString].Exists)
                 {
-                    case "chopping": return stack.Collectible.Attributes["choppingProps"]["splittingMultiplier"].AsFloat();
-                    case "sawing": return stack.Collectible.Attributes["sawingProps"]["sawingMultiplier"].AsFloat();
-                    case "hewing": return stack.Collectible.Attributes["hewingProps"]["hewingMultiplier"].AsFloat();
-                    case "planing": return stack.Collectible.Attributes["planingProps"]["planingMultiplier"].AsFloat();
-                    default: return 1f;
+                    return stack.Collectible.Attributes[propString][multString].AsFloat();
                 }
+                return 1f;
             }
             return 1f;
+
         }
 
         //-- Spawns output when chopping cycle is finished --//

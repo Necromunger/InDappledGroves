@@ -14,13 +14,32 @@
 	"toolittledurability": "Your tool requires {0} durability to do this.",
 	"block-board": "Board",
 
+	"LogSplitterNoBladeError": "Log Splitter Has No Blade",
+	"BladeHeldInSplitter": "Blade Type",
+	"BladeDurability": "Blade Durability",
+	"Empty": "Empty",
+	"LogHeldInSplitter": "Log Held",
 	"game:tabname-indappledgroves": "In Dappled Groves",
 	"game:handbook-category-indappledgroves": "In Dappled Groves",
-
-
-	"block-logsplitter": "Log Splitter",
-
-	//Stump Entries
+	"block-logsplitter-*": "Log Splitter",
+	"item-splitterblade-single-tinbronze": "Tin Bronze Slab Blade",
+	"item-splitterblade-single-bismuthbronze": "Bismuth Bronze Slab Blade",
+	"item-splitterblade-single-blackbronze": "Black Bronze Slab Blade",
+	"item-splitterblade-single-iron": "Iron Slab Blade",
+	"item-splitterblade-single-meteoriciron": "Meteoric Iron Slab Blade",
+	"item-splitterblade-single-steel": "Steel Slab Blade",
+	"item-splitterblade-cross-tinbronze": "Tin Bronze Cross Blade",
+	"item-splitterblade-cross-bismuthbronze": "Bismuth Bronze Cross Blade",
+	"item-splitterblade-cross-blackbronze": "Black Bronze Cross Blade",
+	"item-splitterblade-cross-iron": "Iron Slab Blade",
+	"item-splitterblade-cross-meteoriciron": "Meteoric Iron Cross Blade",
+	"item-splitterblade-cross-steel": "Steel Cross Blade",
+	
+	"block-handbooktitle-logsplitter": "Title1",
+	"block-handbooktext-logsplitter": "Text1",
+	"block-handbooktitle-logsplitter2": "Title2",
+	"block-handbooktext-logsplitter2": "Text2",
+	
 	"block-handbooktitle-treestump": "",
 	"block-handbooktext-treestump": "<font align='center'><i>I have turned aside from everything,
 from the whole earthly store.
@@ -34,8 +53,6 @@ is an old tree-stump in water.</i></font>
 ",
 	"block-treestump": "Stump",
 	"treehollowcontents": "Tree Hollow's Secret",
-
-	//Hollow Entries
 	"block-treehollow": "Tree Hollow",
 	"block-handbooktitle-treehollow": "",
 	"block-handbooktext-treehollow": "<font align='center'><i>Where nature casts a spell on the mind
