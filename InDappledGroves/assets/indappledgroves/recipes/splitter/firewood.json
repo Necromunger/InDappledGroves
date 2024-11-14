@@ -11,5 +11,20 @@
     ],
     "bladeType": "cross",
     "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "bladeType": "cross",
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
   }
+
+  
 ]

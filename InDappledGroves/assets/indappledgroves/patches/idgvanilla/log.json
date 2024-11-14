@@ -10,8 +10,12 @@
 						  "text": "indappledgroves:block-handbooktext-debarkedlog"
 					  }
           ]
+        },
+        "logSplitterTransform":  {
+		      "translation": {"x": 0, "y": 0.65, "z": 0},
+		      "scale": 0.75
         }
-      },
+     },
      "file": "game:blocktypes/wood/woodtyped/log-debarked.json",
      "side": "server"
   },
@@ -19,8 +23,13 @@
     "file": "game:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/idgLogSplitterTransform",
-    "value": {}
+    "path": "/attributes",
+    "value": {
+          "logSplitterTransform":  {
+		      "translation": {"x": 0, "y": 0.65, "z": 0},
+		      "scale": 0.75
+          },
+    }
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log.json",

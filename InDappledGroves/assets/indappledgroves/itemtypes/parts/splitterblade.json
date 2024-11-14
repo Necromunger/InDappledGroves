@@ -6,12 +6,12 @@
 			groupBy: ["splitterblade-*"]
 		},
 		groundStorageTransformByType: {
-			"splitterblade-single-*": { translation: { x: 0, y: -0.5, z: 0 }, rotation: { x: 0, y: -87, z: 0 }},
-			"splitterblade-cross-*": {	translation: { x: 0, y: -0.5, z: 0 }},
+			"splitterblade-single-*": { translation: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: -87, z: 0 }},
+			"splitterblade-cross-*": {	translation: { x: 0, y: 0, z: 0 }},
 		},
 		"logSplitterTransform":  {
-		"translation": {"x": 0, "y": -0.85, "z": 0},
-		"scale": 1.3
+		"translation": {"x": 0, "y": 0.5, "z": 0},
+		"scale": 1
 		}
 	},
 	behaviors: [
@@ -38,11 +38,25 @@
 	"textures": {
 			"material": { base: "game:block/metal/ingot/{material}" }
 	},
-	guiTransform: {
-		translation: { x: 3, y: 4.4, z: 0 },
-		rotation: { x: -159, y: 54, z: -58 },
-		origin: { x: 0.6, y: 0.6, z: 0.5 },
-		scale: 1.94
+	//guiTransform: {
+	//	translation: { x: 3, y: 4.4, z: 0 },
+	//	rotation: { x: -159, y: 54, z: -58 },
+	//	origin: { x: 0.6, y: 0.6, z: 0.5 },
+	//	scale: 1.94
+	//},
+	"guiTransformByType": {
+		"splitterblade-single-*": {
+			translation: { x: 13, y: -12.43, z: 0 },
+			rotation: { x: -159, y: 54, z: -58 },
+			origin: { x: 0.6, y: 0.6, z: 0.5 },
+			scale: 2
+		},
+		"splitterblade-cross-*": {
+			translation: { x: 16, y: -15.6, z: 0 },
+			rotation: { x: -159, y: 58, z: -66 },
+			origin: { x: 0.6, y: 0.6, z: 0.5 },
+			scale: 2
+		}
 	},
 	tpHandTransform: {
 		translation: { x: -0.9, y: -0.8, z: -0.5 },

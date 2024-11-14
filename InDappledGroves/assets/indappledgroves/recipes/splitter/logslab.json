@@ -11,5 +11,18 @@
     ],
     "bladeType": "single",
     "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
+  },
+  {
+    "toolmode": "pounding",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:debarkedlog-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "bladeType": "single",
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
   }
 ]

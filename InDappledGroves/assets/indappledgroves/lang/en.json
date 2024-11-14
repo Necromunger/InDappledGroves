@@ -18,7 +18,7 @@
 	"BladeHeldInSplitter": "Blade Type",
 	"BladeDurability": "Blade Durability",
 	"Empty": "Empty",
-	"LogHeldInSplitter": "Log Held",
+	"workstationWorkItem": "Work Item",
 	"game:tabname-indappledgroves": "In Dappled Groves",
 	"game:handbook-category-indappledgroves": "In Dappled Groves",
 	"block-logsplitter-*": "Log Splitter",
@@ -31,7 +31,7 @@
 	"item-splitterblade-cross-tinbronze": "Tin Bronze Cross Blade",
 	"item-splitterblade-cross-bismuthbronze": "Bismuth Bronze Cross Blade",
 	"item-splitterblade-cross-blackbronze": "Black Bronze Cross Blade",
-	"item-splitterblade-cross-iron": "Iron Slab Blade",
+	"item-splitterblade-cross-iron": "Iron Cross Blade",
 	"item-splitterblade-cross-meteoriciron": "Meteoric Iron Cross Blade",
 	"item-splitterblade-cross-steel": "Steel Cross Blade",
 	

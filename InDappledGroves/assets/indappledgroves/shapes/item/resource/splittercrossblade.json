@@ -8,14 +8,13 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"material": "game:block/metal/ingot/tinbronze"
 	},
 	"elements": [
 		{
 			"name": "Cube42",
-			"from": [ 7.0, 8.0, 14.0 ], 
-			"to": [ 9.0, 11.0, 15.0 ], 
-			"rotationOrigin": [ 7.0, 8.0, 14.0 ],
+			"from": [ 7.0, 0.0, 14.0 ], 
+			"to": [ 9.0, 3.0, 15.0 ], 
+			"rotationOrigin": [ 7.0, 0.0, 14.0 ],
 			"faces": {
 				"north": { "texture": "#material", "uv": [ 1.5, 1.5, 3.5, 4.5 ] },
 				"east": { "texture": "#material", "uv": [ 4.5, 2.5, 5.5, 5.5 ] },
@@ -91,9 +90,9 @@
 		},
 		{
 			"name": "Cube47",
-			"from": [ 14.0, 8.0, 9.0 ], 
-			"to": [ 16.0, 11.0, 10.0 ], 
-			"rotationOrigin": [ 14.0, 8.0, 9.0 ],
+			"from": [ 14.0, 0.0, 9.0 ], 
+			"to": [ 16.0, 3.0, 10.0 ], 
+			"rotationOrigin": [ 14.0, 0.0, 9.0 ],
 			"rotationY": 90.0,
 			"faces": {
 				"north": { "texture": "#material", "uv": [ 2.5, 2.5, 4.5, 5.5 ] },
