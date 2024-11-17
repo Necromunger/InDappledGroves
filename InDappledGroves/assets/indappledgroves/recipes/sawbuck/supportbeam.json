@@ -1,6 +1,8 @@
 [
   {
     "toolmode": "hewing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
     "ingredients":
     [ 
       {"inputs": 

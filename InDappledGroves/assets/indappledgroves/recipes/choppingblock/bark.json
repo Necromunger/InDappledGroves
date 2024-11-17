@@ -1,6 +1,8 @@
 [
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "animation": "axesplit-fp",
     "ingredients":
     [ 
       {"inputs": 
@@ -15,6 +17,8 @@
   },
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "animation": "axesplit-fp",
     "ingredients":
     [ 
       {"inputs": 
@@ -29,6 +33,8 @@
   },
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "animation": "axesplit-fp",
     "ingredients":
     [ 
       {"inputs": 

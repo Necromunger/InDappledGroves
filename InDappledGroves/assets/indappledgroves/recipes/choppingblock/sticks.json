@@ -1,6 +1,7 @@
 [
   {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "IngredientResistance": 2.0,
     "IngredientMaterial": 4,
     "ingredients":
@@ -15,6 +16,8 @@
   },
   {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "animation": "axesplit-fp",
     "ingredientresistance": 2.0,
     "ingredientmaterial": 4,
     "ingredients":

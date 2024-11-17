@@ -13,7 +13,7 @@
 	"itemhelp-tool-pound": "To Pound",
 	"toolittledurability": "Your tool requires {0} durability to do this.",
 	"block-board": "Board",
-
+	"WorkstationTypeNotDesignated": "Workstation {0} does not have workstation type designated in blocktype",
 	"LogSplitterNoBladeError": "Log Splitter Has No Blade",
 	"BladeHeldInSplitter": "Blade Type",
 	"BladeDurability": "Blade Durability",
@@ -21,7 +21,7 @@
 	"workstationWorkItem": "Work Item",
 	"game:tabname-indappledgroves": "In Dappled Groves",
 	"game:handbook-category-indappledgroves": "In Dappled Groves",
-	"block-logsplitter-*": "Log Splitter",
+	"block-logsplitter": "Log Splitter",
 	"item-splitterblade-single-tinbronze": "Tin Bronze Slab Blade",
 	"item-splitterblade-single-bismuthbronze": "Bismuth Bronze Slab Blade",
 	"item-splitterblade-single-blackbronze": "Black Bronze Slab Blade",

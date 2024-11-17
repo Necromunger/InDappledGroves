@@ -1,13 +1,14 @@
 {
   "code": "choppingblock",
-  "class": "idgchoppingblock",
-  "entityClass": "idgbechoppingblock",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
   "attributes": {
     "inventoryclass": "choppingblock",
+    "attributetransformcode": "idgChoppingBlockTransform",
 		"handbook": {
 			"groupBy": ["choppingblock-*-east"],
       "extraSections": [
@@ -20,18 +21,24 @@
           "text": "indappledgroves:block-handbooktext-choppingblock2"
         }
       ]
-		}
-  },
+     },
+      "workstationproperties": {
+        "workstationtype": "basic",
+        "slottypes": {
+          "inputslot": 0
+        } 
+      }
+		},
   "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
   "variantgroups": [
-    { "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code": "primary", "states": ["aged"], "loadFromProperties": "block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "textures": {		
-      "wood": { "base": "game:block/wood/treetrunk/{wood}" },
-			"bark": { "base": "game:block/wood/bark/{wood}" }
+      "wood": { "base": "game:block/wood/treetrunk/{primary}" },
+			"bark": { "base": "game:block/wood/bark/{primary}" }
 	},
   "shape": { "base": "block/choppingblock"},
   "lightabsorption": 32,

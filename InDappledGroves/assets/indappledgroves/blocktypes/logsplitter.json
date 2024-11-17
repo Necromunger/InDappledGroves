@@ -1,13 +1,14 @@
 {
   "code": "logsplitter",
-  "class": "idglogsplitter",
-  "entityClass": "idgbelogsplitter",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }
   ],
   "attributes": {
     "inventoryclass": "logsplitter",
+    "attributetransformcode": "idgLogSplitterTransform",
 		"handbook": {
 			"groupBy": ["logsplitter-*-east"],
       "extraSections": [
@@ -19,17 +20,25 @@
           "title": "indappledgroves:block-handbooktitle-logsplitter2",
           "text": "indappledgroves:block-handbooktext-logsplitter2"
         }
-      ]
-		}
-  },
+      ],
+      },
+      "workstationproperties": {
+        "workstationtype": "complex",
+        "damageprocessmodifier": true,
+        "slottypes": {
+          "inputslot": 1,
+          "processmodifier0": 0,            //processmodifier0 indicates the first processor slot, not the 0 index of the selection boxes.  The 0 value represents the index of selection boxes.
+        } 
+      }
+	},
   "creativeinventory": { "general": ["*"], "indappledgroves": ["*"]},
   "variantgroups": [
-    { "code": "frame", "states": ["tinbronze","bismuthbronze","blackbronze","iron","meteoriciron","steel"]}
+    { "code": "primary", "states": ["tinbronze","bismuthbronze","blackbronze","iron","meteoriciron","steel"]}
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "textures": {		
-      "frame": { "base": "game:block/metal/ingot/{frame}" }
+      "frame": { "base": "game:block/metal/ingot/{primary}" }
 	},
   "shape": { "base": "indappledgroves:block/logsplitter"},
   "lightabsorption": 32,

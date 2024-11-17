@@ -1,6 +1,8 @@
 [
   {
     "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
     "ingredients":
     [ 
       {"inputs": 
@@ -9,11 +11,12 @@
        ]
       }
     ],
-    "bladeType": "cross",
     "output": {"type": "item", "code": "game:firewood", "quantity": 4}
   },
   {
     "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
     "ingredients":
     [ 
       {"inputs": 
@@ -22,9 +25,6 @@
        ]
       }
     ],
-    "bladeType": "cross",
     "output": {"type": "item", "code": "game:firewood", "quantity": 4}
   }
-
-  
 ]

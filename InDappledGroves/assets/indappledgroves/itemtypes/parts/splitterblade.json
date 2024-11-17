@@ -9,7 +9,7 @@
 			"splitterblade-single-*": { translation: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: -87, z: 0 }},
 			"splitterblade-cross-*": {	translation: { x: 0, y: 0, z: 0 }},
 		},
-		"logSplitterTransform":  {
+		"idgLogSplitterTransform":  {
 		"translation": {"x": 0, "y": 0.5, "z": 0},
 		"scale": 1
 		}

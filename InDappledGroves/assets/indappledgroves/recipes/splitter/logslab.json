@@ -1,6 +1,8 @@
 [
   {
     "toolmode": "pounding",
+    "processmodifier": "splitterblade-single",
+    "requiredworkstation": "logsplitter",
     "ingredients":
     [ 
       {"inputs": 
@@ -9,11 +11,12 @@
        ]
       }
     ],
-    "bladeType": "single",
     "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
   },
   {
     "toolmode": "pounding",
+    "processmodifier": "splitterblade-single",
+    "requiredworkstation": "logsplitter",
     "ingredients":
     [ 
       {"inputs": 
@@ -22,7 +25,6 @@
        ]
       }
     ],
-    "bladeType": "single",
     "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
   }
 ]

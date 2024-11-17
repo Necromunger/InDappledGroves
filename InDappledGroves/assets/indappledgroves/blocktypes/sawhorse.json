@@ -19,8 +19,8 @@
   ]
   },
   "variantgroups": [
-    { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood"},
-    { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
+    { "code": "primary", "states": ["aged"], "loadFromProperties": "block/wood"},
+    { "code": "secondary", "states": ["aged"], "loadFromProperties": "block/wood"},
     { "code": "state", "states": ["single","compound"]},
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
     
@@ -29,8 +29,8 @@
   "helpTpUseAnimation": "twohandplaceblock",
   "creativeinventory": { "general": ["*-single-east"], "indappledgroves": ["*-single-east"]},
   "textures": {		
-      "support": { "base": "game:block/wood/planks/{support}1" },
-			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }
+      "support": { "base": "game:block/wood/planks/{primary}1" },
+			"crossbrace": { "base": "game:block/wood/planks/{secondary}1" }
   },
   "shapeByType": {
 		"*-north": { "base": "block/sawhorse", "rotateY":90 },

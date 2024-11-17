@@ -55,10 +55,9 @@ namespace InDappledGroves
             api.RegisterItemClass("idgbark", typeof(IDGBark));
 
             //Register Blocks
-            api.RegisterBlockClass("idgchoppingblock", typeof(IDGChoppingBlock));
             api.RegisterBlockClass("idgbarkbundle", typeof(IDGBarkBundle));
             api.RegisterBlockClass("idglogslab", typeof(IDGLogSlab));
-            api.RegisterBlockClass("idgsawbuck", typeof(IDGSawBuck));
+            api.RegisterBlockClass("idgworkstation", typeof(IDGWorkstation));
             api.RegisterBlockClass("idgsawhorse", typeof(IDGSawHorse));
             api.RegisterBlockClass("idgbarkbasket", typeof(IDGBarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
@@ -67,13 +66,12 @@ namespace InDappledGroves
             api.RegisterBlockClass("blocktreehollowplaced", typeof(Blocks.BlockTreeHollowPlaced));
             api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
             api.RegisterBlockClass("idgblockburl", typeof(BlockBurl));
-            api.RegisterBlockClass("idglogsplitter", typeof(IDGLogSplitter));
 
             //Register BlockEntities
-            api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
-            api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
+            api.RegisterBlockEntityClass("idgbeworkstation", typeof(IDGBEWorkstation));
+            //api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
+            //api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
-            api.RegisterBlockEntityClass("idgbelogsplitter", typeof(IDGBELogSplitter));
             api.RegisterBlockEntityClass("betreehollowgrown", typeof(BlockEntities.BETreeHollowGrown));
             api.RegisterBlockEntityClass("betreehollowplaced", typeof(BlockEntities.BETreeHollowPlaced));
 

@@ -1,6 +1,8 @@
 [
   {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "animation": "axesplit-fp",
     "ingredients":
     [ 
       {"inputs": 

@@ -1,30 +1,38 @@
 {
   "code": "sawbuck",
-  "class": "idgsawbuck",
-  "entityClass": "idgbesawbuck",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
   "attributes": {
+    "inventoryclass": "sawbuck",
+    "attributetransformcode": "idgSawBuckTransform",
 		"handbook": {
 			"groupBy": ["sawbuck-birch-*-east"],
 			"extraSections": [
 				{ "title": "indappledgroves:block-handbooktitle-sawbuck", "text": "indappledgroves:block-handbooktext-sawbuck" }
 			]
-		}
+		},
+    "workstationproperties": {
+      "workstationtype": "basic",
+      "slottypes": {
+        "inputslot": 0
+      } 
+    }
 	},	
   "variantgroups": [
-    { "code": "support", "states": ["aged"], "loadFromProperties": "block/wood" },
-    { "code": "crossbrace", "states": ["aged"], "loadFromProperties": "block/wood"},
+    { "code": "primary", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code": "secondary", "states": ["aged"], "loadFromProperties": "block/wood"},
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
   "textures": {		
-      "support": { "base": "game:block/wood/planks/{support}1" },
-			"crossbrace": { "base": "game:block/wood/planks/{crossbrace}1" }
+      "support": { "base": "game:block/wood/planks/{primary}1" },
+			"crossbrace": { "base": "game:block/wood/planks/{secondary}1" }
 	},
   "shapeByType": {
 		"*-north": { "base": "block/sawbuck", "rotateY":0 },

@@ -2,68 +2,119 @@
 using InDappledGroves.Util.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves.BlockEntities
 {
-    abstract class IDGBEWorkstation : BlockEntityDisplay
+    public class IDGBEWorkstation : BlockEntityDisplay
     {
 		public override InventoryBase Inventory { get; }
 
-		public override string InventoryClassName => "workstation";
+        protected InventoryGeneric inventory;
 
-        public override string AttributeTransformCode => "workstationTransform";
+        public override string InventoryClassName => Block==null?"workstation":Block.Attributes["inventoryclass"].AsString();
+        public override string AttributeTransformCode => Block.Attributes["attributetransformcode"].AsString();
+
+        public string workstationtype => Block.Attributes["workstationproperties"]["workstationtype"].ToString();
 
         public bool recipecomplete { get; set; } = false;
 
         public RecipeHandler recipeHandler { get; set; }
 
         public float currentMiningDamage { get; set; }
+        public ItemSlot InputSlot { get { return Inventory[Block.Attributes["workstationproperties"]["slottypes"]["inputslot"].AsInt()];} }
 
-        public ItemSlot InputSlot { get; set; }
-
-        //static List<ChoppingBlockRecipe> choppingBlockrecipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
+        public ItemSlot ProcessModifierSlot { get { return Block.Attributes["workstationproperties"]["workstationtype"].ToString() == "complex" ? Inventory[Block.Attributes["workstationproperties"]["slottypes"]["processmodifier0"].AsInt()] : null; } }
 
         public IDGBEWorkstation()
 		{
-            //Must initialize inventory in derived classes
-            //Inventory = new InventoryDisplayed(this, 2, InventoryClassName + "-slot", null, null);
-        }
+			//Must initialize inventory in derived classes
+			Inventory = new InventoryDisplayed(this, 2, InventoryClassName + "-slot", null, null);
+		}
 
-
-
-        public override void Initialize(ICoreAPI api)
+		public override void Initialize(ICoreAPI api)
         {
             base.Initialize(api);
             if (recipeHandler == null)
             {
-                recipeHandler = new RecipeHandler(api);
+                recipeHandler = new RecipeHandler(api, this);
             }
             this.capi = (api as ICoreClientAPI);
         }
 
         public virtual bool OnInteract(IPlayer byPlayer)
-		{
-			ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+        {
+            ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            bool result = false;
+            //If The Players Hand Is Empty
+            if (workstationtype == "basic")
+            {
+                return OnBasicInteract(byPlayer);
+            }
+            else if (workstationtype == "complex")
+            {
+                return OnComplexInteract(byPlayer);
+            }
 
-			//If The Players Hand Is Empty
-			if (activeHotbarSlot.Empty)
-			{
-				return this.TryTake(byPlayer, InputSlot);
-			}
-
-			if (GetMatchingRecipes(Api.World, activeHotbarSlot)){
-                this.TryPut(byPlayer, activeHotbarSlot, InputSlot); 
-			}
-			return true;
+            if (result)
+            {
+                updateMeshes();
+                MarkDirty(true);
+            }
+			return false;
 		}
+
+
+        public virtual bool OnBasicInteract(IPlayer byPlayer)
+        {
+            ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+
+                if (activeHotbarSlot.Empty)
+                {
+                    return this.TryTake(byPlayer, InputSlot);
+                }
+                else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype))
+                {
+                    return this.TryPut(byPlayer, activeHotbarSlot, InputSlot);
+                }
+
+            return false;
+        }
+
+        public virtual bool OnComplexInteract(IPlayer byPlayer)
+        {
+            ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            if (activeHotbarSlot.Empty)
+            {
+                if (!InputSlot.Empty)
+                {
+                    return this.TryTake(byPlayer, InputSlot);
+                }
+                else
+                {
+                    return this.TryTake(byPlayer, ProcessModifierSlot);
+                }
+            }
+            else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype))
+            {
+                return this.TryPut(byPlayer, activeHotbarSlot, InputSlot);
+            }
+            else if (recipeHandler.GetMatchingProcessModifier(Api.World, activeHotbarSlot, workstationtype))
+            {
+                return this.TryPut(byPlayer, activeHotbarSlot, ProcessModifierSlot);
+            }
+
+            return false;
+        }
 
         public virtual bool TryPut(IPlayer byPlayer, ItemSlot slot, ItemSlot targetSlot)
         {
@@ -124,80 +175,65 @@ namespace InDappledGroves.BlockEntities
 				}
 			return false;
 		}
-
-        public virtual bool UpdateInventory(ICoreAPI api, IPlayer byPlayer, ItemStack returnStack, IDGBEWorkstation workstation)
+        internal bool handleRecipe(CollectibleObject heldCollectible, float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
-            return recipeHandler.UpdateInventory(api, byPlayer, returnStack, workstation);
+            ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
+            
+            bool recipeComplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
+
+            updateMeshes();
+            base.MarkDirty(true, null);
+            return !recipeComplete;
+
+        }
+       
+
+        private string GetWorkStationType()
+        {
+            JsonObject attributes = Block.Attributes["workstationproperties"];
+            if (attributes.Exists && attributes["workstationtype"].Exists)
+            {
+                return attributes["workstationtype"].ToString();
+            } else
+            {
+                if (Api.Side.IsClient())
+                {
+                    capi.Logger.Debug(Lang.GetMatching("WorkstationTypeNotDesignated", Block.Class));
+                }
+                return null;
+            }
         }
 
-        /*TODO: Revise recipe classes to have a parent class holding all basic processing information.
-         * Make unique workstation recipes extend the initial class. This should be relatively simple,
-         * as the majority of recipes use exactly the same values, excepting their location.
-         */ 
-        //internal bool handleRecipe(CollectibleObject heldCollectible, float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        //{
-        //    ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
-        //    string curTMode = heldCollectible.GetBehavior<BehaviorIDGTool>().GetToolModeName(slot.Itemstack);
-        //    recipe = GetMatchingRecipe(world, InputSlot, BladeSlot.Itemstack.Collectible.Variant["style"].ToString(), curTMode);
-        //    if (recipe == null)
-        //    {
-        //        return false;
-        //    }
+        protected override float[][] genTransformationMatrices()
+        {
+            float[][] tfMatrices = new float[Inventory.Count][];
+            for (int index = 0; index < Inventory.Count; index++)
+            {
 
-        //    ItemStack itemstack = slot.Itemstack;
-        //    BlockPos position = blockSel.Position;
-        //    if (recipeHandler.recipeValues == null)
-        //    {
-        //        recipeHandler.recipeValues = new RecipeValues(Inventory[1].Itemstack, recipe.IngredientMaterial, recipe.Output.ResolvedItemstack, recipe.ReturnStack.ResolvedItemstack, recipe.BaseToolDmg);
-        //    }
+                ItemSlot itemSlot = this.Inventory[index];
+                JsonObject jsonObject;
+                if (itemSlot == null)
+                {
+                    jsonObject = null;
+                }
+                else
+                {
+                    ItemStack itemstack = itemSlot.Itemstack;
+                    if (itemstack == null)
+                    {
+                        jsonObject = null;
+                    }
+                    else
+                    {
+                       tfMatrices[index] = new Matrixf().Translate(0.5,0.5,0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5,-0.5,-0.5).Values;
+                    }
+                }
+            }
+            return tfMatrices;
+        }
 
-        //    bool recipeComplete = recipeHandler.processRecipe(heldCollectible, curTMode, slot, byPlayer.Entity, blockSel.Position, secondsUsed);
 
-        //    if (recipeComplete)
-        //    {
-        //        recipeComplete = UpdateInventory(Api, byPlayer, recipe.ReturnStack.ResolvedItemstack, this);
-
-        //    }
-
-        //    updateMeshes();
-        //    base.MarkDirty(true, null);
-        //    return !recipeComplete;
-        //}
-
-        public virtual bool GetMatchingRecipes(IWorldAccessor world, ItemSlot slots)
-		{
-
-            List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
-			if (recipes == null) return false;
-
-			for (int j = 0; j < recipes.Count; j++)
-			{
-				if (recipes[j].Matches(Api.World, slots))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		public ChoppingBlockRecipe GetMatchingChoppingBlockRecipe(IWorldAccessor world, ItemSlot slots, string toolmode)
-		{
-			List<ChoppingBlockRecipe> recipes = IDGRecipeRegistry.Loaded.ChoppingBlockRecipes;
-			if (recipes == null) return null;
-
-			for (int j = 0; j < recipes.Count; j++)
-			{
-				if (recipes[j].Matches(Api.World, slots) && (recipes[j].ToolMode == toolmode))
-				{
-					return recipes[j];
-				}
-			}
-
-			return null;
-		}
-
-		public void SpawnOutput(ChoppingBlockRecipe recipe, BlockPos pos)
+        public void SpawnOutput(BasicWorkstationRecipe recipe, BlockPos pos)
 		{
 			int j = recipe.Output.StackSize;
 			for (int i = j; i > 0; i--)
@@ -208,11 +244,26 @@ namespace InDappledGroves.BlockEntities
 
 		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
 		{
-            dsc.AppendLine(Lang.GetMatching("indappledgroves:workstationWorkItem") + ": " + (Inventory[1].Empty ? Lang.GetMatching("indappledgroves:Empty") : Inventory[1].Itemstack.GetName()));
-            if(Api.Side.IsClient()){
-					dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress)*100)+ "%");
-				}
+            var primary = Block.Variant["primary"];
+            var secondary = Block.Variant["secondary"];
+            var materials = (Lang.Get("material-" + $"{primary}") + (secondary != null ? " and " + Lang.Get("material-" + $"{secondary}") : ""));
+            ItemStack stack = forPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
+            string curToolMode = stack?.Collectible.GetBehavior<BehaviorIDGTool>()?.GetToolModeName(stack).ToString();
+            dsc.AppendLine(Lang.GetMatching("indappledgroves:workstationWorkItem") + ": " + (InputSlot.Empty ? Lang.GetMatching("indappledgroves:Empty") : InputSlot.Itemstack.GetName()));
+            System.Diagnostics.Debug.WriteLine(Api.Side.ToString() + recipeHandler.recipeProgress);
+            dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
+            if (forPlayer.Entity.Controls.Sneak) {
+                if (workstationtype == "complex" && !ProcessModifierSlot.Empty)
+                {
+                    dsc.AppendLine("Process Modifier Type:" + ProcessModifierSlot.Itemstack.GetName());
+                    dsc.AppendLine("Remaining Durability: " + ProcessModifierSlot.Itemstack.Attributes["durability"]);
+                }
+                dsc.AppendLine(string.Format($"{materials}"));
+                dsc.AppendLine("Attribute Transform Code:" + AttributeTransformCode);
+                dsc.AppendLine("Inventory Class Name:" + InventoryClassName);
+                dsc.AppendLine("Current Tool Mode: " + curToolMode);
+            }
         }
-
 	}
 }
+
