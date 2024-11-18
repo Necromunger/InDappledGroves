@@ -813,10 +813,10 @@
     <None Update="assets\indappledgroves\recipes\smithing\splitterbladecross.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\splitter\firewood.json">
+    <None Update="assets\indappledgroves\recipes\logsplitter\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\splitter\logslab.json">
+    <None Update="assets\indappledgroves\recipes\logsplitter\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\barkbasket.json">

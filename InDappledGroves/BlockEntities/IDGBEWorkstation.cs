@@ -9,7 +9,9 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
+using Vintagestory.API.Server;
 using Vintagestory.API.Util;
+using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
@@ -232,36 +234,54 @@ namespace InDappledGroves.BlockEntities
             return tfMatrices;
         }
 
+        public override void ToTreeAttributes(ITreeAttribute tree)
+        {
+            if (recipeHandler != null)
+            {
+                tree.SetFloat("recipeprogress", recipeHandler.recipeProgress);
+                tree.SetFloat("currentminingdamage", recipeHandler.currentMiningDamage);
+                tree.SetFloat("curDmgFromMiningSpeed", recipeHandler.curDmgFromMiningSpeed);
+            }
+            base.ToTreeAttributes(tree);
+        }
 
-        public void SpawnOutput(BasicWorkstationRecipe recipe, BlockPos pos)
-		{
-			int j = recipe.Output.StackSize;
-			for (int i = j; i > 0; i--)
-			{
-				Api.World.SpawnItemEntity(new ItemStack(recipe.Output.ResolvedItemstack.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
-			}
-		}
+        public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
+        {
+            base.FromTreeAttributes(tree, worldForResolving);
+            if (recipeHandler != null)
+            {
+                recipeHandler.recipeProgress = tree.GetFloat("recipeprogress");
+                recipeHandler.currentMiningDamage = tree.GetFloat("currentminingdamage");
+                recipeHandler.curDmgFromMiningSpeed = tree.GetFloat("curDmgFromMiningSpeed");
+            }
+        }
 
-		public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
-		{
+        public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
+        {
             var primary = Block.Variant["primary"];
             var secondary = Block.Variant["secondary"];
             var materials = (Lang.Get("material-" + $"{primary}") + (secondary != null ? " and " + Lang.Get("material-" + $"{secondary}") : ""));
             ItemStack stack = forPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
             string curToolMode = stack?.Collectible.GetBehavior<BehaviorIDGTool>()?.GetToolModeName(stack).ToString();
             dsc.AppendLine(Lang.GetMatching("indappledgroves:workstationWorkItem") + ": " + (InputSlot.Empty ? Lang.GetMatching("indappledgroves:Empty") : InputSlot.Itemstack.GetName()));
-            System.Diagnostics.Debug.WriteLine(Api.Side.ToString() + recipeHandler.recipeProgress);
-            dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
-            if (forPlayer.Entity.Controls.Sneak) {
-                if (workstationtype == "complex" && !ProcessModifierSlot.Empty)
+            if (workstationtype == "complex" && !ProcessModifierSlot.Empty)
+            {
+                dsc.AppendLine("Process Modifier Type:" + ProcessModifierSlot.Itemstack.GetName());
+                dsc.AppendLine("Remaining Durability: " + ProcessModifierSlot.Itemstack.Attributes["durability"]);
+            }
+            if (ClientSettings.ExtendedDebugInfo) { 
+                dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
+                    
+                    dsc.AppendLine(string.Format($"{materials}"));
+                    dsc.AppendLine("Attribute Transform Code:" + AttributeTransformCode);
+                    dsc.AppendLine("Inventory Class Name:" + InventoryClassName);
+                    dsc.AppendLine("Current Tool Mode: " + curToolMode);
+                if (recipeHandler.recipe != null)
                 {
-                    dsc.AppendLine("Process Modifier Type:" + ProcessModifierSlot.Itemstack.GetName());
-                    dsc.AppendLine("Remaining Durability: " + ProcessModifierSlot.Itemstack.Attributes["durability"]);
+                    dsc.AppendLine("Recipe Output:" + recipeHandler.recipe.Output.ResolvedItemstack.ToString());
+                    dsc.AppendLine("Recipe ToolMode:" + recipeHandler.recipe.ToolMode.ToString());
+                    dsc.AppendLine("Recipe Workstation:" + recipeHandler.recipe.RequiredWorkstation.ToString());
                 }
-                dsc.AppendLine(string.Format($"{materials}"));
-                dsc.AppendLine("Attribute Transform Code:" + AttributeTransformCode);
-                dsc.AppendLine("Inventory Class Name:" + InventoryClassName);
-                dsc.AppendLine("Current Tool Mode: " + curToolMode);
             }
         }
 	}

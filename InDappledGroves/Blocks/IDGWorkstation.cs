@@ -66,12 +66,6 @@ namespace InDappledGroves.Blocks
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
             beworkstation.MarkDirty(true);
             beworkstation.updateMeshes();
-            beworkstation.recipeHandler.recipeProgress = 0;
-            if (beworkstation.recipeHandler.recipe != null)
-            {
-                byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
-            }
-            
         }
 
         public override bool OnBlockInteractCancel(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, EnumItemUseCancelReason cancelReason)
@@ -86,7 +80,8 @@ namespace InDappledGroves.Blocks
             if(beworkstation.recipeHandler.recipe != null) {
                 byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
             }
-            
+            beworkstation.recipeHandler.clearRecipe();
+
             //byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
             return base.OnBlockInteractCancel(secondsUsed, world, byPlayer, blockSel, cancelReason);
         }

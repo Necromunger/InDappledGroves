@@ -129,7 +129,7 @@ namespace InDappledGroves.Util.RecipeTools
                 LoadGroundRecipes();
                 LoadWorkStationRecipes("choppingblock");
                 LoadWorkStationRecipes("sawbuck");
-                LoadSplitterRecipes();
+                LoadComplexWorkstationRecipes("logsplitter");
             }
 
             #region WorkStation Base Recipes
@@ -319,12 +319,12 @@ namespace InDappledGroves.Util.RecipeTools
             }
             #endregion
 
-            
+
 
             #region Splitter Recipes
-            public void LoadSplitterRecipes()
+            public void LoadComplexWorkstationRecipes(string classname)
             {
-                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/splitter");
+                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/" + classname);
                 int recipeQuantity = 0;
                 int ignored = 0;
 
@@ -335,7 +335,7 @@ namespace InDappledGroves.Util.RecipeTools
                         ComplexWorkstationRecipe rec = val.Value.ToObject<ComplexWorkstationRecipe>();
                         if (!rec.Enabled) continue;
 
-                        LoadSplitterRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                        LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, classname);
                     }
                     if (val.Value is JArray)
                     {
@@ -344,20 +344,19 @@ namespace InDappledGroves.Util.RecipeTools
                             ComplexWorkstationRecipe rec = token.ToObject<ComplexWorkstationRecipe>();
                             if (!rec.Enabled) continue;
 
-                            LoadSplitterRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                            LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, classname);
                         }
                     }
                 }
 
-                api.World.Logger.Event("{0} splitter recipes loaded", recipeQuantity);
+                api.World.Logger.Event("{0} " + classname + "splitter recipes loaded", recipeQuantity);
                 //api.World.Logger.StoryEvent(Lang.Get("indappledgroves:working sole and blade..."));
             }
 
-            public void LoadSplitterRecipe(AssetLocation path, ComplexWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
+            public void LoadComplexWorkstationRecipe(AssetLocation path, ComplexWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored, string classname)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
-                string className = "splitter recipe";
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
@@ -410,12 +409,12 @@ namespace InDappledGroves.Util.RecipeTools
 
                     if (subRecipes.Count == 0)
                     {
-                        api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
+                        api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, classname);
                     }
 
                     foreach (ComplexWorkstationRecipe subRecipe in subRecipes)
                     {
-                        if (!subRecipe.Resolve(api.World, className + " " + path))
+                        if (!subRecipe.Resolve(api.World, classname + " " + path))
                         {
                             quantityIgnored++;
                             continue;
@@ -427,7 +426,7 @@ namespace InDappledGroves.Util.RecipeTools
                 }
                 else
                 {
-                    if (!recipe.Resolve(api.World, className + " " + path))
+                    if (!recipe.Resolve(api.World, classname + " " + path))
                     {
                         quantityIgnored++;
                         return;
@@ -629,19 +628,21 @@ namespace InDappledGroves.Util.RecipeTools
         {
             public string Code = "Work Station Recipe";
 
-            public AssetLocation Name { get; set; }
-            public bool Enabled { get; set; } = true;
+            public virtual AssetLocation Name { get; set; }
+            public virtual bool Enabled { get; set; } = true;
 
-            public int BaseToolDmg { get; set; } = 1;
+            public virtual int BaseToolDmg { get; set; } = 1;
+            public virtual string ToolMode { get; set; } = "none";
 
-            public int IngredientMaterial { get; set; } = 4;
-            public double IngredientResistance { get; set; } = 4.0;
+            public virtual string Animation { get; set; } = "axesplit-fp";
 
-            public string ToolMode { get; set; } = "none";
+            public virtual string RequiredWorkstation { get; set; } = "none";
 
-            public string RequiredWorkstation { get; set; } = "none";
+            public virtual int IngredientMaterial { get; set; } = 4;
+            public  virtual double IngredientResistance { get; set; } = 4.0;
 
-            public string Animation { get; set; } = "axesplit-fp";
+            
+
 
             public WorkStationIngredient[] Ingredients;
 
@@ -1041,11 +1042,11 @@ namespace InDappledGroves.Util.RecipeTools
 
         public class ComplexWorkstationRecipe : WorkstationRecipe
         {
-            public string Code = "SplitterRecipe";
+            public new string Code = "SplitterRecipe";
 
-            public string ToolMode { get; set; } = "pounding";
+            public override string ToolMode { get; set; } = "pounding";
 
-            public string RequiredWorkstation = "logsplitter";
+            public override string RequiredWorkstation { get; set; } = "logsplitter";
 
             public string Animation = "axesplit-fp";
 

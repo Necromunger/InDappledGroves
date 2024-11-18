@@ -46,21 +46,17 @@ namespace InDappledGroves.Util.Handlers
 
         public void clearRecipe(bool clearCurrentMiningDamage = true) 
         {
+            recipe = null;
+            recipeProgress = 0;
             recipeValues = null;
             playNextSound = 0.7f;
             resistance = 0;
             lastSecondsUsed = 0;
             curDmgFromMiningSpeed = 0;
             toolModeMod = 0;
-            if (clearCurrentMiningDamage)
-            {
-                this.recipeProgress = 0;
-                clearcurrentMiningDamage();
-            }
-        }
-        public void clearcurrentMiningDamage()
-        {
             currentMiningDamage = 0;
+            beworkstation.MarkDirty();
+
         }
 
         public bool GetMatchingIngredient(IWorldAccessor world, ItemSlot slot, string workstationtype)
@@ -184,7 +180,7 @@ namespace InDappledGroves.Util.Handlers
                 resistance *= InDappledGroves.baseWorkstationResistanceMult;
 
                 EntityPlayer entityPlayer = player.Entity;
-
+                
                 entityPlayer.StartAnimation(recipe.Animation);
 
                 if (InputStack.Collectible is Block)
@@ -215,11 +211,8 @@ namespace InDappledGroves.Util.Handlers
                             beworkstation.ProcessModifierSlot.Itemstack.Collectible.DamageItem(api.World, player.Entity, beworkstation.ProcessModifierSlot, 1);
                         }
                     }
-                    SpawnOutput(recipeValues.output, entityPlayer, entityPlayer.BlockSelection.Position);
                     heldCollectible.DamageItem(api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
-                    UpdateInventory(api, player as IPlayer, beworkstation);
-                    entityPlayer.StopAnimation(recipe.Animation);
-                    this.recipeProgress = 0;
+                    CompleteRecipe(api, player);
                     beworkstation.MarkDirty();
                     recipe = null;
                     return true;
@@ -228,24 +221,26 @@ namespace InDappledGroves.Util.Handlers
             return false;
         }
 
-        public bool UpdateInventory(ICoreAPI api, IPlayer byPlayer, IDGBEWorkstation workstation)
+        public bool CompleteRecipe(ICoreAPI api, IPlayer byPlayer)
         {
             ItemStack returnStack = recipe.ReturnStack.ResolvedItemstack;
             if (returnStack.Collectible.FirstCodePart() == "air")
             {
-                if (workstation.InputSlot.Empty) return false;
-                workstation.InputSlot.Itemstack = null;
-                this.recipeProgress = 0;
+                if (beworkstation.InputSlot.Empty) return false;
+                beworkstation.InputSlot.Itemstack = null;
+                byPlayer.Entity.StopAnimation(recipe.Animation);
+                SpawnOutput(recipeValues.output, byPlayer.Entity,byPlayer.Entity.BlockSelection.Position);
                 clearRecipe();
                 return false; //If no stack is returned, clear stack
             }
             else
             {
                 //TODO: Determine if check needed to prevent spawning of excess resources
-                workstation.InputSlot.Itemstack = null;
-                ReturnStackPut(returnStack.Clone(), workstation);
-                this.recipeProgress = 0;
-                clearRecipe(); //Reset recipe handler to begin next stage.
+                beworkstation.InputSlot.Itemstack = null;
+                ReturnStackPut(returnStack.Clone(), beworkstation);
+                byPlayer.Entity.StopAnimation(recipe.Animation);
+                SpawnOutput(recipeValues.output, byPlayer.Entity, byPlayer.Entity.BlockSelection.Position);
+                clearRecipe();
                 return true; //If a stack is returned from the recipe, allow process to continue after resetting dmg accumulation
             }
         }
@@ -260,7 +255,7 @@ namespace InDappledGroves.Util.Handlers
 
         public void SpawnOutput(ItemStack output, EntityAgent byEntity, BlockPos pos)
         {
-            this.recipeProgress = 0f;
+            clearRecipe();
             int j = output.StackSize;
             for (int i = j; i > 0; i--)
             {
