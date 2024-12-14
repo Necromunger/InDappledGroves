@@ -39,22 +39,17 @@ namespace InDappledGroves.Blocks
             BlockPos position = blockSel.Position;
             string curTMode = "";
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
-
+            bool result = false;
             if (beworkstation != null && (heldCollectible == null || !heldCollectible.HasBehavior<BehaviorIDGTool>()))
             {
-                bool oninteractresult = beworkstation.OnInteract(byPlayer);
-                beworkstation.updateMeshes();
+                result = beworkstation.OnInteract(byPlayer);
                 beworkstation.MarkDirty(true);
-                return oninteractresult;
-            }
-
-            if (!beworkstation.InputSlot.Empty && heldCollectible != null && heldCollectible.HasBehavior<BehaviorIDGTool>())
+            } else if (!beworkstation.InputSlot.Empty && heldCollectible != null && heldCollectible.HasBehavior<BehaviorIDGTool>())
             {
-
-                return beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);
+                result = beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);
             }
-
-            return false;
+            beworkstation.MarkDirty(true);
+            return result;
         }
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
@@ -63,26 +58,21 @@ namespace InDappledGroves.Blocks
             lastSecondsUsed = 0;
             curDmgFromMiningSpeed = 0;
             playNextSound = 0.7f;
+            System.Diagnostics.Debug.WriteLine("Stop " + api.Side.ToString());
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
+            if (beworkstation.recipeHandler.recipe != null)
+            {
+                byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
+            }
+            if (beworkstation.recipecomplete) { 
+                beworkstation.recipeHandler.clearRecipe();
+            }
             beworkstation.MarkDirty(true);
             beworkstation.updateMeshes();
         }
 
         public override bool OnBlockInteractCancel(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, EnumItemUseCancelReason cancelReason)
         {
-            resistance = 0;
-            lastSecondsUsed = 0;
-            curDmgFromMiningSpeed = 0;
-            playNextSound = 0.7f;
-            IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
-            beworkstation.MarkDirty(true);
-            beworkstation.updateMeshes();
-            if(beworkstation.recipeHandler.recipe != null) {
-                byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
-            }
-            beworkstation.recipeHandler.clearRecipe();
-
-            //byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
             return base.OnBlockInteractCancel(secondsUsed, world, byPlayer, blockSel, cancelReason);
         }
 

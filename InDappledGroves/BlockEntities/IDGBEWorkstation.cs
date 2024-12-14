@@ -1,16 +1,11 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Util.Handlers;
 using System;
-using System.Collections.Generic;
-using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
-using Vintagestory.API.MathTools;
-using Vintagestory.API.Server;
-using Vintagestory.API.Util;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
@@ -55,6 +50,7 @@ namespace InDappledGroves.BlockEntities
 
         public virtual bool OnInteract(IPlayer byPlayer)
         {
+            
             ItemSlot activeHotbarSlot = byPlayer.InventoryManager.ActiveHotbarSlot;
             bool result = false;
             //If The Players Hand Is Empty
@@ -166,7 +162,8 @@ namespace InDappledGroves.BlockEntities
 						}
 						AssetLocation assetLocation2 = assetLocation;
 						this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
-					}
+                        recipeHandler.clearRecipe();
+                }
 					if (itemStack.StackSize > 0)
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
@@ -177,6 +174,7 @@ namespace InDappledGroves.BlockEntities
 				}
 			return false;
 		}
+
         internal bool handleRecipe(CollectibleObject heldCollectible, float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
@@ -227,7 +225,12 @@ namespace InDappledGroves.BlockEntities
                     }
                     else
                     {
-                       tfMatrices[index] = new Matrixf().Translate(0.5,0.5,0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5,-0.5,-0.5).Values;
+                        if (index == Block.Attributes["workstationproperties"]["slottypes"]["inputslot"].AsInt())
+                        {
+                            tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5, -0.5, -0.5).Values;
+                        } else {
+                            tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5, -0.5, -0.5).Values;
+                        }
                     }
                 }
             }
@@ -236,11 +239,15 @@ namespace InDappledGroves.BlockEntities
 
         public override void ToTreeAttributes(ITreeAttribute tree)
         {
+
             if (recipeHandler != null)
             {
+                tree.SetFloat("lastsecondsused", recipeHandler.lastSecondsUsed);
                 tree.SetFloat("recipeprogress", recipeHandler.recipeProgress);
+                tree.SetFloat("playnextsound", recipeHandler.playNextSound);
                 tree.SetFloat("currentminingdamage", recipeHandler.currentMiningDamage);
-                tree.SetFloat("curDmgFromMiningSpeed", recipeHandler.curDmgFromMiningSpeed);
+                tree.SetFloat("curdmgfromminingspeed", recipeHandler.curDmgFromMiningSpeed);
+                tree.SetFloat("totalsecondsused", recipeHandler.totalSecondsUsed);
             }
             base.ToTreeAttributes(tree);
         }
@@ -250,9 +257,12 @@ namespace InDappledGroves.BlockEntities
             base.FromTreeAttributes(tree, worldForResolving);
             if (recipeHandler != null)
             {
+                recipeHandler.lastSecondsUsed = tree.GetFloat("lastsecondsused");
                 recipeHandler.recipeProgress = tree.GetFloat("recipeprogress");
                 recipeHandler.currentMiningDamage = tree.GetFloat("currentminingdamage");
-                recipeHandler.curDmgFromMiningSpeed = tree.GetFloat("curDmgFromMiningSpeed");
+                recipeHandler.curDmgFromMiningSpeed = tree.GetFloat("curdmgfromminingspeed");
+                recipeHandler.totalSecondsUsed = tree.GetFloat("totalsecondsused");
+                recipeHandler.playNextSound = tree.GetFloat("playnextsound");
             }
         }
 

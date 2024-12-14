@@ -69,8 +69,7 @@ namespace InDappledGroves
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbeworkstation", typeof(IDGBEWorkstation));
-            //api.RegisterBlockEntityClass("idgbechoppingblock", typeof(IDGBEChoppingBlock));
-            //api.RegisterBlockEntityClass("idgbesawbuck", typeof(IDGBESawBuck));
+            api.RegisterBlockEntityClass("idglogsplitter", typeof(BlockEntityLogSplitter));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
             api.RegisterBlockEntityClass("betreehollowgrown", typeof(BlockEntities.BETreeHollowGrown));
             api.RegisterBlockEntityClass("betreehollowplaced", typeof(BlockEntities.BETreeHollowPlaced));

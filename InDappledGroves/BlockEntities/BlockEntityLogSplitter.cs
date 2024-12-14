@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Vintagestory.API.Client;
+using Vintagestory.API.Common;
+using Vintagestory.API.Datastructures;
+
+namespace InDappledGroves.BlockEntities
+{
+    public class BlockEntityLogSplitter : IDGBEWorkstation
+    {
+        protected override float[][] genTransformationMatrices()
+        {
+            float[][] tfMatrices = new float[Inventory.Count][];
+            for (int index = 0; index < Inventory.Count; index++)
+            {
+
+                ItemSlot itemSlot = this.Inventory[index];
+                JsonObject jsonObject;
+                if (itemSlot == null)
+                {
+                    jsonObject = null;
+                }
+                else
+                {
+                    ItemStack itemstack = itemSlot.Itemstack;
+                    if (itemstack == null)
+                    {
+                        jsonObject = null;
+                    }
+                    else
+                    {
+                        if (index == Block.Attributes["workstationproperties"]["slottypes"]["inputslot"].AsInt())
+                        {
+
+                            tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(0, 0 - (this.recipeHandler.recipeProgress) / 4, 0).Translate(-0.5, -0.5, -0.5).Values;
+                        }
+                        else
+                        {
+                            tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5, -0.5, -0.5).Values;
+                        }
+                    }
+                }
+            }
+            return tfMatrices;
+        }
+    }
+}

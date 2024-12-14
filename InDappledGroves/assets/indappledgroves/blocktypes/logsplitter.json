@@ -1,7 +1,7 @@
 {
   "code": "logsplitter",
   "class": "idgworkstation",
-  "entityClass": "idgbeworkstation",
+  "entityClass": "idglogsplitter",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }

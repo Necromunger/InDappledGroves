@@ -23,6 +23,8 @@ namespace InDappledGroves.Util.Handlers
         public float playNextSound { get; set; }
         public float resistance { get; set; }
         public float lastSecondsUsed { get; set; }
+
+        public float totalSecondsUsed { get; set; }
         public float curDmgFromMiningSpeed { get; set; }
         
         public WorkstationRecipe recipe { get; set; }
@@ -55,6 +57,7 @@ namespace InDappledGroves.Util.Handlers
             curDmgFromMiningSpeed = 0;
             toolModeMod = 0;
             currentMiningDamage = 0;
+            totalSecondsUsed = 0;
             beworkstation.MarkDirty();
 
         }
@@ -143,79 +146,96 @@ namespace InDappledGroves.Util.Handlers
         {
             string curTMode = heldCollectible.GetBehavior<BehaviorIDGTool>().GetToolModeName(player.InventoryManager.ActiveHotbarSlot.Itemstack);
             string workstationtype = beworkstation.Block.Attributes["workstationproperties"]["workstationtype"].ToString();
-
-            if (recipe == null)
-            {
-                WorkstationRecipe retrRecipe;
-                
-                GetMatchingRecipes(api.World, beworkstation.InputSlot, curTMode, beworkstation.Block.Attributes["inventoryclass"].ToString(), beworkstation.Block.Attributes["workstationproperties"]["workstationtype"].ToString(), out retrRecipe);
-                if(retrRecipe == null)
+            
+                if (recipe != null && recipe.ToolMode != curTMode)
                 {
                     return false;
                 }
-
-                recipe = retrRecipe;
-            }
-
-            if (recipeValues == null)
-            {
-                if (workstationtype == "basic")
+                if (recipe == null)
                 {
-                    recipeValues = new RecipeValues(beworkstation.InputSlot.Itemstack, recipe.IngredientMaterial, recipe.Output.ResolvedItemstack, recipe.ReturnStack.ResolvedItemstack, recipe.BaseToolDmg, null);
-                } else if (workstationtype == "complex")
-                {
-                    string processmodifier = beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart() + "-" + beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart(1);
-                    recipeValues = new RecipeValues(beworkstation.InputSlot.Itemstack, recipe.IngredientMaterial, recipe.Output.ResolvedItemstack, recipe.ReturnStack.ResolvedItemstack, recipe.BaseToolDmg, processmodifier);
+                    WorkstationRecipe retrRecipe;
+
+                    GetMatchingRecipes(api.World, beworkstation.InputSlot, curTMode, beworkstation.Block.Attributes["inventoryclass"].ToString(), beworkstation.Block.Attributes["workstationproperties"]["workstationtype"].ToString(), out retrRecipe);
+                    if (retrRecipe == null)
+                    {
+                        return false;
+                    }
+
+                    recipe = retrRecipe;
                 }
-            }
 
-            toolModeMod = heldCollectible.GetBehavior<BehaviorIDGTool>().GetToolModeMod(activehotbarslot.Itemstack);
+                if (recipeValues == null)
+                {
+                    if (workstationtype == "basic")
+                    {
+                        recipeValues = new RecipeValues(beworkstation.InputSlot.Itemstack, recipe.IngredientMaterial, recipe.Output.ResolvedItemstack, recipe.ReturnStack.ResolvedItemstack, recipe.BaseToolDmg, null);
+                    }
+                    else if (workstationtype == "complex")
+                    {
+                        string processmodifier = beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart() + "-" + beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart(1);
+                        recipeValues = new RecipeValues(beworkstation.InputSlot.Itemstack, recipe.IngredientMaterial, recipe.Output.ResolvedItemstack, recipe.ReturnStack.ResolvedItemstack, recipe.BaseToolDmg, processmodifier);
+                    }
+                }
 
+                toolModeMod = heldCollectible.GetBehavior<BehaviorIDGTool>().GetToolModeMod(activehotbarslot.Itemstack);
+            EntityPlayer entityPlayer = player.Entity;
+            entityPlayer.StartAnimation(recipe.Animation);
+
+            if (api.Side == EnumAppSide.Server)
+                {
                 //TODO Put Recipe And Resistance Getting To A Separate Method
                 ItemStack InputStack = recipeValues.InputStack;
 
-                resistance = (InputStack.Block is Block ? InputStack.Block.Resistance
-                : InputStack.Item.Attributes["resistance"].AsFloat());
+                    resistance = (InputStack.Block is Block ? InputStack.Block.Resistance
+                    : InputStack.Item.Attributes["resistance"].AsFloat());
 
-                resistance *= InDappledGroves.baseWorkstationResistanceMult;
+                    resistance *= InDappledGroves.baseWorkstationResistanceMult;
 
-                EntityPlayer entityPlayer = player.Entity;
-                
-                entityPlayer.StartAnimation(recipe.Animation);
 
-                if (InputStack.Collectible is Block)
-                {
-                    if ((secondsUsed - lastSecondsUsed) > 0.025)
+                lastSecondsUsed = secondsUsed-lastSecondsUsed < 0?0: lastSecondsUsed;
+                    if (InputStack.Collectible is Block)
                     {
-                        curDmgFromMiningSpeed +=
-
-                             (heldCollectible.GetMiningSpeed(entityPlayer.ActiveHandItemSlot.Itemstack, entityPlayer.BlockSelection, InputStack.Block, player as IPlayer)
-                             * /*InDappledGroves.baseWorkstationMiningSpdMult*/ 0.1f) * (secondsUsed - lastSecondsUsed);
-                    }
-                }
-                else
-                {
-                    curDmgFromMiningSpeed += (heldCollectible.MiningSpeed[(EnumBlockMaterial)recipeValues.ingredientMaterial]) * (secondsUsed - lastSecondsUsed);
-                }
-                lastSecondsUsed = secondsUsed;
-                currentMiningDamage = secondsUsed + (curDmgFromMiningSpeed * toolModeMod);
-
-
-                this.recipeProgress = currentMiningDamage / resistance;
-                if (api.Side == EnumAppSide.Server && currentMiningDamage >= resistance)
-                {
-                    if (beworkstation.workstationtype == "complex")
-                    {
-                        if (beworkstation.Block.Attributes["workstationproperties"]["damageprocessmodifier"].AsBool() == true)
+                        if ((secondsUsed - lastSecondsUsed) > 0.025)
                         {
-                            beworkstation.ProcessModifierSlot.Itemstack.Collectible.DamageItem(api.World, player.Entity, beworkstation.ProcessModifierSlot, 1);
+                            curDmgFromMiningSpeed +=
+
+                                 (heldCollectible.GetMiningSpeed(entityPlayer.ActiveHandItemSlot.Itemstack, entityPlayer.BlockSelection, InputStack.Block, player as IPlayer)
+                                 * /*InDappledGroves.baseWorkstationMiningSpdMult*/ 0.1f) * (secondsUsed - lastSecondsUsed);
                         }
                     }
-                    heldCollectible.DamageItem(api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
-                    CompleteRecipe(api, player);
-                    beworkstation.MarkDirty();
-                    recipe = null;
-                    return true;
+                    else
+                    {
+                        curDmgFromMiningSpeed += (heldCollectible.MiningSpeed[(EnumBlockMaterial)recipeValues.ingredientMaterial]) * (secondsUsed - lastSecondsUsed);
+                    }
+
+
+
+
+                    if (api.Side == EnumAppSide.Server)
+                    {
+                        this.recipeProgress = currentMiningDamage / resistance;
+                        totalSecondsUsed += secondsUsed - lastSecondsUsed;
+                        System.Diagnostics.Debug.WriteLine(totalSecondsUsed);
+                        lastSecondsUsed = secondsUsed;
+                        currentMiningDamage = totalSecondsUsed + (curDmgFromMiningSpeed * toolModeMod);
+                        beworkstation.MarkDirty();
+                        //};
+                        if (/*api.Side == EnumAppSide.Server && */currentMiningDamage >= resistance)
+                        {
+                            if (beworkstation.workstationtype == "complex")
+                            {
+                                if (beworkstation.Block.Attributes["workstationproperties"]["damageprocessmodifier"].AsBool() == true)
+                                {
+                                    beworkstation.ProcessModifierSlot.Itemstack.Collectible.DamageItem(api.World, player.Entity, beworkstation.ProcessModifierSlot, 1);
+                                }
+                            }
+                            heldCollectible.DamageItem(api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
+                            CompleteRecipe(api, player);
+                            beworkstation.MarkDirty();
+                            clearRecipe();
+                            return true;
+                        }
+                    }
                 }
             
             return false;
