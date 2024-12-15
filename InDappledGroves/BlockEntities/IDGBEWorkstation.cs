@@ -227,7 +227,31 @@ namespace InDappledGroves.BlockEntities
                     {
                         if (index == Block.Attributes["workstationproperties"]["slottypes"]["inputslot"].AsInt())
                         {
-                            tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5, -0.5, -0.5).Values;
+                            string blocktype = "specialadjust" + Block.Code.FirstCodePart().ToString();
+
+                            Matrixf matrix = new Matrixf();
+                            if (itemstack.Block.Attributes[blocktype].Exists)
+                            {
+                                JsonObject specialadjust = itemstack.Collectible.Attributes[blocktype];
+                                switch (Block.Variant["side"])
+                                {
+                                    case "east":
+                                        matrix.Translate(specialadjust["east"].AsFloat(), 0, 0);
+                                        break;
+                                    case "west":
+                                        matrix.Translate(specialadjust["west"].AsFloat(), 0, 0);
+                                        break;
+                                    case "north":
+                                        matrix.Translate(0, 0, specialadjust["north"].AsFloat());
+                                        break;
+                                    case "south":
+                                        matrix.Translate(0, 0, specialadjust["south"].AsFloat());
+                                        break;
+                                }
+                            }
+                            tfMatrices[index] = matrix.Translate(0, 0.125, 0).Translate(0.5, 0.5, 0.5)
+                                .RotateYDeg(this.Block.Shape.rotateY)
+                                .Translate(-0.5, -0.5, -0.5).Values;
                         } else {
                             tfMatrices[index] = new Matrixf().Translate(0.5, 0.5, 0.5).RotateYDeg(this.Block.Shape.rotateY).Translate(-0.5, -0.5, -0.5).Values;
                         }

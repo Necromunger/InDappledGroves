@@ -13,16 +13,6 @@
             <param name="handling">How to handle the process/if it's been handled</param>
             <returns>Whether to allow placing the block</returns>
         </member>
-        <member name="M:InDappledGroves.Blocks.BlockTreeHollowGrown.TryPlaceBlockForWorldGen(Vintagestory.API.Common.IBlockAccessor,Vintagestory.API.MathTools.BlockPos,Vintagestory.API.MathTools.BlockFacing,Vintagestory.API.MathTools.IRandom,Vintagestory.API.Common.BlockPatchAttributes)">
-            <summary>
-            Allows replacing logs with grown hollows.
-            </summary>
-            <param name="blockAccessor"></param>
-            <param name="pos"></param>
-            <param name="onBlockFace"></param>
-            <param name="worldgenRandom"></param>
-            <returns></returns>
-        </member>
         <member name="M:InDappledGroves.Items.IDGBark.OnHeldInteractStart(Vintagestory.API.Common.ItemSlot,Vintagestory.API.Common.EntityAgent,Vintagestory.API.Common.BlockSelection,Vintagestory.API.Common.EntitySelection,System.Boolean,Vintagestory.API.Common.EnumHandHandling@)">
             <summary>Called when the player right clicks while holding this block/item in his hands</summary>
             <param name="slot">Players activehotbar slot</param>

@@ -11,7 +11,6 @@
 		},
 		{ 
 			name: "WrenchOrientable", properties: { baseCode: "logslab-{barked}-{wood}-*-{cover}" } 
-
 		}
 	],
 	"variantgroups": [
@@ -34,28 +33,17 @@
 									"*-down-*": true,
 									"*-up-*": true
 								},
-								"workStationTransforms": {
-										"idgChoppingBlockProps":  {
-											"idgChoppingBlockTransform": {
-													"translation": {
-														"x": 0.025,
-														"y": 0.125,
-														"z": 0.725
-													},
-													"rotation": {
-														"x": -90,
-														"y": 0,
-														"z": 0
-													},
-													"origin": {
-														"x": 0,
-														"y": 0,
-														"z": 0
-													},
-													"scale": 0.95
-											}
-										}
-							}
+								"idgChoppingBlockTransform": {
+									"translation": {"x": 0, "y": 0,	"z": 0},
+									"rotation": {"x": 0, "y": 0,	"z": 0},
+									"scale": 0.95
+								},
+								"specialadjustchoppingblock": {
+									"east": -0.25,
+									"west": 0.25,
+									"north": 0.25,
+									"south": -0.25
+								}
 	},
 	"blockmaterial": "Wood",
 	"resistanceByType": {
@@ -78,7 +66,7 @@
 		"general": ["*-down-free"], "construction": ["*-down-free"], "indappledgroves": ["*-down-free"]
 	},
 	"dropsByType":{
-		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-down-free" }]
+		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-north-free" }]
 	},
 	shapeByType: {
 		"*-snow": { base: "block/wood/snow-logslab-{rot}" },
@@ -150,6 +138,12 @@
 		"burnTemperature": 800,
 		"burnDuration": 10
 	},
+	"groundTransform": {
+		translation: { x: 0, y: 0.15, z: 0 },
+		rotation: { x: -90, y: -99, z: 0 },
+		origin: { x: 0.5, y: 0, z: 0.5 },
+		scale: 1.5
+	},
 	"materialDensity": 600,
 		"heldTpIdleAnimation": "holdbothhandslarge", 
 		"heldTpUseAnimation": "twohandplaceblock",
@@ -158,9 +152,11 @@
 				"rotation": { "x": -2, "y": 25, "z": -78 },
 				"scale": 0.37
 		},
-		"guiTransform": {
-		"translation": { x: 0, y: 2, z: 0 },
-		"origin": { x: 0.5, y: 0.25, z: 0.5 }
+		guiTransform: {
+		translation: { x: 0, y: 2, z: 0 },
+		rotation: { x: -9, y: -133, z: 0 },
+		origin: { x: 0.5, y: 0.45, z: 0.3 },
+		scale: 1.24
 	}
 }
 		

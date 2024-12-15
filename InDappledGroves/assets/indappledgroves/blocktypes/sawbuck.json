@@ -10,7 +10,8 @@
     "inventoryclass": "sawbuck",
     "attributetransformcode": "idgSawBuckTransform",
 		"handbook": {
-			"groupBy": ["sawbuck-birch-*-east"],
+			"groupBy": ["sawbuck-*-east"],
+      "groupedName": "idgSawbuckHandbookEntry",
 			"extraSections": [
 				{ "title": "indappledgroves:block-handbooktitle-sawbuck", "text": "indappledgroves:block-handbooktext-sawbuck" }
 			]

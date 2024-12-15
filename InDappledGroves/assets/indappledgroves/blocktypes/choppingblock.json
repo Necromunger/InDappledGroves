@@ -40,7 +40,12 @@
       "wood": { "base": "game:block/wood/treetrunk/{primary}" },
 			"bark": { "base": "game:block/wood/bark/{primary}" }
 	},
-  "shape": { "base": "block/choppingblock"},
+  "shapeByType": {
+		"*-north": { "base": "block/choppingblock", "rotateY":0 },
+		"*-east": { "base": "block/choppingblock", "rotateY":270 },
+		"*-south": { "base": "block/choppingblock", "rotateY":180 },
+		"*-west": { "base": "block/choppingblock", "rotateY":90 }
+	}, 
   "lightabsorption": 32,
   "sideopaque": { "all": false },
   "sidesolid": { "all": false },

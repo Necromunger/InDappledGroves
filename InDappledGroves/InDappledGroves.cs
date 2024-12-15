@@ -14,10 +14,10 @@ namespace InDappledGroves
 
     public class InDappledGroves : ModSystem
     {
-        public static float baseWorkstationMiningSpdMult;
-        public static float baseWorkstationResistanceMult;
-        public static float baseGroundRecipeMiningSpdMult;
-        public static float baseGroundRecipeResistaceMult;
+        internal static float baseWorkstationMiningSpdMult;
+        internal static float baseWorkstationResistanceMult;
+        internal static float baseGroundRecipeMiningSpdMult;
+        internal static float baseGroundRecipeResistaceMult;
 
         NetworkHandler networkHandler;
         public override bool ShouldLoad(EnumAppSide forSide)
@@ -62,17 +62,11 @@ namespace InDappledGroves
             api.RegisterBlockClass("idgbarkbasket", typeof(IDGBarkBasket));
             api.RegisterBlockClass("idgboardblock", typeof(IDGBoardBlock));
             api.RegisterBlockClass("idgblockfirewood", typeof(IDGBlockFirewood));
-            api.RegisterBlockClass("blocktreehollowgrown", typeof(Blocks.BlockTreeHollowGrown));
-            api.RegisterBlockClass("blocktreehollowplaced", typeof(Blocks.BlockTreeHollowPlaced));
-            api.RegisterBlockClass("idgblockstump", typeof(BlockStump));
-            api.RegisterBlockClass("idgblockburl", typeof(BlockBurl));
 
             //Register BlockEntities
             api.RegisterBlockEntityClass("idgbeworkstation", typeof(IDGBEWorkstation));
             api.RegisterBlockEntityClass("idglogsplitter", typeof(BlockEntityLogSplitter));
             api.RegisterBlockEntityClass("idgbesawhorse", typeof(IDGBESawHorse));
-            api.RegisterBlockEntityClass("betreehollowgrown", typeof(BlockEntities.BETreeHollowGrown));
-            api.RegisterBlockEntityClass("betreehollowplaced", typeof(BlockEntities.BETreeHollowPlaced));
 
             //Register CollectibleBehaviors
             api.RegisterCollectibleBehaviorClass("woodsplitter", typeof(BehaviorWoodChopping));
@@ -91,9 +85,7 @@ namespace InDappledGroves
             networkHandler.RegisterMessages(api);
 
             IDGToolConfig.createConfigFile(api);
-            IDGTreeConfig.createConfigFile(api);
-            IDGHollowLootConfig.createConfigFile(api);
-
+            IDGTreeConfig.CreateConfigFile(api);
         }
     }
 }

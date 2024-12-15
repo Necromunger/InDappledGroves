@@ -9,8 +9,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
@@ -22,8 +22,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
@@ -35,8 +35,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
@@ -48,8 +48,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
@@ -61,8 +61,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
   },
   {
     "toolmode": "chopping",
@@ -74,7 +74,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-down-free"}
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-north-free"}
   }
 ]

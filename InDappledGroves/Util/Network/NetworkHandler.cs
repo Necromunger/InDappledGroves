@@ -48,17 +48,6 @@ namespace InDappledGroves.Util.Network
 
             //Set Client TreeConfigSettings from Server
             IDGTreeConfig.Current.TreeFellingMultiplier = toolConfig.TreeFellingMultiplier;
-            IDGTreeConfig.Current.TreeHollowsMaxItems = toolConfig.TreeHollowsMaxItems;
-            IDGTreeConfig.Current.TreeHollowsSpawnProbability = toolConfig.TreeHollowsSpawnProbability;
-            IDGTreeConfig.Current.RunTreeGenOnChunkReload = toolConfig.RunTreeGenOnChunkReload;
-            IDGTreeConfig.Current.stumpTypes = toolConfig.stumpTypes;
-            IDGTreeConfig.Current.woodTypes = toolConfig.woodTypes;
-            IDGTreeConfig.Current.HollowBreakChance = toolConfig.HollowBreakChance;
-            IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled = toolConfig.DisableIDGHollowsWithPrimitiveSurvivalInstalled;
-
-            //Set Client HollowLootConfigSettings from Server
-            IDGHollowLootConfig.Current.treehollowjson = JsonUtil.FromString<List<JToken>>(toolConfig.treehollowjson);
-
 
         }
 
@@ -158,23 +147,6 @@ namespace InDappledGroves.Util.Network
 
             [ProtoMember(5)]
             public float TreeFellingMultiplier = IDGTreeConfig.Current.TreeFellingMultiplier;
-            [ProtoMember(6)]
-            public int TreeHollowsMaxItems = IDGTreeConfig.Current.TreeHollowsMaxItems;
-            [ProtoMember(7)]
-            public float TreeHollowsSpawnProbability = IDGTreeConfig.Current.TreeHollowsSpawnProbability;
-            [ProtoMember(8)]
-            public bool RunTreeGenOnChunkReload = IDGTreeConfig.Current.RunTreeGenOnChunkReload;
-            [ProtoMember(9)]
-            public string[] stumpTypes = IDGTreeConfig.Current.stumpTypes;
-            [ProtoMember(10)]
-            public string[] woodTypes = IDGTreeConfig.Current.woodTypes;
-            [ProtoMember(11)]
-            public double HollowBreakChance = IDGTreeConfig.Current.HollowBreakChance;
-            [ProtoMember(12)]
-            public bool DisableIDGHollowsWithPrimitiveSurvivalInstalled = IDGTreeConfig.Current.DisableIDGHollowsWithPrimitiveSurvivalInstalled;
-
-            [ProtoMember(13)]
-            public string treehollowjson = JsonUtil.ToString(IDGHollowLootConfig.Current.treehollowjson);
 
         }
 
@@ -182,7 +154,7 @@ namespace InDappledGroves.Util.Network
         class OnPlayerLoginMessage
         {
             [ProtoMember(1)]
-            IPlayer[] player;
+            readonly IPlayer[] player;
         }
     }
 }

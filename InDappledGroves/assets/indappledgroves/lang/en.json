@@ -40,42 +40,6 @@
 	"block-handbooktitle-logsplitter2": "Title2",
 	"block-handbooktext-logsplitter2": "Text2",
 	
-	"block-handbooktitle-treestump": "",
-	"block-handbooktext-treestump": "<font align='center'><i>I have turned aside from everything,
-from the whole earthly store.
-The spirit and guardian of this place
-is an old tree-stump in water.</i></font>
-	<font weight='bold' align='center'>November 1962 (in delirium) - Anna Akhmatova</font>
-
-		<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
-		
-		Most trees form with a stump at the bottom. These sturdy bulwarks are difficult to remove, often making it preferable to leave them where they are. You may find it easier to chop above them, rather than chopping them directly. They'll be left behind on the initial felling of the tree either way. You'll have to chop them again to remove them, a lengthy process indeed.
-",
-	"block-treestump": "Stump",
-	"treehollowcontents": "Tree Hollow's Secret",
-	"block-treehollow": "Tree Hollow",
-	"block-handbooktitle-treehollow": "",
-	"block-handbooktext-treehollow": "<font align='center'><i>Where nature casts a spell on the mind
-Of the one who dares, like me,
-To scale the fence, and seek to find
-The bole of the hollow tree.</i></font>
-<font weight='bold' align='center'>- David Lewis Paget</font>
-
-	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
-
-	Tree hollows can form in trees of all kinds. Within them can be found the stashed treasures of the creatures of the wood, and occasional artifacts of those who came before. When chopped down, they can also make a useful, if primitive, form of storage.
-
-",
-
-	//Burl Entries
-	"block-idgburl": "Burl",
-	"block-handbooktitle-idgburl": "",
-	"block-handbooktext-idgburl": "<font align='center'><i>The bark tangles into burls and knobs,
-	An eddying stream of living wood, branching
-	Into sky-fed tributaries. </i></font>
-	<font weight='bold' align='center'>- Giles Watson</font> 
-	",
-
 	//Bark Basket Entries
 	"block-handbooktitle-barkbasket": "",
 	"block-handbooktext-barkbasket": "<font align='center'><i>With each weave of the bark, 
@@ -182,7 +146,7 @@ shed to watch the rain come down.</i></font>
 
 	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
 	
-	The sawbuck is a <a href=\"handbook://workstations-indappledgroves\">workstation</a> that is primarily used for sawing operations, making the process go a little faster, and putting a little less wear and tear on your tool.
+	The sawbuck is a <a href=\"handbook://workstations-indappledgroves\">workstation</a> that is primarily used for sawing operations, making the process go a little faster, and putting a little less wear and tear on your tool.	
 	",
 
 	"block-sawbuck": "Sawbuck",

@@ -10,8 +10,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
@@ -24,8 +24,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
     },
     {
     "toolmode": "chopping",
@@ -38,8 +38,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
     },
     {
     "toolmode": "chopping",
@@ -52,8 +52,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
     },
     {
     "toolmode": "chopping",
@@ -66,8 +66,8 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
   },
   {
     "toolmode": "chopping",
@@ -80,7 +80,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-down-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free"}
   }
 ]
