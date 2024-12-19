@@ -1,13 +1,14 @@
 {
   "code": "choppingblock",
-  "class": "idgchoppingblock",
-  "entityClass": "idgbechoppingblock",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
-  "attributes": {
+   "attributes": {
     "inventoryclass": "choppingblock",
+    "attributetransformcode": "idgChoppingBlockTransform",
 		"handbook": {
 			"groupBy": ["choppingblock-*-east"],
       "extraSections": [
@@ -20,8 +21,14 @@
           "text": "indappledgroves:block-handbooktext-choppingblock2"
         }
       ]
-		}
-  },
+     },
+      "workstationproperties": {
+        "workstationtype": "basic",
+        "slottypes": {
+          "inputslot": 0
+        } 
+      }
+		},
   "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*"]},
   "variantgroups": [
     { "code": "wood", "loadFromProperties": "floralzonescaperegion:block/wood" },

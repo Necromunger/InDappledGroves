@@ -1,5 +1,6 @@
 [
   {
+    "skipVariants": [ "veryaged", "veryagedrotten" ],
     "toolmode": "hewing",
     "ingredients":
     [ 

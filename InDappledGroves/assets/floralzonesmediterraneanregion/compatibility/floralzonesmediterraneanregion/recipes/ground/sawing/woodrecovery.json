@@ -1,0 +1,98 @@
+[
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:planks-*-we", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:planks-*-ud", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:planks-*-ns", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 3}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankstairs-*-up-east-free", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankstairs-*-up-west-free", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankstairs-*-up-north-free","name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankstairs-*-up-south-free", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}",  "quantity": 2}
+  },
+  {
+    "toolmode": "sawing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankslab-*-down-free", "name": "wood", "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonesmediterraneanregion:plank-{wood}", "quantity": 1}
+  }
+]

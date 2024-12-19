@@ -1,6 +1,6 @@
 [
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 

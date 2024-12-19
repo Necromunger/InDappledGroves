@@ -249,7 +249,7 @@ namespace InDappledGroves.BlockEntities
                                         break;
                                 }
                             }
-                            tfMatrices[index] = matrix.Translate(0, 0.125, 0).Translate(0.5, 0.5, 0.5)
+                            tfMatrices[index] = matrix.Translate(0, 0.0, 0).Translate(0.5, 0.5, 0.5)
                                 .RotateYDeg(this.Block.Shape.rotateY)
                                 .Translate(-0.5, -0.5, -0.5).Values;
                         } else {

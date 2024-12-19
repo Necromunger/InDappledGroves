@@ -1,6 +1,7 @@
 [
   {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -9,11 +10,12 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -22,11 +24,12 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -35,11 +38,12 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -48,11 +52,12 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free"}
   },
     {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -61,11 +66,12 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free"}
   },
   {
     "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -74,7 +80,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-down-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-down-free"}
+    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free"}
   }
 ]

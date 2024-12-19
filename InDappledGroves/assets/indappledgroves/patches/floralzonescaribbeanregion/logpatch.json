@@ -3,59 +3,20 @@
     "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/workStationTransforms",
+    "path": "/attributes",
     "value": { 
-            "idgChoppingBlockProps": {               
-                "idgChoppingBlockTransform": {
-                "translation": {
-                  "x": 0,
-                  "y": 0.0625,
-                  "z": 0,
-                  "scale": 0.95
-                },
-                "rotation": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "origin": {
-                  "x": 0.5,
-                  "y": 0,
-                  "z": 0.5
-                }
-              }
-          },
-          "idgSawBuckProps": {
-              "idgSawBuckTransform": {
-                  "translation": {
-                    "x": 0.027,
-                    "y": 0.7,
-                    "z": 0,
-                    "scale": 0.7
+                  "idgLogSplitterTransform":  {
+		              "translation": {"x": 0, "y": 0.65, "z": 0},
+		              "scale": 0.75
                   },
-                  "rotation": {
-                    "x": 0,
-                    "northx": 90,
-                    "southx": 90,
-                    "eastx": 45,
-                    "westx": 45,
-                    "y": 0,
-                    "northy": 45,
-                    "southy": 45,
-                    "easty": 90,
-                    "westy": 90, 
-                    "z": 0,
-                    "eastz": 90,
-                    "westz": 90
-                            
+                  "idgChoppingBlockTransform": {
+                    "translation": {"x": 0, "y": 0.0625, "z": 0},
+                    "scale": 0.95
                   },
-                  "origin": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.5
-                  }
-              }
-            }
+                  "idgSawBuckTransform": {
+                    "translation": {"x": 0, "y": 0.7, "z": 0},
+                    "rotation": {"x": 90, "y": 45, "z": 0}
+                  },
     },
 		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
   },
@@ -99,59 +60,20 @@
     "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
     "op": "add",
-    "path": "/attributes/workStationTransforms",
+    "path": "/attributes",
     "value": { 
-            "idgChoppingBlockProps": {               
-                "idgChoppingBlockTransform": {
-                "translation": {
-                  "x": 0,
-                  "y": 0.0625,
-                  "z": 0,
-                  "scale": 0.95
-                },
-                "rotation": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "origin": {
-                  "x": 0.5,
-                  "y": 0,
-                  "z": 0.5
-                }
-              }
-          },
-          "idgSawBuckProps": {
-              "idgSawBuckTransform": {
-                  "translation": {
-                    "x": 0.027,
-                    "y": 0.7,
-                    "z": 0,
-                    "scale": 0.7
+                  "idgLogSplitterTransform":  {
+		              "translation": {"x": 0, "y": 0.65, "z": 0},
+		              "scale": 0.75
                   },
-                  "rotation": {
-                    "x": 0,
-                    "northx": 90,
-                    "southx": 90,
-                    "eastx": 45,
-                    "westx": 45,
-                    "y": 0,
-                    "northy": 45,
-                    "southy": 45,
-                    "easty": 90,
-                    "westy": 90, 
-                    "z": 0,
-                    "eastz": 90,
-                    "westz": 90
-                            
+                  "idgChoppingBlockTransform": {
+                    "translation": {"x": 0, "y": 0.0625, "z": 0},
+                    "scale": 0.95
                   },
-                  "origin": {
-                    "x": 0.5,
-                    "y": 0.5,
-                    "z": 0.5
-                  }
-              }
-            }
+                  "idgSawBuckTransform": {
+                    "translation": {"x": 0, "y": 0.7, "z": 0},
+                    "rotation": {"x": 90, "y": 45, "z": 0}
+                  },
     },
 		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
 	}

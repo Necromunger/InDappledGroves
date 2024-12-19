@@ -1,0 +1,93 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankstairs-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:planks-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:roughhewnfence-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:roughhewnfencegate-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 8}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:woodenfence-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 1}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:woodenfencegate-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:plankslab-*"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:stick", "quantity": 1}
+  }
+]

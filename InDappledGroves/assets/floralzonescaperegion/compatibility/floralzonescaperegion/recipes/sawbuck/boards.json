@@ -1,6 +1,9 @@
 [
-  {"skipVariants": [ "veryaged", "veryagedrotten" ],
+  {
+    "skipVariants": [ "veryaged", "veryagedrotten" ],
     "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
     "ingredients":
     [ 
       {"inputs": 
@@ -12,7 +15,10 @@
     "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}", "quantity": 12}
   },
   {
+   "skipVariants": [ "veryaged", "veryagedrotten" ],
     "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
     "ingredients":
     [ 
       {"inputs": 
@@ -24,7 +30,10 @@
     "output": {"type": "item", "code": "floralzonescaperegion:plank-{wood}", "quantity": 12}
   },
   {
+    "skipVariants": [ "veryaged", "veryagedrotten" ],
     "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
     "ingredients":
     [ 
       {"inputs": 

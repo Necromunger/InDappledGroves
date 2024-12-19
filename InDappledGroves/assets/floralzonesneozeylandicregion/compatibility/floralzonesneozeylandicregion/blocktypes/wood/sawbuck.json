@@ -1,18 +1,27 @@
 {
   "code": "sawbuck",
-  "class": "idgsawbuck",
-  "entityClass": "idgbesawbuck",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
   "attributes": {
+    "inventoryclass": "sawbuck",
+    "attributetransformcode": "idgSawBuckTransform",
 		"handbook": {
 			"groupBy": ["sawbuck-*-east"],
+      "groupedName": "idgSawbuckHandbookEntry",
 			"extraSections": [
 				{ "title": "indappledgroves:block-handbooktitle-sawbuck", "text": "indappledgroves:block-handbooktext-sawbuck" }
 			]
-		}
+		},
+    "workstationproperties": {
+      "workstationtype": "basic",
+      "slottypes": {
+        "inputslot": 0
+      } 
+    }
 	},	
   "variantgroups": [
     { "code": "support", "loadFromProperties": "floralzonesneozeylandicregion:block/wood" },

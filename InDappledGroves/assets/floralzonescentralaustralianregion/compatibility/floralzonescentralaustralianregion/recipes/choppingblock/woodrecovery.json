@@ -1,6 +1,6 @@
 [
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -12,7 +12,7 @@
     "output": {"type": "item", "code": "game:firewood", "quantity": 1}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -24,7 +24,7 @@
     "output": {"type": "item", "code": "game:firewood", "quantity": 1}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -36,7 +36,7 @@
     "output": {"type": "item", "code": "game:firewood", "quantity": 1}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -48,7 +48,7 @@
     "output": {"type": "item", "code": "game:firewood", "quantity": 8}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -60,7 +60,7 @@
     "output": {"type": "item", "code": "game:stick", "quantity": 1}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -72,7 +72,7 @@
     "output": {"type": "item", "code": "game:stick", "quantity": 2}
   },
   {
-    "toolmode": "chopping",
+    "toolmode": "chopping", "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 

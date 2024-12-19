@@ -1,0 +1,307 @@
+[
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-aged-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-aged-east"}
+	},	
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-oak-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-oak-east"}
+	},
+	{
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-maple-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-maple-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-pine-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-pine-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-acacia-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-acacia-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-kapok-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-kapok-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-baldcypress-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-baldcypress-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-larch-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-larch-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-redwood-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-redwood-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-ebony-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-ebony-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-walnut-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-walnut-east"}
+	},
+	{
+		
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-purpleheart-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-purpleheart-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-douglasfir-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-douglasfir-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-willow-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-willow-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-honeylocust-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-bearnut-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-bearnut-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-blackpoplar-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-blackpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-pyramidalpoplar-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-pyramidalpoplar-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-catalpa-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-catalpa-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-mahogany-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-mahogany-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sal-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sal-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-saxaul-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-saxaul-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-spruce-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-spruce-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-sycamore-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-sycamore-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-elm-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-elm-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-beech-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-beech-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-eucalpytus-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-eucalpytus-east"}
+	},
+	{
+		"enabled": false,
+		"ingredientPattern": "B_B,_P_,B_B",
+		"ingredients": {
+			"B": { "type": "item", "code": "game:plank-*", "name": "supports", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"},
+			"P": { "type": "block", "code": "indappledgroves:logslab-cedar-*-north-free"}
+		},
+		"width": 3,
+		"height": 3,
+		"output": { "type": "block", "code": "indappledgroves:sawbuck-{supports}-cedar-east"}
+	}
+]

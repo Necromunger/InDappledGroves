@@ -1,6 +1,7 @@
 [
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -15,6 +16,7 @@
   },
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
@@ -29,6 +31,7 @@
   },
   {
     "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 

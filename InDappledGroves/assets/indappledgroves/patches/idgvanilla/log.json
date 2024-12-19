@@ -4,8 +4,8 @@
      "side": "server",
      "op": "add",
      "path": "/attributes",
-     "value": {
-		  "handbook": {
+     "value": { 
+       "handbook": {
 				"extraSections": [
 					  {
               "title": "indappledgroves:block-handbooktitle-debarkedlog",
@@ -13,19 +13,19 @@
 					  }
           ]
         },
-      "idgLogSplitterTransform":  {
+        "idgLogSplitterTransform":  {
 		    "translation": {"x": 0, "y": 0.65, "z": 0},
 		    "scale": 0.75
-      },
-      "idgChoppingBlockTransform": {
-        "translation": {"x": 0, "y": 0.0625, "z": 0},
-        "scale": 0.95
-      },
-      "idgSawBuckTransform": {
-        "translation": {"x": 0, "y": 0.7, "z": 0},
-        "rotation": {"x": 90, "y": 45, "z": 0}
-      },
-    },
+        },
+        "idgChoppingBlockTransform": {
+          "translation": {"x": 0, "y": 0.0625, "z": 0},
+          "scale": 0.95
+        },
+        "idgSawBuckTransform": {
+          "translation": {"x": 0, "y": 0.7, "z": 0},
+            "rotation": {"x": 90, "y": 45, "z": 0}
+        },
+     },
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log-section.json",
@@ -34,18 +34,18 @@
     "path": "/attributes",
     "value": {
       "idgLogSplitterTransform":  {
-		  "translation": {"x": 0, "y": 0.65, "z": 0},
-		  "scale": 0.75
-      },
-      "idgChoppingBlockTransform": {
-        "translation": {"x": 0, "y": 0.0625, "z": 0},
-        "scale": 0.95
-      },
-      "idgSawBuckTransform": {
-        "translation": {"x": 0, "y": 0.7, "z": 0},
-        "rotation": {"x": 90, "y": 45, "z": 0}
-      },
-    },
+		    "translation": {"x": 0, "y": 0.65, "z": 0},
+		    "scale": 0.75
+        },
+        "idgChoppingBlockTransform": {
+          "translation": {"x": 0, "y": 0.0625, "z": 0},
+          "scale": 0.95
+        },
+        "idgSawBuckTransform": {
+          "translation": {"x": 0, "y": 0.7, "z": 0},
+            "rotation": {"x": 90, "y": 45, "z": 0}
+        },
+     },
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log.json",
@@ -54,18 +54,18 @@
     "path": "/attributes",
     "value": {
       "idgLogSplitterTransform":  {
-		  "translation": {"x": 0, "y": 0.65, "z": 0},
-		  "scale": 0.75
-      },
-      "idgChoppingBlockTransform": {
-        "translation": {"x": 0, "y": 0.0625, "z": 0},
-        "scale": 0.95
-      },
-      "idgSawBuckTransform": {
-        "translation": {"x": 0, "y": 0.0625, "z": 0},
-        "rotation": {"x": 90, "y": 45, "z": 0}
-      },
-    },
+		    "translation": {"x": 0, "y": 0.65, "z": 0},
+		    "scale": 0.75
+        },
+        "idgChoppingBlockTransform": {
+          "translation": {"x": 0, "y": 0.0625, "z": 0},
+          "scale": 0.95
+        },
+        "idgSawBuckTransform": {
+          "translation": {"x": 0, "y": 0.7, "z": 0},
+            "rotation": {"x": 90, "y": 45, "z": 0}
+        },
+     },
   },
   {
     "file": "game:blocktypes/wood/woodtyped/planks.json",
@@ -83,9 +83,9 @@
         },
         "idgSawBuckTransform": {
           "translation": {"x": 0, "y": 0.7, "z": 0},
-          "rotation": {"x": 90, "y": 45, "z": 0}
+            "rotation": {"x": 90, "y": 45, "z": 0}
         },
-    },
+     },
   },
   {
     "file": "game:blocktypes/wood/woodtyped/log.json",
@@ -98,19 +98,20 @@
     "side": "server",
     "op": "add",
     "path": "/resistanceByType",
+    //Provided Value (Standardized)=Janka Hardness×0.0045
     "value": {
-    "*-birch-*": 5.7,
-		"*-oak-*": 5.8,
-		"*-maple-*": 6.5,
-		"*-pine-*": 3.9,
-		"*-acacia-*": 10.3,
-		"*-kapok-*": 4,
+    "*-birch-*": 5.67,
+		"*-oak-*": 5.81,
+		"*-maple-*": 6.52,
+		"*-pine-*": 3.11,
+		"*-acacia-*": 7.65,
+		"*-kapok-*": 1.93,
 		"*-baldcypress-*": 2.3,
-		"*-larch-*": 3.7,
-		"*-redwood-*": 1.9,
-		"*-ebony-*": 14.5,
-		"*-walnut-*": 4.5,
-		"*-purpleheart-*": 12.2,
+		"*-larch-*": 3.74,
+		"*-redwood-*": 2.03,
+		"*-ebony-*": 14.49,
+		"*-walnut-*": 4.55,
+		"*-purpleheart-*": 11.34,
 		"*-aged-*": 4.5,
 		"*": 4.5
     }

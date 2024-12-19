@@ -6,7 +6,7 @@
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
-  "attributes": {
+   "attributes": {
     "inventoryclass": "choppingblock",
     "attributetransformcode": "idgChoppingBlockTransform",
 		"handbook": {

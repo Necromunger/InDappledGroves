@@ -140,6 +140,7 @@ namespace InDappledGroves.Util.RecipeTools
                 int ignored = 0;
                 int orphaned = 0;
                 int wrongWorkstation = 0;
+                //Dictionary<string,int> recipeList = new Dictionary<string,int>();
                 foreach (var val in files)
                 {
                     if (val.Value is JObject)
