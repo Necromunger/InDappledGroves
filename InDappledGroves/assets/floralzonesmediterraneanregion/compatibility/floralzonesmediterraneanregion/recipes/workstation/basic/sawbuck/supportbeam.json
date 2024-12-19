@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:debarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonesmediterraneanregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonesmediterraneanregion:supportbeam-{wood}", "quantity": 3}
+  }
+]

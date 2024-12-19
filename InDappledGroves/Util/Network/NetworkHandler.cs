@@ -42,9 +42,7 @@ namespace InDappledGroves.Util.Network
 
             //Set Client Tool Config Settings from Server
             InDappledGroves.baseWorkstationMiningSpdMult = toolConfig.baseWorkstationMiningSpdMult;
-            InDappledGroves.baseWorkstationResistanceMult = toolConfig.baseWorkstationResistanceMult;
             InDappledGroves.baseGroundRecipeMiningSpdMult = toolConfig.baseGroundRecipeMiningSpdMult;
-            InDappledGroves.baseGroundRecipeResistaceMult = toolConfig.baseGroundRecipeResistaceMult;
 
             //Set Client TreeConfigSettings from Server
             IDGTreeConfig.Current.TreeFellingMultiplier = toolConfig.TreeFellingMultiplier;
@@ -143,9 +141,6 @@ namespace InDappledGroves.Util.Network
             [ProtoMember(3)]
             public float baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
             [ProtoMember(4)]
-            public float baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
-
-            [ProtoMember(5)]
             public float TreeFellingMultiplier = IDGTreeConfig.Current.TreeFellingMultiplier;
 
         }

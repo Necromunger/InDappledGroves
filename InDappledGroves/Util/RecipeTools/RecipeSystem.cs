@@ -10,8 +10,7 @@ using Vintagestory.API.Util;
 using Vintagestory.ServerMods;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames.IDGRecipeLoader;
-using System.Security.Cryptography.X509Certificates;
-using InDappledGroves.BlockEntities;
+
 
 namespace InDappledGroves.Util.RecipeTools
 {
@@ -27,7 +26,7 @@ namespace InDappledGroves.Util.RecipeTools
             private static IDGRecipeRegistry loaded;
             private List<BasicWorkstationRecipe> workstationrecipes = new List<BasicWorkstationRecipe>();
             private List<GroundRecipe> groundRecipes = new List<GroundRecipe>();
-            private List<ComplexWorkstationRecipe> logSplitterRecipes = new List<ComplexWorkstationRecipe>();
+            private List<ComplexWorkstationRecipe> complexWorkstationRecipes = new List<ComplexWorkstationRecipe>();
 
 
             public List<BasicWorkstationRecipe> BasicWorkstationRecipes
@@ -46,11 +45,11 @@ namespace InDappledGroves.Util.RecipeTools
             {
                 get
                 {
-                    return logSplitterRecipes;
+                    return complexWorkstationRecipes;
                 }
                 set
                 {
-                    logSplitterRecipes = value;
+                    complexWorkstationRecipes = value;
                 }
             }
 
@@ -127,20 +126,18 @@ namespace InDappledGroves.Util.RecipeTools
             {
                 api.World.Logger.StoryEvent(Lang.Get("indappledgroves:The Tyee and the bullcook..."));
                 LoadGroundRecipes();
-                LoadWorkStationRecipes("choppingblock");
-                LoadWorkStationRecipes("sawbuck");
-                LoadComplexWorkstationRecipes("logsplitter");
+                LoadWorkStationRecipes();
+                LoadComplexWorkstationRecipes();
             }
 
             #region WorkStation Base Recipes
-            public void LoadWorkStationRecipes(string recipedirectory)
+            public void LoadWorkStationRecipes()
             {
-                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/" + recipedirectory);
+                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/workstation/basic");
                 int recipeQuantity = 0;
                 int ignored = 0;
                 int orphaned = 0;
-                int wrongWorkstation = 0;
-                //Dictionary<string,int> recipeList = new Dictionary<string,int>();
+                Dictionary<string,int> recipeList = new Dictionary<string,int>();
                 foreach (var val in files)
                 {
                     if (val.Value is JObject)
@@ -148,7 +145,11 @@ namespace InDappledGroves.Util.RecipeTools
                         BasicWorkstationRecipe rec = val.Value.ToObject<BasicWorkstationRecipe>();
                         if (!rec.Enabled) continue;
                         if (rec.RequiredWorkstation == null) continue;
-                        LoadWorkStationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, recipedirectory);
+                        LoadWorkStationRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                        if(!recipeList.TryAdd(rec.RequiredWorkstation, 1))
+                        {
+                            recipeList[rec.RequiredWorkstation]++;
+                        };
                     }
                     if (val.Value is JArray)
                     {
@@ -157,23 +158,28 @@ namespace InDappledGroves.Util.RecipeTools
                             BasicWorkstationRecipe rec = token.ToObject<BasicWorkstationRecipe>();
                             if (!rec.Enabled) continue;
                             if (rec.RequiredWorkstation == "none") { orphaned++; continue; };
-                            if (rec.RequiredWorkstation != recipedirectory) { wrongWorkstation++;};
-                            LoadWorkStationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, recipedirectory);
+                            LoadWorkStationRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                            if (!recipeList.TryAdd(rec.RequiredWorkstation, 1))
+                            {
+                                recipeList[rec.RequiredWorkstation]++;
+                            };
                         }
                     }
                 }
-
-                api.World.Logger.Event("{0} " + recipedirectory + " recipes loaded", recipeQuantity);
-                api.World.Logger.Event("{0} " + recipedirectory + " recipes orphaned", orphaned);
-                api.World.Logger.Event("{0} " + recipedirectory + " have workstation that does not match directory.", wrongWorkstation);
+                foreach(KeyValuePair<string,int> kvp in recipeList)
+                {
+                    api.World.Logger.Event("{1} {0} recipes loaded", kvp.Key, kvp.Value);
+                }
+                api.World.Logger.Event("{0} workstation recipes successfully loaded", recipeQuantity);
+                api.World.Logger.Event("{0} workstation recipes orphaned due to RequiredWorkstation not being set.", orphaned);
                 //api.World.Logger.StoryEvent(Lang.Get("indappledgroves:...with sturdy haft and bit"));
             }
 
-            public void LoadWorkStationRecipe(AssetLocation path, BasicWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored, String classname)
+            public void LoadWorkStationRecipe(AssetLocation path, BasicWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored/*, String classname*/)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
-                string className = classname + " recipe";
+                //string className = classname + " recipe";
 
                 Dictionary<string, string[]> nameToCodeMapping = recipe.GetNameToCodeMapping(api.World);
 
@@ -226,12 +232,12 @@ namespace InDappledGroves.Util.RecipeTools
 
                     if (subRecipes.Count == 0)
                     {
-                        api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, className);
+                        api.World.Logger.Warning("File {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path);
                     }
 
                     foreach (BasicWorkstationRecipe subRecipe in subRecipes)
                     {
-                        if (!subRecipe.Resolve(api.World, className + " " + path))
+                        if (!subRecipe.Resolve(api.World, path))
                         {
                             quantityIgnored++;
                             continue;
@@ -243,7 +249,7 @@ namespace InDappledGroves.Util.RecipeTools
                 }
                 else
                 {
-                    if (!recipe.Resolve(api.World, className + " " + path))
+                    if (!recipe.Resolve(api.World, path))
                     {
                         quantityIgnored++;
                         return;
@@ -323,20 +329,24 @@ namespace InDappledGroves.Util.RecipeTools
 
 
             #region Splitter Recipes
-            public void LoadComplexWorkstationRecipes(string classname)
+            public void LoadComplexWorkstationRecipes()
             {
-                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/" + classname);
+                Dictionary<AssetLocation, JToken> files = api.Assets.GetMany<JToken>(api.Server.Logger, "recipes/workstation/complex");
                 int recipeQuantity = 0;
                 int ignored = 0;
-
+                int orphaned = 0;
+                Dictionary<string, int> recipeList = new Dictionary<string, int>();
                 foreach (var val in files)
                 {
                     if (val.Value is JObject)
                     {
                         ComplexWorkstationRecipe rec = val.Value.ToObject<ComplexWorkstationRecipe>();
                         if (!rec.Enabled) continue;
-
-                        LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, classname);
+                        LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                        if (!recipeList.TryAdd(rec.RequiredWorkstation, 1))
+                        {
+                            recipeList[rec.RequiredWorkstation]++;
+                        };
                     }
                     if (val.Value is JArray)
                     {
@@ -344,17 +354,25 @@ namespace InDappledGroves.Util.RecipeTools
                         {
                             ComplexWorkstationRecipe rec = token.ToObject<ComplexWorkstationRecipe>();
                             if (!rec.Enabled) continue;
-
-                            LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored, classname);
+                            LoadComplexWorkstationRecipe(val.Key, rec, ref recipeQuantity, ref ignored);
+                            if (!recipeList.TryAdd(rec.RequiredWorkstation, 1))
+                            {
+                                recipeList[rec.RequiredWorkstation]++;
+                            };
                         }
                     }
                 }
-
-                api.World.Logger.Event("{0} " + classname + "splitter recipes loaded", recipeQuantity);
+                foreach (KeyValuePair<string, int> kvp in recipeList)
+                {
+                    api.World.Logger.Event("{1} {0} recipes loaded", kvp.Key, kvp.Value);
+                }
+                api.World.Logger.Event("{0} workstation recipes successfully loaded", recipeQuantity);
+                api.World.Logger.Event("{0} workstation recipes orphaned due to RequiredWorkstation not being set.", orphaned);
+                api.World.Logger.Event("{0} complex workstation recipes loaded", recipeQuantity);
                 //api.World.Logger.StoryEvent(Lang.Get("indappledgroves:working sole and blade..."));
             }
 
-            public void LoadComplexWorkstationRecipe(AssetLocation path, ComplexWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored, string classname)
+            public void LoadComplexWorkstationRecipe(AssetLocation path, ComplexWorkstationRecipe recipe, ref int quantityRegistered, ref int quantityIgnored)
             {
                 if (!recipe.Enabled) return;
                 if (recipe.Name == null) recipe.Name = path;
@@ -410,12 +428,12 @@ namespace InDappledGroves.Util.RecipeTools
 
                     if (subRecipes.Count == 0)
                     {
-                        api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path, classname);
+                        api.World.Logger.Warning("{1} file {0} make uses of wildcards, but no blocks or item matching those wildcards were found.", path);
                     }
 
                     foreach (ComplexWorkstationRecipe subRecipe in subRecipes)
                     {
-                        if (!subRecipe.Resolve(api.World, classname + " " + path))
+                        if (!subRecipe.Resolve(api.World, path))
                         {
                             quantityIgnored++;
                             continue;
@@ -427,7 +445,7 @@ namespace InDappledGroves.Util.RecipeTools
                 }
                 else
                 {
-                    if (!recipe.Resolve(api.World, classname + " " + path))
+                    if (!recipe.Resolve(api.World, path))
                     {
                         quantityIgnored++;
                         return;

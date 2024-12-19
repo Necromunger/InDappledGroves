@@ -39,9 +39,7 @@ namespace InDappledGroves
             
             networkHandler.InitializeServerSideNetworkHandler(api);
             InDappledGroves.baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
-            InDappledGroves.baseWorkstationResistanceMult = IDGToolConfig.Current.baseWorkstationResistanceMult;
             InDappledGroves.baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
-            InDappledGroves.baseGroundRecipeResistaceMult = IDGToolConfig.Current.baseGroundRecipeResistaceMult;
         }
         #endregion
 

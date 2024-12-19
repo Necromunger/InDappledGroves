@@ -31,7 +31,6 @@ namespace InDappledGroves.Util.Config
             defaultConfig.baseWorkstationResistanceMult = 1f;
             defaultConfig.baseGroundRecipeMiningSpdMult = 1f;
             defaultConfig.baseGroundRecipeResistaceMult = 1f;
-            defaultConfig.baseGroundRecipeResistaceMult = 1f;
 
             return defaultConfig;
         }

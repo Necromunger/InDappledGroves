@@ -1,5 +1,6 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
+using InDappledGroves.Util.Handlers;
 using System.Globalization;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -63,9 +64,6 @@ namespace InDappledGroves.Blocks
             if (beworkstation.recipeHandler.recipe != null)
             {
                 byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
-            }
-            if (beworkstation.recipecomplete) { 
-                beworkstation.recipeHandler.clearRecipe();
             }
             beworkstation.MarkDirty(true);
             beworkstation.updateMeshes();

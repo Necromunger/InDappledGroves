@@ -17,11 +17,11 @@
     <None Remove="Launcher\**" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\woodrecovery.json" />
-    <None Remove="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\woodrecovery.json" />
-    <None Remove="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\woodrecovery.json" />
-    <None Remove="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\woodrecovery.json" />
-    <None Remove="assets\indappledgroves\recipes\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\sawbuck\woodrecovery.json" />
+    <None Remove="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\sawbuck\woodrecovery.json" />
+    <None Remove="assets\indappledgroves\recipes\workstation\basic\sawbuck\woodrecovery.json" />
   </ItemGroup>
   <ItemGroup>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\barrel\strongtanninbark.json">
@@ -72,16 +72,16 @@
     <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\choppingblock\bark.json">
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\choppingblock\logslab.json">
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\grid\barkbasket.json">
@@ -109,6 +109,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\ground\sawing\woodrecovery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\sawbuck\boards.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\blocktypes\barkbasket.json">
@@ -141,16 +147,16 @@
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\barrel\weaktanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\choppingblock\bark.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\choppingblock\logslab.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\grid\barkbasket.json">
@@ -183,13 +189,13 @@
     <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\ground\sawing\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\boards.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\floralzonesneozeylandicregion\compatibility\floralzonesneozeylandicregion\recipes\workstation\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzoneseastasiaticregion\compatibility\floralzoneseastasiaticregion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzoneseastasiaticregion\compatibility\floralzoneseastasiaticregion\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzoneseastasiaticregion\compatibility\floralzoneseastasiaticregion\recipes\ground\chopping\firewood.json">
@@ -213,16 +219,16 @@
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\choppingblock\bark.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\choppingblock\logslab.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\grid\barkbasket.json">
@@ -249,10 +255,10 @@
     <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\ground\sawing\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\boards.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\floralzonescentralaustralianregion\compatibility\floralzonescentralaustralianregion\recipes\workstation\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\blocktypes\barkbasket.json">
@@ -273,16 +279,16 @@
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\bark.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\logslab.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\grid\barkbasket.json">
@@ -309,10 +315,10 @@
     <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\ground\sawing\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\boards.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\floralzonescaperegion\compatibility\floralzonescaperegion\recipes\workstation\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\blocktypes\barkbasket.json">
@@ -333,16 +339,16 @@
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\itemtypes\resources\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\bark.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\firewood.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\logslab.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\grid\barkbasket.json">
@@ -369,10 +375,10 @@
     <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\ground\sawing\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\boards.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\floralzonescaribbeanregion\compatibility\floralzonescaribbeanregion\recipes\workstation\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\game\patches\tanninrecipes.json">
@@ -651,19 +657,19 @@
     <None Update="assets\indappledgroves\recipes\barrel\weaktanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\choppingblock\bark.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\choppingblock\firewood.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\choppingblock\logslab.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\choppingblock\sticks.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\sticks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\grid\adze.json">
@@ -732,13 +738,13 @@
     <None Update="assets\indappledgroves\recipes\knapping\adzehead.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\sawhorse\planks.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\sawhorse\planks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\sawbuck\boards.json">
+    <None Update="assets\indappledgroves\recipes\workstation\basic\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\smithing\adzehead.json">
@@ -756,10 +762,10 @@
     <None Update="assets\indappledgroves\recipes\smithing\splitterbladecross.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\logsplitter\firewood.json">
+    <None Update="assets\indappledgroves\recipes\workstation\complex\logsplitter\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\recipes\logsplitter\logslab.json">
+    <None Update="assets\indappledgroves\recipes\workstation\complex\logsplitter\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\shapes\block\barkbasket.json">
@@ -1059,16 +1065,16 @@
     <None Update="assets\indappledgroves\patches\wildcrafttree\plankstairs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\bark.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\firewood.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\choppingblock\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\logslab.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\choppingblock\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\choppingblock\woodrecovery.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\grid\barkbasket.json">
@@ -1101,13 +1107,13 @@
     <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\ground\sawing\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\boards.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\sawbuck\boards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\supportbeam.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\sawbuck\woodrecovery.json">
+    <None Update="assets\wildcrafttree\compatibility\wildcrafttree\recipes\workstation\sawbuck\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="changelog.txt">
@@ -1190,6 +1196,9 @@
       <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Mods\VSSurvivalMod.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\floralzonesmediterraneanregion\compatibility\floralzonesmediterraneanregion\recipes\workstation\complex\" />
   </ItemGroup>
   <ProjectExtensions><VisualStudio><UserProperties assets_4indappledgroves_4patches_4idgvanilla_4log_1json__JsonSchema="https://chat-agents.lobehub.com/schema/lobeAgentSchema_v1.json" /></VisualStudio></ProjectExtensions>
 </Project>

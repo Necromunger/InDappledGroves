@@ -179,11 +179,12 @@ namespace InDappledGroves.BlockEntities
         {
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             
-            bool recipeComplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
-
+            recipecomplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
             updateMeshes();
+            if (recipecomplete) recipeHandler.clearRecipe();
             base.MarkDirty(true, null);
-            return !recipeComplete;
+            
+            return !recipecomplete;
 
         }
        
@@ -272,6 +273,7 @@ namespace InDappledGroves.BlockEntities
                 tree.SetFloat("currentminingdamage", recipeHandler.currentMiningDamage);
                 tree.SetFloat("curdmgfromminingspeed", recipeHandler.curDmgFromMiningSpeed);
                 tree.SetFloat("totalsecondsused", recipeHandler.totalSecondsUsed);
+                tree.SetBool("recipecomplete", recipecomplete);
             }
             base.ToTreeAttributes(tree);
         }
@@ -287,6 +289,7 @@ namespace InDappledGroves.BlockEntities
                 recipeHandler.curDmgFromMiningSpeed = tree.GetFloat("curdmgfromminingspeed");
                 recipeHandler.totalSecondsUsed = tree.GetFloat("totalsecondsused");
                 recipeHandler.playNextSound = tree.GetFloat("playnextsound");
+                recipecomplete = tree.GetBool("recipecomplete");
             }
         }
 
@@ -297,26 +300,39 @@ namespace InDappledGroves.BlockEntities
             var materials = (Lang.Get("material-" + $"{primary}") + (secondary != null ? " and " + Lang.Get("material-" + $"{secondary}") : ""));
             ItemStack stack = forPlayer.InventoryManager.ActiveHotbarSlot.Itemstack;
             string curToolMode = stack?.Collectible.GetBehavior<BehaviorIDGTool>()?.GetToolModeName(stack).ToString();
-            dsc.AppendLine(Lang.GetMatching("indappledgroves:workstationWorkItem") + ": " + (InputSlot.Empty ? Lang.GetMatching("indappledgroves:Empty") : InputSlot.Itemstack.GetName()));
+            dsc.AppendLine(Lang.GetMatching("indappledgroves:workstationHolding") + ": " + (InputSlot.Empty ? Lang.GetMatching("indappledgroves:Empty") : InputSlot.Itemstack.Collectible.GetHeldItemName(InputSlot.Itemstack)));
+            
             if (workstationtype == "complex" && !ProcessModifierSlot.Empty)
             {
                 dsc.AppendLine("Process Modifier Type:" + ProcessModifierSlot.Itemstack.GetName());
                 dsc.AppendLine("Remaining Durability: " + ProcessModifierSlot.Itemstack.Attributes["durability"]);
             }
-            if (ClientSettings.ExtendedDebugInfo) { 
+            if (recipeHandler.recipe != null)
+            {
+                ItemStack resolvedItemStack = recipeHandler.recipe.Output.ResolvedItemstack;
+                dsc.AppendLine("Result: " + resolvedItemStack.StackSize + " " + resolvedItemStack.Collectible.GetHeldItemName(resolvedItemStack));
+                if (recipeHandler.recipe.ReturnStack.ResolvedItemstack.Id != 0)
+                {
+                    ItemStack returnItemStack = recipeHandler.recipe.ReturnStack.ResolvedItemstack;
+                    dsc.AppendLine("Additional Result: " + returnItemStack.StackSize + " " + returnItemStack.Collectible.GetHeldItemName(returnItemStack));
+                }
                 dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
+            }
+            if (ClientSettings.ExtendedDebugInfo) { 
+                
                     
-                    dsc.AppendLine(string.Format($"{materials}"));
-                    dsc.AppendLine("Attribute Transform Code:" + AttributeTransformCode);
-                    dsc.AppendLine("Inventory Class Name:" + InventoryClassName);
-                    dsc.AppendLine("Current Tool Mode: " + curToolMode);
+                dsc.AppendLine(string.Format($"{materials}"));
+                dsc.AppendLine("Attribute Transform Code:" + AttributeTransformCode);
+                dsc.AppendLine("Inventory Class Name:" + InventoryClassName);
+                dsc.AppendLine("Current Tool Mode: " + curToolMode);
+                
                 if (recipeHandler.recipe != null)
                 {
-                    dsc.AppendLine("Recipe Output:" + recipeHandler.recipe.Output.ResolvedItemstack.ToString());
                     dsc.AppendLine("Recipe ToolMode:" + recipeHandler.recipe.ToolMode.ToString());
                     dsc.AppendLine("Recipe Workstation:" + recipeHandler.recipe.RequiredWorkstation.ToString());
                 }
             }
+           
         }
 	}
 }
