@@ -1,4 +1,8 @@
-﻿1-20-1.1.0
+﻿1-20-2.0.0
+	- Refined the recipe types down to ground types, and basic and complex workstation types.
+	- Updated all compatibilities to use new recipe system.
+
+1-20-1.1.0
 	- Added Behavior Pounding
 	- Copied planing.SVG to use as stand-in for future pounding.svg
 	- Update of Lang File for basic entries. No block descriptions.
@@ -12,6 +16,7 @@
 	- Updated BlockInfo on Splitter to show held log, blade type, and remaining durability of blade.
 	- Created RecipeHandler class, moved recipe handling out of workstation blocks and into this class.
 	- Continued refinement of IDGBEWorkstation Class.
+
 
 1-20-1.0.0
 	- Updated to 1.20
