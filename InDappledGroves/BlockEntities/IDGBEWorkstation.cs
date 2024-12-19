@@ -1,6 +1,7 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Util.Handlers;
 using System;
+using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -9,6 +10,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
+using static OpenTK.Graphics.OpenGL.GL;
 
 namespace InDappledGroves.BlockEntities
 {
@@ -181,9 +183,10 @@ namespace InDappledGroves.BlockEntities
             
             recipecomplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
             updateMeshes();
+
             if (recipecomplete) recipeHandler.clearRecipe();
             base.MarkDirty(true, null);
-            
+
             return !recipecomplete;
 
         }
@@ -307,16 +310,23 @@ namespace InDappledGroves.BlockEntities
                 dsc.AppendLine("Process Modifier Type:" + ProcessModifierSlot.Itemstack.GetName());
                 dsc.AppendLine("Remaining Durability: " + ProcessModifierSlot.Itemstack.Attributes["durability"]);
             }
-            if (recipeHandler.recipe != null)
+            WorkstationRecipe retrRecipe;
+            
+
+            string curTMode = forPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible.GetBehavior<BehaviorIDGTool>()?.GetToolModeName(forPlayer.InventoryManager?.ActiveHotbarSlot.Itemstack);
+            recipeHandler.GetMatchingRecipes(forPlayer.Entity.Api.World, InputSlot, curTMode, Block.Attributes["inventoryclass"].ToString(), Block.Attributes["workstationproperties"]["workstationtype"].ToString(), out retrRecipe);
+            
+            if (retrRecipe != null)
             {
-                ItemStack resolvedItemStack = recipeHandler.recipe.Output.ResolvedItemstack;
+                ItemStack resolvedItemStack = retrRecipe.Output.ResolvedItemstack;
+                ItemStack resolvedReturnStack = retrRecipe.ReturnStack.ResolvedItemstack ?? null;
                 dsc.AppendLine("Result: " + resolvedItemStack.StackSize + " " + resolvedItemStack.Collectible.GetHeldItemName(resolvedItemStack));
-                if (recipeHandler.recipe.ReturnStack.ResolvedItemstack.Id != 0)
+                if(resolvedReturnStack.Id != 0) 
+                { dsc.AppendLine("& " + resolvedReturnStack.StackSize + " " + resolvedReturnStack.Collectible.GetHeldItemName(resolvedReturnStack)); }
+                if (recipeHandler.recipe != null)
                 {
-                    ItemStack returnItemStack = recipeHandler.recipe.ReturnStack.ResolvedItemstack;
-                    dsc.AppendLine("Additional Result: " + returnItemStack.StackSize + " " + returnItemStack.Collectible.GetHeldItemName(returnItemStack));
+                    dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
                 }
-                dsc.AppendLine("Recipe Progress: " + Math.Round((recipeHandler.recipeProgress) * 100) + "%");
             }
             if (ClientSettings.ExtendedDebugInfo) { 
                 

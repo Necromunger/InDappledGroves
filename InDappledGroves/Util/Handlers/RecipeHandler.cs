@@ -129,7 +129,7 @@ namespace InDappledGroves.Util.Handlers
             {
                 for (int j = 0; j < cwsRecipes.Count; j++)
                 {
-                    string processmodifier = beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart() + "-" + beworkstation.ProcessModifierSlot.Itemstack.Collectible.FirstCodePart(1);
+                    string processmodifier = beworkstation.ProcessModifierSlot?.Itemstack?.Collectible.FirstCodePart() + "-" + beworkstation.ProcessModifierSlot?.Itemstack?.Collectible.FirstCodePart(1);
                     if (cwsRecipes[j].Matches(api.World, slots) && (cwsRecipes[j].RequiredWorkstation == workstationname && cwsRecipes[j].ToolMode == curTMode && cwsRecipes[j].ProcessModifier == processmodifier))
                     {
                         recipe = cwsRecipes[j];

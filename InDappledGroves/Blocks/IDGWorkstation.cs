@@ -65,6 +65,7 @@ namespace InDappledGroves.Blocks
             {
                 byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
             }
+            if (beworkstation.recipecomplete) beworkstation.recipeHandler.clearRecipe();
             beworkstation.MarkDirty(true);
             beworkstation.updateMeshes();
         }
