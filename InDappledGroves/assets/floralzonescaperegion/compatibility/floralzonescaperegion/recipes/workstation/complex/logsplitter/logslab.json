@@ -1,0 +1,16 @@
+[
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-single",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
+  }
+ ]

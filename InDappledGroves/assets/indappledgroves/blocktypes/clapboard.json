@@ -1,7 +1,6 @@
 {
   "enabled": true,
   "code": "clapboard",
-  "class": "BlockPlanks",
   "creativeinventory": { "general": ["*-east"]},
   "behaviors": [
     {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}

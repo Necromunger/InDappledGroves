@@ -3,6 +3,7 @@
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw2.ogg",
     "ingredients":
     [ 
       {"inputs": 
@@ -17,6 +18,7 @@
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw1.ogg",
     "ingredients":
     [ 
       {"inputs": 
@@ -31,6 +33,7 @@
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw1.ogg",
     "ingredients":
     [ 
       {"inputs": 

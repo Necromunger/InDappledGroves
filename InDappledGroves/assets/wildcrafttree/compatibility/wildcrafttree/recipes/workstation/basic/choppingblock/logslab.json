@@ -1,0 +1,30 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:log-placed-*-ud", "name": "wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-north-free"}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-barked-north-free"}
+  }
+]

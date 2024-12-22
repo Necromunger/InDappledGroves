@@ -24,7 +24,9 @@
      },
       "workstationproperties": {
         "workstationtype": "basic",
+        "totalSlots": 1,
         "slottypes": {
+          //"0": {"name": "inputslot", "maxstacksize": 1, "storageflags": 1}
           "inputslot": 0
         } 
       }

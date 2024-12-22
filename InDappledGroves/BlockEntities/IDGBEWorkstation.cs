@@ -36,8 +36,8 @@ namespace InDappledGroves.BlockEntities
 
         public IDGBEWorkstation()
 		{
-			//Must initialize inventory in derived classes
-			Inventory = new InventoryDisplayed(this, 2, InventoryClassName + "-slot", null, null);
+            //Must initialize inventory in derived classes
+            Inventory = new InventoryDisplayed(this, 2, InventoryClassName + "-slot", null, null);
 		}
 
 		public override void Initialize(ICoreAPI api)
@@ -118,7 +118,7 @@ namespace InDappledGroves.BlockEntities
 
         public virtual bool TryPut(IPlayer byPlayer, ItemSlot slot, ItemSlot targetSlot)
         {
-            if (targetSlot.Empty)
+            if (targetSlot.Empty || targetSlot.Itemstack.StackSize < InputSlot.Max)
             {
                 Block block = slot.Itemstack.Block;
                 int num3 = slot.TryPutInto(this.Api.World, targetSlot, 1);
@@ -294,6 +294,8 @@ namespace InDappledGroves.BlockEntities
                 recipeHandler.playNextSound = tree.GetFloat("playnextsound");
                 recipecomplete = tree.GetBool("recipecomplete");
             }
+            //TODO: Check and see if this fixes a given problem.
+            MarkDirty(true);
         }
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)

@@ -1,0 +1,30 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud", "name": "wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-barked-north-free"}
+  }
+]

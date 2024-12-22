@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregiondebarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregionsupportbeam-{wood}", "quantity": 3}
+  }
+]

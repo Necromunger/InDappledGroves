@@ -1,0 +1,30 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregionlog-placed-*-ud", "name": "wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free"}
+  },
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregiondebarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free"}
+  }
+]

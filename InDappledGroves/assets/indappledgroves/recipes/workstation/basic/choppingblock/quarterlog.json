@@ -1,0 +1,15 @@
+[
+  {
+    "toolmode": "chopping",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood", quantity: 6}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "logquad-barked-{wood}-ud", "quantity": 6}
+  },
+]

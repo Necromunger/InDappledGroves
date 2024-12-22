@@ -2,7 +2,7 @@
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
                   "idgLogSplitterTransform":  {
@@ -121,7 +121,7 @@
 	{
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
                   "idgLogSplitterTransform":  {
@@ -191,7 +191,7 @@
   {
     "file": "wildcrafttree:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
                   "idgLogSplitterTransform":  {

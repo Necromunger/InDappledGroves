@@ -1,0 +1,44 @@
+[
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+   }
+]

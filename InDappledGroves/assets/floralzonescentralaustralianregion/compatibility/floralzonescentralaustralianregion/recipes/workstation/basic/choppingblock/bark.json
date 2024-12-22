@@ -1,0 +1,46 @@
+[
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 2,
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-north-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 4,
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescentralaustralianregion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:debarkedlog-{wood}-ud"}
+  }
+]

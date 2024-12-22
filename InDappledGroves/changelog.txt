@@ -1,6 +1,17 @@
-﻿1-20-2.0.0
+﻿1-20-2.0.1-dev.2
+	- Added MarkDirty() to FromTreeAttributes to ensure it updates on both sides.
+
+1-20-2.0.1-dev.1
+	- Fixed Saw Transforms
+	- SawOgg2 added as sawing sound
+	- Sound and Animation entries implemented in all recipe types in RecipeSystem
+	- Changed add to addmerge in log patches to fix trees not felling successfully.
+
+1-20-2.0.0-dev.1
 	- Refined the recipe types down to ground types, and basic and complex workstation types.
 	- Updated all compatibilities to use new recipe system.
+	- Updated workstation BlockInfo to provide improved feedback.
+
 
 1-20-1.1.0
 	- Added Behavior Pounding

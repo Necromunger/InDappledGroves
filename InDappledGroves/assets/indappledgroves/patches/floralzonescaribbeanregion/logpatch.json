@@ -2,7 +2,7 @@
   {
     "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
                   "idgLogSplitterTransform":  {
@@ -59,7 +59,7 @@
 	{
     "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/log-debarked.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
                   "idgLogSplitterTransform":  {

@@ -26,5 +26,20 @@
       }
     ],
     "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-down-free", "quantity": 2}
-  }
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-single",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "game:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
+    },
 ]

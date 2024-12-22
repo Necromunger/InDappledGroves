@@ -54,13 +54,10 @@ namespace InDappledGroves.Blocks
         }
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {
-            resistance = 0;
-            lastSecondsUsed = 0;
-            curDmgFromMiningSpeed = 0;
-            playNextSound = 0.7f;
+        {            
             System.Diagnostics.Debug.WriteLine("Stop " + api.Side.ToString());
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
+            beworkstation.recipeHandler.playNextSound = 0.5f;
             if (beworkstation.recipeHandler.recipe != null)
             {
                 byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);

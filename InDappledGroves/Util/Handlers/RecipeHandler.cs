@@ -51,7 +51,7 @@ namespace InDappledGroves.Util.Handlers
             recipe = null;
             recipeProgress = 0;
             recipeValues = null;
-            playNextSound = 0.7f;
+            playNextSound = .5f;
             resistance = 0;
             lastSecondsUsed = 0;
             curDmgFromMiningSpeed = 0;
@@ -140,7 +140,7 @@ namespace InDappledGroves.Util.Handlers
 
             return false;
         }
-
+        
         public bool processRecipe(CollectibleObject heldCollectible, ItemSlot activehotbarslot, IPlayer player, BlockPos pos, IDGBEWorkstation beworkstation, float secondsUsed)
         {
             string curTMode = heldCollectible.GetBehavior<BehaviorIDGTool>().GetToolModeName(player.InventoryManager.ActiveHotbarSlot.Itemstack);
@@ -177,7 +177,11 @@ namespace InDappledGroves.Util.Handlers
 
                 resistance = (InputStack.Block is Block ? InputStack.Block.Resistance
                 : InputStack.Item.Attributes["resistance"].AsFloat());
-
+                if ((int)api.Side == 1 && playNextSound < secondsUsed)
+                {
+                    api.World.PlaySoundAt(new AssetLocation(recipe.Sound), beworkstation.Pos.X, beworkstation.Pos.Y, beworkstation.Pos.Z, null, true, 32, 1f);
+                    playNextSound += 1.5f;
+                }
                 lastSecondsUsed = secondsUsed-lastSecondsUsed < 0?0: lastSecondsUsed;
                 curMiningSpeed = GetCurMiningSpeed(InputStack, heldCollectible, player);
                 curDmgFromMiningSpeed = (curMiningSpeed * toolModeMod) * InDappledGroves.baseWorkstationMiningSpdMult;
@@ -185,10 +189,6 @@ namespace InDappledGroves.Util.Handlers
                 currentMiningDamage = totalSecondsUsed * curDmgFromMiningSpeed;
                 lastSecondsUsed = secondsUsed;
                 this.recipeProgress = currentMiningDamage / resistance;
-
-                
-
-                beworkstation.MarkDirty();
 
                 if (currentMiningDamage >= resistance)
                 {
@@ -207,7 +207,7 @@ namespace InDappledGroves.Util.Handlers
                     return true;
                 }
             }
-            
+            beworkstation.MarkDirty();
             return false;
         }
 

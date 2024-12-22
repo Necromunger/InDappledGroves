@@ -1,0 +1,47 @@
+[
+  {
+    "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:log-placed-*-ud", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:plank-{wood}", "quantity": 12}
+  },
+  {
+   "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:plank-{wood}", "quantity": 12}
+  },
+  {
+    "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "toolmode": "sawing",
+    "requiredworkstation": "sawbuck",
+    "animation": "sawsaw-fp",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:debarkedlog-*-ud", "name": "wood","loadFromProperties": "wildcrafttree:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "wildcrafttree:plank-{wood}", "quantity": 12}
+  }
+]

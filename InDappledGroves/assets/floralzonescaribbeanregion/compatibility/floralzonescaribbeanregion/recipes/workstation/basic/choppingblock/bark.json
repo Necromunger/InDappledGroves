@@ -1,0 +1,46 @@
+[
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaribbeanregionlogslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 2,
+    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free"}
+  },
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "ToolDamage": 4,
+    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:debarkedlog-{wood}-ud"}
+  },
+  {
+    "toolmode": "hewing",
+    "requiredworkstation": "choppingblock",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "floralzonescaperegion:debarkedlog-{wood}-ud"}
+  }
+]

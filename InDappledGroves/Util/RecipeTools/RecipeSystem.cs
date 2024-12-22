@@ -655,6 +655,8 @@ namespace InDappledGroves.Util.RecipeTools
 
             public virtual string Animation { get; set; } = "axesplit-fp";
 
+            public virtual string Sound { get; set; } = "sounds/block/chop2";
+
             public virtual string RequiredWorkstation { get; set; } = "none";
 
             public virtual int IngredientMaterial { get; set; } = 4;
@@ -806,6 +808,7 @@ namespace InDappledGroves.Util.RecipeTools
                 writer.Write(ToolMode);
                 writer.Write(RequiredWorkstation);
                 writer.Write(Animation);
+                writer.Write(Sound);
                 writer.Write(IngredientMaterial);
                 writer.Write(IngredientResistance);
                 writer.Write(Ingredients.Length);
@@ -825,6 +828,7 @@ namespace InDappledGroves.Util.RecipeTools
                 ToolMode = reader.ReadString();
                 RequiredWorkstation = reader.ReadString();
                 Animation = reader.ReadString();
+                Sound = reader.ReadString();
                 IngredientMaterial = reader.ReadInt32();
                 IngredientResistance = reader.ReadDouble();
                 Ingredients = new WorkStationIngredient[reader.ReadInt32()];
@@ -864,9 +868,11 @@ namespace InDappledGroves.Util.RecipeTools
                     ToolMode = ToolMode,
                     RequiredWorkstation = RequiredWorkstation,
                     Animation = Animation,
+                    Sound = Sound,
                     Enabled = Enabled,
                     Name = Name,
                     Ingredients = ingredients
+                    
                 };
             }
 
@@ -938,6 +944,7 @@ namespace InDappledGroves.Util.RecipeTools
                 writer.Write(ToolMode);
                 writer.Write(RequiredWorkstation);
                 writer.Write(Animation);
+                writer.Write(Sound);
                 writer.Write(IngredientMaterial);
                 writer.Write(IngredientResistance);
                 writer.Write(Ingredients.Length);
@@ -957,6 +964,7 @@ namespace InDappledGroves.Util.RecipeTools
                 ToolMode = reader.ReadString();
                 RequiredWorkstation = reader.ReadString();
                 Animation = reader.ReadString();
+                Sound = reader.ReadString();
                 IngredientMaterial = reader.ReadInt32();
                 IngredientResistance = reader.ReadDouble();
                 Ingredients = new WorkStationIngredient[reader.ReadInt32()];
@@ -995,6 +1003,7 @@ namespace InDappledGroves.Util.RecipeTools
                     ToolMode = ToolMode,
                     RequiredWorkstation = RequiredWorkstation,
                     Animation = Animation,
+                    Sound = Sound,
                     Enabled = Enabled,
                     Name = Name,
                     Ingredients = ingredients
@@ -1069,6 +1078,7 @@ namespace InDappledGroves.Util.RecipeTools
 
             public string Animation = "axesplit-fp";
 
+            public string Sound { get; set; } = "sounds/block/chop2";
             public string ProcessModifier { get; set; } = "splitterblade-single"; //Can be single, cross, or any bladetype introduced later.
 
             public void ToBytes(BinaryWriter writer)
@@ -1078,6 +1088,7 @@ namespace InDappledGroves.Util.RecipeTools
                 writer.Write(ToolMode);
                 writer.Write(RequiredWorkstation);
                 writer.Write(Animation);
+                writer.Write(Sound);
                 writer.Write(ProcessModifier);
                 writer.Write(IngredientMaterial);
                 writer.Write(IngredientResistance);
@@ -1097,6 +1108,7 @@ namespace InDappledGroves.Util.RecipeTools
                 ToolMode = reader.ReadString();
                 RequiredWorkstation = reader.ReadString();
                 Animation = reader.ReadString();
+                Sound = reader.ReadString();
                 ProcessModifier = reader.ReadString();
                 IngredientMaterial = reader.ReadInt32();
                 IngredientResistance = reader.ReadDouble();
@@ -1147,6 +1159,7 @@ namespace InDappledGroves.Util.RecipeTools
                     ToolMode = ToolMode,
                     RequiredWorkstation = RequiredWorkstation,
                     Animation = Animation,
+                    Sound = Sound,
                     ProcessModifier = ProcessModifier,
                     Enabled = Enabled,
                     Name = Name,
@@ -1330,6 +1343,10 @@ namespace InDappledGroves.Util.RecipeTools
             public bool Enabled { get; set; } = true;
 
             public string ToolMode = "chopping";
+
+            public string Animation = "axesplit-fp";
+            public string Sound { get; set; } = "sounds/block/chop2";
+
             public int BaseToolDmg { get; set; } = 1;
 
             public GroundIngredient[] Ingredients;
@@ -1472,6 +1489,8 @@ namespace InDappledGroves.Util.RecipeTools
             {
                 writer.Write(Code);
                 writer.Write(ToolMode);
+                writer.Write(Animation);
+                writer.Write(Sound);
                 writer.Write(BaseToolDmg);
                 writer.Write(Ingredients.Length);
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1488,6 +1507,8 @@ namespace InDappledGroves.Util.RecipeTools
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
                 BaseToolDmg = reader.ReadInt32();
+                Animation = reader.ReadString();
+                Sound = reader.ReadString();
                 Ingredients = new GroundIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
@@ -1520,6 +1541,8 @@ namespace InDappledGroves.Util.RecipeTools
                     Code = Code,
                     ToolMode = ToolMode,
                     BaseToolDmg = BaseToolDmg,
+                    Animation = Animation,
+                    Sound = Sound,
                     Ingredients = ingredients,
                     Output = Output.Clone(),
                     ReturnStack = ReturnStack.Clone(),

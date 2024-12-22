@@ -105,7 +105,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-            workAnimation = collObj.Attributes["workanimation"].Exists ? collObj.Attributes["workanimation"].ToString() : "axechop";
+         
 
             if (!byEntity.Controls.CtrlKey)
             {
@@ -121,7 +121,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 recipe = GetMatchingGroundRecipe(Inventory[0], curTMode);
 
                 if (recipe == null) return;
-
+                workAnimation = recipe.Animation;
                 resistance = Inventory[0].Itemstack.Block.Resistance * InDappledGroves.baseGroundRecipeResistaceMult;
 
                 recipeBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0);
@@ -154,7 +154,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
                     if ((int)api.Side == 1 && playNextSound < secondsUsed)
                     {
-                        api.World.PlaySoundAt(new AssetLocation("sounds/block/chop2"), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
+                        api.World.PlaySoundAt(new AssetLocation(recipe.Sound), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
                         playNextSound += .8f;
                     }
 
