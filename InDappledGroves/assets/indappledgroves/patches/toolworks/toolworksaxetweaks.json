@@ -23,7 +23,7 @@
   {
     "op": "add",
     "path": "/attributes/choppingProps",
-    "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.20 },
+    "value": { "fellingMultiplier": 1.25, "choppingMultiplier": 0.20 },
     "file": "toolworks:itemtypes/tool/axe.json",
     "side": "server"
   }

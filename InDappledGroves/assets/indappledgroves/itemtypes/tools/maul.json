@@ -50,8 +50,8 @@
 			translation: { x: -0.4, y: 0.1, z: 0 },
 			scale: 2.00
 		},
-		"choppingProps": { "fellingMultiplier": 1.75, "splittingMultiplier": 0.45},
-		"poundingProps": { "poundingMultiplier": 1.75}
+		"choppingProps": { "fellingMultiplier": 0.5, "choppingMultiplier": 0.5},
+		"poundingProps": { "poundingMultiplier": 0.225}
 	},
 		behaviors: [{
 		name: "GroundStorable",
@@ -77,32 +77,22 @@
 	damagedby: ["blockbreaking", "attacking"],
 	miningspeedbytype: {
 		"maul-bismuthbronze": {
-			"wood": 5.8,
+			"wood": 3.8,
 			"plant": 3.5,
 			"leaves": 2.6
 		},
-		"maul-tinbronze": {
-			"wood": 6.3,
+		"@maul-(tinbronze|blackbronze)": {
+			"wood": 5.7,
 			"plant": 3.8,
 			"leaves": 3
 		},
-		"maul-blackbronze": {
-			"wood": 6.6,
-			"plant": 4,
-			"leaves": 3.1
-		},
-		"maul-iron": {
-			"wood": 8.4,
+		"@maul-(iron|meteoriciron)": {
+			"wood": 11.4,
 			"plant": 5,
 			"leaves": 3.2
 		},
-		"maul-meteoriciron": {
-			"wood": 9.6,
-			"plant": 5.5,
-			"leaves": 3.6
-		},
 		"maul-steel": {
-			"wood": 11,
+			"wood": 15,
 			"plant": 6,
 			"leaves": 4
 		},

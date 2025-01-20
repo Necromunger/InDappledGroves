@@ -15,7 +15,7 @@
   {
     "op": "add",
     "path": "/attributes/choppingProps",
-    "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.15 },
+    "value": { "fellingMultiplier": 0.5, "choppingMultiplier": 0.15 },
     "file": "game:itemtypes/tool/axe-stone.json",
     "side": "server"
   },
@@ -30,27 +30,27 @@
     "op": "replace",
     "path": "/miningspeedbytype",
     "value": { "axe-flint": {
-              "wood": 4,
+              "wood": 4.75,
               "plant": 2.2,
               "leaves": 1.6
             },
             "axe-bone-flint": {
-              "wood": 4,
+              "wood": 4.75,
               "plant": 2.2,
               "leaves": 1.6
             },
             "axe-obsidian": {
-              "wood": 6,
+              "wood": 5.4,
               "plant": 2.7,
               "leaves": 2.4
             },
             "axe-bone-obsidian": {
-              "wood": 6,
+              "wood": 5.4,
               "plant": 2.7,
               "leaves": 2.4
             },
             "*": {
-              "wood": 2,
+              "wood": 4,
               "plant": 2.2,
               "leaves": 1.7
             }

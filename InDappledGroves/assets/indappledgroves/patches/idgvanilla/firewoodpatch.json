@@ -30,26 +30,15 @@
     "op": "add",
     "path": "/attributes/workStationTransforms",
     "value": {
-        "idgChoppingBlockProps":  {
-          "idgChoppingBlockTransform": {
-              "translation": {
-                "x": 0.0275,
-                "y": 0.125,
-                "z": 0.99
-              },
-              "rotation": {
-                "x": -90,
-                "y": 0,
-                "z": 0
-              },
-              "origin": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "scale": 0.95
-          }
-        }
+        "idgLogSplitterTransform":  {
+		    "translation": {"x": 0, "y": 0.65, "z": 0},
+		    "scale": 0.75
+        },
+        "idgChoppingBlockTransform":  {
+		    "translation": {"x": 0, "y": 0, "z": 0},
+        "rotation": {"x": 90,"y": 0,"z": 0}
+		    "scale": 0.75
+        },
     },
     "file": "game:itemtypes/resource/firewood.json",
     "side": "server"

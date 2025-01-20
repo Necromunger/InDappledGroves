@@ -118,7 +118,7 @@ namespace InDappledGroves.BlockEntities
 
         public virtual bool TryPut(IPlayer byPlayer, ItemSlot slot, ItemSlot targetSlot)
         {
-            if (targetSlot.Empty || targetSlot.Itemstack.StackSize < InputSlot.Max)
+            if (targetSlot.Empty)
             {
                 Block block = slot.Itemstack.Block;
                 int num3 = slot.TryPutInto(this.Api.World, targetSlot, 1);
@@ -234,22 +234,26 @@ namespace InDappledGroves.BlockEntities
                             string blocktype = "specialadjust" + Block.Code.FirstCodePart().ToString();
 
                             Matrixf matrix = new Matrixf();
-                            if (itemstack.Block.Attributes[blocktype].Exists)
+                            if (itemstack.Block != null && itemstack.Block.Attributes[blocktype].Exists)
                             {
                                 JsonObject specialadjust = itemstack.Collectible.Attributes[blocktype];
                                 switch (Block.Variant["side"])
                                 {
                                     case "east":
                                         matrix.Translate(specialadjust["east"].AsFloat(), 0, 0);
+                                        matrix.Translate(specialadjust["eastrotateX"].AsFloat(), specialadjust["eastrotateY"].AsFloat(), specialadjust["eastrotateZ"].AsFloat());
                                         break;
                                     case "west":
                                         matrix.Translate(specialadjust["west"].AsFloat(), 0, 0);
+                                        matrix.Translate(specialadjust["westrotateX"].AsFloat(), specialadjust["westrotateY"].AsFloat(), specialadjust["westrotateZ"].AsFloat());
                                         break;
                                     case "north":
                                         matrix.Translate(0, 0, specialadjust["north"].AsFloat());
+                                        matrix.Translate(specialadjust["northrotateX"].AsFloat(), specialadjust["northrotateY"].AsFloat(), specialadjust["northrotateZ"].AsFloat());
                                         break;
                                     case "south":
                                         matrix.Translate(0, 0, specialadjust["south"].AsFloat());
+                                        matrix.Translate(specialadjust["southrotateX"].AsFloat(), specialadjust["southrotateY"].AsFloat(), specialadjust["southrotateZ"].AsFloat());
                                         break;
                                 }
                             }

@@ -15,7 +15,7 @@ namespace InDappledGroves.Util.Config
         public float baseGroundRecipeMiningSpdMult { get; set; }
         //Multiplier applied to the Resistance of a block being worked on the ground. Should default to 1. Less than 1 speeds up, more than 1 slows down work.
 
-        public float baseGroundRecipeResistaceMult { get; set; }
+        public float baseGroundRecipeResistanceMult { get; set; }
 
 
         public IDGToolConfig()
@@ -27,14 +27,14 @@ namespace InDappledGroves.Util.Config
         {
             IDGToolConfig defaultConfig = new();
 
-            defaultConfig.baseWorkstationMiningSpdMult = 1f;
+            defaultConfig.baseWorkstationMiningSpdMult = 0.33f;
             defaultConfig.baseWorkstationResistanceMult = 1f;
             defaultConfig.baseGroundRecipeMiningSpdMult = 1f;
-            defaultConfig.baseGroundRecipeResistaceMult = 1f;
+            defaultConfig.baseGroundRecipeResistanceMult = 1f;
 
             return defaultConfig;
         }
-
+        
         public static void createConfigFile(ICoreAPI api)
         {
             //Tool/Workstation Config

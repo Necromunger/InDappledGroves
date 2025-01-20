@@ -23,6 +23,17 @@
     },
     {
       "op": "replace",
+      "path": "/miningspeedbytype/axe-felling-copper",
+      "value": {
+			"wood": 6.3,
+			"plant": 2.8,
+			"leaves": 2.4
+		  },
+      "file": "game:itemtypes/tool/axe-metal.json",
+      "side": "server",
+    },
+    {
+      "op": "replace",
       "path": "/variantgroups/0/states",
       "value": ["chert", "granite", "andesite", "basalt", "obsidian", "peridotite", "flint", "copper"],
       "file": "game:itemtypes/toolhead/axehead.json",
@@ -53,7 +64,7 @@
     {
       "op": "add",
       "path": "/attributes/choppingProps",
-      "value": { "fellingMultiplier": 1.25, "splittingMultiplier": 0.15 },
+      "value": { "fellingMultiplier": 0.6, "choppingMultiplier": 0.15 },
       "file": "game:itemtypes/tool/axe-metal.json",
       "side": "server"
     },

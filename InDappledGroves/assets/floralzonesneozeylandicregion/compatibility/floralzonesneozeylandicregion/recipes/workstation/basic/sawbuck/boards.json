@@ -1,6 +1,8 @@
 [
   {
     "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",
@@ -16,6 +18,8 @@
   },
   {
    "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",
@@ -31,6 +35,8 @@
   },
   {
     "skipVariants": [ "veryaged", "veryagedrotten" ],
+    "animation": "sawsaw-fp",
+    "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
     "animation": "sawsaw-fp",

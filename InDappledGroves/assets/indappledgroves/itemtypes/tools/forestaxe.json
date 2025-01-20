@@ -21,7 +21,7 @@
 			translation: { x: -0.475, y: 0.12, z: 0.15 },
 			rotation: { x: 30, y: -180, z: -91 }
 		},
-		"choppingProps": { "fellingMultiplier": 1.15, "splittingMultiplier": 0.26 }
+		"choppingProps": { "fellingMultiplier": 1, "choppingMultiplier": 0.25 }
 	},
 	behaviors: [{
 		name: "GroundStorable",
@@ -43,38 +43,23 @@
 	heldTpHitAnimation: "axechop",
 	damagedby: ["blockbreaking", "attacking"],
 	miningspeedbytype: {
-		"forestaxe-copper": {
-			"wood": 5.2,
-			"plant": 2.8,
-			"leaves": 2.4
-		},
 		"forestaxe-bismuthbronze": {
-			"wood": 5.8,
+			"wood": 4.5,
 			"plant": 3.5,
 			"leaves": 2.6
 		},
-		"forestaxe-tinbronze": {
-			"wood": 6.3,
+		"@forestaxe-tinbronze|blackbronze)": {
+			"wood": 5.7,
 			"plant": 3.8,
 			"leaves": 3
 		},
-		"forestaxe-blackbronze": {
-			"wood": 6.6,
-			"plant": 4,
-			"leaves": 3.1
-		},
-		"forestaxe-iron": {
-			"wood": 8.4,
+		"@forestaxe-(iron|meteoriciron)": {
+			"wood": 7.5,
 			"plant": 5,
 			"leaves": 3.2
 		},
-		"forestaxe-meteoriciron": {
-			"wood": 9.6,
-			"plant": 5.5,
-			"leaves": 3.6
-		},
 		"forestaxe-steel": {
-			"wood": 11,
+			"wood": 11.4,
 			"plant": 6,
 			"leaves": 4
 		},
@@ -118,7 +103,6 @@
 		"@forestaxe-(steel)": 5
 	},
 	durabilitybytype: {
-		"*-bone-obsidian": 100,
 		"*-copper": 250,
 		"*-tinbronze": 400,
 		"*-bismuthbronze": 500,

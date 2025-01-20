@@ -36,10 +36,7 @@ namespace InDappledGroves
         #region server
         public override void StartServerSide(ICoreServerAPI api)
         {
-            
             networkHandler.InitializeServerSideNetworkHandler(api);
-            InDappledGroves.baseWorkstationMiningSpdMult = IDGToolConfig.Current.baseWorkstationMiningSpdMult;
-            InDappledGroves.baseGroundRecipeMiningSpdMult = IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
         }
         #endregion
 
@@ -51,6 +48,7 @@ namespace InDappledGroves
             api.RegisterItemClass("idgfirewood", typeof(IDGFirewood));
             api.RegisterItemClass("idgplank", typeof(IDGPlank));
             api.RegisterItemClass("idgbark", typeof(IDGBark));
+            api.RegisterItemClass("idgtreeseed", typeof(IDGTreeSeed));
 
             //Register Blocks
             api.RegisterBlockClass("idgbarkbundle", typeof(IDGBarkBundle));
@@ -73,7 +71,6 @@ namespace InDappledGroves
             api.RegisterCollectibleBehaviorClass("woodhewer", typeof(BehaviorWoodHewing));
             api.RegisterCollectibleBehaviorClass("idgtool", typeof(BehaviorIDGTool));
             api.RegisterCollectibleBehaviorClass("pounder", typeof(BehaviorPounding));
-
 
             //Register BlockBehaviors
             api.RegisterBlockBehaviorClass("Submergible", typeof(BehaviorSubmergible));

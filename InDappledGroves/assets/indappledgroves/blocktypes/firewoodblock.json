@@ -1,8 +1,13 @@
 {
 	"code": "idgblockfirewood",
 	"class": "Block",
-	"shape": { "base": "game:item/firewood", "rotateX": 90},
-	"attributes": {},
+	"shape": { "base": "game:item/firewood"},
+	"attributes": {
+		"idgChoppingBlockTransform": {
+									"translation": {"x": 0, "y": 0,	"z": 0},
+									"rotation": {"x": -90, "y": 0,	"z": 0},
+								},
+	},
 	"behaviors": [{"name": "Unstable"},{"name": "IDGPickup", "properties":{"type": "item","pickupdrop": "firewood", "quantity": 1}}],
 	"blockmaterial": "Wood",
 	"resistance": 1.5,

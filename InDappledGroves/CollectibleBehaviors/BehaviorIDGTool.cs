@@ -1,5 +1,6 @@
 ﻿using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
+using InDappledGroves.Util.Handlers;
 using System;
 using System.Collections.Generic;
 using Vintagestory.API.Client;
@@ -9,6 +10,7 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
+using Vintagestory.ServerMods;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 using static OpenTK.Graphics.OpenGL.GL;
 
@@ -112,7 +114,8 @@ namespace InDappledGroves.CollectibleBehaviors
                 string curTMode = "";
 
 
-                curTMode = GetToolModeName(slot.Itemstack); toolModeMod = GetToolModeMod(slot.Itemstack) == 0?1f: GetToolModeMod(slot.Itemstack);
+                curTMode = GetToolModeName(slot.Itemstack); 
+                toolModeMod = GetToolModeMod(slot.Itemstack) == 0?1f: GetToolModeMod(slot.Itemstack);
 
                 if (blockSel == null)  return;
 
@@ -122,7 +125,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
                 if (recipe == null) return;
                 workAnimation = recipe.Animation;
-                resistance = Inventory[0].Itemstack.Block.Resistance * InDappledGroves.baseGroundRecipeResistaceMult;
+                resistance = Inventory[0].Itemstack.Block.Resistance * IDGToolConfig.Current.baseGroundRecipeResistanceMult;
 
                 recipeBlock = api.World.BlockAccessor.GetBlock(blockSel.Position, 0);
 
@@ -152,36 +155,38 @@ namespace InDappledGroves.CollectibleBehaviors
                 if (recipePos != null)
                 {
 
-                    if ((int)api.Side == 1 && playNextSound < secondsUsed)
+                    if ((api.Side.IsServer() && playNextSound < secondsUsed))
                     {
                         api.World.PlaySoundAt(new AssetLocation(recipe.Sound), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
                         playNextSound += .8f;
                     }
 
                     //Accumulate damage over time from current tools mining speed.
-                    float toolMiningSpeed = slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer);
-                    curDmgFromMiningSpeed += slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer)
-                        * (secondsUsed - lastSecondsUsed);
+
 
                     //update lastSecondsUsed to this cycle
+                    lastSecondsUsed = secondsUsed - lastSecondsUsed < 0 ? 0 : lastSecondsUsed;
+                    float curMiningSpeed = slot.Itemstack.Collectible.GetMiningSpeed(slot.Itemstack, blockSel, Inventory[0].Itemstack.Block, byEntity as IPlayer);
+                    curDmgFromMiningSpeed = (curMiningSpeed * toolModeMod) * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult;
+                    totalSecondsUsed += secondsUsed - lastSecondsUsed;
+                    //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
+                    float curMiningDamage = totalSecondsUsed * curDmgFromMiningSpeed;
                     lastSecondsUsed = secondsUsed;
 
-                    //if seconds used + curDmgFromMiningSpeed is greater than resistance, output recipe and break cycle
-                    float curMiningProgress = (secondsUsed + curDmgFromMiningSpeed) * (toolModeMod * IDGToolConfig.Current.baseGroundRecipeMiningSpdMult);
-                    //if (api.Side.IsServer())
-                    //{
-                    //    System.Diagnostics.Debug.WriteLine("Seconds Used is " + secondsUsed);
-                    //    System.Diagnostics.Debug.WriteLine("curMiningProgress is " + curMiningProgress);
-                    //    System.Diagnostics.Debug.WriteLine("curResistance is " + curResistance);
-                    //}
-                    if (api.Side == EnumAppSide.Server && curMiningProgress >= resistance)
-                    {
-                        SpawnOutput(recipe, recipePos);
-                        api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
-                        api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
-                        byEntity.StartAnimation(workAnimation);
-                        recipeComplete = true;
-                        return false;
+
+                    if (api.Side == EnumAppSide.Server) {
+                        if (curMiningDamage >= resistance)
+                        {
+
+                            SpawnOutput(recipe, recipePos);
+                            api.World.BlockAccessor.SetBlock(ReturnStackId(recipe, recipePos), recipePos);
+                            api.World.BlockAccessor.TriggerNeighbourBlockUpdate(recipePos);
+                            byEntity.StartAnimation(workAnimation);
+                            recipeComplete = true;
+                            curDmgFromMiningSpeed = 0;
+                            totalSecondsUsed = 0;
+                            return false;
+                        }
                     }
                 }
                 handling = EnumHandling.Handled;
@@ -203,6 +208,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 api.World.BlockAccessor.MarkBlockDirty(blockSel?.Position);
                 byEntity.StopAnimation(workAnimation);
             }
+            curDmgFromMiningSpeed = 0;
             recipeComplete = false;
             byEntity.StopAnimation(workAnimation);
         }
@@ -222,7 +228,8 @@ namespace InDappledGroves.CollectibleBehaviors
                 String multString = GetToolModeName(stack) + "Multiplier";
                 if (stack.Collectible.Attributes[propString].Exists && stack.Collectible.Attributes[propString][multString].Exists)
                 {
-                    return stack.Collectible.Attributes[propString][multString].AsFloat();
+                    float modemod = stack.Collectible.Attributes[propString][multString].AsFloat();
+                    return modemod;
                 }
                 return 1f;
             }
@@ -368,6 +375,7 @@ namespace InDappledGroves.CollectibleBehaviors
         public GroundRecipe recipe;
         private float resistance;
         private float lastSecondsUsed;
+        private float totalSecondsUsed;
         private float curDmgFromMiningSpeed;
         private float playNextSound;
         private bool recipeComplete = false;

@@ -14,7 +14,7 @@ namespace InDappledGroves.Util.Network
         internal void RegisterMessages(ICoreAPI api)
         {
             api.Network
-                .RegisterChannel("networkapitest")
+                .RegisterChannel("idgnetwork")
                 .RegisterMessageType(typeof(NetworkApiTestMessage))
                 .RegisterMessageType(typeof(NetworkApiTestResponse))
                 .RegisterMessageType(typeof(ToolConfigFromServerMessage))
@@ -28,8 +28,7 @@ namespace InDappledGroves.Util.Network
         public void InitializeClientSideNetworkHandler(ICoreClientAPI capi) {
             clientApi = capi;
 
-            clientChannel = capi.Network.GetChannel("networkapitest")
-                .SetMessageHandler<NetworkApiTestMessage>(OnServerMessage)
+            clientChannel = capi.Network.GetChannel("idgnetwork")
                 .SetMessageHandler<ToolConfigFromServerMessage>(RecieveToolConfigAction);
             ;
 
@@ -49,16 +48,6 @@ namespace InDappledGroves.Util.Network
 
         }
 
-        private void OnServerMessage(NetworkApiTestMessage networkMessage)
-        {
-            clientApi.ShowChatMessage("Received following message from server: " + networkMessage.message);
-            clientApi.ShowChatMessage("Sending response.");
-            clientChannel.SendPacket(new NetworkApiTestResponse()
-            {
-                response = "RE: Hello World!"
-            });
-        }
-
         #endregion
 
         #region server
@@ -71,14 +60,8 @@ namespace InDappledGroves.Util.Network
             //Listen for player join events
             api.Event.PlayerJoin += OnPlayerJoin;
 
-            serverChannel = api.Network.GetChannel("networkapitest")
-                .SetMessageHandler<NetworkApiTestResponse>(OnClientMessage)
+            serverChannel = api.Network.GetChannel("idgnetwork")
                 .SetMessageHandler<OnPlayerLoginMessage>(OnPlayerJoin);
-
-            api.ChatCommands.Create("nwtest")
-                .WithDescription("Send a Test Network Message")
-                .RequiresPrivilege(Privilege.controlserver)
-                .HandleWith(new OnCommandDelegate(OnNewTestCmd));
         }
 
         private void OnPlayerJoin(IServerPlayer player)
@@ -103,16 +86,6 @@ namespace InDappledGroves.Util.Network
                 EnumChatType.Notification
             );
 
-        }
-
-        private TextCommandResult OnNewTestCmd(TextCommandCallingArgs args)
-        {
-
-            serverChannel.BroadcastPacket(new NetworkApiTestMessage()
-            {
-                message = "Hello World!",
-            });
-            return TextCommandResult.Success();
         }
 
         #endregion

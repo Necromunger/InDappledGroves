@@ -10,6 +10,7 @@ using Vintagestory.API.Common;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 using Vintagestory.API.MathTools;
+using InDappledGroves.Util.Config;
 
 namespace InDappledGroves.Util.Handlers
 {
@@ -176,7 +177,7 @@ namespace InDappledGroves.Util.Handlers
                 ItemStack InputStack = recipeValues.InputStack;
 
                 resistance = (InputStack.Block is Block ? InputStack.Block.Resistance
-                : InputStack.Item.Attributes["resistance"].AsFloat());
+                : InputStack.Item.Attributes["resistance"].AsFloat()) * IDGToolConfig.Current.baseWorkstationResistanceMult;
                 if ((int)api.Side == 1 && playNextSound < secondsUsed)
                 {
                     api.World.PlaySoundAt(new AssetLocation(recipe.Sound), beworkstation.Pos.X, beworkstation.Pos.Y, beworkstation.Pos.Z, null, true, 32, 1f);
@@ -184,7 +185,7 @@ namespace InDappledGroves.Util.Handlers
                 }
                 lastSecondsUsed = secondsUsed-lastSecondsUsed < 0?0: lastSecondsUsed;
                 curMiningSpeed = GetCurMiningSpeed(InputStack, heldCollectible, player);
-                curDmgFromMiningSpeed = (curMiningSpeed * toolModeMod) * InDappledGroves.baseWorkstationMiningSpdMult;
+                curDmgFromMiningSpeed = (curMiningSpeed * toolModeMod) * (1+IDGToolConfig.Current.baseWorkstationMiningSpdMult);
                 totalSecondsUsed += secondsUsed - lastSecondsUsed;
                 currentMiningDamage = totalSecondsUsed * curDmgFromMiningSpeed;
                 lastSecondsUsed = secondsUsed;
@@ -202,8 +203,6 @@ namespace InDappledGroves.Util.Handlers
                     heldCollectible.DamageItem(api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
                     CompleteRecipe(api, player);
                     beworkstation.MarkDirty();
-                    System.Diagnostics.Debug.WriteLine(totalSecondsUsed);
-                    System.Diagnostics.Debug.WriteLine("Current Damage: " + currentMiningDamage);
                     return true;
                 }
             }

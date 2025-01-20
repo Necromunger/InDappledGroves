@@ -2,6 +2,7 @@
 using InDappledGroves.CollectibleBehaviors;
 using InDappledGroves.Util.Handlers;
 using System.Globalization;
+using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
 using Vintagestory.API.MathTools;
@@ -55,7 +56,6 @@ namespace InDappledGroves.Blocks
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {            
-            System.Diagnostics.Debug.WriteLine("Stop " + api.Side.ToString());
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
             beworkstation.recipeHandler.playNextSound = 0.5f;
             if (beworkstation.recipeHandler.recipe != null)

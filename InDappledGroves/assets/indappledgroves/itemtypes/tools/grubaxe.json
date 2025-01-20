@@ -48,7 +48,7 @@
 				}
 			}
 		},
-		"choppingProps": {"fellingMultiplier": 1.25, "splittingMultiplier": 0.19},
+		"choppingProps": {"fellingMultiplier": 0.6, "choppingMultiplier": 0.19},
 		"hewingProps": {"hewingMultiplier": 1},
 		"workanimation": "axesplit-fp"
 	},
@@ -75,48 +75,23 @@
 	heldTpHitAnimation: "axechop",
 	damagedby: ["blockbreaking", "attacking"],
 	miningspeedbytype: {
-		"grubaxe-copper": {
-			"wood": 5.2,
-			"plant": 2.8,
-			"leaves": 2.4
-		},
-		"grubaxe-silver": {
-			"wood": 4.5,
-			"plant": 3.3,
-			"leaves": 3
-		},
-		"grubaxe-gold": {
-			"wood": 4.5,
-			"plant": 3.3,
-			"leaves": 3
-		},
 		"grubaxe-bismuthbronze": {
-			"wood": 5.8,
+			"wood": 5,
 			"plant": 3.5,
 			"leaves": 2.6
 		},
-		"grubaxe-tinbronze": {
-			"wood": 6.3,
+		"@grubaxe-(tinbronze|blackbronze)": {
+			"wood": 6,
 			"plant": 3.8,
 			"leaves": 3
 		},
-		"grubaxe-blackbronze": {
-			"wood": 6.6,
-			"plant": 4,
-			"leaves": 3.1
-		},
-		"grubaxe-iron": {
-			"wood": 8.4,
+		"@grubaxe-(iron|meteoriciron)": {
+			"wood": 7.5,
 			"plant": 5,
 			"leaves": 3.2
 		},
-		"grubaxe-meteoriciron": {
-			"wood": 9.6,
-			"plant": 5.5,
-			"leaves": 3.6
-		},
 		"grubaxe-steel": {
-			"wood": 11,
+			"wood": 10,
 			"plant": 6,
 			"leaves": 4
 		}
