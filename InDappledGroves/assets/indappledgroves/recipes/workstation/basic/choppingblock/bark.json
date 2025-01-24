@@ -7,7 +7,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "indappledgroves:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -23,7 +23,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "log-placed-*-ud",  "name": "wood", "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "log-placed-*-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],

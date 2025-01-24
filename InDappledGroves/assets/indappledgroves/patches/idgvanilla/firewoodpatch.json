@@ -7,37 +7,12 @@
     "side": "server"
   },
   {
-     "op": "replace",
-     "path": "/attributes",
-     "value": {
-       "resistance": 1.5,
-       firepitConstructable: true,
-		   isClayOvenFuel: true,
-		   placeSound: "block/planks",
-		  "handbook": {
-				"extraSections": [
-					  {
-              "title": "indappledgroves:item-handbooktitle-firewood",
-						  "text": "indappledgroves:item-handbooktext-firewood"
-					  }
-          ]
-        }
-     },
-     "file": "game:itemtypes/resource/firewood.json",
-     "side": "server"
-  },
-  {
-    "op": "add",
-    "path": "/attributes/workStationTransforms",
+    "op": "addmerge",
+    "path": "/attributes",
     "value": {
-        "idgLogSplitterTransform":  {
-		    "translation": {"x": 0, "y": 0.65, "z": 0},
-		    "scale": 0.75
-        },
         "idgChoppingBlockTransform":  {
 		    "translation": {"x": 0, "y": 0, "z": 0},
-        "rotation": {"x": 90,"y": 0,"z": 0}
-		    "scale": 0.75
+        "rotation": {"x": -90,"y": 0,"z": 0}
         },
     },
     "file": "game:itemtypes/resource/firewood.json",

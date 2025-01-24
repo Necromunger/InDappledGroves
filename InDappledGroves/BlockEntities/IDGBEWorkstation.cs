@@ -82,7 +82,7 @@ namespace InDappledGroves.BlockEntities
                 {
                     return this.TryTake(byPlayer, InputSlot);
                 }
-                else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype))
+                else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype, Block.Code.FirstCodePart()))
                 {
                     return this.TryPut(byPlayer, activeHotbarSlot, InputSlot);
                 }
@@ -104,7 +104,7 @@ namespace InDappledGroves.BlockEntities
                     return this.TryTake(byPlayer, ProcessModifierSlot);
                 }
             }
-            else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype))
+            else if (recipeHandler.GetMatchingIngredient(Api.World, activeHotbarSlot, workstationtype, Block.Code.FirstCodePart()))
             {
                 return this.TryPut(byPlayer, activeHotbarSlot, InputSlot);
             }
@@ -216,7 +216,7 @@ namespace InDappledGroves.BlockEntities
 
                 ItemSlot itemSlot = this.Inventory[index];
                 JsonObject jsonObject;
-                if (itemSlot == null)
+               if (itemSlot == null)
                 {
                     jsonObject = null;
                 }

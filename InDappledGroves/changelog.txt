@@ -1,13 +1,18 @@
-﻿1.20-2.0.1-dev.3
+﻿
+1.20-2.0.1-dev.4
+
+
+1.20-2.0.1-dev.3
 	- Fixed issue with instant recipe completion in ground recipes.
 	- Addressed issue with missing animation reference in sawing recipes.
 	- Fixed toolModeMod not being properly located and applied.
 	- Updated and balanced tools, mining speeds, workstation multipliers, and various other touches.
-
+	- Reimplemented traders and added new items to the trader options.
 
 1-20-2.0.1-dev.2
 	- Added MarkDirty() to FromTreeAttributes to ensure it updates on both sides.
 	- Implemented sapling space requirements. Saplings cannot be planted within 2 blocks of grown log or planted sapling.
+
 1-20-2.0.1-dev.1
 	- Fixed Saw Transforms
 	- SawOgg2 added as sawing sound

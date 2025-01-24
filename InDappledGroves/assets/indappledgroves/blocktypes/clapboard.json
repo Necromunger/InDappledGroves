@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "code": "clapboard",
   "creativeinventory": { "general": ["*-east"]},
   "behaviors": [

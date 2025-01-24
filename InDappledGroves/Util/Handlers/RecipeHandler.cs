@@ -62,7 +62,7 @@ namespace InDappledGroves.Util.Handlers
             beworkstation.MarkDirty();
         }
 
-        public bool GetMatchingIngredient(IWorldAccessor world, ItemSlot slot, string workstationtype)
+        public bool GetMatchingIngredient(IWorldAccessor world, ItemSlot slot, string workstationtype, string requiredworkstation)
         {
             string processmodifiercheck = slot.Itemstack.Collectible.FirstCodePart() + "-" + slot.Itemstack.Collectible.FirstCodePart(1);
             if (workstationtype == "basic")
@@ -71,7 +71,7 @@ namespace InDappledGroves.Util.Handlers
                 {
                     for (int j = 0; j < bwsRecipes.Count; j++)
                     {
-                        if (bwsRecipes[j].Matches(api.World, slot))
+                        if (bwsRecipes[j].RequiredWorkstation == requiredworkstation && bwsRecipes[j].Matches(api.World, slot))
                         {
                             return true;
                         }
@@ -83,7 +83,8 @@ namespace InDappledGroves.Util.Handlers
             {
                 for (int j = 0; j < cwsRecipes.Count; j++)
                 {
-                    if (!beworkstation.ProcessModifierSlot.Empty && cwsRecipes[j].Matches(api.World, slot))
+                    //TODO: This needs to be setup to accommodate recipes that only work for one processmodifier
+                    if (!beworkstation.ProcessModifierSlot.Empty && cwsRecipes[j].RequiredWorkstation == requiredworkstation && cwsRecipes[j].Matches(api.World, slot))
                     {
                         //Checks to see if player is holding a valid ingredient or valid processmodifier
                         return true;

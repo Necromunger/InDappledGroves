@@ -1,26 +1,26 @@
 [
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/selling/list/15",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/selling/list/15",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "side": "server"
   },
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/selling/list/14",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/selling/list/14",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "side": "server"
   },
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/selling/list/13",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/selling/list/13",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:forestaxe-tinbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -37,8 +37,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:forestaxe-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -55,8 +55,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:forestaxe-blackbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -73,8 +73,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:adze-wood-tinbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -91,8 +91,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:adze-wood-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -109,8 +109,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-survivalgoods.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-survivalgoods.json",
     "value": {"code": "indappledgroves:adze-wood-blackbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -127,26 +127,26 @@
   },
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/buying/list/5",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/5",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "side": "server"
   },
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/buying/list/4",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/4",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "side": "server"
   },
   {
     "op": "remove",
-    "path": "/attributes/tradeProps/buying/list/3",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/3",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "side": "server"
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:forestaxe-tinbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -163,8 +163,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:forestaxe-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -181,8 +181,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:forestaxe-blackbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -199,8 +199,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:adze-wood-tinbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -217,8 +217,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:adze-wood-bismuthbronze",
                 "type": "item",
                 "stacksize": 1,
@@ -235,8 +235,8 @@
   },
   {
     "op": "add",
-    "path": "/attributes/tradeProps/buying/list/-",
-    "file": "game:entities/humanoid/trader-buildmaterials.json",
+    "path": "/buying/list/-",
+    "file": "game:config/tradelists/trader-buildmaterials.json",
     "value": {"code": "indappledgroves:adze-wood-blackbronze",
                 "type": "item",
                 "stacksize": 1,

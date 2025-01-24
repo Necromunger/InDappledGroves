@@ -5,7 +5,7 @@
 	"attributes": {
 		"idgChoppingBlockTransform": {
 									"translation": {"x": 0, "y": 0,	"z": 0},
-									"rotation": {"x": -90, "y": 0,	"z": 0},
+									"rotation": {"x": 0, "y": 0,	"z": 0},
 								},
 	},
 	"behaviors": [{"name": "Unstable"},{"name": "IDGPickup", "properties":{"type": "item","pickupdrop": "firewood", "quantity": 1}}],

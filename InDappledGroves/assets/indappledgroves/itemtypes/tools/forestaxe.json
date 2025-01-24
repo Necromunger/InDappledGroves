@@ -48,7 +48,7 @@
 			"plant": 3.5,
 			"leaves": 2.6
 		},
-		"@forestaxe-tinbronze|blackbronze)": {
+		"@forestaxe-(tinbronze|blackbronze)": {
 			"wood": 5.7,
 			"plant": 3.8,
 			"leaves": 3

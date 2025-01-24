@@ -620,6 +620,9 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\villagerupdate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\traderupdate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -34,7 +34,7 @@
 									"*-up-*": true
 								},
 								"idgChoppingBlockTransform": {
-									"translation": {"x": 0, "y": 0,	"z": 0},
+									"translation": {"x": 0, "y": 0.0625,"z": 0},
 									"rotation": {"x": 0, "y": 0,	"z": 0},
 									"scale": 0.95
 								},
@@ -63,7 +63,7 @@
 		"*": 4.5
   },
 	"creativeinventory": {
-		"general": ["*-down-free"], "construction": ["*-down-free"], "indappledgroves": ["*-down-free"]
+		"general": ["*-north-free"], "construction": ["*-north-free"], "indappledgroves": ["*-north-free"]
 	},
 	"dropsByType":{
 		"logslab-*":	[{ "code": "logslab-{wood}-{barked}-north-free" }]

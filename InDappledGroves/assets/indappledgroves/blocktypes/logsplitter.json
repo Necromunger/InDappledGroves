@@ -4,7 +4,7 @@
   "entityClass": "idglogsplitter",
   "maxstacksize": 1,
   "behaviors": [
-    {"name": "Unstable" }
+    {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
   ],
   "attributes": {
     "inventoryclass": "logsplitter",
@@ -31,16 +31,22 @@
         } 
       }
 	},
-  "creativeinventory": { "general": ["*"], "indappledgroves": ["*"]},
+  "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
   "variantgroups": [
-    { "code": "primary", "states": ["tinbronze","bismuthbronze","blackbronze","iron","meteoriciron","steel"]}
+    { "code": "primary", "states": ["tinbronze","bismuthbronze","blackbronze","iron","meteoriciron","steel"]},
+    { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "textures": {		
       "frame": { "base": "game:block/metal/ingot/{primary}" }
 	},
-  "shape": { "base": "indappledgroves:block/logsplitter"},
+   "shapeByType": {
+		"*-north": { "base": "block/logsplitter", "rotateY":0 },
+		"*-east": { "base": "block/logsplitter", "rotateY":270 },
+		"*-south": { "base": "block/logsplitter", "rotateY":180 },
+		"*-west": { "base": "block/logsplitter", "rotateY":90 }
+	}, 
   "lightabsorption": 32,
   "sideopaque": { "all": false },
   "sidesolid": { "all": false },

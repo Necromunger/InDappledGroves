@@ -6,11 +6,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:planks-*-we", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:planks-*-we", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 3}
   },
   {
     "animation": "sawsaw-fp",
@@ -19,11 +19,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:planks-*-ns", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:planks-*-ns", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 3}
   },
   {
     "animation": "sawsaw-fp",
@@ -32,11 +32,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:planks-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:planks-*-ud", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 3}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 3}
   },
   {
     "animation": "sawsaw-fp",
@@ -45,11 +45,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankstairs-*-up-east-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:plankstairs-*-up-east-free", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 2}
   },
   {
     "animation": "sawsaw-fp",
@@ -58,11 +58,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankstairs-*-up-west-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:plankstairs-*-up-west-free", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 2}
   },
   {
     "animation": "sawsaw-fp",
@@ -71,11 +71,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankstairs-*-up-north-free","name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:plankstairs-*-up-north-free","name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 2}
   },
   {
     "animation": "sawsaw-fp",
@@ -84,11 +84,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankstairs-*-up-south-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:plankstairs-*-up-south-free", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 2}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 2}
   },
   {
     "animation": "sawsaw-fp",
@@ -97,10 +97,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:plankslab-*-down-free", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "states": ["aged"], "loadFromProperties": "block/wood"}
+         {"type": "block", "code": "game:plankslab-*-down-free", "name": "wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:plank-{wood}", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ], "quantity": 1}
+    "output": {"type": "item", "code": "game:plank-{wood}", "quantity": 1}
   }
 ]

@@ -19,7 +19,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-tinbronze",
+			code: "indappledgroves:logsplitter-tinbronze-east",
 			quantity: 1
 		}
 	},
@@ -43,7 +43,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-bismuthbronze",
+			code: "indappledgroves:logsplitter-bismuthbronze-east",
 			quantity: 1
 		}
 	},
@@ -67,7 +67,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-blackbronze",
+			code: "indappledgroves:logsplitter-blackbronze-east",
 			quantity: 1
 		}
 	},
@@ -91,7 +91,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-iron",
+			code: "indappledgroves:logsplitter-iron-east",
 			quantity: 1
 		}
 	},
@@ -115,7 +115,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-meteoriciron",
+			code: "indappledgroves:logsplitter-meteoriciron-east",
 			quantity: 1
 		}
 	},
@@ -139,7 +139,7 @@
 		},
 		output: { 
 			type: "block", 
-			code: "indappledgroves:logsplitter-steel",
+			code: "indappledgroves:logsplitter-steel-east",
 			quantity: 1
 		}
 	}
