@@ -1,7 +1,7 @@
 {
   "code": "sawbuck",
-  "class": "idgsawbuck",
-  "entityClass": "idgbesawbuck",
+  "class": "idgworkstation",
+  "entityClass": "idgbeworkstation",
   "maxstacksize": 1,
   "behaviors": [
     {"name": "Unstable" }, {"name": "HorizontalOrientable", "properties": {  "dropBlockFace": "east" }}
