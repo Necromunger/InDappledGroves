@@ -5,18 +5,18 @@
     "op": "addmerge",
     "path": "/attributes",
     "value": { 
-                  "idgLogSplitterTransform":  {
-		              "translation": {"x": 0, "y": 0.65, "z": 0},
-		              "scale": 0.75
-                  },
-                  "idgChoppingBlockTransform": {
-                    "translation": {"x": 0, "y": 0.0625, "z": 0},
-                    "scale": 0.95
-                  },
-                  "idgSawBuckTransform": {
-                    "translation": {"x": 0, "y": 0.7, "z": 0},
-                    "rotation": {"x": 90, "y": 45, "z": 0}
-                  },
+      "idgLogSplitterTransform":  {
+      "translation": {"x": 0, "y": 0.65, "z": 0},
+		  "scale": 0.75
+      },
+      "idgChoppingBlockTransform": {
+        "translation": {"x": 0, "y": 0.0625, "z": 0},
+        "scale": 0.95
+      },
+      "idgSawBuckTransform": {
+        "translation": {"x": 0, "y": 0.7, "z": 0},
+        "rotation": {"x": 90, "y": 45, "z": 0}
+      },
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
@@ -29,15 +29,15 @@
   },
   {
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log.json",
-    "op": "add",
+    "op": "addmerge",
 		"side": "server",
     "path": "/resistanceByType",
     "value": {
-		"*-araucariaheterophylla-*": 1.93,
-    "*-dacrydiumcupressinum-*": 12.19,
-    "*-nothofagusmenziesii-*": 13.35,
-    "*-podocarpustotara-*": 1.54,
-		"*": 3.34
+		  "*-araucariaheterophylla-*": 1.93,
+      "*-dacrydiumcupressinum-*": 12.19,
+      "*-nothofagusmenziesii-*": 13.35,
+      "*-podocarpustotara-*": 1.54,
+		  "*": 3.34
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
@@ -50,15 +50,15 @@
   },
   {
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log-debarked.json",
-    "op": "add",
+    "op": "addmerge",
 		"side": "server",
     "path": "/resistanceByType",
     "value": {
-    "*-araucariaheterophylla-*": 1.93,
-    "*-dacrydiumcupressinum-*": 12.19,
-    "*-nothofagusmenziesii-*": 13.35,
-    "*-podocarpustotara-*": 1.54,
-    "*": 4
+      "*-araucariaheterophylla-*": 1.93,
+      "*-dacrydiumcupressinum-*": 12.19,
+      "*-nothofagusmenziesii-*": 13.35,
+      "*-podocarpustotara-*": 1.54,
+      "*": 4
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
@@ -68,18 +68,18 @@
     "op": "addmerge",
     "path": "/attributes",
     "value": { 
-                  "idgLogSplitterTransform":  {
-		              "translation": {"x": 0, "y": 0.65, "z": 0},
-		              "scale": 0.75
-                  },
-                  "idgChoppingBlockTransform": {
-                    "translation": {"x": 0, "y": 0.0625, "z": 0},
-                    "scale": 0.95
-                  },
-                  "idgSawBuckTransform": {
-                    "translation": {"x": 0, "y": 0.7, "z": 0},
-                    "rotation": {"x": 90, "y": 45, "z": 0}
-                  },
+      "idgLogSplitterTransform":  {
+		  "translation": {"x": 0, "y": 0.65, "z": 0},
+		  "scale": 0.75
+      },
+      "idgChoppingBlockTransform": {
+        "translation": {"x": 0, "y": 0.0625, "z": 0},
+        "scale": 0.95
+      },
+      "idgSawBuckTransform": {
+        "translation": {"x": 0, "y": 0.7, "z": 0},
+        "rotation": {"x": 90, "y": 45, "z": 0}
+      },
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
 	},
@@ -89,32 +89,32 @@
     "op": "addmerge",
     "path": "/attributes",
     "value": { 
-                  "idgLogSplitterTransform":  {
-		              "translation": {"x": 0, "y": 0.65, "z": 0},
-		              "scale": 0.75
-                  },
-                  "idgChoppingBlockTransform": {
-                    "translation": {"x": 0, "y": 0.0625, "z": 0},
-                    "scale": 0.95
-                  },
-                  "idgSawBuckTransform": {
-                    "translation": {"x": 0, "y": 0.7, "z": 0},
-                    "rotation": {"x": 90, "y": 45, "z": 0}
-                  },
+      "idgLogSplitterTransform":  {
+		  "translation": {"x": 0, "y": 0.65, "z": 0},
+		  "scale": 0.75
+      },
+      "idgChoppingBlockTransform": {
+        "translation": {"x": 0, "y": 0.0625, "z": 0},
+        "scale": 0.95
+      },
+      "idgSawBuckTransform": {
+        "translation": {"x": 0, "y": 0.7, "z": 0},
+        "rotation": {"x": 90, "y": 45, "z": 0}
+      },
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },
   {
     "file": "floralzonesneozeylandicregion:blocktypes/wood/woodtyped/log-section.json",
-    "op": "add",
+    "op": "addmerge",
 		"side": "server",
     "path": "/resistanceByType",
     "value": {
-    "*-araucariaheterophylla-*": 1.93,
-    "*-dacrydiumcupressinum-*": 12.19,
-    "*-nothofagusmenziesii-*": 13.35,
-    "*-podocarpustotara-*": 1.54,
-    "*": 4
+      "*-araucariaheterophylla-*": 1.93,
+      "*-dacrydiumcupressinum-*": 12.19,
+      "*-nothofagusmenziesii-*": 13.35,
+      "*-podocarpustotara-*": 1.54,
+      "*": 4
     },
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
   },

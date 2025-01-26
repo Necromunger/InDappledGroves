@@ -2,26 +2,14 @@
 	{
     "file": "floralzonescaribbeanregion:blocktypes/wood/woodtyped/thintrunk.json",
     "side": "server",
-    "op": "add",
-    "path": "/attributes/workStationTransformsByType",
-    "value": {
-      "*-placed-*":{
-        "idgChoppingBlockProps": {               
-            "idgChoppingBlockTransform": {
-            "translation": {
-              "x": 0,
-              "y": 0.0955,
-              "z": 0
-            },
-            "rotation": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            }
-          }
-				}
-			}
-		},
+    "op": "addmerge",
+    "path": "/attributes",
+    "value": {             
+        "idgChoppingBlockTransform": {
+          "translation": { "x": 0, "y": 0.0955, "z": 0},
+          "rotation": { "x": 0, "y": 0, "z": 0}
+        }
+		  },
 		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
 	}
 ]

@@ -1,9 +1,16 @@
 {
 	code: "splitterblade",
 	creativeinventory: { "general": ["*"], "items": ["*"], "indappledgroves": ["*"]},
+	maxstacksize: 1,
 	attributes: {
 		handbook: {
-			groupBy: ["splitterblade-*"]
+			groupBy: ["splitterblade-*"],
+			"extraSections": [
+				{
+					"title": "indappledgroves:item-handbooktitle-splitterblade",
+					"text":	"indappledgroves:item-handbooktext-splitterblade"
+				}
+			]
 		},
 		groundStorageTransformByType: {
 			"splitterblade-single-*": { translation: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: -87, z: 0 }},
@@ -38,30 +45,23 @@
 	"textures": {
 			"material": { base: "game:block/metal/ingot/{material}" }
 	},
-	//guiTransform: {
-	//	translation: { x: 3, y: 4.4, z: 0 },
-	//	rotation: { x: -159, y: 54, z: -58 },
-	//	origin: { x: 0.6, y: 0.6, z: 0.5 },
-	//	scale: 1.94
-	//},
 	"guiTransformByType": {
-		"splitterblade-single-*": {
-			translation: { x: 13, y: -12.43, z: 0 },
-			rotation: { x: -159, y: 54, z: -58 },
-			origin: { x: 0.6, y: 0.6, z: 0.5 },
-			scale: 2
+		"splitterblade-single-*": {	
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: -151, y: 35, z: -58 },
+		origin: { x: 0.65, y: 0.1, z: 0.3 },
+		scale: 2.14
 		},
 		"splitterblade-cross-*": {
-			translation: { x: 16, y: -15.6, z: 0 },
-			rotation: { x: -159, y: 58, z: -66 },
-			origin: { x: 0.6, y: 0.6, z: 0.5 },
-			scale: 2
-		}
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: 5, y: -44, z: -111 },
+		origin: { x: 0.5, y: 0.1, z: 0.5 },
+		scale: 1.8
+		},
+		tpHandTransform: {
+		translation: { x: 0, y: 0, z: 0 },
+		rotation: { x: -91, y: -86, z: 18 },
+		origin: { x: -1.15, y: 1.6, z: -0.7 },
+		scale: 0.75
 	},
-	tpHandTransform: {
-		translation: { x: -0.9, y: -0.8, z: -0.5 },
-		rotation: { x: -115, y: -62, z: 18 },
-		scale: 0.78
-	},
-	maxstacksize: 1,
 }

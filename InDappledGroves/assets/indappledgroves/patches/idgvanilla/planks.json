@@ -9,7 +9,7 @@
   {
     "file": "game:blocktypes/wood/woodtyped/planks.json",
     "side": "server",
-    "op": "add",
+    "op": "addmerge",
     "path": "/attributes",
     "value": { 
       "idgLogSplitterTransform":  {

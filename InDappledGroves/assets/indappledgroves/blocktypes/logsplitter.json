@@ -24,10 +24,11 @@
       },
       "workstationproperties": {
         "workstationtype": "complex",
+        "processmodifiername": "indappledgroves:logsplitterprocessor", //lang entry for processmodifier slot
         "damageprocessmodifier": true,
         "slottypes": {
           "inputslot": 1,
-          "processmodifier0": 0,            //processmodifier0 indicates the first processor slot, not the 0 index of the selection boxes.  The 0 value represents the index of selection boxes.
+          "processmodifier0": 0, //processmodifier0 indicates the first processor slot, not the 0 index of the selection boxes.  The 0 value represents the index of selection boxes.
         } 
       }
 	},

@@ -187,8 +187,8 @@ namespace InDappledGroves.Util.Handlers
                 lastSecondsUsed = secondsUsed-lastSecondsUsed < 0?0: lastSecondsUsed;
                 curMiningSpeed = GetCurMiningSpeed(InputStack, heldCollectible, player);
                 curDmgFromMiningSpeed = (curMiningSpeed * toolModeMod) * (1+IDGToolConfig.Current.baseWorkstationMiningSpdMult);
-                totalSecondsUsed += secondsUsed - lastSecondsUsed;
-                currentMiningDamage = totalSecondsUsed * curDmgFromMiningSpeed;
+                float curSecondsUsed = secondsUsed - lastSecondsUsed < 0 ? 0 : secondsUsed - lastSecondsUsed;
+                currentMiningDamage += curSecondsUsed * curDmgFromMiningSpeed;
                 lastSecondsUsed = secondsUsed;
                 this.recipeProgress = currentMiningDamage / resistance;
 

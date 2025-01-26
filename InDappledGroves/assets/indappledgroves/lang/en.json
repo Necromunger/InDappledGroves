@@ -14,14 +14,27 @@
 	"toolittledurability": "Your tool requires {0} durability to do this.",
 	"block-board": "Board",
 	"WorkstationTypeNotDesignated": "Workstation {0} does not have workstation type designated in blocktype",
+	"defaultprocessmodifier": "Process Modifier:",
+	"logsplitterprocessor": "Blade Type:",
+	"remainingdurability": "Remaining Durability",
 	"LogSplitterNoBladeError": "Log Splitter Has No Blade",
 	"BladeHeldInSplitter": "Blade Type",
 	"BladeDurability": "Blade Durability",
 	"Empty": "Empty",
-	"workstationHolding": "Holding",
+	"recipeprogress": "Recipe Progress",
+	"workstationholding": "Holding",
+	"recipeoutputstack": "Result",
+	"attributetransformcode": "Attribute Transform Code",
+	"inventoryclassname": "Inventory Class Name",
+	"currenttoolmode": "Current Tool Mode",
+	"recipetoolmode": "Recipe ToolMode",
+	"recipeworkstation": "Recipe Workstation",
 	"game:tabname-indappledgroves": "In Dappled Groves",
 	"game:handbook-category-indappledgroves": "In Dappled Groves",
 	"block-logsplitter": "Log Splitter",
+	"indappledgroves:item-handbooktitle-splitterblade": "Log Splitter Blades",
+	"indappledgroves:item-handbooktext-splitterblade": "These blades are used in the log splitter. Slab blades are for making log slabs, and cross blades for making firewood from logs.",
+
 	"item-splitterblade-single-tinbronze": "Tin Bronze Slab Blade",
 	"item-splitterblade-single-bismuthbronze": "Bismuth Bronze Slab Blade",
 	"item-splitterblade-single-blackbronze": "Black Bronze Slab Blade",
@@ -36,14 +49,15 @@
 	"item-splitterblade-cross-steel": "Steel Cross Blade",
 	
 	"block-handbooktitle-logsplitter": "Log Splitter",
-	"block-handbooktext-logsplitter": "The Log Splitter is a new tool for efficiently making <a href=\"handbook://item:firewood\">firewood.</a> It's can also be used to create <a href=\"handbooksearch:log slab\">log slabs.</a>' To create items using the log splitter ",
+	"block-handbooktext-logsplitter": "The Log Splitter is a new tool for efficiently making <a href=\"handbook://item-firewood\">fire wood</a>. It's can also be used to create <a href=\"handbooksearch://log slab\">log slabs</a>. To use the logsplitter, place it, and install a <a href=\"handbooksearch://slab blade\">slab blade</a> to make slabs, or a <a href=\"handbooksearch://cross blade\">cross blade</a> to make firewood.<br><br>Processing a log put in a logsplitter requires using a tool, such as the <a href=\"handbooksearch://maul AND tool\">splitting maul</a> that has the pounding <a href=\"handbook://toolmodes-indappledgroves\">tool mode.</a> The log splitter is best used for making firewood. It splits logs slightly slower than using a maul to split the same log, but directly create firewood. This makes it a faster option for creating firewood than the chopping block.<br>Do note that blades have durability, and will need to be replaced every so often. Neither the material of the blade or log splitter will influence the speed at which firewood is produced. However, the material of the blade does affect the blades durability.",
 	"block-handbooktitle-logsplitter2": "Sold By:",
 	"block-handbooktext-logsplitter2": "Blacksmith",
+
 	
 	//Bark Basket Entries
 	"block-handbooktitle-barkbasket": "",
 	"block-handbooktext-barkbasket": "<font align='center'><i>With each weave of the bark, 
-we are closer to home.</i></font>
+	we are closer to home.</i></font>
 	<font weight='bold' align='center'>- On Basket Weaving</font>
 
 	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>

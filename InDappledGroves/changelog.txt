@@ -1,6 +1,9 @@
 ﻿
-1.20-2.0.1-dev.4
-
+1.20-2.0.1-rc.1
+	- Updated patches and compatibility to fit with new paradigm.
+	- Fixed the issue with rotation on the firewood block that I caused.
+	- Improved recipe completion value.
+	- Adjusted lang entries
 
 1.20-2.0.1-dev.3
 	- Fixed issue with instant recipe completion in ground recipes.

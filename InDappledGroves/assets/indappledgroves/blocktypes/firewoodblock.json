@@ -1,7 +1,7 @@
 {
 	"code": "idgblockfirewood",
 	"class": "Block",
-	"shape": { "base": "game:item/firewood"},
+	"shape": { "base": "game:item/firewood", "rotateX": 90},
 	"attributes": {
 		"idgChoppingBlockTransform": {
 									"translation": {"x": 0, "y": 0,	"z": 0},
