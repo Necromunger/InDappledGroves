@@ -1,0 +1,57 @@
+[
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/wood/burlblock.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+    "dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescentralaustralianregion" } ]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/wood/burlblock.json",
+    "op": "addmerge",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-eucalyptuscamaldulensis-*": 6.409,
+    "*-corymbiaaparrerinja-*": 4.45,
+		"*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescentralaustralianregion" } ]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/wood/treehollowgrown.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-eucalyptuscamaldulensis-*": 6.409,
+    "*-corymbiaaparrerinja-*": 4.45,
+		"*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescentralaustralianregion" } ]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/wood/treestump.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-eucalyptuscamaldulensis-*": 32.45,
+    "*-corymbiaaparrerinja-*": 22.25,
+		"*": 16.20
+    },
+		"dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescentralaustralianregion" } ]
+  },
+  {
+    "file": "floralzonescentralaustralianregion:blocktypes/wood/treestumpsection.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-eucalyptuscamaldulensis-*": 32.45,
+    "*-corymbiaaparrerinja-*": 22.25,
+		"*": 16.20
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescentralaustralianregion" } ]
+  }
+]

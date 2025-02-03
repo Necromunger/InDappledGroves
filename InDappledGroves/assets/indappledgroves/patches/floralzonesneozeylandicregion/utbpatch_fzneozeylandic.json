@@ -1,0 +1,58 @@
+[
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/burlblock.json",
+    "op": "addmerge",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		  "*-araucariaheterophylla-*": 1.93,
+      "*-dacrydiumcupressinum-*": 12.19,
+      "*-nothofagusmenziesii-*": 13.35,
+      "*-podocarpustotara-*": 1.54,
+		  "*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treehollowgrown.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		  "*-araucariaheterophylla-*": 1.93,
+      "*-dacrydiumcupressinum-*": 12.19,
+      "*-nothofagusmenziesii-*": 13.35,
+      "*-podocarpustotara-*": 1.54,
+		  "*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treestump.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		  "*-araucariaheterophylla-*": 9.65,
+      "*-dacrydiumcupressinum-*": 60.95,
+      "*-nothofagusmenziesii-*": 66.75,
+      "*-podocarpustotara-*": 7.7,
+		  "*": 16.7
+    },
+		"dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treestumpsection.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		  "*-araucariaheterophylla-*": 9.65,
+      "*-dacrydiumcupressinum-*": 60.95,
+      "*-nothofagusmenziesii-*": 66.75,
+      "*-podocarpustotara-*": 7.7,
+		  "*": 16.7
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  }
+]

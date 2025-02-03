@@ -1,4 +1,30 @@
-﻿
+﻿1.20-v2.0.3
+	- Corrected slab blade not appearing in smithing recipes.
+	- Removed leather from textures in grub axe and forest axe
+	- Changed config files access modifiers to be public (Because InsanityGod asked nicely)
+
+
+1.20-v2.0.2
+	- Last minute "fixes" are bad, mm'kay? The fix for the boat broke tools. I fixed the tools, and the boat issue. 
+
+1.20-v2.0.1
+	- Fixed wildcraft trees chopping block recipe for bark to reference wildcrafttree trees and produce wildcrafttree bark.
+	- Fixed right-clicking ships with tools leading to a crash.
+
+1.20-2.0.1-rc.3
+	- Wildcraft Trees
+		- Halved resistance values of stumps in Wildcraft Trees
+		- Added patch for Wildcraft Logs, Burls, Hollows, and Stumps in UTB, tested stumps successfully successfully
+	- Floral Zones Compatibility
+		- Halved resistance values of stumps in Floral Zones Stump
+		- Added patch for Floralzones Stumps in Logs, Burls, Hollows, and Stumps in UTB, tested stumps successfully
+
+
+1.20-2.0.1-rc.2
+	- Fixed network and ground recipe issues that were causing crashes and non-functionality.
+	- Fixed blocks not properly rendering on workstations.
+	- Adjusted Log Splitter Visual Transition.
+
 1.20-2.0.1-rc.1
 	- Updated patches and compatibility to fit with new paradigm.
 	- Fixed the issue with rotation on the firewood block that I caused.

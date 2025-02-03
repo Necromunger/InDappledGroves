@@ -5,7 +5,7 @@ using static OpenTK.Graphics.OpenGL.GL;
 
 namespace InDappledGroves.Util.Config
 {
-    class IDGToolConfig
+    public class IDGToolConfig
     {
         //Multiplier applied to the Mining Speed of a tool used at a Workstation. Should default to 1. Less than 1 slows down, more than 1 speeds up work.
         public float baseWorkstationMiningSpdMult { get; set; }

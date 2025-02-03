@@ -1,13 +1,7 @@
 ﻿using InDappledGroves.BlockEntities;
 using InDappledGroves.CollectibleBehaviors;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static OpenTK.Graphics.OpenGL.GL;
 using Vintagestory.API.Common;
-using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 using Vintagestory.API.MathTools;
 using InDappledGroves.Util.Config;
@@ -29,6 +23,8 @@ namespace InDappledGroves.Util.Handlers
         public float curDmgFromMiningSpeed { get; set; }
         
         public WorkstationRecipe recipe { get; set; }
+
+        public string curtMode { get; set; }
 
         public float toolModeMod { get; set; }
 
@@ -71,7 +67,7 @@ namespace InDappledGroves.Util.Handlers
                 {
                     for (int j = 0; j < bwsRecipes.Count; j++)
                     {
-                        if (bwsRecipes[j].RequiredWorkstation == requiredworkstation && bwsRecipes[j].Matches(api.World, slot))
+                        if (bwsRecipes[j].RequiredWorkstation == requiredworkstation && bwsRecipes[j].Matches(world, slot))
                         {
                             return true;
                         }
@@ -84,7 +80,7 @@ namespace InDappledGroves.Util.Handlers
                 for (int j = 0; j < cwsRecipes.Count; j++)
                 {
                     //TODO: This needs to be setup to accommodate recipes that only work for one processmodifier
-                    if (!beworkstation.ProcessModifierSlot.Empty && cwsRecipes[j].RequiredWorkstation == requiredworkstation && cwsRecipes[j].Matches(api.World, slot))
+                    if (!beworkstation.ProcessModifierSlot.Empty && cwsRecipes[j].RequiredWorkstation == requiredworkstation && cwsRecipes[j].Matches(world, slot))
                     {
                         //Checks to see if player is holding a valid ingredient or valid processmodifier
                         return true;
@@ -120,7 +116,7 @@ namespace InDappledGroves.Util.Handlers
             {
                 for (int j = 0; j < bwsRecipes.Count; j++)
                 {
-                    if (bwsRecipes[j].Matches(api.World, slots) && bwsRecipes[j].RequiredWorkstation == workstationname && bwsRecipes[j].ToolMode == curTMode)
+                    if (bwsRecipes[j].Matches(world, slots) && bwsRecipes[j].RequiredWorkstation == workstationname && bwsRecipes[j].ToolMode == curTMode)
                     {
                         recipe = bwsRecipes[j];
                         return true;
@@ -129,10 +125,11 @@ namespace InDappledGroves.Util.Handlers
             }
             else if (workstationtype == "complex")
             {
+                if (curTMode == null) return false;
                 for (int j = 0; j < cwsRecipes.Count; j++)
                 {
                     string processmodifier = beworkstation.ProcessModifierSlot?.Itemstack?.Collectible.FirstCodePart() + "-" + beworkstation.ProcessModifierSlot?.Itemstack?.Collectible.FirstCodePart(1);
-                    if (cwsRecipes[j].Matches(api.World, slots) && (cwsRecipes[j].RequiredWorkstation == workstationname && cwsRecipes[j].ToolMode == curTMode && cwsRecipes[j].ProcessModifier == processmodifier))
+                    if (cwsRecipes[j].Matches(world, slots) && (cwsRecipes[j].RequiredWorkstation == workstationname && cwsRecipes[j].ToolMode == curTMode && cwsRecipes[j].ProcessModifier == processmodifier))
                     {
                         recipe = cwsRecipes[j];
                         return true;
@@ -157,7 +154,7 @@ namespace InDappledGroves.Util.Handlers
             {
                 WorkstationRecipe retrRecipe;
 
-                GetMatchingRecipes(api.World, beworkstation.InputSlot, curTMode, beworkstation.Block.Attributes["inventoryclass"].ToString(), beworkstation.Block.Attributes["workstationproperties"]["workstationtype"].ToString(), out retrRecipe);
+                GetMatchingRecipes(player.Entity.Api.World, beworkstation.InputSlot, curTMode, beworkstation.Block.Attributes["inventoryclass"].ToString(), beworkstation.Block.Attributes["workstationproperties"]["workstationtype"].ToString(), out retrRecipe);
                 if (retrRecipe == null)
                 {
                     return false;
@@ -172,16 +169,16 @@ namespace InDappledGroves.Util.Handlers
             EntityPlayer entityPlayer = player.Entity;
             entityPlayer.StartAnimation(recipe.Animation);
 
-            if (api.Side == EnumAppSide.Server)
+            if (player.Entity.Api.Side == EnumAppSide.Server)
             {
                 //TODO Put Recipe And Resistance Getting To A Separate Method
                 ItemStack InputStack = recipeValues.InputStack;
 
                 resistance = (InputStack.Block is Block ? InputStack.Block.Resistance
                 : InputStack.Item.Attributes["resistance"].AsFloat()) * IDGToolConfig.Current.baseWorkstationResistanceMult;
-                if ((int)api.Side == 1 && playNextSound < secondsUsed)
+                if ((int)player.Entity.Api.Side == 1 && playNextSound < secondsUsed)
                 {
-                    api.World.PlaySoundAt(new AssetLocation(recipe.Sound), beworkstation.Pos.X, beworkstation.Pos.Y, beworkstation.Pos.Z, null, true, 32, 1f);
+                    player.Entity.Api.World.PlaySoundAt(new AssetLocation(recipe.Sound), beworkstation.Pos.X, beworkstation.Pos.Y, beworkstation.Pos.Z, null, true, 32, 1f);
                     playNextSound += 1.5f;
                 }
                 lastSecondsUsed = secondsUsed-lastSecondsUsed < 0?0: lastSecondsUsed;
@@ -198,10 +195,10 @@ namespace InDappledGroves.Util.Handlers
                     {
                         if (beworkstation.Block.Attributes["workstationproperties"]["damageprocessmodifier"].AsBool() == true)
                         {
-                            beworkstation.ProcessModifierSlot.Itemstack.Collectible.DamageItem(api.World, player.Entity, beworkstation.ProcessModifierSlot, 1);
+                            beworkstation.ProcessModifierSlot.Itemstack.Collectible.DamageItem(player.Entity.Api.World, player.Entity, beworkstation.ProcessModifierSlot, 1);
                         }
                     }
-                    heldCollectible.DamageItem(api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
+                    heldCollectible.DamageItem(player.Entity.Api.World, entityPlayer, entityPlayer.RightHandItemSlot, recipeValues.baseToolDamage);
                     CompleteRecipe(api, player);
                     beworkstation.MarkDirty();
                     return true;
@@ -274,7 +271,7 @@ namespace InDappledGroves.Util.Handlers
             int j = output.StackSize;
             for (int i = j; i > 0; i--)
             {
-                api.World.SpawnItemEntity(new ItemStack(output.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
+                byEntity.Api.World.SpawnItemEntity(new ItemStack(output.Collectible, 1), pos.ToVec3d(), new Vec3d(0.05f, 0.1f, 0.05f));
                 
             }
             

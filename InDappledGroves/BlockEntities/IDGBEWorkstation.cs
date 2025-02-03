@@ -90,7 +90,8 @@ namespace InDappledGroves.BlockEntities
                 {
                     return this.TryPut(byPlayer, activeHotbarSlot, InputSlot);
                 }
-
+            this.updateMeshes();
+            this.MarkDirty(true);
             return false;
         }
 
@@ -116,7 +117,8 @@ namespace InDappledGroves.BlockEntities
             {
                 return this.TryPut(byPlayer, activeHotbarSlot, ProcessModifierSlot);
             }
-
+            this.updateMeshes();
+            this.MarkDirty(true);
             return false;
         }
 
@@ -142,6 +144,8 @@ namespace InDappledGroves.BlockEntities
                     AssetLocation assetLocation2 = assetLocation;
                     this.Api.World.PlaySoundAt(assetLocation2 ?? new AssetLocation("sounds/player/build"), byPlayer.Entity, byPlayer, true, 16f, 1f);
                 };
+                updateMeshes();
+                MarkDirty(true);
             }
             updateMeshes();
             MarkDirty(true);
@@ -174,10 +178,11 @@ namespace InDappledGroves.BlockEntities
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
-					base.MarkDirty(true, null);
-					this.updateMeshes();
+                    this.updateMeshes();
+                    base.MarkDirty(true, null);
 					return false;
 				}
+
 			return false;
 		}
 
@@ -186,9 +191,9 @@ namespace InDappledGroves.BlockEntities
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             
             recipecomplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
-            updateMeshes();
-
+            
             if (recipecomplete) recipeHandler.clearRecipe();
+            updateMeshes();
             base.MarkDirty(true, null);
 
             return !recipecomplete;
@@ -278,6 +283,7 @@ namespace InDappledGroves.BlockEntities
 
             if (recipeHandler != null)
             {
+                tree.SetString("currenttoolmode", recipeHandler.curtMode);
                 tree.SetFloat("lastsecondsused", recipeHandler.lastSecondsUsed);
                 tree.SetFloat("recipeprogress", recipeHandler.recipeProgress);
                 tree.SetFloat("playnextsound", recipeHandler.playNextSound);
@@ -292,8 +298,10 @@ namespace InDappledGroves.BlockEntities
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)
         {
             base.FromTreeAttributes(tree, worldForResolving);
+            if (recipeHandler == null) recipeHandler = new RecipeHandler(Api, this);
             if (recipeHandler != null)
             {
+                recipeHandler.curtMode = tree.GetString("currenttoolmode");
                 recipeHandler.lastSecondsUsed = tree.GetFloat("lastsecondsused");
                 recipeHandler.recipeProgress = tree.GetFloat("recipeprogress");
                 recipeHandler.currentMiningDamage = tree.GetFloat("currentminingdamage");
@@ -301,8 +309,10 @@ namespace InDappledGroves.BlockEntities
                 recipeHandler.totalSecondsUsed = tree.GetFloat("totalsecondsused");
                 recipeHandler.playNextSound = tree.GetFloat("playnextsound");
                 recipecomplete = tree.GetBool("recipecomplete");
+                recipeHandler.api = Api;
             }
             //TODO: Check and see if this fixes a given problem.
+            updateMeshes();
             MarkDirty(true);
         }
 

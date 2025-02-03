@@ -482,9 +482,6 @@
     <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\reciperemove.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\stumppatch.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\tanninrecipes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -515,9 +512,6 @@
     <None Update="assets\indappledgroves\patches\floralzoneseastasiaticregion\reciperemove.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\floralzoneseastasiaticregion\stumppatch.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -534,9 +528,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\reciperemove.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\stumppatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\floralzonescaperegion\lognarrowpatch.json">
@@ -641,10 +632,13 @@
     <None Update="assets\indappledgroves\patches\wildcrafttree\lognarrowpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\wildcrafttree\logpatch.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\wildcrafttree\reciperemove.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\patches\wildcrafttree\stumppatch.json">
+    <None Update="assets\indappledgroves\patches\wildcrafttree\wildcraft_utbpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\wildcrafttree\tanninrecipes.json">
@@ -654,6 +648,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\barrel\weaktanninbark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\recipes\smithing\splitterbladesingle.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\workstation\basic\choppingblock\bark.json">

@@ -3,19 +3,16 @@
     "op": "remove",
     "path": "/selling/list/15",
     "file": "game:config/tradelists/trader-survivalgoods.json",
-    "side": "server"
   },
   {
     "op": "remove",
     "path": "/selling/list/14",
     "file": "game:config/tradelists/trader-survivalgoods.json",
-    "side": "server"
   },
   {
     "op": "remove",
     "path": "/selling/list/13",
     "file": "game:config/tradelists/trader-survivalgoods.json",
-    "side": "server"
   },
   {
     "op": "add",
@@ -32,8 +29,7 @@
                     "avg": 10,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "add",
@@ -50,8 +46,7 @@
                     "avg": 11,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "add",
@@ -68,8 +63,7 @@
                     "avg": 12,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "add",
@@ -86,8 +80,7 @@
                     "avg": 10,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "add",
@@ -104,8 +97,7 @@
                     "avg": 11,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "add",
@@ -122,26 +114,24 @@
                     "avg": 12,
                     "var": 2.25
                 }
-            },
-    "side": "server"
+            }
   },
   {
     "op": "remove",
     "path": "/buying/list/5",
-    "file": "game:config/tradelists/trader-buildmaterials.json",
-    "side": "server"
+    "file": "game:config/tradelists/trader-buildmaterials.json"
   },
   {
     "op": "remove",
     "path": "/buying/list/4",
-    "file": "game:config/tradelists/trader-buildmaterials.json",
-    "side": "server"
+    "file": "game:config/tradelists/trader-buildmaterials.json"
+    
   },
   {
     "op": "remove",
     "path": "/buying/list/3",
-    "file": "game:config/tradelists/trader-buildmaterials.json",
-    "side": "server"
+    "file": "game:config/tradelists/trader-buildmaterials.json"
+    
   },
   {
     "op": "add",
@@ -158,8 +148,8 @@
                     "avg": 4,
                     "var": 1
                 }
-             },
-    "side": "server"
+             }
+    
   },
   {
     "op": "add",
@@ -176,8 +166,8 @@
                     "avg": 5,
                     "var": 1.25
                 }
-             },
-    "side": "server"
+             }
+    
   },
   {
     "op": "add",
@@ -194,8 +184,8 @@
                     "avg": 6,
                     "var": 1.25
                 }
-             },
-    "side": "server"
+             }
+    
   },
   {
     "op": "add",
@@ -212,8 +202,8 @@
                     "avg": 4,
                     "var": 1
                 }
-             },
-    "side": "server"
+             }
+    
   },
   {
     "op": "add",
@@ -230,8 +220,8 @@
                     "avg": 5,
                     "var": 1.25
                 }
-             },
-    "side": "server"
+             }
+    
   },
   {
     "op": "add",
@@ -248,8 +238,8 @@
                     "avg": 6,
                     "var": 1.25
                 }
-             },
-    "side": "server"
+             }
+    
   }             
 ]    
 

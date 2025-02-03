@@ -79,7 +79,7 @@
     },
 		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
 	},
-  	{
+  {
     "file": "floralzonescaperegion:blocktypes/wood/woodtyped/log-section.json",
     "side": "server",
     "op": "addmerge",
@@ -99,5 +99,5 @@
             },
       },
 		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
-	}
+	}  
 ]

@@ -11,7 +11,7 @@ using System.Reflection;
 using Vintagestory.ServerMods;
 
 
-namespace UnderTangledBoughs.Util.HarmonyPatches
+namespace InDappledGroves.Util.HarmonyPatches
 {
     public class IDGHarmonyModSystem : ModSystem
     {

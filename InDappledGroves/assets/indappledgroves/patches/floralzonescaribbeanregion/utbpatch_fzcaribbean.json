@@ -1,0 +1,53 @@
+[
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/burlblock.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+    "dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/burlblock.json",
+    "op": "addmerge",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-lysilomalatisiliquum-*": 8,
+		"*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/treehollowgrown.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-lysilomalatisiliquum-*": 8,
+		"*": 3.34
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/treestump.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+		"*-lysilomalatisiliquum-*": 40,
+		"*": 15.70
+    },
+		"dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:blocktypes/wood/treestumpsection.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-lysilomalatisiliquum-*": 40,
+		"*": 15.70
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaribbeanregion" } ]
+  }
+]

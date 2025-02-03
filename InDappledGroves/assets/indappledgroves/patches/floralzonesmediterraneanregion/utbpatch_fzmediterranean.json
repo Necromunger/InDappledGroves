@@ -1,0 +1,57 @@
+[
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/burlblock.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+    "dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/burlblock.json",
+    "op": "addmerge",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-populusalba-*": 2.2,
+    "*-taxusbaccata-*": 6.85,
+    "*": 4.5
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treehollowgrown.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-populusalba-*": 2.2,
+    "*-taxusbaccata-*": 6.85,
+    "*": 4.5
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treestump.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-populusalba-*": 11.00,
+    "*-taxusbaccata-*": 34.25,
+    "*": 20.25
+    },
+		"dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:blocktypes/wood/treestumpsection.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-populusalba-*": 11.00,
+    "*-taxusbaccata-*": 34.25,
+    "*": 20.25
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonesneozeylandicregion" } ]
+  }
+]

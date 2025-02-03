@@ -117,8 +117,7 @@
 	texturesByType: {
 		"@grubaxe-(copper|tinbronze|bismuthbronze|blackbronze|iron|meteoriciron|steel)": {
 			"material": { base: "game:block/metal/ingot/{material}" },
-			"handle": { base: "game:item/tool/material/handle" },
-			"leather": { base: "game:item/resource/leather" }
+			"handle": { base: "game:item/tool/material/handle" }
 		}
 	},
 	maxstacksize: 1,

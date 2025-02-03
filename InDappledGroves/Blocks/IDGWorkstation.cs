@@ -45,7 +45,6 @@ namespace InDappledGroves.Blocks
             if (beworkstation != null && (heldCollectible == null || !heldCollectible.HasBehavior<BehaviorIDGTool>()))
             {
                 result = beworkstation.OnInteract(byPlayer);
-                beworkstation.MarkDirty(true);
             } else if (!beworkstation.InputSlot.Empty && heldCollectible != null && heldCollectible.HasBehavior<BehaviorIDGTool>())
             {
                 result = beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);

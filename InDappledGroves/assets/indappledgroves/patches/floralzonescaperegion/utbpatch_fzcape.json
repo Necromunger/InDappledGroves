@@ -1,0 +1,57 @@
+[
+  {
+    "file": "floralzonescaperegion:blocktypes/wood/burlblock.json",
+    "op": "remove",
+		"side": "server",
+    "path": "/resistance",
+    "dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescaperegion" } ]
+  },
+  {
+    "file": "floralzonescaperegion:blocktypes/wood/burlblock.json",
+    "op": "addmerge",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-searsialancea-*": 6,
+    "*-afrocarpusfalcatus-*": 11.87,
+    "*": 4
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaperegion" } ]
+  },
+  {
+    "file": "floralzonescaperegion:blocktypes/wood/treehollowgrown.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-searsialancea-*": 6,
+    "*-afrocarpusfalcatus-*": 11.87,
+    "*": 4
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaperegion" } ]
+  },
+  {
+    "file": "floralzonescaperegion:blocktypes/wood/treestump.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-searsialancea-*": 60,
+    "*-afrocarpusfalcatus-*": 59.35,
+    "*": 4
+    },
+		"dependsOn": [  { "modid": "undertangledboughs" }, { "modid": "floralzonescaperegion" } ]
+  },
+  {
+    "file": "floralzonescaperegion:blocktypes/wood/treestumpsection.json",
+    "op": "replace",
+		"side": "server",
+    "path": "/resistanceByType",
+    "value": {
+    "*-searsialancea-*": 6,
+    "*-afrocarpusfalcatus-*": 59.35,
+    "*": 4
+    },
+		"dependsOn": [ { "modid": "undertangledboughs" }, { "modid": "floralzonescaperegion" } ]
+  }
+]

@@ -6,13 +6,13 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+         {"type": "block", "code": "wildcrafttree:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
        ]
       }
     ],
     "ToolDamage": 2,
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-north-free"}
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:logslab-{wood}-debarked-north-free"}
   },
   {
     "toolmode": "hewing",
@@ -21,13 +21,13 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+         {"type": "block", "code": "wildcrafttree:log-placed-*-ud",  "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
        ]
       }
     ],
     "ToolDamage": 4,
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-{wood}-ud"}
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
   },
   {
     "toolmode": "hewing",
@@ -36,11 +36,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "wildcrafttree:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-{wood}-ud"}
+    "output": {"type": "item", "code": "wildcrafttree:bark-{wood}-dry", "quantity": 2},
+    "returnstack": {"type": "block", "code": "wildcrafttree:debarkedlog-{wood}-ud"}
   }
 ]

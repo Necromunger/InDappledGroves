@@ -9,7 +9,7 @@ using Vintagestory.API.Server;
 namespace InDappledGroves.Util.Config
 {
     [ProtoBuf.ProtoContract()]
-    class IDGTreeConfig
+    public class IDGTreeConfig
     {
 
         //Multiplier applied when trees are being chopped, higher numbers reduces chopping speed of trees, lower numbers reduce time to chop trees.

@@ -50,12 +50,13 @@ namespace InDappledGroves.Util.RecipeTools
             List<GroundRecipe> grecipes = new();
             #endregion
 
+
             #region Register Ground Recipes
             if (networkMessage.gvalues != null)
             {
-                foreach (string crec in networkMessage.gvalues)
+                foreach (string grec in networkMessage.gvalues)
                 {
-                    using (MemoryStream ms = new(Ascii85.Decode(crec)))
+                    using (MemoryStream ms = new(Ascii85.Decode(grec)))
                     {
                         BinaryReader reader = new BinaryReader(ms);
 
@@ -66,6 +67,9 @@ namespace InDappledGroves.Util.RecipeTools
                     }
                 }
             }
+
+            IDGRecipeRegistry.Loaded.GroundRecipes = grecipes;
+            #endregion
 
             #region Register Basic Workstation Recipes
             if (networkMessage.bwsvalues != null)
@@ -83,11 +87,7 @@ namespace InDappledGroves.Util.RecipeTools
                     }
                 }
             }
-
-            IDGRecipeRegistry.Loaded.ComplexWorkstationRecipes = cwsrecipes;
-            #endregion
-
-            IDGRecipeRegistry.Loaded.GroundRecipes = grecipes;
+            IDGRecipeRegistry.Loaded.BasicWorkstationRecipes = bwsrecipes;
             #endregion
 
             #region Register Complex Workstation Recipes
@@ -120,7 +120,7 @@ namespace InDappledGroves.Util.RecipeTools
             serverApi = api;
 
             serverChannel =
-                api.Network.RegisterChannel("networkapitest")
+                api.Network.RegisterChannel("idgrecipechannel")
                 .RegisterMessageType(typeof(RecipeUpload))
                 .RegisterMessageType(typeof(RecipeResponse))
                 .SetMessageHandler<RecipeResponse>(OnClientMessage)
@@ -135,7 +135,6 @@ namespace InDappledGroves.Util.RecipeTools
             List<string> bwsrecipes = new List<string>();
             List<string> cwsrecipes = new List<string>();
             List<string> grecipes = new List<string>();
-            List<string> orecipes = new List<string>();
 
             foreach (BasicWorkstationRecipe bwsrec in IDGRecipeRegistry.Loaded.BasicWorkstationRecipes)
             {

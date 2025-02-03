@@ -102,10 +102,9 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override void OnHeldInteractStart(ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, bool firstEvent, ref EnumHandHandling handHandling, ref EnumHandling handling)
         {
-         
 
-            if (!byEntity.Controls.CtrlKey)
-            {
+
+            if (!byEntity.Controls.CtrlKey) { 
                 string curTMode = "";
 
 
@@ -144,7 +143,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel, ref EnumHandling handling)
         {
-
+            if (blockSel == null || recipe == null) return false;
             if (!byEntity.Controls.CtrlKey && blockSel?.Position == recipePos && api.World.BlockAccessor.GetBlock(blockSel.Position) == recipeBlock)
             {
                 if (recipePos != null)

@@ -1506,9 +1506,9 @@ namespace InDappledGroves.Util.RecipeTools
             {
                 Code = reader.ReadString();
                 ToolMode = reader.ReadString();
-                BaseToolDmg = reader.ReadInt32();
                 Animation = reader.ReadString();
                 Sound = reader.ReadString();
+                BaseToolDmg = reader.ReadInt32();
                 Ingredients = new GroundIngredient[reader.ReadInt32()];
 
                 for (int i = 0; i < Ingredients.Length; i++)
