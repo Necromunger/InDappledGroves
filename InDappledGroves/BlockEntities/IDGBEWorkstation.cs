@@ -293,6 +293,9 @@ namespace InDappledGroves.BlockEntities
                 tree.SetBool("recipecomplete", recipecomplete);
             }
             base.ToTreeAttributes(tree);
+            updateMeshes();
+            MarkDirty(true);
+
         }
 
         public override void FromTreeAttributes(ITreeAttribute tree, IWorldAccessor worldForResolving)

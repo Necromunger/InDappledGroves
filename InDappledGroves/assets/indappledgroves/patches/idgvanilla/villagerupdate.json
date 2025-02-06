@@ -4,7 +4,6 @@
     "op": "remove",
     "path": "/selling/list/13",
     "file": "game:config/tradelists/villager-agnieszka.json",
-    "side": "server"
   },
   {
     "op": "add",

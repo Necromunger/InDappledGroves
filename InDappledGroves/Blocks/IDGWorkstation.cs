@@ -77,7 +77,7 @@ namespace InDappledGroves.Blocks
             string primary = Variant["primary"];
             string secondary = Variant["secondary"];
             string materials = Lang.Get("material-" + $"{primary}") + (secondary != null ? " and " + Lang.Get("material-" + $"{secondary}") : "");
-            string blockid = this.Code.Domain + ":block-" + this.FirstCodePart();
+            string blockid = Lang.HasTranslation("indappledgroves:block-" + this.FirstCodePart()) ? "indappledgroves:block-" + this.FirstCodePart() : this.Code.Domain + ":block-" + this.FirstCodePart();
             return string.Format($"{CultureInfo.CurrentCulture.TextInfo.ToTitleCase(materials.ToLower())} " + Lang.GetMatching(blockid));
             
         }

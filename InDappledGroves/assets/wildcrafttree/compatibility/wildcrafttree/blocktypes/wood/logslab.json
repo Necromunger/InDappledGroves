@@ -22,40 +22,29 @@
 	],
 	"skipVariants": ["*-up-snow", "*-veryaged-*","*-veryagedrotten-*"],
 	"attributes": {
-		"workStationTransforms": {
-						"idgChoppingBlockProps":  {
-							"idgChoppingBlockTransform": {
-									"translation": {
-										"x": 0.025,
-										"y": 0.125,
-										"z": 0.725
-									},
-									"rotation": {
-										"x": -90,
-										"y": 0,
-										"z": 0
-									},
-									"origin": {
-										"x": 0,
-										"y": 0,
-										"z": 0
-									},
-									"scale": 0.95
-							}
-						}
+		"idgChoppingBlockTransform": {
+				"translation": {"x": 0, "y": 0.0625,"z": 0},
+				"rotation": {"x": 0, "y": 0,	"z": 0},
+				"scale": 0.95
+			},
+			"specialadjustchoppingblock": {
+				"east": -0.25,
+				"west": 0.25,
+				"north": 0.25,
+				"south": -0.25
+			},
+			"chiselShapeFromCollisionBox": true,
+			"handbook": {
+					"groupBy": ["logslab-*"],
+					"extraSections": [
+						{ "title": "indappledgroves:block-handbooktitle-logslab", "text": "indappledgroves:block-handbooktext-logslab" },
+						{ "title": "indappledgroves:block-handbooktitle-logslab2", "text": "indappledgroves:block-handbooktext-logslab2" }
+					]
 				},
-				"chiselShapeFromCollisionBox": true,
-				"handbook": {
-						"groupBy": ["logslab-*"],
-						"extraSections": [
-							{ "title": "indappledgroves:block-handbooktitle-logslab", "text": "indappledgroves:block-handbooktext-logslab" },
-							{ "title": "indappledgroves:block-handbooktitle-logslab2", "text": "indappledgroves:block-handbooktext-logslab2" }
-						]
-					},
-					"partialAttachableByType": {
-						"*-down-*": true,
-						"*-up-*": true
-					}
+				"partialAttachableByType": {
+					"*-down-*": true,
+					"*-up-*": true
+				}
 	},
 	"blockmaterial": "Wood",
 	"resistanceByType": {

@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -18,7 +18,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -31,7 +31,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -45,7 +45,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -58,7 +58,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "log-placed-*-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "log-placed-*-ud",  "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -71,7 +71,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "logsection-placed-*-ne-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "logsection-placed-*-ne-ud",  "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -84,7 +84,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "logsection-placed-*-nw-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "logsection-placed-*-nw-ud",  "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -97,7 +97,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "logsection-placed-*-se-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "logsection-placed-*-se-ud",  "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],
@@ -110,7 +110,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "logsection-placed-*-sw-ud",  "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "logsection-placed-*-sw-ud",  "name": "wood", "loadFromProperties": "block/wood"}
        ]
       }
     ],

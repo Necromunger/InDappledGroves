@@ -31,14 +31,14 @@
 		},
   "creativeinventory": { "general": ["*-east"]},
   "variantgroups": [
-    { "code": "wood", "loadFromProperties": "wildcrafttree:block/wood" },
+    { "code": "primary", "loadFromProperties": "wildcrafttree:block/wood" },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",
   "helpTpUseAnimation": "twohandplaceblock",
   "textures": {		
-      "wood": { "base": "wildcrafttree:block/wood/treetrunk/{wood}" },
-			"bark": { "base": "wildcrafttree:block/wood/bark/{wood}" }
+      "wood": { "base": "wildcrafttree:block/wood/treetrunk/{primary}" },
+			"bark": { "base": "wildcrafttree:block/wood/bark/{primary}" }
 	},
   "shape": { "base": "indappledgroves:block/choppingblock"},
   "lightabsorption": 0,

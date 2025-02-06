@@ -210,7 +210,7 @@ namespace InDappledGroves.Util.Handlers
 
         private float GetCurMiningSpeed(ItemStack inputStack, CollectibleObject heldCollectible, IPlayer player)
         {
-            if (inputStack.Collectible is Block)
+            if (inputStack.Collectible is Block && player.Entity.BlockSelection != null)
             {
                 return (heldCollectible.GetMiningSpeed(player.Entity.ActiveHandItemSlot.Itemstack, player.Entity.BlockSelection, inputStack.Block, player as IPlayer));
             }

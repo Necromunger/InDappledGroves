@@ -1,8 +1,11 @@
-﻿1.20-v2.0.3
+﻿1.20-v2.0.3-dev.1
 	- Corrected slab blade not appearing in smithing recipes.
 	- Removed leather from textures in grub axe and forest axe
 	- Changed config files access modifiers to be public (Because InsanityGod asked nicely)
-
+	- Fixed Wildcraft LogSections not working on workstations
+	- Fixed Wildcraft Logslabs not rendering properly on the chopping block.
+	- Improved workstation naming dynamics, will now check for a translation in the indappledgroves lang file, if none is found, will check using its own domain.\
+	- Fixed crash caused when entity passes between player and workstation while processing a recipe. Talk about yer corner cases ;)
 
 1.20-v2.0.2
 	- Last minute "fixes" are bad, mm'kay? The fix for the boat broke tools. I fixed the tools, and the boat issue. 
