@@ -1,13 +1,13 @@
 [
 	{
-		ingredientPattern: "HS",
+		ingredientPattern: "H,S",
 		width: 1,
 		height: 2,
 		ingredients: {
 			"H": { 
 				type: "item", 
 				name: "head",
-				code: "indappledgroves:adzehead-*" 
+				code: "@indappledgroves:adzehead-(chert|granite|andesite|basalt|obsidian|peridotite|flint)"
 			},
 			"S": { 
 				type: "item", 
@@ -21,7 +21,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -42,7 +42,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -63,7 +63,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -84,7 +84,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -105,7 +105,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -126,7 +126,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -147,7 +147,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {
@@ -168,7 +168,7 @@
 		}
 	},
 	{
-		ingredientPattern: "HB",
+		ingredientPattern: "H,B",
 		width: 1,
 		height: 2,
 		ingredients: {

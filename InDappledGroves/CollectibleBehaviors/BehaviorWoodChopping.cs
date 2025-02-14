@@ -1,19 +1,15 @@
 ﻿using InDappledGroves.CollectibleBehaviors;
-using InDappledGroves.Interfaces;
 using InDappledGroves.Util.Config;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 using Vintagestory.GameContent;
-using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 
 namespace InDappledGroves
 {
@@ -113,11 +109,11 @@ namespace InDappledGroves
 
             api.World.BlockAccessor.WalkBlocks(startPos.AddCopy(1, 1, 1), startPos.AddCopy(-1, 1, -1), (block, x, y, z) =>
             {
-                string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow"};
-                if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y, z, 0); }
+                string[] woods = new[] { "log", "ferntree", "fruittree", "bamboo", "lognarrow","logsection"};
+                if (woods.Contains<string>(block.Code.FirstCodePart())) { secondPos = new BlockPos(x, y+1, z, 0); }
             }, true);
 
-            if (startBlock.Code.FirstCodePart() == "treestump")
+            if (startBlock.Code.FirstCodePart().Contains("treestump"))
             {
                 startPos = secondPos != null ? secondPos : startPos;
             }

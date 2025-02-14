@@ -1,4 +1,9 @@
-﻿1.20-v2.0.3-dev.1
+﻿1.20-v2.0.4
+	- Fixed transforms on bark and IDG Tools.
+	- Attempted tweak of stump felling.
+
+
+1.20-v2.0.3
 	- Corrected slab blade not appearing in smithing recipes.
 	- Removed leather from textures in grub axe and forest axe
 	- Changed config files access modifiers to be public (Because InsanityGod asked nicely)
