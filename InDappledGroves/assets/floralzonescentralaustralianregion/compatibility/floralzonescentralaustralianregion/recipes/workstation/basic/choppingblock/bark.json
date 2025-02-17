@@ -11,7 +11,7 @@
       }
     ],
     "ToolDamage": 2,
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-north-free"}
   },
   {

@@ -12,7 +12,7 @@
       }
     ],
     "ToolDamage": 2,
-    "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free"}
   },
   {

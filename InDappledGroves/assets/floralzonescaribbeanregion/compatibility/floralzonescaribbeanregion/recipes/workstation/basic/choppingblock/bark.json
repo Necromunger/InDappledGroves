@@ -11,7 +11,7 @@
       }
     ],
     "ToolDamage": 2,
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free"}
   },
   {

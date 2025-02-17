@@ -9,7 +9,7 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-north-free"}
   },
   {
@@ -22,7 +22,7 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-east-free"}
   },
   {
@@ -36,7 +36,7 @@
       }
     ],
 
-    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-south-free"}
   },
   {
@@ -49,7 +49,7 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:bark-{wood}-dry", "quantity": 1},
     "returnstack": {"type": "block", "code": "floralzonescaribbeanregion:logslab-{wood}-debarked-west-free"}
   },
   {
