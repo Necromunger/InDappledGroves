@@ -21,7 +21,8 @@
 	],
 	"skipVariants": ["*-up-snow", "*-veryaged-*","*-veryagedrotten-*"],
 	"attributes": {
-							"chiselShapeFromCollisionBox": true,
+							canChisel: true,
+							chiselShapeFromCollisionBox: true,
 							"handbook": {
 									"groupBy": ["logslab-*"],
 									"extraSections": [

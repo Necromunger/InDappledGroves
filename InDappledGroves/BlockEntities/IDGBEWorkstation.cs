@@ -5,8 +5,10 @@ using System.Numerics;
 using System.Text;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
+using Vintagestory.API.MathTools;
 using Vintagestory.Client.NoObf;
 using Vintagestory.GameContent;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
@@ -36,13 +38,14 @@ namespace InDappledGroves.BlockEntities
 
         public ItemSlot ProcessModifierSlot { get { return Block.Attributes["workstationproperties"]["workstationtype"].ToString() == "complex" ? Inventory[Block.Attributes["workstationproperties"]["slottypes"]["processmodifier0"].AsInt()] : null; } }
 
-        
+
 
         public IDGBEWorkstation()
 		{
             //Must initialize inventory in derived classes
             Inventory = new InventoryDisplayed(this, 2, InventoryClassName + "-slot", null, null);
-		}
+
+        }
 
 		public override void Initialize(ICoreAPI api)
         {
@@ -191,6 +194,9 @@ namespace InDappledGroves.BlockEntities
             ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
             
             recipecomplete = recipeHandler.processRecipe(heldCollectible, slot, byPlayer, blockSel.Position, this, secondsUsed);
+            WeatherSystemBase modSystem = this.Api.ModLoader.GetModSystem<WeatherSystemBase>(true);
+            double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byPlayer.Entity.SidedPos.XYZ) : 0.0;
+
             
             if (recipecomplete) recipeHandler.clearRecipe();
             updateMeshes();
@@ -367,6 +373,9 @@ namespace InDappledGroves.BlockEntities
             }
            
         }
+
 	}
+
+
 }
 

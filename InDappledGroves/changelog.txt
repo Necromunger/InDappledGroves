@@ -1,6 +1,8 @@
 ﻿1.20-v2.0.5
 	- Fixed bug keeping tool mode indicators from changing when tool mode change.
 	- Swapped out the axe for the adze in roughhewn and quad-log recipes.
+	- Corrected grid recipes for making adzes not working properly.
+	- Implemented particles for workstations and ground recipes.
 
 1.20-v2.0.4
 	- Fixed transforms on bark and IDG Tools.

@@ -60,7 +60,7 @@ namespace InDappledGroves.CollectibleBehaviors
                 {
                     for (int i = 0; i < array.Length; i++)
                     {
-                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 5, new int?(-1)));
+                        array[i].WithIcon(capi, capi.Gui.LoadSvgWithPadding(new AssetLocation("indappledgroves:textures/icons/" + array[i].Code.FirstCodePart().ToString() + ".svg"), 48, 48, 0, color: ColorUtil.Hex2Int("#ffffff")));
                     }
                 }
 

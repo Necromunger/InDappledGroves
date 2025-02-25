@@ -5,6 +5,10 @@ using Vintagestory.API.Common;
 using static InDappledGroves.Util.RecipeTools.IDGRecipeNames;
 using Vintagestory.API.MathTools;
 using InDappledGroves.Util.Config;
+using Vintagestory.API.Client;
+using Vintagestory.API.Config;
+using Vintagestory.API.Common.Entities;
+using Vintagestory.GameContent;
 
 namespace InDappledGroves.Util.Handlers
 {
@@ -38,9 +42,59 @@ namespace InDappledGroves.Util.Handlers
 
         internal static List<ComplexWorkstationRecipe> cwsRecipes = IDGRecipeRegistry.Loaded.ComplexWorkstationRecipes;
 
+        private SimpleParticleProperties InitializeParticles()
+        {
+            return new SimpleParticleProperties()
+            {
+                MinPos = new Vec3d(),
+                AddPos = new Vec3d(),
+                MinQuantity = 0,
+                AddQuantity = 3,
+                Color = ColorUtil.ToRgba(100, 200, 200, 200),
+                GravityEffect = 1f,
+                WithTerrainCollision = true,
+                ParticleModel = EnumParticleModel.Quad,
+                LifeLength = 0.5f,
+                MinVelocity = new Vec3f(-1, 2, -1),
+                AddVelocity = new Vec3f(2, 0, 2),
+                MinSize = 0.2f,
+                MaxSize = 0.5f,
+                WindAffected = true
+            };
+        }
+
+        static readonly SimpleParticleProperties dustParticles = new()
+        {
+            MinPos = new Vec3d(),
+            AddPos = new Vec3d(),
+            MinQuantity = 0,
+            AddQuantity = 3,
+            Color = ColorUtil.ToRgba(100, 200, 200, 200),
+            GravityEffect = 1f,
+            WithTerrainCollision = true,
+            ParticleModel = EnumParticleModel.Quad,
+            LifeLength = 0.5f,
+            MinVelocity = new Vec3f(-1, 2, -1),
+            AddVelocity = new Vec3f(2, 0, 2),
+            MinSize = 0.2f,
+            MaxSize = 0.5f,
+            WindAffected = true
+        };
+
         public RecipeHandler(ICoreAPI Api, IDGBEWorkstation beworkstation) {
             this.api = Api;
             this.beworkstation = beworkstation;
+            RecipeHandler.dustParticles.ParticleModel = EnumParticleModel.Quad;
+            RecipeHandler.dustParticles.AddPos.Set(1.0, 1.0, 1.0);
+            RecipeHandler.dustParticles.MinQuantity = 2f;
+            RecipeHandler.dustParticles.AddQuantity = 12f;
+            RecipeHandler.dustParticles.LifeLength = 4f;
+            RecipeHandler.dustParticles.MinSize = 0.2f;
+            RecipeHandler.dustParticles.MaxSize = 0.5f;
+            RecipeHandler.dustParticles.MinVelocity.Set(-0.4f, -0.4f, -0.4f);
+            RecipeHandler.dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
+            RecipeHandler.dustParticles.DieOnRainHeightmap = false;
+            RecipeHandler.dustParticles.WindAffectednes = 0.5f;
         }
 
         public void clearRecipe(bool clearCurrentMiningDamage = true) 
@@ -57,6 +111,8 @@ namespace InDappledGroves.Util.Handlers
             totalSecondsUsed = 0;
             beworkstation.MarkDirty();
         }
+
+
 
         public bool GetMatchingIngredient(IWorldAccessor world, ItemSlot slot, string workstationtype, string requiredworkstation)
         {
@@ -204,6 +260,23 @@ namespace InDappledGroves.Util.Handlers
                     return true;
                 }
             }
+            WeatherSystemBase modSystem = player.Entity.World.Api.ModLoader.GetModSystem<WeatherSystemBase>(true);
+            double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(player.Entity.SidedPos.XYZ) : 0.0;
+            if (player.Entity.Api.World.Side == EnumAppSide.Client)
+            {
+                RecipeHandler.dustParticles.Color = beworkstation.InputSlot.Itemstack.Block.GetRandomColor(player.Entity.World.Api as ICoreClientAPI, beworkstation.Pos, BlockFacing.UP, -1);
+                RecipeHandler.dustParticles.Color |= -16777216;
+                RecipeHandler.dustParticles.MinPos.Set((double)beworkstation.Pos.X, (double)beworkstation.Pos.Y, (double)beworkstation.Pos.Z);
+                RecipeHandler.dustParticles.Pos.Set((double)beworkstation.Pos.X, (double)beworkstation.Pos.Y+2, (double)beworkstation.Pos.Z);
+                RecipeHandler.dustParticles.MinQuantity = 1f;
+                RecipeHandler.dustParticles.AddQuantity = 4f;
+                RecipeHandler.dustParticles.GravityEffect = 0.8f;
+                RecipeHandler.dustParticles.ParticleModel = EnumParticleModel.Cube;
+                RecipeHandler.dustParticles.MinVelocity.Set(-0.4f + (float)windspeed, -0.4f, -0.4f);
+                RecipeHandler.dustParticles.AddVelocity.Set(0.8f + (float)windspeed, 1.2f, 0.8f);
+                player.Entity.World.SpawnParticles(RecipeHandler.dustParticles, null);
+            }
+
             beworkstation.MarkDirty();
             return false;
         }

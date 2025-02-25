@@ -3,6 +3,7 @@ using InDappledGroves.Util.Config;
 using InDappledGroves.Util.Handlers;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.Config;
@@ -19,6 +20,44 @@ namespace InDappledGroves.CollectibleBehaviors
     
     class BehaviorIDGTool : CollectibleBehavior, IIDGTool
     {
+        private SimpleParticleProperties InitializeParticles()
+        {
+            return new SimpleParticleProperties()
+            {
+                MinPos = new Vec3d(),
+                AddPos = new Vec3d(),
+                MinQuantity = 0,
+                AddQuantity = 3,
+                Color = ColorUtil.ToRgba(100, 200, 200, 200),
+                GravityEffect = 1f,
+                WithTerrainCollision = true,
+                ParticleModel = EnumParticleModel.Quad,
+                LifeLength = 0.5f,
+                MinVelocity = new Vec3f(-1, 2, -1),
+                AddVelocity = new Vec3f(2, 0, 2),
+                MinSize = 0.2f,
+                MaxSize = 0.5f,
+                WindAffected = true
+            };
+        }
+
+        static readonly SimpleParticleProperties dustParticles = new()
+        {
+            MinPos = new Vec3d(),
+            AddPos = new Vec3d(),
+            MinQuantity = 0,
+            AddQuantity = 3,
+            Color = ColorUtil.ToRgba(100, 200, 200, 200),
+            GravityEffect = 1f,
+            WithTerrainCollision = true,
+            ParticleModel = EnumParticleModel.Quad,
+            LifeLength = 0.5f,
+            MinVelocity = new Vec3f(-1, 2, -1),
+            AddVelocity = new Vec3f(2, 0, 2),
+            MinSize = 0.2f,
+            MaxSize = 0.5f,
+            WindAffected = true
+        };
 
         public override void OnLoaded(ICoreAPI api)
         {
@@ -30,20 +69,19 @@ namespace InDappledGroves.CollectibleBehaviors
 
         public BehaviorIDGTool(CollectibleObject collobj) : base(collobj)
         {
-            dustParticles.ParticleModel = EnumParticleModel.Quad;
-            dustParticles.AddPos.Set(1, 1, 1);
-            dustParticles.MinQuantity = 2;
-            dustParticles.AddQuantity = 12;
-            dustParticles.LifeLength = 4f;
-            dustParticles.MinSize = 0.2f;
-            dustParticles.MaxSize = 0.5f;
-            dustParticles.MinVelocity.Set(-0.4f, -0.4f, -0.4f);
-            dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
-            dustParticles.DieOnRainHeightmap = false;
-            dustParticles.WindAffectednes = 0.5f;
             Inventory = new InventoryGeneric(1, "IDGTool-slot", null, null);
             tempInv = new InventoryGeneric(1, "IDGTool-WorldInteract", null, null);
-
+            BehaviorIDGTool.dustParticles.ParticleModel = EnumParticleModel.Quad;
+            BehaviorIDGTool.dustParticles.AddPos.Set(1.0, 1.0, 1.0);
+            BehaviorIDGTool.dustParticles.MinQuantity = 2f;
+            BehaviorIDGTool.dustParticles.AddQuantity = 12f;
+            BehaviorIDGTool.dustParticles.LifeLength = 4f;
+            BehaviorIDGTool.dustParticles.MinSize = 0.2f;
+            BehaviorIDGTool.dustParticles.MaxSize = 0.5f;
+            BehaviorIDGTool.dustParticles.MinVelocity.Set(-0.4f, -0.4f, -0.4f);
+            BehaviorIDGTool.dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
+            BehaviorIDGTool.dustParticles.DieOnRainHeightmap = false;
+            BehaviorIDGTool.dustParticles.WindAffectednes = 0.5f;
         }
 
         #region ToolMode Stuff
@@ -188,6 +226,22 @@ namespace InDappledGroves.CollectibleBehaviors
                             return false;
                         }
                     }
+                    WeatherSystemBase modSystem = byEntity.World.Api.ModLoader.GetModSystem<WeatherSystemBase>(true);
+                    double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
+                    if (byEntity.Api.World.Side == EnumAppSide.Client)
+                    {
+                        BehaviorIDGTool.dustParticles.Color = Inventory[0].Itemstack.Block.GetRandomColor(byEntity.World.Api as ICoreClientAPI, blockSel.Position, BlockFacing.UP, -1);
+                        BehaviorIDGTool.dustParticles.Color |= -16777216;
+                        BehaviorIDGTool.dustParticles.MinPos.Set((double)blockSel.Position.X, (double)blockSel.Position.Y+.25f, (double)blockSel.Position.Z);
+                        BehaviorIDGTool.dustParticles.Pos.Set((double)blockSel.Position.X, (double)blockSel.Position.Y, (double)blockSel.Position.Z);
+                        BehaviorIDGTool.dustParticles.MinQuantity = 1f;
+                        BehaviorIDGTool.dustParticles.AddQuantity = 4f;
+                        BehaviorIDGTool.dustParticles.GravityEffect = 0.8f;
+                        BehaviorIDGTool.dustParticles.ParticleModel = EnumParticleModel.Cube;
+                        BehaviorIDGTool.dustParticles.MinVelocity.Set(-0.4f + (float)windspeed, -0.4f, -0.4f);
+                        BehaviorIDGTool.dustParticles.AddVelocity.Set(0.8f + (float)windspeed, 1.2f, 0.8f);
+                        byEntity.World.SpawnParticles(BehaviorIDGTool.dustParticles, null);
+                    }
                 }
                 handling = EnumHandling.Handled;
                 return true;
@@ -321,7 +375,6 @@ namespace InDappledGroves.CollectibleBehaviors
         }
         #endregion Recipe Processing
 
-        //Particle Handlers
         public ICoreAPI api;
         public ICoreClientAPI capi;
         public ICoreServerAPI sapi;
@@ -329,43 +382,6 @@ namespace InDappledGroves.CollectibleBehaviors
         public float baseWorkstationResistanceMult;
         public float baseGroundRecipeMiningSpdMult;
         public float baseGroundRecipeResistaceMult;
-        private SimpleParticleProperties InitializeWoodParticles()
-        {
-            return new SimpleParticleProperties()
-            {
-                MinPos = new Vec3d(),
-                AddPos = new Vec3d(),
-                MinQuantity = 0,
-                AddQuantity = 3,
-                Color = ColorUtil.ToRgba(100, 200, 200, 200),
-                GravityEffect = 1f,
-                WithTerrainCollision = true,
-                ParticleModel = EnumParticleModel.Quad,
-                LifeLength = 0.5f,
-                MinVelocity = new Vec3f(-1, 2, -1),
-                AddVelocity = new Vec3f(2, 0, 2),
-                MinSize = 0.07f,
-                MaxSize = 0.1f,
-                WindAffected = true
-            };
-        }
-        static readonly SimpleParticleProperties dustParticles = new()
-        {
-            MinPos = new Vec3d(),
-            AddPos = new Vec3d(),
-            MinQuantity = 0,
-            AddQuantity = 3,
-            Color = ColorUtil.ToRgba(100, 200, 200, 200),
-            GravityEffect = 1f,
-            WithTerrainCollision = true,
-            ParticleModel = EnumParticleModel.Quad,
-            LifeLength = 0.5f,
-            MinVelocity = new Vec3f(-1, 2, -1),
-            AddVelocity = new Vec3f(2, 0, 2),
-            MinSize = 0.07f,
-            MaxSize = 0.1f,
-            WindAffected = true
-        };
 
         public string InventoryClassName => "worldinventory";
         public float toolModeMod;

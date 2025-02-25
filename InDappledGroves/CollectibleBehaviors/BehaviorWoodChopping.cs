@@ -231,45 +231,7 @@ namespace InDappledGroves
             return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
         }
 
-        //Particle Handlers
-        private SimpleParticleProperties InitializeWoodParticles()
-        {
-            return new SimpleParticleProperties()
-            {
-                MinPos = new Vec3d(),
-                AddPos = new Vec3d(),
-                MinQuantity = 0,
-                AddQuantity = 3,
-                Color = ColorUtil.ToRgba(100, 200, 200, 200),
-                GravityEffect = 1f,
-                WithTerrainCollision = true,
-                ParticleModel = EnumParticleModel.Quad,
-                LifeLength = 0.5f,
-                MinVelocity = new Vec3f(-1, 2, -1),
-                AddVelocity = new Vec3f(2, 0, 2),
-                MinSize = 0.07f,
-                MaxSize = 0.1f,
-                WindAffected = true
-            };
-        }
-
-        static readonly SimpleParticleProperties dustParticles = new()
-        {
-            MinPos = new Vec3d(),
-            AddPos = new Vec3d(),
-            MinQuantity = 0,
-            AddQuantity = 3,
-            Color = ColorUtil.ToRgba(100, 200, 200, 200),
-            GravityEffect = 1f,
-            WithTerrainCollision = true,
-            ParticleModel = EnumParticleModel.Quad,
-            LifeLength = 0.5f,
-            MinVelocity = new Vec3f(-1, 2, -1),
-            AddVelocity = new Vec3f(2, 0, 2),
-            MinSize = 0.07f,
-            MaxSize = 0.1f,
-            WindAffected = true
-        };
+        
 
         #endregion TreeFelling
 
