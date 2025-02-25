@@ -608,6 +608,9 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\axestonetweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\recipes\roughhewngate.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\sawtweaks.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -696,12 +699,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\grid\barkbasket.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\recipes\grid\roughfence.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\recipes\grid\roughgate.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\recipes\grid\sawhorse.json">

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
+using Vintagestory.API.Common.Entities;
 using Vintagestory.API.Config;
 using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
@@ -222,6 +223,12 @@ namespace InDappledGroves
                 }
             }
             return foundPositions;
+        }
+
+        public override bool OnBlockBrokenWith(IWorldAccessor world, Entity byEntity, ItemSlot itemslot, BlockSelection blockSel, float dropQuantityMultiplier, ref EnumHandling bhHandling)
+        {
+            //This method exists solely to aid compatibility with Give Me One Seed Please. It must be here, implemented and non-virtual, for their patch to work.
+            return base.OnBlockBrokenWith(world, byEntity, itemslot, blockSel, dropQuantityMultiplier, ref bhHandling);
         }
 
         //Particle Handlers

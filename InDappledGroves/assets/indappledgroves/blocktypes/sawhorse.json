@@ -3,7 +3,7 @@
   "code": "sawhorse",
   "class": "idgsawhorse",
   "entityClass": "idgbesawhorse",
-  "maxstacksize": 2,
+  "maxstacksize": 1,
   "attributes": {
 		"handbook": {
 			"groupBy": ["sawhorse-birch-*-single-east"],

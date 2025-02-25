@@ -7,7 +7,7 @@
 			"H": { 
 				type: "item", 
 				name: "head",
-				code: "@indappledgroves:adzehead-(chert|granite|andesite|basalt|obsidian|peridotite|flint)"
+				code: "indappledgroves:adzehead-*"
 			},
 			"S": { 
 				type: "item", 

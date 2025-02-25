@@ -73,6 +73,12 @@ namespace InDappledGroves.CollectibleBehaviors
             return toolModes[Math.Min(toolModes.Length - 1, stack.Attributes.GetInt("toolMode", 0))].Code.FirstCodePart();
         }
 
+        public override int GetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSelection)
+        {
+            int value = slot.Itemstack.Attributes.GetInt("toolMode");
+            return value;
+        }
+
         public override void SetToolMode(ItemSlot slot, IPlayer byPlayer, BlockSelection blockSel, int toolMode)
         {
             slot.Itemstack.Attributes.SetInt("toolMode", toolMode);
