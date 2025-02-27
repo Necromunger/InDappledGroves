@@ -587,6 +587,9 @@
     <None Update="assets\indappledgroves\patches\idgvanilla\firewoodpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\handbookedits\pan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\lootvesselpatch.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

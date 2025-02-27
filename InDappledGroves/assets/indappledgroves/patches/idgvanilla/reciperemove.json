@@ -64,5 +64,19 @@
     "op": "remove",
     "path": "/0",
     "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/0/enabled",
+    "value": false,
+    "file": "game:recipes/grid/pan.json",
+    "side": "server"
+  },
+  {
+    "op": "add",
+    "path": "/1/enabled",
+    "value": false,
+    "file": "game:recipes/grid/pan.json",
+    "side": "server"
   }
 ]

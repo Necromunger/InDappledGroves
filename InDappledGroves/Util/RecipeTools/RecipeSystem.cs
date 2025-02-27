@@ -667,7 +667,7 @@ namespace InDappledGroves.Util.RecipeTools
 
             public WorkStationIngredient[] Ingredients;
 
-            public JsonItemStack Output;
+            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
 
             public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block };
 
@@ -1351,7 +1351,7 @@ namespace InDappledGroves.Util.RecipeTools
 
             public GroundIngredient[] Ingredients;
 
-            public JsonItemStack Output;
+            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
 
             public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
 
@@ -1518,10 +1518,10 @@ namespace InDappledGroves.Util.RecipeTools
                     Ingredients[i].Resolve(resolver, "Ground Recipe (FromBytes)");
                 }
 
-                Output = new JsonItemStack();
+                //Output = new JsonItemStack();
                 Output.FromBytes(reader, resolver.ClassRegistry);
                 Output.Resolve(resolver, "Ground Recipe (FromBytes)");
-                ReturnStack = new JsonItemStack();
+                //ReturnStack = new JsonItemStack();
                 ReturnStack.FromBytes(reader, resolver.ClassRegistry);
                 ReturnStack.Resolve(resolver, "Ground Recipe Return Stack Not Resolved", true);
             }

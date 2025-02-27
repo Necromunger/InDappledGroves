@@ -34,7 +34,8 @@
 	"block-logsplitter": "Log Splitter",
 	"indappledgroves:item-handbooktitle-splitterblade": "Log Splitter Blades",
 	"indappledgroves:item-handbooktext-splitterblade": "These blades are used in the log splitter. Slab blades are for making log slabs, and cross blades for making firewood from logs.",
-
+	"indappledgroves:block-handbooktitle-pan": "Crafting With In-Dappled Groves",
+  "indappledgroves:block-handbooktext-pan": "Start by creating a <a href=\"handbooksearch://log slab\">a debarked log slab</a> and placing it flat on the <a href=\"handbook://inworldcrafting-indappledgroves\">ground</a>. You then use <a href=\"handbook://toolmodes-indappledgroves\">hewing</a> tool to craft it into a wooden pan.",
 	"item-splitterblade-single-tinbronze": "Tin Bronze Slab Blade",
 	"item-splitterblade-single-bismuthbronze": "Bismuth Bronze Slab Blade",
 	"item-splitterblade-single-blackbronze": "Black Bronze Slab Blade",

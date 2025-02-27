@@ -199,9 +199,9 @@
 	},
 	guiTransform: {
 		translation: { x: 0, y: 0, z: 0 },
-		rotation: { x: -112, y: -135, z: -180 },
-		origin: { x: 0.88, y: -0.8, z: 0.18 },
-		scale: 2.36
+		rotation: { x: -112, y: -122, z: -172 },
+		origin: { x: 0.48, y: -0.8, z: 0.18 },
+		scale: 2.97
 	},
 	fpHandTransform: {
 		translation: { x: -0.24, y: 0, z: 0.1 },

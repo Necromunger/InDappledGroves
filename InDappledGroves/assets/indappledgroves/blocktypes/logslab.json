@@ -24,7 +24,7 @@
 							canChisel: true,
 							chiselShapeFromCollisionBox: true,
 							"handbook": {
-									"groupBy": ["logslab-*"],
+									"groupBy": ["logslab-barked-*", "logslab-debarked-*"],
 									"extraSections": [
 										{ "title": "indappledgroves:block-handbooktitle-logslab", "text": "indappledgroves:block-handbooktext-logslab" },
 										{ "title": "indappledgroves:block-handbooktitle-logslab2", "text": "indappledgroves:block-handbooktext-logslab2" }
@@ -139,10 +139,10 @@
 		"burnTemperature": 800,
 		"burnDuration": 10
 	},
-	"groundTransform": {
-		translation: { x: 0, y: 0.15, z: 0 },
+	groundTransform: {
+		translation: { x: 0, y: 0, z: 0 },
 		rotation: { x: -90, y: -99, z: 0 },
-		origin: { x: 0.5, y: 0, z: 0.5 },
+		origin: { x: 0.5, y: -0, z: 0 },
 		scale: 1.5
 	},
 	"materialDensity": 600,

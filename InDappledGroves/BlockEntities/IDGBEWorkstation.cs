@@ -150,8 +150,6 @@ namespace InDappledGroves.BlockEntities
                 updateMeshes();
                 MarkDirty(true);
             }
-            updateMeshes();
-            MarkDirty(true);
             return false;
         }
 
@@ -181,7 +179,6 @@ namespace InDappledGroves.BlockEntities
 					{
 						this.Api.World.SpawnItemEntity(itemStack, this.Pos.ToVec3d().Add(0.5, 0.5, 0.5), null);
 					}
-                    this.updateMeshes();
                     base.MarkDirty(true, null);
 					return false;
 				}

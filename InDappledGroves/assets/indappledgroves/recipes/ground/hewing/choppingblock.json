@@ -10,20 +10,6 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "game:stick", "quantity": 0},
-    "returnstack": {"type": "block", "code": "indappledgroves:choppingblock-{wood}-east"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "Block", "code": "indappledgroves:logslab-*-debarked-down-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "game:stick", "quantity": 0},
     "returnstack": {"type": "block", "code": "indappledgroves:choppingblock-{wood}-east"}
   }
 ]

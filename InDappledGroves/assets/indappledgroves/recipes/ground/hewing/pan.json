@@ -1,0 +1,14 @@
+[
+  {
+    "toolmode": "hewing",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "Block", "code": "indappledgroves:logslab-*-debarked-down-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+       ]
+      }
+    ],
+    "returnstack": {"type": "block", "code": "game:pan-wooden"}
+  }
+]

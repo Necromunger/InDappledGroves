@@ -196,7 +196,7 @@ namespace InDappledGroves.CollectibleBehaviors
                     if ((api.Side.IsServer() && playNextSound < secondsUsed))
                     {
                         api.World.PlaySoundAt(new AssetLocation(recipe.Sound), recipePos.X, recipePos.Y, recipePos.Z, null, true, 32, 1f);
-                        playNextSound += .8f;
+                        playNextSound += .5f;
                     }
 
                     //Accumulate damage over time from current tools mining speed.
@@ -213,7 +213,7 @@ namespace InDappledGroves.CollectibleBehaviors
 
 
                     if (api.Side == EnumAppSide.Server) {
-                        if (curMiningDamage >= resistance)
+                        if (curMiningDamage >= resistance && secondsUsed >0.25f)
                         {
 
                             SpawnOutput(recipe, recipePos);
@@ -230,7 +230,7 @@ namespace InDappledGroves.CollectibleBehaviors
                     double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(byEntity.SidedPos.XYZ) : 0.0;
                     if (byEntity.Api.World.Side == EnumAppSide.Client)
                     {
-                        BehaviorIDGTool.dustParticles.Color = Inventory[0].Itemstack.Block.GetRandomColor(byEntity.World.Api as ICoreClientAPI, blockSel.Position, BlockFacing.UP, -1);
+                        BehaviorIDGTool.dustParticles.Color = Inventory[0].Itemstack.Collectible.GetRandomColor(byEntity.World.Api as ICoreClientAPI, Inventory[0].Itemstack);
                         BehaviorIDGTool.dustParticles.Color |= -16777216;
                         BehaviorIDGTool.dustParticles.MinPos.Set((double)blockSel.Position.X, (double)blockSel.Position.Y+.25f, (double)blockSel.Position.Z);
                         BehaviorIDGTool.dustParticles.Pos.Set((double)blockSel.Position.X, (double)blockSel.Position.Y, (double)blockSel.Position.Z);

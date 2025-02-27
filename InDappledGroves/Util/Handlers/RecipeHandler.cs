@@ -245,7 +245,7 @@ namespace InDappledGroves.Util.Handlers
                 lastSecondsUsed = secondsUsed;
                 this.recipeProgress = currentMiningDamage / resistance;
 
-                if (currentMiningDamage >= resistance)
+                if (currentMiningDamage >= resistance && secondsUsed > 0.25f)
                 {
                     if (beworkstation.workstationtype == "complex")
                     {
@@ -262,9 +262,10 @@ namespace InDappledGroves.Util.Handlers
             }
             WeatherSystemBase modSystem = player.Entity.World.Api.ModLoader.GetModSystem<WeatherSystemBase>(true);
             double windspeed = (modSystem != null) ? modSystem.WeatherDataSlowAccess.GetWindSpeed(player.Entity.SidedPos.XYZ) : 0.0;
+            ItemStack sourceStack = beworkstation.InputSlot.Itemstack;
             if (player.Entity.Api.World.Side == EnumAppSide.Client)
             {
-                RecipeHandler.dustParticles.Color = beworkstation.InputSlot.Itemstack.Block.GetRandomColor(player.Entity.World.Api as ICoreClientAPI, beworkstation.Pos, BlockFacing.UP, -1);
+                RecipeHandler.dustParticles.Color = sourceStack.Collectible.GetRandomColor(player.Entity.World.Api as ICoreClientAPI, sourceStack);
                 RecipeHandler.dustParticles.Color |= -16777216;
                 RecipeHandler.dustParticles.MinPos.Set((double)beworkstation.Pos.X, (double)beworkstation.Pos.Y, (double)beworkstation.Pos.Z);
                 RecipeHandler.dustParticles.Pos.Set((double)beworkstation.Pos.X, (double)beworkstation.Pos.Y+2, (double)beworkstation.Pos.Z);
