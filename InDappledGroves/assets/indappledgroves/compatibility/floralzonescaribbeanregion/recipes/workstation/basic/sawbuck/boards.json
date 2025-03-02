@@ -5,16 +5,15 @@
     "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
-    
     "ingredients":
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionlog-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregionplank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
   },
   {
    "skipVariants": [ "veryaged", "veryagedrotten" ],
@@ -27,26 +26,25 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionlogsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:logsection-placed-*-ne-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregionplank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
   },
   {
     "animation": "sawsaw-fp",
     "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
-    
     "ingredients":
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregiondebarkedlog-*-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:debarkedlog-*-ud", "name": "wood","loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregionplank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
   }
 ]

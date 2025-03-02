@@ -18,7 +18,7 @@
 		},
     "workstationproperties": {
       "workstationtype": "basic",
-      "slottypes": {o
+      "slottypes": {
         "inputslot": 0
       } 
     }
