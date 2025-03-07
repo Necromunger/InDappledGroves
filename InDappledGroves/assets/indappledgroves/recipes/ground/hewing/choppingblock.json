@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "Block", "code": "indappledgroves:logslab-*-barked-down-free", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "Block", "code": "indappledgroves:logslab-*-barked-down-free", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],

@@ -1,9 +1,0 @@
-[
-  {
-    "enabled": false,
-    "op": "add",
-    "path": "/",
-    "value": {"*-idgburl-*": "Burl"},
-    "file": "floralzonesneozeylandicregion:lang/en.json"
-  }
-]

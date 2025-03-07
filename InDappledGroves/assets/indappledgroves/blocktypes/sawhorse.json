@@ -19,8 +19,8 @@
   ]
   },
   "variantgroups": [
-    { "code": "primary", "states": ["aged"], "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]},
-    { "code": "secondary", "states": ["aged"], "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]},
+    { "code": "primary", "states": ["aged"], "loadFromPropertiesCombine": ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]},
+    { "code": "secondary", "states": ["aged"], "loadFromPropertiesCombine": ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]},
     { "code": "state", "states": ["single","compound"]},
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
     

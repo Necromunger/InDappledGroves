@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaperegion::plankstairs-*"}
+         {"type": "block", "code": "floralzonescaperegion:plankstairs-*"}
        ]
       }
     ],

@@ -1,0 +1,82 @@
+[
+	{
+    "file": "indappledgroves:blocktypes/barkbasket.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/barkbundle.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/boardblock.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/choppingblock.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/clapboardblock.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/sawbuck.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:blocktypes/sawbuck.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/1/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:itemtypes/resources/bark.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	},
+  {
+    "file": "indappledgroves:itemtypes/resources/board.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/variantgroups/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescentralaustralianregion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+	}
+]

@@ -25,7 +25,7 @@
 		              }}
 	}, 
 	variantgroups: [
-		{ "code": "wood", "states": ["aged"], "loadFromProperties": "block/wood" },
+		{ "code": "wood", "states": ["aged"], loadFromPropertiesCombine: ["game:block/wood"] },
 		{ "code": "type","states": ["rough","hewn","smooth"]},
 		{ "code": "state","states": ["green","cured"]},
 		{ "code": "side", "loadFromProperties": "abstract/horizontalorientation" }

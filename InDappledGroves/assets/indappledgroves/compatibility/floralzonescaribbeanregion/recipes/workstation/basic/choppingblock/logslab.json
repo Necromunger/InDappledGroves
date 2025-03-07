@@ -6,12 +6,12 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionlog-placed-*-ud", "name": "wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:log-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
   },
   {
     "toolmode": "chopping",
@@ -20,11 +20,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregiondebarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:debarkedlog-*-ud", "name": "wood", "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-debarked-north-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaribbeanregionlogslab-{wood}-barked-north-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
   }
 ]

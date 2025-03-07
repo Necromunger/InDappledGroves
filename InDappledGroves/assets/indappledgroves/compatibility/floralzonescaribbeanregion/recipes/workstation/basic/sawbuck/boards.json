@@ -5,6 +5,7 @@
     "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
+    
     "ingredients":
     [ 
       {"inputs": 
@@ -30,13 +31,14 @@
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaribbeanregion:plank-{wood}", "quantity": 12}
+    "output": {"type": "item", "code": "floralzonescaribbeanregionplank-{wood}", "quantity": 12}
   },
   {
     "animation": "sawsaw-fp",
     "sound": "indappledgroves:sounds/block/saw1.ogg",
     "toolmode": "sawing",
     "requiredworkstation": "sawbuck",
+    
     "ingredients":
     [ 
       {"inputs": 

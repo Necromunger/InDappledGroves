@@ -3,6 +3,11 @@
 	- Tweaked minimum recipe duration for a more satisfying experience.
 	- Added in-world crafting recipe for wooden pan, removed grid recipe option.
 	- Updated handbook with instructions on how to use in-world crafting to create pan.
+	- Refactored compatibility to ease updating and to fit proper conventions.
+		- This breaks backwards compatibility with any mod that adds trees
+			It won't crash, but it will cause unknown blocks for any IDG block made using their woods. 
+			While annoying, it is otherwise completely functional. The benefit is that compatibility moving forward
+			will be cleaner.
 
 1.20-v2.0.5
 	- Fixed bug keeping tool mode indicators from changing when tool mode change.

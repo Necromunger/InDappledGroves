@@ -5,64 +5,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-north-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-east-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
-       ]
-      }
-    ],
-
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-south-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonesneozeylandicregion:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:logslab-{wood}-debarked-west-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
          {"type": "block", "code": "floralzonesneozeylandicregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonesneozeylandicregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonesneozeylandicregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
     "returnstack": {"type": "block", "code": "floralzonesneozeylandicregion:debarkedlog-{wood}-ud"}
   }
 ]

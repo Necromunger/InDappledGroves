@@ -5,64 +5,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaperegion:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescaperegion:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-east-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescaperegion:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
-       ]
-      }
-    ],
-
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-south-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescaperegion:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-west-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
          {"type": "block", "code": "floralzonescaperegion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescaperegion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
     "returnstack": {"type": "block", "code": "floralzonescaperegion:debarkedlog-{wood}-ud"}
   }
 ]

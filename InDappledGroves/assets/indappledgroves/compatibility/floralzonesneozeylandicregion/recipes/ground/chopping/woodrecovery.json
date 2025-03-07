@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonesneozeylandicregion::plankstairs-*"}
+         {"type": "block", "code": "floralzonesneozeylandicregion:plankstairs-*"}
        ]
       }
     ],

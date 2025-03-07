@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "block/wood", quantity: 6}
+         {"type": "block", "code": "game:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["game:block/wood"], quantity: 6}
        ]
       }
     ],

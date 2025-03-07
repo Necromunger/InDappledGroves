@@ -3,7 +3,7 @@
 		"code": "strongtannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "item", "code": "floralzonesneozeylandicregion:bark-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "item", "code": "indappledgroves:bark-nothofagusmenziesii-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:weaktanninportion",  "litres": 20 },
 		],
 		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 20 }
@@ -12,7 +12,7 @@
 		"code": "strongtannin",
 		"sealHours": 24,
 		"ingredients": [
-			{ "type": "block", "code": "floralzonesneozeylandicregion:barkbundle-nothofagusmenziesii-dry",  "quantity": 1 },
+			{ "type": "block", "code": "indappledgroves:barkbundle-nothofagusmenziesii-dry",  "quantity": 1 },
 			{ "type": "item", "code": "game:weaktanninportion",  "litres": 50 }
 		],
 		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }
@@ -21,7 +21,7 @@
 		"code": "strongtannin",
 		"sealHours": 48,
 		"ingredients": [
-			{ "type": "block", "code": "floralzonesneozeylandicregion:barkbundle-nothofagusmenziesii-dry",  "quantity": 2 },
+			{ "type": "block", "code": "indappledgroves:barkbundle-nothofagusmenziesii-dry",  "quantity": 2 },
 			{ "type": "item", "code": "game:waterportion",  "litres": 50 }
 		],
 		"output": { "type": "item", "code": "game:strongtanninportion", "litres": 50 }

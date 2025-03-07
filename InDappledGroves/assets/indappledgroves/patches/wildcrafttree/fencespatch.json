@@ -1,0 +1,80 @@
+[
+	{
+    "file": "wildcrafttree:blocktypes/wood/woodtyped/roughhewnfence-fsnow.json",
+    "side": "server",
+    "op": "replace",
+    "path": "/shapebytype",
+    "value": {
+			"*-empty-snow": { base: "game:block/wood/fence/roughfence/snow-empty" },
+			"*-n-snow": { base: "game:block/wood/fence/roughfence/snow-w1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/snow-w2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/snow-w3", rotateY: 270 } ] },
+			"*-e-snow": { base: "game:block/wood/fence/roughfence/snow-w1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/snow-w2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/snow-w3", rotateY: 180 } ] },
+			"*-s-snow": { base: "game:block/wood/fence/roughfence/snow-w1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/snow-w2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/snow-w3", rotateY: 90 } ] },
+			"*-w-snow": { base: "game:block/wood/fence/roughfence/snow-w1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/snow-w2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/snow-w3", rotateY: 0 } ] },
+
+			"*-ns-snow": { base: "game:block/wood/fence/roughfence/snow-ew1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/snow-ew2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/snow-ew3", rotateY: 90 } ] },
+			"*-ew-snow": { base: "game:block/wood/fence/roughfence/snow-ew1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/snow-ew2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/snow-ew3", rotateY: 0 } ] },
+		
+			"*-ne-snow": { base: "game:block/wood/fence/roughfence/snow-sw1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/snow-sw2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/snow-sw3", rotateY: 180 } ] },
+			"*-nw-snow": { base: "game:block/wood/fence/roughfence/snow-sw1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/snow-sw2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/snow-sw3", rotateY: 270 } ] },
+			"*-es-snow": { base: "game:block/wood/fence/roughfence/snow-sw1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/snow-sw2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/snow-sw3", rotateY: 90 } ] },
+			"*-sw-snow": { base: "game:block/wood/fence/roughfence/snow-sw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/snow-sw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/snow-sw3", rotateY: 0 } ] },
+		
+			"*-nes-snow": { base: "game:block/wood/fence/roughfence/snow-nsw1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/snow-nsw2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/snow-nsw3", rotateY: 180 } ] },
+			"*-new-snow": { base: "game:block/wood/fence/roughfence/snow-nsw1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/snow-nsw2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/snow-nsw3", rotateY: 270 } ] },
+			"*-nsw-snow": { base: "game:block/wood/fence/roughfence/snow-nsw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/snow-nsw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/snow-nsw3", rotateY: 0 } ] },
+			"*-esw-snow": { base: "game:block/wood/fence/roughfence/snow-nsw1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/snow-nsw2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/snow-nsw3", rotateY: 90 } ] },
+		
+			"*-nesw-snow": { base: "game:block/wood/fence/roughfence/snow-nesw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/snow-nesw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/snow-nesw3", rotateY: 0 } ] }
+		},
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+	},
+	{
+    "file": "wildcrafttree:blocktypes/wood/woodtyped/roughhewnfencegate.json",
+    "side": "server",
+    "op": "replace",
+    "path": "/shapebytype",
+				"value": {
+				"*-n-opened-free": { "base": "game:block/wood/fence/roughfence/gate-open" },
+				"*-w-opened-free": { "base": "game:block/wood/fence/roughfence/gate-open", "rotatey": 90},
+				"*-n-closed-free": { "base": "game:block/wood/fence/roughfence/gate-closed"},
+				"*-w-closed-free": { "base": "game:block/wood/fence/roughfence/gate-closed" , "rotatey": 90 },
+		
+				"*-n-opened-snow": { "base": "game:block/wood/fence/roughfence/gate-open-snow" },
+				"*-w-opened-snow": { "base": "game:block/wood/fence/roughfence/gate-open-snow", "rotatey": 90},
+				"*-n-closed-snow": { "base": "game:block/wood/fence/roughfence/gate-closed-snow"},
+				"*-w-closed-snow": { "base": "game:block/wood/fence/roughfence/gate-closed-snow", "rotatey": 90 }
+				},
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+	},
+	{
+    "file": "wildcrafttree:blocktypes/wood/woodtyped/roughhewnfence-free.json",
+    "side": "server",
+    "op": "replace",
+    "path": "/shapebytype",
+    "value": {
+		"*-empty-free": { base: "game:block/wood/fence/roughfence/empty" },
+		"*-n-free": { base: "game:block/wood/fence/roughfence/w1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/w2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/w3", rotateY: 270 } ] },
+		"*-e-free": { base: "game:block/wood/fence/roughfence/w1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/w2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/w3", rotateY: 180 } ] },
+		"*-s-free": { base: "game:block/wood/fence/roughfence/w1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/w2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/w3", rotateY: 90 } ] },
+		"*-w-free": { base: "game:block/wood/fence/roughfence/w1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/w2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/w3", rotateY: 0 } ] },
+
+		"*-ns-free": { base: "game:block/wood/fence/roughfence/ew1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/ew2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/ew3", rotateY: 90 } ] },
+		"*-ew-free": { base: "game:block/wood/fence/roughfence/ew1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/ew2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/ew3", rotateY: 0 } ] },
+		
+		"*-ne-free": { base: "game:block/wood/fence/roughfence/sw1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/sw2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/sw3", rotateY: 180 } ] },
+		"*-nw-free": { base: "game:block/wood/fence/roughfence/sw1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/sw2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/sw3", rotateY: 270 } ] },
+		"*-es-free": { base: "game:block/wood/fence/roughfence/sw1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/sw2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/sw3", rotateY: 90 } ] },
+		"*-sw-free": { base: "game:block/wood/fence/roughfence/sw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/sw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/sw3", rotateY: 0 } ] },
+		
+		"*-nes-free": { base: "game:block/wood/fence/roughfence/nsw1", rotateY: 180, alternates: [ { base: "game:block/wood/fence/roughfence/nsw2", rotateY: 180 }, { base: "game:block/wood/fence/roughfence/nsw3", rotateY: 180 } ] },
+		"*-new-free": { base: "game:block/wood/fence/roughfence/nsw1", rotateY: 270, alternates: [ { base: "game:block/wood/fence/roughfence/nsw2", rotateY: 270 }, { base: "game:block/wood/fence/roughfence/nsw3", rotateY: 270 } ] },
+		"*-nsw-free": { base: "game:block/wood/fence/roughfence/nsw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/nsw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/nsw3", rotateY: 0 } ] },
+		"*-esw-free": { base: "game:block/wood/fence/roughfence/nsw1", rotateY: 90, alternates: [ { base: "game:block/wood/fence/roughfence/nsw2", rotateY: 90 }, { base: "game:block/wood/fence/roughfence/nsw3", rotateY: 90 } ] },
+		
+		"*-nesw-free": { base: "game:block/wood/fence/roughfence/nesw1", rotateY: 0, alternates: [ { base: "game:block/wood/fence/roughfence/nesw2", rotateY: 0 }, { base: "game:block/wood/fence/roughfence/nesw3", rotateY: 0 } ] }
+		},
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+	}
+]
+
+

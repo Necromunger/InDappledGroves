@@ -5,10 +5,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregiondebarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonescaribbeanregionblock/wood"}
+         {"type": "block", "code": "floralzonescaribbeanregion:debarkedlog-*-ud", "name": "wood",  "loadFromProperties": "floralzonescaribbeanregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaribbeanregionsupportbeam-{wood}", "quantity": 3}
+    "output": {"type": "block", "code": "floralzonescaribbeanregion:supportbeam-{wood}", "quantity": 3}
   }
 ]

@@ -5,7 +5,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregion::plankstairs-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:plankstairs-*"}
        ]
       }
     ],

@@ -8,7 +8,7 @@
   "variantgroups": [
     {
       "code": "wood",
-      "states": ["aged"], "loadFromProperties": "block/wood"
+      "states": ["aged"], "loadFromPropertiesCombine": ["game:block/wood"]
     },
     {
       "code": "piece",

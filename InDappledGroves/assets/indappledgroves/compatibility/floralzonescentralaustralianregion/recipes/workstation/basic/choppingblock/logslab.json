@@ -6,12 +6,12 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescentralaustralianregion:log-placed-*-ud", "name": "wood"}
+         {"type": "block", "code": "floralzonescentralaustralianregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-barked-north-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-barked-north-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free"}
   },
   {
     "toolmode": "chopping",
@@ -24,7 +24,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-north-free", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-barked-north-free"}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free", "quantity": 1},
+    "returnstack": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free"}
   }
 ]

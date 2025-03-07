@@ -174,7 +174,7 @@ on a block covered by water to begin the soaking process. 24 hours
 later you'll have a soaked bark bundle. Pick it up and you'll recieve 5 pieces of <a href=\"handbooksearch://soaked bark\">soaked bark</a>, ready to be made into a basket.
 ",
 
-	"block-*-barkbundle": "Bark Bundle",
+	"block-barkbundle": "Bark Bundle",
 	"dry": "Dry",
 	"soaking": "Soaking",
 	"soaked": "Soaked",

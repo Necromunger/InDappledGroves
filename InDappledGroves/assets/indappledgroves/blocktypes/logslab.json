@@ -14,7 +14,7 @@
 		}
 	],
 	"variantgroups": [
-		{ "code": "wood", "states": ["aged"], "loadFromProperties": "game:block/wood" },
+		{ "code": "wood", "states": ["aged"], "loadFromPropertiesCombine": ["game:block/wood"] },
 		{ "code": "barked", "states": ["barked","debarked"]},
 		{ "code": "rot", "states": ["north", "east", "south", "west", "up", "down"] },
 		{ "code": "cover", "states": ["free", "snow"] }		
@@ -76,7 +76,7 @@
 	"texturesByType": {
 		"*-barked-*": {
 					"all": { "base": "game:block/wood/treetrunk/{wood}" },
-					"trunk": {"base": "indappledgroves:block/strippedlog/{wood}" },
+					"trunk": {"base": "indappledgroves:block/barkedlog/{wood}" },
 					"bark": {"base": "game:block/wood/bark/{wood}" },
 					"bark2": {"base": "game:block/wood/bark/{wood}" },
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
@@ -85,8 +85,8 @@
 		"*-debarked-*": {
 					"all": { "base": "game:block/wood/treetrunk/{wood}" },
 					"trunk": {"base": "indappledgroves:block/strippedlog/{wood}" },
-					"bark": {"base": "game:block/wood/debarked/{wood}"},
-					"bark2": {"base": "game:block/wood/debarked/{wood}"},
+					"bark": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
+					"bark2": {"base": "game:block/wood/debarked/{wood}", "rotation": 90},
 					"debarked": {"base": "game:block/wood/debarked/{wood}" },
 					"snowcover": { "base": "game:block/liquid/snow/normal1" }
 		}

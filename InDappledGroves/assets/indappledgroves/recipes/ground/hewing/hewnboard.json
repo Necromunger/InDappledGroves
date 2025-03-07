@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-east", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-east", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -19,7 +19,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-east", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-east", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -32,7 +32,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-north", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-north", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -45,7 +45,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-north", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-north", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -58,7 +58,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-south", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-south", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -72,7 +72,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-south", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-south", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -86,7 +86,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-west", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-green-west", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],
@@ -100,7 +100,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-west", "name": "wood", "loadFromProperties": "block/wood", "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "indappledgroves:idgboard-*-rough-cured-west", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
        ]
       }
     ],

@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionplankstairs-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:plankstairs-*"}
        ]
       }
     ],
@@ -19,7 +19,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionplanks-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:planks-*"}
        ]
       }
     ],
@@ -32,7 +32,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionroughhewnfence-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:roughhewnfence-*"}
        ]
       }
     ],
@@ -45,7 +45,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionroughhewnfencegate-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:roughhewnfencegate-*"}
        ]
       }
     ],
@@ -58,7 +58,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionwoodenfence-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:woodenfence-*"}
        ]
       }
     ],
@@ -71,7 +71,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionwoodenfencegate-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:woodenfencegate-*"}
        ]
       }
     ],
@@ -84,7 +84,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaribbeanregionplankslab-*"}
+         {"type": "block", "code": "floralzonescaribbeanregion:plankslab-*"}
        ]
       }
     ],

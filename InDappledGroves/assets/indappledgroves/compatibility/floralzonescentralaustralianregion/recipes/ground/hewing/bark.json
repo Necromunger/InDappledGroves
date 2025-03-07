@@ -5,64 +5,11 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescentralaustralianregion:logslab-*-barked-north-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-north-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescentralaustralianregion:logslab-*-barked-east-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-east-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescentralaustralianregion:logslab-*-barked-south-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
-       ]
-      }
-    ],
-
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-south-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
-         {"type": "block", "code": "floralzonescentralaustralianregion:logslab-*-barked-west-free", "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
-       ]
-      }
-    ],
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 1},
-    "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:logslab-{wood}-debarked-west-free"}
-  },
-  {
-    "toolmode": "hewing",
-    "ingredients":
-    [ 
-      {"inputs": 
-       [
          {"type": "block", "code": "floralzonescentralaustralianregion:log-placed-*-ud",  "name": "wood", "loadFromProperties": "floralzonescentralaustralianregion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "item", "code": "floralzonescentralaustralianregion:bark-{wood}-dry", "quantity": 2},
+    "output": {"type": "item", "code": "indappledgroves:bark-{wood}-dry", "quantity": 2},
     "returnstack": {"type": "block", "code": "floralzonescentralaustralianregion:debarkedlog-{wood}-ud"}
   }
 ]

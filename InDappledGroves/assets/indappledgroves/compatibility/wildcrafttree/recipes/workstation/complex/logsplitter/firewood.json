@@ -1,0 +1,44 @@
+[
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:debarkedlog-*-ud", "name": "wood", loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "wildcrafttree:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["game:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+   }
+]

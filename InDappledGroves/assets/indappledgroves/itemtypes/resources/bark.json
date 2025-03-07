@@ -41,7 +41,7 @@
 		]
 	},
 	variantgroups: [
-        { code: "bark", "loadFromProperties": "game:block/wood", states:["aged"] },
+        { code: "bark", loadFromPropertiesCombine: ["game:block/wood"], states:["aged"] },
 				{ "code": "state", "states": ["dry","soaked"]}
     ],
 	drawtype: "json",

@@ -3,10 +3,11 @@
 	class: "idgbarkbasket",
 	entityclass: "GenericTypedContainer",
 	behaviors: [{name: "Lockable" }, {name: "Container"}, {name: "UnstableFalling"}],
-		entityBehaviors: [{ name: "Animatable" }],
-		variantgroups: [
-			{ code: "variant", loadFromProperties: "game:block/wood", states:["aged"]},
-			{ code:"side", loadFromProperties: "game:abstract/horizontalorientation" }
+	entityBehaviors: [{ name: "Animatable" }],
+	variantgroups: [
+		{ code: "variant", loadFromPropertiesCombine: ["game:block/wood"], states:["aged"]},
+		{ code:"side", loadFromProperties: "game:abstract/horizontalorientation" }
+
 	],
 	attributes: {
 		handbook: { 

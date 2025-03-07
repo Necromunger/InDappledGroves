@@ -33,7 +33,7 @@
 		},
   "creativeinventory": { "general": ["*-east"], "indappledgroves": ["*-east"]},
   "variantgroups": [
-    { "code": "primary", "states": ["aged"], "loadFromProperties": "block/wood" },
+    { "code": "primary", "states": ["aged"], "loadFromPropertiesCombine": ["game:block/wood"] },
     { "code":"side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "heldTpIdleAnimation": "holdbothhandslarge",

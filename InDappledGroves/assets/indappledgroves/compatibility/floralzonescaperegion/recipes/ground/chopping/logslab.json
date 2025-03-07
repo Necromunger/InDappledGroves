@@ -9,7 +9,7 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 2}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
   },
   {
     "toolmode": "chopping",
@@ -17,11 +17,47 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-ne-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-barked-north-free", "quantity": 2}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-nw-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-se-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
+  },
+  {
+    "toolmode": "chopping",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-sw-ud", "name": "wood", "loadFromProperties": "floralzonescaperegion:block/wood"}
+       ]
+      }
+    ],
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
   },
   {
     "toolmode": "chopping",
@@ -33,6 +69,6 @@
        ]
       }
     ],
-    "output": {"type": "block", "code": "floralzonescaperegion:logslab-{wood}-debarked-north-free", "quantity": 2}
+    "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-debarked-north-free", "quantity": 2}
   }
 ]
