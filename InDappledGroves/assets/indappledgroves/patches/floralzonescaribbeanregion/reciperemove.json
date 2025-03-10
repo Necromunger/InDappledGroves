@@ -54,5 +54,12 @@
     "path": "/0",
     "side": "server",
 		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
+  },
+  {
+    "file": "floralzonescaribbeanregion:recipes/grid/wood/pan.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaribbeanregion" } ]
   }
 ]

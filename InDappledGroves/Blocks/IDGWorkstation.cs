@@ -49,6 +49,7 @@ namespace InDappledGroves.Blocks
             {
                 result = beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);
             }
+            
             beworkstation.MarkDirty(true);
             return result;
         }

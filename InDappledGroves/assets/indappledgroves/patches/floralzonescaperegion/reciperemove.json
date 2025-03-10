@@ -68,5 +68,12 @@
     "path": "/0",
     "side": "server",
 		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+  },
+  {
+    "file": "floralzonescaperegion:recipes/grid/wood/pan.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
   }
 ]

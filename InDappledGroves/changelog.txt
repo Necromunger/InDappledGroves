@@ -1,4 +1,8 @@
-﻿1.20-v2.0.6
+﻿1.20-v2.1.1
+	- Fixed version number to respect significant change to asset structuring.
+	- Ensured all files from 2.0.6 that were intended to be included *were* included.
+
+1.20-v2.0.6
 	- Fixed bug with workstations crashing when using recipes with items. Particles weren't being properly produced.
 	- Tweaked minimum recipe duration for a more satisfying experience.
 	- Added in-world crafting recipe for wooden pan, removed grid recipe option.

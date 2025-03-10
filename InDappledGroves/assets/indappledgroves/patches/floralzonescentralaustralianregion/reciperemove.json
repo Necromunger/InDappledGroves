@@ -61,5 +61,12 @@
     "path": "/0",
     "side": "server",
 		"dependsOn": [ { "modid": "floralzonescentralaustralianregion" } ]
+  },
+  {
+    "file": "floralzonescentralaustraliaregion:recipes/grid/wood/pan.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonescentralaustraliaregion" } ]
   }
 ]

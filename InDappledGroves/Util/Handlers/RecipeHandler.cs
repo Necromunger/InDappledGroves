@@ -94,7 +94,7 @@ namespace InDappledGroves.Util.Handlers
             RecipeHandler.dustParticles.MinVelocity.Set(-0.4f, -0.4f, -0.4f);
             RecipeHandler.dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             RecipeHandler.dustParticles.DieOnRainHeightmap = false;
-            RecipeHandler.dustParticles.WindAffectednes = 0.5f;
+            RecipeHandler.dustParticles.WindAffectednes = 0.25f;
         }
 
         public void clearRecipe(bool clearCurrentMiningDamage = true) 

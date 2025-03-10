@@ -81,7 +81,7 @@ namespace InDappledGroves.CollectibleBehaviors
             BehaviorIDGTool.dustParticles.MinVelocity.Set(-0.4f, -0.4f, -0.4f);
             BehaviorIDGTool.dustParticles.AddVelocity.Set(0.8f, 1.2f, 0.8f);
             BehaviorIDGTool.dustParticles.DieOnRainHeightmap = false;
-            BehaviorIDGTool.dustParticles.WindAffectednes = 0.5f;
+            BehaviorIDGTool.dustParticles.WindAffectednes = 0.25f;
         }
 
         #region ToolMode Stuff
