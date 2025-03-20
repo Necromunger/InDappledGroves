@@ -14,6 +14,24 @@
   {
     "file": "game:recipes/grid/firewood.json",
     "op": "remove",
+    "path": "/5",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/4",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/firewood.json",
+    "op": "remove",
+    "path": "/3",
+    "side": "server"
+  },
+  {
+    "file": "game:recipes/grid/firewood.json",
+    "op": "remove",
     "path": "/2",
     "side": "server"
   },

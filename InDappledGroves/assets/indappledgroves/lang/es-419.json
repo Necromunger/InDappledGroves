@@ -1,0 +1,506 @@
+{
+
+	//"Tool Interactions and Mode Info Listed Below",
+  "Chopping": "Cortar",
+	"Sawing": "Serrado",
+	"Planing": "Cepillado",
+	"Hewing": "Desbastar",
+	"Hewing": "Golpear",
+	"itemhelp-axe-chopwood": "Para Cortar",
+  "itemhelp-saw-sawwood": "Para Serrar",
+	"itemhelp-adze-hewwood": "Para Desbastar",
+	"itemhelp-tool-planewood": "Para Cepillar",
+	"itemhelp-tool-pound": "Para Golpear",
+	"toolittledurability": "Tu herramienta requiere {0} de durabilidad para hacer esto.",
+	"block-board": "Tabla",
+	"WorkstationTypeNotDesignated": "La estación de trabajo {0} no tiene un tipo de estación de trabajo designado en el tipo de bloque",
+	"defaultprocessmodifier": "Modificador de Proceso:",
+	"logsplitterprocessor": "Tipo de Hoja:",
+	"remainingdurability": "Durabilidad Restante",
+	"LogSplitterNoBladeError": "El Cortador de Troncos No Tiene Hoja",
+	"BladeHeldInSplitter": "Tipo de Hoja",
+	"BladeDurability": "Durabilidad de la Hoja",
+	"Empty": "Vacío",
+	"recipeprogress": "Progreso de la Receta",
+	"workstationholding": "Sosteniendo",
+	"recipeoutputstack": "Resultado",
+	"attributetransformcode": "Código de Transformación de Atributo",
+	"inventoryclassname": "Nombre de la Clase del Inventario",
+	"currenttoolmode": "Modo de Herramienta Actual",
+	"recipetoolmode": "Modo de Herramienta de la Receta",
+	"recipeworkstation": "Estación de Trabajo de la Receta",
+	"game:tabname-indappledgroves": "In Dappled Groves",
+	"game:handbook-category-indappledgroves": "In Dappled Groves",
+	"block-logsplitter": "Cortador de Troncos",
+	"indappledgroves:item-handbooktitle-splitterblade": "Hojas del Cortador de Troncos",
+	"indappledgroves:item-handbooktext-splitterblade": "Estas hojas se usan en el cortador de troncos. Las hojas de losa son para hacer losas de troncos, y las hojas cruzadas para hacer leña a partir de troncos.",
+	"indappledgroves:block-handbooktitle-pan": "Creación con In Dappled Groves",
+  "indappledgroves:block-handbooktext-pan": "Comienza creando <a href=\"handbooksearch://log slab\">una losa de tronco descortezada</a> y colocándola plana en el <a href=\"handbook://inworldcrafting-indappledgroves\">suelo</a>. Luego usas una herramienta de <a href=\"handbook://toolmodes-indappledgroves\">desbaste</a> para convertirla en una bandeja de madera.",
+	"item-splitterblade-single-tinbronze": "Hoja de Losa de Bronce de Estaño",
+	"item-splitterblade-single-bismuthbronze": "Hoja de Losa de Bronce de Bismuto",
+	"item-splitterblade-single-blackbronze": "Hoja de Losa de Bronce Negro",
+	"item-splitterblade-single-iron": "Hoja de Losa de Hierro",
+	"item-splitterblade-single-meteoriciron": "Hoja de Losa de Hierro Meteórico",
+	"item-splitterblade-single-steel": "Hoja de Losa de Acero",
+	"item-splitterblade-cross-tinbronze": "Hoja Cruzada de Bronce de Estaño",
+	"item-splitterblade-cross-bismuthbronze": "Hoja Cruzada de Bronce de Bismuto",
+	"item-splitterblade-cross-blackbronze": "Hoja Cruzada de Bronce Negro",
+	"item-splitterblade-cross-iron": "Hoja Cruzada de Hierro",
+	"item-splitterblade-cross-meteoriciron": "Hoja Cruzada de Hierro Meteórico",
+	"item-splitterblade-cross-steel": "Hoja Cruzada de Acero",
+
+    "block-handbooktitle-logsplitter": "Cortador de Troncos",
+	"block-handbooktext-logsplitter": "El Cortador de Troncos es una nueva herramienta para hacer <a href=\"handbook://item-firewood\">leña</a> de manera eficiente. También se puede usar para crear <a href=\"handbooksearch://log slab\">losas de troncos</a>. Para usar el cortador de troncos, colócalo e instala una <a href=\"handbooksearch://slab blade\">hoja de losa</a> para hacer losas, o una <a href=\"handbooksearch://cross blade\">hoja cruzada</a> para hacer leña.<br><br>Procesar un tronco en un cortador de troncos requiere el uso de una herramienta, como el <a href=\"handbooksearch://maul AND tool\">mazo de división</a> que tenga el modo de herramienta de <a href=\"handbook://toolmodes-indappledgroves\">golpear</a>. El cortador de troncos es ideal para hacer leña. Divide los troncos un poco más lento que usar un mazo para dividir el mismo tronco, pero crea leña directamente. Esto lo convierte en una opción más rápida para crear leña que el bloque de corte.<br>Ten en cuenta que las hojas tienen durabilidad y deberán ser reemplazadas de vez en cuando. Ni el material de la hoja ni el del cortador de troncos influirán en la velocidad a la que se produce la leña. Sin embargo, el material de la hoja afecta la durabilidad de la misma.",
+	"block-handbooktitle-logsplitter2": "Vendido Por:",
+	"block-handbooktext-logsplitter2": "Herrero",
+
+
+	//Bark Basket Entries - Entradas de la Cesta de Corteza
+	"block-handbooktitle-barkbasket": "",
+	"block-handbooktext-barkbasket": "<font align='center'><i>Con cada trenzado de la corteza,
+    estamos más cerca de casa.</i></font>
+	<font weight='bold' align='center'>- Sobre el Tejido de Cestas</font>
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+	Estas cestas están hechas de la <a href=\"handbooksearch://soaked bark\">corteza empapada</a> de cualquier árbol. Esta tecnología atemporal ha sobrevivido a la descomposición y es un pilar para los Serafines que buscan almacenamiento conveniente.
+
+	La corteza tiene una larga historia de uso en la fabricación de cestas en diversas partes del mundo. Se pueden encontrar evidencias de cestas en culturas que van desde los Sami de la región de Sapmi, los Salsih, Chilkat y otras tribus nativas americanas del noroeste de América, y muchas otras.",
+
+	"barkbasketname": "Cestas de Corteza",
+	"block-barkbasket": "Cesta de Corteza",
+	"barkbasketcontents": "Cesta de Corteza",
+
+	//Chopping Block Entries - Entradas del Bloque de Corte
+	"block-handbooktitle-choppingblock": "Cómo Crear:",
+	"block-handbooktext-choppingblock": "	<strong>Tipo de Receta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a>
+	<strong>Modo de Herramienta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Desbastar</a>
+	<strong>Ingredientes</strong>: <a href=\"handbooksearch://log slab\">Cualquier losa de tronco</a>
+	<strong>Herramientas</strong>: <a href=\"handbooksearch://adze\">azuela</a>, <a href=\"handbooksearch://grub axe\">Hacha de Desbroce</a>
+",
+	"block-handbooktitle-choppingblock2": "																			El Mejor Amigo de un Leñador",
+	"block-handbooktext-choppingblock2": "
+	<font align='center'><i>Antes de la Iluminación -
+	Corta Madera, Transporta Agua,
+	Después de la Iluminación -
+	Corta Madera, Transporta Agua</i></font>
+	<font weight='bold' align='center'>- Proverbio Zen </font>
+
+				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+			Hecho colocando cualquier losa de tronco plana en el suelo y <a href=\"handbook://inworldcrafting-indappledgroves\">desbastándola</a> con una azuela u otra herramienta de desbaste, los bloques de corte son la base del conjunto de estaciones de trabajo de un leñador serio.
+
+			Esta estación de trabajo proporciona una mejora en la efectividad de tus herramientas. El trabajo realizado en un bloque de corte es generalmente más rápido que en el suelo.
+
+			Además, puede haber ciertas recetas que solo se pueden realizar con la ayuda de un bloque de corte. Para aquellos que planean trabajar con grandes cantidades de madera, debería ser la primera estación de trabajo que adquieras.
+",
+	"block-choppingblock": "Bloque de Corte",
+
+    //LogSlab Entries - Entradas de Losa de Tronco
+	"block-handbooktitle-logslab":"Cómo Crear",
+	"block-handbooktext-logslab":
+	"	<strong>Tipo de Receta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a>
+	<strong>Modo de Herramienta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Cortar</a>
+	<strong>Ingredientes</strong>: <a href=\"handbooksearch://log\">Cualquier Tronco</a>
+	<strong>Herramientas</strong>: Hachas
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>",
+	"block-handbooktitle-logslab2":"Losas de Tronco",
+	"block-handbooktext-logslab2": "	La primera etapa en el camino para hacer <a href=\"handbook://item-firewood\">leña</a>. Se pueden hacer en un <a href=\"handbooksearch://chopping block\">bloque de corte</a> o en el <a href=\"handbook://inworldcrafting-indappledgroves\">suelo</a>. El <a href=\"handbooksearch://log\">tronco</a> objetivo debe estar en posición vertical, con el tronco expuesto, en lugar de la corteza hacia arriba. Las losas de tronco, cuando se colocan planas, pueden ser <a href=\"handbook://toolmodes-indappledgroves\">desbastadas</a> en bloques de corte; cuando están en posición vertical, pueden ser <a href=\"handbook://toolmodes-indappledgroves\">cortadas</a> en leña o <a href=\"handbook://toolmodes-indappledgroves\">desbastadas</a> para crear losas de tronco descortezadas y producir dos cortezas.",
+	"block-logslab": "Losa de Tronco",
+	"block-idgblockfirewood": "Leña",
+
+	//Stripped Log Entries - Entradas de Tronco Descortezado
+	"block-handbooktitle-strippedlog": "Tronco Descortezado",
+	"block-handbooktext-strippedlog": "<font align='center'><i>Cuerpos desnudos como troncos pelados
+a veces desprenden el más dulce
+olor, hombre y mujer
+bajo los árboles en pleno exceso</i></font>
+<font weight='bold' align='center'>- William Carlos Williams</font>
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+Los troncos descortezados se crean <a href=\"handbook://toolmodes-indappledgroves\">desbastando</a> un <a href=\"handbooksearch://log\">tronco</a> con corteza. Luego se pueden dividir en losas de tronco descortezadas.
+
+<font weight='bold'>Cómo Crear</font>
+	<strong>Tipo de Receta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a>
+	<strong>Modo de Herramienta:</strong> <a href=\"handbook://inworldcrafting-indappledgroves\">Desbastar</a>
+	<strong>Ingredientes</strong>: <a href=\"handbooksearch://log\">Cualquier Tronco</a>
+	<strong>Herramientas Comunes</strong>: Azuela, Hacha de Desbroce
+",
+	//Sawhorse Entries - Entradas del Caballete
+	"block-handbooktitle-sawhorse": "",
+	"block-handbooktext-sawhorse": "
+<font align='center'><i>A la izquierda, el hacha; a la derecha, la sierra.
+El hacha en el bloque, la sierra en el caballete.
+El serrín cubre el camino. Sentado en el
+cobertizo para ver caer la lluvia.</i></font>
+<font weight='bold' align='center'>- Paol Keineg</font>",
+
+	"block-sawhorse": "Caballete",
+
+	//Sawbuck Entries - Entradas del Caballete de Sierra
+	"indappledgroves:block-handbooktitle-sawbuck": "Caballete de Sierra",
+	"indappledgroves:block-handbooktext-sawbuck": "<font align='center'><i>El Viento Serruchaba,
+	Y El Serrín Giraba</i></font>
+	<font weight='bold' align='center'>- Charles Dickens </font>
+
+	<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+	El caballete de sierra es una <a href=\"handbook://workstations-indappledgroves\">estación de trabajo</a> que se utiliza principalmente para operaciones de serrado, haciendo que el proceso sea un poco más rápido y desgastando un poco menos tu herramienta.
+	",
+
+	"block-sawbuck": "Caballete de Sierra",
+
+    //Bark Bundle Entries - Entradas de Fardo de Corteza
+	"indappledgroves:block-handbooktitle-barkbundledry": "Fardo de Corteza Seca",
+	"indappledgroves:block-handbooktext-barkbundledry": "
+<font align='center'><i>Está el boj blanco y el pino en las crestas lejanas,
+Donde están el iron-bark, el blue-gum y el peppermint;
+Hay muchos otros, pero el más querido para mí,
+Y el rey de todos era el árbol de corteza fibrosa.</i></font>
+<font weight='bold' align='center'>- Poema del Árbol de Corteza Fibrosa por Henry Lawson</font>
+
+		<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+Crear un fardo de corteza seca es un proceso simple. Simplemente haz clic derecho
+en el suelo en una de las cuatro esquinas de un bloque con un puñado de
+<a href=\"handbooksearch://dry bark\">corteza seca</a> para crear un almacenamiento en el suelo. Llena los tres espacios restantes
+con el mismo tipo de corteza, y luego haz clic en el centro con una quinta pieza
+para hacer un fardo de corteza seca.
+
+Tu fardo de corteza ahora está listo para ser procesado. Recógelo y colócalo
+en un bloque cubierto de agua para comenzar el proceso de remojo. 24 horas
+después tendrás un fardo de corteza remojada. Recógelo y recibirás 5 piezas de <a href=\"handbooksearch://soaked bark\">corteza remojada</a>, lista para ser convertida en una cesta.
+",
+
+	"block-barkbundle": "Fardo de Corteza",
+	"dry": "Seco",
+	"soaking": "Remojando",
+	"soaked": "Remojado",
+
+
+	"indappledgroves:item-handbooktitle-soakedbark": "Corteza Remojada",
+	"indappledgroves:item-handbooktext-soakedbark": "
+<font align='center'><i>Y cuando se construyeron casas de madera aserrada en el Oeste,
+Para paredes y techos, su madera era la mejor;
+Y para tejas y cercas que duraran mientras los hombres vivan,
+No había nada en la tierra como el árbol de corteza fibrosa.</i></font>
+<font weight='bold' align='center'>- Poema del Árbol de Corteza Fibrosa por Henry Lawson</font>
+
+     La corteza remojada se obtiene colocando un <a href=\"handbooksearch://bark bundle\">fardo de corteza</a> en agua haciendo clic derecho en un bloque cubierto de agua. Esto colocará el fardo de corteza seca, convirtiéndolo en un fardo de corteza en remojo. Con el tiempo, se convertirá en un fardo de corteza remojada. Simplemente haz clic derecho en el fardo de corteza remojada para recoger 5 <a href=\"handbooksearch://soaked bark\">cortezas remojadas</a>.
+
+La corteza remojada es un material versátil perfecto para crear contenedores útiles, como las <a href=\"handbooksearch://bark basket\">cestas de corteza</a>. Si también tienes instaladas las <a href=\"https://mods.vintagestory.at/ancienttools\">Herramientas Antiguas</a> de Taska, entonces también necesitarás remojar <a href=\"handbooksearch://soaked bark\">corteza remojada</a> de abedul</a> para hacer ungüentos.
+",
+
+    //Vanilla Replacement Entries - Entradas de Reemplazo de Vanilla
+	"indappledgroves:item-handbooktitle-firewood": "Leña",
+	"indappledgroves:item-handbooktext-firewood": "
+<font align='center'><i>Las fogatas de haya son brillantes y claras
+Si los troncos se guardan un año,
+Dicen que la castaña solo es buena
+Si se guarda para troncos.</i></font>
+<font weight='bold' align='center'>- Poema de la Leña por Lady Celia Congreve</font>
+
+<font size=18 weight='bold'>Usos en In Dappled Groves:</font>
+<font size=14 weight='bold'>Tipo de Receta:</font>  <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a></font>
+<font size=14 weight='bold'>Modo de Herramienta:</font>  <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">Cortar</a></font>
+<font size=14 weight='bold'>Ingredientes</font>: <font size=14><a href=\"handbook://indappledgroves:logslab-birch-barked-down-free\">Losa de Tronco con o sin Corteza</a></font>
+<font size=14 weight='bold'>Herramientas Comunes</font>: <font size=14><a href=\"handbooksearch://axe\">Hacha</a>, <a href=\"handbooksearch://forest axe\">Hacha Forestal</a>, <a href=\"handbooksearch://splitting maul\">Mazo de División</a>, <a href=\"handbooksearch://grub axe\">Hacha de Desbroce</a></font>
+<font size=14 weight='bold'>Estación de Trabajo</font>: <font size=14> <a href=\"handbooksearch://chopping block\">Bloque de Corte</a> o Suelo</font>
+",
+
+	"indappledgroves:item-handbooktitle-stick": "Palos",
+	"indappledgroves:item-handbooktext-stick": "
+<font align='center'><i>Estaba lejos en el bosque
+Cuando encontré el palo perfecto
+Sabía que era perfecto
+No demasiado delgado, no demasiado grueso</i></font>
+<font weight='bold' align='center'>-Amy Ludwig VanDerwater</font>
+
+<font size=18 weight='bold'>Usos en In Dappled Groves:</font>
+<font size=14 weight='bold'>Tipo de Receta:</font>  <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a></font>
+<font size=14 weight='bold'>Modo de Herramienta:</font>  <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">Cortar</a></font>
+<font size=14 weight='bold'>Ingredientes</font>: <font size=14><a href=\"handbook://item-firewood\">Leña</a></font>
+<font size=14 weight='bold'>Herramientas Comunes</font>: <font size=14><a href=\"handbooksearch://axe\">Hacha</a>, <a href=\"handbooksearch://forest axe\">Hacha Forestal</a>, <a href=\"handbooksearch://splitting maul\">Mazo de División</a>, <a href=\"handbooksearch://grub axe\">Hacha de Desbroce</a></font>
+<font size=14 weight='bold'>Estación de Trabajo</font>: <font size=14> <a href=\"handbooksearch://chopping block\">Bloque de Corte</a> o Suelo</font>
+
+Puedes usar cualquier <a href=\"handbooksearch://axe\">hacha</a> para <a href=\"handbook://toolmodes-indappledgroves\">cortar</a> un trozo de <a href=\"handbook://item-firewood\">leña</a> en el <a href=\"handbook://inworldcrafting-indappledgroves\">suelo</a> o en un <a href=\"handbooksearch://chopping block\">bloque de corte</a> para crear palos.
+",
+  "indappledgroves:block-handbooktitle-debarkedlog": "Método de Fabricación",
+  "indappledgroves:block-handbooktext-debarkedlog": "
+<font size=18 weight='bold'>Usos en In Dappled Groves:</font>
+<font size=14 weight='bold'>Tipo de Receta:</font>  <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a></font>
+<font size=14 weight='bold'>Modo de Herramienta:</font> <font size=14> <a href=\"handbook://inworldcrafting-indappledgroves\">Desbastar</a></font>
+<font size=14 weight='bold'>Ingredientes</font>:  <font size=14><a href=\"handbooksearch://log\">Cualquier Tronco</a></font>
+<font size=14 weight='bold'>Herramientas Comunes</font>:  <font size=14><a href=\"handbooksearch://adze\">azuela</a>, <a href=\"handbooksearch://grub axe\">Hacha de Desbroce</a></font>
+<font size=14 weight='bold'>Estación de Trabajo</font>:  <font size=14><a href=\"handbooksearch://chopping block\">Bloque de Corte</a> o Suelo</font>
+",
+
+  "indappledgroves:block-handbooktitle-supportbeam": "Método de Fabricación",
+  "indappledgroves:block-handbooktext-supportbeam": "
+<font size=18 weight='bold'>Usos en In Dappled Groves:</font>
+<font size=14 weight='bold'>Tipo de Receta:</font></strong> <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a></font>
+<font size=14 weight='bold'>Modo de Herramienta:</font></strong> <font size=14><a href=\"handbook://inworldcrafting-indappledgroves\">Desbastar</a></font>
+<font size=14 weight='bold'>Ingredientes</strong>:</font> <font size=14><a href=\"handbooksearch://debarked\">Cualquier Tronco Descortezado</a></font>
+<font size=14 weight='bold'>Herramientas Comunes</strong>:</font> <font size=14><a href=\"handbooksearch://adze\">azuela</a>, <a href=\"handbooksearch://grub axe\">Hacha de Desbroce</a></font>
+<font size=14 weight='bold'>Estación de Trabajo</strong>:</font> <font size=14><a href=\"handbook://workstations-indappledgroves\">Caballete de Sierra</a></font>
+",
+    //Grub Axe Entries - Entradas de Hacha de Desbroce
+	"item-handbooktitle-grubaxe": "Hacha de Desbroce",
+	"item-handbooktext-grubaxe": "Un hacha de desbroce tiene un mango largo y una cabeza robusta que combina una hoja de hacha vertical con una azuela horizontal. Esto la convierte en una herramienta versátil capaz de <a href=\"handbook://toolmodes-indappledgroves\">cortar</a> o <a href=\"handbook://toolmodes-indappledgroves\">desbastar</a>.",
+	"item-grubaxehead-tinbronze": "Cabeza de Hacha de Desbroce de Bronce de Estaño",
+	"item-grubaxehead-bismuthbronze": "Cabeza de Hacha de Desbroce de Bronce de Bismuto",
+	"item-grubaxehead-blackbronze": "Cabeza de Hacha de Desbroce de Bronce Negro",
+	"item-grubaxehead-iron": "Cabeza de Hacha de Desbroce de Hierro",
+	"item-grubaxehead-meteoriciron": "Cabeza de Hacha de Desbroce de Hierro Meteórico",
+	"item-grubaxehead-steel": "Cabeza de Hacha de Desbroce de Acero",
+	"item-grubaxe-tinbronze": "Hacha de Desbroce de Bronce de Estaño",
+	"item-grubaxe-bismuthbronze": "Hacha de Desbroce de Bronce de Bismuto",
+	"item-grubaxe-blackbronze": "Hacha de Desbroce de Bronce Negro",
+	"item-grubaxe-iron": "Hacha de Desbroce de Hierro",
+	"item-grubaxe-meteoriciron": "Hacha de Desbroce de Hierro Meteórico",
+	"item-grubaxe-steel": "Hacha de Desbroce de Acero",
+
+	//Forest Axe Entries - Entradas de Hacha Forestal
+	"item-handbooktitle-forestaxe": "Hacha Forestal",
+	"item-handbooktext-forestaxe": "
+<font align='center'><i>Con miembros doloridos y espalda torturada,
+Escucharíamos el crujido del árbol.
+Y habría un sonido estruendoso,
+Mientras caía al suelo.</i></font>
+<font weight='bold' align='center'>- George Savige</font>
+
+				<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font>
+
+		La característica distintiva de las hachas forestales es un filo largo y redondeado, con una cabeza de hacha alargada y plana. Las hachas forestales están especialmente diseñadas para cortar a través de la veta de las fibras de la madera, por ejemplo, al talar y desramar.
+		Esto las hace excepcionalmente buenas para talar árboles, aunque tienen un rendimiento deficiente al intentar <a href=\"handbook://toolmodes-indappledgroves\">cortar</a> troncos en <a href=\"handbooksearch://log slab\">losas de tronco</a>, <a href=\"handbook://item-firewood\">leña</a> y <a href=\"handbook://item-stick\">palos</a>.
+		",
+
+	"item-forestaxehead-tinbronze": "Cabeza de Hacha Forestal de Bronce de Estaño",
+	"item-forestaxehead-bismuthbronze": "Cabeza de Hacha Forestal de Bronce de Bismuto",
+	"item-forestaxehead-blackbronze": "Cabeza de Hacha Forestal de Bronce Negro",
+	"item-forestaxehead-iron": "Cabeza de Hacha Forestal de Hierro",
+	"item-forestaxehead-meteoriciron": "Cabeza de Hacha Forestal de Hierro Meteórico",
+	"item-forestaxehead-steel": "Cabeza de Hacha Forestal de Acero",
+	"item-forestaxe-tinbronze": "Hacha Forestal de Bronce de Estaño",
+	"item-forestaxe-bismuthbronze": "Hacha Forestal de Bronce de Bismuto",
+	"item-forestaxe-blackbronze": "Hacha Forestal de Bronce Negro",
+	"item-forestaxe-iron": "Hacha Forestal de Hierro",
+	"item-forestaxe-meteoriciron": "Hacha Forestal de Hierro Meteórico",
+	"item-forestaxe-steel": "Hacha Forestal de Acero",
+
+    //Maul Entries - Entradas de Mazo de División
+	"item-handbooktitle-maul": "Mazo de División",
+	"item-handbooktext-maul": "Esta herramienta tiene una cabeza pesada con una hoja gruesa para <a href=\"handbook://toolmodes-indappledgroves\">cortar</a>, lo que la hace perfecta para dividir <a href=\"handbooksearch://log\">troncos</a> en <a href=\"handbooksearch://log slab\">losas</a>. Estas pueden dividirse aún más en <a href=\"handbook://item-firewood\">leña</a>, y de ahí en <a href=\"handbook://item-stick\">palos</a>.",
+	"item-maulhead-tinbronze": "Cabeza de Mazo de Bronce de Estaño",
+	"item-maulhead-bismuthbronze": "Cabeza de Mazo de Bronce de Bismuto",
+	"item-maulhead-blackbronze": "Cabeza de Mazo de Bronce Negro",
+	"item-maulhead-iron": "Cabeza de Mazo de Hierro",
+	"item-maulhead-meteoriciron": "Cabeza de Mazo de Hierro Meteórico",
+	"item-maulhead-steel": "Cabeza de Mazo de Acero",
+	"item-maul-tinbronze": "Mazo de División de Bronce de Estaño",
+	"item-maul-bismuthbronze": "Mazo de División de Bronce de Bismuto",
+	"item-maul-blackbronze": "Mazo de División de Bronce Negro",
+	"item-maul-iron": "Mazo de División de Hierro",
+	"item-maul-meteoriciron": "Mazo de División de Hierro Meteórico",
+	"item-maul-steel": "Mazo de División de Acero",
+
+	//Bark Entries - Entradas de Corteza
+	"item-handbooktitle-drybark": "Corteza",
+	"item-handbooktext-drybark": "La corteza de los árboles es útil para hacer <a href=\"handbooksearch://bark basket\">cestas de corteza</a>. Esto se logra convirtiéndola en <a href=\"handbooksearch://dry bark bundle\">fardos de corteza</a> y remojándola durante 24 horas para producir <a href=\"handbooksearch://soaked bark\">corteza remojada</a>.",
+	"item-bark": "Corteza",
+
+	//Adze Info - Información de Azuela
+	"item-handbooktitle-adze": "",
+	"item-handbooktext-adze": "",
+	"item-adzehead-flint": "Cabeza de Azuela de Pedernal",
+	"item-adzehead-chert": "Cabeza de Azuela de Sílex",
+	"item-adzehead-granite": "Cabeza de Azuela de Granito",
+	"item-adzehead-andesite": "Cabeza de Azuela de Andesita",
+	"item-adzehead-basalt": "Cabeza de Azuela de Basalto",
+	"item-adzehead-obsidian": "Cabeza de Azuela de Obsidiana",
+	"item-adzehead-peridotite": "Cabeza de Azuela de Peridotita",
+	"item-adzehead-tinbronze": "Cabeza de Azuela de Bronce de Estaño",
+	"item-adzehead-bismuthbronze": "Cabeza de Azuela de Bronce de Bismuto",
+	"item-adzehead-blackbronze": "Cabeza de Azuela de Bronce Negro",
+	"item-adzehead-iron": "Cabeza de Azuela de Hierro",
+	"item-adzehead-meteoriciron": "Cabeza de Azuela de Hierro Meteórico",
+	"item-adzehead-steel": "Cabeza de Azuela de Acero",
+	"item-adze-*-chert": "Azuela de Sílex",
+	"item-adze-*-granite": "Azuela de Granito",
+	"item-adze-*-andesite": "Azuela de Andesita",
+	"item-adze-*-basalt": "Azuela de Basalto",
+	"item-adze-*-obsidian": "Azuela de Obsidiana",
+	"item-adze-*-peridotite": "Azuela de Peridotita",
+	"item-adze-*-flint": "Azuela de Pedernal",
+	"item-adze-*-tinbronze": "Azuela de Bronce de Estaño",
+	"item-adze-*-bismuthbronze": "Azuela de Bronce de Bismuto",
+	"item-adze-*-blackbronze": "Azuela de Bronce Negro",
+	"item-adze-*-iron": "Azuela de Hierro",
+	"item-adze-*-meteoriciron": "Azuela de Hierro Meteórico",
+	"item-adze-*-steel": "Azuela de Acero",
+
+	//Story Events - Eventos de la Historia
+	"The Tyee and the bullcook...": "El Tyee y el bullcook...",
+	"...working sole and blade": "...trabajando suela y hoja",
+	"...with sturdy haft and bit": "...con mango robusto y punta",
+	"...by dust and the dog": "...por el polvo y el perro",
+
+    //ToolMode Interaction Help - Ayuda de Interacción con Modos de Herramienta
+	"heldhelp-chopping": "Cortar para crear {0}",
+	"heldhelp-hewing": "Desbastar para crear {0}",
+	"heldhelp-planing": "Cepillar para crear {0}",
+	"heldhelp-sawing": "Serruchar para crear {0}",
+
+	//Ground Recipe Guide - Guía de Recetas en el Suelo
+"indappledgrovesguide-inworldcrafting-title": "IDG: Fabricación en el Mundo",
+"indappledgrovesguide-inworldcrafting-text":
+"<font weight='bold' align='center'>Fabricación en el Mundo</font>
+La Fabricación en el Mundo busca eliminar la dependencia de la
+cuadrícula de fabricación para crear una experiencia más inmersiva.
+In Dappled Groves aplica este principio al proporcionar dos nuevas
+mecánicas para tus aventuras de carpintería.
+
+<font weight='bold' align='center'>Procesamiento en el Suelo</font>
+La primera mecánica es la capacidad de procesar madera sin la cuadrícula.
+Puedes colocar un tronco, una losa de tronco o un trozo de leña en el suelo e interactuar con él usando una herramienta
+como un <a href=\"handbooksearch://hacha\">hacha</a>, una <a href=\"handbooksearch://azuela\">azuela</a> o una <a href=\"handbooksearch://sierra\">sierra</a>. Los resultados dependen de la herramienta utilizada y del <a href=\"handbook://toolmodes-indappledgroves\">modo de herramienta</a> seleccionado. Por ejemplo, una <a href=\"handbooksearch://hacha de desbroce\">Hacha de Desbroce</a> configurada en modo de desbaste usada en un tronco producirá corteza, mientras que seleccionar el modo de corte resultará en losas de tronco.
+
+
+<font weight='bold' align='center'>Estaciones de Trabajo</font>
+<a href=\"handbook://workstations-indappledgroves\">Estaciones de Trabajo</a> son la segunda mecánica. Actualmente incluyen el
+bloque de corte y el caballete de sierra. Estas estaciones de trabajo sirven para proporcionar un impulso a la eficiencia al procesar recetas
+en ellas. Como antes, el <a href=\"handbook://toolmodes-indappledgroves\">modo de herramienta</a> de tu herramienta altera los resultados.
+
+Trabajar materiales en o fuera de una <a href=\"handbook://workstations-indappledgroves\">estación de trabajo</a> se hace de la misma manera.
+Simplemente apunta al bloque y mantén presionado el botón derecho del ratón.
+La animación de trabajo comenzará, y pronto verás tus resultados.
+Los tipos de madera varían en su dureza, por lo que el tiempo requerido puede variar.
+El pino es una madera más blanda y se procesará rápidamente.
+El ébano es una de las maderas más duras del mundo y tomará
+significativamente más tiempo, especialmente con herramientas de piedra.",
+
+	//Workstation Guide - Guía de Estaciones de Trabajo
+"indappledgrovesguide-workstations-title": "IDG: Fabricación en Estaciones de Trabajo",
+"indappledgrovesguide-workstations-text": "
+<font weight='bold' align='center'>Fabricación en Estaciones de Trabajo</font>
+<font align='center'><i>‘Y mientras trabajaba, me hacía pensar
+En el destino variado de la madera;
+Una pulgada donde la gente come y bebe,
+La siguiente pulgada en una tumba.</i></font>
+<font weight='strong' align='center'>- “La Caja de Herramientas” por Thomas Hardy</font>
+
+Las estaciones de trabajo son bloques que añaden un elemento interactivo a la producción de recursos. In Dappled Groves añade dos de estas estaciones, el <a href=\"handbooksearch://bloque de corte\">bloque de corte</a> y el <a href=\"handbooksearch://caballete de sierra\">caballete de sierra</a>.
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+
+<font weight='bold' align='center'>Estaciones de Trabajo</font>
+
+<font weight='bold'>Bloque de Corte</font>
+El bloque de corte es la estación de trabajo más básica, hecha usando una herramienta de <a href=\"handbook://toolmodes-indappledgroves\">desbaste</a> como una <a href=\"handbooksearch://azuela\">azuela</a> o una <a href=\"handbooksearch://hacha de desbroce\">hacha de desbroce</a> en una <a href=\"handbooksearch://losa de tronco\">losa de tronco</a> colocada plana en el suelo.
+
+El <a href=\"handbooksearch://bloque de corte\">bloque de corte</a> se usa actualmente para varios procesos de <a href=\"handbook://toolmodes-indappledgroves\">corte</a> y <a href=\"handbook://toolmodes-indappledgroves\">desbaste</a>. Puedes procesar <a href=\"handbooksearch://tronco\">troncos</a> en <a href=\"handbooksearch://losa de tronco\">losas de tronco</a>, esas en <a href=\"handbook://item-firewood\">leña</a>, y esas en <a href=\"handbook://item-stick\">palos</a>. Estos procesos también se pueden hacer en el suelo, pero el bloque de corte acelera el proceso.
+
+<font weight='bold' align='left'>Caballete de Sierra</font>
+El caballete de sierra está disponible después de fabricar <a href=\"handbook://item-plank-birch\">tablas</a> en el suelo con una <a href=\"handbooksearch://sierra\">sierra</a>. Al igual que con el bloque de corte, acelera los procesos realizados en él, y se usa para <a href=\"handbook://toolmodes-indappledgroves\">serrar</a> troncos en <a href=\"handbooksearch://tabla\">tablas</a>, y <a href=\"handbook://toolmodes-indappledgroves\">desbastar</a>los en <a href=\"handbooksearch://viga de soporte\">vigas de soporte</a>.
+",
+
+
+//Tool Modes Guide - Guía de Modos de Herramienta
+"indappledgrovesguide-toolmodes-title": "IDG: Modos de Herramienta",
+"indappledgrovesguide-toolmodes-text":
+"<font weight='bold' align='center'>Modos de Herramienta</font>
+Los modos de herramienta proporcionan opciones sobre cómo se usa una herramienta y pueden cambiarse presionando la tecla F mientras sostienes una herramienta que los tenga.
+En el juego base, los modos de herramienta se pueden ver con el cincel y el pico de prospección.
+Este mod añade estas opciones a otras herramientas para proporcionar
+oportunidades de fabricación más dinámicas cuando se combinan con diferentes materiales y <a href=\"handbook://workstations-indappledgroves\">estaciones de trabajo</a>.
+
+<font weight='bold' align='center'>Conceptos Básicos</font>
+Los modos de herramienta en este mod proporcionan acceso a diferentes
+recetas y, por lo tanto, a diferentes resultados según la herramienta, la estación de trabajo y el material de entrada.
+Se han implementado tres modos de herramienta diferentes en esta
+versión, con un cuarto actualmente deshabilitado y un quinto en planes.
+
+No todas las herramientas tendrán acceso a los mismos modos de
+herramienta, ni todas las herramientas que tienen acceso a un modo
+de herramienta serán necesariamente efectivas en el proceso indicado.
+Algunas herramientas simplemente son mejores en algunas cosas que otras.
+Por ejemplo, puedes desbastar madera con la parte trasera de una
+<a href=\"handbooksearch://hacha de desbroce\">hacha de desbroce</a>, pero no es tan efectivo como lo sería una <a href=\"handbooksearch://azuela\">azuela</a> del mismo nivel.
+
+<font weight='bold' align='center'>Modos de Herramienta</font>
+
+<font weight='bold'>Cortar:</font> Se usa al cortar madera en losas, leña y palos. Podría cambiarse a 'dividir' en una revisión futura. Se encuentra en cualquier forma de <a href=\"handbooksearch://hacha\">hacha</a>, incluyendo <a href=\"handbooksearch://hacha forestal\">hacha forestal</a>, <a href=\"handbooksearch://hacha de desbroce\">hachas de desbroce</a> y <a href=\"handbooksearch://mazo de división\">mazos de división</a>.
+
+<font weight='bold'>Desbastar:</font> Se usa al dar forma a la madera o 'pelarla', como al quitar la corteza. Actualmente se usa solo para pelar corteza, crear bloques de corte a partir de losas y hacer vigas en el <a href=\"handbooksearch://caballete de sierra\">caballete de sierra</a>. Se encuentra en cualquier <a href=\"handbooksearch://azuela\">azuela</a> o <a href=\"handbooksearch://Hacha de Desbroce\">Hacha de Desbroce</a>.'
+
+<font weight='bold'>Serruchar:</font> Se usa con sierras, al hacer tablas a partir de troncos. Se encuentra, como es de esperar, en la <a href=\"handbooksearch://sierra\">sierra</a>.
+
+<font weight='bold'>Golpear:</font> Este modo de herramienta está disponible en el <a href=\"handbooksearch://mazo de división\">mazo de división</a> y se usa con el <a href=\"handbooksearch://cortador de troncos\">cortador de troncos</a> para producir <a href=\"handbook://item-firewood\">leña</a> de manera eficiente. También se usa para hacer <a href=\"handbooksearch://losa de tronco\">losas de tronco</a>.",
+
+//<font weight='bold' align='center'>Modos Futuros</font>
+//<font weight='bold'>Cepillar:</font> Cepillar será un modo usado para procesar tablas de un estado rugoso a un estado suavizado cuando se introduzcan procesos más detallados de fabricación de tablas.
+
+//<font weight='bold'>Rajar:</font> Rajar es un proceso mediante el cual los troncos se pueden dividir en tejas, vigas y varias otras piezas que requieren métodos más precisos que dividir con un hacha o un mazo. Normalmente se usa una azuela de rajar para este proceso.",
+
+"item-handbooktitle-firewood": "Usos en In Dappled Groves:",
+"item-handbooktext-firewood": "Se puede hacer <a href=\"handbook://toolmodes-indappledgroves\">cortando</a> una losa de tronco después de colocarla en el suelo o en un <a href=\"handbooksearch://chopping block\">bloque de corte</a>. Se puede colocar en el suelo o en un <a href=\"handbooksearch://chopping block\">bloque de corte</a> y procesar en palos <a href=\"handbook://toolmodes-indappledgroves\">cortándolos</a> con un hacha u otra herramienta de corte.",
+//Wood Resistance Information - Información sobre la Resistencia de la Madera
+"woodresistance-indappledgroves":"IDG: Resistencia Variada de la Madera",
+"indappledgroves:indappledgrovesguide-woodresistance-title":"Mecánica de IDG: Resistencia Variada de la Madera",
+"indappledgroves:indappledgrovesguide-woodresistance-text": "<font align='center'><i>La buena madera no crece con facilidad,
+Cuanto más fuerte el viento, más fuertes los árboles;
+Cuanto más lejos el cielo, mayor la longitud;
+Cuanto más la tormenta, más la fuerza.</i></font>
+<font weight='bold' align='center'>- Buena Madera por Douglas Malloch</font>
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+<font size=18 weight='bold' align='center'>Resistencias de la Madera y Trabajo con Madera</font>
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+
+Las maderas en In Dappled Groves tienen diferentes resistencias según el tipo.
+Esto influye en la rapidez con la que puedes talar árboles y procesar materialesde madera.
+La resistencia de la madera, la estación de trabajo que estás usando
+y la efectividad de tu herramienta influyen en la rapidez con la que
+un árbol puede ser talado y la madera trabajada.
+
+La dureza de la madera se deriva de la <a href=\"https://en.wikipedia.org/wiki/Janka_hardness_test\">prueba de dureza Janka</a>, y
+representa una simulación aproximada de las maderas de VS en
+relación entre sí en la vida real. No debe confundirse con este
+<a href=\"https://www.youtube.com/watch?v=CoACA_LNKt0\">test.</a>
+
+De nada, soy un nerd.
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+<font size=18 weight='bold' align='center'>Resistencia de la Madera en Orden de Más Blando a Más Duro</font>
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+
+<font size=14 weight='bold'>Vanilla</font>:<font size=12>
+Secuoya, Alerce, Pino, Kapok, Nogal, Abedul, Roble, Arce, Acacia, Corazón Púrpura, Ébano</font>
+
+<font size=14 weight='bold'>Árboles y Arbustos de Wildcraft</font>: <font size=12>
+Bearnut, Chlorocibora, Álamo, Catalpa, (Vanilla: Secuoya), Sauce, Abeto, Abeto Douglas, Olmo, Sicómoro, Cedro Rojo, Cedro, Ginkgo, Eucalipto, Tuja, Saxaul, Árbol Emperatriz, Haya, Kauri, (Vanilla: Kapok), Blue Majoe, Fresno Satinado, Ghost Gum, (Vanilla: Nogal), Tejo, Acacia de Miel, Sal, Ohia, Banyan, Dalbergia, Caoba, Jacaranda, Umini, (Vanilla: Acacia), Petrificado, Guayacán, (Vanilla: Ébano)</font>
+",
+
+"indappledgroves:item-handbooktitle-plank": "",
+"indappledgroves:item-handbooktext-plank": "<font align='center'><i>Tablas de roble donde se mezclan los helechos tallados,
+Santuario de monjes en la naturaleza,
+Cabañas acogedoras en el valle,
+Todas las cosas que los poetas tristes bendicen.</i></font>
+<font weight='bold' align='center'>-Amy Ludwig VanDerwater</font>
+
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+<font size=18 weight='bold' align='center'>Usos en In Dappled Groves:</font>
+<font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font><font color='#795825'><icon name=tree></icon></font><font color='#4ba328'><icon name=tree></icon></font><font color='#065e30'><icon name=tree></icon></font><font color='#E98604'><icon name=tree></icon></font>
+
+<font size=14 weight='bold'>Tipo de Receta:</font>  <font size=14> <a href=\"handbook://inworldcrafting-indappledgroves\">En el Mundo</a> & <a href=\"handbook://workstations-indappledgroves\">Fabricación en Estación de Trabajo</a></font>
+<font size=14 weight='bold'>Modo de Herramienta:</font>  <font size=14> <a href=\"handbook://inworldcrafting-indappledgroves\">Serruchar</a></font>
+<font size=14 weight='bold'>Ingredientes</font>: <font size=14> <a href=\"handbooksearch://log\">Cualquier Tronco</a></font>
+<font size=14 weight='bold'>Herramientas Comunes</font>: <font size=14> <a href=\"handbooksearch:saw\">Sierra</a>
+<font size=14 weight='bold'>Estación de Trabajo</font>: <font size=14> <a href=\"handbooksearch:sawbuck\">caballete de sierra</a> o Suelo</font>
+
+Puedes usar cualquier <a href=\"handbooksearch://saw\">herramienta de sierra</a> para <a href=\"handbook://toolmodes-indappledgroves\">serruchar</a> cualquier <a href=\"handbooksearch://log\">tronco</a> en el <a href=\"handbook://inworldcrafting-indappledgroves\">suelo</a> o en un <a href=\"handbooksearch:sawbuck\">caballete de sierra</a> para hacer tablas.
+",
+
+}

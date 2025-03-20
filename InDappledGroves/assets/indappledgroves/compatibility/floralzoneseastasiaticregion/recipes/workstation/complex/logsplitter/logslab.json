@@ -7,7 +7,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "wildcrafttree:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], "loadFromProperties": "wildcrafttree:block/wood"}
+         {"type": "block", "code": "floralzonescaperegion:log-placed-*-ud", "name": "wood", "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:" ], loadFromPropertiesCombine: ["floralzonescaperegion:block/wood"], "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:", "agedebony" ]}
        ]
       }
     ],
@@ -21,7 +21,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "wildcrafttree:debarkedlog-*-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["wildcrafttree:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "floralzonescaperegion:debarkedlog-*-ud", "name": "wood", "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:" ], loadFromPropertiesCombine: ["floralzonescaperegion:block/wood"], "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:", "agedebony" ]}
        ]
       }
     ],
@@ -35,10 +35,10 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "wildcrafttree:logsection-placed-*-ne-ud", "name": "wood",  "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["wildcrafttree:block/wood"], "skipVariants": [ "veryaged", "veryagedrotten", "agedebony" ]}
+         {"type": "block", "code": "floralzonescaperegion:logsection-placed-*-ne-ud", "name": "wood",  "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:" ], loadFromPropertiesCombine: ["floralzonescaperegion:block/wood"], "skipVariants": [ "veryaged", "floralzoneseastasiaticregion:", "agedebony" ]}
        ]
       }
     ],
     "output": {"type": "block", "code": "indappledgroves:logslab-{wood}-barked-north-free", "quantity": 2}
-    }
+    },
 ]

@@ -1,4 +1,11 @@
-﻿1.20-v2.1.1
+﻿1.20-v2.1.2
+	- Ensured all recipes from all supported mods work for chopping block and logsplitter.
+	- Four missing textures from Floralzones family of mods added appropriately.
+	- Address issue where blockSel being null can cause Null Crash
+	- Correct log-quad recipes to use an Adze instead of an axe.
+	- Added Latin American Spanish Translation and Spain Spanish translation courtesy of Sir-Ryu
+
+1.20-v2.1.1
 	- Fixed version number to respect significant change to asset structuring.
 	- Ensured all files from 2.0.6 that were intended to be included *were* included.
 

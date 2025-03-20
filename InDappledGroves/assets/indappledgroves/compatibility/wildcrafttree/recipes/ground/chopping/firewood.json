@@ -1,12 +1,11 @@
 [
   {
     "toolmode": "chopping",
-    "requiredworkstation": "choppingblock",
     "ingredients":
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "floralzonescaperegion:lognarrow-*"}
+         {"type": "block", "code": "wildcrafttree:lognarrow-*"}
        ]
       }
     ],

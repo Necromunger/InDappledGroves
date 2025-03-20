@@ -57,8 +57,9 @@
   },
   {
     "file": "floralzonesmediterraneanregion:recipes/grid/wood/pan.json",
-    "op": "remove",
-    "path": "/0",
+    "op": "addmerge",
+    "path": "/enabled",
+    "value": "false",
     "side": "server",
 		"dependsOn": [ { "modid": "floralzonesmediterraneanregion" } ]
   }

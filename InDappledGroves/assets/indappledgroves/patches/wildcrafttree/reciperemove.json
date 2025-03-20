@@ -79,6 +79,321 @@
   {
     "file": "wildcrafttree:recipes/grid/plank.json",
     "op": "remove",
+    "path": "/54",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/53",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/52",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/51",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/50",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/49",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/48",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/47",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/46",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/45",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/44",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/43",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/42",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/41",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/40",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/39",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/38",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/37",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/36",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/35",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/34",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/33",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/32",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/31",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/30",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/29",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/28",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/27",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/26",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/25",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/24",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/23",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/22",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/21",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/20",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/19",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/18",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/17",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/16",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/15",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/14",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/13",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/12",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/11",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/10",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
     "path": "/9",
     "side": "server",
 		"dependsOn": [ { "modid": "wildcrafttree" } ]
@@ -141,6 +456,20 @@
   },
   {
     "file": "wildcrafttree:recipes/grid/plank.json",
+    "op": "remove",
+    "path": "/0",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/pan.json",
+    "op": "remove",
+    "path": "/1",
+    "side": "server",
+		"dependsOn": [ { "modid": "wildcrafttree" } ]
+  },
+  {
+    "file": "wildcrafttree:recipes/grid/pan.json",
     "op": "remove",
     "path": "/0",
     "side": "server",

@@ -4,7 +4,55 @@
     "side": "server",
     "op": "addmerge",
     "path": "/0/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
-    "value": "floralzonescaribbeanregion:block/wood",
-		"dependsOn": [ { "modid": "floralzonescarribeanregion" } ]
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
 	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/0/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/1/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server", 
+    "op": "addmerge",
+    "path": "/2/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/3/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/4/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	},
+  {
+    "file": "indappledgroves:recipes/workstation/basic/choppingblock/logslab.json",
+    "side": "server",
+    "op": "addmerge",
+    "path": "/5/ingredients/0/inputs/0/loadFromPropertiesCombine/-",
+    "value": "floralzonescaperegion:block/wood",
+		"dependsOn": [ { "modid": "floralzonescaperegion" } ]
+	}
 ]

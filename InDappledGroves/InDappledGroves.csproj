@@ -1115,6 +1115,15 @@
     <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\barrel\weaktanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\lang\es-419.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\lang\es-es.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaperegion\log-quad.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\grid\sawbuck.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1142,12 +1151,6 @@
     <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\basic\choppingblock\bark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\basic\choppingblock\firewood.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\basic\choppingblock\logslab.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\basic\choppingblock\woodrecovery.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1157,7 +1160,16 @@
     <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescaperegion\recipes\workstation\complex\logsplitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescaribbeanregion\recipes\grid\sawbuck.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescaribbeanregion\log-quad.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescaribbeanregion\recipes\ground\chopping\firewood.json">
@@ -1199,10 +1211,19 @@
     <None Update="assets\indappledgroves\compatibility\floralzonescaribbeanregion\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescaribbeanregion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescaribbeanregion\recipes\workstation\complex\logsplitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\barrel\strongtanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\barrel\weaktanninbark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonescentralaustralianregion\log-quad.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\grid\sawbuck.json">
@@ -1244,10 +1265,28 @@
     <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonescentralaustralianregion\recipes\workstation\complex\logsplitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\compatibility\floralzoneseastasiaticregion\recipes\ground\chopping\firewood.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzoneseastasiaticregion\recipes\workstation\basic\choppingblock\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzoneseastasiaticregion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzoneseastasiaticregion\recipes\workstation\complex\logsplitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzoneseastasiaticregion\log-quad.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonesmediterraneanregion\log-quad.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonesmediterraneanregion\recipes\grid\sawbuck.json">
@@ -1289,10 +1328,19 @@
     <None Update="assets\indappledgroves\compatibility\floralzonesmediterraneanregion\recipes\workstation\basic\sawbuck\supportbeam.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonesmediterraneanregion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonesmediterraneanregion\recipes\workstation\complex\logsplitter\logslab.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\barrel\strongtanninbark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\barrel\weaktanninbark.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\floralzonesneozeylandicregion\log-quad.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\grid\sawbuck.json">
@@ -1332,6 +1380,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\workstation\basic\sawbuck\supportbeam.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\workstation\complex\logsplitter\firewood.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\compatibility\floralzonesneozeylandicregion\recipes\workstation\complex\logsplitter\logslab.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\config\handbook\indappledgroveswoodresistance.json">
@@ -1575,6 +1629,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\axestonetweaks.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\patches\idgvanilla\recipes\log-quad.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\patches\idgvanilla\recipes\roughhewngate.json">
@@ -1940,6 +1997,9 @@
     <None Update="assets\indappledgroves\textures\block\barkedlog\aged.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\barkedlog\araucariaheterophylla.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\barkedlog\ash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1982,10 +2042,25 @@
     <None Update="assets\indappledgroves\textures\block\barkedlog\corymbiaaparrerinja.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\barkedlog\dacrydiumcupressinum.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\barkedlog\dalbergia.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\barkedlog\douglasfir.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\barkedlog\nothofagusmenziesii.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\barkedlog\podocarpustotara.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\araucariaheterophylla.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\dacrydiumcupressinum.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\douglasfir.png">
@@ -2270,6 +2345,9 @@
     <None Update="assets\indappledgroves\textures\block\strippedlog\maple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\nothofagusmenziesii.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\oak.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -2280,6 +2358,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\pine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\indappledgroves\textures\block\strippedlog\podocarpustotara.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="assets\indappledgroves\textures\block\strippedlog\poplar.png">

@@ -1,0 +1,58 @@
+[
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:log-placed-*-ud", "name": "wood", loadFromPropertiesCombine: ["floralzonesmediterraneanregion:block/wood"]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:debarkedlog-*-ud", "name": "wood", loadFromPropertiesCombine: ["floralzonesmediterraneanregion:block/wood"]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:log-placed-*-ud", "name": "wood", loadFromPropertiesCombine: ["floralzonesmediterraneanregion:block/wood"]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+  },
+  {
+    "toolmode": "pounding",
+    "processmodifier": "splitterblade-cross",
+    "requiredworkstation": "logsplitter",
+    "ingredients":
+    [ 
+      {"inputs": 
+       [
+         {"type": "block", "code": "floralzonesmediterraneanregion:logsection-placed-*-ne-ud", "name": "wood", "skipVariants": [ "veryaged", "veryagedrotten" ], loadFromPropertiesCombine: ["floralzonesmediterraneanregion:block/wood"]}
+       ]
+      }
+    ],
+    "output": {"type": "item", "code": "game:firewood", "quantity": 4}
+   }
+]

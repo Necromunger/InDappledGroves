@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "wildcrafttree:logslab-*"}
+         {"type": "block", "code": "indappledgroves::logslab-*"}
        ]
       }
     ],

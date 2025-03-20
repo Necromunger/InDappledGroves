@@ -65,6 +65,13 @@
   {
     "file": "floralzonesneozeylandicregion:recipes/grid/wood/pan.json",
     "op": "remove",
+    "path": "/1",
+    "side": "server",
+		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]
+  },
+  {
+    "file": "floralzonesneozeylandicregion:recipes/grid/wood/pan.json",
+    "op": "remove",
     "path": "/0",
     "side": "server",
 		"dependsOn": [ { "modid": "floralzonesneozeylandicregion" } ]

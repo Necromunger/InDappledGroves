@@ -35,27 +35,26 @@ namespace InDappledGroves.Blocks
         public override bool OnBlockInteractStep(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
         {
 
-            ItemSlot slot = byPlayer.InventoryManager.ActiveHotbarSlot;
-            ItemStack itemstack = slot.Itemstack;
-            CollectibleObject heldCollectible = itemstack?.Collectible;
-            BlockPos position = blockSel.Position;
-            string curTMode = "";
-            IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
             bool result = false;
-            if (beworkstation != null && (heldCollectible == null || !heldCollectible.HasBehavior<BehaviorIDGTool>()))
+            if (blockSel != null && world.BlockAccessor.GetBlockEntity(blockSel.Position) is IDGBEWorkstation beworkstation)
             {
-                result = beworkstation.OnInteract(byPlayer);
-            } else if (!beworkstation.InputSlot.Empty && heldCollectible != null && heldCollectible.HasBehavior<BehaviorIDGTool>())
-            {
-                result = beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);
+                CollectibleObject heldCollectible = byPlayer.InventoryManager.ActiveHotbarSlot.Itemstack?.Collectible;
+
+                if ((heldCollectible == null || !heldCollectible.HasBehavior<BehaviorIDGTool>()))
+                {
+                    result = beworkstation.OnInteract(byPlayer);
+                }
+                else if (!beworkstation.InputSlot.Empty && heldCollectible != null && heldCollectible.HasBehavior<BehaviorIDGTool>())
+                {
+                    result = beworkstation.handleRecipe(heldCollectible, secondsUsed, world, byPlayer, blockSel);
+                }
+                beworkstation.MarkDirty(true);
             }
-            
-            beworkstation.MarkDirty(true);
             return result;
         }
 
         public override void OnBlockInteractStop(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel)
-        {            
+        {
             IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
             beworkstation.recipeHandler.playNextSound = 0.5f;
             if (beworkstation.recipeHandler.recipe != null)
@@ -69,6 +68,11 @@ namespace InDappledGroves.Blocks
 
         public override bool OnBlockInteractCancel(float secondsUsed, IWorldAccessor world, IPlayer byPlayer, BlockSelection blockSel, EnumItemUseCancelReason cancelReason)
         {
+            IDGBEWorkstation beworkstation = world.BlockAccessor.GetBlockEntity(blockSel.Position) as IDGBEWorkstation;
+            if (beworkstation.recipeHandler.recipe != null)
+            {
+                byPlayer.Entity.StopAnimation(beworkstation.recipeHandler.recipe.Animation);
+            }
             return base.OnBlockInteractCancel(secondsUsed, world, byPlayer, blockSel, cancelReason);
         }
 
