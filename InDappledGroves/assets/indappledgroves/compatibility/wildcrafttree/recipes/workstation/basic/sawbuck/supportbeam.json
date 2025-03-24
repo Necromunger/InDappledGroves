@@ -1,6 +1,7 @@
 [
   {
     "toolmode": "hewing",
+    "requiredworkstation": "sawbuck",
     "ingredients":
     [ 
       {"inputs": 

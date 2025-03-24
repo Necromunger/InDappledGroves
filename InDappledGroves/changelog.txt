@@ -1,4 +1,4 @@
-﻿1.20-v2.1.2
+﻿1.20-v2.1.2-rc.1
 	- Ensured all recipes from all supported mods work for chopping block and logsplitter.
 	- Four missing textures from Floralzones family of mods added appropriately.
 	- Address issue where blockSel being null can cause Null Crash
