@@ -6,7 +6,7 @@
     [ 
       {"inputs": 
        [
-         {"type": "block", "code": "indappledgroves::logslab-*"}
+         {"type": "block", "code": "indappledgroves:logslab-*"}
        ]
       }
     ],
