@@ -667,9 +667,9 @@ namespace InDappledGroves.Util.RecipeTools
 
             public WorkStationIngredient[] Ingredients;
 
-            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
+            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 0 };
 
-            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block };
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 0 };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -794,6 +794,11 @@ namespace InDappledGroves.Util.RecipeTools
                 }
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
+
+                if(ReturnStack.Quantity == 0 && ReturnStack.Code.ToString() != "air")
+                {
+                    ReturnStack.Quantity = 1;
+                }
 
                 ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
 
@@ -1351,9 +1356,9 @@ namespace InDappledGroves.Util.RecipeTools
 
             public GroundIngredient[] Ingredients;
 
-            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
+            public JsonItemStack Output = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 0 };
 
-            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 1 };
+            public JsonItemStack ReturnStack = new JsonItemStack() { Code = new AssetLocation("air"), Type = EnumItemClass.Block, Quantity = 0 };
 
             public ItemStack TryCraftNow(ICoreAPI api, ItemSlot inputslots)
             {
@@ -1478,6 +1483,11 @@ namespace InDappledGroves.Util.RecipeTools
                 }
 
                 ok &= Output.Resolve(world, sourceForErrorLogging);
+
+                if (ReturnStack.Quantity == 0 && ReturnStack.Code.ToString() != "air")
+                {
+                    ReturnStack.Quantity = 1;
+                }
 
                 ok &= ReturnStack.Resolve(world, sourceForErrorLogging);
 
