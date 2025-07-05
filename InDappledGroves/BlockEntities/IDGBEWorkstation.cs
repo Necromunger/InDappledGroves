@@ -324,6 +324,7 @@ namespace InDappledGroves.BlockEntities
 
         public override void GetBlockInfo(IPlayer forPlayer, StringBuilder dsc)
         {
+
             var primary = Block.Variant["primary"];
             var secondary = Block.Variant["secondary"];
             var materials = (Lang.Get("material-" + $"{primary}") + (secondary != null ? " and " + Lang.Get("material-" + $"{secondary}") : ""));
