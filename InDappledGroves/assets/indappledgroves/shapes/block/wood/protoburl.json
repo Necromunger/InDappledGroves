@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"birch": "/Users/vinte/AppData/Roaming/Vintagestory/1.19/assets/survival/textures/block/wood/bark/birch",
-		"inside": "/Users/vinte/source/repos/InDappledGroves/InDappledGroves/assets/indappledgroves/textures/block/treehollow/inside"
+		"birch": "block/wood/bark/birch",
+		"inside": "block/treehollow/inside"
 	},
 	"elements": [
 		{

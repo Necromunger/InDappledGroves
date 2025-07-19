@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"kapok": "/Users/vinte/AppData/Roaming/Vintagestory/1170pre2/assets/survival/textures/block/wood/debarked/kapok",
-		"kapok2": "/Users/vinte/AppData/Roaming/Vintagestory/1170pre2/assets/survival/textures/block/wood/bark/kapok"
+		"kapok": "block/wood/debarked/kapok",
+		"kapok2": "block/wood/bark/kapok"
 	},
 	"elements": [
 		{

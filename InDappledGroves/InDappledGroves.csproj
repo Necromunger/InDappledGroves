@@ -4,10 +4,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <LangVersion>10</LangVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>C:\Users\vinte\source\repos\InDappledGroves\InDappledGroves\indappledgroves-doc.xml</DocumentationFile>
-    <BaseOutputPath>C:\Users\vinte\source\repos\InDappledGroves\InDappledGroves\bin</BaseOutputPath>
-    <BaseIntermediateOutputPath>C:\Users\vinte\source\repos\InDappledGroves\InDappledGroves\obj</BaseIntermediateOutputPath>
+    <DocumentationFile>F:\Projects\InDappledGroves\InDappledGroves\indappledgroves-doc.xml</DocumentationFile>
+    <BaseOutputPath>F:\Projects\InDappledGroves\InDappledGroves\bin</BaseOutputPath>
+    <BaseIntermediateOutputPath>F:\Projects\InDappledGroves\InDappledGroves\obj</BaseIntermediateOutputPath>
   </PropertyGroup>
+  
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net4.6.1|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
@@ -2517,59 +2518,59 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\0Harmony.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="cairo-sharp">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\cairo-sharp.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\cairo-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Open.Nat">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\Open.Nat.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\Open.Nat.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="OpenTK.Graphics">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\OpenTK.Graphics.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\OpenTK.Graphics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\protobuf-net.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\protobuf-net.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Tavis.JsonPatch">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Lib\Tavis.JsonPatch.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Lib\Tavis.JsonPatch.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Vintagestory">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Vintagestory.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Vintagestory.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryAPI">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\VintagestoryAPI.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/VintagestoryAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryLib">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\VintagestoryLib.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/VintagestoryLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VintagestoryServer">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\VintagestoryServer.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/VintagestoryServer.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VSCreativeMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Mods\VSCreativeMod.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Mods\VSCreativeMod.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VSEssentials">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Mods\VSEssentials.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Mods\VSEssentials.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VSSurvivalMod">
-      <HintPath>..\..\..\..\AppData\Roaming\Vintagestory\1.20\Mods\VSSurvivalMod.dll</HintPath>
+      <HintPath>$(VINTAGE_STORY)/Mods\VSSurvivalMod.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

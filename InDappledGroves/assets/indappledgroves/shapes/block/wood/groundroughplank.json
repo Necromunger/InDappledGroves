@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"wood": "/Users/vinte/AppData/Roaming/Vintagestory/1170pre5/assets/survival/textures/block/wood/debarked/oak",
-		"bark": "/Users/vinte/AppData/Roaming/Vintagestory/1170pre5/assets/survival/textures/block/wood/bark/oak"
+		"wood": "block/wood/debarked/oak",
+		"bark": "block/wood/bark/oak"
 	},
 	"elements": [
 		{

@@ -8,8 +8,8 @@
 	"textureSizes": {
 	},
 	"textures": {
-		"wood": "C:/Users/Owner/AppData/Roaming/VintageStory/VS1165/assets/survival/textures/block/wood/treetrunk/wood",
-		"bark": "C:/Users/Owner/AppData/Roaming/VintageStory/VS1165/assets/survival/textures/block/wood/bark/wood"
+		"wood": "block/wood/treetrunk/wood",
+		"bark": "block/wood/bark/wood"
 	},
 	"elements": [
 		{

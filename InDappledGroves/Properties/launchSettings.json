@@ -2,9 +2,9 @@
   "profiles": {
     "indappledgroves": {
       "commandName": "Project",
-      "commandLineArgs": "--dataPath=\"C:\\Users\\vinte\\AppData\\Roaming\\VintagestoryData_Modding\" --addModPath=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\bin\\Debug\" --addOrigin=\"C:\\Users\\vinte\\source\\repos\\InDappledGroves\\InDappledGroves\\assets\"",
-      "workingDirectory": "C:\\Users\\vinte\\AppData\\Roaming\\Vintagestory\\1.20",
-      "nativeDebugging": false
+      "executablePath": "$(VINTAGE_STORY)/Vintagestory.exe",
+      "commandLineArgs": "--tracelog --addModPath \"$(ProjectDir)/bin/$(Configuration)/Mods\"",
+      "workingDirectory": "$(VINTAGE_STORY)"
     }
   }
 }
